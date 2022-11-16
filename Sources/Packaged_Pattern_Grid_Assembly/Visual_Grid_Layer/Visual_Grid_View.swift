@@ -11,7 +11,9 @@ import SwiftUI
 public struct Visual_Grid_View : View {
      
     public var grid_Store : Visual_Grid_Store
-    
+    public init(grid_Store_Param : Visual_Grid_Store){
+        grid_Store = grid_Store_Param
+    }
     public var body: some View {
         return ZStack(alignment: .topLeading){
             ForEach(grid_Store.lineArray){ lineStore in
