@@ -23,7 +23,7 @@ public struct Visual_Grid_View : View {
     }
 }
 
-struct Visual_Cell_View : View {
+public struct Visual_Cell_View : View {
     
     @ObservedObject public var visual_Cell_Store : Visual_Cell_Store
     
