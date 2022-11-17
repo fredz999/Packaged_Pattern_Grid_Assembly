@@ -8,15 +8,17 @@
 import Foundation
 import SwiftUI
 
-public class Cursor_Horizontal_Slider_Store<SliderView:View,SliderLineView:View> : ObservableObject {
+// I think I can take these generics oot and use the default ones
+// then in the generic assembly decide at runtime whether or not to use the injected factory methods
+public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public let centralState = Central_State.Static_Central_State
     
     public let dimensions = ComponentDimensions.StaticDimensions
     
-    public var slider_View : SliderView
-    
-    public var slider_Line_View : SliderLineView
+//    public var slider_View : SliderView
+//
+//    public var slider_Line_View : SliderLineView
     
     @Published public var computedLineDisplacement: CGFloat = 0
     
@@ -38,9 +40,11 @@ public class Cursor_Horizontal_Slider_Store<SliderView:View,SliderLineView:View>
       }
     }
     
-    public init(sliderParam:SliderView,sliderLineParam:SliderLineView){
-        slider_View = sliderParam
-        slider_Line_View = sliderLineParam
+    
+    //public init(sliderParam:SliderView,sliderLineParam:SliderLineView){
+    public init(){
+//        slider_View = sliderParam
+//        slider_Line_View = sliderLineParam
     }
     
     public func handleDrag(inputParam:CGFloat){

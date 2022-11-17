@@ -10,11 +10,13 @@ import SwiftUI
 
 public struct Default_Horizontal_Slider_View : View {
     let dimensions = ComponentDimensions.StaticDimensions
-    @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store<Default_H_Slider,Default_H_Slider_Line>
+    @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store
     public var body: some View {
         return ZStack(alignment: .topLeading) {
-            cursor_Horizontal_Slider_Store.slider_View
-            cursor_Horizontal_Slider_Store.slider_Line_View.offset(x:cursor_Horizontal_Slider_Store.computedLineDisplacement,y:dimensions.pattern_Grid_Unit_Height)
+//            cursor_Horizontal_Slider_Store.slider_View
+//            cursor_Horizontal_Slider_Store.slider_Line_View.offset(x:cursor_Horizontal_Slider_Store.computedLineDisplacement,y:dimensions.pattern_Grid_Unit_Height)
+            Default_H_Slider()
+            Default_H_Slider_Line()
         }.gesture(cursor_Horizontal_Slider_Store.slideDragGesture)
     }
 }

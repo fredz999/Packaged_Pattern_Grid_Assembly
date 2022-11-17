@@ -9,24 +9,37 @@ import Foundation
 import SwiftUI
 
 
-public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
+public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
+    ,Injected_H_SliderType:View
+    ,Injected_H_SliderLineType:View
+    ,Injected_V_SliderType:View
+    ,Injected_V_Slider_Line_Type:View>{
+    
     
     public var visible_Grid_Store : Central_Grid_Store
     
-    @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store<Default_H_Slider,Default_H_Slider_Line>
-    
-    @ObservedObject var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store<Default_V_Slider,Default_V_Slider_Line>
-    
     public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
     
+    var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store
+    
+    var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store<Default_V_Slider,Default_V_Slider_Line>
+    
+
+    //============================================================================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
+    
+    public var horizontal_Slider_Manufacturing_Closure : ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)?
+    
+    public var vertical_Slider_Manufacturing_Closure : ((Cursor_Vertical_Slider_Store<Injected_V_SliderType,Injected_V_Slider_Line_Type>)->Injected_H_SliderType)?
+    
+    //============================================================================================================================================================
+    
+    
     
     public init(horzUnits:Int,vertUnits:Int){
         visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
         
-        cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store<Default_H_Slider
-        , Default_H_Slider_Line>(sliderParam: Default_H_Slider()
-        , sliderLineParam: Default_H_Slider_Line())
+        cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store()
         
         cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store<Default_V_Slider
         , Default_V_Slider_Line>(sliderParam: Default_V_Slider()
@@ -51,8 +64,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
             }
         }
     }
-    
-    
 
     public func returnInjectedView(xParam:Int,yParam:Int)->InjectedCentralCellType {
         return visible_Line_View_Array[yParam].unitArray[xParam]
@@ -70,8 +81,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
         else if central_Grid_Manufacturing_Closure == nil {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
-                    //NOOOOOOO THIS NEEDS TO BE THE THING THAT HOLDS THE FREAKING STOOOOOOOORE
-                    Central_Cell_View(visual_Cell_Store: visibleUnit)
+                    Default_Central_Cell_View(visual_Cell_Store: visibleUnit)
                     .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
                 }
             }
