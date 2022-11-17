@@ -83,8 +83,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
         Default_Cursor_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
     }
     
-
-    
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
     }
