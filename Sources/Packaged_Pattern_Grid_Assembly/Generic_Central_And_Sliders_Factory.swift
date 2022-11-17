@@ -11,10 +11,7 @@ import SwiftUI
 
 public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_H_SliderType:View
-    ,Injected_H_SliderLineType:View
-    ,Injected_V_SliderType:View
-    ,Injected_V_Slider_Line_Type:View>{
-    
+    ,Injected_V_SliderType:View>{
     
     public var visible_Grid_Store : Central_Grid_Store
     
