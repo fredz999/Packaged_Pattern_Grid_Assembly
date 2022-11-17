@@ -9,19 +9,19 @@ import Foundation
 import SwiftUI
 
 
-public class Visible_Injected_Generic_Grid_View_Factory<InjectedViewType:View>{
+public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
     
     public var visible_Grid_Store : Visual_Grid_Store
     
-    public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedViewType>] = []
+    public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
     
-    public var unit_Manufacturing_Closure : ((Visual_Cell_Store)->InjectedViewType)?
+    public var unit_Manufacturing_Closure : ((Visual_Cell_Store)->InjectedCentralCellType)?
     
     public init(horzUnits:Int,vertUnits:Int){
         visible_Grid_Store = Visual_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
     }
     
-    public func inject_Factory_Method(unit_Factory_Param: @escaping ((Visual_Cell_Store)->InjectedViewType)){
+    public func inject_Factory_Method(unit_Factory_Param: @escaping ((Visual_Cell_Store)->InjectedCentralCellType)){
         unit_Manufacturing_Closure = unit_Factory_Param
         create_Visible_Grid_From_Data()
     }
@@ -29,7 +29,7 @@ public class Visible_Injected_Generic_Grid_View_Factory<InjectedViewType:View>{
     public func create_Visible_Grid_From_Data(){
         if let lclFactoryMethod = unit_Manufacturing_Closure {
             for y in 0..<visible_Grid_Store.gridUnitsVert {
-            let new_Visible_Line : Visible_Injected_Generic_View_Line = Visible_Injected_Generic_View_Line<InjectedViewType>()
+            let new_Visible_Line : Visible_Injected_Generic_View_Line = Visible_Injected_Generic_View_Line<InjectedCentralCellType>()
                 for x in 0..<visible_Grid_Store.gridUnitsHorz {
                     let visibleGridUnit = lclFactoryMethod(visible_Grid_Store.vis_Line_Store_Array[y].visual_Cell_Store_Array[x])
                     //.visibile_Unit_Store_Array[x])
@@ -43,7 +43,7 @@ public class Visible_Injected_Generic_Grid_View_Factory<InjectedViewType:View>{
     
     
 
-    public func returnInjectedView(xParam:Int,yParam:Int)->InjectedViewType {
+    public func returnInjectedView(xParam:Int,yParam:Int)->InjectedCentralCellType {
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
 
@@ -79,15 +79,6 @@ public class Visible_Injected_Generic_View_Line <InjectedViewType:View> : Observ
     public var id = UUID()
     public var unitArray = [InjectedViewType]()
 }
-
-
-
-
-
-
-
-
-
 
 public class Visual_Grid_Store : ObservableObject {
     
