@@ -8,10 +8,10 @@
 import Foundation
 import SwiftUI
 
-public struct Visual_Grid_View : View {
+public struct Central_Grid_View : View {
      
-    public var grid_Store : Visual_Grid_Store
-    public init(grid_Store_Param : Visual_Grid_Store){
+    public var grid_Store : Central_Grid_Store
+    public init(grid_Store_Param : Central_Grid_Store){
         grid_Store = grid_Store_Param
     }
     
@@ -22,7 +22,7 @@ public struct Visual_Grid_View : View {
             // this section has to come from a viewBuilder that uses the injected types
             ForEach(grid_Store.vis_Line_Store_Array){ lineStore in
                 ForEach(lineStore.visual_Cell_Store_Array){ cellStore in
-                    Visual_Cell_View(visual_Cell_Store: cellStore).offset(x:cellStore.xFloat,y:cellStore.yFloat)
+                    Central_Cell_View(visual_Cell_Store: cellStore).offset(x:cellStore.xFloat,y:cellStore.yFloat)
                 }
             }
             
@@ -32,11 +32,11 @@ public struct Visual_Grid_View : View {
     }
 }
 
-public struct Visual_Cell_View : View {
+public struct Central_Cell_View : View {
     
-    @ObservedObject public var visual_Cell_Store : Visual_Cell_Store
+    @ObservedObject public var visual_Cell_Store : Central_Cell_Store
     
-    public init(visual_Cell_Store: Visual_Cell_Store) {
+    public init(visual_Cell_Store: Central_Cell_Store) {
         self.visual_Cell_Store = visual_Cell_Store
     }
     
