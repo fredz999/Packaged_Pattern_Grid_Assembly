@@ -14,13 +14,20 @@ public struct Visual_Grid_View : View {
     public init(grid_Store_Param : Visual_Grid_Store){
         grid_Store = grid_Store_Param
     }
+    
     public var body: some View {
         return ZStack(alignment: .topLeading){
-            ForEach(grid_Store.lineArray){ lineStore in
-                ForEach(lineStore.visualCellArray){ cellStore in
+            
+            
+            // this section has to come from a viewBuilder that uses the injected types
+            ForEach(grid_Store.vis_Line_Store_Array){ lineStore in
+                ForEach(lineStore.visual_Cell_Store_Array){ cellStore in
                     Visual_Cell_View(visual_Cell_Store: cellStore).offset(x:cellStore.xFloat,y:cellStore.yFloat)
                 }
             }
+            
+            
+            
         }
     }
 }
