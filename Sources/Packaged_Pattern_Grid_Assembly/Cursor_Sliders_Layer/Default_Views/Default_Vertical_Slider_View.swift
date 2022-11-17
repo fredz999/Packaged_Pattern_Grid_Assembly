@@ -19,7 +19,7 @@ public struct Default_Vertical_Slider_View : View {
             //            cursor_Vertical_Slider_Store.slider_View
             //            cursor_Vertical_Slider_Store.slider_Line_View.offset(x:-dimensions.Horz_Cursor_Slider_Width, y:cursor_Vertical_Slider_Store.computedLineDisplacement)
             Default_V_Slider()
-            Default_V_Slider_Line()
+            Default_V_Slider_Line().offset(x:-dimensions.Horz_Cursor_Slider_Width, y:cursor_Vertical_Slider_Store.computedLineDisplacement)
         }.gesture(cursor_Vertical_Slider_Store.slideDragGesture)
     }
 }

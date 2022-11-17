@@ -16,7 +16,7 @@ public struct Default_Horizontal_Slider_View : View {
 //            cursor_Horizontal_Slider_Store.slider_View
 //            cursor_Horizontal_Slider_Store.slider_Line_View.offset(x:cursor_Horizontal_Slider_Store.computedLineDisplacement,y:dimensions.pattern_Grid_Unit_Height)
             Default_H_Slider()
-            Default_H_Slider_Line()
+            Default_H_Slider_Line().offset(x:cursor_Horizontal_Slider_Store.computedLineDisplacement,y:dimensions.pattern_Grid_Unit_Height)
         }.gesture(cursor_Horizontal_Slider_Store.slideDragGesture)
     }
 }
