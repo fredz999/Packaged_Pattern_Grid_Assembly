@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct Cursor_Horizontal_Slider_View : View {
+public struct Default_Cursor_Horizontal_Slider_View : View {
     let dimensions = ComponentDimensions.StaticDimensions
     @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store<H_Slider_View_External,H_Slider_Line_View_External>
     public var body: some View {
@@ -39,7 +39,7 @@ public struct H_Slider_Line_View_External : View {
 
 public class Cursor_Horizontal_Slider_Store<SliderView:View,SliderLineView:View> : ObservableObject {
     
-    //public let centralState = Central_State.Static_Central_State
+    public let centralState = Central_State.Static_Central_State
     
     public let dimensions = ComponentDimensions.StaticDimensions
     
@@ -120,7 +120,7 @@ public class Cursor_Horizontal_Slider_Store<SliderView:View,SliderLineView:View>
     public func calculateCursorCellXPos(){
         let divided = currentVal/dimensions.pattern_Grid_Unit_Width
         let intDivided = Int(divided)
-        //centralState.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
+        centralState.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
         computedLineDisplacement = CGFloat(intDivided) * dimensions.pattern_Grid_Unit_Width
     }
     

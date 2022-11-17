@@ -14,6 +14,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
     public var visible_Grid_Store : Central_Grid_Store
     
     @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store<H_Slider_View_External,H_Slider_Line_View_External>
+    
     @ObservedObject var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store<V_Slider_View_External,V_Slider_Line_View_External>
     
     public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
@@ -78,8 +79,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
     }
     
     @ViewBuilder public func returnSliders()->some View {
-        Cursor_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:30,y:210)
-        //Cursor_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:330,y:240)
+        Default_Cursor_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:30,y:210)
+        Default_Cursor_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:330,y:240)
     }
     
 
