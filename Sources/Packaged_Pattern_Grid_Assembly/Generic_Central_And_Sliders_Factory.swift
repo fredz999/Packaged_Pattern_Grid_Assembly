@@ -79,8 +79,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
     }
     
     @ViewBuilder public func returnSliders()->some View {
-        Default_Cursor_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:30,y:210)
-        Default_Cursor_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:330,y:240)
+        Default_Cursor_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:0,y:110)
+        Default_Cursor_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
     }
     
 
