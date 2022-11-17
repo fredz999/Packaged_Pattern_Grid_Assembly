@@ -13,6 +13,7 @@ public struct Cursor_Vertical_Slider_View : View {
     let colors = ComponentColors.StaticColors
     @ObservedObject var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store<V_Slider_View_External,V_Slider_Line_View_External>
     
+    
     public var body: some View {
         return ZStack(alignment: .topLeading) {
             cursor_Vertical_Slider_Store.slider_View
