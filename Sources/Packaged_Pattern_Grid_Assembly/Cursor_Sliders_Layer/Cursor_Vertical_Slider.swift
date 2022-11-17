@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-public class Cursor_Vertical_Slider_Store<SliderView:View,SliderLineView:View>:ObservableObject{
+public class Cursor_Vertical_Slider_Store:ObservableObject{
     
     let centralState = Central_State.Static_Central_State
     
@@ -25,13 +25,12 @@ public class Cursor_Vertical_Slider_Store<SliderView:View,SliderLineView:View>:O
         }
     }
     
-    public var slider_View : SliderView
+//    public var slider_View : SliderView
+//
+//    public var slider_Line_View : SliderLineView
     
-    public var slider_Line_View : SliderLineView
-    
-    public init(sliderParam:SliderView,sliderLineParam:SliderLineView){
-        slider_View = sliderParam
-        slider_Line_View = sliderLineParam
+    public init(){
+
     }
     
     public var slideDragGesture : some Gesture {

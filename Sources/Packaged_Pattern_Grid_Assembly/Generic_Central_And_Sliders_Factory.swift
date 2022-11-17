@@ -22,7 +22,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store
     
-    var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store<Default_V_Slider,Default_V_Slider_Line>
+    var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store
     
 
     //============================================================================================================================================================
@@ -30,7 +30,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public var horizontal_Slider_Manufacturing_Closure : ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)?
     
-    public var vertical_Slider_Manufacturing_Closure : ((Cursor_Vertical_Slider_Store<Injected_V_SliderType,Injected_V_Slider_Line_Type>)->Injected_H_SliderType)?
+    public var vertical_Slider_Manufacturing_Closure : ((Cursor_Vertical_Slider_Store)->Injected_H_SliderType)?
     
     //============================================================================================================================================================
     
@@ -41,9 +41,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store()
         
-        cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store<Default_V_Slider
-        , Default_V_Slider_Line>(sliderParam: Default_V_Slider()
-        , sliderLineParam: Default_V_Slider_Line())
+        cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store()
         
     }
     
