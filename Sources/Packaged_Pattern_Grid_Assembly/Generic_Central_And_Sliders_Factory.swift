@@ -14,26 +14,28 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_V_SliderType:View>{
     
     public var visible_Grid_Store : Central_Grid_Store
-    
     public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
     
     var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store
+    var h_Slider : Injected_H_SliderType?
     
     var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store
+    var v_Slider : Injected_V_SliderType?
     
 
-    //============================================================================================================================================================
+    //==============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
     
     public var horizontal_Slider_Manufacturing_Closure : ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)?
     
-    public var vertical_Slider_Manufacturing_Closure : ((Cursor_Vertical_Slider_Store)->Injected_H_SliderType)?
+    public var vertical_Slider_Manufacturing_Closure : ((Cursor_Vertical_Slider_Store)->Injected_V_SliderType)?
     
-    //============================================================================================================================================================
+    //=============================================================================================================
     
     
     
     public init(horzUnits:Int,vertUnits:Int){
+        
         visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
         
         cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store()
@@ -46,6 +48,19 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         central_Grid_Manufacturing_Closure = unit_Factory_Param
         create_Visible_Grid_From_Data()
     }
+    
+    public func returnInjectedView(xParam:Int,yParam:Int)->InjectedCentralCellType {
+        return visible_Line_View_Array[yParam].unitArray[xParam]
+    }
+    
+    public func inject_HSlider_Method(horizontal_Slider_Param: @escaping ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)){
+        horizontal_Slider_Manufacturing_Closure = horizontal_Slider_Param
+    }
+    
+    public func inject_VSlider_Method(vertical_Slider_Param: @escaping ((Cursor_Vertical_Slider_Store)->Injected_V_SliderType)){
+        vertical_Slider_Manufacturing_Closure = vertical_Slider_Param
+    }
+    
 
     public func create_Visible_Grid_From_Data(){
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {
@@ -60,9 +75,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
     }
 
-    public func returnInjectedView(xParam:Int,yParam:Int)->InjectedCentralCellType {
-        return visible_Line_View_Array[yParam].unitArray[xParam]
-    }
+    
 
     @ViewBuilder public func returnCentralGrid()->some View {
         if central_Grid_Manufacturing_Closure != nil {
@@ -84,8 +97,14 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnSliders()->some View {
-        Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:0,y:110)
-        Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
+        if let lclHorzSlider_Factory_Method = horizontal_Slider_Manufacturing_Closure,let lclVertSlider_Factory_Method = vertical_Slider_Manufacturing_Closure{
+            lclHorzSlider_Factory_Method(cursor_Horizontal_Slider_Store).offset(x:0,y:110)
+            lclVertSlider_Factory_Method(cursor_Vertical_Slider_Store).offset(x:300,y:140)
+        }
+        else{
+            Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:0,y:110)
+            Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
+        }
     }
     
     deinit {
