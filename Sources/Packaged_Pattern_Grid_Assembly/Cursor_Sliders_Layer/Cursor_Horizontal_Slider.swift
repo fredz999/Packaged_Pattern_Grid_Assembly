@@ -8,35 +8,6 @@
 import Foundation
 import SwiftUI
 
-public struct Default_Cursor_Horizontal_Slider_View : View {
-    let dimensions = ComponentDimensions.StaticDimensions
-    @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store<H_Slider_View_External,H_Slider_Line_View_External>
-    public var body: some View {
-        return ZStack(alignment: .topLeading) {
-            cursor_Horizontal_Slider_Store.slider_View
-            cursor_Horizontal_Slider_Store.slider_Line_View.offset(x:cursor_Horizontal_Slider_Store.computedLineDisplacement,y:dimensions.pattern_Grid_Unit_Height)
-        }.gesture(cursor_Horizontal_Slider_Store.slideDragGesture)
-    }
-}
-
-public struct H_Slider_View_External : View {
-    let dimensions = ComponentDimensions.StaticDimensions
-    let colors = ComponentColors.StaticColors
-    public var body : some View {
-        Rectangle().frame(width: dimensions.Horz_Cursor_Slider_Width,height: dimensions.Horz_Cursor_Slider_Height)
-        .foregroundColor(colors.cursorSwiperColor)
-    }
-}
-
-public struct H_Slider_Line_View_External : View {
-    let dimensions = ComponentDimensions.StaticDimensions
-    let colors = ComponentColors.StaticColors
-    public var body : some View {
-        Rectangle().frame(width: dimensions.Horz_Cursor_Slider_Line_Width,height: dimensions.Horz_Cursor_Slider_Line_Height)
-        .foregroundColor(colors.cursorSliderLineColor)
-    }
-}
-
 public class Cursor_Horizontal_Slider_Store<SliderView:View,SliderLineView:View> : ObservableObject {
     
     public let centralState = Central_State.Static_Central_State

@@ -13,9 +13,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
     
     public var visible_Grid_Store : Central_Grid_Store
     
-    @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store<H_Slider_View_External,H_Slider_Line_View_External>
+    @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store<Default_H_Slider,Default_H_Slider_Line>
     
-    @ObservedObject var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store<V_Slider_View_External,V_Slider_Line_View_External>
+    @ObservedObject var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store<Default_V_Slider,Default_V_Slider_Line>
     
     public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
     
@@ -24,13 +24,13 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
     public init(horzUnits:Int,vertUnits:Int){
         visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
         
-        cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store<H_Slider_View_External
-        , H_Slider_Line_View_External>(sliderParam: H_Slider_View_External()
-        , sliderLineParam: H_Slider_Line_View_External())
+        cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store<Default_H_Slider
+        , Default_H_Slider_Line>(sliderParam: Default_H_Slider()
+        , sliderLineParam: Default_H_Slider_Line())
         
-        cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store<V_Slider_View_External
-        , V_Slider_Line_View_External>(sliderParam: V_Slider_View_External()
-        , sliderLineParam: V_Slider_Line_View_External())
+        cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store<Default_V_Slider
+        , Default_V_Slider_Line>(sliderParam: Default_V_Slider()
+        , sliderLineParam: Default_V_Slider_Line())
         
     }
     
@@ -79,8 +79,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View>{
     }
     
     @ViewBuilder public func returnSliders()->some View {
-        Default_Cursor_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:0,y:110)
-        Default_Cursor_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
+        Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:0,y:110)
+        Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
     }
     
     deinit {
