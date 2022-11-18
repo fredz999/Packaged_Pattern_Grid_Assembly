@@ -13,11 +13,11 @@ public class Cursor_Layer_Store : ObservableObject {
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
     
-    @Published var offsetSize : CGSize = CGSize(width: 0, height: 0)
-    @Published var width : CGFloat
-    @Published var height : CGFloat
-    @Published var cursorLayerCellColor : Color
-    @Published var cursorText = ""
+    @Published public var offsetSize : CGSize = CGSize(width: 0, height: 0)
+    @Published public var width : CGFloat
+    @Published public var height : CGFloat
+    @Published public var cursorLayerCellColor : Color
+    @Published public var cursorText = ""
     
     var currDataX : Int
     var currDataY : Int
