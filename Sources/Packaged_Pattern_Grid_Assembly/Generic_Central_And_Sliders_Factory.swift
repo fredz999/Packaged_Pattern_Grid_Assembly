@@ -13,6 +13,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_H_SliderType:View
     ,Injected_V_SliderType:View>{
     
+    public var centralState = Central_State.Static_Central_State
     public var visible_Grid_Store : Central_Grid_Store
     public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
     
@@ -44,6 +45,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         cursor_Layer_Store = Cursor_Layer_Store()
         
+        centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
+//        centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
+        centralState.cursor_Layer_Ref = cursor_Layer_Store
     }
     
     public func inject_Central_Cell_Factory_Method(unit_Factory_Param: @escaping ((Central_Cell_Store)->InjectedCentralCellType)){
@@ -107,7 +111,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnCursorLayer()->some View {
-        Cursor_Layer_View(cursor_Layer_Store: cursor_Layer_Store).offset(x:30,y:140)
+        Cursor_Layer_View(cursor_Layer_Store: cursor_Layer_Store).offset(x:0,y:140)
     }
     //Cursor_Layer_View
     

@@ -9,7 +9,66 @@ import Foundation
 import SwiftUI
 
 public class Central_State : ObservableObject {
-    public func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){}
+    
+    var v_Slider_Ref : Cursor_Vertical_Slider_Store?
+    var cursor_Layer_Ref : Cursor_Layer_Store?
+    
+    var writingIsOn : Bool = false
+    var lower_Bracket_Number : Int = 0
+    
+    //==================================================
+    private var currentXCursor_Slider_Position : Int = 0
+    private var currentYCursor_Slider_Position : Int = 0
+    
+    func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
+        if let lcl_NewX = new_X {
+            if lcl_NewX != currentXCursor_Slider_Position {
+                currentXCursor_Slider_Position = lcl_NewX
+                centralState_Cursor_Position_Evaluation()
+                centralState_Data_Evaluation()
+            }
+        }
+        if let lclNew_Y = new_Y {
+            if lclNew_Y != currentYCursor_Slider_Position {
+                currentYCursor_Slider_Position = lclNew_Y
+                centralState_Cursor_Position_Evaluation()
+                centralState_Data_Evaluation()
+            }
+        }
+//        if writingIsOn == true {
+//            potentialNoteEvaluation()
+//        }
+    }
+    
+    func centralState_Cursor_Position_Evaluation() {
+        if let lclCursorLayer = cursor_Layer_Ref {
+            lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
+        }
+    }
+    
+    func centralState_Data_Evaluation(){
+        if let lclCursorLayer = cursor_Layer_Ref {
+            lclCursorLayer.currPosX = currentXCursor_Slider_Position
+            lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
+
+            lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
+
+//            if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
+//                if let lclNoteCollection = note_Collection_Ref{
+//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
+//                }
+//            }
+//
+//            else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil{
+//                if let lclNoteCollection = note_Collection_Ref{
+//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+//                }
+//            }
+
+        }
+    }
+    //==================================================
+    
     public static let Static_Central_State = Central_State()
 }
 
