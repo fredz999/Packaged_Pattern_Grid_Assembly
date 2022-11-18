@@ -36,13 +36,13 @@ public class Cursor_Layer_Store : ObservableObject {
         set_Cursor_Pos(xInt:0,yInt:0)
     }
     
-    @ViewBuilder func currView()->(some View){
-        ZStack(alignment: .topLeading){
-            ZStack(alignment: .center){
-                Default_Cursor_Marker_View(cursor_Layer_Store: self)
-            }.offset(offsetSize)
-        }
-    }
+//    @ViewBuilder func currView()->(some View){
+//        ZStack(alignment: .topLeading){
+//            ZStack(alignment: .center){
+//                Default_Cursor_Marker_View(cursor_Layer_Store: self)
+//            }.offset(offsetSize)
+//        }
+//    }
     
     func set_Cursor_Pos(xInt:Int,yInt:Int){
         let floatX = CGFloat(xInt)
@@ -60,14 +60,14 @@ public class Cursor_Layer_Store : ObservableObject {
     
 }
 
-struct Cursor_Layer_View : View {
-    @ObservedObject var cursor_Layer_Store : Cursor_Layer_Store
-    var body: some View {
-        return ZStack(alignment: .topLeading){
-            cursor_Layer_Store.currView()
-        }
-    }
-}
+//struct Cursor_Layer_View : View {
+//    @ObservedObject var cursor_Layer_Store : Cursor_Layer_Store
+//    var body: some View {
+//        return ZStack(alignment: .topLeading){
+//            cursor_Layer_Store.currView()
+//        }
+//    }
+//}
 
 struct Default_Cursor_Marker_View : View {
     @ObservedObject var cursor_Layer_Store : Cursor_Layer_Store

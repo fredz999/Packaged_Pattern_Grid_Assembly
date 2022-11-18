@@ -59,12 +59,19 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         create_Visible_Grid_From_Data()
     }
     
-    public func inject_HSlider_Factory_Method(horizontal_Slider_Param: @escaping ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)){
-        horizontal_Slider_Manufacturing_Closure = horizontal_Slider_Param
+    public func inject_HSlider_Factory_Method(horizontal_Slider_Factory_Param: ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)){
+        //horizontal_Slider_Manufacturing_Closure = horizontal_Slider_Param
+        h_Slider = horizontal_Slider_Factory_Param(cursor_Horizontal_Slider_Store)
+
     }
         
-    public func inject_VSlider_Factory_Method(vertical_Slider_Param: @escaping ((Cursor_Vertical_Slider_Store)->Injected_V_SliderType)){
-        vertical_Slider_Manufacturing_Closure = vertical_Slider_Param
+    public func inject_VSlider_Factory_Method(vertical_Slider_Factory_Param: ((Cursor_Vertical_Slider_Store)->Injected_V_SliderType)){
+        //vertical_Slider_Manufacturing_Closure = vertical_Slider_Param
+        v_Slider = vertical_Slider_Factory_Param(cursor_Vertical_Slider_Store)
+    }
+    
+    public func inject_Cursor_Factory_Method(cursor_Factory_Method: ((Cursor_Layer_Store)->Injected_Cursor_Type)){
+        cursor = cursor_Factory_Method(cursor_Layer_Store)
     }
     
     public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
@@ -82,6 +89,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                 visible_Line_View_Array.append(new_Visible_Line)
             }
         }
+        central_Grid_Manufacturing_Closure = nil
     }
 
     @ViewBuilder public func returnCentralGrid()->some View {
@@ -104,18 +112,44 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnSliders()->some View {
-        if let lclHorzSlider_Factory_Method = horizontal_Slider_Manufacturing_Closure,let lclVertSlider_Factory_Method = vertical_Slider_Manufacturing_Closure{
-            lclHorzSlider_Factory_Method(cursor_Horizontal_Slider_Store).offset(x:0,y:110)
-            lclVertSlider_Factory_Method(cursor_Vertical_Slider_Store).offset(x:300,y:140)
+        if let lclHslider = h_Slider,let lclVslider = v_Slider {
+            lclHslider.offset(x:0,y:110)
+            lclVslider.offset(x:300,y:140)
         }
         else{
             Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:0,y:110)
             Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
         }
+//        if let lclHorzSlider_Factory_Method = horizontal_Slider_Manufacturing_Closure,let lclVertSlider_Factory_Method = vertical_Slider_Manufacturing_Closure{
+//            lclHorzSlider_Factory_Method(cursor_Horizontal_Slider_Store).offset(x:0,y:110)
+//            lclVertSlider_Factory_Method(cursor_Vertical_Slider_Store).offset(x:300,y:140)
+//        }
+//        else{
+//            Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:0,y:110)
+//            Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
+//        }
     }
     
     @ViewBuilder public func returnCursorLayer()->some View {
-        Cursor_Layer_View(cursor_Layer_Store: cursor_Layer_Store).offset(x:0,y:140)
+        if let lclCursor = cursor{
+            lclCursor.offset(cursor_Layer_Store.offsetSize)
+        }
+        else if cursor == nil{
+            Default_Cursor_Marker_View(cursor_Layer_Store: cursor_Layer_Store)
+        }
+        
+        
+        
+        //Cursor_Layer_View(cursor_Layer_Store: cursor_Layer_Store).offset(x:0,y:140)
+//        ZStack(alignment: .topLeading){
+//            if let lclcursor_Manufacturing_Closure = cursor_Manufacturing_Closure{
+//                lclcursor_Manufacturing_Closure(cursor_Layer_Store).offset(cursor_Layer_Store.offsetSize)
+//            }
+//                Default_Cursor_Marker_View(cursor_Layer_Store: cursor_Layer_Store)
+//        }.offset(cursor_Layer_Store.offsetSize)
+        
+        
+        
     }
     //Cursor_Layer_View
     
