@@ -11,7 +11,8 @@ import SwiftUI
 
 public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_H_SliderType:View
-    ,Injected_V_SliderType:View>{
+    ,Injected_V_SliderType:View
+    ,Injected_Cursor_Type:View>{
     
     public var centralState = Central_State.Static_Central_State
     public var visible_Grid_Store : Central_Grid_Store
@@ -24,6 +25,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var v_Slider : Injected_V_SliderType?
     
     var cursor_Layer_Store : Cursor_Layer_Store
+    var cursor : Injected_Cursor_Type?
     
 
     //==============================================================================================================
@@ -32,6 +34,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     public var horizontal_Slider_Manufacturing_Closure : ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)?
     
     public var vertical_Slider_Manufacturing_Closure : ((Cursor_Vertical_Slider_Store)->Injected_V_SliderType)?
+    
+    public var cursor_Manufacturing_Closure : ((Cursor_Layer_Store)->Injected_Cursor_Type)?
     
     //=============================================================================================================
     

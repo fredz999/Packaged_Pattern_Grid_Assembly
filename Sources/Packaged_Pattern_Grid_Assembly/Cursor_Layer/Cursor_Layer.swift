@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Cursor_Layer_Store : ObservableObject {
+public class Cursor_Layer_Store : ObservableObject {
     let centralState = Central_State.Static_Central_State
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -25,7 +25,7 @@ class Cursor_Layer_Store : ObservableObject {
     var currPosX : Int
     var currPosY : Int
     
-    init(){
+    public init(){
         width = dimensions.pattern_Grid_Unit_Width
         height = dimensions.pattern_Grid_Unit_Height
         cursorLayerCellColor = colors.cursorNotWriting
@@ -39,8 +39,9 @@ class Cursor_Layer_Store : ObservableObject {
     @ViewBuilder func currView()->(some View){
         ZStack(alignment: .topLeading){
             ZStack(alignment: .center){
-                Rectangle().frame(width:width,height:height).foregroundColor(cursorLayerCellColor)
-                Text(cursorText).foregroundColor(.black)
+//                Rectangle().frame(width:width,height:height).foregroundColor(cursorLayerCellColor)
+//                Text(cursorText).foregroundColor(.black)
+                Default_Cursor_Marker_View(cursor_Layer_Store: self)
             }.offset(offsetSize)
         }
     }
@@ -70,7 +71,7 @@ struct Cursor_Layer_View : View {
     }
 }
 
-struct Cursor_Marker_View : View {
+struct Default_Cursor_Marker_View : View {
     @ObservedObject var cursor_Layer_Store : Cursor_Layer_Store
     var body: some View {
         return ZStack(alignment: .topLeading){
