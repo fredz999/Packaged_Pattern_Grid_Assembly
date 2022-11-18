@@ -39,8 +39,6 @@ public class Cursor_Layer_Store : ObservableObject {
     @ViewBuilder func currView()->(some View){
         ZStack(alignment: .topLeading){
             ZStack(alignment: .center){
-//                Rectangle().frame(width:width,height:height).foregroundColor(cursorLayerCellColor)
-//                Text(cursorText).foregroundColor(.black)
                 Default_Cursor_Marker_View(cursor_Layer_Store: self)
             }.offset(offsetSize)
         }
@@ -54,7 +52,7 @@ public class Cursor_Layer_Store : ObservableObject {
         offsetSize = CGSize(width: xVal, height: yVal)
     }
 
-    func set_Cursor_Data(dataX:Int,dataY:Int){
+    public func set_Cursor_Data(dataX:Int,dataY:Int){
         currDataX = dataX
         currDataY = dataY
         cursorText = dataX.description+","+dataY.description
