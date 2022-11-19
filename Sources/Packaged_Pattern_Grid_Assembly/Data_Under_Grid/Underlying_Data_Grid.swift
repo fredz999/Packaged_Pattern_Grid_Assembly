@@ -41,7 +41,7 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
     @Published public var dataCell_X_Number : Int
     @Published public var dataCell_Y_Number : Int
     @Published public var isHighlighted : Bool = false
-    //var note_Im_In : Visual_Note?
+    var note_Im_In : Note?
     
     @Published public var currentType : E_CellStatus = .unassigned
     

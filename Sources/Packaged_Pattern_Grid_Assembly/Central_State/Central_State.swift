@@ -11,16 +11,22 @@ import SwiftUI
 public class Central_State : ObservableObject {
     
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
+    var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
+    
+    
     var cursor_Layer_Ref : Cursor_Layer_Store?
     var potential_Note_Layer_Ref : Potential_Note_Layer_Store<VariableWidthRecView>?
+    var note_Collection_Ref : Note_Collection?
     
     
-    var writingIsOn : Bool = false
+    //var writingIsOn : Bool = false
     var lower_Bracket_Number : Int = 0
     
     //==================================================
     private var currentXCursor_Slider_Position : Int = 0
     private var currentYCursor_Slider_Position : Int = 0
+    let colors = ComponentColors.StaticColors
+    //==================================================
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
@@ -75,7 +81,62 @@ public class Central_State : ObservableObject {
 
         }
     }
-    //==================================================
+    
+    let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
+    @Published var write_Note_Button_Visible : Bool = true
+        @Published var a_Note_Is_Highlighted : Bool = false
+        {
+            didSet {
+                if a_Note_Is_Highlighted == false {
+                    write_Note_Button_Visible = true
+                }
+                else if a_Note_Is_Highlighted == true {
+                    write_Note_Button_Visible = false
+                }
+            }
+        }
+ 
+        var writingIsOn : Bool = false {
+                didSet {
+                    if writingIsOn == true {
+                        if let lclCursorRef = cursor_Layer_Ref {
+                            lclCursorRef.cursorLayerCellColor = colors.cursorWriting
+                        }
+                        if let lclPotentialLayer = potential_Note_Layer_Ref{
+                            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+                            potentialNoteEvaluation()
+                        }
+                    }
+                    else if writingIsOn == false {
+                        if let lclCursorRef = cursor_Layer_Ref {
+                            lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
+                            if let lclPotentialLayer = potential_Note_Layer_Ref {
+    
+                                if let lcl_Initial_X = lclPotentialLayer.potential_Initial_Grid_X
+                                    ,let lcl_Current_X = lclPotentialLayer.potential_Current_Grid_X
+                                ,let lcl_Initial_Y = lclPotentialLayer.potential_Initial_Grid_Y{
+                                    if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+                                        lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
+                                        , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+                                    }
+                                    else if lcl_Current_X < lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+                                        lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: lcl_Current_X
+                                        , highest_Data_X: lcl_Initial_X, data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+                                    }
+                                    else if lcl_Current_X == lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+                                        lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
+                                        , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+                                    }
+                                }
+                                lclPotentialLayer.endPotentialNote()
+                            }
+                        }
+                    }
+                }
+            }
+    
+        //private var lower_Bracket_Number : Int = 0
+        var higher_Bracket_Number : Int = 0
     
     public static let Static_Central_State = Central_State()
 }

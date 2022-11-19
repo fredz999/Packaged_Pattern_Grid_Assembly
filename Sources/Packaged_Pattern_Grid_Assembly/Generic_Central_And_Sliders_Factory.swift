@@ -142,6 +142,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
          //Note_Write_Layer(note_Write_Layer_Store: Note_Write_Layer_Store<Note_Write_Button_View>(injectableBtnParam: Note_Write_Button_View()))
         Note_Write_Layer(note_Write_Layer_Store: note_Write_Layer_Store).offset(x:100,y:340)
     }
+    
+    @ViewBuilder public func returnPotentialLayer()->some View {
+        //potential_Note_Layer_Store
+        Potential_Note_Layer_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
+    }
 
     
     deinit {
