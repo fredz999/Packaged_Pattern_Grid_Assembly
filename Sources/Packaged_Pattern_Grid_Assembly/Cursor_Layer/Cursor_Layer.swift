@@ -13,11 +13,7 @@ public class Cursor_Layer_Store : ObservableObject {
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
     
-    @Published public var offsetSize : CGSize = CGSize(width: 0, height: 0){
-        didSet{
-            print("offsetSize: ",offsetSize.debugDescription)
-        }
-    }
+    @Published public var offsetSize : CGSize = CGSize(width: 0, height: 0)
     @Published public var width : CGFloat
     @Published public var height : CGFloat
     @Published public var cursorLayerCellColor : Color

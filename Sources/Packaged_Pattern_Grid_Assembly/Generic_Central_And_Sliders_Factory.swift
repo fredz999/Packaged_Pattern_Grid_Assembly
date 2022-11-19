@@ -113,12 +113,14 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     @ViewBuilder public func returnSliders()->some View {
         if let lclHslider = h_Slider,let lclVslider = v_Slider {
-            lclHslider.offset(x:0,y:110)
-            lclVslider.offset(x:300,y:140)
+            lclHslider//.offset(x:0,y:110)
+            lclVslider//.offset(x:300,y:140)
         }
-        else{
-            Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store).offset(x:0,y:110)
-            Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store).offset(x:300,y:140)
+        else {
+            Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store)
+                //.offset(x:0,y:110)
+            Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store)
+             //.offset(x:300,y:140)
         }
 //        if let lclHorzSlider_Factory_Method = horizontal_Slider_Manufacturing_Closure,let lclVertSlider_Factory_Method = vertical_Slider_Manufacturing_Closure{
 //            lclHorzSlider_Factory_Method(cursor_Horizontal_Slider_Store).offset(x:0,y:110)
@@ -131,8 +133,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnCursorLayer()->some View {
-        if let lclCursor = cursor{
-            lclCursor.offset(cursor_Layer_Store.offsetSize)
+        if let lclCursor = cursor {
+            lclCursor//.offset(cursor_Layer_Store.offsetSize)
         }
         else if cursor == nil{
             Default_Cursor_Marker_View(cursor_Layer_Store: cursor_Layer_Store)
