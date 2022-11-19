@@ -12,6 +12,8 @@ public class Central_State : ObservableObject {
     
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
     var cursor_Layer_Ref : Cursor_Layer_Store?
+    var potential_Note_Layer_Ref : Potential_Note_Layer_Store<VariableWidthRecView>?
+    
     
     var writingIsOn : Bool = false
     var lower_Bracket_Number : Int = 0
@@ -35,9 +37,15 @@ public class Central_State : ObservableObject {
                 centralState_Data_Evaluation()
             }
         }
-//        if writingIsOn == true {
-//            potentialNoteEvaluation()
-//        }
+        if writingIsOn == true {
+            potentialNoteEvaluation()
+        }
+    }
+    
+    func potentialNoteEvaluation(){
+        if let lclPotentialLayer = potential_Note_Layer_Ref {
+            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+        }
     }
     
     func centralState_Cursor_Position_Evaluation() {
