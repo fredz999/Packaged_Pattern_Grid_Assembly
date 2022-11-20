@@ -54,18 +54,21 @@ struct Note_Write_Button_View : View {
     let colors = ComponentColors.StaticColors
     var body: some View {
         return ZStack {
-            if centralState.writingIsOn == true {
-                ZStack {
-                    Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                    Text("Turn Write Off").foregroundColor(.white)
-                }
-            }
-            else if centralState.writingIsOn == false {
-                ZStack {
-                    Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
-                    Text("Turn Write On").foregroundColor(.white)
-                }
-            }
+//            if centralState.writingIsOn == true {
+//                ZStack {
+//                    Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                    Text("Turn Write Off").foregroundColor(.white)
+//                }
+//            }
+//            else if centralState.writingIsOn == false {
+//                ZStack {
+//                    Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
+//                    Text("Turn Write On").foregroundColor(.white)
+//                }
+//            }
+            Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0, blue: 0))
+            Text(centralState.writingIsOn.description).foregroundColor(.white)
+            
         }.onTapGesture {
             centralState.writingIsOn.toggle()
         }
