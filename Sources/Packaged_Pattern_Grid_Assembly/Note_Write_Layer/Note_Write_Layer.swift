@@ -49,27 +49,20 @@ class Note_Write_Layer_Store : ObservableObject {
     
 }
 
-struct Note_Write_Button_View : View {
+struct Default_Note_Write_Button_View : View {
     @ObservedObject var centralState = Central_State.Static_Central_State
     let colors = ComponentColors.StaticColors
     var body: some View {
         return ZStack {
             if centralState.writingIsOn == true {
-              
                     Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
                     Text("Turn Write Off").foregroundColor(.white)
-              
             }
             else if centralState.writingIsOn == false {
     
                     Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
                     Text("Turn Write On").foregroundColor(.white)
-           
             }
-            
-//            Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0, blue: 0))
-//            Text(centralState.writingIsOn.description).foregroundColor(.white)
-            
         }.onTapGesture {
             centralState.writingIsOn.toggle()
         }

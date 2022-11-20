@@ -87,10 +87,12 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
 //    }
 //}
 
-struct VariableWidthRecView : View {
+struct Default_Variable_Width_Rec_View : View {
+    
+    @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store<Default_Variable_Width_Rec_View>
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
-    @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store<VariableWidthRecView>
+    
     var body: some View {
         ZStack(alignment: .topLeading){
             Rectangle()

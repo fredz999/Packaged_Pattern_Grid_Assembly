@@ -15,7 +15,7 @@ public class Central_State : ObservableObject {
     
     
     var cursor_Layer_Ref : Cursor_Layer_Store?
-    var potential_Note_Layer_Ref : Potential_Note_Layer_Store<VariableWidthRecView>?
+    var potential_Note_Layer_Ref : Potential_Note_Layer_Store<Default_Variable_Width_Rec_View>?
     var note_Collection_Ref : Note_Collection?
     
     

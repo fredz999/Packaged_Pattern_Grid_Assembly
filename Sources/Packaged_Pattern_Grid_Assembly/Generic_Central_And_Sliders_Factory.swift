@@ -28,7 +28,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var cursor : Injected_Cursor_Type?
     
     //var note_Write_Layer_Store : Note_Write_Layer_Store
-    var potential_Note_Layer_Store : Potential_Note_Layer_Store<VariableWidthRecView>
+    var potential_Note_Layer_Store : Potential_Note_Layer_Store<Default_Variable_Width_Rec_View>
     
     //==============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
@@ -53,7 +53,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         //note_Write_Layer_Store = Note_Write_Layer_Store()
         
-        potential_Note_Layer_Store = Potential_Note_Layer_Store<VariableWidthRecView>()
+        potential_Note_Layer_Store = Potential_Note_Layer_Store<Default_Variable_Width_Rec_View>()
         
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
 
@@ -138,12 +138,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnNoteWriteLayer()->some View {
-        Note_Write_Button_View()
+        Default_Note_Write_Button_View()
     }
     
     @ViewBuilder public func returnPotentialLayer()->some View {
-        //Potential_Note_Layer_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
-        VariableWidthRecView(potential_Note_Layer_Store: potential_Note_Layer_Store)
+        Default_Variable_Width_Rec_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
     }
 
     deinit {
