@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Note_Write_Layer : View {
     @ObservedObject var note_Write_Layer_Store : Note_Write_Layer_Store
+    @ObservedObject var centralState = Central_State.Static_Central_State
     var body: some View {
         return ZStack(alignment: .topLeading){
             Button(action:{
@@ -29,15 +30,15 @@ class Note_Write_Layer_Store : ObservableObject {
         centralState.writingIsOn.toggle()
     }
     
-    @ViewBuilder func currView()->(some View){
-        if centralState.writingIsOn == true{
-            ZStack{
+    @ViewBuilder func currView() -> (some View) {
+        if centralState.writingIsOn == true {
+            ZStack {
                 Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
                 Text("Turn Write Off").foregroundColor(.white)
             }
         }
-        else if centralState.writingIsOn == false{
-            ZStack{
+        else if centralState.writingIsOn == false {
+            ZStack {
                 Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
                 Text("Turn Write On").foregroundColor(.white)
             }
