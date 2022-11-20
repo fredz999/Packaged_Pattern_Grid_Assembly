@@ -27,7 +27,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var cursor_Layer_Store : Cursor_Layer_Store
     var cursor : Injected_Cursor_Type?
     
-    var note_Write_Layer_Store : Note_Write_Layer_Store
+    //var note_Write_Layer_Store : Note_Write_Layer_Store
     var potential_Note_Layer_Store : Potential_Note_Layer_Store<VariableWidthRecView>
     
     //==============================================================================================================
@@ -51,7 +51,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         cursor_Layer_Store = Cursor_Layer_Store()
         
-        note_Write_Layer_Store = Note_Write_Layer_Store()
+        //note_Write_Layer_Store = Note_Write_Layer_Store()
         
         potential_Note_Layer_Store = Potential_Note_Layer_Store<VariableWidthRecView>()
         
@@ -135,14 +135,13 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnNoteWriteLayer()->some View {
-        Note_Write_Layer(note_Write_Layer_Store: note_Write_Layer_Store).offset(x:100,y:340)
+        Note_Write_Button_View()
     }
     
     @ViewBuilder public func returnPotentialLayer()->some View {
         Potential_Note_Layer_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
     }
 
-    
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
     }
