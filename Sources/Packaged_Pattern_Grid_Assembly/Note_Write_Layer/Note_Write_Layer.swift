@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Note_Write_Layer : View {
     @ObservedObject var note_Write_Layer_Store : Note_Write_Layer_Store
-    @ObservedObject var centralState = Central_State.Static_Central_State
+    //@ObservedObject var centralState = Central_State.Static_Central_State
     var body: some View {
         return ZStack(alignment: .topLeading){
             Button(action:{
@@ -24,7 +24,7 @@ struct Note_Write_Layer : View {
 
 class Note_Write_Layer_Store : ObservableObject {
     
-    @Published var centralState = Central_State.Static_Central_State
+    @ObservedObject var centralState = Central_State.Static_Central_State
 
     func pressUpReactor(){
         centralState.writingIsOn.toggle()

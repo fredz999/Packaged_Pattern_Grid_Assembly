@@ -96,7 +96,7 @@ public class Central_State : ObservableObject {
             }
         }
  
-        var writingIsOn : Bool = false {
+    @Published var writingIsOn : Bool = false {
                 didSet {
                     if writingIsOn == true {
                         print("writingIsOn == true")
