@@ -29,7 +29,7 @@ public class Central_State : ObservableObject {
     //==================================================
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-        print("cursor_Slider_Update")
+        
         if let lcl_NewX = new_X {
             if lcl_NewX != currentXCursor_Slider_Position {
                 currentXCursor_Slider_Position = lcl_NewX
@@ -50,6 +50,7 @@ public class Central_State : ObservableObject {
     }
     
     func potentialNoteEvaluation(){
+        print("potentialNoteEvaluation")
         if let lclPotentialLayer = potential_Note_Layer_Ref {
             lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
         }
