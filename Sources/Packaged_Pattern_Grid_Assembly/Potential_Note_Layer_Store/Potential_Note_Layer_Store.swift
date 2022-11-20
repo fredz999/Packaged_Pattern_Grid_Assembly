@@ -93,7 +93,10 @@ struct VariableWidthRecView : View {
     @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store<VariableWidthRecView>
     var body: some View {
         ZStack(alignment: .topLeading){
-            Rectangle().frame(width: potential_Note_Layer_Store.weeedth ,height: dimensions.pattern_Grid_Unit_Height).foregroundColor(colors.potentialColor)
-        }.offset(x:potential_Note_Layer_Store.x_Offset,y:potential_Note_Layer_Store.y_Offset)
+            Rectangle()
+                .frame(width: potential_Note_Layer_Store.weeedth ,height: dimensions.pattern_Grid_Unit_Height)
+                .foregroundColor(colors.potentialColor)
+                .offset(x:potential_Note_Layer_Store.x_Offset,y:potential_Note_Layer_Store.y_Offset)
+        }
     }
 }
