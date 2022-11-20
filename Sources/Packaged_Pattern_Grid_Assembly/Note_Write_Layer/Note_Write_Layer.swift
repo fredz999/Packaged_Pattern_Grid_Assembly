@@ -22,6 +22,7 @@ struct Note_Write_Layer : View {
 }
 
 class Note_Write_Layer_Store : ObservableObject {
+    
     @Published var centralState = Central_State.Static_Central_State
 
     func pressUpReactor(){
