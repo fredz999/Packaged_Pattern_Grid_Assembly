@@ -13,7 +13,11 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
     let dimensions = ComponentDimensions.StaticDimensions
     
     @Published var x_Offset : CGFloat = 0
-    @Published var weeedth : CGFloat = 0
+    @Published var weeedth : CGFloat = 0{
+        didSet{
+            print("weeedth: ",weeedth.description)
+        }
+    }
     @Published var y_Offset : CGFloat = 0
 
     var potential_Initial_Grid_X : Int?
@@ -41,7 +45,7 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
     }
     
     func set_Potential_Note_Dimensions(){
-        print("set_Potential_Note_Dimensions()")
+        
         if let lclInitialX = potential_Initial_Grid_X,let initialY = potential_Initial_Grid_Y,let currX = potential_Current_Grid_X {
             
             if lclInitialX <= currX {
