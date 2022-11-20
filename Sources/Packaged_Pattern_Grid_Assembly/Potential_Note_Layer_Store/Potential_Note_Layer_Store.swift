@@ -40,6 +40,7 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
     }
     
     func set_Potential_Note_Dimensions(){
+        print("set_Potential_Note_Dimensions()")
         if let lclInitialX = potential_Initial_Grid_X,let initialY = potential_Initial_Grid_Y,let currX = potential_Current_Grid_X {
             
             if lclInitialX <= currX {
@@ -71,19 +72,19 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
     }
     
     var injected_Potential_View : InjectedPotentialView?
-    @ViewBuilder func currView()->(some View){
-        injected_Potential_View
-    }
+//    @ViewBuilder func currView()->(some View){
+//        injected_Potential_View
+//    }
 
 }
 
-struct Potential_Note_Layer_View : View {
-    @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store<VariableWidthRecView>
-    var body: some View {
-        potential_Note_Layer_Store.currView()
-        .offset(x:potential_Note_Layer_Store.x_Offset,y:potential_Note_Layer_Store.y_Offset)
-    }
-}
+//struct Potential_Note_Layer_View : View {
+//    @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store<VariableWidthRecView>
+//    var body: some View {
+//        potential_Note_Layer_Store.currView()
+//        .offset(x:potential_Note_Layer_Store.x_Offset,y:potential_Note_Layer_Store.y_Offset)
+//    }
+//}
 
 struct VariableWidthRecView : View {
     let dimensions = ComponentDimensions.StaticDimensions

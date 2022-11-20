@@ -139,7 +139,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnPotentialLayer()->some View {
-        Potential_Note_Layer_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
+        //Potential_Note_Layer_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
+        VariableWidthRecView(potential_Note_Layer_Store: potential_Note_Layer_Store)
     }
 
     deinit {
