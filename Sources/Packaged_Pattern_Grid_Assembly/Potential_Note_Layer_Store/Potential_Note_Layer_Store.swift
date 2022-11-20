@@ -12,9 +12,9 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    @Published var x_Offset : CGFloat=0
-    @Published var weeedth : CGFloat=0
-    @Published var y_Offset : CGFloat=0
+    @Published var x_Offset : CGFloat = 0
+    @Published var weeedth : CGFloat = 0
+    @Published var y_Offset : CGFloat = 0
 
     var potential_Initial_Grid_X : Int?
     var potential_Initial_Grid_Y : Int?
