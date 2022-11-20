@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Note_Write_Layer : View {
-    var note_Write_Layer_Store : Note_Write_Layer_Store
+    @ObservedObject var note_Write_Layer_Store : Note_Write_Layer_Store
     var body: some View {
         return ZStack(alignment: .topLeading){
             Button(action:{

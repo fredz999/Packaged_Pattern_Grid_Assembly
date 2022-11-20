@@ -67,7 +67,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public func inject_HSlider_Factory_Method(horizontal_Slider_Factory_Param: ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)){
         h_Slider = horizontal_Slider_Factory_Param(cursor_Horizontal_Slider_Store)
-
     }
         
     public func inject_VSlider_Factory_Method(vertical_Slider_Factory_Param: ((Cursor_Vertical_Slider_Store)->Injected_V_SliderType)){
