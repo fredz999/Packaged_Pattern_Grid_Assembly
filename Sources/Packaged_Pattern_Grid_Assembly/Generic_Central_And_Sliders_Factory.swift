@@ -27,7 +27,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var cursor_Layer_Store : Cursor_Layer_Store
     var cursor : Injected_Cursor_Type?
     
-    var note_Write_Layer_Store : Note_Write_Layer_Store<Note_Write_Button_View>
+    var note_Write_Layer_Store : Note_Write_Layer_Store
     var potential_Note_Layer_Store : Potential_Note_Layer_Store<VariableWidthRecView>
     
     //==============================================================================================================
@@ -51,12 +51,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         cursor_Layer_Store = Cursor_Layer_Store()
         
-        
-        
-        note_Write_Layer_Store = Note_Write_Layer_Store(injectableBtnParam: Note_Write_Button_View())
+        note_Write_Layer_Store = Note_Write_Layer_Store()
         
         potential_Note_Layer_Store = Potential_Note_Layer_Store<VariableWidthRecView>()
-        
         
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
 
@@ -139,12 +136,10 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnNoteWriteLayer()->some View {
-         //Note_Write_Layer(note_Write_Layer_Store: Note_Write_Layer_Store<Note_Write_Button_View>(injectableBtnParam: Note_Write_Button_View()))
         Note_Write_Layer(note_Write_Layer_Store: note_Write_Layer_Store).offset(x:100,y:340)
     }
     
     @ViewBuilder public func returnPotentialLayer()->some View {
-        //potential_Note_Layer_Store
         Potential_Note_Layer_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
     }
 

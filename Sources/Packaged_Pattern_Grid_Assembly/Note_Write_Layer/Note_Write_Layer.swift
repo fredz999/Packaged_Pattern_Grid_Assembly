@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Note_Write_Layer : View {
-    var note_Write_Layer_Store : Note_Write_Layer_Store<Note_Write_Button_View>
+    var note_Write_Layer_Store : Note_Write_Layer_Store
     var body: some View {
         return ZStack(alignment: .topLeading){
             Button(action:{
@@ -21,18 +21,28 @@ struct Note_Write_Layer : View {
     }
 }
 
-class Note_Write_Layer_Store<InjectableNoteWriteButtonView:View>:ObservableObject{
-    var centralState = Central_State.Static_Central_State
-    var injectableButtonView : InjectableNoteWriteButtonView?
-    init(injectableBtnParam:InjectableNoteWriteButtonView){
-        injectableButtonView = injectableBtnParam
-    }
+class Note_Write_Layer_Store : ObservableObject {
+    @Published var centralState = Central_State.Static_Central_State
+
     func pressUpReactor(){
         centralState.writingIsOn.toggle()
     }
+    
     @ViewBuilder func currView()->(some View){
-        injectableButtonView
+        if centralState.writingIsOn == true{
+            ZStack{
+                Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+                Text("Turn Write Off").foregroundColor(.white)
+            }
+        }
+        else if centralState.writingIsOn == false{
+            ZStack{
+                Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
+                Text("Turn Write On").foregroundColor(.white)
+            }
+        }
     }
+    
 }
 
 struct Note_Write_Button_View : View {
