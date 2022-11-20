@@ -13,18 +13,8 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
     let dimensions = ComponentDimensions.StaticDimensions
     
     @Published var x_Offset : CGFloat = 0
-    {
-        didSet{
-            print("x_Offset: ",x_Offset.description)
-        }
-    }
     @Published var weeedth : CGFloat = 0
     @Published var y_Offset : CGFloat = 0
-    {
-        didSet{
-            print("y_Offset: ",y_Offset.description)
-        }
-    }
 
     var potential_Initial_Grid_X : Int?
     var potential_Initial_Grid_Y : Int?
@@ -102,6 +92,8 @@ struct VariableWidthRecView : View {
     let colors = ComponentColors.StaticColors
     @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store<VariableWidthRecView>
     var body: some View {
-        Rectangle().frame(width: potential_Note_Layer_Store.weeedth ,height: dimensions.pattern_Grid_Unit_Height).foregroundColor(colors.potentialColor)
+        ZStack(alignment: .topLeading){
+            Rectangle().frame(width: potential_Note_Layer_Store.weeedth ,height: dimensions.pattern_Grid_Unit_Height).foregroundColor(colors.potentialColor)
+        }.offset(x:potential_Note_Layer_Store.x_Offset,y:potential_Note_Layer_Store.y_Offset)
     }
 }
