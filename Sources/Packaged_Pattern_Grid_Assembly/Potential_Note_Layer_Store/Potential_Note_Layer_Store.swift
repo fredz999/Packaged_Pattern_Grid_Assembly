@@ -21,6 +21,7 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
     var potential_Current_Grid_X : Int?
     
     func handlePotentialWrite(gridXParam:Int,gridYParam:Int) {
+        print("handlePotentialWrite()")
         if potential_Initial_Grid_X == nil, potential_Initial_Grid_Y == nil {
             potential_Initial_Grid_X = gridXParam
             potential_Initial_Grid_Y = gridYParam
@@ -40,7 +41,7 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
     }
     
     func set_Potential_Note_Dimensions(){
-        print("set_Potential_Note_Dimensions()")
+        
         if let lclInitialX = potential_Initial_Grid_X,let initialY = potential_Initial_Grid_Y,let currX = potential_Current_Grid_X {
             
             if lclInitialX <= currX {

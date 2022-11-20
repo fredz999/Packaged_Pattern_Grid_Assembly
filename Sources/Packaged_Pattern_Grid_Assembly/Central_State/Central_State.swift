@@ -50,7 +50,6 @@ public class Central_State : ObservableObject {
     }
     
     func potentialNoteEvaluation(){
-        print("potentialNoteEvaluation")
         if let lclPotentialLayer = potential_Note_Layer_Ref {
             lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
         }
