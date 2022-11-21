@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Potential_Note_Layer_Store : ObservableObject {
+public class Potential_Note_Layer_Store : ObservableObject {
     
     let dimensions = ComponentDimensions.StaticDimensions
     
@@ -19,6 +19,8 @@ class Potential_Note_Layer_Store : ObservableObject {
     var potential_Initial_Grid_X : Int?
     var potential_Initial_Grid_Y : Int?
     var potential_Current_Grid_X : Int?
+    
+    public init(){}
     
     func handlePotentialWrite(gridXParam:Int,gridYParam:Int) {
         
@@ -71,11 +73,6 @@ class Potential_Note_Layer_Store : ObservableObject {
         y_Offset = 0
 
     }
-    
-    //var injected_Potential_View : InjectedPotentialView?
-//    @ViewBuilder func currView()->(some View){
-//        injected_Potential_View
-//    }
 
 }
 

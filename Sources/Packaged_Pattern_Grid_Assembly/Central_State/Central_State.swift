@@ -12,14 +12,9 @@ public class Central_State : ObservableObject {
     
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
     var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
-    
-    
     var cursor_Layer_Ref : Cursor_Layer_Store?
     var potential_Note_Layer_Ref : Potential_Note_Layer_Store?
     var note_Collection_Ref : Note_Collection?
-    
-    
-    //var writingIsOn : Bool = false
     var lower_Bracket_Number : Int = 0
     
     //==================================================
@@ -85,17 +80,17 @@ public class Central_State : ObservableObject {
     
     let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     @Published var write_Note_Button_Visible : Bool = true
-        @Published var a_Note_Is_Highlighted : Bool = false
-        {
-            didSet {
-                if a_Note_Is_Highlighted == false {
-                    write_Note_Button_Visible = true
-                }
-                else if a_Note_Is_Highlighted == true {
-                    write_Note_Button_Visible = false
-                }
+    @Published var a_Note_Is_Highlighted : Bool = false
+    {
+        didSet {
+            if a_Note_Is_Highlighted == false {
+                write_Note_Button_Visible = true
+            }
+            else if a_Note_Is_Highlighted == true {
+                write_Note_Button_Visible = false
             }
         }
+    }
  
     @Published var writingIsOn : Bool = false {
                 didSet {
@@ -135,9 +130,8 @@ public class Central_State : ObservableObject {
                     }
                 }
             }
-    
-        //private var lower_Bracket_Number : Int = 0
-        var higher_Bracket_Number : Int = 0
+
+    var higher_Bracket_Number : Int = 0
     
     public static let Static_Central_State = Central_State()
 }
