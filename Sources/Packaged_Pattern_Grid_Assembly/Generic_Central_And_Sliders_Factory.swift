@@ -86,8 +86,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         injected_noteWriteBtn = noteWriteBtn_Factory_Method()
     }
     
-    public func inject_PotentialNote_Factory_Method(potentialNote_Factory_Method: (()->injected_Potential_Note_Type)){
-        injected_potential_Note_View = potentialNote_Factory_Method()
+    public func inject_PotentialNote_Factory_Method(potentialNote_Factory_Method: ((Potential_Note_Layer_Store)->injected_Potential_Note_Type)){
+        injected_potential_Note_View = potentialNote_Factory_Method(potential_Note_Layer_Store)
     }
     
     public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
