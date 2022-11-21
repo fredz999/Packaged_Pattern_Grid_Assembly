@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject {
+class Potential_Note_Layer_Store : ObservableObject {
     
     let dimensions = ComponentDimensions.StaticDimensions
     
@@ -72,7 +72,7 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
 
     }
     
-    var injected_Potential_View : InjectedPotentialView?
+    //var injected_Potential_View : InjectedPotentialView?
 //    @ViewBuilder func currView()->(some View){
 //        injected_Potential_View
 //    }
@@ -87,9 +87,9 @@ class Potential_Note_Layer_Store<InjectedPotentialView:View> : ObservableObject 
 //    }
 //}
 
-struct Default_Variable_Width_Rec_View : View {
+struct Default_Potential_Note_View : View {
     
-    @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store<Default_Variable_Width_Rec_View>
+    @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
     

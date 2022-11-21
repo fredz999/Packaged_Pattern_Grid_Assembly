@@ -15,7 +15,7 @@ public class Central_State : ObservableObject {
     
     
     var cursor_Layer_Ref : Cursor_Layer_Store?
-    var potential_Note_Layer_Ref : Potential_Note_Layer_Store<Default_Variable_Width_Rec_View>?
+    var potential_Note_Layer_Ref : Potential_Note_Layer_Store?
     var note_Collection_Ref : Note_Collection?
     
     
@@ -100,7 +100,6 @@ public class Central_State : ObservableObject {
     @Published var writingIsOn : Bool = false {
                 didSet {
                     if writingIsOn == true {
-                        print("writingIsOn == true")
                         if let lclCursorRef = cursor_Layer_Ref {
                             lclCursorRef.cursorLayerCellColor = colors.cursorWriting
                         }
@@ -110,7 +109,6 @@ public class Central_State : ObservableObject {
                         }
                     }
                     else if writingIsOn == false {
-                        print("writingIsOn == false")
                         if let lclCursorRef = cursor_Layer_Ref {
                             lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
                             if let lclPotentialLayer = potential_Note_Layer_Ref {
