@@ -92,7 +92,7 @@ public class Central_State : ObservableObject {
         }
     }
  
-    @Published var writingIsOn : Bool = false {
+    @Published public var writingIsOn : Bool = false {
                 didSet {
                     if writingIsOn == true {
                         if let lclCursorRef = cursor_Layer_Ref {
