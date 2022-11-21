@@ -14,8 +14,8 @@ public struct Default_Vertical_Slider_View : View {
     @ObservedObject var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store
     public var body: some View {
         return ZStack(alignment: .topLeading) {
-            Default_V_Slider()
-            Default_V_Slider_Line().offset(x:-dimensions.Horz_Cursor_Slider_Width, y:cursor_Vertical_Slider_Store.computedLineDisplacement)
+            Default_V_Slider().offset(x: 0, y:dimensions.Horz_Cursor_Slider_Height)
+            Default_V_Slider_Line().offset(x:-dimensions.Horz_Cursor_Slider_Width, y:dimensions.Horz_Cursor_Slider_Height)
         }.gesture(cursor_Vertical_Slider_Store.slideDragGesture)
     }
 }
