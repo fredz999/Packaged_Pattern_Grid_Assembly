@@ -30,8 +30,6 @@ public class Note_Collection {
     
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
     
-    print("write_CellArray_Into_Note called")
-    
     var cellArray : [Underlying_Data_Cell] = []
         
     if data_Y < dimensions.DATA_final_Line_Y_Index {
