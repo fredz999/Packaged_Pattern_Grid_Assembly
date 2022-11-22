@@ -193,7 +193,7 @@ public class Central_State : ObservableObject {
     private var currentXCursor_Slider_Position : Int = 0
     private var currentYCursor_Slider_Position : Int = 0
 
-    var writingIsOn : Bool = false {
+    @Published public var writingIsOn : Bool = false {
             didSet {
                 if writingIsOn == true {
                     if let lclCursorRef = cursor_Layer_Ref {
