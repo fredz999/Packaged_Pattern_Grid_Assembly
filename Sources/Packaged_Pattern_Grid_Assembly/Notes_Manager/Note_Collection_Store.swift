@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Note_Collection {
+public class Note_Collection {
     
     let dimensions = ComponentDimensions.StaticDimensions
     
@@ -106,6 +106,6 @@ class Note_Collection {
         }
     }
     
-    static let Static_Note_Collection = Note_Collection()
+    public static let Static_Note_Collection = Note_Collection()
     
 }

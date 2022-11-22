@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-class Note : ObservableObject, Identifiable {
-    var id : UUID
+public class Note : ObservableObject, Identifiable {
+    public var id : UUID
     var parentRef : Note_Collection
     var cellArray : [Underlying_Data_Cell] = []
     var dimensions = ComponentDimensions.StaticDimensions
@@ -33,7 +33,7 @@ class Note : ObservableObject, Identifiable {
         }
     }
     
-    init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
+    public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
         self.note_Y_Number = yParam
         self.parentRef = parentParam
         self.id = id
