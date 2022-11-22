@@ -50,7 +50,7 @@ public struct Default_Central_Cell_View : View {
             , mid_View: Default_Mid_View(current_Underlying_Data_Param: visual_Cell_Store.underlying_Data_Cell)
             , end_View: Default_End_View(current_Underlying_Data_Param: visual_Cell_Store.underlying_Data_Cell)
             , single_View: Default_Single_View(current_Underlying_Data_Param: visual_Cell_Store.underlying_Data_Cell))
-
+            
         }
     }
 }

@@ -108,7 +108,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                 visible_Line_View_Array.append(new_Visible_Line)
             }
         }
-        central_Grid_Manufacturing_Closure = nil
+        //central_Grid_Manufacturing_Closure = nil
     }
 
     @ViewBuilder public func returnCentralGrid()->some View {

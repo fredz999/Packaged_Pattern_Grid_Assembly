@@ -12,7 +12,7 @@ public class Central_State : ObservableObject {
 
     @Published var write_Note_Button_Visible : Bool = true
     @Published var edit_Layer_Visible : Bool = true
-    @Published public var a_Note_Is_Highlighted : Bool = false
+    @Published var a_Note_Is_Highlighted : Bool = false
     {
         didSet {
             if a_Note_Is_Highlighted == false {
