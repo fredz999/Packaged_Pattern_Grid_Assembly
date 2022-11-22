@@ -32,6 +32,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
 
     var potential_Note_Layer_Store : Potential_Note_Layer_Store
     
+    
     //=============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
 //
