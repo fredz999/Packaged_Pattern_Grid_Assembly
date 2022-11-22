@@ -64,6 +64,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         
+        centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
+        
     }
     
     public func inject_Central_Cell_Factory_Method(unit_Factory_Param: @escaping ((Central_Cell_Store)->InjectedCentralCellType)){
