@@ -103,16 +103,18 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             let new_Visible_Line : Visible_Injected_Generic_View_Line = Visible_Injected_Generic_View_Line<InjectedCentralCellType>()
                 for x in 0..<visible_Grid_Store.gridUnitsHorz {
                     let visibleGridUnit = lclFactoryMethod(visible_Grid_Store.vis_Line_Store_Array[y].visual_Cell_Store_Array[x])
-                new_Visible_Line.unitArray.append(visibleGridUnit)
+                    new_Visible_Line.unitArray.append(visibleGridUnit)
+                    if centralGridSet == false{centralGridSet = true}
                 }
                 visible_Line_View_Array.append(new_Visible_Line)
             }
         }
-        //central_Grid_Manufacturing_Closure = nil
+        central_Grid_Manufacturing_Closure = nil
     }
-
+    var centralGridSet : Bool = false
     @ViewBuilder public func returnCentralGrid()->some View {
-        if central_Grid_Manufacturing_Closure != nil {
+        //TODO: change predicate
+        if centralGridSet == true {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
                     self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index)
@@ -120,7 +122,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                 }
             }
         }
-        else if central_Grid_Manufacturing_Closure == nil {
+        else if centralGridSet == false {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
                     Default_Central_Cell_View(visual_Cell_Store: visibleUnit)
