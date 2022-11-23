@@ -178,10 +178,11 @@ public class Central_State : ObservableObject {
     public func changeNotePosition(movementTyoeParam:E_Note_Movement_Type) {
         
         if let noteCollection = note_Collection_Ref {
-            print("note_Collection count: ",noteCollection.noteArray.count.description)
+       
             if let lclCurrNote = noteCollection.currentHighlightedNote {
                 if movementTyoeParam == .rightWard {
                     if let lclHSlider = h_Slider_Ref {
+                        print("h_Slider_Ref region: .........")
                         if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .toRight) == false{
                             lclCurrNote.moveRightOne()
                             lclHSlider.artificially_H_Increment()
