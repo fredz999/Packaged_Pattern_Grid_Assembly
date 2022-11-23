@@ -35,14 +35,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     //=============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
-//
-//    public var horizontal_Slider_Manufacturing_Closure : ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)?
-//
-//    public var vertical_Slider_Manufacturing_Closure : ((Cursor_Vertical_Slider_Store)->Injected_V_SliderType)?
-//
-//    public var cursor_Manufacturing_Closure : ((Cursor_Layer_Store)->Injected_Cursor_Type)?
-//
-//    public var noteWriteBtn_Manufacturing_Closure : (()->Injected_Note_Write_Button_Type)?
+    
     
     //=============================================================================================================
     
@@ -162,9 +155,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     
-    @ViewBuilder public func returnNoteEditLayer()->some View {
-        Default_Delete_View()
-    }
+//    @ViewBuilder public func returnNoteEditLayer()->some View {
+//        Default_Delete_Button_View()
+//    }
     
     
     @ViewBuilder public func returnPotentialLayer()->some View {
