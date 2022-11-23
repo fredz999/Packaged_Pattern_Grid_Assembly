@@ -224,7 +224,7 @@ public class Central_State : ObservableObject {
 
 }
 
-enum E_Note_Movement_Type{
+public enum E_Note_Movement_Type{
     case leftWard
     case rightWard
     case upward
