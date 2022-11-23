@@ -176,9 +176,9 @@ public class Central_State : ObservableObject {
     }
 
     public func changeNotePosition(movementTyoeParam:E_Note_Movement_Type) {
-        print("note_Collection_Ref: ",note_Collection_Ref)
+        
         if let noteCollection = note_Collection_Ref {
-            
+            print("note_Collection count: ",noteCollection.noteArray.count.description)
             if let lclCurrNote = noteCollection.currentHighlightedNote {
                 if movementTyoeParam == .rightWard {
                     if let lclHSlider = h_Slider_Ref {
