@@ -161,6 +161,12 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
     }
     
+    
+    @ViewBuilder public func returnNoteEditLayer()->some View {
+        Default_Delete_View()
+    }
+    
+    
     @ViewBuilder public func returnPotentialLayer()->some View {
         if let lclInjectedPotentialNoteView = injected_potential_Note_View{
             lclInjectedPotentialNoteView

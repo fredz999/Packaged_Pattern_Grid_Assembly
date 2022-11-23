@@ -68,3 +68,32 @@ struct Default_Note_Write_Button_View : View {
         }
     }
 }
+
+
+struct Default_Delete_View : View {
+    @ObservedObject var centralState = Central_State.Static_Central_State
+    let dimensions = ComponentDimensions.StaticDimensions
+    var body: some View {
+        return ZStack(alignment: .topLeading){
+            if centralState.a_Note_Is_Highlighted == true {
+                Button(action:{
+                    if let lclNoteCollection = centralState.note_Collection_Ref{
+                        lclNoteCollection.deleteNote()
+                        centralState.a_Note_Is_Highlighted = false
+                    }
+                }){
+                    ZStack{
+                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+                        Text("delete").foregroundColor(.white)
+                    }
+                }
+            }
+            else if centralState.a_Note_Is_Highlighted == false {
+                ZStack{
+                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+                    Text("delete").foregroundColor(.white)
+                }
+            }
+        }
+    }
+}

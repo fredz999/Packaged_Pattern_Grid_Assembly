@@ -25,16 +25,11 @@ public class Central_State : ObservableObject {
     }
 
     let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
-    //var cStateVisualGridRef : Visual_Grid_Store?
     var central_Grid_Ref : Central_Grid_Store?
     
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
     //==================================================
-    
-    
-    
-    
     
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
     var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
