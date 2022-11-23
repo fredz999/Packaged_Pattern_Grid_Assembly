@@ -118,7 +118,25 @@ public class Pattern_Edit_Layer<Injected_Delete_Btn_Type:View,Injected_Lengthen_
     
 }
 
-
+struct Default_Note_Write_Button_View : View {
+    @ObservedObject var centralState = Central_State.Static_Central_State
+    let colors = ComponentColors.StaticColors
+    var body: some View {
+        return ZStack {
+            if centralState.writingIsOn == true {
+                    Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+                    Text("Turn Write Off").foregroundColor(.white)
+            }
+            else if centralState.writingIsOn == false {
+    
+                    Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
+                    Text("Turn Write On").foregroundColor(.white)
+            }
+        }.onTapGesture {
+            centralState.writingIsOn.toggle()
+        }
+    }
+}
 
 struct Default_Delete_Button_View : View {
     @ObservedObject var centralState = Central_State.Static_Central_State
@@ -144,26 +162,6 @@ struct Default_Delete_Button_View : View {
                     Text("delete").foregroundColor(.white)
                 }
             }
-        }
-    }
-}
-
-struct Default_Note_Write_Button_View : View {
-    @ObservedObject var centralState = Central_State.Static_Central_State
-    let colors = ComponentColors.StaticColors
-    var body: some View {
-        return ZStack {
-            if centralState.writingIsOn == true {
-                    Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                    Text("Turn Write Off").foregroundColor(.white)
-            }
-            else if centralState.writingIsOn == false {
-    
-                    Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
-                    Text("Turn Write On").foregroundColor(.white)
-            }
-        }.onTapGesture {
-            centralState.writingIsOn.toggle()
         }
     }
 }
