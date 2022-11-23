@@ -182,7 +182,7 @@ public class Central_State : ObservableObject {
             if let lclCurrNote = noteCollection.currentHighlightedNote {
                 if movementTyoeParam == .rightWard {
                     if let lclHSlider = h_Slider_Ref {
-                        print("h_Slider_Ref region: .........")
+                        //print("h_Slider_Ref region: .........")
                         if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .toRight) == false{
                             lclCurrNote.moveRightOne()
                             lclHSlider.artificially_H_Increment()
@@ -191,9 +191,9 @@ public class Central_State : ObservableObject {
                             lclHSlider.artificially_H_Increment()
                         }
                     }
-                    else{
-                        print("h_Slider_Ref prolly nil")
-                    }
+//                    else{
+//                        print("h_Slider_Ref prolly nil")
+//                    }
                 }
                 else if movementTyoeParam == .leftWard {
                     if let lclHSlider = h_Slider_Ref {

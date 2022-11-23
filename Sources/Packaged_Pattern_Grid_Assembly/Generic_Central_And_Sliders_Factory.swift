@@ -52,6 +52,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         potential_Note_Layer_Store = Potential_Note_Layer_Store()
         
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
+        centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
 
         centralState.cursor_Layer_Ref = cursor_Layer_Store
         
