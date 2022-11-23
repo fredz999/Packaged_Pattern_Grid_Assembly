@@ -35,7 +35,7 @@ public class Central_State : ObservableObject {
     var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
     var cursor_Layer_Ref : Cursor_Layer_Store?
     var potential_Note_Layer_Ref : Potential_Note_Layer_Store?
-    var note_Collection_Ref : Note_Collection?
+    public var note_Collection_Ref : Note_Collection?
 
 //    var deleteNote_Btn_Store_Ref : Delete_Button_Store<Delete_Injected_View>?
 //    var lengthen_Shorten_Button_Ref : Lengthen_Shorten_Buttons_Store<Lengthen_Shorten_Injected_View>?
@@ -160,7 +160,7 @@ public class Central_State : ObservableObject {
         }
     }
 
-    func changeNoteLength(isIncrement:Bool) {
+    public func changeNoteLength(isIncrement:Bool) {
         if let noteCollection = note_Collection_Ref {
             if let lclCurrNote = noteCollection.currentHighlightedNote {
 
@@ -175,7 +175,7 @@ public class Central_State : ObservableObject {
         }
     }
 
-    func changeNotePosition(movementTyoeParam:E_Note_Movement_Type) {
+    public func changeNotePosition(movementTyoeParam:E_Note_Movement_Type) {
         if let noteCollection = note_Collection_Ref {
             if let lclCurrNote = noteCollection.currentHighlightedNote {
                 if movementTyoeParam == .rightWard {
