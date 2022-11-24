@@ -289,3 +289,34 @@ struct Default_Move_Down_Up_Buttons_View : View {
     }
     }
 }
+
+
+public class Anonymous_View_Typez : ObservableObject{
+
+    public init(){}
+    
+    var anonymousStore : DefaultAnonymousStore?
+    
+    @ViewBuilder public func return_Injected_Or_Default<InjectedType:View>(injectedTypeParam:InjectedType? = nil) -> some View {
+        if let lclInjectedView = injectedTypeParam{
+            lclInjectedView
+        }
+        else if injectedTypeParam == nil{
+            DefaultAnonymousView()
+        }
+    }
+    
+    
+}
+
+struct DefaultAnonymousView : View {
+    var body: some View {
+        return ZStack(alignment: .topLeading){
+            Circle().frame(width: 30,height: 30).foregroundColor(Color(red: 0.5, green: 1, blue: 0))
+        }
+    }
+}
+
+class DefaultAnonymousStore : ObservableObject{
+    @Published var num : Int = 0
+}

@@ -35,8 +35,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     //=============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
-    
-    
     //=============================================================================================================
     
     public init(horzUnits:Int,vertUnits:Int){
@@ -105,6 +103,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
         central_Grid_Manufacturing_Closure = nil
     }
+    
     var centralGridSet : Bool = false
     @ViewBuilder public func returnCentralGrid()->some View {
         //TODO: change predicate
