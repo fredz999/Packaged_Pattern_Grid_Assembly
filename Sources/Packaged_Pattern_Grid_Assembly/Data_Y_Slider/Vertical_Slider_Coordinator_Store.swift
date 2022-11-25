@@ -13,7 +13,7 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    var vertical_Slider_Responders : [P_VSlider_Responder] = []
+    public var vertical_Slider_Responders : [P_VSlider_Responder] = []
     
     // have to do this in a class outside of here because its way more convoluted than it should be
     // var uICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor<UICollection_Cell_Overlay>()
@@ -23,7 +23,7 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
         super.init()
     }
     
-    func addResponder(responderParam:P_VSlider_Responder){
+    public func addResponder(responderParam:P_VSlider_Responder){
         vertical_Slider_Responders.append(responderParam)
     }
 
@@ -71,9 +71,9 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
         return 0
     }
     
-    var v_Collection_View : UICollectionView?
+    public var v_Collection_View : UICollectionView?
     
-    func toggleFreeze(toFreeze : Bool) {
+    public func toggleFreeze(toFreeze : Bool) {
         if toFreeze == true {
             if let lclV_Collection_View = v_Collection_View {
                 lclV_Collection_View.isScrollEnabled = false

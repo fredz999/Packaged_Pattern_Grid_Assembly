@@ -7,6 +7,6 @@
 
 import Foundation
 import SwiftUI
-protocol P_VSlider_Responder {
+public protocol P_VSlider_Responder {
     func react_To_Swiper_Y(y_OffsetParam: CGFloat)
 }
