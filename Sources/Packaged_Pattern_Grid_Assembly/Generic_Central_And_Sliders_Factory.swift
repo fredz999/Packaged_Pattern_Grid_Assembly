@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_H_SliderType:View
     ,Injected_V_SliderType:View
@@ -35,6 +34,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     //=============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
+    
+    var data_Y_Slider_uICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor<Default_UICollection_Cell_Overlay>()
     //=============================================================================================================
     
     public init(horzUnits:Int,vertUnits:Int){
@@ -50,6 +51,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         potential_Note_Layer_Store = Potential_Note_Layer_Store()
         
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
+        
         centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
 
         centralState.cursor_Layer_Ref = cursor_Layer_Store
