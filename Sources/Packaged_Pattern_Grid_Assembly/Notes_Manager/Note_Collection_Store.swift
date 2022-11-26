@@ -96,6 +96,7 @@ public class Note_Collection {
             cell.note_Im_In = note
         }
         note_Collection_Highlight_Handler(noteParam: note)
+        print("noteArray count: ",noteArray.count.description)
     }
     
     public func deleteNote(){

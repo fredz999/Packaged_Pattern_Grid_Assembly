@@ -124,10 +124,6 @@ public class Central_State : ObservableObject {
     if let lcl_Central_Grid_Ref = cStateVisualGridRef{
         lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
-    else{
-        print("lcl_Central_Grid_Ref = central_Grid_Ref")
-    }
-
     centralState_Data_Evaluation()
     }
 
