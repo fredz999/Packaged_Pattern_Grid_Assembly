@@ -37,6 +37,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var data_Y_Slider_uICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor<Default_UICollection_Cell_Overlay>()
     //=============================================================================================================
     
+    
+    var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
+    
+    var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
+    
     public init(horzUnits:Int,vertUnits:Int){
         
         visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
@@ -58,6 +63,17 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         
         centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
+        
+        
+        // put these in here and make a viewbuilder to place the view on the screen
+//        vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
+//        vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
+//        vertical_Slider_Coordinator.addResponder(responderParam: vertical_Slider_Responder_Store)
+        
+        
+        vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
+        vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
+        vertical_Slider_Coordinator.addResponder(responderParam: vertical_Slider_Responder_Store)
         
     }
     
@@ -156,11 +172,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     
-//    @ViewBuilder public func returnNoteEditLayer()->some View {
-//        Default_Delete_Button_View()
-//    }
-    
-    
     @ViewBuilder public func returnPotentialLayer()->some View {
         if let lclInjectedPotentialNoteView = injected_potential_Note_View{
             lclInjectedPotentialNoteView
@@ -169,6 +180,13 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             Default_Potential_Note_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
         }
     }
+    
+    @ViewBuilder public func returnData_Y_Slider() -> some View {
+        Data_Vertical_Slider_View(vertical_Slider_Coordinator_Param: vertical_Slider_Coordinator)
+        .frame(width: 30,height: 30*12 )
+        .offset(x:0,y:90)
+    }
+    
 
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
