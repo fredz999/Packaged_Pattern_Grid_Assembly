@@ -31,8 +31,6 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
         return dimensions.DATA_final_Line_Y_Index
     }
 
-    
-    
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)

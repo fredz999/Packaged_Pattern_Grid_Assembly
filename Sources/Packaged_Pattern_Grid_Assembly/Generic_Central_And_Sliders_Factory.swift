@@ -13,7 +13,10 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_V_SliderType:View
     ,Injected_Cursor_Type:View
     ,Injected_Note_Write_Button_Type:View
-    ,injected_Potential_Note_Type:View>{
+    ,Injected_Potential_Note_Type:View
+    ,Injected_Data_Y_Slider_Cell_Type:View>{
+    
+    let dimensions = ComponentDimensions.StaticDimensions
     
     public var centralState = Central_State.Static_Central_State
     public var visible_Grid_Store : Central_Grid_Store
@@ -27,7 +30,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var injected_v_Slider : Injected_V_SliderType?
     var injected_cursor : Injected_Cursor_Type?
     var injected_noteWriteBtn : Injected_Note_Write_Button_Type?
-    var injected_potential_Note_View : injected_Potential_Note_Type?
+    var injected_potential_Note_View : Injected_Potential_Note_Type?
+    var injected_Data_Y_Slider_Cell_View : Injected_Data_Y_Slider_Cell_Type?
 
     var potential_Note_Layer_Store : Potential_Note_Layer_Store
     
@@ -37,7 +41,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var data_Y_Slider_uICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor<Default_UICollection_Cell_Overlay>()
     //=============================================================================================================
     
-    
     var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
     
     var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
@@ -45,8 +48,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var noteCollection = Note_Collection.Static_Note_Collection
     
     public init(horzUnits:Int,vertUnits:Int){
-        
-        let dimensions = ComponentDimensions.StaticDimensions
         
         visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
         
@@ -67,13 +68,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         
         centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
-        
-        
-        // put these in here and make a viewbuilder to place the view on the screen
-//        vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
-//        vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
-//        vertical_Slider_Coordinator.addResponder(responderParam: vertical_Slider_Responder_Store)
-        
         
         vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
         vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
@@ -108,12 +102,16 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         injected_noteWriteBtn = noteWriteBtn_Factory_Method()
     }
     
-    public func inject_PotentialNote_Factory_Method(potentialNote_Factory_Method: ((Potential_Note_Layer_Store)->injected_Potential_Note_Type)){
+    public func inject_PotentialNote_Factory_Method(potentialNote_Factory_Method: ((Potential_Note_Layer_Store)->Injected_Potential_Note_Type)){
         injected_potential_Note_View = potentialNote_Factory_Method(potential_Note_Layer_Store)
     }
     
     public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
         return visible_Line_View_Array[yParam].unitArray[xParam]
+    }
+    
+    public func inject_Data_Y_Slider_Cell_Factory_Method(data_Y_Slider_Cell_Factory_Method: (()->Injected_Data_Y_Slider_Cell_Type)){
+        injected_Data_Y_Slider_Cell_View = data_Y_Slider_Cell_Factory_Method()
     }
     
     public func create_Central_Grid_From_Data(){
@@ -133,7 +131,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     var centralGridSet : Bool = false
     @ViewBuilder public func returnCentralGrid()->some View {
-        //TODO: change predicate
         if centralGridSet == true {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
@@ -192,12 +189,15 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnData_Y_Slider() -> some View {
-        Data_Vertical_Slider_View(vertical_Slider_Coordinator_Param: vertical_Slider_Coordinator)
-        .frame(width: 30,height: 30*12 )
-        .offset(x:0,y:90)
+        if let lclInjected_Data_Y_Slider_Cell_View = injected_Data_Y_Slider_Cell_View {
+            lclInjected_Data_Y_Slider_Cell_View
+        }
+        else if injected_Data_Y_Slider_Cell_View == nil {
+            Data_Vertical_Slider_View(vertical_Slider_Coordinator_Param: vertical_Slider_Coordinator)
+            .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height )
+        }
     }
     
-
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
     }
