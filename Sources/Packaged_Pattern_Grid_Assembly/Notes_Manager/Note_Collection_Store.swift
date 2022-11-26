@@ -16,7 +16,26 @@ public class Note_Collection {
     
     var visual_Grid_Ref : Central_Grid_Store?
     
-    var noteArray : [Note] = []
+    // this has to be seen externally and they have to be swappable
+    public var noteArray : [Note] = []{
+        didSet{
+            if p_ExternalNote_Responder_Array.count > 0 {
+                for i in 0..<p_ExternalNote_Responder_Array.count {
+                    p_ExternalNote_Responder_Array[i].react_To_NoteArrayChange(noteArrayParam: noteArray)
+                }
+            }
+        }
+    }
+    
+    public func swapArray(newNoteArrayParam: [Note]){
+        noteArray = newNoteArrayParam
+    }
+    
+    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
+    
+    public func addExternalNoteResponder(newNoteResponder:P_ExternalNote_Responder){
+        p_ExternalNote_Responder_Array.append(newNoteResponder)
+    }
     
     var currentHighlightedNote : Note?{
         willSet{
@@ -96,7 +115,6 @@ public class Note_Collection {
             cell.note_Im_In = note
         }
         note_Collection_Highlight_Handler(noteParam: note)
-        print("noteArray count: ",noteArray.count.description)
     }
     
     public func deleteNote(){
@@ -109,4 +127,8 @@ public class Note_Collection {
     
     public static let Static_Note_Collection = Note_Collection()
     
+}
+
+public protocol P_ExternalNote_Responder {
+    func react_To_NoteArrayChange(noteArrayParam: [Note])
 }
