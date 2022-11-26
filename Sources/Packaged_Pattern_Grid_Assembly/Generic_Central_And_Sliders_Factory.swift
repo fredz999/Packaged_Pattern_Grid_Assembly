@@ -42,7 +42,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
     
+    var noteCollection = Note_Collection.Static_Note_Collection
+    
     public init(horzUnits:Int,vertUnits:Int){
+        
+        let dimensions = ComponentDimensions.StaticDimensions
         
         visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
         
@@ -75,6 +79,12 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
         vertical_Slider_Coordinator.addResponder(responderParam: vertical_Slider_Responder_Store)
         
+        centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
+        centralState.note_Collection_Ref = noteCollection
+        centralState.cStateVisualGridRef = visible_Grid_Store //visible_Grid_Store
+        centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
+        centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
+        centralState.higher_Bracket_Number = dimensions.visualGrid_Y_Unit_Count
     }
     
     public func inject_Central_Cell_Factory_Method(unit_Factory_Param: @escaping ((Central_Cell_Store)->InjectedCentralCellType)){
@@ -173,10 +183,10 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     
     @ViewBuilder public func returnPotentialLayer()->some View {
-        if let lclInjectedPotentialNoteView = injected_potential_Note_View{
+        if let lclInjectedPotentialNoteView = injected_potential_Note_View {
             lclInjectedPotentialNoteView
         }
-        else if injected_potential_Note_View == nil{
+        else if injected_potential_Note_View == nil {
             Default_Potential_Note_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
         }
     }

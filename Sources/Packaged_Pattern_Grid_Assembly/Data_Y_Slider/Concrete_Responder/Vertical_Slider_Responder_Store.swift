@@ -24,7 +24,6 @@ class Vertical_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
     }
 
     func react_To_Swiper_Y(y_OffsetParam: CGFloat) {
-        print("react_To_Swiper_Y")
         let bracketFloat = y_OffsetParam/dimensions.ui_Unit_Height
         let bracketInt = Int(bracketFloat)
         if bracketInt != trackedInt, bracketInt >= 0, bracketInt <= dimensions.DATA_final_Line_Y_Index {
@@ -33,10 +32,6 @@ class Vertical_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
         else if bracketInt < 0,trackedInt != 0{trackedInt = 0}
         else if bracketInt > dimensions.DATA_final_Line_Y_Index
         , trackedInt != dimensions.DATA_final_Line_Y_Index{trackedInt = dimensions.DATA_final_Line_Y_Index}
-    }
-    
-    func return_NewLowerY()->Int{
-        return trackedInt
     }
 
 }

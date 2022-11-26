@@ -36,6 +36,8 @@ public class Central_State : ObservableObject {
     var cursor_Layer_Ref : Cursor_Layer_Store?
     var potential_Note_Layer_Ref : Potential_Note_Layer_Store?
     public var note_Collection_Ref : Note_Collection?
+    
+    var cStateVisualGridRef : Central_Grid_Store?
 
 //    var deleteNote_Btn_Store_Ref : Delete_Button_Store<Delete_Injected_View>?
 //    var lengthen_Shorten_Button_Ref : Lengthen_Shorten_Buttons_Store<Lengthen_Shorten_Injected_View>?
@@ -121,6 +123,9 @@ public class Central_State : ObservableObject {
 
     if let lcl_Central_Grid_Ref = central_Grid_Ref{
         lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
+    }
+    else{
+        print("lcl_Central_Grid_Ref = central_Grid_Ref")
     }
 
     centralState_Data_Evaluation()
