@@ -25,7 +25,7 @@ public class Central_State : ObservableObject {
     }
 
     let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
-    var central_Grid_Ref : Central_Grid_Store?
+    //var central_Grid_Ref : Central_Grid_Store?
     
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -121,7 +121,7 @@ public class Central_State : ObservableObject {
     lower_Bracket_Number = newLower
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
-    if let lcl_Central_Grid_Ref = central_Grid_Ref{
+    if let lcl_Central_Grid_Ref = cStateVisualGridRef{
         lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
     else{
