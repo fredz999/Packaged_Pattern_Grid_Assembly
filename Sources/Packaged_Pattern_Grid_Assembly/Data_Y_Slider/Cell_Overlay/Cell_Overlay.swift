@@ -46,14 +46,3 @@ class UICollection_Cell_Overlay_Dispensor<InjectedOverlay:View> : ObservableObje
     
 }
 
-struct Default_UICollection_Cell_Overlay : View {
-    @State var numz : Int = 0
-    var body: some View {
-        return ZStack(alignment: .topLeading){
-            Rectangle().frame(width: 30,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-            Rectangle().frame(width: 30,height: 1).foregroundColor(Color(red: 1, green: 1, blue: 0))
-            Rectangle().frame(width: 1,height: 30).foregroundColor(Color(red: 1, green: 1, blue: 0))
-            Text(numz.description).foregroundColor(.white)
-        }
-    }
-}

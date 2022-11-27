@@ -42,6 +42,8 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dimensions.DATA_final_Line_Y_Index
     }
+    
+    var parentWrapper : Wrapped_Vertical_Slider?
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
@@ -60,8 +62,11 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
 //        }
         
         
-        vertical_Slider_Cell.host(UIHostingController(rootView:  Default_UICollection_Cell_Overlay(numz: indexPath.item)))
-        
+        //vertical_Slider_Cell.host(UIHostingController(rootView:  Default_UICollection_Cell_Overlay(numz: indexPath.item)))
+        //yield_A_Cell
+        if let lclParent = parentWrapper{
+            vertical_Slider_Cell.host(UIHostingController(rootView:  lclParent.yield_A_Cell(indexNum: indexPath.item) ))
+        }
         
         
         //vertical_Slider_Cell.host(UIHostingController(rootView: uICollection_Cell_Overlay_Dispensor.return_Overlay()     ))
@@ -124,16 +129,22 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
 }
 
 // howwwwww do I get the thingy
-public class Wrapped_Vertical_Slider<Injected_Cell_Overlay_Type:View>{
+public class Wrapped_Vertical_Slider {
     let dimensions = ComponentDimensions.StaticDimensions
     var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
     var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
-    var cellDispensor : UICollection_Cell_Overlay_Dispensor<Injected_Cell_Overlay_Type> = UICollection_Cell_Overlay_Dispensor<Injected_Cell_Overlay_Type>()
+    //var cellDispensor : UICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor()
     
     public init() {
         self.vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
         self.vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
         self.vertical_Slider_Coordinator.addResponder(responderParam: self.vertical_Slider_Responder_Store)
+    }
+    
+    
+
+    func yield_A_Cell(indexNum:Int)->some View{
+        return Default_UICollection_Cell_Overlay(numz:indexNum)
     }
     
     @ViewBuilder public func returnData_Y_Slider() -> some View {
@@ -145,5 +156,16 @@ public class Wrapped_Vertical_Slider<Injected_Cell_Overlay_Type:View>{
             .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height)
         //}
     }
-    
+}
+
+struct Default_UICollection_Cell_Overlay : View {
+    @State var numz : Int = 0
+    var body: some View {
+        return ZStack(alignment: .topLeading){
+            Rectangle().frame(width: 30,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0.6))
+            Rectangle().frame(width: 30,height: 1).foregroundColor(Color(red: 1, green: 0, blue: 1))
+            Rectangle().frame(width: 1,height: 30).foregroundColor(Color(red: 1, green: 0, blue: 1))
+            Text(numz.description).foregroundColor(.white)
+        }
+    }
 }
