@@ -55,6 +55,7 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 
     public override init(){
         super.init()
+        //parentWrapper = parentWrapperParam
     }
     
     public func addResponder(responderParam:P_VSlider_Responder){
@@ -65,16 +66,17 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
         return dimensions.DATA_final_Line_Y_Index
     }
     
-    var parentWrapper : Wrapped_Vertical_Slider<T>?{
-        didSet{
-            if let lclParentWrapper = parentWrapper{
-                print("lclParentWrapper: ",lclParentWrapper)
-            }
-            else if parentWrapper == nil{
-                print("lclParentWrapper: wuz nillll")
-            }
-        }
-    }
+    var parentWrapper : Wrapped_Vertical_Slider<T>?
+//    {
+//        didSet{
+//            if let lclParentWrapper = parentWrapper{
+//                print("lclParentWrapper: ",lclParentWrapper)
+//            }
+//            else if parentWrapper == nil{
+//                print("lclParentWrapper: wuz nillll")
+//            }
+//        }
+//    }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print("collectionView called: parentWrapper was:",parentWrapper == nil ? ", nil" : ", not nil")
@@ -148,26 +150,27 @@ public class Wrapped_Vertical_Slider<T:View> {
     var generic_Slider_coordinator : Generic_Slider_Coordinator<T>
     
     
-    public init() {
-        
+    public init(coordParam : Generic_Slider_Coordinator<T>) {
+        //setupCoordinator()
         self.generic_Slider_Responder_Store = Generic_Slider_Responder_Store()
-        
-        self.generic_Slider_coordinator = Generic_Slider_Coordinator<T>()
+        self.generic_Slider_coordinator = coordParam//Generic_Slider_Coordinator<T>(parentWrapperParam: self)
         self.generic_Slider_coordinator.addResponder(responderParam: self.generic_Slider_Responder_Store)
+        //self.generic_Slider_coordinator.parentWrapper = self
+        setupCoordinator()
+    }
+    
+    func setupCoordinator(){
         self.generic_Slider_coordinator.parentWrapper = self
-        
     }
     
     func yield_A_Cell(indexNum:Int)->some View {
         return Default_UICollection_Cell_Overlay(numz:indexNum)
     }
     
-    @ViewBuilder public func returnData_Y_Slider() -> some View {
-//        Data_Vertical_Slider_View(vertical_Slider_Coordinator_Param: vertical_Slider_Coordinator)
+//    @ViewBuilder public func returnData_Y_Slider() -> some View {
+//        Generic_Slider_View(generic_Slider_Coordinator_Param: Generic_Slider_Coordinator<Default_UICollection_Cell_Overlay>(parentWrapperParam: generic_Slider_coordinator))
 //        .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height)
-        Generic_Slider_View(generic_Slider_Coordinator_Param: Generic_Slider_Coordinator<Default_UICollection_Cell_Overlay>())
-        .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height)
-    }
+//    }
     
 }
 

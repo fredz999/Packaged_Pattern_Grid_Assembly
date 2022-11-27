@@ -40,7 +40,23 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     var noteCollection = Note_Collection.Static_Note_Collection
     
+    
+    var wrapped_Vertical_Slider : Wrapped_Vertical_Slider<Injected_Data_Y_Slider_Cell_Type>
+    var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
+    
+    @ViewBuilder public func returnData_Y_Slider() -> some View {
+    Generic_Slider_View(generic_Slider_Coordinator_Param: generic_Slider_Y_Coord)
+    .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height)
+    }
+    
+    
     public init(horzUnits:Int,vertUnits:Int){
+        
+        generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
+        
+        wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord)
+        
+        //generic_Slider_Y_Coord.parentWrapper = wrapped_Vertical_Slider
         
         visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
         
@@ -175,7 +191,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
     }
     
-
     
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
