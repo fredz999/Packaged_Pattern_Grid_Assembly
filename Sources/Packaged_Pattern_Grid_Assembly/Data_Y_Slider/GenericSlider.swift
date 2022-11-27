@@ -67,7 +67,12 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
     
     var parentWrapper : Wrapped_Vertical_Slider<T>?{
         didSet{
-            print("parentWrapper didset?")
+            if let lclParentWrapper = parentWrapper{
+                print("lclParentWrapper: ",lclParentWrapper)
+            }
+            else if parentWrapper == nil{
+                print("lclParentWrapper: wuz nillll")
+            }
         }
     }
 
@@ -144,10 +149,13 @@ public class Wrapped_Vertical_Slider<T:View> {
     
     
     public init() {
-        self.generic_Slider_coordinator = Generic_Slider_Coordinator<T>()
+        
         self.generic_Slider_Responder_Store = Generic_Slider_Responder_Store()
+        
+        self.generic_Slider_coordinator = Generic_Slider_Coordinator<T>()
         self.generic_Slider_coordinator.addResponder(responderParam: self.generic_Slider_Responder_Store)
         self.generic_Slider_coordinator.parentWrapper = self
+        
     }
     
     func yield_A_Cell(indexNum:Int)->some View {
