@@ -40,9 +40,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     var noteCollection = Note_Collection.Static_Note_Collection
     
-    
-    var wrapped_Vertical_Slider : Wrapped_Vertical_Slider<Injected_Data_Y_Slider_Cell_Type>
-    var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
+    public var wrapped_Vertical_Slider : Wrapped_Vertical_Slider<Injected_Data_Y_Slider_Cell_Type>
+    public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
+    //var injected_cursor : Injected_Cursor_Type?
     
     @ViewBuilder public func returnData_Y_Slider() -> some View {
     Generic_Slider_View(generic_Slider_Coordinator_Param: generic_Slider_Y_Coord)
@@ -114,8 +114,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
-    
-    
     
     public func create_Central_Grid_From_Data(){
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {

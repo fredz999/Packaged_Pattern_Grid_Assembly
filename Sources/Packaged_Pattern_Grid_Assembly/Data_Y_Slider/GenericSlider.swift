@@ -143,7 +143,7 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 }
 
 
-// howwwwww do I get the thingy
+
 public class Wrapped_Vertical_Slider<T:View> {
     let dimensions = ComponentDimensions.StaticDimensions
     var generic_Slider_Responder_Store : Generic_Slider_Responder_Store
@@ -151,11 +151,9 @@ public class Wrapped_Vertical_Slider<T:View> {
     
     
     public init(coordParam : Generic_Slider_Coordinator<T>) {
-        //setupCoordinator()
         self.generic_Slider_Responder_Store = Generic_Slider_Responder_Store()
-        self.generic_Slider_coordinator = coordParam//Generic_Slider_Coordinator<T>(parentWrapperParam: self)
+        self.generic_Slider_coordinator = coordParam
         self.generic_Slider_coordinator.addResponder(responderParam: self.generic_Slider_Responder_Store)
-        //self.generic_Slider_coordinator.parentWrapper = self
         setupCoordinator()
     }
     
@@ -163,9 +161,24 @@ public class Wrapped_Vertical_Slider<T:View> {
         self.generic_Slider_coordinator.parentWrapper = self
     }
     
-    func yield_A_Cell(indexNum:Int)->some View {
-        return Default_UICollection_Cell_Overlay(numz:indexNum)
+    @ViewBuilder func yield_A_Cell(indexNum:Int)->some View {
+        if injectedCell == nil{
+            Default_UICollection_Cell_Overlay(numz:indexNum)
+        }
+        else if let lclInjectedCell = injectedCell{
+            lclInjectedCell
+        }
     }
+    
+    public func inject_Cell_Factory_Method(cell_Factory_Method: (()->T)){
+        injectedCell = cell_Factory_Method()
+    }
+    
+    var injectedCell : T?
+    
+//    @ViewBuilder public func returnCellView() -> some View {
+//
+//    }
     
 //    @ViewBuilder public func returnData_Y_Slider() -> some View {
 //        Generic_Slider_View(generic_Slider_Coordinator_Param: Generic_Slider_Coordinator<Default_UICollection_Cell_Overlay>(parentWrapperParam: generic_Slider_coordinator))
