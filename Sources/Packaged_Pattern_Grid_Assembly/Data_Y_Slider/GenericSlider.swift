@@ -77,15 +77,15 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        print("collectionView called: parentWrapper was:",parentWrapper == nil ? ", nil" : ", not nil")
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
 
         if let lclParent = parentWrapper{
             vertical_Slider_Cell.host(UIHostingController(rootView:  lclParent.yield_A_Cell(indexNum: indexPath.item) ))
         }
-        else if parentWrapper == nil{
-            print("parentWrapper appears to have been nil")
-        }
+//        else if parentWrapper == nil{
+//            print("parentWrapper appears to have been nil")
+//        }
 
         return vertical_Slider_Cell
     }
