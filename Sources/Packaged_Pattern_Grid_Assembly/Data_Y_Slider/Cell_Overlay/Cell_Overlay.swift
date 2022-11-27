@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class UICollection_View_Base : UICollectionViewCell {
+class UICollection_View_Slight_Extension : UICollectionViewCell {
     
     func host<Content: View>(_ hostingController: UIHostingController<Content>) {
         
@@ -26,23 +26,5 @@ class UICollection_View_Base : UICollectionViewCell {
         ]
         NSLayoutConstraint.activate(constraints)
     }
-
     
 }
-
-class UICollection_Cell_Overlay_Dispensor<InjectedOverlay:View> : ObservableObject {
-    
-    var injectedOverlay : InjectedOverlay?
-    
-    public func inject_Overlay(InjectedOverlayView: InjectedOverlay){
-        injectedOverlay = InjectedOverlayView
-    }
-    
-    @ViewBuilder func return_Overlay() -> some View {
-        if let lclInjectedOverlay = injectedOverlay {
-            lclInjectedOverlay
-        }
-    }
-    
-}
-

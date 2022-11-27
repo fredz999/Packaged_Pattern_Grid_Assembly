@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import UIKit
 
-class Slider_Cell: UICollection_View_Base {
+class Slider_Cell: UICollection_View_Slight_Extension {
 
     private static let reuseId = "SliderCell"
 
@@ -19,7 +19,7 @@ class Slider_Cell: UICollection_View_Base {
         collectionView.register(Slider_Cell.self, forCellWithReuseIdentifier: reuseId)
     }
 
-    static func getReusedCellFrom(collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollection_View_Base{
+    static func getReusedCellFrom(collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollection_View_Slight_Extension{
         return collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! Slider_Cell
     }
 
@@ -53,6 +53,4 @@ class Slider_Cell: UICollection_View_Base {
         super.init(coder: coder)
     }
     
-     
-
 }
