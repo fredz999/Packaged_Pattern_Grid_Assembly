@@ -124,13 +124,13 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
 }
 
 // howwwwww do I get the thingy
-class Wrapped_Vertical_Slider<Injected_Cell_Overlay_Type:View>{
+public class Wrapped_Vertical_Slider<Injected_Cell_Overlay_Type:View>{
     let dimensions = ComponentDimensions.StaticDimensions
     var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
     var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
     var cellDispensor : UICollection_Cell_Overlay_Dispensor<Injected_Cell_Overlay_Type> = UICollection_Cell_Overlay_Dispensor<Injected_Cell_Overlay_Type>()
     
-    init() {
+    public init() {
         self.vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
         self.vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
         self.vertical_Slider_Coordinator.addResponder(responderParam: self.vertical_Slider_Responder_Store)

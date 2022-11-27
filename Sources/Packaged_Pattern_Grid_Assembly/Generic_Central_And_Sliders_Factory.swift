@@ -32,21 +32,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var injected_noteWriteBtn : Injected_Note_Write_Button_Type?
     var injected_potential_Note_View : Injected_Potential_Note_Type?
     
-    //var injected_Data_Y_Slider_Cell_View : Injected_Data_Y_Slider_Cell_Type?
-
     var potential_Note_Layer_Store : Potential_Note_Layer_Store
     
     //=============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
-    
-    //var data_Y_Slider_uICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor<Default_UICollection_Cell_Overlay>()
-    //Injected_Data_Y_Slider_Cell_Type
-    
     //=============================================================================================================
-    
-//    var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
-//
-//    var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
     
     var noteCollection = Note_Collection.Static_Note_Collection
     
@@ -71,24 +61,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         
         centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
-        
-        
-        
-        
-        // these have to go in a wrapper class, the wrapper class has to have generic cell type specd at top
-        //    var data_Y_Slider_Cell_Factory_Method : (()->Injected_Data_Y_Slider_Cell_Type)?
-        //
-        //    public func injectCellFactoryMethod(methodParam: @escaping (()->Injected_Data_Y_Slider_Cell_Type)){
-        //        data_Y_Slider_Cell_Factory_Method = methodParam
-        //    }
-//        vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
-//        vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
-//        vertical_Slider_Coordinator.addResponder(responderParam: vertical_Slider_Responder_Store)
-        
-        
-        
-        
-        
         
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         centralState.note_Collection_Ref = noteCollection
