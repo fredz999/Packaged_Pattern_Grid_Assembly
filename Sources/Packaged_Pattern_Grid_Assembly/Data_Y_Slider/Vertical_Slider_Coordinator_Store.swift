@@ -19,9 +19,21 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
     // var uICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor<UICollection_Cell_Overlay>()
     //var parentContainerRef : Generic_Central_And_Sliders_Factory?
     
+    
+    
     public override init(){
         super.init()
     }
+    
+//    public func data_Y_Slider_Cell_Factory_Method(data_Y_Slider_Cell_Factory_Method: (()->Injected_Data_Y_Slider_Cell_Type))->some View{
+//        return data_Y_Slider_Cell_Factory_Method()
+//    }
+    
+//    var data_Y_Slider_Cell_Factory_Method : (()->Injected_Data_Y_Slider_Cell_Type)?
+//
+//    public func injectCellFactoryMethod(methodParam: @escaping (()->Injected_Data_Y_Slider_Cell_Type)){
+//        data_Y_Slider_Cell_Factory_Method = methodParam
+//    }
     
     public func addResponder(responderParam:P_VSlider_Responder){
         vertical_Slider_Responders.append(responderParam)
@@ -39,7 +51,19 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
 //            vertical_Slider_Cell.host(UIHostingController(rootView: lclparentContainerRef.data_Y_Slider_uICollection_Cell_Overlay_Dispensor.return_Overlay()))
 //        }
         //Default_UICollection_Cell_Overlay
+        
+//        if let lclData_Y_Slider_Cell_Factory_Method = data_Y_Slider_Cell_Factory_Method {
+//            vertical_Slider_Cell.host(UIHostingController(rootView: lclData_Y_Slider_Cell_Factory_Method()   ))
+//        }
+//        else if data_Y_Slider_Cell_Factory_Method == nil {
+//            vertical_Slider_Cell.host(UIHostingController(rootView:  Default_UICollection_Cell_Overlay(numz: indexPath.item)))
+//        }
+        
+        
         vertical_Slider_Cell.host(UIHostingController(rootView:  Default_UICollection_Cell_Overlay(numz: indexPath.item)))
+        
+        
+        
         //vertical_Slider_Cell.host(UIHostingController(rootView: uICollection_Cell_Overlay_Dispensor.return_Overlay()     ))
         //UICollection_Cell_Overlay(numz: indexPath.item)
         return vertical_Slider_Cell
@@ -97,4 +121,29 @@ public class Vertical_Slider_Coordinator_Store : NSObject, UICollectionViewDataS
         
     }
 
+}
+
+// howwwwww do I get the thingy
+class Wrapped_Vertical_Slider<Injected_Cell_Overlay_Type:View>{
+    let dimensions = ComponentDimensions.StaticDimensions
+    var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
+    var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
+    var cellDispensor : UICollection_Cell_Overlay_Dispensor<Injected_Cell_Overlay_Type> = UICollection_Cell_Overlay_Dispensor<Injected_Cell_Overlay_Type>()
+    
+    init() {
+        self.vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
+        self.vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
+        self.vertical_Slider_Coordinator.addResponder(responderParam: self.vertical_Slider_Responder_Store)
+    }
+    
+    @ViewBuilder public func returnData_Y_Slider() -> some View {
+//        if let lclInjected_Data_Y_Slider_Cell_View = injected_Data_Y_Slider_Cell_View {
+//            lclInjected_Data_Y_Slider_Cell_View
+//        }
+//        else if injected_Data_Y_Slider_Cell_View == nil {
+            Data_Vertical_Slider_View(vertical_Slider_Coordinator_Param: vertical_Slider_Coordinator)
+            .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height)
+        //}
+    }
+    
 }

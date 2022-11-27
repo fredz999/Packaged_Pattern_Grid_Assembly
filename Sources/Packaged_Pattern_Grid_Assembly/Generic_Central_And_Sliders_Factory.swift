@@ -31,19 +31,22 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var injected_cursor : Injected_Cursor_Type?
     var injected_noteWriteBtn : Injected_Note_Write_Button_Type?
     var injected_potential_Note_View : Injected_Potential_Note_Type?
-    var injected_Data_Y_Slider_Cell_View : Injected_Data_Y_Slider_Cell_Type?
+    
+    //var injected_Data_Y_Slider_Cell_View : Injected_Data_Y_Slider_Cell_Type?
 
     var potential_Note_Layer_Store : Potential_Note_Layer_Store
     
     //=============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
     
-    var data_Y_Slider_uICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor<Default_UICollection_Cell_Overlay>()
+    //var data_Y_Slider_uICollection_Cell_Overlay_Dispensor = UICollection_Cell_Overlay_Dispensor<Default_UICollection_Cell_Overlay>()
+    //Injected_Data_Y_Slider_Cell_Type
+    
     //=============================================================================================================
     
-    var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
-    
-    var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
+//    var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
+//
+//    var vertical_Slider_Responder_Store : Vertical_Slider_Responder_Store
     
     var noteCollection = Note_Collection.Static_Note_Collection
     
@@ -69,9 +72,23 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
         
-        vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
-        vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
-        vertical_Slider_Coordinator.addResponder(responderParam: vertical_Slider_Responder_Store)
+        
+        
+        
+        // these have to go in a wrapper class, the wrapper class has to have generic cell type specd at top
+        //    var data_Y_Slider_Cell_Factory_Method : (()->Injected_Data_Y_Slider_Cell_Type)?
+        //
+        //    public func injectCellFactoryMethod(methodParam: @escaping (()->Injected_Data_Y_Slider_Cell_Type)){
+        //        data_Y_Slider_Cell_Factory_Method = methodParam
+        //    }
+//        vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
+//        vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
+//        vertical_Slider_Coordinator.addResponder(responderParam: vertical_Slider_Responder_Store)
+        
+        
+        
+        
+        
         
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         centralState.note_Collection_Ref = noteCollection
@@ -110,9 +127,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
     
-    public func inject_Data_Y_Slider_Cell_Factory_Method(data_Y_Slider_Cell_Factory_Method: (()->Injected_Data_Y_Slider_Cell_Type)){
-        injected_Data_Y_Slider_Cell_View = data_Y_Slider_Cell_Factory_Method()
-    }
+    
     
     public func create_Central_Grid_From_Data(){
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {
@@ -188,15 +203,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
     }
     
-    @ViewBuilder public func returnData_Y_Slider() -> some View {
-        if let lclInjected_Data_Y_Slider_Cell_View = injected_Data_Y_Slider_Cell_View {
-            lclInjected_Data_Y_Slider_Cell_View
-        }
-        else if injected_Data_Y_Slider_Cell_View == nil {
-            Data_Vertical_Slider_View(vertical_Slider_Coordinator_Param: vertical_Slider_Coordinator)
-            .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height )
-        }
-    }
+
     
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
