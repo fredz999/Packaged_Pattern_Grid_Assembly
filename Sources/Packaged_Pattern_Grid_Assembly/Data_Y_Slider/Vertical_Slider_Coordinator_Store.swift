@@ -139,6 +139,8 @@ public class Wrapped_Vertical_Slider {
         self.vertical_Slider_Coordinator = Vertical_Slider_Coordinator_Store()
         self.vertical_Slider_Responder_Store = Vertical_Slider_Responder_Store()
         self.vertical_Slider_Coordinator.addResponder(responderParam: self.vertical_Slider_Responder_Store)
+        
+        self.vertical_Slider_Coordinator.parentWrapper = self
     }
     
     
