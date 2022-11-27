@@ -82,12 +82,13 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
         print("collectionView called: parentWrapper was:",parentWrapper == nil ? ", nil" : ", not nil")
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
 
-        if let lclParent = parentWrapper{
-            vertical_Slider_Cell.host(UIHostingController(rootView:  lclParent.yield_A_Cell(indexNum: indexPath.item) ))
-        }
+//        if let lclParent = parentWrapper{
+//            vertical_Slider_Cell.host(UIHostingController(rootView: lclParent.yield_A_Cell(indexNum: indexPath.item) ))
+//        }
 //        else if parentWrapper == nil{
 //            print("parentWrapper appears to have been nil")
 //        }
+        vertical_Slider_Cell.host(UIHostingController(rootView:  Generic_Cell() ))
 
         return vertical_Slider_Cell
     }
@@ -225,4 +226,13 @@ class Generic_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
         , trackedInt != dimensions.DATA_final_Line_Y_Index{trackedInt = dimensions.DATA_final_Line_Y_Index}
     }
 
+}
+
+struct Generic_Cell : View{
+    var body: some View{
+        return ZStack(alignment: .topLeading){
+            Rectangle().frame(width: 30,height: 30).foregroundColor(.red)
+            Circle().frame(width: 30,height: 30).foregroundColor(.white)
+        }
+    }
 }
