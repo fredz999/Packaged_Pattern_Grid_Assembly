@@ -74,6 +74,9 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
         if let lclParent = parentWrapper{
             vertical_Slider_Cell.host(UIHostingController(rootView:  lclParent.yield_A_Cell(indexNum: indexPath.item) ))
         }
+        else if parentWrapper == nil{
+            print("parentWrapper appears to have been nil")
+        }
 
         return vertical_Slider_Cell
     }
