@@ -65,7 +65,11 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
         return dimensions.DATA_final_Line_Y_Index
     }
     
-    var parentWrapper : Wrapped_Vertical_Slider<T>?
+    var parentWrapper : Wrapped_Vertical_Slider<T>?{
+        didSet{
+            print("parentWrapper didset?")
+        }
+    }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
@@ -135,7 +139,6 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 // howwwwww do I get the thingy
 public class Wrapped_Vertical_Slider<T:View> {
     let dimensions = ComponentDimensions.StaticDimensions
-//    var vertical_Slider_Coordinator : Vertical_Slider_Coordinator_Store
     var generic_Slider_Responder_Store : Generic_Slider_Responder_Store
     var generic_Slider_coordinator : Generic_Slider_Coordinator<T>
     
