@@ -16,6 +16,7 @@ class UICollection_View_Slight_Extension : UICollectionViewCell {
         backgroundColor = .clear
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
         hostingController.view.backgroundColor = .clear
+        hostingController.view.accessibilityIdentifier = "blonk"
         addSubview(hostingController.view)
 
         let constraints = [

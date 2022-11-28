@@ -88,7 +88,7 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 //        else if parentWrapper == nil{
 //            print("parentWrapper appears to have been nil")
 //        }
-        // this is a new cell every time......?
+        // TODO: this is a new cell every time......?
         vertical_Slider_Cell.host(UIHostingController(rootView:  Generic_Cell() ))
 
         return vertical_Slider_Cell

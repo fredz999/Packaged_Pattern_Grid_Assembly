@@ -14,6 +14,8 @@ class Slider_Cell: UICollection_View_Slight_Extension {
     private static let reuseId = "SliderCell"
 
     public var labelText = 0
+    
+    var optionalAddView : UIView?
 
     static func registerWithCollectionView(collectionView: UICollectionView) {
         collectionView.register(Slider_Cell.self, forCellWithReuseIdentifier: reuseId)
@@ -47,6 +49,14 @@ class Slider_Cell: UICollection_View_Slight_Extension {
 
     func update() {
         Cell_Info_View.text = "\(self.labelText)"
+    }
+    
+    override func prepareForReuse() {
+        for vuu in self.subviews{
+            if vuu.accessibilityIdentifier == "blonk"{
+                print("got a blonk")
+            }
+        }
     }
 
     required init?(coder: NSCoder) {
