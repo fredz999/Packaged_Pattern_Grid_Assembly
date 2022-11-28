@@ -79,7 +79,7 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 //    }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("collectionView called: parentWrapper was:",parentWrapper == nil ? ", nil" : ", not nil")
+        //print("collectionView called: parentWrapper was:",parentWrapper == nil ? ", nil" : ", not nil")
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
 
 //        if let lclParent = parentWrapper{
@@ -89,7 +89,7 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 //            print("parentWrapper appears to have been nil")
 //        }
         // TODO: this is a new cell every time......?
-        vertical_Slider_Cell.host(UIHostingController(rootView:  Generic_Cell() ))
+        //vertical_Slider_Cell.host(UIHostingController(rootView:  Generic_Cell() ))
 
         return vertical_Slider_Cell
     }
