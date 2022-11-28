@@ -30,8 +30,7 @@ class Slider_Cell : UICollection_View_Slight_Extension {
         return label
     }()
 
-    //override init(frame: CGRect) {
-    init(frame: CGRect,injectable : (()->some View)) {
+    override init(frame: CGRect) {
         let dimensions = ComponentDimensions.StaticDimensions
         super.init(frame: frame)
         contentView.addSubview(self.Cell_Info_View)
@@ -46,7 +45,7 @@ class Slider_Cell : UICollection_View_Slight_Extension {
         Cell_Info_View.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         Cell_Info_View.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
-        let newYelRec = injectable()
+        let newYelRec = YelRec()
         let uicThing = UIHostingController(rootView: newYelRec)
         contentView.addSubview(uicThing.view)
 

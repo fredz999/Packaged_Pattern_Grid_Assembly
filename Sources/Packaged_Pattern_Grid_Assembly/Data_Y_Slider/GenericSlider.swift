@@ -55,7 +55,6 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 
     public override init(){
         super.init()
-        //parentWrapper = parentWrapperParam
     }
     
     public func addResponder(responderParam:P_VSlider_Responder){
@@ -68,11 +67,11 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
     
     var parentWrapper : Wrapped_Vertical_Slider<T>?
     
-    var arrayOfThingies : [Generic_Cell] = []{
-        didSet{
-            print("arrayOfThingies.count",arrayOfThingies.count.description)
-        }
-    }
+//    var arrayOfThingies : [Generic_Cell] = []{
+//        didSet{
+//            print("arrayOfThingies.count",arrayOfThingies.count.description)
+//        }
+//    }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
