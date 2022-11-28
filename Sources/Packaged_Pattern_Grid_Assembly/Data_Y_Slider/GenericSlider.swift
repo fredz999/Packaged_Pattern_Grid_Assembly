@@ -77,6 +77,12 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 //            }
 //        }
 //    }
+    
+    var arrayOfThingies : [Generic_Cell] = []{
+        didSet{
+            print("arrayOfThingies.count",arrayOfThingies.count.description)
+        }
+    }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         //print("collectionView called: parentWrapper was:",parentWrapper == nil ? ", nil" : ", not nil")
@@ -88,8 +94,11 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 //        else if parentWrapper == nil{
 //            print("parentWrapper appears to have been nil")
 //        }
+        
         // TODO: this is a new cell every time......?
-        //vertical_Slider_Cell.host(UIHostingController(rootView:  Generic_Cell() ))
+        let newCell = Generic_Cell()
+        vertical_Slider_Cell.host(UIHostingController(rootView: newCell))
+        arrayOfThingies.append(newCell)
 
         return vertical_Slider_Cell
     }
