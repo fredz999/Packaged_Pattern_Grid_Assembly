@@ -52,6 +52,7 @@ class Slider_Cell: UICollection_View_Slight_Extension {
     }
     
     override func prepareForReuse() {
+        print("prepareForReuse at least called")
         for vuu in self.subviews{
             if vuu.accessibilityIdentifier == "blonk"{
                 print("got a blonk")
