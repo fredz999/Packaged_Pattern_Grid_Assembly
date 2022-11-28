@@ -34,6 +34,7 @@ class Slider_Cell: UICollection_View_Slight_Extension {
         let dimensions = ComponentDimensions.StaticDimensions
         super.init(frame: frame)
         contentView.addSubview(self.Cell_Info_View)
+        
         Cell_Info_View.text = "\(self.labelText)"
         Cell_Info_View.textAlignment = .center
         Cell_Info_View.font = UIFont(name: "Helvetica Bold", size: dimensions.cellFontSize)
@@ -43,6 +44,10 @@ class Slider_Cell: UICollection_View_Slight_Extension {
         Cell_Info_View.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         Cell_Info_View.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         Cell_Info_View.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        
+        let newYelRec = YelRec()
+        let uicThing = UIHostingController(rootView: newYelRec)
+        contentView.addSubview(uicThing.view)
 
         self.isSelected = false //true
     }
@@ -64,4 +69,16 @@ class Slider_Cell: UICollection_View_Slight_Extension {
         super.init(coder: coder)
     }
     
+}
+
+struct YelRec : View{
+    init(){
+        print("YelRec")
+    }
+    var body: some View{
+        return ZStack(alignment: .topLeading){
+            Rectangle().frame(width: 30,height: 30).foregroundColor(.yellow)
+            Circle().frame(width: 30,height: 30).foregroundColor(.purple)
+        }
+    }
 }

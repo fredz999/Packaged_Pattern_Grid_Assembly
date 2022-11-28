@@ -96,9 +96,9 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 //        }
         
         // TODO: this is a new cell every time......?
-        let newCell = Generic_Cell()
-        vertical_Slider_Cell.host(UIHostingController(rootView: newCell))
-        arrayOfThingies.append(newCell)
+//        let newCell = Generic_Cell()
+//        vertical_Slider_Cell.host(UIHostingController(rootView: newCell))
+//        arrayOfThingies.append(newCell)
 
         return vertical_Slider_Cell
     }
