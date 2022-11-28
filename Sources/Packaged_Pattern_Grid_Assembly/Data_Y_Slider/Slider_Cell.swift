@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import UIKit
 
-class Slider_Cell: UICollection_View_Slight_Extension {
+class Slider_Cell : UICollection_View_Slight_Extension {
 
     private static let reuseId = "SliderCell"
 
@@ -30,7 +30,8 @@ class Slider_Cell: UICollection_View_Slight_Extension {
         return label
     }()
 
-    override init(frame: CGRect) {
+    //override init(frame: CGRect) {
+    init(frame: CGRect,injectable : (()->some View)) {
         let dimensions = ComponentDimensions.StaticDimensions
         super.init(frame: frame)
         contentView.addSubview(self.Cell_Info_View)
@@ -45,7 +46,7 @@ class Slider_Cell: UICollection_View_Slight_Extension {
         Cell_Info_View.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         Cell_Info_View.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
-        let newYelRec = YelRec()
+        let newYelRec = injectable()
         let uicThing = UIHostingController(rootView: newYelRec)
         contentView.addSubview(uicThing.view)
 

@@ -67,16 +67,6 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
     }
     
     var parentWrapper : Wrapped_Vertical_Slider<T>?
-//    {
-//        didSet{
-//            if let lclParentWrapper = parentWrapper{
-//                print("lclParentWrapper: ",lclParentWrapper)
-//            }
-//            else if parentWrapper == nil{
-//                print("lclParentWrapper: wuz nillll")
-//            }
-//        }
-//    }
     
     var arrayOfThingies : [Generic_Cell] = []{
         didSet{
@@ -85,20 +75,8 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //print("collectionView called: parentWrapper was:",parentWrapper == nil ? ", nil" : ", not nil")
-        let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
 
-//        if let lclParent = parentWrapper{
-//            vertical_Slider_Cell.host(UIHostingController(rootView: lclParent.yield_A_Cell(indexNum: indexPath.item) ))
-//        }
-//        else if parentWrapper == nil{
-//            print("parentWrapper appears to have been nil")
-//        }
-        
-        // TODO: this is a new cell every time......?
-//        let newCell = Generic_Cell()
-//        vertical_Slider_Cell.host(UIHostingController(rootView: newCell))
-//        arrayOfThingies.append(newCell)
+        let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
 
         return vertical_Slider_Cell
     }
