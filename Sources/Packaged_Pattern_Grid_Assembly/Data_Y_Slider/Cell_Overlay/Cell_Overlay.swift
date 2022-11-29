@@ -36,6 +36,7 @@ public class UICollection_View_Other_Extension : UICollectionViewCell {
         for v in subviews{
             if v.accessibilityIdentifier == "uiv"{
                 v.removeFromSuperview()
+                print("UICollection_View_Other_Extension deinit just occurred")
             }
         }
     }

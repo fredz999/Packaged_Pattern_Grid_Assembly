@@ -32,21 +32,23 @@ class Slider_Cell : UICollection_View_Other_Extension {
     }()
 
     override init(frame: CGRect) {
-        let dimensions = ComponentDimensions.StaticDimensions
+        //let dimensions = ComponentDimensions.StaticDimensions
         super.init(frame: frame)
-        contentView.addSubview(self.Cell_Info_View)
         
-        Cell_Info_View.text = "\(self.labelText)"
-        Cell_Info_View.textAlignment = .center
-        Cell_Info_View.font = UIFont(name: "Helvetica Bold", size: dimensions.cellFontSize)
-        Cell_Info_View.translatesAutoresizingMaskIntoConstraints = false
-
-        Cell_Info_View.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        Cell_Info_View.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        Cell_Info_View.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        Cell_Info_View.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-
-        self.isSelected = false //true
+        
+//        contentView.addSubview(self.Cell_Info_View)
+//
+//        Cell_Info_View.text = "\(self.labelText)"
+//        Cell_Info_View.textAlignment = .center
+//        Cell_Info_View.font = UIFont(name: "Helvetica Bold", size: dimensions.cellFontSize)
+//        Cell_Info_View.translatesAutoresizingMaskIntoConstraints = false
+//
+//        Cell_Info_View.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+//        Cell_Info_View.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+//        Cell_Info_View.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+//        Cell_Info_View.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+//
+//        self.isSelected = false //true
     }
     
     
@@ -56,9 +58,9 @@ class Slider_Cell : UICollection_View_Other_Extension {
         Cell_Info_View.text = "\(self.labelText)"
     }
     
-//    override func prepareForReuse() {
-//
-//    }
+    override func prepareForReuse() {
+        print("nnumber sub views: ",subviews.count.description)
+    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -86,7 +88,8 @@ struct BlooRec : View{
         return ZStack(alignment: .topLeading){
             Rectangle().frame(width: 30,height: 30).foregroundColor(.blue)
             Circle().frame(width: 28,height: 28).foregroundColor(.yellow)
-            Circle().frame(width: 22,height: 2).foregroundColor(.orange)
+            Circle().frame(width: 22,height: 22).foregroundColor(.red)
+            Circle().frame(width: 16,height: 16).foregroundColor(.green)
         }
     }
 }
