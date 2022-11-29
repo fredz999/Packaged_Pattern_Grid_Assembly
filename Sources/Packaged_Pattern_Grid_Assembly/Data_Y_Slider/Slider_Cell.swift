@@ -56,9 +56,9 @@ class Slider_Cell : UICollection_View_Other_Extension {
         Cell_Info_View.text = "\(self.labelText)"
     }
     
-    override func prepareForReuse() {
-        print("prepareForReuse at least called")
-    }
+//    override func prepareForReuse() {
+//
+//    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
