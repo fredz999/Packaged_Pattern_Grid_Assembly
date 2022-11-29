@@ -58,9 +58,9 @@ class Slider_Cell : UICollection_View_Other_Extension {
         Cell_Info_View.text = "\(self.labelText)"
     }
     
-    override func prepareForReuse() {
-        print("nnumber sub views: ",subviews.count.description)
-    }
+//    override func prepareForReuse() {
+//        print("nnumber sub views: ",subviews.count.description)
+//    }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -80,16 +80,16 @@ class Slider_Cell : UICollection_View_Other_Extension {
 //    }
 //}
 
-struct BlooRec : View{
-    init(){
-        print("BlooRec")
-    }
-    var body: some View {
-        return ZStack(alignment: .topLeading){
-            Rectangle().frame(width: 30,height: 30).foregroundColor(.blue)
-            Circle().frame(width: 28,height: 28).foregroundColor(.yellow)
-            Circle().frame(width: 22,height: 22).foregroundColor(.red)
-            Circle().frame(width: 16,height: 16).foregroundColor(.green)
-        }
-    }
-}
+//struct BlooRec : View{
+//    init(){
+//        print("BlooRec")
+//    }
+//    var body: some View {
+//        return ZStack(alignment: .topLeading){
+//            Rectangle().frame(width: 30,height: 30).foregroundColor(.blue)
+//            Circle().frame(width: 28,height: 28).foregroundColor(.yellow)
+//            Circle().frame(width: 22,height: 22).foregroundColor(.red)
+//            Circle().frame(width: 16,height: 16).foregroundColor(.green)
+//        }
+//    }
+//}

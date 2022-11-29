@@ -166,21 +166,35 @@ public class Wrapped_Vertical_Slider<T:View> {
         self.generic_Slider_coordinator.parentWrapper = self
     }
     
-    @ViewBuilder func yield_A_Cell()->some View {
-        if injectedCell == nil{
+    @ViewBuilder func yield_A_Cell() -> some View {
+//        if injectedCell == nil{
+//            Default_UICollection_Cell_Overlay()
+//        }
+//        else if let lclInjectedCell = injectedCell{
+//            lclInjectedCell
+//        }
+        
+        if injectedCellFactoryMethod == nil{
             Default_UICollection_Cell_Overlay()
         }
-        else if let lclInjectedCell = injectedCell{
-            lclInjectedCell
+        else if let lclInjectedMethod = injectedCellFactoryMethod{
+            lclInjectedMethod()
         }
+        
     }
     
-    public func inject_Cell_Factory_Method(cell_Factory_Method: (()->T)){
-        injectedCell = cell_Factory_Method()
+    public func inject_Cell_Factory_Method(cell_Factory_Method:@escaping (()->T)){
+        //injectedCell = cell_Factory_Method()
+        injectedCellFactoryMethod = cell_Factory_Method
     }
     
-    var injectedCell : T?
+    //var injectedCell : T?
     
+    var injectedCellFactoryMethod : (()->T)?
+    
+    deinit{
+        if injectedCellFactoryMethod != nil{injectedCellFactoryMethod=nil}
+    }
 //    @ViewBuilder public func returnCellView() -> some View {
 //
 //    }
