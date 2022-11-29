@@ -18,7 +18,7 @@ public struct Generic_Slider_View<T:View>: UIViewRepresentable {
     public init(generic_Slider_Coordinator_Param : Generic_Slider_Coordinator<T>){
         generic_Slider_Coordinator = generic_Slider_Coordinator_Param
         let vSliderStart : Int = 0
-        let vSliderEnd : Int = 64
+        let vSliderEnd : Int = 128
         for i in vSliderStart..<vSliderEnd {
             v_Slider_Data.append(i)
         }
@@ -94,7 +94,6 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
                 }
            }
         }
-        
         return vertical_Slider_Cell
     }
     
