@@ -82,16 +82,19 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
         
-        if vertical_Slider_Cell.has_BeenOverlayed == false {
-            let newYelRec = BlooRec()
-            let uicThing = UIHostingController(rootView: newYelRec)
-            if let uiV = uicThing.view{
-                uiV.accessibilityIdentifier = "uiv"
-                vertical_Slider_Cell.addSubview(uiV)
-                vertical_Slider_Cell.has_BeenOverlayed = true
-            }
+        if let lclParentWrapper = parentWrapper {
+            
+            if vertical_Slider_Cell.has_BeenOverlayed == false {
+                let newYelRec = lclParentWrapper.yield_A_Cell()
+                let uicThing = UIHostingController(rootView: newYelRec)
+                if let uiV = uicThing.view {
+                    uiV.accessibilityIdentifier = "uiv"
+                    vertical_Slider_Cell.addSubview(uiV)
+                    vertical_Slider_Cell.has_BeenOverlayed = true
+                }
+           }
         }
-
+        
         return vertical_Slider_Cell
     }
     
@@ -164,9 +167,9 @@ public class Wrapped_Vertical_Slider<T:View> {
         self.generic_Slider_coordinator.parentWrapper = self
     }
     
-    @ViewBuilder func yield_A_Cell(indexNum:Int)->some View {
+    @ViewBuilder func yield_A_Cell()->some View {
         if injectedCell == nil{
-            Default_UICollection_Cell_Overlay(numz:indexNum)
+            Default_UICollection_Cell_Overlay()
         }
         else if let lclInjectedCell = injectedCell{
             lclInjectedCell
@@ -191,13 +194,11 @@ public class Wrapped_Vertical_Slider<T:View> {
 }
 
 struct Default_UICollection_Cell_Overlay : View {
-    @State var numz : Int = 0
     var body: some View {
         return ZStack(alignment: .topLeading){
             Rectangle().frame(width: 30,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0.6))
             Rectangle().frame(width: 30,height: 1).foregroundColor(Color(red: 1, green: 0, blue: 1))
             Rectangle().frame(width: 1,height: 30).foregroundColor(Color(red: 1, green: 0, blue: 1))
-            Text(numz.description).foregroundColor(.white)
         }
     }
 }
