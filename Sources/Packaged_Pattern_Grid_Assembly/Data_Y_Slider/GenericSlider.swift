@@ -83,13 +83,22 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
         
         if let lclParentWrapper = parentWrapper {
-            
             if vertical_Slider_Cell.has_BeenOverlayed == false {
                 let newYelRec = lclParentWrapper.yield_A_Cell()
                 let uicThing = UIHostingController(rootView: newYelRec)
+
                 if let uiV = uicThing.view {
                     uiV.accessibilityIdentifier = "uiv"
                     vertical_Slider_Cell.addSubview(uiV)
+                    
+                    let constraints = [
+                        uicThing.view.topAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.topAnchor, constant: 0),
+                        uicThing.view.leftAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.leftAnchor, constant: 0),
+                        uicThing.view.bottomAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.bottomAnchor, constant: 0),
+                        uicThing.view.rightAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.rightAnchor, constant: 0),
+                    ]
+                    NSLayoutConstraint.activate(constraints)
+
                     vertical_Slider_Cell.has_BeenOverlayed = true
                 }
            }
@@ -138,7 +147,6 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
         
 //        let last = lclDimensions.useable_Data_Range_Upper_Limit-1
 //        let indexToScrollTo = IndexPath(item: last, section: 0)
-//
 //        if let lclCollection_View = v_Collection_View {
 //            lclCollection_View.scrollToItem(at: indexToScrollTo, at: .bottom, animated: false)
 //        }
@@ -167,13 +175,7 @@ public class Wrapped_Vertical_Slider<T:View> {
     }
     
     @ViewBuilder func yield_A_Cell() -> some View {
-//        if injectedCell == nil{
-//            Default_UICollection_Cell_Overlay()
-//        }
-//        else if let lclInjectedCell = injectedCell{
-//            lclInjectedCell
-//        }
-        
+
         if injectedCellFactoryMethod == nil{
             Default_UICollection_Cell_Overlay()
         }
@@ -184,26 +186,15 @@ public class Wrapped_Vertical_Slider<T:View> {
     }
     
     public func inject_Cell_Factory_Method(cell_Factory_Method:@escaping (()->T)){
-        //injectedCell = cell_Factory_Method()
         injectedCellFactoryMethod = cell_Factory_Method
     }
-    
-    //var injectedCell : T?
     
     var injectedCellFactoryMethod : (()->T)?
     
     deinit{
         if injectedCellFactoryMethod != nil{injectedCellFactoryMethod=nil}
     }
-//    @ViewBuilder public func returnCellView() -> some View {
-//
-//    }
-    
-//    @ViewBuilder public func returnData_Y_Slider() -> some View {
-//        Generic_Slider_View(generic_Slider_Coordinator_Param: Generic_Slider_Coordinator<Default_UICollection_Cell_Overlay>(parentWrapperParam: generic_Slider_coordinator))
-//        .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height)
-//    }
-    
+
 }
 
 struct Default_UICollection_Cell_Overlay : View {
