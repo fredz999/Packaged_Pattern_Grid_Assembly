@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 import UIKit
 
-class Slider_Cell : UICollection_View_Slight_Extension {
+//class Slider_Cell : UICollection_View_Slight_Extension {
+class Slider_Cell : UICollection_View_Other_Extension {
 
     private static let reuseId = "SliderCell"
 
@@ -21,7 +22,7 @@ class Slider_Cell : UICollection_View_Slight_Extension {
         collectionView.register(Slider_Cell.self, forCellWithReuseIdentifier: reuseId)
     }
 
-    static func getReusedCellFrom(collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollection_View_Slight_Extension{
+    static func getReusedCellFrom(collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollection_View_Other_Extension{
         return collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! Slider_Cell
     }
 
@@ -45,12 +46,15 @@ class Slider_Cell : UICollection_View_Slight_Extension {
         Cell_Info_View.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         Cell_Info_View.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
-        let newYelRec = YelRec()
-        let uicThing = UIHostingController(rootView: newYelRec)
-        contentView.addSubview(uicThing.view)
+//        let newYelRec = YelRec()
+//        let uicThing = UIHostingController(rootView: newYelRec)
+//        contentView.addSubview(uicThing.view)
 
         self.isSelected = false //true
     }
+    
+    
+    
 
     func update() {
         Cell_Info_View.text = "\(self.labelText)"
@@ -58,11 +62,6 @@ class Slider_Cell : UICollection_View_Slight_Extension {
     
     override func prepareForReuse() {
         print("prepareForReuse at least called")
-        for vuu in self.subviews{
-            if vuu.accessibilityIdentifier == "blonk"{
-                print("got a blonk")
-            }
-        }
     }
 
     required init?(coder: NSCoder) {
@@ -70,7 +69,7 @@ class Slider_Cell : UICollection_View_Slight_Extension {
     }
     
 }
-
+// haaaaaaw du aaah get theeis eeen from aatseeeeeide?
 struct YelRec : View{
     init(){
         print("YelRec")

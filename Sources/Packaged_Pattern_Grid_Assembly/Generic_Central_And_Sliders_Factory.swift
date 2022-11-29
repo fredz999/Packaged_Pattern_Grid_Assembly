@@ -200,3 +200,36 @@ public class Visible_Injected_Generic_View_Line <InjectedViewType:View> : Observ
     public var id = UUID()
     public var unitArray = [InjectedViewType]()
 }
+
+class InjectedView_Holder<InjectedView:View> {
+    
+    var injected_View : InjectedView?
+    
+    var type : InjectedViewType
+    
+//    public func inject_View(viewParam:InjectedView){
+//        injected_View = viewParam
+//    }
+    
+    init(viewParam:InjectedView,typeParam:InjectedViewType){
+        injected_View = viewParam
+        type = typeParam
+    }
+    
+    @ViewBuilder public func returnInjectedView()->some View {
+        if let lcl_Injected_View = injected_View {
+            lcl_Injected_View
+        }
+        else if injected_View == nil{
+             //default in here
+        }
+    }
+    
+    //static let Static_Return_Data_Y_Cell_View = Return_Data_Y_Cell_View()
+}
+
+enum InjectedViewType {
+    case cursor
+    case data_Y_Slider_Cell
+    //.... e.t.c
+}
