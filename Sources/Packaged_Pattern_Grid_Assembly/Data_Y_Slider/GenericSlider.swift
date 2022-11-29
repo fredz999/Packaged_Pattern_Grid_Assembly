@@ -87,7 +87,14 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
                 let newYelRec = lclParentWrapper.yield_A_Cell()
                 let uicThing = UIHostingController(rootView: newYelRec)
 
+                
+                
+                
                 if let uiV = uicThing.view {
+                    vertical_Slider_Cell.backgroundColor = .clear
+                    uicThing.view.translatesAutoresizingMaskIntoConstraints = false
+                    uicThing.view.backgroundColor = .clear
+                    
                     uiV.accessibilityIdentifier = "uiv"
                     vertical_Slider_Cell.addSubview(uiV)
                     
