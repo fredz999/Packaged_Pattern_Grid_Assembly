@@ -80,14 +80,11 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        
-        //contentView.addSubview(uicThing.view)
-        
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
         
         if vertical_Slider_Cell.has_BeenOverlayed == false {
             
-            let newYelRec = YelRec()
+            let newYelRec = BlooRec()
             let uicThing = UIHostingController(rootView: newYelRec)
             if let uiV = uicThing.view{
                 uiV.accessibilityIdentifier = "uiv"
@@ -95,14 +92,7 @@ public class Generic_Slider_Coordinator<T:View> : NSObject, UICollectionViewData
                 vertical_Slider_Cell.has_BeenOverlayed = true
             }
             
-            
         }
-        
-        
-        //vertical_Slider_Cell.has_BeenOverlayed = true
-//        if vertical_Slider_Cell.optionalAddView == nil{
-//            vertical_Slider_Cell.optionalAddView = uiV
-//        }
 
         return vertical_Slider_Cell
     }

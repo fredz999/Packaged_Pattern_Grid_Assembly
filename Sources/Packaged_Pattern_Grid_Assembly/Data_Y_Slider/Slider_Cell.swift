@@ -45,10 +45,6 @@ class Slider_Cell : UICollection_View_Other_Extension {
         Cell_Info_View.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         Cell_Info_View.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         Cell_Info_View.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        
-//        let newYelRec = YelRec()
-//        let uicThing = UIHostingController(rootView: newYelRec)
-//        contentView.addSubview(uicThing.view)
 
         self.isSelected = false //true
     }
@@ -70,14 +66,27 @@ class Slider_Cell : UICollection_View_Other_Extension {
     
 }
 // haaaaaaw du aaah get theeis eeen from aatseeeeeide?
-struct YelRec : View{
+//struct YelRec : View{
+//    init(){
+//        print("YelRec")
+//    }
+//    var body: some View{
+//        return ZStack(alignment: .topLeading){
+//            Rectangle().frame(width: 30,height: 30).foregroundColor(.yellow)
+//            Circle().frame(width: 30,height: 30).foregroundColor(.purple)
+//        }
+//    }
+//}
+
+struct BlooRec : View{
     init(){
-        print("YelRec")
+        print("BlooRec")
     }
-    var body: some View{
+    var body: some View {
         return ZStack(alignment: .topLeading){
-            Rectangle().frame(width: 30,height: 30).foregroundColor(.yellow)
-            Circle().frame(width: 30,height: 30).foregroundColor(.purple)
+            Rectangle().frame(width: 30,height: 30).foregroundColor(.blue)
+            Circle().frame(width: 28,height: 28).foregroundColor(.yellow)
+            Circle().frame(width: 22,height: 2).foregroundColor(.orange)
         }
     }
 }
