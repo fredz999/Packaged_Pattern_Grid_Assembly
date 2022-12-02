@@ -106,7 +106,7 @@ public class Central_State : ObservableObject {
             }
         }
         if let lclNew_Y = new_Y {
-            if lclNew_Y != currentYCursor_Slider_Position, lclNew_Y < dimensions.DATA_final_Line_Y_Index {
+            if lclNew_Y != currentYCursor_Slider_Position, lclNew_Y < dimensions.DATA_final_Line_Y_Index-1 {
                 currentYCursor_Slider_Position = lclNew_Y
                 centralState_Cursor_Position_Evaluation()
                 centralState_Data_Evaluation()
@@ -130,13 +130,15 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
         if let lclCursorLayer = cursor_Layer_Ref {
             
-            print("data_Grid.dataLineArray count: ",data_Grid.dataLineArray.count.description,", lclCursorLayer.currPosY: ",lclCursorLayer.currPosY.description )
+            print("data_Grid.dataLineArray count: ",data_Grid.dataLineArray.count.description,", lclCursorLayer.currPosY: ",lclCursorLayer.currPosY.description)
             
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
 
             lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
 
+            
+            
             if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
                 if let lclNoteCollection = note_Collection_Ref{
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
@@ -148,6 +150,8 @@ public class Central_State : ObservableObject {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
             }
+            
+            
 
         }
     }
