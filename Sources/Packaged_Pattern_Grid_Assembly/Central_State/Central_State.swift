@@ -106,7 +106,7 @@ public class Central_State : ObservableObject {
             }
         }
         if let lclNew_Y = new_Y {
-            if lclNew_Y != currentYCursor_Slider_Position {
+            if lclNew_Y != currentYCursor_Slider_Position, lclNew_Y < dimensions.DATA_final_Line_Y_Index  {
                 currentYCursor_Slider_Position = lclNew_Y
                 centralState_Cursor_Position_Evaluation()
                 centralState_Data_Evaluation()
