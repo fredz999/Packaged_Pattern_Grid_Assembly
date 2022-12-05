@@ -43,14 +43,19 @@ public struct Default_Central_Cell_View : View {
     public var body: some View {
         return ZStack(alignment: .topLeading){
             
-            Data_Cell_Display_View<Default_Unassigned_View,Default_Start_View,Default_Mid_View,Default_End_View,Default_Single_View>(
-            current_Underlying_Data_Cell: visual_Cell_Store.underlying_Data_Cell
-            , unassigned_View: Default_Unassigned_View()
-            , start_View: Default_Start_View(current_Underlying_Data_Param: visual_Cell_Store.underlying_Data_Cell)
-            , mid_View: Default_Mid_View(current_Underlying_Data_Param: visual_Cell_Store.underlying_Data_Cell)
-            , end_View: Default_End_View(current_Underlying_Data_Param: visual_Cell_Store.underlying_Data_Cell)
-            , single_View: Default_Single_View(current_Underlying_Data_Param: visual_Cell_Store.underlying_Data_Cell))
             
+                if let lclUnderlyingData = visual_Cell_Store.underlying_Data_Cell{
+                    
+                    Data_Cell_Display_View<Default_Unassigned_View,Default_Start_View,Default_Mid_View,Default_End_View,Default_Single_View>(
+                        current_Underlying_Data_Cell: lclUnderlyingData
+                        , unassigned_View: Default_Unassigned_View()
+                        , start_View: Default_Start_View(current_Underlying_Data_Param: lclUnderlyingData)
+                        , mid_View: Default_Mid_View(current_Underlying_Data_Param: lclUnderlyingData)
+                        , end_View: Default_End_View(current_Underlying_Data_Param: lclUnderlyingData)
+                        , single_View: Default_Single_View(current_Underlying_Data_Param: lclUnderlyingData))
+                    
+    
+                }
         }
     }
 }
