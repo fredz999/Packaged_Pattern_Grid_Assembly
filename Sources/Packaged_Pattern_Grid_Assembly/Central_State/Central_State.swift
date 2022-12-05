@@ -150,13 +150,13 @@ public class Central_State : ObservableObject {
                 }
                 
             }
-            else {
-                print("Fault condition reached data_Grid.dataLineArray count: "
-                      ,data_Grid.dataLineArray.count.description
-                      ,", lclCursorLayer.currPosY: ",lclCursorLayer.currPosY.description)
-                // there needs to be a blank cell in here
-                
-            }
+//            else {
+//                print("Fault condition reached data_Grid.dataLineArray count: "
+//                      ,data_Grid.dataLineArray.count.description
+//                      ,", lclCursorLayer.currPosY: ",lclCursorLayer.currPosY.description)
+//                // there needs to be a blank cell in here
+//
+//            }
             
             
             

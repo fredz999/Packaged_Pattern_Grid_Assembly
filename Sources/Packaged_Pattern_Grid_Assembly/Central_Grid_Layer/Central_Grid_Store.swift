@@ -44,14 +44,9 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     @Published public var visual_Cell_Store_Array : [Central_Cell_Store] = []
     
     public init(y_Index: Int,gridParam:Central_Grid_Store){
-        print("cell store created")
         self.y_Index = y_Index
         parentGrid = gridParam
         fillLine()
-    }
-    
-    deinit{
-        print("deinit at least attempted")
     }
  
     public func fillLine(){
@@ -80,7 +75,11 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     @Published public var yFloat:CGFloat
     public var visual_Line_Ref : Central_Line_Store
     
-    @Published public var underlying_Data_Cell : Underlying_Data_Cell
+    @Published public var underlying_Data_Cell : Underlying_Data_Cell {
+        didSet {
+            print("Package_Side underlying Data Cell changed")
+        }
+    }
     
     public init(x_IndexParam: Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell) {
         self.visual_Line_Ref = lineParam
