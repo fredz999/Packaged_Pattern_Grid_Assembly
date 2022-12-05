@@ -99,11 +99,6 @@ public class Central_State : ObservableObject {
     
     
     
-    
-    
-    
-    
-    
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             if lcl_NewX != currentXCursor_Slider_Position {
@@ -156,7 +151,11 @@ public class Central_State : ObservableObject {
                 
             }
             else {
-                print("Fault condition reached data_Grid.dataLineArray count: ",data_Grid.dataLineArray.count.description,", lclCursorLayer.currPosY: ",lclCursorLayer.currPosY.description)
+                print("Fault condition reached data_Grid.dataLineArray count: "
+                      ,data_Grid.dataLineArray.count.description
+                      ,", lclCursorLayer.currPosY: ",lclCursorLayer.currPosY.description)
+                // there needs to be a blank cell in here
+                
             }
             
             
