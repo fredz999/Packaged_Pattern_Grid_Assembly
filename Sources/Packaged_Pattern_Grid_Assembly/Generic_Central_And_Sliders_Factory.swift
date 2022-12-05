@@ -135,16 +135,31 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         if centralGridSet == true {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
-                    self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index)
-                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
+     
+                    if let lclX_Index = visibleUnit.x_Index, let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
+                        
+                        
+                        self.returnCentralGridUnit(xParam: lclX_Index, yParam: visibleLine.y_Index)
+                            .offset(x:lclXFloat,y:lclYFloat)
+                        
+                        
+                    }
+//                    self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index)
+//                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
+                    
                 }
             }
         }
         else if centralGridSet == false {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
-                    Default_Central_Cell_View(visual_Cell_Store: visibleUnit)
-                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
+                    
+                    if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
+                        Default_Central_Cell_View(visual_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
+                    }
+//                    Default_Central_Cell_View(visual_Cell_Store: visibleUnit)
+//                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
+                    
                 }
             }
         }

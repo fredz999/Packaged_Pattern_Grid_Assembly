@@ -22,7 +22,10 @@ public struct Central_Grid_View : View {
             // this section has to come from a viewBuilder that uses the injected types
             ForEach(grid_Store.vis_Line_Store_Array){ lineStore in
                 ForEach(lineStore.visual_Cell_Store_Array){ cellStore in
-                    Default_Central_Cell_View(visual_Cell_Store: cellStore).offset(x:cellStore.xFloat,y:cellStore.yFloat)
+                    if let lclCellXFloat = cellStore.xFloat, let lclCellYFloat = cellStore.yFloat{
+                        Default_Central_Cell_View(visual_Cell_Store: cellStore).offset(x:lclCellXFloat,y:lclCellYFloat)
+                    }
+                    //Default_Central_Cell_View(visual_Cell_Store: cellStore).offset(x:cellStore.xFloat,y:cellStore.yFloat)
                 }
             }
             
