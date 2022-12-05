@@ -155,7 +155,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
                     
                     if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
-                        Default_Central_Cell_View(visual_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
+                        //Default_Central_Cell_View(visual_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
+                        Default_Central_Cell_View().offset(x:lclXFloat,y:lclYFloat)
                     }
 //                    Default_Central_Cell_View(visual_Cell_Store: visibleUnit)
 //                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
