@@ -131,19 +131,34 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     var centralGridSet : Bool = false
+    
+    
     @ViewBuilder public func returnCentralGrid()->some View {
         if centralGridSet == true {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
+
+                    
+
      
                     if let lclX_Index = visibleUnit.x_Index, let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
-                        
-                        
+
+
                         self.returnCentralGridUnit(xParam: lclX_Index, yParam: visibleLine.y_Index)
                             .offset(x:lclXFloat,y:lclYFloat)
-                        
-                        
+
+
                     }
+                    else if visibleUnit.x_Index == nil{
+                        //print("=============================== nil at for each")
+                        Circle().frame(width: 30,height: 30).foregroundColor( Color(red: 0.5, green: 1.0, blue: 0)  )
+                    }
+                    
+                    
+                    
+//                    else if visibleUnit.x_Index == nil || visibleUnit.xFloat == nil || visibleUnit.yFloat == nil{
+//                        print("=============================== nil at for each")
+//                    }
 //                    self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index)
 //                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
                     
