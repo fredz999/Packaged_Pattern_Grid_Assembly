@@ -108,7 +108,11 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     @Published public var underlying_Data_Cell : Underlying_Data_Cell?
     {
         didSet {
-            print("Package_Side underlying Data Cell changed")
+            //print("Package_Side underlying Data Cell changed, ",underlying_Data_Cell?.dataCell_X_Number )
+            if let lclUnderlying_Data_Cell = underlying_Data_Cell{
+                print("lclUnderlying_Data_Cell: ",lclUnderlying_Data_Cell.dataCell_X_Number)
+            }
+            
         }
     }
     
