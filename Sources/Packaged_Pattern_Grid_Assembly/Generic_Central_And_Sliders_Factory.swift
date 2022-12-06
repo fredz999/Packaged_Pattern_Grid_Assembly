@@ -112,6 +112,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
+        print("returnCentralGridUnit called")
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
     
