@@ -132,7 +132,6 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         self.xFloat = CGFloat(x_IndexParam) * dimensions.pattern_Grid_Unit_Width
         self.yFloat = CGFloat(lineParam.y_Index) * dimensions.pattern_Grid_Unit_Height
         self.underlying_Data_Cell = underlying_Data_Cell_Param
-        self.dataMember = underlying_Data_Cell_Param.dataCell_X_Number
     }
 
 }
