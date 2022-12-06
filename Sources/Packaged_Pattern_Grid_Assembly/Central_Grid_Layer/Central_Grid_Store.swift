@@ -78,9 +78,31 @@ public class Central_Line_Store : ObservableObject,Identifiable {
 public class Central_Cell_Store : ObservableObject,Identifiable {
     public var id = UUID()
     public let dimensions = ComponentDimensions.StaticDimensions
+    
     @Published public var x_Index : Int?
+    {
+        didSet{
+            if let lclXIndex = x_Index{
+                print("sIndex: ",lclXIndex.description)
+            }
+        }
+    }
     @Published public var xFloat : CGFloat?
+    {
+        didSet{
+            if let lclxFloat = xFloat{
+                print("xFloat: ",lclxFloat.description)
+            }
+        }
+    }
     @Published public var yFloat : CGFloat?
+    {
+        didSet{
+            if let lclyFloat = yFloat{
+                print("yFloat: ",lclyFloat.description)
+            }
+        }
+    }
     
     public var parent_Line_Ref : Central_Line_Store?
     @Published public var underlying_Data_Cell : Underlying_Data_Cell?
@@ -93,7 +115,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     public init() {}
     
     public func setProps(x_IndexParam: Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell){
-        print("Package_Side Central_Cell_Store setProps activated")
+        //print("Package_Side Central_Cell_Store setProps activated")
         self.parent_Line_Ref = lineParam
         self.x_Index = x_IndexParam
         self.xFloat = CGFloat(x_IndexParam) * dimensions.pattern_Grid_Unit_Width
