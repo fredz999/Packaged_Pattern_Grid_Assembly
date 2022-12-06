@@ -93,6 +93,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     public init() {}
     
     public func setProps(x_IndexParam: Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell){
+        print("Package_Side Central_Cell_Store setProps activated")
         self.parent_Line_Ref = lineParam
         self.x_Index = x_IndexParam
         self.xFloat = CGFloat(x_IndexParam) * dimensions.pattern_Grid_Unit_Width
