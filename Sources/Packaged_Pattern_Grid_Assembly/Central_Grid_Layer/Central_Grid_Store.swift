@@ -85,10 +85,20 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     @Published public var xFloat : CGFloat
     @Published public var yFloat : CGFloat
     
-    public var parent_Line_Ref : Central_Line_Store?
-    @Published public var underlying_Data_Cell : Underlying_Data_Cell?
+    public var parent_Line_Ref : Central_Line_Store
     
-    @Published public var dataMember : Int?
+    // right.... I think this has to be a permanent object within this class
+    // because it has to be a state object in its view ......
+    // im thinking that instead of swapping in and out a data object, that the
+    // composed in object itself has to remain the same and that the values it contains actually have to be read from
+    // the data objects and the in_Cell_Data_Values has to mutate instead
+    // this is necessary because otherwise the changing of a class will make a new view(which is a struct) init each time causing a data leak
+    // OR find out how to make the view dismiss itself and prevent the menory leak that way ...
+    // seriously I think im going for the first one tho
+    // its also going to make transferring new data to underlying data more complex ...
+    @Published public var underlying_Data_Cell : Underlying_Data_Cell
+    
+
     
     public init(x_Index_Param:Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell) {
         self.parent_Line_Ref = lineParam
