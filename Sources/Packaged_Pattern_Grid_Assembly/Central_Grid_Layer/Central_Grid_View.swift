@@ -24,7 +24,7 @@ public struct Central_Grid_View : View {
                 ForEach(lineStore.visual_Cell_Store_Array){ cellStore in
                     if let lclCellXFloat = cellStore.xFloat, let lclCellYFloat = cellStore.yFloat{
                         //Default_Central_Cell_View(visual_Cell_Store: cellStore).offset(x:lclCellXFloat,y:lclCellYFloat)
-                        Default_Central_Cell_View().offset(x:lclCellXFloat,y:lclCellYFloat)
+                        Default_Central_Cell_View(central_Cell_Store: cellStore).offset(x:lclCellXFloat,y:lclCellYFloat)
                     }
                     //Default_Central_Cell_View(visual_Cell_Store: cellStore).offset(x:cellStore.xFloat,y:cellStore.yFloat)
                 }
@@ -40,19 +40,19 @@ public struct Default_Central_Cell_View : View {
     
     //@ObservedObject public var visual_Cell_Store : Central_Cell_Store
     
-    @StateObject public var visual_Cell_Store = Central_Cell_Store()
+    @StateObject public var central_Cell_Store : Central_Cell_Store
     
 //    public init(visual_Cell_Store: Central_Cell_Store) {
 //        self.visual_Cell_Store = visual_Cell_Store
 //    }
     
-    public init() {}
+    //public init() {}
     
     public var body: some View {
         return ZStack(alignment: .topLeading){
             
             
-                if let lclUnderlyingData = visual_Cell_Store.underlying_Data_Cell{
+                if let lclUnderlyingData = central_Cell_Store.underlying_Data_Cell{
                     
                     Data_Cell_Display_View<Default_Unassigned_View,Default_Start_View,Default_Mid_View,Default_End_View,Default_Single_View>(
                         current_Underlying_Data_Cell: lclUnderlyingData

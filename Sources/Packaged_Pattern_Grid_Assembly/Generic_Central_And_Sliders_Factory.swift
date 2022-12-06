@@ -142,18 +142,18 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                     
 
      
-                    if let lclX_Index = visibleUnit.x_Index, let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
+                    //if let lclX_Index = visibleUnit.x_Index, let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
+                    if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
 
-
-                        self.returnCentralGridUnit(xParam: lclX_Index, yParam: visibleLine.y_Index)
+                        self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index)
                             .offset(x:lclXFloat,y:lclYFloat)
 
 
                     }
-                    else if visibleUnit.x_Index == nil{
-                        //print("=============================== nil at for each")
-                        Circle().frame(width: 30,height: 30).foregroundColor( Color(red: 0.5, green: 1.0, blue: 0)  )
-                    }
+//                    else if visibleUnit.x_Index == nil{
+//                        //print("=============================== nil at for each")
+//                        Circle().frame(width: 30,height: 30).foregroundColor( Color(red: 0.5, green: 1.0, blue: 0)  )
+//                    }
                     
                     
                     
@@ -172,7 +172,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                     
                     if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
                         //Default_Central_Cell_View(visual_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
-                        Default_Central_Cell_View().offset(x:lclXFloat,y:lclYFloat)
+                        Default_Central_Cell_View(central_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
                     }
 //                    Default_Central_Cell_View(visual_Cell_Store: visibleUnit)
 //                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
