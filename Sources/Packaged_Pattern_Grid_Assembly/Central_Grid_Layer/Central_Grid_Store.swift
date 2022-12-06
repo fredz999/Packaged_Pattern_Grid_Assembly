@@ -51,11 +51,13 @@ public class Central_Line_Store : ObservableObject,Identifiable {
  
     public func fillLine(){
         for x in 0..<parentGrid.gridUnitsHorz {
-//            let new_Visual_Cell = Central_Cell_Store(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
-            let new_Visual_Cell = Central_Cell_Store()
-            // TODO: setup vis cell props
-            new_Visual_Cell.setProps(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
-            visual_Cell_Store_Array.append(new_Visual_Cell)
+            // let new_Visual_Cell = Central_Cell_Store(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
+
+            
+            let new_Central_Cell_Store = Central_Cell_Store()
+            // TODO: cell_View manufactured
+            new_Central_Cell_Store.set_Central_Cell_Props(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
+            visual_Cell_Store_Array.append(new_Central_Cell_Store)
         }
     }
     
@@ -63,7 +65,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         if (lowerBracket_Param + y_Index) < data.dataLineArray.count {
             let new_Y_Index = lowerBracket_Param + y_Index
             for visualCell in visual_Cell_Store_Array {
-                //visualCell.underlying_Data_Cell = data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index]
+                // visualCell.underlying_Data_Cell = data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index]
                 // TODO: setup vis cell data
                 if let lcl_Cell_X = visualCell.x_Index {
                     visualCell.underlying_Data_Cell = data.dataLineArray[new_Y_Index].dataCellArray[lcl_Cell_X]
@@ -74,6 +76,9 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
     
 }
+
+
+
 
 public class Central_Cell_Store : ObservableObject,Identifiable {
     public var id = UUID()
@@ -120,7 +125,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     
     public init() {}
     
-    public func setProps(x_IndexParam: Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell){
+    public func set_Central_Cell_Props(x_IndexParam: Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell){
         //print("Package_Side Central_Cell_Store setProps activated")
         self.parent_Line_Ref = lineParam
         self.x_Index = x_IndexParam
