@@ -8,7 +8,12 @@
 import Foundation
 import SwiftUI
 
-public class Note : ObservableObject, Identifiable {
+public class Note : ObservableObject, Identifiable, Equatable {
+    
+    public static func == (lhs: Note, rhs: Note) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     public var id : UUID
     var parentRef : Note_Collection
     var cellArray : [Underlying_Data_Cell] = []

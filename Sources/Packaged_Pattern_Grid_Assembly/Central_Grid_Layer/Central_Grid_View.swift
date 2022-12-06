@@ -52,18 +52,19 @@ public struct Default_Central_Cell_View : View {
         return ZStack(alignment: .topLeading){
             
             
-                if let lclUnderlyingData = central_Cell_Store.underlying_Data_Cell{
+                //if let lclUnderlyingData = central_Cell_Store.underlying_Data_Cell{
+            
                     
-                    Data_Cell_Display_View<Default_Unassigned_View,Default_Start_View,Default_Mid_View,Default_End_View,Default_Single_View>(
-                        current_Underlying_Data_Cell: lclUnderlyingData
-                        , unassigned_View: Default_Unassigned_View()
-                        , start_View: Default_Start_View(current_Underlying_Data_Param: lclUnderlyingData)
-                        , mid_View: Default_Mid_View(current_Underlying_Data_Param: lclUnderlyingData)
-                        , end_View: Default_End_View(current_Underlying_Data_Param: lclUnderlyingData)
-                        , single_View: Default_Single_View(current_Underlying_Data_Param: lclUnderlyingData))
+//                    Data_Cell_Display_View<Default_Unassigned_View,Default_Start_View,Default_Mid_View,Default_End_View,Default_Single_View>(
+//                        current_Data_Vals_Holder: central_Cell_Store.data_Vals_Holder
+//                        , unassigned_View: Default_Unassigned_View()
+//                        , start_View: Default_Start_View(current_Underlying_Data_Param: central_Cell_Store.data_Vals_Holder)
+//                        , mid_View: Default_Mid_View(current_Underlying_Data_Param: central_Cell_Store.data_Vals_Holder)
+//                        , end_View: Default_End_View(current_Underlying_Data_Param: central_Cell_Store.data_Vals_Holder)
+//                        , single_View: Default_Single_View(current_Underlying_Data_Param: central_Cell_Store.data_Vals_Holder))
                     
     
-                }
+                //}
         }
     }
 }
