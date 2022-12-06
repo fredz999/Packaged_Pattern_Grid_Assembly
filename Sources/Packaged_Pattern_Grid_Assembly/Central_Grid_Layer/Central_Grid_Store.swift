@@ -116,7 +116,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         }
     }
     
-    @Published var dataMember : Int?
+    @Published public var dataMember : Int?
     
     public init() {}
     
