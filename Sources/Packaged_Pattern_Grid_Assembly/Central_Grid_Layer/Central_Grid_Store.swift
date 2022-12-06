@@ -54,9 +54,9 @@ public class Central_Line_Store : ObservableObject,Identifiable {
             // let new_Visual_Cell = Central_Cell_Store(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
 
             
-            let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x)
+            let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
             // TODO: cell_View manufactured
-            new_Central_Cell_Store.set_Central_Cell_Props(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
+            //new_Central_Cell_Store//.set_Central_Cell_Props(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
             visual_Cell_Store_Array.append(new_Central_Cell_Store)
         }
     }
@@ -82,24 +82,28 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     public let dimensions = ComponentDimensions.StaticDimensions
     
     @Published public var x_Index : Int
-    @Published public var xFloat : CGFloat?
-    @Published public var yFloat : CGFloat?
+    @Published public var xFloat : CGFloat
+    @Published public var yFloat : CGFloat
     
     public var parent_Line_Ref : Central_Line_Store?
     @Published public var underlying_Data_Cell : Underlying_Data_Cell?
     
     @Published public var dataMember : Int?
     
-    public init(x_Index_Param:Int) {
-        x_Index = x_Index_Param
-    }
-    
-    public func set_Central_Cell_Props(x_IndexParam: Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell){
+    public init(x_Index_Param:Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell) {
         self.parent_Line_Ref = lineParam
-        self.x_Index = x_IndexParam
-        self.xFloat = CGFloat(x_IndexParam) * dimensions.pattern_Grid_Unit_Width
+        self.x_Index = x_Index_Param
+        self.xFloat = CGFloat(x_Index_Param) * dimensions.pattern_Grid_Unit_Width
         self.yFloat = CGFloat(lineParam.y_Index) * dimensions.pattern_Grid_Unit_Height
         self.underlying_Data_Cell = underlying_Data_Cell_Param
     }
+    
+//    public func set_Central_Cell_Props(x_IndexParam: Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell){
+//        self.parent_Line_Ref = lineParam
+//        self.x_Index = x_IndexParam
+//        self.xFloat = CGFloat(x_IndexParam) * dimensions.pattern_Grid_Unit_Width
+//        self.yFloat = CGFloat(lineParam.y_Index) * dimensions.pattern_Grid_Unit_Height
+//        self.underlying_Data_Cell = underlying_Data_Cell_Param
+//    }
 
 }
