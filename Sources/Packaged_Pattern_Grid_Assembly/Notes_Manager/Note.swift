@@ -27,7 +27,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                 for cell in dataCellArray {
                     cell.isHighlighted = true
                     // TODO:  highlight update for visual cells
-                    print("note_Y_Number: ",note_Y_Number.description)
+                    print("note_Y_Number: ",note_Y_Number.description,", x:",cell.dataCell_X_Number.description)
                     
                     central_State.a_Note_Is_Highlighted = true
                 }
