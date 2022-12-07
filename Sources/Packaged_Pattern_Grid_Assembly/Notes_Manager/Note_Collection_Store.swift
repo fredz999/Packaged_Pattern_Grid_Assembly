@@ -48,8 +48,11 @@ public class Note_Collection {
     }
     
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
+        
+    // figure out this then
+    var visible_Cell_Array : [Central_Cell_Store] = []
     
-    var cellArray : [Underlying_Data_Cell] = []
+    var dataCellArray : [Underlying_Data_Cell] = []
         
     if data_Y < dimensions.DATA_final_Line_Y_Index {
     
@@ -59,16 +62,16 @@ public class Note_Collection {
 
     singleCell.changeType(newType: .single)
     
-    cellArray.append(singleCell)
+    dataCellArray.append(singleCell)
         
     }
     else if lowest_Data_X == highest_Data_X-1 {
     let lowestCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
     let upperCell = data.dataLineArray[data_Y].dataCellArray[highest_Data_X]
     lowestCell.changeType(newType: .start)
-    cellArray.append(lowestCell)
+    dataCellArray.append(lowestCell)
     upperCell.changeType(newType: .end)
-    cellArray.append(upperCell)
+    dataCellArray.append(upperCell)
     }
     
     else if lowest_Data_X < highest_Data_X-1 {
@@ -76,23 +79,23 @@ public class Note_Collection {
             if x == lowest_Data_X {
                 let lowCell = data.dataLineArray[data_Y].dataCellArray[x]
                 lowCell.changeType(newType: .start)
-                cellArray.append(lowCell)
+                dataCellArray.append(lowCell)
             }
             else if x > lowest_Data_X,x < highest_Data_X{
                 let midCell = data.dataLineArray[data_Y].dataCellArray[x]
                 midCell.changeType(newType: .mid)
-                cellArray.append(midCell)
+                dataCellArray.append(midCell)
             }
             else if x == highest_Data_X{
                 let upperCell = data.dataLineArray[data_Y].dataCellArray[x]
                 upperCell.changeType(newType: .end)
-                cellArray.append(upperCell)
+                dataCellArray.append(upperCell)
             }
         }
     }
         
     }
-    write_Note_Data(cellArrayParam: cellArray)
+    write_Note_Data(cellArrayParam: dataCellArray)
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){

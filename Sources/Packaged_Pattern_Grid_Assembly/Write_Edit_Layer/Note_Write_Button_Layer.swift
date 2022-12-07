@@ -28,6 +28,7 @@ class Note_Write_Layer_Store : ObservableObject {
     
     func pressUpReactor(){
         centralState.writingIsOn.toggle()
+        //refresh the xisual cells here
     }
     
     @ViewBuilder func currView() -> (some View) {

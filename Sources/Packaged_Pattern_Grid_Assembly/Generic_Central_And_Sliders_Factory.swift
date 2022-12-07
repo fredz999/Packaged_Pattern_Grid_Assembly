@@ -56,8 +56,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord)
         
-        //generic_Slider_Y_Coord.parentWrapper = wrapped_Vertical_Slider
-        
         visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
         
         cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store()
@@ -112,7 +110,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
-        print("returnCentralGridUnit called")
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
     

@@ -73,6 +73,9 @@ public class Central_State : ObservableObject {
                         if let lcl_Initial_X = lclPotentialLayer.potential_Initial_Grid_X
                             ,let lcl_Current_X = lclPotentialLayer.potential_Current_Grid_X
                         ,let lcl_Initial_Y = lclPotentialLayer.potential_Initial_Grid_Y{
+                            
+                            print("lcl_Initial_X:",lcl_Initial_X.description,", lcl_Current_X: ",lcl_Current_X.description,",lcl_Initial_Y: ",lcl_Initial_Y.description)
+                            
                             if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
                                 lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
                                 , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
@@ -85,10 +88,15 @@ public class Central_State : ObservableObject {
                                 lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
                                 , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
                             }
+                            
+                            
                         }
+                        // redraw here?
+                        
                         lclPotentialLayer.endPotentialNote()
                     }
                 }
+                
             }
         }
     }

@@ -16,7 +16,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
     
     public var id : UUID
     var parentRef : Note_Collection
-    var cellArray : [Underlying_Data_Cell] = []
+    var dataCellArray : [Underlying_Data_Cell] = []
     var dimensions = ComponentDimensions.StaticDimensions
     var central_State = Central_State.Static_Central_State
     var note_Y_Number : Int
@@ -24,13 +24,13 @@ public class Note : ObservableObject, Identifiable, Equatable {
     var highlighted : Bool = false {
         didSet {
             if highlighted == true {
-                for cell in cellArray {
+                for cell in dataCellArray {
                     cell.isHighlighted = true
                     central_State.a_Note_Is_Highlighted = true
                 }
             }
             else if highlighted == false {
-                for cell in cellArray {
+                for cell in dataCellArray {
                     cell.isHighlighted = false
                     central_State.a_Note_Is_Highlighted = false
                 }
@@ -42,11 +42,11 @@ public class Note : ObservableObject, Identifiable, Equatable {
         self.note_Y_Number = yParam
         self.parentRef = parentParam
         self.id = id
-        self.cellArray = cellArray
+        self.dataCellArray = cellArray
     }
     
     func resetCells(){
-        for cell in cellArray{
+        for cell in dataCellArray{
             cell.note_Im_In = nil
             cell.currentType = .unassigned
         }
@@ -54,13 +54,13 @@ public class Note : ObservableObject, Identifiable, Equatable {
     
     func rightSide_Expansion(){
 
-        if let lastCell = cellArray.last {
+        if let lastCell = dataCellArray.last {
 
             let lastIndex = lastCell.dataCell_X_Number
 
             if lastIndex < (dimensions.visualGrid_X_Unit_Count-1){
                 if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
-                    cellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
+                    dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
                     redrawCellArray()
                     check_For_Highlight()
                 }
@@ -68,7 +68,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
 
             if let c_Layer = central_State.cursor_Layer_Ref {
                 if c_Layer.currDataX == lastIndex {
-                    if cellArray.count > 1 {
+                    if dataCellArray.count > 1 {
                         if let lclHslider = central_State.h_Slider_Ref {
                             lclHslider.artificially_H_Increment()
                         }
@@ -80,14 +80,14 @@ public class Note : ObservableObject, Identifiable, Equatable {
     }
     
     func leftSide_Expansion(){
-        if let firstCell = cellArray.first,let lastCell = cellArray.last {
+        if let firstCell = dataCellArray.first,let lastCell = dataCellArray.last {
             
             let firstIndex = firstCell.dataCell_X_Number
             let lastIndex = lastCell.dataCell_X_Number
             
             if let c_Layer = central_State.cursor_Layer_Ref {
                 if c_Layer.currDataX == lastIndex {
-                    if cellArray.count > 1 {
+                    if dataCellArray.count > 1 {
                         if let lclHslider = central_State.h_Slider_Ref {
                             lclHslider.artificially_H_Decrement()
                         }
@@ -98,7 +98,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             if lastIndex > firstIndex {
                 lastCell.changeType(newType: .unassigned)
                 lastCell.note_Im_In = nil
-                cellArray.removeLast()
+                dataCellArray.removeLast()
                 redrawCellArray()
                 check_For_Highlight()
             }
@@ -106,15 +106,15 @@ public class Note : ObservableObject, Identifiable, Equatable {
     }
     
     func moveRightOne(){
-        if let lastCell = cellArray.last,let firstCell = cellArray.first {
+        if let lastCell = dataCellArray.last,let firstCell = dataCellArray.first {
         let lastIndex = lastCell.dataCell_X_Number
             if lastIndex < (dimensions.visualGrid_X_Unit_Count-1){
                 if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
                     firstCell.changeType(newType: .unassigned)
                     firstCell.note_Im_In = nil
                     firstCell.isHighlighted = false
-                    cellArray.removeFirst()
-                    cellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
+                    dataCellArray.removeFirst()
+                    dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
                     redrawCellArray()
                     check_For_Highlight()
                 }
@@ -123,18 +123,18 @@ public class Note : ObservableObject, Identifiable, Equatable {
     }
     
     func moveLeftOne(){
-        if let lastCell = cellArray.last,let firstCell = cellArray.first {
+        if let lastCell = dataCellArray.last,let firstCell = dataCellArray.first {
         let firstIndex = firstCell.dataCell_X_Number
             if firstIndex > 0{
                 if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[firstIndex-1].note_Im_In == nil {
                     lastCell.changeType(newType: .unassigned)
                     lastCell.note_Im_In = nil
                     lastCell.isHighlighted = false
-                    cellArray.removeLast()
+                    dataCellArray.removeLast()
                     
                     let newCell = parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[firstIndex-1]
 
-                    cellArray.insert(newCell, at: 0)
+                    dataCellArray.insert(newCell, at: 0)
                     
                     redrawCellArray()
                     
@@ -150,21 +150,21 @@ public class Note : ObservableObject, Identifiable, Equatable {
         if self.note_Y_Number+1 < dimensions.DATA_final_Line_Y_Index {
 
                 var newCellArray : [Underlying_Data_Cell] = []
-                for cell in cellArray {
+                for cell in dataCellArray {
                     let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
                     newCellArray.append(cellBelow)
                 }
                 
-                for cell in cellArray {
+                for cell in dataCellArray {
                     cell.currentType = .unassigned
                     cell.note_Im_In = nil
                     cell.isHighlighted = false
                 }
                 
-                cellArray.removeAll()
+                dataCellArray.removeAll()
                 
                 for newCell in newCellArray {
-                    cellArray.append(newCell)
+                    dataCellArray.append(newCell)
                 }
                 
                 redrawCellArray()
@@ -179,21 +179,21 @@ public class Note : ObservableObject, Identifiable, Equatable {
         if self.note_Y_Number > 0 {
                 
                 var newCellArray : [Underlying_Data_Cell] = []
-                for cell in cellArray {
+                for cell in dataCellArray {
                     let cellAbove = central_State.data_Grid.dataLineArray[self.note_Y_Number-1].dataCellArray[cell.dataCell_X_Number]
                     newCellArray.append(cellAbove)
                 }
                 
-                for cell in cellArray {
+                for cell in dataCellArray {
                     cell.currentType = .unassigned
                     cell.note_Im_In = nil
                     cell.isHighlighted = false
                 }
                 
-                cellArray.removeAll()
+                dataCellArray.removeAll()
                 
                 for newCell in newCellArray {
-                    cellArray.append(newCell)
+                    dataCellArray.append(newCell)
                 }
                 redrawCellArray()
                 self.note_Y_Number -= 1
@@ -202,34 +202,37 @@ public class Note : ObservableObject, Identifiable, Equatable {
         }
     }
     
+    // have to trigger the data_vals_Update for each cell.....how....?
+    //  swapData
     func redrawCellArray(){
-        if cellArray.count == 1{
-            cellArray[0].changeType(newType: .single)
-            cellArray[0].note_Im_In = self
-        }
-        if cellArray.count == 2{
-            cellArray[0].changeType(newType: .start)
-            cellArray[0].note_Im_In = self
+        if dataCellArray.count == 1{
+            dataCellArray[0].changeType(newType: .single)
+            dataCellArray[0].note_Im_In = self
             
-            cellArray[1].changeType(newType: .end)
-            cellArray[1].note_Im_In = self
         }
-        else if cellArray.count > 2{
-            cellArray[0].changeType(newType: .start)
-            cellArray[0].note_Im_In = self
-            for x in 1..<cellArray.count-1{
-            cellArray[x].changeType(newType: .mid)
-            cellArray[x].note_Im_In = self
+        if dataCellArray.count == 2{
+            dataCellArray[0].changeType(newType: .start)
+            dataCellArray[0].note_Im_In = self
+            
+            dataCellArray[1].changeType(newType: .end)
+            dataCellArray[1].note_Im_In = self
+        }
+        else if dataCellArray.count > 2{
+            dataCellArray[0].changeType(newType: .start)
+            dataCellArray[0].note_Im_In = self
+            for x in 1..<dataCellArray.count-1{
+            dataCellArray[x].changeType(newType: .mid)
+            dataCellArray[x].note_Im_In = self
             }
-            cellArray[cellArray.count-1].changeType(newType: .end)
-            cellArray[cellArray.count-1].note_Im_In = self
+            dataCellArray[dataCellArray.count-1].changeType(newType: .end)
+            dataCellArray[dataCellArray.count-1].note_Im_In = self
         }
     }
     
     func check_Cursor_Within()->Bool{
         var retval = false
         if let lclCursorLayer = central_State.cursor_Layer_Ref {
-            for cell in cellArray {
+            for cell in dataCellArray {
                 if cell.dataCell_X_Number == lclCursorLayer.currDataX,cell.dataCell_Y_Number == lclCursorLayer.currDataY {retval = true}
             }
         }
@@ -249,7 +252,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
         var retval = false
         if connectionType == .below {
             if self.note_Y_Number+1 < central_State.higher_Bracket_Number {
-                for cell in cellArray {
+                for cell in dataCellArray {
                     let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
                     if cellBelow.note_Im_In != nil {
                         retval = true
@@ -264,7 +267,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
         //========================================================================================
         else if connectionType == .above {
             if self.note_Y_Number > 0 {
-                for cell in cellArray {
+                for cell in dataCellArray {
                     let cellAbove = central_State.data_Grid.dataLineArray[self.note_Y_Number-1].dataCellArray[cell.dataCell_X_Number]
                     if cellAbove.note_Im_In != nil {
                         retval = true
@@ -278,14 +281,14 @@ public class Note : ObservableObject, Identifiable, Equatable {
         
         
         else if connectionType == .toLeft {
-            if cellArray[0].dataCell_X_Number > 0 {
-                let cell_To_Left = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[cellArray[0].dataCell_X_Number - 1]
+            if dataCellArray[0].dataCell_X_Number > 0 {
+                let cell_To_Left = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[dataCellArray[0].dataCell_X_Number - 1]
                 if cell_To_Left.note_Im_In != nil{
                     retval = true
                 }
             }
-            else if cellArray[0].dataCell_X_Number == 0 {
-                if cellArray[0].note_Im_In != nil{
+            else if dataCellArray[0].dataCell_X_Number == 0 {
+                if dataCellArray[0].note_Im_In != nil{
                     retval = true
                 }
             }
@@ -293,13 +296,13 @@ public class Note : ObservableObject, Identifiable, Equatable {
         
         
         else if connectionType == .toRight {
-            if cellArray[cellArray.count-1].dataCell_X_Number < central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
-                let cell_To_Right = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[cellArray[cellArray.count-1].dataCell_X_Number + 1]
+            if dataCellArray[dataCellArray.count-1].dataCell_X_Number < central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
+                let cell_To_Right = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[dataCellArray[dataCellArray.count-1].dataCell_X_Number + 1]
                 if cell_To_Right.note_Im_In != nil{
                     retval = true
                 }
             }
-            else if cellArray[cellArray.count-1].dataCell_X_Number == central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
+            else if dataCellArray[dataCellArray.count-1].dataCell_X_Number == central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
                 retval = true
             }
         }
