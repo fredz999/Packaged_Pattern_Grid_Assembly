@@ -12,6 +12,8 @@ public class Central_State : ObservableObject {
 
     @Published var write_Note_Button_Visible : Bool = true
     @Published var edit_Layer_Visible : Bool = true
+    
+    // TODO : highlight update for visual cells
     @Published public var a_Note_Is_Highlighted : Bool = false
     {
         didSet {
@@ -20,6 +22,7 @@ public class Central_State : ObservableObject {
             }
             else if a_Note_Is_Highlighted == true {
                 write_Note_Button_Visible = false
+                // highlight
             }
         }
     }
@@ -112,12 +115,12 @@ public class Central_State : ObservableObject {
                                     let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
                                     lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].swapData(new_Data_Cell: redrawCellData)
                                 }
+                                
 
                             }
                             
                         }
                         // redraw here?
-                        
                         lclPotentialLayer.endPotentialNote()
                     }
                 }
