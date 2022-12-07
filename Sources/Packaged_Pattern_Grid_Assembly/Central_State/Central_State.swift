@@ -51,7 +51,7 @@ public class Central_State : ObservableObject {
 
     //==================================================
     //==================================================
-    private var lower_Bracket_Number : Int = 0
+    var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
     private var currentXCursor_Slider_Position : Int = 0
