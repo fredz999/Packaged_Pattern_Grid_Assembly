@@ -32,15 +32,16 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //                    ,", y addition: ",central_State.lower_Bracket_Number.description
 //                    ,", x: ",cell.dataCell_X_Number.description)
                     
-                    print("attempting: "+(note_Y_Number - central_State.lower_Bracket_Number).description)
+                    // TODO: check this exists b4 attempting
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                    
+               
                     if let lcl_VisGrid = central_State.cStateVisualGridRef {
-                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
-                        visCell.swapData(new_Data_Cell: cell)
+                        if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0{
+                            let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
+                            visCell.swapData(new_Data_Cell: cell)
+                        }
                     }
-                    
                     
                     central_State.a_Note_Is_Highlighted = true
                     
@@ -53,10 +54,11 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                     // TODO: check this exists b4 attempting
                     if let lcl_VisGrid = central_State.cStateVisualGridRef {
-                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
-                        visCell.swapData(new_Data_Cell: cell)
+                        if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+                            let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
+                            visCell.swapData(new_Data_Cell: cell)
+                        }
                     }
-                    
                     central_State.a_Note_Is_Highlighted = false
                 }
             }

@@ -99,7 +99,8 @@ public class Central_State : ObservableObject {
                             if let lcl_Vis_Grid = cStateVisualGridRef {
                                 
                                 // TODO: check this exists b4 attempting
-                                if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index {
+                                if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
+                                ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
                                     
                                     if lcl_Current_X > lcl_Initial_X{
                                         for x in lcl_Initial_X...lcl_Current_X{
