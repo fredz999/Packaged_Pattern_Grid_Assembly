@@ -98,23 +98,28 @@ public class Central_State : ObservableObject {
                             // get the central grid lines , cells , do a redraw
                             if let lcl_Vis_Grid = cStateVisualGridRef {
                                 
+                                // TODO: check this exists b4 attempting
+                                if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index {
+                                    
+                                    if lcl_Current_X > lcl_Initial_X{
+                                        for x in lcl_Initial_X...lcl_Current_X{
+                                            let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
+                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].swapData(new_Data_Cell: redrawCellData)
+                                        }
+                                    }
+                                    else if lcl_Current_X < lcl_Initial_X{
+                                        for x in lcl_Current_X...lcl_Initial_X{
+                                            let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
+                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].swapData(new_Data_Cell: redrawCellData)
+                                        }
+                                    }
+                                    else if lcl_Current_X == lcl_Initial_X{
+                                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
+                                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].swapData(new_Data_Cell: redrawCellData)
+                                    }
+                                    
+                                }
                                 
-                                if lcl_Current_X > lcl_Initial_X{
-                                    for x in lcl_Initial_X...lcl_Current_X{
-                                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].swapData(new_Data_Cell: redrawCellData)
-                                    }
-                                }
-                                else if lcl_Current_X < lcl_Initial_X{
-                                    for x in lcl_Current_X...lcl_Initial_X{
-                                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].swapData(new_Data_Cell: redrawCellData)
-                                    }
-                                }
-                                else if lcl_Current_X == lcl_Initial_X{
-                                    let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
-                                    lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].swapData(new_Data_Cell: redrawCellData)
-                                }
                                 
 
                             }

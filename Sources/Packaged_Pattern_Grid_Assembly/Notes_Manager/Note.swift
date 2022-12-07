@@ -32,6 +32,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //                    ,", y addition: ",central_State.lower_Bracket_Number.description
 //                    ,", x: ",cell.dataCell_X_Number.description)
                     
+                    print("attempting: "+(note_Y_Number - central_State.lower_Bracket_Number).description)
+                    
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                     
                     if let lcl_VisGrid = central_State.cStateVisualGridRef {
@@ -49,7 +51,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     cell.isHighlighted = false
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                    
+                    // TODO: check this exists b4 attempting
                     if let lcl_VisGrid = central_State.cStateVisualGridRef {
                         let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
                         visCell.swapData(new_Data_Cell: cell)

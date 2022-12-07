@@ -38,6 +38,7 @@ public class Central_Grid_Store : ObservableObject {
 
 public class Central_Line_Store : ObservableObject,Identifiable {
     public var data = Underlying_Data_Grid.Static_Underlying_Data_Grid
+    var dimensions = ComponentDimensions.StaticDimensions
     public var id = UUID()
     public var parentGrid : Central_Grid_Store
     @Published public var y_Index : Int
@@ -62,8 +63,9 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
     
     public func change_Data_Y(lowerBracket_Param:Int){
-        if (lowerBracket_Param + y_Index) < data.dataLineArray.count {
+        if (lowerBracket_Param + y_Index) < dimensions.DATA_final_Line_Y_Index  {
             let new_Y_Index = lowerBracket_Param + y_Index
+            // TODO: check this exists b4 attempting
             for visualCell in visual_Cell_Store_Array {
                 // visualCell.underlying_Data_Cell = data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index]
                 // TODO: change cell data
