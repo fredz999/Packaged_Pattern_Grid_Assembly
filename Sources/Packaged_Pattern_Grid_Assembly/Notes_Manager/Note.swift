@@ -28,9 +28,17 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     cell.isHighlighted = true
                     
                     // TODO:  highlight update for visual cells
-                    print("note_Y_Number: ",note_Y_Number.description
-                    ,", y addition: ",central_State.lower_Bracket_Number.description
-                    ,", x: ",cell.dataCell_X_Number.description)
+//                    print("note_Y_Number: ",note_Y_Number.description
+//                    ,", y addition: ",central_State.lower_Bracket_Number.description
+//                    ,", x: ",cell.dataCell_X_Number.description)
+                    
+                    let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+                    
+                    if let lcl_VisGrid = central_State.cStateVisualGridRef {
+                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
+                        visCell.swapData(new_Data_Cell: cell)
+                    }
+                    
                     
                     central_State.a_Note_Is_Highlighted = true
                     
