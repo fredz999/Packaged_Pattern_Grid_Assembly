@@ -118,6 +118,9 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     // an in store object with matching variables
     func swapData(new_Data_Cell : Underlying_Data_Cell){
         //underlying_Data_Cell = new_Data_Cell
+        
+        print("swapData triggered")
+        
         data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
                                                , newYNum: new_Data_Cell.dataCell_Y_Number
                                                , newHighlightedStatus: new_Data_Cell.isHighlighted
