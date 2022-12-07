@@ -165,10 +165,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newHighlightedStatus:Bool,newCellStatus:E_CellStatus,newNoteImIn:Note?){
      if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
      if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
-     if referenced_isHighlighted != newHighlightedStatus{
-         referenced_isHighlighted = newHighlightedStatus
-         print("changed refd highlighted to: ",referenced_isHighlighted.description)
-     }
+     if referenced_isHighlighted != newHighlightedStatus{referenced_isHighlighted = newHighlightedStatus}
      if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
 
      if let lclCurrentNote = referenced_note_Im_In {
