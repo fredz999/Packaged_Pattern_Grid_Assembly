@@ -17,8 +17,8 @@ public class ComponentDimensions {
     public let ui_Unit_Width : CGFloat = 30
     public let ui_Unit_Height : CGFloat = 30
     
-    public let pattern_Grid_Unit_Width : CGFloat = 30
-    public let pattern_Grid_Unit_Height : CGFloat = 30
+    public let pattern_Grid_Unit_Width : CGFloat = 20
+    public let pattern_Grid_Unit_Height : CGFloat = 20
     
     public let pattern_Grid_Unit_VerticalEdge_Width : CGFloat = 1
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
