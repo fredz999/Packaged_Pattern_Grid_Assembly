@@ -22,10 +22,10 @@ public struct Default_Unassigned_View : View {
 }
 
 public struct Default_Start_View : View {
-    public init(current_Underlying_Data_Param:Underlying_Data_Cell){
-        current_Underlying_Data_Cell = current_Underlying_Data_Param
-    }
-    @ObservedObject public var current_Underlying_Data_Cell : Underlying_Data_Cell
+//    public init(current_Underlying_Data_Param:Underlying_Data_Cell){
+//        current_Underlying_Data_Cell = current_Underlying_Data_Param
+//    }
+    @StateObject public var current_Underlying_Data_Cell : Underlying_Data_Cell
     public var body: some View {
         return ZStack(alignment: .topLeading){
             if current_Underlying_Data_Cell.isHighlighted == true{
@@ -43,10 +43,10 @@ public struct Default_Start_View : View {
 }
 
 public struct Default_Mid_View : View {
-    public init(current_Underlying_Data_Param:Underlying_Data_Cell){
-        current_Underlying_Data_Cell = current_Underlying_Data_Param
-    }
-    @ObservedObject public var current_Underlying_Data_Cell : Underlying_Data_Cell
+//    public init(current_Underlying_Data_Param:Underlying_Data_Cell){
+//        current_Underlying_Data_Cell = current_Underlying_Data_Param
+//    }
+    @StateObject public var current_Underlying_Data_Cell : Underlying_Data_Cell
     public var body: some View {
         return ZStack(alignment: .topLeading){
             if current_Underlying_Data_Cell.isHighlighted == true{
@@ -85,10 +85,10 @@ public struct Default_End_View : View {
 }
 
 public struct Default_Single_View : View {
-    public init(current_Underlying_Data_Param:Underlying_Data_Cell){
-        current_Underlying_Data_Cell = current_Underlying_Data_Param
-    }
-    @ObservedObject public var current_Underlying_Data_Cell : Underlying_Data_Cell
+//    public init(current_Underlying_Data_Param:Underlying_Data_Cell){
+//        current_Underlying_Data_Cell = current_Underlying_Data_Param
+//    }
+    @StateObject  public var current_Underlying_Data_Cell : Underlying_Data_Cell
     public var body: some View {
         return ZStack(alignment: .topLeading){
             if current_Underlying_Data_Cell.isHighlighted == true{
