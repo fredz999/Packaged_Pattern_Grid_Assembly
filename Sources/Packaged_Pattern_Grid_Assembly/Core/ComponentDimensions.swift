@@ -26,7 +26,7 @@ public class ComponentDimensions {
     public let dataGrid_X_Unit_Count : Int = 10
     public let DATA_final_Line_Y_Index : Int = 64
     
-    public let visualGrid_Y_Unit_Count : Int = 10
+    public let visualGrid_Y_Unit_Count : Int = 14
     public let visualGrid_X_Unit_Count : Int = 10
     
     public let cellFontSize : CGFloat = 12

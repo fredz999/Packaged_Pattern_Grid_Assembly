@@ -120,13 +120,8 @@ public class Central_State : ObservableObject {
                                     }
                                     
                                 }
-                                
-                                
-
                             }
-                            
                         }
-                        // redraw here?
                         lclPotentialLayer.endPotentialNote()
                     }
                 }
@@ -134,12 +129,8 @@ public class Central_State : ObservableObject {
             }
         }
     }
-    //==================================================
-
     
     public init(){}
-    
-    
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
