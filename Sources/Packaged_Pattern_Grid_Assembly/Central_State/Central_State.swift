@@ -175,7 +175,7 @@ public class Central_State : ObservableObject {
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
 
-            if lclCursorLayer.currPosY < data_Grid.dataLineArray.count {
+            if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
                 
                 lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
                 
