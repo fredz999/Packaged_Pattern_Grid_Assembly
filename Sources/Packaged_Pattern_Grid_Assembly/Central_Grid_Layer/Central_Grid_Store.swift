@@ -51,7 +51,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
  
     public func fillLine(){
-        for x in 0..<parentGrid.gridUnitsHorz {
+        for x in 0..<dimensions.visualGrid_X_Unit_Count {
             // let new_Visual_Cell = Central_Cell_Store(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
 
             
