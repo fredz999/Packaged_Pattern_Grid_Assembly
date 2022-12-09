@@ -17,8 +17,8 @@ public class ComponentDimensions {
     public let ui_Unit_Width : CGFloat = 30
     public let ui_Unit_Height : CGFloat = 30
     
-    public let pattern_Grid_Unit_Width : CGFloat = 20
-    public let pattern_Grid_Unit_Height : CGFloat = 20
+    public let pattern_Grid_Unit_Width : CGFloat = 16
+    public let pattern_Grid_Unit_Height : CGFloat = 16
     
     public let pattern_Grid_Unit_VerticalEdge_Width : CGFloat = 1
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
@@ -26,8 +26,8 @@ public class ComponentDimensions {
     public let dataGrid_X_Unit_Count : Int = 10
     public let DATA_final_Line_Y_Index : Int = 64
     
-    public let visualGrid_Y_Unit_Count : Int = 14
-    public let visualGrid_X_Unit_Count : Int = 10
+    public let visualGrid_Y_Unit_Count : Int = 16
+    public let visualGrid_X_Unit_Count : Int = 16
     
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
