@@ -50,13 +50,13 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     
-    public init(horzUnits:Int,vertUnits:Int){
+    public init(){
         
         generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
         
         wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord)
         
-        visible_Grid_Store = Central_Grid_Store(unitsHorizontal: horzUnits, unitsVertical: vertUnits)
+        visible_Grid_Store = Central_Grid_Store()
         
         cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store()
         

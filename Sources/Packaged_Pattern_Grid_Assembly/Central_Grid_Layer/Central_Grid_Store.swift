@@ -9,15 +9,15 @@ import Foundation
 import SwiftUI
 
 public class Central_Grid_Store : ObservableObject {
-    
+    let dimensions = ComponentDimensions.StaticDimensions
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
     
     public var gridUnitsHorz:Int
     public var gridUnitsVert:Int
 
-    public init(unitsHorizontal:Int,unitsVertical:Int){
-        gridUnitsHorz = unitsHorizontal
-        gridUnitsVert = unitsVertical
+    public init(){
+        gridUnitsHorz = dimensions.visualGrid_X_Unit_Count //unitsHorizontal
+        gridUnitsVert = dimensions.visualGrid_Y_Unit_Count //unitsVertical
         populateLineArray()
     }
     
