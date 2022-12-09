@@ -21,8 +21,8 @@ public class ComponentDimensions {
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
     
     //============== Central Grid SECTION =========================
-    public let pattern_Grid_Unit_Width : CGFloat = 14
-    public let pattern_Grid_Unit_Height : CGFloat = 14
+    public let pattern_Grid_Unit_Width : CGFloat = 13
+    public let pattern_Grid_Unit_Height : CGFloat = 13
     
     public let DATA_final_Line_Y_Index : Int = 64
     public let dataGrid_X_Unit_Count : Int = 22
