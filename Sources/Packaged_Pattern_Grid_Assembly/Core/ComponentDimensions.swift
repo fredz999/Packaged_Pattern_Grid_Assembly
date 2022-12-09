@@ -37,7 +37,7 @@ public class ComponentDimensions {
     public var Horz_Cursor_Slider_Line_Height : CGFloat = 300
     public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
     
-    public let Vert_Cursor_Slider_Width : CGFloat = 20
+    public let Vert_Cursor_Slider_Width : CGFloat = 30
     public let Vert_Cursor_Slider_Height : CGFloat = 300
     
     public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
