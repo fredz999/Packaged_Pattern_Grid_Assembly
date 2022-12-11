@@ -14,8 +14,8 @@ public class ComponentDimensions : ObservableObject {
     public let backGroundHeight : CGFloat = 647
     
 
-    public var ui_Unit_Width : CGFloat = 32
-    public var ui_Unit_Height : CGFloat = 32
+    public var ui_Unit_Width : CGFloat = 22
+    public var ui_Unit_Height : CGFloat = 22
     
     public let pattern_Grid_Unit_VerticalEdge_Width : CGFloat = 1
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
