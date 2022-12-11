@@ -21,14 +21,14 @@ public class ComponentDimensions {
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
     
     //============== Central Grid SECTION =========================
-    public let pattern_Grid_Unit_Width : CGFloat = 16
-    public let pattern_Grid_Unit_Height : CGFloat = 16 // seems that 18 is the right size for the other sized cells ... orrrr 22 for the 16
+    public let pattern_Grid_Unit_Width : CGFloat = 22
+    public let pattern_Grid_Unit_Height : CGFloat = 22 // 22 for the 16
     // and 16 for the 22
     
     public let DATA_final_Line_Y_Index : Int = 64
-    public let dataGrid_X_Unit_Count : Int = 22 // 16 or 22
+    public let dataGrid_X_Unit_Count : Int = 16 // 16 or 22
     
-    public let visualGrid_X_Unit_Count : Int = 22
+    public let visualGrid_X_Unit_Count : Int = 16 // 16 or 22
     public let visualGrid_Y_Unit_Count : Int = 12
     
     
