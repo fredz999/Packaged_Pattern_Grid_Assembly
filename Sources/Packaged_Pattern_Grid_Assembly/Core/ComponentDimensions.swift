@@ -29,7 +29,7 @@ public class ComponentDimensions {
     public let dataGrid_X_Unit_Count : Int = 16 // 16 or 22
     
     public let visualGrid_X_Unit_Count : Int = 16 // 16 or 22
-    public let visualGrid_Y_Unit_Count : Int = 22
+    public let visualGrid_Y_Unit_Count : Int = 12
     
     
     public let cellFontSize : CGFloat = 12
