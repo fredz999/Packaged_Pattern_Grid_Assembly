@@ -26,9 +26,11 @@ public class ComponentDimensions {
     // and 16 for the 22
     
     public let DATA_final_Line_Y_Index : Int = 64
-    public let dataGrid_X_Unit_Count : Int = 22
-    public let visualGrid_Y_Unit_Count : Int = 22
+    public let dataGrid_X_Unit_Count : Int = 22 // 16 or 22
+    
     public let visualGrid_X_Unit_Count : Int = 22
+    public let visualGrid_Y_Unit_Count : Int = 12
+    
     
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
