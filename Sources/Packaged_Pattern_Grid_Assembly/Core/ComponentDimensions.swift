@@ -40,18 +40,18 @@ public class ComponentDimensions : ObservableObject {
     public var Horz_Cursor_Slider_Line_Height : CGFloat = 352
     public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
     
-    public let Vert_Cursor_Slider_Width : CGFloat = 32
+    public let Vert_Cursor_Slider_Width : CGFloat = 22
     public let Vert_Cursor_Slider_Height : CGFloat = 352
     
     public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
     public let Vert_Cursor_Slider_Line_Width : CGFloat = 352
     
     
-    public func setGridMeasurements(gridUnitSize:CGFloat){
-        if gridUnitSize == 22{
-            ui_Unit_Width = gridUnitSize
-        }
-    }
+//    public func setGridMeasurements(gridUnitSize:CGFloat){
+//        if gridUnitSize == 22{
+//            ui_Unit_Width = gridUnitSize
+//        }
+//    }
     
     
     public static let StaticDimensions = ComponentDimensions()
