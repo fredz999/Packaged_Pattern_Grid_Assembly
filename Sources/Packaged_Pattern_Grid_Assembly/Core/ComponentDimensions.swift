@@ -14,15 +14,16 @@ public class ComponentDimensions {
     public let backGroundHeight : CGFloat = 647
     
 
-    public let ui_Unit_Width : CGFloat = 30
-    public let ui_Unit_Height : CGFloat = 30
+    public var ui_Unit_Width : CGFloat = 32
+    public var ui_Unit_Height : CGFloat = 32
     
     public let pattern_Grid_Unit_VerticalEdge_Width : CGFloat = 1
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
     
     //============== Central Grid SECTION =========================
-    public let pattern_Grid_Unit_Width : CGFloat = 13
-    public let pattern_Grid_Unit_Height : CGFloat = 13
+    public let pattern_Grid_Unit_Width : CGFloat = 16
+    public let pattern_Grid_Unit_Height : CGFloat = 16 // seems that 18 is the right size for the other sized cells ... orrrr 22 for the 16
+    // and 16 for the 22
     
     public let DATA_final_Line_Y_Index : Int = 64
     public let dataGrid_X_Unit_Count : Int = 22
@@ -31,17 +32,23 @@ public class ComponentDimensions {
     
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
-    public var Horz_Cursor_Slider_Width : CGFloat = 300
-    public var Horz_Cursor_Slider_Height : CGFloat = 30
+    public var Horz_Cursor_Slider_Width : CGFloat = 320
+    public var Horz_Cursor_Slider_Height : CGFloat = 32
     
-    public var Horz_Cursor_Slider_Line_Height : CGFloat = 300
+    public var Horz_Cursor_Slider_Line_Height : CGFloat = 320
     public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
     
-    public let Vert_Cursor_Slider_Width : CGFloat = 30
+    public let Vert_Cursor_Slider_Width : CGFloat = 32
     public let Vert_Cursor_Slider_Height : CGFloat = 300
     
     public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
-    public let Vert_Cursor_Slider_Line_Width : CGFloat = 300
+    public let Vert_Cursor_Slider_Line_Width : CGFloat = 320
+    
+    
+    public func setAppUnitMeasurements(appUnitSize:CGFloat){
+        ui_Unit_Width = appUnitSize
+    }
+    
     
     public static let StaticDimensions = ComponentDimensions()
 }
