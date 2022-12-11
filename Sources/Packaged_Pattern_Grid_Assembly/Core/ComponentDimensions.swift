@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public class ComponentDimensions {
+public class ComponentDimensions : ObservableObject {
     
     public let backGroundWidth : CGFloat = 375
     public let backGroundHeight : CGFloat = 647
@@ -34,21 +34,23 @@ public class ComponentDimensions {
     
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
-    public var Horz_Cursor_Slider_Width : CGFloat = 320
-    public var Horz_Cursor_Slider_Height : CGFloat = 32
+    public var Horz_Cursor_Slider_Width : CGFloat = 352
+    public var Horz_Cursor_Slider_Height : CGFloat = 22
     
-    public var Horz_Cursor_Slider_Line_Height : CGFloat = 320
+    public var Horz_Cursor_Slider_Line_Height : CGFloat = 352
     public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
     
     public let Vert_Cursor_Slider_Width : CGFloat = 32
-    public let Vert_Cursor_Slider_Height : CGFloat = 300
+    public let Vert_Cursor_Slider_Height : CGFloat = 352
     
     public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
-    public let Vert_Cursor_Slider_Line_Width : CGFloat = 320
+    public let Vert_Cursor_Slider_Line_Width : CGFloat = 352
     
     
-    public func setAppUnitMeasurements(appUnitSize:CGFloat){
-        ui_Unit_Width = appUnitSize
+    public func setGridMeasurements(gridUnitSize:CGFloat){
+        if gridUnitSize == 22{
+            ui_Unit_Width = gridUnitSize
+        }
     }
     
     
