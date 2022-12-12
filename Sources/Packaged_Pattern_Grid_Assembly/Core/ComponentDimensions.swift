@@ -23,13 +23,13 @@ public class ComponentDimensions : ObservableObject {
     //============== Central Grid SECTION =========================
     public let DATA_final_Line_Y_Index : Int = 64
     
-    public var pattern_Grid_Unit_Width : CGFloat = 16  // 22 or 16
-    public var pattern_Grid_Unit_Height : CGFloat = 16 // 22 or 16
+    public var pattern_Grid_Unit_Width : CGFloat = 22  // 22 or 16
+    public var pattern_Grid_Unit_Height : CGFloat = 22 // 22 or 16
     
     public var dataGrid_X_Unit_Count : Int = 16 // 16 or 22
     public var visualGrid_X_Unit_Count : Int = 16 // 16 or 22
-    
     public let visualGrid_Y_Unit_Count : Int = 12
+    
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
     public var Horz_Cursor_Slider_Width : CGFloat = 352

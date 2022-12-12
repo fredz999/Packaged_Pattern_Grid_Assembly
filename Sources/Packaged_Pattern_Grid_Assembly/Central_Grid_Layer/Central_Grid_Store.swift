@@ -52,12 +52,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
  
     public func fillLine(){
         for x in 0..<dimensions.visualGrid_X_Unit_Count {
-            // let new_Visual_Cell = Central_Cell_Store(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
-
-            
             let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
-            // TODO: cell_View manufactured
-            //new_Central_Cell_Store//.set_Central_Cell_Props(x_IndexParam: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
             visual_Cell_Store_Array.append(new_Central_Cell_Store)
         }
     }
@@ -65,16 +60,8 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     public func change_Data_Y(lowerBracket_Param:Int){
         if (lowerBracket_Param + y_Index) < dimensions.DATA_final_Line_Y_Index  {
             let new_Y_Index = lowerBracket_Param + y_Index
-            // TODO: check this exists b4 attempting
             for visualCell in visual_Cell_Store_Array {
-                // visualCell.underlying_Data_Cell = data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index]
-                // TODO: change cell data
-                //if let lcl_Cell_X = visualCell.x_Index {
-                    //visualCell.underlying_Data_Cell = data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index]
-                
                     visualCell.swapData(new_Data_Cell: data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index])
-                //}
-                
             }
         }
     }
@@ -90,17 +77,6 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     @Published public var yFloat : CGFloat
     
     public var parent_Line_Ref : Central_Line_Store
-    
-    // right.... I think this has to be a permanent object within this class
-    // because it has to be a state object in its view ......
-    // im thinking that instead of swapping in and out a data object, that the
-    // composed in object itself has to remain the same and that the values it contains actually have to be read from
-    // the data objects and the in_Cell_Data_Values has to mutate instead
-    // this is necessary because otherwise the changing of a class will make a new view(which is a struct) init each time causing a data leak
-    // OR find out how to make the view dismiss itself and prevent the menory leak that way ...
-    // seriously I think im going for the first one tho
-    // its also going to make transferring new data to underlying data more complex ...
-    //@Published public var underlying_Data_Cell : Underlying_Data_Cell
     @Published public var data_Vals_Holder : Data_Vals_Holder
     
 
@@ -115,38 +91,13 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         , yNumParam: underlying_Data_Cell_Param.dataCell_Y_Number
         , typeParam: underlying_Data_Cell_Param.currentType)
     }
-    
-    // this will eventually be used to simply read the internal variables of the data and update
-    // an in store object with matching variables
     func swapData(new_Data_Cell : Underlying_Data_Cell){
-        //underlying_Data_Cell = new_Data_Cell
-        
-
-        
         data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
                                                , newYNum: new_Data_Cell.dataCell_Y_Number
                                                , newHighlightedStatus: new_Data_Cell.isHighlighted
                                                , newCellStatus: new_Data_Cell.currentType
                                                , newNoteImIn: new_Data_Cell.note_Im_In)
     }
-    
-
-    
-    //func update_Referenced_Data(){
-        // there needs to be numeric references to the currently referenced data object
-        // but the old method of directly updating the underlying data might not work
-        //...but then again it might....maybe in the new update method whatever operation
-        // gets carried out it simply does a downstream swapData (above) afterwards ....
-    //}
-    
-//    public func set_Central_Cell_Props(x_IndexParam: Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell){
-//        self.parent_Line_Ref = lineParam
-//        self.x_Index = x_IndexParam
-//        self.xFloat = CGFloat(x_IndexParam) * dimensions.pattern_Grid_Unit_Width
-//        self.yFloat = CGFloat(lineParam.y_Index) * dimensions.pattern_Grid_Unit_Height
-//        self.underlying_Data_Cell = underlying_Data_Cell_Param
-//    }
-
 }
 
 // this will be a stateObject

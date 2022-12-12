@@ -23,10 +23,8 @@ public struct Central_Grid_View : View {
             ForEach(grid_Store.vis_Line_Store_Array){ lineStore in
                 ForEach(lineStore.visual_Cell_Store_Array){ cellStore in
                     if let lclCellXFloat = cellStore.xFloat, let lclCellYFloat = cellStore.yFloat{
-                        //Default_Central_Cell_View(visual_Cell_Store: cellStore).offset(x:lclCellXFloat,y:lclCellYFloat)
                         Default_Central_Cell_View(central_Cell_Store: cellStore).offset(x:lclCellXFloat,y:lclCellYFloat)
                     }
-                    //Default_Central_Cell_View(visual_Cell_Store: cellStore).offset(x:cellStore.xFloat,y:cellStore.yFloat)
                 }
             }
             
@@ -38,16 +36,7 @@ public struct Central_Grid_View : View {
 
 public struct Default_Central_Cell_View : View {
     
-    //@ObservedObject public var visual_Cell_Store : Central_Cell_Store
-    
     @StateObject public var central_Cell_Store : Central_Cell_Store
-    
-//    public init(visual_Cell_Store: Central_Cell_Store) {
-//        self.visual_Cell_Store = visual_Cell_Store
-//    }
-    
-    //public init() {}
-    
     public var body: some View {
         return ZStack(alignment: .topLeading){
             
