@@ -36,7 +36,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                
-                    if let lcl_VisGrid = central_State.cStateVisualGridRef {
+                    if let lcl_VisGrid = central_State.central_Grid_Store {
                         if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0{
                             let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
                             visCell.swapData(new_Data_Cell: cell)
@@ -53,7 +53,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                     // TODO: check this exists b4 attempting
-                    if let lcl_VisGrid = central_State.cStateVisualGridRef {
+                    if let lcl_VisGrid = central_State.central_Grid_Store {
                         if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
                             let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
                             visCell.swapData(new_Data_Cell: cell)

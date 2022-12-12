@@ -40,7 +40,7 @@ public class Central_State : ObservableObject {
     var potential_Note_Layer_Ref : Potential_Note_Layer_Store?
     public var note_Collection_Ref : Note_Collection?
     
-    var cStateVisualGridRef : Central_Grid_Store?
+    public var central_Grid_Store : Central_Grid_Store?
 
 //    var deleteNote_Btn_Store_Ref : Delete_Button_Store<Delete_Injected_View>?
 //    var lengthen_Shorten_Button_Ref : Lengthen_Shorten_Buttons_Store<Lengthen_Shorten_Injected_View>?
@@ -93,7 +93,7 @@ public class Central_State : ObservableObject {
                                 , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
                             }
                             
-                            if let lcl_Vis_Grid = cStateVisualGridRef {
+                            if let lcl_Vis_Grid = central_Grid_Store {
                                 
                                 if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
                                 ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
@@ -143,7 +143,7 @@ public class Central_State : ObservableObject {
             , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
         }
         
-        if let lcl_Vis_Grid = cStateVisualGridRef {
+        if let lcl_Vis_Grid = central_Grid_Store {
             
             if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
             ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
@@ -220,16 +220,7 @@ public class Central_State : ObservableObject {
                 }
                 
             }
-//            else {
-//                print("Fault condition reached data_Grid.dataLineArray count: "
-//                      ,data_Grid.dataLineArray.count.description
-//                      ,", lclCursorLayer.currPosY: ",lclCursorLayer.currPosY.description)
-//                // there needs to be a blank cell in here
-//
-//            }
-            
-            
-            
+
         }
     }
     
@@ -237,7 +228,7 @@ public class Central_State : ObservableObject {
     lower_Bracket_Number = newLower
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
-    if let lcl_Central_Grid_Ref = cStateVisualGridRef{
+    if let lcl_Central_Grid_Ref = central_Grid_Store{
         lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
     centralState_Data_Evaluation()

@@ -78,7 +78,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         centralState.note_Collection_Ref = noteCollection
-        centralState.cStateVisualGridRef = visible_Grid_Store
+        centralState.central_Grid_Store = visible_Grid_Store
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
         centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
         centralState.higher_Bracket_Number = dimensions.visualGrid_Y_Unit_Count
