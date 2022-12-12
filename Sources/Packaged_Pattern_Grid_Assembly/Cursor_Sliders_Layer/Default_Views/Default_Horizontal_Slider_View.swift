@@ -13,8 +13,8 @@ public struct Default_Horizontal_Slider_View : View {
     @ObservedObject var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store
     public var body: some View {
         return ZStack(alignment: .topLeading) {
-            Default_H_Slider()
-            Default_H_Slider_Line().offset(x:cursor_Horizontal_Slider_Store.computedLineDisplacement,y:dimensions.pattern_Grid_Unit_Height)
+            Default_H_Slider().offset(y:dimensions.pattern_Grid_Unit_Height)      
+            Default_H_Slider_Line().offset(x:cursor_Horizontal_Slider_Store.computedLineDisplacement,y:-dimensions.pattern_Grid_Unit_Height)
         }.gesture(cursor_Horizontal_Slider_Store.slideDragGesture)
     }
 }
