@@ -57,18 +57,21 @@ public class ComponentDimensions : ObservableObject {
     
     
     public func setGridMeasurements(isTriplet:Bool){
-        if isTriplet == true{
-            visualGrid_X_Unit_Count = 22
-            dataGrid_X_Unit_Count = 22
-            pattern_Grid_Unit_Width = 16
-            pattern_Grid_Unit_Height = 16
-        }
-        else if isTriplet == false{
-            visualGrid_X_Unit_Count = 16
-            dataGrid_X_Unit_Count = 16
-            pattern_Grid_Unit_Width = 22
-            pattern_Grid_Unit_Height = 22
-        }
+        print("change stuff")
+        
+//        if isTriplet == true{
+//            visualGrid_X_Unit_Count = 22
+//            dataGrid_X_Unit_Count = 22
+//            pattern_Grid_Unit_Width = 16
+//            pattern_Grid_Unit_Height = 16
+//        }
+//        else if isTriplet == false{
+//            visualGrid_X_Unit_Count = 16
+//            dataGrid_X_Unit_Count = 16
+//            pattern_Grid_Unit_Width = 22
+//            pattern_Grid_Unit_Height = 22
+//        }
+        
     }
     
     
