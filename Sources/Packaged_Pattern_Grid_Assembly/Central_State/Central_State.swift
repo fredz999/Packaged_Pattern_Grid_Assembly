@@ -233,16 +233,6 @@ public class Central_State : ObservableObject {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     func data_Slider_LowBracket_Update(newLower:Int){
     lower_Bracket_Number = newLower
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
@@ -253,8 +243,6 @@ public class Central_State : ObservableObject {
     centralState_Data_Evaluation()
     }
     
-    
-
     func potentialNoteEvaluation(){
         if let lclPotentialLayer = potential_Note_Layer_Ref {
             lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
