@@ -33,6 +33,12 @@ public class Central_Grid_Store : ObservableObject {
             line.change_Data_Y(lowerBracket_Param: newLower)
         }
     }
+    
+    public func respondToPatternGridUnitSizeChange_Cell_Level(){
+        for line in vis_Line_Store_Array{
+            line.respondToPatternGridUnitSizeChange_Line_Level()
+        }
+    }
 
 }
 
@@ -66,6 +72,12 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
     }
     
+    func respondToPatternGridUnitSizeChange_Line_Level(){
+        for cell in visual_Cell_Store_Array{
+            cell.respondToPatternGridUnitSizeChange_Cell_Level()
+        }
+    }
+    
 }
 
 public class Central_Cell_Store : ObservableObject,Identifiable {
@@ -91,12 +103,18 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         , yNumParam: underlying_Data_Cell_Param.dataCell_Y_Number
         , typeParam: underlying_Data_Cell_Param.currentType)
     }
+    
     func swapData(new_Data_Cell : Underlying_Data_Cell){
         data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
                                                , newYNum: new_Data_Cell.dataCell_Y_Number
                                                , newHighlightedStatus: new_Data_Cell.isHighlighted
                                                , newCellStatus: new_Data_Cell.currentType
                                                , newNoteImIn: new_Data_Cell.note_Im_In)
+    }
+    
+    func respondToPatternGridUnitSizeChange_Cell_Level(){
+        self.xFloat = CGFloat(x_Index) * dimensions.pattern_Grid_Unit_Width
+        self.yFloat = CGFloat(parent_Line_Ref.y_Index) * dimensions.pattern_Grid_Unit_Height
     }
 }
 
