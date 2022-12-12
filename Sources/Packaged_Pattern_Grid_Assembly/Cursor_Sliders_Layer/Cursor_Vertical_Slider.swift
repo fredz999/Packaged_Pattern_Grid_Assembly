@@ -25,13 +25,7 @@ public class Cursor_Vertical_Slider_Store:ObservableObject{
         }
     }
     
-//    public var slider_View : SliderView
-//
-//    public var slider_Line_View : SliderLineView
-    
-    public init(){
-
-    }
+    public init(){}
     
     public var slideDragGesture : some Gesture {
       DragGesture(minimumDistance: 0, coordinateSpace: .local)
