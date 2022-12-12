@@ -22,11 +22,11 @@ public class ComponentDimensions : ObservableObject {
     //============== Central Grid SECTION =========================
     public let DATA_final_Line_Y_Index : Int = 64
     
-    public var pattern_Grid_Unit_Width : CGFloat = 16  // 22 or 16
-    public var pattern_Grid_Unit_Height : CGFloat = 16 // 22 or 16
+    @Published public var pattern_Grid_Unit_Width : CGFloat = 16  // 22 or 16
+    @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 22 or 16
     
-    public var dataGrid_X_Unit_Count : Int = 22 // 16 or 22
-    public var visualGrid_X_Unit_Count : Int = 22 // 16 or 22
+    @Published public var dataGrid_X_Unit_Count : Int = 22 // 16 or 22
+    @Published public var visualGrid_X_Unit_Count : Int = 22 // 16 or 22
     public let visualGrid_Y_Unit_Count : Int = 12
     
     public let cellFontSize : CGFloat = 12
@@ -58,19 +58,19 @@ public class ComponentDimensions : ObservableObject {
     
     public func setGridMeasurements(isTriplet:Bool){
         print("change stuff")
-        
-//        if isTriplet == true{
-//            visualGrid_X_Unit_Count = 22
-//            dataGrid_X_Unit_Count = 22
-//            pattern_Grid_Unit_Width = 16
-//            pattern_Grid_Unit_Height = 16
-//        }
-//        else if isTriplet == false{
-//            visualGrid_X_Unit_Count = 16
-//            dataGrid_X_Unit_Count = 16
-//            pattern_Grid_Unit_Width = 22
-//            pattern_Grid_Unit_Height = 22
-//        }
+        //@Published
+        if isTriplet == true{
+            visualGrid_X_Unit_Count = 22
+            dataGrid_X_Unit_Count = 22
+            pattern_Grid_Unit_Width = 16
+            pattern_Grid_Unit_Height = 16
+        }
+        else if isTriplet == false{
+            visualGrid_X_Unit_Count = 16
+            dataGrid_X_Unit_Count = 16
+            pattern_Grid_Unit_Width = 22
+            pattern_Grid_Unit_Height = 22
+        }
         
     }
     
