@@ -22,11 +22,11 @@ public class ComponentDimensions : ObservableObject {
     //============== Central Grid SECTION =========================
     public let DATA_final_Line_Y_Index : Int = 64
     
-    @Published public var pattern_Grid_Unit_Width : CGFloat = 16  // 22 or 16
-    @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 22 or 16
+    @Published public var pattern_Grid_Unit_Width : CGFloat = 16  // 24 or 16
+    @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     
-    @Published public var dataGrid_X_Unit_Count : Int = 24 // 16 or 22
-    @Published public var visualGrid_X_Unit_Count : Int = 24 // 16 or 22
+    @Published public var dataGrid_X_Unit_Count : Int = 24 // 16 or 24
+    @Published public var visualGrid_X_Unit_Count : Int = 24 // 16 or 24
     public let visualGrid_Y_Unit_Count : Int = 12
     
     public let cellFontSize : CGFloat = 12
@@ -41,7 +41,7 @@ public class ComponentDimensions : ObservableObject {
     public let Vert_Cursor_Slider_Height : CGFloat = 192 // this has to be sought from function (num y grid units-1 * grid unit height)
     
     public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
-    public let Vert_Cursor_Slider_Line_Width : CGFloat = 352
+    public let Vert_Cursor_Slider_Line_Width : CGFloat = 384
     
     public func return_H_Slider_Y_Offset() -> CGFloat{
         let retval = (pattern_Grid_Unit_Height*CGFloat(visualGrid_Y_Unit_Count)) + ui_Unit_Height
@@ -56,17 +56,27 @@ public class ComponentDimensions : ObservableObject {
     }
     
     public var cellIsLarge : Bool = false
+    // also need to alter the grid in the ui side
     public func setGridMeasurements(isTriplet:Bool){
         if isTriplet == true{
             visualGrid_X_Unit_Count = 24
             dataGrid_X_Unit_Count = 24
+            
+            ui_Unit_Width = 16
+            ui_Unit_Height = 16
+            
             pattern_Grid_Unit_Width = 16
             pattern_Grid_Unit_Height = 16
+            
             cellIsLarge = false
         }
         else if isTriplet == false{
             visualGrid_X_Unit_Count = 16
             dataGrid_X_Unit_Count = 16
+            
+            ui_Unit_Width = 24
+            ui_Unit_Height = 24
+            
             pattern_Grid_Unit_Width = 24
             pattern_Grid_Unit_Height = 24
             cellIsLarge = true
