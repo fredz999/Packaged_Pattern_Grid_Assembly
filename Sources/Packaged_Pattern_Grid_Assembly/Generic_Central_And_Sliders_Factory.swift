@@ -119,7 +119,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             print("within reach")
         }
         else if visible_Line_View_Array[yParam].unitArray.count >= xParam{
-            print("EXCEEDED : asked for x: ",xParam.description,", asked for y:",yParam.description,",currXCount:",visible_Line_View_Array[yParam].unitArray.count.description)
+            print("EXCEEDED : asked for x: ",xParam.description,",currXCount:",visible_Line_View_Array[yParam].unitArray.count.description)
         }
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
@@ -169,15 +169,15 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                 }
             }
         }
-        else if centralGridSet == false {
-            ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
-                ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
-                    if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
-                        Default_Central_Cell_View(central_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
-                    }
-                }
-            }
-        }
+//        else if centralGridSet == false {
+//            ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
+//                ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
+//                    if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
+//                        Default_Central_Cell_View(central_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
+//                    }
+//                }
+//            }
+//        }
     }
     
     @ViewBuilder public func returnSliders()->some View {
