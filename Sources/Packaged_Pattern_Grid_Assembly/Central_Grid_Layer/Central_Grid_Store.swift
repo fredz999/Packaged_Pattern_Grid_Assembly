@@ -77,8 +77,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     func respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:Int){
         
-        dimensions.visualGrid_X_Unit_Count = newUnitCount
-        
         visual_Cell_Store_Array.removeAll()
         
         for x in 0..<dimensions.visualGrid_X_Unit_Count {
