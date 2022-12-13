@@ -85,7 +85,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
 
             let lastIndex = lastCell.dataCell_X_Number
 
-            if lastIndex < (dimensions.visualGrid_X_Unit_Count-1){
+            if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
                 if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
                     dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
                     redrawCellArray()
@@ -135,7 +135,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
     func moveRightOne(){
         if let lastCell = dataCellArray.last,let firstCell = dataCellArray.first {
         let lastIndex = lastCell.dataCell_X_Number
-            if lastIndex < (dimensions.visualGrid_X_Unit_Count-1){
+            if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
                 if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
                     firstCell.changeType(newType: .unassigned)
                     firstCell.note_Im_In = nil

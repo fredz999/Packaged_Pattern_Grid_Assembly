@@ -26,7 +26,7 @@ public class ComponentDimensions : ObservableObject {
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     
     @Published public var dataGrid_X_Unit_Count : Int = 16 // 16 or 24
-    @Published public var visualGrid_X_Unit_Count : Int = 16 // 16 or 24
+    //@Published public var visualGrid_X_Unit_Count : Int = 16 // 16 or 24
     public let visualGrid_Y_Unit_Count : Int = 12
     
     public let cellFontSize : CGFloat = 12
@@ -49,7 +49,7 @@ public class ComponentDimensions : ObservableObject {
     }
     
     public func return_V_Slider_Offset()->CGSize{
-        let width = pattern_Grid_Unit_Width*CGFloat(visualGrid_X_Unit_Count)
+        let width = pattern_Grid_Unit_Width*CGFloat(dataGrid_X_Unit_Count)
         let height = ui_Unit_Height
         let returnSize = CGSize(width: width, height: height)
         return returnSize
@@ -60,7 +60,7 @@ public class ComponentDimensions : ObservableObject {
     public func setGridMeasurements(isTripletParam:Bool){
         
         if isTripletParam == true{
-            visualGrid_X_Unit_Count = 24
+            //visualGrid_X_Unit_Count = 24
             dataGrid_X_Unit_Count = 24
             
             ui_Unit_Width = 16
@@ -72,7 +72,7 @@ public class ComponentDimensions : ObservableObject {
             pattern_is_Triplet = false
         }
         else if isTripletParam == false{
-            visualGrid_X_Unit_Count = 16
+            //visualGrid_X_Unit_Count = 16
             dataGrid_X_Unit_Count = 16
             
             ui_Unit_Width = 24

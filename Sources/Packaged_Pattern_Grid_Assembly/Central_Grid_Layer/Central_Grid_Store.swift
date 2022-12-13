@@ -16,7 +16,7 @@ public class Central_Grid_Store : ObservableObject {
     public var gridUnitsVert:Int
 
     public init(){
-        gridUnitsHorz = dimensions.visualGrid_X_Unit_Count //unitsHorizontal
+        gridUnitsHorz = dimensions.dataGrid_X_Unit_Count //unitsHorizontal
         gridUnitsVert = dimensions.visualGrid_Y_Unit_Count //unitsVertical
         populateLineArray()
     }
@@ -35,9 +35,7 @@ public class Central_Grid_Store : ObservableObject {
     }
     
     // change the amount?
-    public func respondToPatternGridUnitSizeChange_Cell_Level(newUnitCount:Int){
-        //change the data ... has to occurr in the central state methinks
-        
+    public func respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount:Int){
         for line in vis_Line_Store_Array{
             line.respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:newUnitCount)
         }
@@ -60,7 +58,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
  
     public func fillLine(){
-        for x in 0..<dimensions.visualGrid_X_Unit_Count {
+        for x in 0..<dimensions.dataGrid_X_Unit_Count {
             let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
             visual_Cell_Store_Array.append(new_Central_Cell_Store)
         }
@@ -78,11 +76,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     func respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:Int){
         
         visual_Cell_Store_Array.removeAll()
-        
-//        for x in 0..<dimensions.visualGrid_X_Unit_Count {
-//            let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
-//            visual_Cell_Store_Array.append(new_Central_Cell_Store)
-//        }
+
         fillLine()
   
         for cell in visual_Cell_Store_Array {
