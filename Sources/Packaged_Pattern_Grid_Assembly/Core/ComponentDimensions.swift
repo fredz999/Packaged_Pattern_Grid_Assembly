@@ -14,7 +14,7 @@ public class ComponentDimensions : ObservableObject {
     public let backGroundHeight : CGFloat = 647
     
     public var ui_Unit_Width : CGFloat = 24
-    public var ui_Unit_Height : CGFloat = 24
+    public var ui_Unit_Height : CGFloat = 16
     
     public let pattern_Grid_Unit_VerticalEdge_Width : CGFloat = 1
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
@@ -22,10 +22,10 @@ public class ComponentDimensions : ObservableObject {
     //============== Central Grid SECTION =========================
     public let DATA_final_Line_Y_Index : Int = 64
     
-    @Published public var pattern_Grid_Unit_Width : CGFloat = 16  // 24 or 16
+    @Published public var pattern_Grid_Unit_Width : CGFloat = 24  // 24 or 16
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     
-    @Published public var dataGrid_X_Unit_Count : Int = 24 // 16 or 24
+    @Published public var dataGrid_X_Unit_Count : Int = 16 // 16 or 24
     @Published public var visualGrid_X_Unit_Count : Int = 24 // 16 or 24
     public let visualGrid_Y_Unit_Count : Int = 12
     
@@ -55,11 +55,11 @@ public class ComponentDimensions : ObservableObject {
         return returnSize
     }
     
-    public var cellIsLarge : Bool = false
+    public var pattern_is_Triplet : Bool = false
     // also need to alter the grid in the ui side
-    public func setGridMeasurements(isTriplet:Bool){
+    public func setGridMeasurements(isTripletParam:Bool){
         
-        if isTriplet == true{
+        if isTripletParam == true{
             visualGrid_X_Unit_Count = 24
             dataGrid_X_Unit_Count = 24
             
@@ -69,9 +69,9 @@ public class ComponentDimensions : ObservableObject {
             pattern_Grid_Unit_Width = 16
             pattern_Grid_Unit_Height = 16
             
-            cellIsLarge = false
+            pattern_is_Triplet = false
         }
-        else if isTriplet == false{
+        else if isTripletParam == false{
             visualGrid_X_Unit_Count = 16
             dataGrid_X_Unit_Count = 16
             
@@ -80,7 +80,7 @@ public class ComponentDimensions : ObservableObject {
             
             pattern_Grid_Unit_Width = 24
             pattern_Grid_Unit_Height = 16
-            cellIsLarge = true
+            pattern_is_Triplet = true
         }
     }
     
