@@ -13,8 +13,8 @@ public class ComponentDimensions : ObservableObject {
     public let backGroundWidth : CGFloat = 375
     public let backGroundHeight : CGFloat = 647
     
-    public var ui_Unit_Width : CGFloat = 22
-    public var ui_Unit_Height : CGFloat = 22
+    public var ui_Unit_Width : CGFloat = 24
+    public var ui_Unit_Height : CGFloat = 24
     
     public let pattern_Grid_Unit_VerticalEdge_Width : CGFloat = 1
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
@@ -25,19 +25,19 @@ public class ComponentDimensions : ObservableObject {
     @Published public var pattern_Grid_Unit_Width : CGFloat = 16  // 22 or 16
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 22 or 16
     
-    @Published public var dataGrid_X_Unit_Count : Int = 22 // 16 or 22
-    @Published public var visualGrid_X_Unit_Count : Int = 22 // 16 or 22
+    @Published public var dataGrid_X_Unit_Count : Int = 24 // 16 or 22
+    @Published public var visualGrid_X_Unit_Count : Int = 24 // 16 or 22
     public let visualGrid_Y_Unit_Count : Int = 12
     
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
-    public var Horz_Cursor_Slider_Width : CGFloat = 352
-    public var Horz_Cursor_Slider_Height : CGFloat = 22
+    public var Horz_Cursor_Slider_Width : CGFloat = 384
+    public var Horz_Cursor_Slider_Height : CGFloat = 24
     
-    public var Horz_Cursor_Slider_Line_Height : CGFloat = 352
+    public var Horz_Cursor_Slider_Line_Height : CGFloat = 384
     public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
     
-    public let Vert_Cursor_Slider_Width : CGFloat = 22
+    public let Vert_Cursor_Slider_Width : CGFloat = 24
     public let Vert_Cursor_Slider_Height : CGFloat = 192 // this has to be sought from function (num y grid units-1 * grid unit height)
     
     public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
@@ -57,11 +57,9 @@ public class ComponentDimensions : ObservableObject {
     
     public var cellIsLarge : Bool = false
     public func setGridMeasurements(isTriplet:Bool){
-        //print("change stuff")
-        //@Published
         if isTriplet == true{
-            visualGrid_X_Unit_Count = 22
-            dataGrid_X_Unit_Count = 22
+            visualGrid_X_Unit_Count = 24
+            dataGrid_X_Unit_Count = 24
             pattern_Grid_Unit_Width = 16
             pattern_Grid_Unit_Height = 16
             cellIsLarge = false
@@ -69,11 +67,10 @@ public class ComponentDimensions : ObservableObject {
         else if isTriplet == false{
             visualGrid_X_Unit_Count = 16
             dataGrid_X_Unit_Count = 16
-            pattern_Grid_Unit_Width = 22
-            pattern_Grid_Unit_Height = 22
+            pattern_Grid_Unit_Width = 24
+            pattern_Grid_Unit_Height = 24
             cellIsLarge = true
         }
-        
     }
     
     
