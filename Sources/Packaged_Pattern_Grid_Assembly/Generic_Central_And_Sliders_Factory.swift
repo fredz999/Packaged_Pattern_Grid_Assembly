@@ -118,6 +118,15 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     // drawn plus the centralGridSet is where its determined whether or not its actually visible....there needs to be handling here for a redraw ....
     // possibly rethink how the returnCentralGrid() works
     public func create_Central_Grid_From_Data(){
+        
+        if visible_Line_View_Array.count > 0 {
+            for line in visible_Line_View_Array{
+                line.unitArray.removeAll()
+            }
+            visible_Line_View_Array.removeAll()
+        }
+        
+        // clear it at the start
         print("create_Central_Grid_From_Data()")
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {
             for y in 0..<visible_Grid_Store.gridUnitsVert {
@@ -130,8 +139,10 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                 visible_Line_View_Array.append(new_Visible_Line)
             }
         }
-        central_Grid_Manufacturing_Closure = nil
+        //central_Grid_Manufacturing_Closure = nil
     }
+    
+    
     
     public var centralGridSet : Bool = false
     

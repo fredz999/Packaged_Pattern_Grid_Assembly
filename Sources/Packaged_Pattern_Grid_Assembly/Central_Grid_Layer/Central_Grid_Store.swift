@@ -108,6 +108,10 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         , typeParam: underlying_Data_Cell_Param.currentType)
     }
     
+    deinit{
+        print("popping Central_Cell_Store, x: ", x_Index.description,", y: ", parent_Line_Ref.y_Index.description)
+    }
+    
     func swapData(new_Data_Cell : Underlying_Data_Cell){
         data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number

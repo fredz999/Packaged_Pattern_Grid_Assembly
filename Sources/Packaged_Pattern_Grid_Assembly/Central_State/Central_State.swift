@@ -61,15 +61,9 @@ public class Central_State : ObservableObject {
         }
 
         if converting_To_Triplet == true {
-//            if let lcl_central_Grid_Store = central_Grid_Store {
-//                lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
-//            }
             current_Pattern_is_Triplet = true
         }
         else if converting_To_Triplet == false {
-//            if let lcl_central_Grid_Store = central_Grid_Store {
-//                lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
-//            }
             current_Pattern_is_Triplet = false
         }
         
