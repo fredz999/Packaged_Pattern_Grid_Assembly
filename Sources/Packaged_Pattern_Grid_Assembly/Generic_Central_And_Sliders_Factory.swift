@@ -113,7 +113,12 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
     
+    
+    // central state has all the stuff for a grid refresh but this is where it actually gets
+    // drawn plus the centralGridSet is where its determined whether or not its actually visible....there needs to be handling here for a redraw ....
+    // possibly rethink how the returnCentralGrid() works
     public func create_Central_Grid_From_Data(){
+        print("create_Central_Grid_From_Data()")
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {
             for y in 0..<visible_Grid_Store.gridUnitsVert {
             let new_Visible_Line : Visible_Injected_Generic_View_Line = Visible_Injected_Generic_View_Line<InjectedCentralCellType>()
@@ -128,52 +133,28 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         central_Grid_Manufacturing_Closure = nil
     }
     
-    var centralGridSet : Bool = false
+    public var centralGridSet : Bool = false
     
     
     @ViewBuilder public func returnCentralGrid()->some View {
         if centralGridSet == true {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
-
-                    
-
-     
-                    //if let lclX_Index = visibleUnit.x_Index, let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
                     if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
 
                         self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index)
                             .offset(x:lclXFloat,y:lclYFloat)
 
-
                     }
-//                    else if visibleUnit.x_Index == nil{
-//                        //print("=============================== nil at for each")
-//                        Circle().frame(width: 30,height: 30).foregroundColor( Color(red: 0.5, green: 1.0, blue: 0)  )
-//                    }
-                    
-                    
-                    
-//                    else if visibleUnit.x_Index == nil || visibleUnit.xFloat == nil || visibleUnit.yFloat == nil{
-//                        print("=============================== nil at for each")
-//                    }
-//                    self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index)
-//                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
-                    
                 }
             }
         }
         else if centralGridSet == false {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
-                    
                     if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
-                        //Default_Central_Cell_View(visual_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
                         Default_Central_Cell_View(central_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
                     }
-//                    Default_Central_Cell_View(visual_Cell_Store: visibleUnit)
-//                    .offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
-                    
                 }
             }
         }

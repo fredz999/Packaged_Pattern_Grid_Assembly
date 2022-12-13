@@ -52,21 +52,30 @@ public class Central_State : ObservableObject {
         for line in data_Grid.dataLineArray{line.dataCellArray.removeAll()}
         data_Grid.dataLineArray.removeAll()
         data_Grid.setGrid()
+        
+        // here?:
+        // create_Central_Grid_From_Data()
+        
+        if let lcl_central_Grid_Store = central_Grid_Store {
+            lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
+        }
 
         if converting_To_Triplet == true {
-            if let lcl_central_Grid_Store = central_Grid_Store {
-                lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
-            }
+//            if let lcl_central_Grid_Store = central_Grid_Store {
+//                lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
+//            }
             current_Pattern_is_Triplet = true
         }
         else if converting_To_Triplet == false {
-            if let lcl_central_Grid_Store = central_Grid_Store {
-                lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
-            }
+//            if let lcl_central_Grid_Store = central_Grid_Store {
+//                lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
+//            }
             current_Pattern_is_Triplet = false
         }
         
     }
+    
+
 
 //    var deleteNote_Btn_Store_Ref : Delete_Button_Store<Delete_Injected_View>?
 //    var lengthen_Shorten_Button_Ref : Lengthen_Shorten_Buttons_Store<Lengthen_Shorten_Injected_View>?
