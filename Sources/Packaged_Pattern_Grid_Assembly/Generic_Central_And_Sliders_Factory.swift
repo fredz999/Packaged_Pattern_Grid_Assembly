@@ -142,8 +142,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         //central_Grid_Manufacturing_Closure = nil
     }
     
-    
-    
     public var centralGridSet : Bool = false
     
     
