@@ -34,9 +34,10 @@ public class Central_Grid_Store : ObservableObject {
         }
     }
     
-    public func respondToPatternGridUnitSizeChange_Cell_Level(){
+    // change the amount?
+    public func respondToPatternGridUnitSizeChange_Cell_Level(newUnitCount:Int){
         for line in vis_Line_Store_Array{
-            line.respondToPatternGridUnitSizeChange_Line_Level()
+            line.respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:newUnitCount)
         }
     }
 
@@ -72,10 +73,19 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
     }
     
-    func respondToPatternGridUnitSizeChange_Line_Level(){
-        for cell in visual_Cell_Store_Array{
+    func respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:Int){
+        
+        visual_Cell_Store_Array.removeAll()
+        
+        for x in 0..<dimensions.visualGrid_X_Unit_Count {
+            let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
+            visual_Cell_Store_Array.append(new_Central_Cell_Store)
+        }
+  
+        for cell in visual_Cell_Store_Array {
             cell.respondToPatternGridUnitSizeChange_Cell_Level()
         }
+        
     }
     
 }
@@ -91,14 +101,11 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     public var parent_Line_Ref : Central_Line_Store
     @Published public var data_Vals_Holder : Data_Vals_Holder
     
-
-    
     public init(x_Index_Param:Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell) {
         self.parent_Line_Ref = lineParam
         self.x_Index = x_Index_Param
         self.xFloat = CGFloat(x_Index_Param) * dimensions.pattern_Grid_Unit_Width
         self.yFloat = CGFloat(lineParam.y_Index) * dimensions.pattern_Grid_Unit_Height
-        //self.underlying_Data_Cell = underlying_Data_Cell_Param
         data_Vals_Holder = Data_Vals_Holder(xNumParam: underlying_Data_Cell_Param.dataCell_X_Number
         , yNumParam: underlying_Data_Cell_Param.dataCell_Y_Number
         , typeParam: underlying_Data_Cell_Param.currentType)
@@ -106,10 +113,10 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     
     func swapData(new_Data_Cell : Underlying_Data_Cell){
         data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
-                                               , newYNum: new_Data_Cell.dataCell_Y_Number
-                                               , newHighlightedStatus: new_Data_Cell.isHighlighted
-                                               , newCellStatus: new_Data_Cell.currentType
-                                               , newNoteImIn: new_Data_Cell.note_Im_In)
+        , newYNum: new_Data_Cell.dataCell_Y_Number
+        , newHighlightedStatus: new_Data_Cell.isHighlighted
+        , newCellStatus: new_Data_Cell.currentType
+        , newNoteImIn: new_Data_Cell.note_Im_In)
     }
     
     func respondToPatternGridUnitSizeChange_Cell_Level(){
