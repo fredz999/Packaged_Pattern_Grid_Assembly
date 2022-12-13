@@ -42,7 +42,7 @@ public class Central_State : ObservableObject {
     
     public var central_Grid_Store : Central_Grid_Store?
     
-    func change_Pattern_Data_Length(newDataLength:Int){
+    public func change_Pattern_Data_Length(newDataLength:Int){
         //change the data in here
         for line in data_Grid.dataLineArray{line.dataCellArray.removeAll()}
         data_Grid.dataLineArray.removeAll()
