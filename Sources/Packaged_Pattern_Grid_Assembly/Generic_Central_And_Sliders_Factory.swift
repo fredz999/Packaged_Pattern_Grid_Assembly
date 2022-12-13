@@ -138,11 +138,13 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
         
         // clear it at the start
-        print("create_Central_Grid_From_Data()")
+        print("create_Central_Grid_From_Data()visible_Line_View_Array count: ",visible_Line_View_Array.count.description)
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {
-            for y in 0..<visible_Grid_Store.gridUnitsVert {
+            //dimensions.visualGrid_Y_Unit_Count
+            for y in 0..<dimensions.visualGrid_Y_Unit_Count{
+                    //visible_Grid_Store.gridUnitsVert {
             let new_Visible_Line : Visible_Injected_Generic_View_Line = Visible_Injected_Generic_View_Line<InjectedCentralCellType>()
-                for x in 0..<visible_Grid_Store.gridUnitsHorz {
+                for x in 0..<dimensions.dataGrid_X_Unit_Count {
                     let visibleGridUnit = lclFactoryMethod(visible_Grid_Store.vis_Line_Store_Array[y].visual_Cell_Store_Array[x])
                     new_Visible_Line.unitArray.append(visibleGridUnit)
                     if centralGridSet == false{centralGridSet = true}

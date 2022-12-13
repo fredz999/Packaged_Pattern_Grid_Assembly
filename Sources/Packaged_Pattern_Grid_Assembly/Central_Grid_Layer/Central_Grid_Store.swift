@@ -12,17 +12,17 @@ public class Central_Grid_Store : ObservableObject {
     let dimensions = ComponentDimensions.StaticDimensions
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
     
-    public var gridUnitsHorz:Int
-    public var gridUnitsVert:Int
+//    public var gridUnitsHorz:Int
+//    public var gridUnitsVert:Int
 
     public init(){
-        gridUnitsHorz = dimensions.dataGrid_X_Unit_Count //unitsHorizontal
-        gridUnitsVert = dimensions.visualGrid_Y_Unit_Count //unitsVertical
+//        gridUnitsHorz = dimensions.dataGrid_X_Unit_Count //unitsHorizontal
+//        gridUnitsVert = dimensions.visualGrid_Y_Unit_Count //unitsVertical
         populateLineArray()
     }
     
     public func populateLineArray(){
-        for y in 0..<gridUnitsVert {
+        for y in 0..<dimensions.visualGrid_Y_Unit_Count {
             let newLine = Central_Line_Store(y_Index: y, gridParam: self)
             vis_Line_Store_Array.append(newLine)
         }
