@@ -79,10 +79,11 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         
         visual_Cell_Store_Array.removeAll()
         
-        for x in 0..<dimensions.visualGrid_X_Unit_Count {
-            let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
-            visual_Cell_Store_Array.append(new_Central_Cell_Store)
-        }
+//        for x in 0..<dimensions.visualGrid_X_Unit_Count {
+//            let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
+//            visual_Cell_Store_Array.append(new_Central_Cell_Store)
+//        }
+        fillLine()
   
         for cell in visual_Cell_Store_Array {
             cell.respondToPatternGridUnitSizeChange_Cell_Level()

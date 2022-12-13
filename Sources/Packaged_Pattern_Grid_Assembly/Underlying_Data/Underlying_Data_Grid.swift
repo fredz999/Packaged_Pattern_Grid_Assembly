@@ -14,6 +14,11 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     public var dataLineArray : [Underlying_Data_Line] = []
     public init(){
         
+        setGrid()
+        
+    }
+    
+    func setGrid(){
         for y in 0..<dimensions.DATA_final_Line_Y_Index {
             let newLine = Underlying_Data_Line()
             for x in 0..<dimensions.dataGrid_X_Unit_Count {
@@ -22,8 +27,8 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
             }
             dataLineArray.append(newLine)
         }
-        
     }
+    
     public static let Static_Underlying_Data_Grid = Underlying_Data_Grid()
 }
 
