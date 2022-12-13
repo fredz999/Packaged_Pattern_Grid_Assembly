@@ -111,9 +111,15 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
         
-        if visible_Line_View_Array.count > 0{
-            print("requested xParam: ",xParam.description,",requested yParam: ",yParam.description
-                  ,", visible_Line_View_Array count: ",visible_Line_View_Array.count,",[0] count: ",visible_Line_View_Array[0].unitArray.count.description)
+//        if visible_Line_View_Array.count > 0{
+//            print("requested xParam: ",xParam.description,",requested yParam: ",yParam.description
+//                  ,", visible_Line_View_Array count: ",visible_Line_View_Array.count,",[0] count: ",visible_Line_View_Array[0].unitArray.count.description)
+//        }
+        if visible_Line_View_Array[yParam].unitArray.count < xParam{
+            print("within reach")
+        }
+        else if visible_Line_View_Array[yParam].unitArray.count >= xParam{
+            print("EXCEEDED : asked for x: ",xParam.description,", asked for y:",yParam.description,",currXCount:",visible_Line_View_Array[yParam].unitArray.count.description)
         }
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
