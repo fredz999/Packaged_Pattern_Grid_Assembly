@@ -41,6 +41,26 @@ public class Central_State : ObservableObject {
     public var note_Collection_Ref : Note_Collection?
     
     public var central_Grid_Store : Central_Grid_Store?
+    
+    func change_Pattern_Data_Length(newDataLength:Int){
+        //change the data in here
+        for line in data_Grid.dataLineArray{line.dataCellArray.removeAll()}
+        data_Grid.dataLineArray.removeAll()
+        
+        for y in 0..<dimensions.DATA_final_Line_Y_Index {
+            let newLine = Underlying_Data_Line()
+            for x in 0..<dimensions.dataGrid_X_Unit_Count {
+                let newDataCell=Underlying_Data_Cell(xNumParam: x, yNumParam: y, typeParam: .unassigned)
+                newLine.dataCellArray.append(newDataCell)
+            }
+            data_Grid.dataLineArray.append(newLine)
+        }
+        
+        if let lcl_central_Grid_Store = central_Grid_Store {
+            lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Cell_Level(newUnitCount: newDataLength)
+        }
+        
+    }
 
 //    var deleteNote_Btn_Store_Ref : Delete_Button_Store<Delete_Injected_View>?
 //    var lengthen_Shorten_Button_Ref : Lengthen_Shorten_Buttons_Store<Lengthen_Shorten_Injected_View>?

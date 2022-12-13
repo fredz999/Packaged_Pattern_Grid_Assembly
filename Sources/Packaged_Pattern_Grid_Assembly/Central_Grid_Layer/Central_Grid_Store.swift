@@ -36,6 +36,8 @@ public class Central_Grid_Store : ObservableObject {
     
     // change the amount?
     public func respondToPatternGridUnitSizeChange_Cell_Level(newUnitCount:Int){
+        //change the data ... has to occurr in the central state methinks
+        
         for line in vis_Line_Store_Array{
             line.respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:newUnitCount)
         }
@@ -59,12 +61,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
  
     public func fillLine(){
         for x in 0..<dimensions.visualGrid_X_Unit_Count {
-           
-//            if x > data.dataLineArray[y_Index].dataCellArray.count{
-//                print("x exceeded")
-//            }
-            
- 
             let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
             visual_Cell_Store_Array.append(new_Central_Cell_Store)
         }
@@ -80,6 +76,8 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
     
     func respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:Int){
+        
+        dimensions.visualGrid_X_Unit_Count = newUnitCount
         
         visual_Cell_Store_Array.removeAll()
         
