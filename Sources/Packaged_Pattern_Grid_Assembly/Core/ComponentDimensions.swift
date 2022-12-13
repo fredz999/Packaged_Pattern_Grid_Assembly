@@ -58,6 +58,7 @@ public class ComponentDimensions : ObservableObject {
     public var cellIsLarge : Bool = false
     // also need to alter the grid in the ui side
     public func setGridMeasurements(isTriplet:Bool){
+        
         if isTriplet == true{
             visualGrid_X_Unit_Count = 24
             dataGrid_X_Unit_Count = 24
@@ -75,10 +76,10 @@ public class ComponentDimensions : ObservableObject {
             dataGrid_X_Unit_Count = 16
             
             ui_Unit_Width = 24
-            ui_Unit_Height = 24
+            ui_Unit_Height = 16
             
             pattern_Grid_Unit_Width = 24
-            pattern_Grid_Unit_Height = 24
+            pattern_Grid_Unit_Height = 16
             cellIsLarge = true
         }
     }
