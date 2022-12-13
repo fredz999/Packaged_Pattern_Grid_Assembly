@@ -115,7 +115,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
 //            print("requested xParam: ",xParam.description,",requested yParam: ",yParam.description
 //                  ,", visible_Line_View_Array count: ",visible_Line_View_Array.count,",[0] count: ",visible_Line_View_Array[0].unitArray.count.description)
 //        }
-        if visible_Line_View_Array[yParam].unitArray.count < xParam{
+        if xParam < visible_Line_View_Array[yParam].unitArray.count{
             print("within reach")
         }
         else if visible_Line_View_Array[yParam].unitArray.count >= xParam{
