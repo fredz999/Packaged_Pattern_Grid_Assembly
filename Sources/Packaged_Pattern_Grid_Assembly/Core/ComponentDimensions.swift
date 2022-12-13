@@ -55,7 +55,7 @@ public class ComponentDimensions : ObservableObject {
         return returnSize
     }
     
-    public var pattern_is_Triplet : Bool = false
+    
     // also need to alter the grid in the ui side
     public func setGridMeasurements(isTripletParam:Bool){
         
@@ -69,7 +69,7 @@ public class ComponentDimensions : ObservableObject {
             pattern_Grid_Unit_Width = 16
             pattern_Grid_Unit_Height = 16
             
-            pattern_is_Triplet = false
+            //pattern_is_Triplet = false
         }
         else if isTripletParam == false{
             //visualGrid_X_Unit_Count = 16
@@ -80,7 +80,7 @@ public class ComponentDimensions : ObservableObject {
             
             pattern_Grid_Unit_Width = 24
             pattern_Grid_Unit_Height = 16
-            pattern_is_Triplet = true
+            //pattern_is_Triplet = true
         }
     }
     

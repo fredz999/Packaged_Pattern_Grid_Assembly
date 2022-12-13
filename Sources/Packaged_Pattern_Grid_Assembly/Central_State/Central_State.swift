@@ -42,11 +42,12 @@ public class Central_State : ObservableObject {
     
     public var central_Grid_Store : Central_Grid_Store?
     
+    public var current_Pattern_is_Triplet : Bool = false
     public func change_Pattern_Data_Length(converting_To_Triplet:Bool){
         //change the data in here
-        if converting_To_Triplet == true{
-            dimensions.setGridMeasurements(isTripletParam: converting_To_Triplet)
-        }
+        //if converting_To_Triplet == true{
+        dimensions.setGridMeasurements(isTripletParam: converting_To_Triplet)
+        //}
 
         for line in data_Grid.dataLineArray{line.dataCellArray.removeAll()}
         data_Grid.dataLineArray.removeAll()
@@ -56,11 +57,13 @@ public class Central_State : ObservableObject {
             if let lcl_central_Grid_Store = central_Grid_Store {
                 lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
             }
+            current_Pattern_is_Triplet = true
         }
         else if converting_To_Triplet == false {
             if let lcl_central_Grid_Store = central_Grid_Store {
                 lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
             }
+            current_Pattern_is_Triplet = false
         }
         
     }
