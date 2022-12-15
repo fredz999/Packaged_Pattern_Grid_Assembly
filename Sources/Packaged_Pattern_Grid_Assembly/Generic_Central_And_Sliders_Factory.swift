@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
+public class Generic_Central_And_Sliders_Factory<InjectedDualCellType:View
+    ,InjectedCentralCellType:View
     ,Injected_H_SliderType:View
     ,Injected_V_SliderType:View
     ,Injected_Cursor_Type:View
