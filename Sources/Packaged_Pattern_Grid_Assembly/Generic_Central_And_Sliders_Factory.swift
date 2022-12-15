@@ -110,24 +110,12 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
-        
-//        if visible_Line_View_Array.count > 0{
-//            print("requested xParam: ",xParam.description,",requested yParam: ",yParam.description
-//                  ,", visible_Line_View_Array count: ",visible_Line_View_Array.count,",[0] count: ",visible_Line_View_Array[0].unitArray.count.description)
-//        }
-        if xParam < visible_Line_View_Array[yParam].unitArray.count{
-            print("within reach")
-        }
-        else if visible_Line_View_Array[yParam].unitArray.count >= xParam{
-            print("EXCEEDED : asked for x: ",xParam.description,",currXCount:",visible_Line_View_Array[yParam].unitArray.count.description)
-        }
         return visible_Line_View_Array[yParam].unitArray[xParam]
     }
     
+    public func inject_InjectedSixEightGrid(){}
     
-    // central state has all the stuff for a grid refresh but this is where it actually gets
-    // drawn plus the centralGridSet is where its determined whether or not its actually visible....there needs to be handling here for a redraw ....
-    // possibly rethink how the returnCentralGrid() works
+    
     public func create_Central_Grid_From_Data(){
         
         if visible_Line_View_Array.count > 0 {
@@ -138,7 +126,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
         
         // clear it at the start
-        print("create_Central_Grid_From_Data()visible_Line_View_Array count: ",visible_Line_View_Array.count.description)
+        // print("create_Central_Grid_From_Data()visible_Line_View_Array count: ",visible_Line_View_Array.count.description)
+        
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {
             //dimensions.visualGrid_Y_Unit_Count
             for y in 0..<dimensions.visualGrid_Y_Unit_Count{
@@ -147,13 +136,51 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                 for x in 0..<dimensions.dataGrid_X_Unit_Count {
                     let visibleGridUnit = lclFactoryMethod(visible_Grid_Store.vis_Line_Store_Array[y].visual_Cell_Store_Array[x])
                     new_Visible_Line.unitArray.append(visibleGridUnit)
-                    if centralGridSet == false{centralGridSet = true}
                 }
                 visible_Line_View_Array.append(new_Visible_Line)
             }
+            if centralGridSet == false{centralGridSet = true}
         }
         //central_Grid_Manufacturing_Closure = nil
     }
+    
+    // ==================================== doing the whole grid instead of the single cells ========================================
+    public var centralGridSize : E_CentralGridTiming = .fourFour{
+        didSet{
+            handleCentralGridTimimgChange()
+        }
+    }
+    // get these set up, one time, in the beginning
+    //want to receive a type for the individual cell view
+    //individual cells are now 8 px wide and 16 tall
+    //the display of a 16 units cell background
+    
+    var gridFourFour : [InjectedCentralCellType] = []
+    var gridSixEight : [InjectedCentralCellType] = []
+    
+    @ViewBuilder public func returnDualSizeGrid() -> some View {
+        if centralGridSize == .fourFour {
+ 
+        }
+        else if centralGridSize == .sixEight{
+ 
+        }
+    }
+    
+    func handleCentralGridTimimgChange(){
+        // this will do the
+        // 1: change the underlying grid
+        // 2: change the single note and increment sizes
+        // 3: single notes are now upon press up either a 16 or a 16t
+        // 4: any increment beyond a notes original length is in the new signature accommodating size
+        // I think the ting to do is to have the individual unit size as very small indeed and have the
+        // timing signature dependant increments as multiples of that very small unit size
+        // 8 is the last num that divides evenly into those two
+        // so the two sizes are 2x8 and 3x8
+        // grid props: timimg 4:4,lowestUnitSize : 8, grid_unit_width_units 3,
+        // grid props: timing 3:4,lowestUnitSize : 8, grid size 2x8
+    }
+    // ==================================== doing the whole grid instead of the single cells ========================================
     
     public var centralGridSet : Bool = false
     
@@ -164,8 +191,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
                     if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
 
-                        self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index)
-                            .offset(x:lclXFloat,y:lclYFloat)
+                        self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index).offset(x:lclXFloat,y:lclYFloat)
 
                     }
                 }
@@ -221,7 +247,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
     }
     
-    
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
     }
@@ -233,35 +258,36 @@ public class Visible_Injected_Generic_View_Line <InjectedViewType:View> : Observ
     public var unitArray = [InjectedViewType]()
 }
 
-class InjectedView_Holder<InjectedView:View> {
-    
-    var injected_View : InjectedView?
-    
-    var type : InjectedViewType
-    
-//    public func inject_View(viewParam:InjectedView){
-//        injected_View = viewParam
-//    }
-    
-    init(viewParam:InjectedView,typeParam:InjectedViewType){
-        injected_View = viewParam
-        type = typeParam
-    }
-    
-    @ViewBuilder public func returnInjectedView()->some View {
-        if let lcl_Injected_View = injected_View {
-            lcl_Injected_View
-        }
-        else if injected_View == nil{
-             //default in here
-        }
-    }
-    
-    //static let Static_Return_Data_Y_Cell_View = Return_Data_Y_Cell_View()
+public enum E_CentralGridTiming {
+    case sixEight
+    case fourFour
 }
 
-enum InjectedViewType {
-    case cursor
-    case data_Y_Slider_Cell
-    //.... e.t.c
-}
+
+//class InjectedView_Holder<InjectedView:View> {
+//
+//    var injected_View : InjectedView?
+//
+//    var type : InjectedViewType
+//
+//    init(viewParam:InjectedView,typeParam:InjectedViewType){
+//        injected_View = viewParam
+//        type = typeParam
+//    }
+//
+//    @ViewBuilder public func returnInjectedView()->some View {
+//        if let lcl_Injected_View = injected_View {
+//            lcl_Injected_View
+//        }
+//        else if injected_View == nil{
+//             //default in here
+//        }
+//    }
+//
+//
+//}
+
+//enum InjectedViewType {
+//    case cursor
+//    case data_Y_Slider_Cell
+//}
