@@ -13,17 +13,26 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     public var id = UUID()
     public var dataLineArray : [Underlying_Data_Line] = []
     public init(){
-        
         setGrid()
-        
     }
     
     func setGrid(){
+        //TODO: subCells
         for y in 0..<dimensions.DATA_final_Line_Y_Index {
             let newLine = Underlying_Data_Line()
             for x in 0..<dimensions.dataGrid_X_Unit_Count {
-                let newDataCell=Underlying_Data_Cell(xNumParam: x, yNumParam: y, typeParam: .unassigned)
-                newLine.dataCellArray.append(newDataCell)
+                if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
+                    // start mid then end
+                    let newDataCell=Underlying_Data_Cell(xNumParam: x, yNumParam: y, statusParam: .start)
+                    newLine.dataCellArray.append(newDataCell)
+                }
+                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 2{
+                    // start then end
+                    let newDataCell=Underlying_Data_Cell(xNumParam: x, yNumParam: y, statusParam: .start)
+                    newLine.dataCellArray.append(newDataCell)
+                }
+                
+                
             }
             dataLineArray.append(newLine)
         }
@@ -37,8 +46,6 @@ public class Underlying_Data_Line:ObservableObject,Identifiable {
     public var dataCellArray : [Underlying_Data_Cell] = []
 }
 
-
-
 // this things line ref dosent change
 public class Underlying_Data_Cell:ObservableObject,Identifiable {
     
@@ -48,12 +55,12 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
     @Published public var isHighlighted : Bool = false
     var note_Im_In : Note?
     
-    @Published public var currentType : E_CellStatus = .unassigned
+    @Published public var currentType : E_CellStatus // = .unassigned
     
-    public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus){
+    public init(xNumParam:Int,yNumParam:Int,statusParam:E_CellStatus){
         dataCell_X_Number = xNumParam
         dataCell_Y_Number = yNumParam
-        currentType = typeParam
+        currentType = statusParam
     }
     
     public func changeType(newType:E_CellStatus){
@@ -63,9 +70,9 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
 }
 
 public enum E_CellStatus {
-    case unassigned
+    //case unassigned
     case start
     case mid
     case end
-    case single
+    //case single
 }

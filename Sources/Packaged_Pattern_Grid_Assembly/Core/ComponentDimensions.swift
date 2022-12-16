@@ -21,11 +21,14 @@ public class ComponentDimensions : ObservableObject {
     
     //============== Central Grid SECTION =========================
     public let DATA_final_Line_Y_Index : Int = 64
-    @Published public var pattern_Grid_Sub_Unit_Width : CGFloat = 8
+    
+    @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 8
+    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 3
+    
     @Published public var pattern_Grid_Unit_Width : CGFloat = 24  // 24 or 16
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     
-    @Published public var dataGrid_X_Unit_Count : Int = 16 // 16 or 24
+    @Published public var dataGrid_X_Unit_Count : Int = 48
     public let visualGrid_Y_Unit_Count : Int = 12
     
     public let cellFontSize : CGFloat = 12
@@ -54,33 +57,43 @@ public class ComponentDimensions : ObservableObject {
         return returnSize
     }
     
-    
-    // also need to alter the grid in the ui side
-    public func setGridMeasurements(isTripletParam:Bool){
+    public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
+
+    public func flip_Timing_Signature(){
         
-        if isTripletParam == true{
-            //visualGrid_X_Unit_Count = 24
-            dataGrid_X_Unit_Count = 24
-            
-            ui_Unit_Width = 16
-            ui_Unit_Height = 16
-            
-            pattern_Grid_Unit_Width = 16
-            pattern_Grid_Unit_Height = 16
-            
-            //pattern_is_Triplet = false
-        }
-        else if isTripletParam == false{
-            //visualGrid_X_Unit_Count = 16
-            dataGrid_X_Unit_Count = 16
-            
-            ui_Unit_Width = 24
-            ui_Unit_Height = 16
-            
-            pattern_Grid_Unit_Width = 24
-            pattern_Grid_Unit_Height = 16
-            //pattern_is_Triplet = true
-        }
+    if patternTimingConfiguration == .fourFour {
+        patternTimingConfiguration = .sixEight
+        pattern_Grid_Cell_Sub_Unit_Count = 3
+    }
+    else if patternTimingConfiguration == .sixEight {
+        patternTimingConfiguration = .fourFour
+        pattern_Grid_Cell_Sub_Unit_Count = 2
+    }
+        
+        //var thing : E_CentralGridTiming
+//        if isTripletParam == true{
+//            //visualGrid_X_Unit_Count = 24
+//            dataGrid_X_Unit_Count = 24
+//
+//            ui_Unit_Width = 16
+//            ui_Unit_Height = 16
+//
+//            pattern_Grid_Unit_Width = 16
+//            pattern_Grid_Unit_Height = 16
+//
+//            //pattern_is_Triplet = false
+//        }
+//        else if isTripletParam == false{
+//            //visualGrid_X_Unit_Count = 16
+//            dataGrid_X_Unit_Count = 16
+//
+//            ui_Unit_Width = 24
+//            ui_Unit_Height = 16
+//
+//            pattern_Grid_Unit_Width = 24
+//            pattern_Grid_Unit_Height = 16
+//            //pattern_is_Triplet = true
+//        }
     }
     
     

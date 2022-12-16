@@ -40,10 +40,10 @@ public struct Data_Cell_Display_View<UnassignedView:View,StartView:View,MidView:
     
     @ViewBuilder public func currView()->(some View) {
  
-        if current_Data_Vals_Holder.referenced_currentStatus == .unassigned {
-            unassigned_View
-        }
-        else if current_Data_Vals_Holder.referenced_currentStatus == .start {
+//        if current_Data_Vals_Holder.referenced_currentStatus == .unassigned {
+//            unassigned_View
+//        }
+        if current_Data_Vals_Holder.referenced_currentStatus == .start {
                 self.start_View
         }
         else if current_Data_Vals_Holder.referenced_currentStatus == .mid {
@@ -52,9 +52,9 @@ public struct Data_Cell_Display_View<UnassignedView:View,StartView:View,MidView:
         else if current_Data_Vals_Holder.referenced_currentStatus == .end {
                 self.end_View
         }
-        else if current_Data_Vals_Holder.referenced_currentStatus == .single {
-                self.single_View
-        }
+//        else if current_Data_Vals_Holder.referenced_currentStatus == .single {
+//                self.single_View
+//        }
     }
     
     public var body: some View {

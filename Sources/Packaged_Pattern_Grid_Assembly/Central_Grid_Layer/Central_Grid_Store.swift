@@ -35,9 +35,16 @@ public class Central_Grid_Store : ObservableObject {
     }
     
     // change the amount?
-    public func respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount:Int){
+//    public func respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount:Int){
+//        for line in vis_Line_Store_Array{
+//            line.respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:newUnitCount)
+//        }
+//    }
+    
+    //patternTimingConfiguration
+    public func respond_To_Timing_Signature_Change_Grid_Level(){
         for line in vis_Line_Store_Array{
-            line.respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:newUnitCount)
+            line.respond_To_Timing_Signature_Change_Grid_Line_Level()
         }
     }
 
@@ -68,21 +75,15 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         if (lowerBracket_Param + y_Index) < dimensions.DATA_final_Line_Y_Index  {
             let new_Y_Index = lowerBracket_Param + y_Index
             for visualCell in visual_Cell_Store_Array {
-                    visualCell.swapData(new_Data_Cell: data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index])
+                    visualCell.cell_Swap_Underlying_Data(new_Data_Cell: data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index])
             }
         }
     }
     
-    func respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:Int){
-        
-        visual_Cell_Store_Array.removeAll()
-
-        fillLine()
-  
+    func respond_To_Timing_Signature_Change_Grid_Line_Level(){
         for cell in visual_Cell_Store_Array {
-            cell.respondToPatternGridUnitSizeChange_Cell_Level()
+            cell.respond_To_Timing_Signature_Change_Cell_Level()
         }
-        
     }
     
 }
@@ -108,22 +109,39 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         , typeParam: underlying_Data_Cell_Param.currentType)
     }
     
-    deinit{
+    deinit {
         print("popping Central_Cell_Store, x: ", x_Index.description,", y: ", parent_Line_Ref.y_Index.description)
     }
     
-    func swapData(new_Data_Cell : Underlying_Data_Cell){
+    func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
         data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
         , newHighlightedStatus: new_Data_Cell.isHighlighted
         , newCellStatus: new_Data_Cell.currentType
         , newNoteImIn: new_Data_Cell.note_Im_In)
     }
+
     
-    func respondToPatternGridUnitSizeChange_Cell_Level(){
-        self.xFloat = CGFloat(x_Index) * dimensions.pattern_Grid_Unit_Width
-        self.yFloat = CGFloat(parent_Line_Ref.y_Index) * dimensions.pattern_Grid_Unit_Height
+    func respond_To_Timing_Signature_Change_Cell_Level(){
+//        self.xFloat = CGFloat(x_Index) * dimensions.pattern_Grid_Unit_Width
+//        self.yFloat = CGFloat(parent_Line_Ref.y_Index) * dimensions.pattern_Grid_Unit_Height
+        //redraw the cells
+//        if dimensions.patternTimingConfiguration == .fourFour{
+//            // the cells are three sub units wide and there are 16
+//
+//        }
+//        else if dimensions.patternTimingConfiguration == .fourFour{
+//            // the cells are two sub units wide and there are 24
+//
+//        }
+        //self.data_Vals_Holder.handle_Timing_Signature_Change()
+        
     }
+    
+    //func
+    
+    //@Published var which_Timing_Type :
+    
 }
 
 // this will be a stateObject
@@ -132,7 +150,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     @Published public var referenced_dataCell_X_Number : Int
     @Published public var referenced_dataCell_Y_Number : Int
     @Published public var referenced_isHighlighted : Bool = false
-    @Published public var referenced_currentStatus : E_CellStatus = .unassigned
+    @Published public var referenced_currentStatus : E_CellStatus //= .unassigned
     var referenced_note_Im_In : Note?
 
     public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus){
@@ -163,6 +181,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
          }
      }
     }
+
 
 
 }

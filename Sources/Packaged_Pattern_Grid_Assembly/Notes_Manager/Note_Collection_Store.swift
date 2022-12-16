@@ -48,55 +48,59 @@ public class Note_Collection {
     }
     
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
-        
+    print("write_CellArray_Into_Note")
     // figure out this then
-    var visible_Cell_Array : [Central_Cell_Store] = []
+//    var visible_Cell_Array : [Central_Cell_Store] = []
+//
+//    var dataCellArray : [Underlying_Data_Cell] = []
+//
+//    if data_Y < dimensions.DATA_final_Line_Y_Index {
+//
+//    if lowest_Data_X == highest_Data_X {
+//
+//    let singleCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
+//
+//    singleCell.changeType(newType: .single)
+//
+//    dataCellArray.append(singleCell)
+//
+//    }
+//    else if lowest_Data_X == highest_Data_X-1 {
+//    let lowestCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
+//    let upperCell = data.dataLineArray[data_Y].dataCellArray[highest_Data_X]
+//    lowestCell.changeType(newType: .start)
+//    dataCellArray.append(lowestCell)
+//    upperCell.changeType(newType: .end)
+//    dataCellArray.append(upperCell)
+//    }
+//
+//    else if lowest_Data_X < highest_Data_X-1 {
+//        for x in lowest_Data_X...highest_Data_X {
+//            if x == lowest_Data_X {
+//                let lowCell = data.dataLineArray[data_Y].dataCellArray[x]
+//                lowCell.changeType(newType: .start)
+//                dataCellArray.append(lowCell)
+//            }
+//            else if x > lowest_Data_X,x < highest_Data_X{
+//                let midCell = data.dataLineArray[data_Y].dataCellArray[x]
+//                midCell.changeType(newType: .mid)
+//                dataCellArray.append(midCell)
+//            }
+//            else if x == highest_Data_X{
+//                let upperCell = data.dataLineArray[data_Y].dataCellArray[x]
+//                upperCell.changeType(newType: .end)
+//                dataCellArray.append(upperCell)
+//            }
+//        }
+//    }
+//
+//    }
+//    write_Note_Data(cellArrayParam: dataCellArray)
+    }
     
-    var dataCellArray : [Underlying_Data_Cell] = []
-        
-    if data_Y < dimensions.DATA_final_Line_Y_Index {
     
-    if lowest_Data_X == highest_Data_X {
-        
-    let singleCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
-
-    singleCell.changeType(newType: .single)
     
-    dataCellArray.append(singleCell)
-        
-    }
-    else if lowest_Data_X == highest_Data_X-1 {
-    let lowestCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
-    let upperCell = data.dataLineArray[data_Y].dataCellArray[highest_Data_X]
-    lowestCell.changeType(newType: .start)
-    dataCellArray.append(lowestCell)
-    upperCell.changeType(newType: .end)
-    dataCellArray.append(upperCell)
-    }
     
-    else if lowest_Data_X < highest_Data_X-1 {
-        for x in lowest_Data_X...highest_Data_X {
-            if x == lowest_Data_X {
-                let lowCell = data.dataLineArray[data_Y].dataCellArray[x]
-                lowCell.changeType(newType: .start)
-                dataCellArray.append(lowCell)
-            }
-            else if x > lowest_Data_X,x < highest_Data_X{
-                let midCell = data.dataLineArray[data_Y].dataCellArray[x]
-                midCell.changeType(newType: .mid)
-                dataCellArray.append(midCell)
-            }
-            else if x == highest_Data_X{
-                let upperCell = data.dataLineArray[data_Y].dataCellArray[x]
-                upperCell.changeType(newType: .end)
-                dataCellArray.append(upperCell)
-            }
-        }
-    }
-        
-    }
-    write_Note_Data(cellArrayParam: dataCellArray)
-    }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {

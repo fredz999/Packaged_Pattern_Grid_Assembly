@@ -43,10 +43,12 @@ public class Central_State : ObservableObject {
     public var central_Grid_Store : Central_Grid_Store?
     
     public var current_Pattern_is_Triplet : Bool = false
-    public func change_Pattern_Data_Length(converting_To_Triplet:Bool){
+    //var thing : E_CentralGridTiming
+    public func change_Pattern_Data_Length(timing:E_CentralGridTiming){
         //change the data in here
         //if converting_To_Triplet == true{
-        dimensions.setGridMeasurements(isTripletParam: converting_To_Triplet)
+        
+        dimensions.flip_Timing_Signature()
         //}
 
         for line in data_Grid.dataLineArray{line.dataCellArray.removeAll()}
@@ -57,15 +59,16 @@ public class Central_State : ObservableObject {
         // create_Central_Grid_From_Data()
         
         if let lcl_central_Grid_Store = central_Grid_Store {
-            lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
+            //lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
+            //dataGrid_X_Unit_Count
         }
 
-        if converting_To_Triplet == true {
-            current_Pattern_is_Triplet = true
-        }
-        else if converting_To_Triplet == false {
-            current_Pattern_is_Triplet = false
-        }
+//        if converting_To_Triplet == true {
+//            current_Pattern_is_Triplet = true
+//        }
+//        else if converting_To_Triplet == false {
+//            current_Pattern_is_Triplet = false
+//        }
         
     }
     
@@ -130,18 +133,18 @@ public class Central_State : ObservableObject {
                                     if lcl_Current_X > lcl_Initial_X{
                                         for x in lcl_Initial_X...lcl_Current_X{
                                             let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].swapData(new_Data_Cell: redrawCellData)
+                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
                                         }
                                     }
                                     else if lcl_Current_X < lcl_Initial_X{
                                         for x in lcl_Current_X...lcl_Initial_X{
                                             let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].swapData(new_Data_Cell: redrawCellData)
+                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
                                         }
                                     }
                                     else if lcl_Current_X == lcl_Initial_X{
                                         let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
-                                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].swapData(new_Data_Cell: redrawCellData)
+                                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
                                     }
                                     
                                 }
@@ -180,18 +183,18 @@ public class Central_State : ObservableObject {
                 if lcl_Current_X > lcl_Initial_X{
                     for x in lcl_Initial_X...lcl_Current_X{
                         let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].swapData(new_Data_Cell: redrawCellData)
+                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
                     }
                 }
                 else if lcl_Current_X < lcl_Initial_X{
                     for x in lcl_Current_X...lcl_Initial_X{
                         let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].swapData(new_Data_Cell: redrawCellData)
+                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
                     }
                 }
                 else if lcl_Current_X == lcl_Initial_X{
                     let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
-                    lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].swapData(new_Data_Cell: redrawCellData)
+                    lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
                 }
                 
             }

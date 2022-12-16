@@ -184,7 +184,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public var centralGridSet : Bool = false
     
-    
     @ViewBuilder public func returnCentralGrid()->some View {
         if centralGridSet == true {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
