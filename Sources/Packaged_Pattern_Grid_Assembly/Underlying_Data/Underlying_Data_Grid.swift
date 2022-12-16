@@ -18,18 +18,48 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     
     func setGrid(){
         //TODO: subCells
+        let compositeCellCount = dimensions.dataGrid_X_Unit_Count/dimensions.pattern_Grid_Cell_Sub_Unit_Count
         for y in 0..<dimensions.DATA_final_Line_Y_Index {
             let newLine = Underlying_Data_Line()
-            for x in 0..<dimensions.dataGrid_X_Unit_Count {
+            for outerX in 0..<compositeCellCount {
+                
                 if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
                     // start mid then end
-                    let newDataCell=Underlying_Data_Cell(xNumParam: x, yNumParam: y, statusParam: .start)
-                    newLine.dataCellArray.append(newDataCell)
+                    for innerX in 0..<3{
+                        let computedX = (outerX*3)+innerX
+                        
+                        if innerX == 0{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 1{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 2{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        
+                    }
+        
+                    
                 }
                 else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 2{
                     // start then end
-                    let newDataCell=Underlying_Data_Cell(xNumParam: x, yNumParam: y, statusParam: .start)
-                    newLine.dataCellArray.append(newDataCell)
+                    for innerX in 0..<2{
+                        let computedX = (outerX*2)+innerX
+                        if innerX == 0{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 1{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        
+                    }
+                    
                 }
                 
                 
