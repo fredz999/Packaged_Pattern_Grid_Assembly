@@ -102,7 +102,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     public init(x_Index_Param:Int,lineParam:Central_Line_Store,underlying_Data_Cell_Param : Underlying_Data_Cell) {
         self.parent_Line_Ref = lineParam
         self.x_Index = x_Index_Param
-        self.xFloat = CGFloat(x_Index_Param) * dimensions.pattern_Grid_Unit_Width
+        self.xFloat = CGFloat(x_Index_Param) * dimensions.pattern_Grid_Sub_Cell_Width
         self.yFloat = CGFloat(lineParam.y_Index) * dimensions.pattern_Grid_Unit_Height
         data_Vals_Holder = Data_Vals_Holder(xNumParam: underlying_Data_Cell_Param.dataCell_X_Number
         , yNumParam: underlying_Data_Cell_Param.dataCell_Y_Number
