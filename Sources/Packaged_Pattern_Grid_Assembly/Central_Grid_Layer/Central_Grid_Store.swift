@@ -134,7 +134,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         self.data_Vals_Holder.updateValsFromNewData(newXNum: xInt
                                                     , newYNum: yInt
                                                     , newHighlightedStatus: highlidhtStatus
-                                                    , newCellStatus: cellStatus, newNoteImIn: noteimIn)
+                                                    , newCellStatus: .start, newNoteImIn: noteimIn)
 //        self.xFloat = CGFloat(x_Index) * dimensions.pattern_Grid_Unit_Width
 //        self.yFloat = CGFloat(parent_Line_Ref.y_Index) * dimensions.pattern_Grid_Unit_Height
         //redraw the cells
