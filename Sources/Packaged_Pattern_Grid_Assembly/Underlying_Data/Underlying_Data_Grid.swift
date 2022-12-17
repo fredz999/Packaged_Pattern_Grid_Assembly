@@ -71,7 +71,8 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     public func changeTimingSignature_Data_Level(){
         for line in dataLineArray {
             for cell in line.dataCellArray {
-                cell.currentType = .start
+                cell.changeType(newType: .start)
+                //.currentType = .start
             }
         }
     }
@@ -103,14 +104,15 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
     
     public func changeType(newType:E_CellStatus){
         currentType = newType
+        print("curr type: ",currentType)
     }
     
 }
 
-public enum E_CellStatus {
+public enum E_CellStatus : String {
     //case unassigned
-    case start
-    case mid
-    case end
+    case start = "start"
+    case mid = "mid"
+    case end = "end"
     //case single
 }
