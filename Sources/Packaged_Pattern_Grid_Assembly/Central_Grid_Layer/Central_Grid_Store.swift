@@ -34,19 +34,7 @@ public class Central_Grid_Store : ObservableObject {
         }
     }
     
-    // change the amount?
-//    public func respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount:Int){
-//        for line in vis_Line_Store_Array{
-//            line.respondToPatternGridUnitSizeChange_Line_Level(newUnitCount:newUnitCount)
-//        }
-//    }
-    
-    //patternTimingConfiguration
-//    public func respond_To_Timing_Signature_Change_Grid_Level(){
-//        for line in vis_Line_Store_Array{
-//            line.respond_To_Timing_Signature_Change_Grid_Line_Level()
-//        }
-//    }
+
 
 }
 

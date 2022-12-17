@@ -49,7 +49,8 @@ public class Central_State : ObservableObject {
         //if converting_To_Triplet == true{
         
         dimensions.flip_Timing_Signature()
-        data_Grid.set_Data_Grid()
+        data_Grid.changeTimingSignature_Data_Level()
+        //data_Grid.set_Data_Grid()
          
 //        for line in data_Grid.dataLineArray {
 //            for cell in line.dataCellArray {
