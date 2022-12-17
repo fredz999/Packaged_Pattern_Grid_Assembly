@@ -44,23 +44,19 @@ public class Central_State : ObservableObject {
     
     public var current_Pattern_is_Triplet : Bool = false
     //var thing : E_CentralGridTiming
-    public func change_Pattern_Data_Length(timing:E_CentralGridTiming){
+    public func change_Pattern_Data_Length(){
         //change the data in here
         //if converting_To_Triplet == true{
         
-        //dimensions.flip_Timing_Signature()
-        //}
-
-        for line in data_Grid.dataLineArray {
-            for cell in line.dataCellArray {
-                cell.currentType = .start
-            }
-        }
+        dimensions.flip_Timing_Signature()
+        data_Grid.set_Data_Grid()
+         
+//        for line in data_Grid.dataLineArray {
+//            for cell in line.dataCellArray {
+//                cell.currentType = .start
+//            }
+//        }
         if let lcl_central_Grid_Store = central_Grid_Store {
-            
-            
-            
-          //cell_Swap_Underlying_Data
             for gridLine in lcl_central_Grid_Store.vis_Line_Store_Array {
                 for cell in gridLine.visual_Cell_Store_Array {
                     let currY = cell.data_Vals_Holder.referenced_dataCell_Y_Number
