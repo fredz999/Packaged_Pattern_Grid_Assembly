@@ -123,6 +123,17 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
 
     
     func respond_To_Timing_Signature_Change_Cell_Level(){
+        let xInt : Int = self.data_Vals_Holder.referenced_dataCell_X_Number
+        let yInt : Int = self.data_Vals_Holder.referenced_dataCell_Y_Number
+        let highlidhtStatus = self.data_Vals_Holder.referenced_isHighlighted
+        let cellStatus = self.data_Vals_Holder.referenced_currentStatus
+        let noteimIn = self.data_Vals_Holder.referenced_note_Im_In
+        
+        
+        self.data_Vals_Holder.updateValsFromNewData(newXNum: xInt
+                                                    , newYNum: yInt
+                                                    , newHighlightedStatus: highlidhtStatus
+                                                    , newCellStatus: cellStatus, newNoteImIn: noteimIn)
 //        self.xFloat = CGFloat(x_Index) * dimensions.pattern_Grid_Unit_Width
 //        self.yFloat = CGFloat(parent_Line_Ref.y_Index) * dimensions.pattern_Grid_Unit_Height
         //redraw the cells
@@ -182,6 +193,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
      }
     }
 
+     
 
 
 }

@@ -13,10 +13,10 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     public var id = UUID()
     public var dataLineArray : [Underlying_Data_Line] = []
     public init(){
-        setGrid()
+        set_Data_Grid()
     }
     
-    func setGrid(){
+    func set_Data_Grid(){
         //TODO: subCells
         let compositeCellCount = dimensions.dataGrid_X_Unit_Count/dimensions.pattern_Grid_Cell_Sub_Unit_Count
         for y in 0..<dimensions.DATA_final_Line_Y_Index {
@@ -57,7 +57,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                             let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end)
                             newLine.dataCellArray.append(newDataCell)
                         }
-                        
                     }
                     
                 }
@@ -65,6 +64,15 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 
             }
             dataLineArray.append(newLine)
+        }
+    }
+    
+    //basically I want to alter existing cells instead of adding new ones
+    func changeTimingSignature_Data_Level(){
+        for line in dataLineArray{
+            for cell in line.dataCellArray{
+                cell.currentType = .start
+            }
         }
     }
     

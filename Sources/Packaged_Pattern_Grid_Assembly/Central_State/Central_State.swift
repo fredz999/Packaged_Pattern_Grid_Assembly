@@ -27,7 +27,7 @@ public class Central_State : ObservableObject {
         }
     }
 
-    let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
+    public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     //var central_Grid_Ref : Central_Grid_Store?
     
     let dimensions = ComponentDimensions.StaticDimensions
@@ -53,7 +53,7 @@ public class Central_State : ObservableObject {
 
         for line in data_Grid.dataLineArray{line.dataCellArray.removeAll()}
         data_Grid.dataLineArray.removeAll()
-        data_Grid.setGrid()
+        data_Grid.set_Data_Grid()
         
         // here?:
         // create_Central_Grid_From_Data()
