@@ -48,20 +48,44 @@ public class Central_State : ObservableObject {
         //change the data in here
         //if converting_To_Triplet == true{
         
-        dimensions.flip_Timing_Signature()
+        //dimensions.flip_Timing_Signature()
         //}
 
-        for line in data_Grid.dataLineArray{line.dataCellArray.removeAll()}
-        data_Grid.dataLineArray.removeAll()
-        data_Grid.set_Data_Grid()
+        for line in data_Grid.dataLineArray {
+            for cell in line.dataCellArray {
+                cell.currentType = .start
+            }
+        }
+        if let lcl_central_Grid_Store = central_Grid_Store {
+            
+            
+            
+          //cell_Swap_Underlying_Data
+            for gridLine in lcl_central_Grid_Store.vis_Line_Store_Array {
+                for cell in gridLine.visual_Cell_Store_Array {
+                    let currY = cell.data_Vals_Holder.referenced_dataCell_Y_Number
+                    let daata : Underlying_Data_Cell = data_Grid.dataLineArray[currY].dataCellArray[cell.x_Index]
+                    cell.cell_Swap_Underlying_Data(new_Data_Cell: daata)
+                }
+            }
+        }
+        
+//        data_Grid.dataLineArray.removeAll()
+//        data_Grid.set_Data_Grid()
         
         // here?:
         // create_Central_Grid_From_Data()
         
-        if let lcl_central_Grid_Store = central_Grid_Store {
+        //if let lcl_central_Grid_Store = central_Grid_Store {
             //lcl_central_Grid_Store.respondToPatternGridUnitSizeChange_Grid_Level(newUnitCount: dimensions.dataGrid_X_Unit_Count)
             //dataGrid_X_Unit_Count
-        }
+        //}
+        
+        
+//        centralGridFactory.centralState.data_Grid.changeTimingSignature_Data_Level()
+//        centralGridFactory.visible_Grid_Store.respond_To_Timing_Signature_Change_Grid_Level()
+        
+        
 
 //        if converting_To_Triplet == true {
 //            current_Pattern_is_Triplet = true
