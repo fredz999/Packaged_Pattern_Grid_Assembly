@@ -127,6 +127,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         let yInt : Int = self.data_Vals_Holder.referenced_dataCell_Y_Number
         let highlidhtStatus = self.data_Vals_Holder.referenced_isHighlighted
         let cellStatus = self.data_Vals_Holder.referenced_currentStatus
+        print("cellStatus: ",cellStatus)
         let noteimIn = self.data_Vals_Holder.referenced_note_Im_In
         
         
