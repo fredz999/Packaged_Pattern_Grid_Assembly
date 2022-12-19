@@ -101,7 +101,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         print("popping Central_Cell_Store, x: ", x_Index.description,", y: ", parent_Line_Ref.y_Index.description)
     }
     
-    func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
+    public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
         data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
         , newHighlightedStatus: new_Data_Cell.isHighlighted
