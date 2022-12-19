@@ -137,7 +137,6 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
     
     public func changeType(newType:E_CellStatus){
         currentType = newType
-        print("curr type: ",currentType)
     }
     
 }

@@ -97,10 +97,6 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         , typeParam: underlying_Data_Cell_Param.currentType)
     }
     
-    deinit {
-        print("popping Central_Cell_Store, x: ", x_Index.description,", y: ", parent_Line_Ref.y_Index.description)
-    }
-    
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
         data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
@@ -115,7 +111,6 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
 //        let yInt : Int = self.data_Vals_Holder.referenced_dataCell_Y_Number
 //        let highlidhtStatus = self.data_Vals_Holder.referenced_isHighlighted
 //        let cellStatus = self.data_Vals_Holder.referenced_currentStatus
-//        print("cellStatus: ",cellStatus)
 //        let noteimIn = self.data_Vals_Holder.referenced_note_Im_In
 //
 //
@@ -154,9 +149,14 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     var referenced_note_Im_In : Note?
 
     public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus){
+    print("data vals init")
     referenced_dataCell_X_Number = xNumParam
     referenced_dataCell_Y_Number = yNumParam
     referenced_currentStatus = typeParam
+    }
+     
+    deinit{
+    print("data vals deinit")
     }
      
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newHighlightedStatus:Bool,newCellStatus:E_CellStatus,newNoteImIn:Note?){

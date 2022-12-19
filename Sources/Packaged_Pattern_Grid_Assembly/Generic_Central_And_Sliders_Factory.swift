@@ -125,9 +125,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             visible_Line_View_Array.removeAll()
         }
         
-        // clear it at the start
-        // print("create_Central_Grid_From_Data()visible_Line_View_Array count: ",visible_Line_View_Array.count.description)
-        
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {
             //dimensions.visualGrid_Y_Unit_Count
             for y in 0..<dimensions.visualGrid_Y_Unit_Count{
