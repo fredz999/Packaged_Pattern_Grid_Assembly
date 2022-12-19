@@ -98,11 +98,14 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     }
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
-        data_Vals_Holder.updateValsFromNewData(newXNum: new_Data_Cell.dataCell_X_Number
+        
+        data_Vals_Holder.updateValsFromNewData(
+        newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
         , newHighlightedStatus: new_Data_Cell.isHighlighted
         , newCellStatus: new_Data_Cell.currentType
         , newNoteImIn: new_Data_Cell.note_Im_In)
+        
     }
 
     
@@ -149,37 +152,36 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     var referenced_note_Im_In : Note?
 
     public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus){
-    print("data vals init")
+
     referenced_dataCell_X_Number = xNumParam
     referenced_dataCell_Y_Number = yNumParam
     referenced_currentStatus = typeParam
     }
      
-    deinit{
-    print("data vals deinit")
-    }
-     
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newHighlightedStatus:Bool,newCellStatus:E_CellStatus,newNoteImIn:Note?){
+        
      if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
      if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
      if referenced_isHighlighted != newHighlightedStatus{referenced_isHighlighted = newHighlightedStatus}
      if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
 
-     if let lclCurrentNote = referenced_note_Im_In {
-         if let lclNewNote = newNoteImIn {
-             if lclNewNote != lclCurrentNote {
-                 referenced_note_Im_In = lclNewNote
-             }
-         }
-         else if newNoteImIn == nil{
-             referenced_note_Im_In = nil
-         }
-     }
-     else if referenced_note_Im_In == nil {
-         if let lclNewNote = newNoteImIn {
-             referenced_note_Im_In = lclNewNote
-         }
-     }
+//     if let lclCurrentNote = referenced_note_Im_In {
+//         if let lclNewNote = newNoteImIn {
+//             if lclNewNote != lclCurrentNote {
+//                 referenced_note_Im_In = lclNewNote
+//             }
+//         }
+//         else if newNoteImIn == nil{
+//             referenced_note_Im_In = nil
+//         }
+//     }
+//     else if referenced_note_Im_In == nil {
+//         if let lclNewNote = newNoteImIn {
+//             referenced_note_Im_In = lclNewNote
+//         }
+//     }
+        
+        
     }
 
      

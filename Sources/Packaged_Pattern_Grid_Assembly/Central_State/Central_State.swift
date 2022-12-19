@@ -138,7 +138,6 @@ public class Central_State : ObservableObject {
                                 }
                             }
                             
-
                         }
                         
                         lclPotentialLayer.endPotentialNote()
@@ -218,7 +217,6 @@ public class Central_State : ObservableObject {
 
     func centralState_Data_Evaluation(){
         if let lclCursorLayer = cursor_Layer_Ref {
-            
             
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
