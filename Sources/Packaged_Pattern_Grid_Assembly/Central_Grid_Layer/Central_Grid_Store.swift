@@ -159,7 +159,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     @Published public var referenced_dataCell_Y_Number : Int
     @Published public var referenced_isHighlighted : Bool = false
     //@Published public var referenced_currentStatus : E_CellStatus
-    public var referenced_currentStatus : E_CellStatus
+    @Published public var referenced_currentStatus : E_CellStatus
     {
         didSet {
             if let lclStatusClosureResponder = statusClosureResponder {
