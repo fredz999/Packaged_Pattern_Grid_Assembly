@@ -97,6 +97,8 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         , typeParam: underlying_Data_Cell_Param.currentType)
     }
     
+    
+    
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
         
         data_Vals_Holder.updateValsFromNewData(
@@ -107,6 +109,13 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         , newNoteImIn: new_Data_Cell.note_Im_In)
         
     }
+    
+    
+    
+    
+    
+    // a function here that issues changes to a sequence of optional closures
+    
 
     
 //    func respond_To_Timing_Signature_Change_Cell_Level(){
@@ -145,17 +154,40 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
 // this will be a stateObject
  public class Data_Vals_Holder : ObservableObject {
 
+    // these are prolly going to be closure responders
     @Published public var referenced_dataCell_X_Number : Int
     @Published public var referenced_dataCell_Y_Number : Int
     @Published public var referenced_isHighlighted : Bool = false
     @Published public var referenced_currentStatus : E_CellStatus //= .unassigned
+     
     var referenced_note_Im_In : Note?
 
     public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus){
-
     referenced_dataCell_X_Number = xNumParam
     referenced_dataCell_Y_Number = yNumParam
     referenced_currentStatus = typeParam
+    }
+     
+    @ViewBuilder public func returnDataVuu()->(some View){
+        if referenced_currentStatus == .start{
+            ZStack(alignment: .topLeading){
+                 Rectangle().frame(width: 8,height:16).foregroundColor(.pink)
+                 Rectangle().frame(width: 1,height:16).foregroundColor(.yellow)
+                 Rectangle().frame(width: 8,height:1).foregroundColor(.yellow)
+             }
+        }
+        else if referenced_currentStatus == .mid{
+            ZStack(alignment: .topLeading){
+                 Rectangle().frame(width: 8,height:16).foregroundColor(.pink)
+                 Rectangle().frame(width: 8,height:1).foregroundColor(.yellow)
+             }
+        }
+        else if referenced_currentStatus == .end{
+            ZStack(alignment: .topLeading){
+                 Rectangle().frame(width: 8,height:16).foregroundColor(.pink)
+                 Rectangle().frame(width: 8,height:1).foregroundColor(.yellow)
+             }
+        }
     }
      
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newHighlightedStatus:Bool,newCellStatus:E_CellStatus,newNoteImIn:Note?){
