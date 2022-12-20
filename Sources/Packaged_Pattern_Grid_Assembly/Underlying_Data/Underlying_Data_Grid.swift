@@ -71,6 +71,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     
 
     public func changeTimingSignature_Data_Level(){
+        print("changeTimingSignature_Data_Level")
         let compositeCellCount = dimensions.dataGrid_X_Unit_Count/dimensions.pattern_Grid_Cell_Sub_Unit_Count
         for dataLine in dataLineArray {
                 for outerX in 0..<compositeCellCount {
