@@ -165,6 +165,9 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
             if let lclStatusClosureResponder = statusClosureResponder {
                 lclStatusClosureResponder(referenced_currentStatus)
             }
+            else if statusClosureResponder == nil{
+                print("statusClosureResponder apparently nil")
+            }
         }
     }
      
