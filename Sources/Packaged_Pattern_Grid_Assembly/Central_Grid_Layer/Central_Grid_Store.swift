@@ -158,9 +158,19 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     @Published public var referenced_dataCell_X_Number : Int
     @Published public var referenced_dataCell_Y_Number : Int
     @Published public var referenced_isHighlighted : Bool = false
-    @Published public var referenced_currentStatus : E_CellStatus //= .unassigned
+    //@Published public var referenced_currentStatus : E_CellStatus
+    public var referenced_currentStatus : E_CellStatus
+    {
+        didSet {
+            if let lclStatusClosureResponder = statusClosureResponder {
+                lclStatusClosureResponder(referenced_currentStatus)
+            }
+        }
+    }
      
     var referenced_note_Im_In : Note?
+     
+    public var statusClosureResponder : ((E_CellStatus)->())?
 
     public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus){
     referenced_dataCell_X_Number = xNumParam
@@ -168,34 +178,12 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     referenced_currentStatus = typeParam
     }
      
-    @ViewBuilder public func returnDataVuu()->(some View){
-        if referenced_currentStatus == .start{
-            ZStack(alignment: .topLeading){
-                 Rectangle().frame(width: 8,height:16).foregroundColor(.pink)
-                 Rectangle().frame(width: 1,height:16).foregroundColor(.yellow)
-                 Rectangle().frame(width: 8,height:1).foregroundColor(.yellow)
-             }
-        }
-        else if referenced_currentStatus == .mid{
-            ZStack(alignment: .topLeading){
-                 Rectangle().frame(width: 8,height:16).foregroundColor(.pink)
-                 Rectangle().frame(width: 8,height:1).foregroundColor(.yellow)
-             }
-        }
-        else if referenced_currentStatus == .end{
-            ZStack(alignment: .topLeading){
-                 Rectangle().frame(width: 8,height:16).foregroundColor(.pink)
-                 Rectangle().frame(width: 8,height:1).foregroundColor(.yellow)
-             }
-        }
-    }
-     
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newHighlightedStatus:Bool,newCellStatus:E_CellStatus,newNoteImIn:Note?){
         
      if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
      if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
      if referenced_isHighlighted != newHighlightedStatus{referenced_isHighlighted = newHighlightedStatus}
-     //if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
+     if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
 
 //     if let lclCurrentNote = referenced_note_Im_In {
 //         if let lclNewNote = newNoteImIn {
