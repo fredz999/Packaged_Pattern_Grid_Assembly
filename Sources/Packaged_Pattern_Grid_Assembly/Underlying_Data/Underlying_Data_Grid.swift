@@ -81,15 +81,15 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                             let computedX = (outerX*3)+innerX
                             if innerX == 0{
                                 let dataCell = dataLine.dataCellArray[computedX]
-                                dataCell.currentType = .start
+                                if dataCell.currentType != .start{dataCell.currentType = .start}
                             }
                             else if innerX == 1{
                                 let dataCell = dataLine.dataCellArray[computedX]
-                                dataCell.currentType = .mid
+                                if dataCell.currentType != .mid{dataCell.currentType = .mid}
                             }
                             else if innerX == 2{
                                 let dataCell = dataLine.dataCellArray[computedX]
-                                dataCell.currentType = .end
+                                if dataCell.currentType != .end{dataCell.currentType = .end}
                             }
                         }
                     }
@@ -98,11 +98,11 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                             let computedX = (outerX*2)+innerX
                             if innerX == 0{
                                 let dataCell = dataLine.dataCellArray[computedX]
-                                dataCell.currentType = .start
+                                if dataCell.currentType != .start{dataCell.currentType = .start}
                             }
                             else if innerX == 1{
                                 let dataCell = dataLine.dataCellArray[computedX]
-                                dataCell.currentType = .end
+                                if dataCell.currentType != .end{dataCell.currentType = .end}
                             }
                         }
                     }
