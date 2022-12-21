@@ -29,7 +29,7 @@ public class ComponentDimensions : ObservableObject {
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     
     @Published public var dataGrid_X_Unit_Count : Int = 24
-    public let visualGrid_Y_Unit_Count : Int = 1
+    public let visualGrid_Y_Unit_Count : Int = 2
     
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
