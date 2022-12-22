@@ -100,7 +100,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
-        
+        print("hopefully changed from note writing?.....")
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
@@ -174,6 +174,8 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     public var referenced_note_Im_In : Note?
      
     public var statusClosureResponder : ((E_CellStatus)->())?
+     
+    
 
     public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus){
     referenced_dataCell_X_Number = xNumParam
