@@ -188,21 +188,21 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
      if referenced_isHighlighted != newHighlightedStatus{referenced_isHighlighted = newHighlightedStatus}
      if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
 
-//     if let lclCurrentNote = referenced_note_Im_In {
-//         if let lclNewNote = newNoteImIn {
-//             if lclNewNote != lclCurrentNote {
-//                 referenced_note_Im_In = lclNewNote
-//             }
-//         }
-//         else if newNoteImIn == nil{
-//             referenced_note_Im_In = nil
-//         }
-//     }
-//     else if referenced_note_Im_In == nil {
-//         if let lclNewNote = newNoteImIn {
-//             referenced_note_Im_In = lclNewNote
-//         }
-//     }
+     if let lclCurrentNote = referenced_note_Im_In {
+         if let lclNewNote = newNoteImIn {
+             if lclNewNote != lclCurrentNote {
+                 referenced_note_Im_In = lclNewNote
+             }
+         }
+         else if newNoteImIn == nil{
+             referenced_note_Im_In = nil
+         }
+     }
+     else if referenced_note_Im_In == nil {
+         if let lclNewNote = newNoteImIn {
+             referenced_note_Im_In = lclNewNote
+         }
+     }
         
         
     }
