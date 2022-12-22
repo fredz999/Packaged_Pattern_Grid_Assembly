@@ -171,7 +171,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         }
     }
      
-    var referenced_note_Im_In : Note?
+    public var referenced_note_Im_In : Note?
      
     public var statusClosureResponder : ((E_CellStatus)->())?
 
