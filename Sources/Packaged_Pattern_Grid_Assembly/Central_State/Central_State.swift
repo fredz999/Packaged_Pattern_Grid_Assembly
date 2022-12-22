@@ -91,14 +91,15 @@ public class Central_State : ObservableObject {
                 }
             }
             else if writingIsOn == false {
+                print("0-------------------")
                 if let lclCursorRef = cursor_Layer_Ref {
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
                     if let lclPotentialLayer = potential_Note_Layer_Ref {
-
+print("1-------------------")
                         if let lcl_Initial_X = lclPotentialLayer.potential_Initial_Grid_X
                             ,let lcl_Current_X = lclPotentialLayer.potential_Current_Grid_X
                         ,let lcl_Initial_Y = lclPotentialLayer.potential_Initial_Grid_Y{
-                            
+                            print("2-------------------")
 
                             if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
                                 lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
@@ -114,10 +115,10 @@ public class Central_State : ObservableObject {
                             }
                             
                             if let lcl_Vis_Grid = central_Grid_Store {
-                                
+                                print("3-------------------")
                                 if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
                                 ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
-                                    
+                                    print("4-------------------")
                                     if lcl_Current_X > lcl_Initial_X{
                                         for x in lcl_Initial_X...lcl_Current_X{
                                             let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
