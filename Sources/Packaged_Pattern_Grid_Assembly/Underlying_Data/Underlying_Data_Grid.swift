@@ -147,5 +147,5 @@ public enum E_CellStatus : String {
     case start = "start"
     case mid = "mid"
     case end = "end"
-    //case single
+    case single = "single"
 }
