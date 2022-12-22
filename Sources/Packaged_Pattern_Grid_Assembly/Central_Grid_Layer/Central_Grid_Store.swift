@@ -204,15 +204,24 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
          if let lclNewNote = newNoteImIn {
              if lclNewNote != lclCurrentNote {
                  referenced_note_Im_In = lclNewNote
+                 if let lclNoteClosureResponder = noteClosureResponder{
+                     lclNoteClosureResponder(true)
+                 }
              }
          }
          else if newNoteImIn == nil{
              referenced_note_Im_In = nil
+             if let lclNoteClosureResponder = noteClosureResponder{
+                 lclNoteClosureResponder(false)
+             }
          }
      }
      else if referenced_note_Im_In == nil {
          if let lclNewNote = newNoteImIn {
              referenced_note_Im_In = lclNewNote
+             if let lclNoteClosureResponder = noteClosureResponder{
+                 lclNoteClosureResponder(true)
+             }
          }
      }
         
