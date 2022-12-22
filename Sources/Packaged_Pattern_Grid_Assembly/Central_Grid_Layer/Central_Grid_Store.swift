@@ -170,7 +170,18 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         }
     }
      
-    public var referenced_note_Im_In : Note?
+     public var referenced_note_Im_In : Note?{
+         didSet{
+             if let lclNoteClosureResponder = noteClosureResponder{
+                 if referenced_note_Im_In != nil{
+                     lclNoteClosureResponder(true)
+                 }
+                 else if referenced_note_Im_In == nil{
+                     lclNoteClosureResponder(false)
+                 }
+             }
+         }
+     }
      
     public var statusClosureResponder : ((E_CellStatus)->())?
     public var noteClosureResponder : ((Bool)->())?
