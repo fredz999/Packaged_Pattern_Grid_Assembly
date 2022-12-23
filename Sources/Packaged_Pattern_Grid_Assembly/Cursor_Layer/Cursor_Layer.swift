@@ -14,7 +14,8 @@ public class Cursor_Layer_Store : ObservableObject {
     let colors = ComponentColors.StaticColors
     
     @Published public var offsetSize : CGSize = CGSize(width: 0, height: 0)
-    @Published public var width : CGFloat
+    //needs to be changeable
+    //@Published public var width : CGFloat
     @Published public var height : CGFloat
     @Published public var cursorLayerCellColor : Color
     @Published public var cursorText = ""
@@ -26,7 +27,7 @@ public class Cursor_Layer_Store : ObservableObject {
     var currPosY : Int
     
     public init(){
-        width = dimensions.pattern_Grid_Unit_Width
+        //width = dimensions.pattern_Grid_Unit_Width
         height = dimensions.pattern_Grid_Unit_Height
         cursorLayerCellColor = colors.cursorNotWriting
         currDataX = 0
@@ -69,14 +70,14 @@ public class Cursor_Layer_Store : ObservableObject {
 //    }
 //}
 
-struct Default_Cursor_Marker_View : View {
-    @ObservedObject var cursor_Layer_Store : Cursor_Layer_Store
-    var body: some View {
-        return ZStack(alignment: .topLeading){
-            ZStack(alignment: .center){
-                Rectangle().frame(width:cursor_Layer_Store.width,height:cursor_Layer_Store.height).foregroundColor(cursor_Layer_Store.cursorLayerCellColor)
-                Text(cursor_Layer_Store.cursorText).foregroundColor(.black)
-            }
-        }
-    }
-}
+//struct Default_Cursor_Marker_View : View {
+//    @ObservedObject var cursor_Layer_Store : Cursor_Layer_Store
+//    var body: some View {
+//        return ZStack(alignment: .topLeading){
+//            ZStack(alignment: .center){
+//                Rectangle().frame(width:cursor_Layer_Store.width,height:cursor_Layer_Store.height).foregroundColor(cursor_Layer_Store.cursorLayerCellColor)
+//                Text(cursor_Layer_Store.cursorText).foregroundColor(.black)
+//            }
+//        }
+//    }
+//}

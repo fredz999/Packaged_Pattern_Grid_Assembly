@@ -219,9 +219,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         if let lclCursor = injected_cursor {
             lclCursor
         }
-        else if injected_cursor == nil{
-            Default_Cursor_Marker_View(cursor_Layer_Store: cursor_Layer_Store)
-        }
+//        else if injected_cursor == nil{
+//            Default_Cursor_Marker_View(cursor_Layer_Store: cursor_Layer_Store)
+//        }
     }
     
     @ViewBuilder public func returnNoteWriteLayer()->some View {
