@@ -48,7 +48,7 @@ public class Note_Collection {
     }
     
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
-    print("write_CellArray_Into_Note")
+        print("lowest_Data_X: ",lowest_Data_X.description,", highest_Data_X: ",highest_Data_X.description)
     // figure out this then
     // var visible_Cell_Array : [Central_Cell_Store] = []
 
