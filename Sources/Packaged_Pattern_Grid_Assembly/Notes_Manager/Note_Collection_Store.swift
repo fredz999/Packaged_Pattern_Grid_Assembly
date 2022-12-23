@@ -53,7 +53,7 @@ public class Note_Collection {
     // figure out this then
     // var visible_Cell_Array : [Central_Cell_Store] = []
     let computed_Low_X : Int = lowest_Data_X*dimensions.pattern_Grid_Cell_Sub_Unit_Count
-    let computed_High_X : Int = highest_Data_X*dimensions.pattern_Grid_Cell_Sub_Unit_Count
+    let computed_High_X : Int = (highest_Data_X*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+1
 
     var dataCellArray : [Underlying_Data_Cell] = []
 
