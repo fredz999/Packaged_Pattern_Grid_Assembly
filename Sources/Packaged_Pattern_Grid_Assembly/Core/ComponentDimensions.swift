@@ -23,10 +23,10 @@ public class ComponentDimensions : ObservableObject {
     public let DATA_final_Line_Y_Index : Int = 64
     
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 8
-    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 2
+    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 1
     
     //@Published public var pattern_Grid_Unit_Width : CGFloat = 24  // 24 or 16
-    @Published public var pattern_Grid_Unit_Width : CGFloat = 16
+    @Published public var pattern_Grid_Unit_Width : CGFloat = 8
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     
     @Published public var dataGrid_X_Unit_Count : Int = 48
@@ -61,35 +61,32 @@ public class ComponentDimensions : ObservableObject {
     public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
 
     public func flip_Timing_Signature(){
-    let count48 = pattern_Grid_Cell_Sub_Unit_Count * Central_State.Static_Central_State.currentXCursor_Slider_Position // take this find its conversion number and move the cursor there
-//    print("b4 change subUnit_Count: ",pattern_Grid_Cell_Sub_Unit_Count
-//          ,", sliderPos: ",Central_State.Static_Central_State.currentXCursor_Slider_Position
-//          ,", count48: ",count48.description)
         
-    if patternTimingConfiguration == .fourFour {
-        patternTimingConfiguration = .sixEight
-        pattern_Grid_Cell_Sub_Unit_Count = 3
-        pattern_Grid_Unit_Width = 24
-        // TODO: eval cursor position
-    }
-    else if patternTimingConfiguration == .sixEight {
-        patternTimingConfiguration = .fourFour
-        pattern_Grid_Cell_Sub_Unit_Count = 2
-        pattern_Grid_Unit_Width = 16
-    }
+        if patternTimingConfiguration == .fourFour {
+            patternTimingConfiguration = .sixEight
+            pattern_Grid_Cell_Sub_Unit_Count = 1
+            pattern_Grid_Unit_Width = 8
+            // TODO: eval cursor position
+        }
+        else if patternTimingConfiguration == .sixEight {
+            patternTimingConfiguration = .fourFour
+            pattern_Grid_Cell_Sub_Unit_Count = 1
+            pattern_Grid_Unit_Width = 8
+        }
         
-//    if let lclHslider = Central_State.Static_Central_State.h_Slider_Ref{
-//        lclHslider.moveCursorAndLineTo48Pos(pos48Param: count48)
+//    if patternTimingConfiguration == .fourFour {
+//        patternTimingConfiguration = .sixEight
+//        pattern_Grid_Cell_Sub_Unit_Count = 3
+//        pattern_Grid_Unit_Width = 24
+//        // TODO: eval cursor position
 //    }
-    //Central_State.Static_Central_State.h_Slider_Ref.moveCursorAndLineTo48Pos(pos48Param: count48)
-    
-        //function move slider pos here
+//    else if patternTimingConfiguration == .sixEight {
+//        patternTimingConfiguration = .fourFour
+//        pattern_Grid_Cell_Sub_Unit_Count = 2
+//        pattern_Grid_Unit_Width = 16
+//    }
+
         
-//    count48 = pattern_Grid_Cell_Sub_Unit_Count * Central_State.Static_Central_State.currentXCursor_Slider_Position
-//    print("after change subUnit_Count: ",pattern_Grid_Cell_Sub_Unit_Count
-//          ,", sliderPos: ",Central_State.Static_Central_State.currentXCursor_Slider_Position
-//          ,", count48: ",count48.description)
-//
     }
     
     
