@@ -105,7 +105,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         centralState.cursor_Slider_Update(new_X: newGridPos, new_Y: nil)
         
         
-        print("instructed to move to: ",newGridPos.description)
+        //print("instructed to move to: ",newGridPos.description)
     }
     
 }
