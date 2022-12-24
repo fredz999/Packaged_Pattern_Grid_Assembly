@@ -74,7 +74,6 @@ public class ComponentDimensions : ObservableObject {
         pattern_Grid_Unit_Width = 16
     }
         
-
     let currFourEight = Central_State.Static_Central_State.currentXCursor_Slider_Position * pattern_Grid_Cell_Sub_Unit_Count
     print("currX: ",Central_State.Static_Central_State.currentXCursor_Slider_Position.description
           ,", number of the 48 cells im over: ",currFourEight.description
