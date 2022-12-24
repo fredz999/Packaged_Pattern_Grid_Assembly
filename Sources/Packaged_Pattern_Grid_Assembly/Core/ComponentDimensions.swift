@@ -61,11 +61,12 @@ public class ComponentDimensions : ObservableObject {
     public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
 
     public func flip_Timing_Signature(){
-        
+    print("central state curr X: ",Central_State.Static_Central_State.currentXCursor_Slider_Position.description)
     if patternTimingConfiguration == .fourFour {
         patternTimingConfiguration = .sixEight
         pattern_Grid_Cell_Sub_Unit_Count = 3
         pattern_Grid_Unit_Width = 24
+        // TODO: eval cursor position
     }
     else if patternTimingConfiguration == .sixEight {
         patternTimingConfiguration = .fourFour

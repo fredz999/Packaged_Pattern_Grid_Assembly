@@ -42,7 +42,7 @@ public class Central_State : ObservableObject {
     
     public var central_Grid_Store : Central_Grid_Store?
     
-    public var current_Pattern_is_Triplet : Bool = false
+    //public var current_Pattern_is_Triplet : Bool = false
     //var thing : E_CentralGridTiming
     
     public func change_Pattern_Data_Length(){
@@ -74,8 +74,8 @@ public class Central_State : ObservableObject {
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
-    private var currentXCursor_Slider_Position : Int = 0
-    private var currentYCursor_Slider_Position : Int = 0
+    var currentXCursor_Slider_Position : Int = 0
+    var currentYCursor_Slider_Position : Int = 0
     public init(){}
     
     
