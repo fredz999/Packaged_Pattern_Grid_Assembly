@@ -23,7 +23,7 @@ public class ComponentDimensions : ObservableObject {
     public let DATA_final_Line_Y_Index : Int = 64
     
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 8
-    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 1
+    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 2
     
     //@Published public var pattern_Grid_Unit_Width : CGFloat = 24  // 24 or 16
     @Published public var pattern_Grid_Unit_Width : CGFloat = 8
