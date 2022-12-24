@@ -49,7 +49,7 @@ public class Note_Collection {
     
     //func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
-    print("lowest_Data_X: ",lowest_Data_X.description,", highest_Data_X: ",highest_Data_X.description)
+    print("lowest_Data_X: ",lowest_Data_X.description,", highest_Data_X: ",highest_Data_X.description,", num cells per thing: ",dimensions.pattern_Grid_Cell_Sub_Unit_Count.description)
     // figure out this then
     // var visible_Cell_Array : [Central_Cell_Store] = []
     let computed_Low_X : Int = lowest_Data_X*dimensions.pattern_Grid_Cell_Sub_Unit_Count
