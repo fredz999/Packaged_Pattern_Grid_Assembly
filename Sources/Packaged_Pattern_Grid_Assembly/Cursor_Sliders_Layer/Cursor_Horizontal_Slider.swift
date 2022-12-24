@@ -101,6 +101,8 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     func moveCursorAndLineTo48Pos(pos48Param:Int){
         let newGridPos = pos48Param/dimensions.pattern_Grid_Cell_Sub_Unit_Count
+        centralState.cursor_Slider_Update(new_X: newGridPos, new_Y: nil)
+        computedLineDisplacement = CGFloat(newGridPos) * dimensions.pattern_Grid_Unit_Width
         print("instructed to move to: ",newGridPos.description)
     }
     
