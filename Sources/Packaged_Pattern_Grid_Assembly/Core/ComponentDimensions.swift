@@ -79,33 +79,6 @@ public class ComponentDimensions : ObservableObject {
           ,", number of the 48 cells im over: ",currFourEight.description
           ,", sub unit count: ",pattern_Grid_Cell_Sub_Unit_Count.description)
 
-        
-        
-        
-        //var thing : E_CentralGridTiming
-//        if isTripletParam == true{
-//            //visualGrid_X_Unit_Count = 24
-//            dataGrid_X_Unit_Count = 24
-//
-//            ui_Unit_Width = 16
-//            ui_Unit_Height = 16
-//
-//            pattern_Grid_Unit_Width = 16
-//            pattern_Grid_Unit_Height = 16
-//
-//            //pattern_is_Triplet = false
-//        }
-//        else if isTripletParam == false{
-//            //visualGrid_X_Unit_Count = 16
-//            dataGrid_X_Unit_Count = 16
-//
-//            ui_Unit_Width = 24
-//            ui_Unit_Height = 16
-//
-//            pattern_Grid_Unit_Width = 24
-//            pattern_Grid_Unit_Height = 16
-//            //pattern_is_Triplet = true
-//        }
     }
     
     
