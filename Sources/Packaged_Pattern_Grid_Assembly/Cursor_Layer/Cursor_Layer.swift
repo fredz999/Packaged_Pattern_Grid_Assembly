@@ -49,7 +49,7 @@ public class Cursor_Layer_Store : ObservableObject {
         let floatX = CGFloat(xInt)
         let floatY = CGFloat(yInt)
         let xVal = floatX*dimensions.pattern_Grid_Unit_Width
-        print("dimensions.pattern_Grid_Unit_Width: ",dimensions.pattern_Grid_Unit_Width.description)
+        //print("dimensions.pattern_Grid_Unit_Width: ",dimensions.pattern_Grid_Unit_Width.description)
         let yVal = floatY*dimensions.pattern_Grid_Unit_Height
         offsetSize = CGSize(width: xVal, height: yVal)
     }

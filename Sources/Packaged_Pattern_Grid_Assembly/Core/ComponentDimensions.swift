@@ -78,9 +78,9 @@ public class ComponentDimensions : ObservableObject {
         pattern_Grid_Unit_Width = 16
     }
         
-    if let lclHslider = Central_State.Static_Central_State.h_Slider_Ref{
-        lclHslider.moveCursorAndLineTo48Pos(pos48Param: count48)
-    }
+//    if let lclHslider = Central_State.Static_Central_State.h_Slider_Ref{
+//        lclHslider.moveCursorAndLineTo48Pos(pos48Param: count48)
+//    }
     //Central_State.Static_Central_State.h_Slider_Ref.moveCursorAndLineTo48Pos(pos48Param: count48)
     
         //function move slider pos here

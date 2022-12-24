@@ -199,14 +199,14 @@ public class Central_State : ObservableObject {
                 centralState_Cursor_Position_Evaluation()
                 centralState_Data_Evaluation()
             }
-            else if lcl_NewX == currentXCursor_Slider_Position {
-                let proposed_Computed_X_Position = CGFloat(lcl_NewX) * dimensions.pattern_Grid_Unit_Width
-                let current_X_Position =  CGFloat(currentXCursor_Slider_Position) * dimensions.pattern_Grid_Unit_Width
-                if current_X_Position != proposed_Computed_X_Position{
-                    centralState_Cursor_Position_Evaluation()
-                    centralState_Data_Evaluation()
-                }
-            }
+//            else if lcl_NewX == currentXCursor_Slider_Position {
+//                let proposed_Computed_X_Position = CGFloat(lcl_NewX) * dimensions.pattern_Grid_Unit_Width
+//                let current_X_Position =  CGFloat(currentXCursor_Slider_Position) * dimensions.pattern_Grid_Unit_Width
+//                if current_X_Position != proposed_Computed_X_Position{
+//                    centralState_Cursor_Position_Evaluation()
+//                    centralState_Data_Evaluation()
+//                }
+//            }
         }
         if let lclNew_Y = new_Y {
             if lclNew_Y != currentYCursor_Slider_Position {
