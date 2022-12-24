@@ -62,6 +62,13 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     }
                     
                 }
+                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 1{
+                    // start then end
+                    for outerX in 0..<compositeCellCount {
+                        let newDataCell=Underlying_Data_Cell(xNumParam: outerX, yNumParam: y, statusParam: .start)
+                        newLine.dataCellArray.append(newDataCell)
+                    }
+                }
                 
                 
             }
