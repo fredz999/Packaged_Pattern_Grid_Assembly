@@ -142,41 +142,28 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     // ==================================== doing the whole grid instead of the single cells ========================================
-    public var centralGridSize : E_CentralGridTiming = .fourFour{
-        didSet{
-            handleCentralGridTimimgChange()
-        }
-    }
-    // get these set up, one time, in the beginning
-    //want to receive a type for the individual cell view
-    //individual cells are now 8 px wide and 16 tall
-    //the display of a 16 units cell background
+//    public var centralGridSize : E_CentralGridTiming = .fourFour{
+//        didSet{
+//            handleCentralGridTimimgChange()
+//        }
+//    }
     
-    var gridFourFour : [InjectedCentralCellType] = []
-    var gridSixEight : [InjectedCentralCellType] = []
     
-    @ViewBuilder public func returnDualSizeGrid() -> some View {
-        if centralGridSize == .fourFour {
- 
-        }
-        else if centralGridSize == .sixEight{
- 
-        }
-    }
+
     
-    func handleCentralGridTimimgChange(){
-        // this will do the
-        // 1: change the underlying grid
-        // 2: change the single note and increment sizes
-        // 3: single notes are now upon press up either a 16 or a 16t
-        // 4: any increment beyond a notes original length is in the new signature accommodating size
-        // I think the ting to do is to have the individual unit size as very small indeed and have the
-        // timing signature dependant increments as multiples of that very small unit size
-        // 8 is the last num that divides evenly into those two
-        // so the two sizes are 2x8 and 3x8
-        // grid props: timimg 4:4,lowestUnitSize : 8, grid_unit_width_units 3,
-        // grid props: timing 3:4,lowestUnitSize : 8, grid size 2x8
-    }
+//    var gridFourFour : [InjectedCentralCellType] = []
+//    var gridSixEight : [InjectedCentralCellType] = []
+//
+//    @ViewBuilder public func returnDualSizeGrid() -> some View {
+//        if centralGridSize == .fourFour {
+//
+//        }
+//        else if centralGridSize == .sixEight{
+//
+//        }
+//    }
+//
+//    func handleCentralGridTimimgChange(){ }
     // ==================================== doing the whole grid instead of the single cells ========================================
     
     public var centralGridSet : Bool = false
