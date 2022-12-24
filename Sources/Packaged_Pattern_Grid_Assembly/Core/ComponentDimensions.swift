@@ -61,8 +61,11 @@ public class ComponentDimensions : ObservableObject {
     public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
 
     public func flip_Timing_Signature(){
-    let count48 = pattern_Grid_Cell_Sub_Unit_Count * Central_State.Static_Central_State.currentXCursor_Slider_Position
-    print("b4 change unit_Count: ",pattern_Grid_Cell_Sub_Unit_Count,"48 pos: ",count48.description)
+    var count48 = pattern_Grid_Cell_Sub_Unit_Count * Central_State.Static_Central_State.currentXCursor_Slider_Position
+    print("b4 change subUnit_Count: ",pattern_Grid_Cell_Sub_Unit_Count
+          ,", sliderPos: ",Central_State.Static_Central_State.currentXCursor_Slider_Position
+          ,", count48: ",count48.description)
+        
     if patternTimingConfiguration == .fourFour {
         patternTimingConfiguration = .sixEight
         pattern_Grid_Cell_Sub_Unit_Count = 3
@@ -74,13 +77,11 @@ public class ComponentDimensions : ObservableObject {
         pattern_Grid_Cell_Sub_Unit_Count = 2
         pattern_Grid_Unit_Width = 16
     }
-    let count482 = pattern_Grid_Cell_Sub_Unit_Count * Central_State.Static_Central_State.currentXCursor_Slider_Position
-    print("after change unit_Count: ",pattern_Grid_Cell_Sub_Unit_Count,"48 pos: ",count482.description)
         
-    //let currFourEight = Central_State.Static_Central_State.currentXCursor_Slider_Position * pattern_Grid_Cell_Sub_Unit_Count
-//    print("currX: ",Central_State.Static_Central_State.currentXCursor_Slider_Position.description
-//          ,", number of the 48 cells im over: ",currFourEight.description
-//          ,", sub unit count: ",pattern_Grid_Cell_Sub_Unit_Count.description)
+    count48 = pattern_Grid_Cell_Sub_Unit_Count * Central_State.Static_Central_State.currentXCursor_Slider_Position
+    print("after change subUnit_Count: ",pattern_Grid_Cell_Sub_Unit_Count
+          ,", sliderPos: ",Central_State.Static_Central_State.currentXCursor_Slider_Position
+          ,", count48: ",count48.description)
 
     }
     
