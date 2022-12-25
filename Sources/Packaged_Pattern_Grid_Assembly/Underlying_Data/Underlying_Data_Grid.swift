@@ -88,24 +88,22 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
                         
                         for innerX in 0..<3{
-                            
                             let computedX = (outerX*3)+innerX
                             let dataCell = dataLine.dataCellArray[computedX]
-                            
-                            if innerX == 0{
-                                //let dataCell = dataLine.dataCellArray[computedX]
-                                if dataCell.currentType != .start{dataCell.currentType = .start}
+                            if dataCell.note_Im_In == nil{
+                                if innerX == 0{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+                                    if dataCell.currentType != .start{dataCell.currentType = .start}
+                                }
+                                else if innerX == 1{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+                                    if dataCell.currentType != .mid{dataCell.currentType = .mid}
+                                }
+                                else if innerX == 2{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+                                    if dataCell.currentType != .end{dataCell.currentType = .end}
+                                }
                             }
-                            else if innerX == 1{
-                                //let dataCell = dataLine.dataCellArray[computedX]
-                                if dataCell.currentType != .mid{dataCell.currentType = .mid}
-                            }
-                            else if innerX == 2{
-                                //let dataCell = dataLine.dataCellArray[computedX]
-                                if dataCell.currentType != .end{dataCell.currentType = .end}
-                            }
-                            
-                            
                         }
                         
                         
@@ -115,13 +113,15 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                         for innerX in 0..<2{
                             let computedX = (outerX*2)+innerX
                             let dataCell = dataLine.dataCellArray[computedX]
-                            if innerX == 0{
-                                //let dataCell = dataLine.dataCellArray[computedX]
-                                if dataCell.currentType != .start{dataCell.currentType = .start}
-                            }
-                            else if innerX == 1{
-                                //let dataCell = dataLine.dataCellArray[computedX]
-                                if dataCell.currentType != .end{dataCell.currentType = .end}
+                            if dataCell.note_Im_In == nil{
+                                if innerX == 0{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+                                    if dataCell.currentType != .start{dataCell.currentType = .start}
+                                }
+                                else if innerX == 1{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+                                    if dataCell.currentType != .end{dataCell.currentType = .end}
+                                }
                             }
                         }
                     }
