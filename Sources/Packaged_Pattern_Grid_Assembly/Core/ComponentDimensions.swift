@@ -64,14 +64,14 @@ public class ComponentDimensions : ObservableObject {
         
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
-            pattern_Grid_Cell_Sub_Unit_Count = 1
-            pattern_Grid_Unit_Width = 16
+            pattern_Grid_Cell_Sub_Unit_Count = 3
+            pattern_Grid_Unit_Width = 24
             // TODO: eval cursor position
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
-            pattern_Grid_Cell_Sub_Unit_Count = 1
-            pattern_Grid_Unit_Width = 24
+            pattern_Grid_Cell_Sub_Unit_Count = 2
+            pattern_Grid_Unit_Width = 16
         }
         
 //    if patternTimingConfiguration == .fourFour {
