@@ -31,7 +31,11 @@ public class Note_Collection {
         noteArray = newNoteArrayParam
     }
     
-    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
+    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []{
+        didSet{
+            print("p_ExternalNote_Responder_Array count: ",p_ExternalNote_Responder_Array.count.description)
+        }
+    }
     
     public func addExternalNoteResponder(newNoteResponder:P_ExternalNote_Responder){
         p_ExternalNote_Responder_Array.append(newNoteResponder)
