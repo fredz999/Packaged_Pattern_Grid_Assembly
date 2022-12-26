@@ -65,13 +65,11 @@ public class Note : ObservableObject, Identifiable, Equatable {
         self.dataCellArray = cellArray
     }
     
-    public func yieldNoteData()->(String,String,String){
+    public func yieldNoteData()->(Int,Int,Int){
         let lastElement = dataCellArray.count-1
-        let startCellNum = "first: "+dataCellArray[0].dataCell_X_Number.description
-        let length = ",length: "+dataCellArray.count.description
-        let endCellNum = ",last note: "+dataCellArray[lastElement].dataCell_X_Number.description
-       
-        
+        let startCellNum = dataCellArray[0].dataCell_X_Number
+        let length = dataCellArray.count
+        let endCellNum = dataCellArray[lastElement].dataCell_X_Number
         return (startCellNum,length,endCellNum)
     }
     
