@@ -31,11 +31,7 @@ public class Note_Collection {
         noteArray = newNoteArrayParam
     }
     
-    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []{
-        didSet{
-            print("p_ExternalNote_Responder_Array count: ",p_ExternalNote_Responder_Array.count.description)
-        }
-    }
+    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
     
     public func addExternalNoteResponder(newNoteResponder:P_ExternalNote_Responder){
         p_ExternalNote_Responder_Array.append(newNoteResponder)
@@ -53,24 +49,7 @@ public class Note_Collection {
     
     //func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
-    //print("lowest_Data_X: ",lowest_Data_X.description,", highest_Data_X: ",highest_Data_X.description,", num cells per thing: ",dimensions.pattern_Grid_Cell_Sub_Unit_Count.description)
-    // figure out this then
-    // var visible_Cell_Array : [Central_Cell_Store] = []
         
-        // 1 get where the cursor is in relation to the 0-48
-        // if the pattern is 24 long or if its 16 long
-        // 16 long, 3 cells per cursor jump
-        // @15 the cell range will be 15*3 ,15*3+1, 15*3+2
-        // so high x should actually be the very final cell of the upper
-        
-        
-//    let computed_Low_X : Int = lowest_Data_X*dimensions.pattern_Grid_Cell_Sub_Unit_Count
-//    let computed_High_X : Int = (highest_Data_X*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+(dimensions.pattern_Grid_Cell_Sub_Unit_Count-1)
-    //let computed_High_X : Int = (highest_Data_X*dimensions.pattern_Grid_Cell_Sub_Unit_Count)
-        
-    
-        
-
     var dataCellArray : [Underlying_Data_Cell] = []
 
     if data_Y < dimensions.DATA_final_Line_Y_Index {
