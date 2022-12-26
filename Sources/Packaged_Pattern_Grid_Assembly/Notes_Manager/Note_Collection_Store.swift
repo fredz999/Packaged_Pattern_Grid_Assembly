@@ -72,7 +72,6 @@ public class Note_Collection {
     if data_Y < dimensions.DATA_final_Line_Y_Index {
 
     if lowest_Data_X == highest_Data_X {
-    print("lowest_Data_X == highest_Data_X")
 
     let singleCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
 
@@ -82,7 +81,6 @@ public class Note_Collection {
 
     }
     else if lowest_Data_X == highest_Data_X-1 {
-    print("lowest_Data_X == highest_Data_X-1")
     let lowestCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
     let upperCell = data.dataLineArray[data_Y].dataCellArray[highest_Data_X]
     lowestCell.changeType(newType: .start)
@@ -92,7 +90,6 @@ public class Note_Collection {
     }
 
     else if lowest_Data_X < highest_Data_X-1 {
-        print("lowest_Data_X < highest_Data_X-1")
         for x in lowest_Data_X...highest_Data_X {
             if x == lowest_Data_X {
                 let lowCell = data.dataLineArray[data_Y].dataCellArray[x]
@@ -115,10 +112,6 @@ public class Note_Collection {
     }
     write_Note_Data(cellArrayParam: dataCellArray)
     }
-    
-    
-    
-    
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
