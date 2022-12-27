@@ -181,7 +181,11 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
     public var id = UUID()
     @Published public var dataCell_X_Number : Int
     @Published public var dataCell_Y_Number : Int
-    @Published public var isHighlighted : Bool = false
+    @Published public var isHighlighted : Bool = false{
+        didSet{
+            print("isHighlighted: ",isHighlighted.description)
+        }
+    }
     var note_Im_In : Note?
     
     @Published public var currentType : E_CellStatus // = .unassigned
@@ -204,4 +208,5 @@ public enum E_CellStatus : String {
     case mid = "mid"
     case end = "end"
     case single = "single"
+    
 }
