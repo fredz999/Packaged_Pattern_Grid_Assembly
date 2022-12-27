@@ -100,6 +100,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
+        print("cell_Swap_Underlying_Data x: ",new_Data_Cell.dataCell_X_Number.description,",y: ",new_Data_Cell.dataCell_Y_Number.description)
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
