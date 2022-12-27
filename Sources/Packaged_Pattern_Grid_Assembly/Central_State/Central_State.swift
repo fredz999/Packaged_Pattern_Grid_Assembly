@@ -230,7 +230,6 @@ public class Central_State : ObservableObject {
                 if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
                     if let lclNoteCollection = note_Collection_Ref{
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
-                        print("data eval, found note")
                     }
                 }
                 else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil{

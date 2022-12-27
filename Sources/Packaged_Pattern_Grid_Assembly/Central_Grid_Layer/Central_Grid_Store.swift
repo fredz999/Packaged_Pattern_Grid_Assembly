@@ -178,7 +178,10 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
          }
      }
      
+    // these might have to completely change , I might try to read data from this class directly
+    // in fact I think I should, this is very complex
     public var statusClosureResponder : ((E_CellStatus)->())?
+    public var isHighlightedClosureResponder : ((Bool)->())?
     public var noteClosureResponder : ((Bool)->())?
     
 
