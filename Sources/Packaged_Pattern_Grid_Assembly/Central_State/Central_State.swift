@@ -219,7 +219,7 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
         
         if let lclCursorLayer = cursor_Layer_Ref {
-            print("data eval, found cursor layer")
+            //print("data eval, found cursor layer")
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
 
@@ -236,7 +236,7 @@ public class Central_State : ObservableObject {
                 else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil{
                     if let lclNoteCollection = note_Collection_Ref{
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                        print("data eval, found no note")
+                        //print("data eval, found no note")
                     }
                 }
                 
