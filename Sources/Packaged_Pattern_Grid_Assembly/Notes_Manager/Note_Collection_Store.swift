@@ -41,7 +41,7 @@ public class Note_Collection {
         willSet{
             if let lclCurr = currentHighlightedNote,let lclNewVal = newValue{
                 if lclNewVal.id != lclCurr.id {
-                    lclCurr.highlighted = false
+                    lclCurr.note_Highlighted = false
                 }
             }
         }
@@ -99,13 +99,13 @@ public class Note_Collection {
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote{
-                lclCurrHighlighted.highlighted = false
+                lclCurrHighlighted.note_Highlighted = false
                 currentHighlightedNote = nil
             }
         }
         else if let lclNoteParam = noteParam{
                 currentHighlightedNote = lclNoteParam
-                lclNoteParam.highlighted = true
+                lclNoteParam.note_Highlighted = true
         }
     }
     

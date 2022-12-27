@@ -217,6 +217,7 @@ public class Central_State : ObservableObject {
     }
 
     func centralState_Data_Evaluation(){
+        print("data eval")
         if let lclCursorLayer = cursor_Layer_Ref {
             
             lclCursorLayer.currPosX = currentXCursor_Slider_Position

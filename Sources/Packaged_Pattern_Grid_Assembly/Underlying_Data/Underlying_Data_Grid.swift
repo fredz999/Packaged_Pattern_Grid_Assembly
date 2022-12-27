@@ -78,7 +78,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     
 
     public func changeTimingSignature_Data_Level(){
-        print("changeTimingSignature_Data_Level")
+
         let compositeCellCount = dimensions.dataGrid_X_Unit_Count/dimensions.pattern_Grid_Cell_Sub_Unit_Count
         for dataLine in dataLineArray {
                 for outerX in 0..<compositeCellCount {
@@ -181,11 +181,7 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
     public var id = UUID()
     @Published public var dataCell_X_Number : Int
     @Published public var dataCell_Y_Number : Int
-    @Published public var isHighlighted : Bool = false{
-        didSet{
-            print("isHighlighted: ",isHighlighted.description)
-        }
-    }
+    @Published public var isHighlighted : Bool = false
     var note_Im_In : Note?
     
     @Published public var currentType : E_CellStatus // = .unassigned

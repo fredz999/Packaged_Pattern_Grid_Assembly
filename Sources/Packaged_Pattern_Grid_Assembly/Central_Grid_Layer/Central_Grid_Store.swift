@@ -100,14 +100,12 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
-        print("cell_Swap_Underlying_Data x: ",new_Data_Cell.dataCell_X_Number.description,",y: ",new_Data_Cell.dataCell_Y_Number.description)
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
         , newHighlightedStatus: new_Data_Cell.isHighlighted
         , newCellStatus: new_Data_Cell.currentType
         , newNoteImIn: new_Data_Cell.note_Im_In)
-        
     }
     
     
@@ -158,15 +156,11 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     @Published public var referenced_dataCell_X_Number : Int
     @Published public var referenced_dataCell_Y_Number : Int
     @Published public var referenced_isHighlighted : Bool = false
-    //@Published public var referenced_currentStatus : E_CellStatus
     @Published public var referenced_currentStatus : E_CellStatus
     {
         didSet {
             if let lclStatusClosureResponder = statusClosureResponder {
                 lclStatusClosureResponder(referenced_currentStatus)
-            }
-            else if statusClosureResponder == nil{
-                print("statusClosureResponder apparently nil")
             }
         }
     }

@@ -21,9 +21,9 @@ public class Note : ObservableObject, Identifiable, Equatable {
     var central_State = Central_State.Static_Central_State
     var note_Y_Number : Int
     
-    var highlighted : Bool = false {
+    var note_Highlighted : Bool = false {
         didSet {
-            if highlighted == true {
+            if note_Highlighted == true {
                 for cell in dataCellArray {
                     cell.isHighlighted = true
                     
@@ -40,7 +40,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     
                 }
             }
-            else if highlighted == false {
+            else if note_Highlighted == false {
                 for cell in dataCellArray {
                     cell.isHighlighted = false
                     
@@ -238,7 +238,6 @@ public class Note : ObservableObject, Identifiable, Equatable {
     // have to trigger the data_vals_Update for each cell.....how....?
     //  swapData
     func redrawCellArray(){
-        print("redrawCellArray()")
         // this is now never the case
 //        if dataCellArray.count == 1{
 //            dataCellArray[0].changeType(newType: .single)
@@ -275,7 +274,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
     
     func check_For_Highlight(){
         if check_Cursor_Within() == true {
-            highlighted = true
+            note_Highlighted = true
         }
         else {
             parentRef.currentHighlightedNote = nil
