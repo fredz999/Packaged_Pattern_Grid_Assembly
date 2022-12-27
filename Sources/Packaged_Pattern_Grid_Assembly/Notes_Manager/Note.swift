@@ -24,15 +24,15 @@ public class Note : ObservableObject, Identifiable, Equatable {
     var note_Highlighted : Bool = false {
         didSet {
             if note_Highlighted == true {
-                for cell in dataCellArray {
-                    cell.isHighlighted = true
+                for dataCell in dataCellArray {
+                    dataCell.isHighlighted = true
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                
                     if let lcl_VisGrid = central_State.central_Grid_Store {
                         if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0{
-                            let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
-                            visCell.cell_Swap_Underlying_Data(new_Data_Cell: cell)
+                            let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+                            visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
                         }
                     }
                     
@@ -41,15 +41,15 @@ public class Note : ObservableObject, Identifiable, Equatable {
                 }
             }
             else if note_Highlighted == false {
-                for cell in dataCellArray {
-                    cell.isHighlighted = false
+                for dataCell in dataCellArray {
+                    dataCell.isHighlighted = false
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                     // TODO: check this exists b4 attempting
                     if let lcl_VisGrid = central_State.central_Grid_Store {
                         if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                            let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[cell.dataCell_X_Number]
-                            visCell.cell_Swap_Underlying_Data(new_Data_Cell: cell)
+                            let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+                            visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
                         }
                     }
                     central_State.a_Note_Is_Highlighted = false
