@@ -11,13 +11,8 @@ import SwiftUI
 public class Central_Grid_Store : ObservableObject {
     let dimensions = ComponentDimensions.StaticDimensions
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
-    
-//    public var gridUnitsHorz:Int
-//    public var gridUnitsVert:Int
 
     public init(){
-//        gridUnitsHorz = dimensions.dataGrid_X_Unit_Count //unitsHorizontal
-//        gridUnitsVert = dimensions.visualGrid_Y_Unit_Count //unitsVertical
         populateLineArray()
     }
     
@@ -68,12 +63,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
     }
     
-//    func respond_To_Timing_Signature_Change_Grid_Line_Level(){
-//        for cell in visual_Cell_Store_Array {
-//            cell.respond_To_Timing_Signature_Change_Cell_Level()
-//        }
-//    }
-    
 }
 
 public class Central_Cell_Store : ObservableObject,Identifiable {
@@ -108,49 +97,4 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         , newNoteImIn: new_Data_Cell.note_Im_In)
     }
     
-    
-    
-    
-    
-    // a function here that issues changes to a sequence of optional closures
-    
-
-    
-//    func respond_To_Timing_Signature_Change_Cell_Level(){
-//        let xInt : Int = self.data_Vals_Holder.referenced_dataCell_X_Number
-//        let yInt : Int = self.data_Vals_Holder.referenced_dataCell_Y_Number
-//        let highlidhtStatus = self.data_Vals_Holder.referenced_isHighlighted
-//        let cellStatus = self.data_Vals_Holder.referenced_currentStatus
-//        let noteimIn = self.data_Vals_Holder.referenced_note_Im_In
-//
-//
-//        self.data_Vals_Holder.updateValsFromNewData(newXNum: xInt
-//                                                    , newYNum: yInt
-//                                                    , newHighlightedStatus: highlidhtStatus
-//                                                    , newCellStatus: cellStatus, newNoteImIn: noteimIn)
-////        self.xFloat = CGFloat(x_Index) * dimensions.pattern_Grid_Unit_Width
-////        self.yFloat = CGFloat(parent_Line_Ref.y_Index) * dimensions.pattern_Grid_Unit_Height
-//        //redraw the cells
-////        if dimensions.patternTimingConfiguration == .fourFour{
-////            // the cells are three sub units wide and there are 16
-////
-////        }
-////        else if dimensions.patternTimingConfiguration == .fourFour{
-////            // the cells are two sub units wide and there are 24
-////
-////        }
-//        //self.data_Vals_Holder.handle_Timing_Signature_Change()
-//
-//    }
-    
-    //func
-    
-    //@Published var which_Timing_Type :
-    
 }
-
-
-
-
-// this will be a stateObject
-

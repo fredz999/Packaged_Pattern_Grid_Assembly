@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// need all this on the other side
 public struct Data_Cell_Display_View<UnassignedView:View,StartView:View,MidView:View,EndView:View,SingleView:View> : View {
     
     //@ObservedObject public var current_Underlying_Data_Cell : Underlying_Data_Cell
@@ -43,15 +44,15 @@ public struct Data_Cell_Display_View<UnassignedView:View,StartView:View,MidView:
 //        if current_Data_Vals_Holder.referenced_currentStatus == .unassigned {
 //            unassigned_View
 //        }
-        if current_Data_Vals_Holder.referenced_currentStatus == .start {
-                self.start_View
-        }
-        else if current_Data_Vals_Holder.referenced_currentStatus == .mid {
-                self.mid_View
-        }
-        else if current_Data_Vals_Holder.referenced_currentStatus == .end {
-                self.end_View
-        }
+//        if current_Data_Vals_Holder.referenced_currentStatus == .start_Blank {
+//                self.start_View
+//        }
+//        else if current_Data_Vals_Holder.referenced_currentStatus == .mid {
+//                self.mid_View
+//        }
+//        else if current_Data_Vals_Holder.referenced_currentStatus == .end {
+//                self.end_View
+//        }
 //        else if current_Data_Vals_Holder.referenced_currentStatus == .single {
 //                self.single_View
 //        }

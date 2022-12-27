@@ -31,15 +31,15 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                         let computedX = (outerX*3)+innerX
                         
                         if innerX == 0{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start)
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
                             newLine.dataCellArray.append(newDataCell)
                         }
                         else if innerX == 1{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid)
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
                             newLine.dataCellArray.append(newDataCell)
                         }
                         else if innerX == 2{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end)
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
                             newLine.dataCellArray.append(newDataCell)
                         }
                         
@@ -52,24 +52,16 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     for innerX in 0..<2{
                         let computedX = (outerX*2)+innerX
                         if innerX == 0{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start)
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
                             newLine.dataCellArray.append(newDataCell)
                         }
                         else if innerX == 1{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end)
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
                             newLine.dataCellArray.append(newDataCell)
                         }
                     }
                     
                 }
-//                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 1{
-//                    // start then end
-//                    for outerX in 0..<compositeCellCount {
-//                        let newDataCell=Underlying_Data_Cell(xNumParam: outerX, yNumParam: y, statusParam: .start)
-//                        newLine.dataCellArray.append(newDataCell)
-//                    }
-//                }
-                
                 
             }
             dataLineArray.append(newLine)
@@ -93,15 +85,15 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                             if dataCell.note_Im_In == nil{
                                 if innerX == 0{
                                     //let dataCell = dataLine.dataCellArray[computedX]
-                                    if dataCell.currentType != .start{dataCell.currentType = .start}
+                                    if dataCell.currentType != .start_Blank{dataCell.currentType = .start_Blank}
                                 }
                                 else if innerX == 1{
                                     //let dataCell = dataLine.dataCellArray[computedX]
-                                    if dataCell.currentType != .mid{dataCell.currentType = .mid}
+                                    if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
                                 }
                                 else if innerX == 2{
                                     //let dataCell = dataLine.dataCellArray[computedX]
-                                    if dataCell.currentType != .end{dataCell.currentType = .end}
+                                    if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
                                 }
                             }
                         }
@@ -116,53 +108,17 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                             if dataCell.note_Im_In == nil{
                                 if innerX == 0{
                                     //let dataCell = dataLine.dataCellArray[computedX]
-                                    if dataCell.currentType != .start{dataCell.currentType = .start}
+                                    if dataCell.currentType != .start_Blank{dataCell.currentType = .start_Blank}
                                 }
                                 else if innerX == 1{
                                     //let dataCell = dataLine.dataCellArray[computedX]
-                                    if dataCell.currentType != .end{dataCell.currentType = .end}
+                                    if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
                                 }
                             }
                         }
                     }
-                    
-                    
-                    
-//                    if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
-//                        for innerX in 0..<3{
-//                            let computedX = (outerX*3)+innerX
-//                            if innerX == 0{
-//                                let dataCell = dataLine.dataCellArray[computedX]
-//                                if dataCell.currentType != .start{dataCell.currentType = .start}
-//                            }
-//                            else if innerX == 1{
-//                                let dataCell = dataLine.dataCellArray[computedX]
-//                                if dataCell.currentType != .mid{dataCell.currentType = .mid}
-//                            }
-//                            else if innerX == 2{
-//                                let dataCell = dataLine.dataCellArray[computedX]
-//                                if dataCell.currentType != .end{dataCell.currentType = .end}
-//                            }
-//                        }
-//                    }
-//                    else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 2{
-//                        for innerX in 0..<2{
-//                            let computedX = (outerX*2)+innerX
-//                            if innerX == 0{
-//                                let dataCell = dataLine.dataCellArray[computedX]
-//                                if dataCell.currentType != .start{dataCell.currentType = .start}
-//                            }
-//                            else if innerX == 1{
-//                                let dataCell = dataLine.dataCellArray[computedX]
-//                                if dataCell.currentType != .end{dataCell.currentType = .end}
-//                            }
-//                        }
-//                    }
-                    
-                    
-                    
-                    
-                }
+ 
+            }
         }
         
     }
@@ -200,9 +156,17 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
 
 public enum E_CellStatus : String {
     //case unassigned
-    case start = "start"
-    case mid = "mid"
-    case end = "end"
-    case single = "single"
+    case start_Blank = "start_Blank"
+    case mid_Blank = "mid_Blank"
+    case end_Blank = "end_Blank"
+    
+    case start_Note = "start_Note"
+    case mid_Note = "mid_Note"
+    case end_Note = "end_Note"
+    case single_Note = "single_Note"
+    
+//    case start_Note_Highlighted = "start_Note_Highlighted"
+//    case mid_Note_Highlighted = "mid_Note_Highlighted"
+//    case end_Note_Highlighted = "end_Note_Highlighted"
     
 }
