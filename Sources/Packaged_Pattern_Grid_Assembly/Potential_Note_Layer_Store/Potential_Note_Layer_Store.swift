@@ -47,14 +47,14 @@ public class Potential_Note_Layer_Store : ObservableObject {
         if let lclInitialX = potential_Initial_Grid_X,let initialY = potential_Initial_Grid_Y,let currX = potential_Current_Grid_X {
             
             if lclInitialX <= currX {
-                x_Offset = dimensions.pattern_Grid_Unit_Width * CGFloat(lclInitialX)
-                weeedth = (dimensions.pattern_Grid_Unit_Width * CGFloat(currX+1)) - dimensions.pattern_Grid_Unit_Width * CGFloat(lclInitialX)
-                y_Offset = dimensions.pattern_Grid_Unit_Height * CGFloat(initialY)
+                x_Offset = dimensions.cursor_X_Jump * CGFloat(lclInitialX)
+                weeedth = (dimensions.cursor_X_Jump * CGFloat(currX+1)) - dimensions.cursor_X_Jump * CGFloat(lclInitialX)
+                y_Offset = dimensions.cursor_X_Jump * CGFloat(initialY)
             }
             else if lclInitialX > currX {
-                x_Offset = dimensions.pattern_Grid_Unit_Width * CGFloat(currX)
-                weeedth = (dimensions.pattern_Grid_Unit_Width * CGFloat(lclInitialX+1)) - dimensions.pattern_Grid_Unit_Width * CGFloat(currX)
-                y_Offset = dimensions.pattern_Grid_Unit_Height * CGFloat(initialY)
+                x_Offset = dimensions.cursor_X_Jump * CGFloat(currX)
+                weeedth = (dimensions.cursor_X_Jump * CGFloat(lclInitialX+1)) - dimensions.cursor_X_Jump * CGFloat(currX)
+                y_Offset = dimensions.cursor_X_Jump * CGFloat(initialY)
             }
             
         }
@@ -84,18 +84,18 @@ public class Potential_Note_Layer_Store : ObservableObject {
 //    }
 //}
 
-struct Default_Potential_Note_View : View {
-    
-    @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store
-    let dimensions = ComponentDimensions.StaticDimensions
-    let colors = ComponentColors.StaticColors
-    
-    var body: some View {
-        ZStack(alignment: .topLeading){
-            Rectangle()
-                .frame(width: potential_Note_Layer_Store.weeedth ,height: dimensions.pattern_Grid_Unit_Height)
-                .foregroundColor(colors.potentialColor)
-                .offset(x:potential_Note_Layer_Store.x_Offset,y:potential_Note_Layer_Store.y_Offset)
-        }
-    }
-}
+//struct Default_Potential_Note_View : View {
+//    
+//    @ObservedObject var potential_Note_Layer_Store : Potential_Note_Layer_Store
+//    let dimensions = ComponentDimensions.StaticDimensions
+//    let colors = ComponentColors.StaticColors
+//    
+//    var body: some View {
+//        ZStack(alignment: .topLeading){
+//            Rectangle()
+//                .frame(width: potential_Note_Layer_Store.weeedth ,height: dimensions.pattern_Grid_Unit_Height)
+//                .foregroundColor(colors.potentialColor)
+//                .offset(x:potential_Note_Layer_Store.x_Offset,y:potential_Note_Layer_Store.y_Offset)
+//        }
+//    }
+//}

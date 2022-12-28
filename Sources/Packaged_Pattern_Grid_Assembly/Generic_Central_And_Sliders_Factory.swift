@@ -225,9 +225,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         if let lclInjectedPotentialNoteView = injected_potential_Note_View {
             lclInjectedPotentialNoteView
         }
-        else if injected_potential_Note_View == nil {
-            Default_Potential_Note_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
-        }
+//        else if injected_potential_Note_View == nil {
+//            Default_Potential_Note_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
+//        }
     }
     
     deinit {
