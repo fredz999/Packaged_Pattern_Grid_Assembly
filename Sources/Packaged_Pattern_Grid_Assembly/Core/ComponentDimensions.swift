@@ -63,14 +63,17 @@ public class ComponentDimensions : ObservableObject {
     public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
 
     public func flip_Timing_Signature(){
+        print("4:4 hit, cursor_X_Jump: ",cursor_X_Jump.description)
         
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 3
+            cursor_X_Jump = 24
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 2
+            cursor_X_Jump = 16
         }
 
     }

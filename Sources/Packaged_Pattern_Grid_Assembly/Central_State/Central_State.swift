@@ -220,10 +220,12 @@ public class Central_State : ObservableObject {
         
         if let lclCursorLayer = cursor_Layer_Ref {
             //print("data eval, found cursor layer")
-            lclCursorLayer.currPosX = currentXCursor_Slider_Position*2
-            lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
             
-            print("currentXCursor_Slider_Position: ",currentXCursor_Slider_Position.description)
+            let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Unit_Width)
+            
+            lclCursorLayer.currPosX = currentXCursor_Slider_Position*multiplier
+            
+            lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
                 
