@@ -47,16 +47,24 @@ public class Note_Collection {
         }
     }
     
- 
+    //func write_CellArray_Into_Note(computed_Lowest_Data_X:Int,computed_Highest_Data_X:Int,data_Y:Int) {
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
-        print("lowest_Data_X: ",lowest_Data_X.description,", highest_Data_X: ",highest_Data_X.description)
+    
+        // atm its 2x
+    let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Unit_Width)
+        
+    let computed_Lowest_Data_X = multiplier*lowest_Data_X
+    let computed_Highest_Data_X = multiplier*highest_Data_X
+        
+    print("lowest_Data_X: ",computed_Lowest_Data_X.description,", highest_Data_X: ",computed_Highest_Data_X.description)
+        
     var dataCellArray : [Underlying_Data_Cell] = []
 
     if data_Y < dimensions.DATA_final_Line_Y_Index {
 
-    if lowest_Data_X == highest_Data_X {
+    if computed_Lowest_Data_X == computed_Highest_Data_X {
 
-    let singleCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
+    let singleCell = data.dataLineArray[data_Y].dataCellArray[computed_Lowest_Data_X]
 
     //TODO: handle single note now requiring multiple cells
         singleCell.changeType(newType: .single_Note)
@@ -64,28 +72,28 @@ public class Note_Collection {
     dataCellArray.append(singleCell)
 
     }
-    else if lowest_Data_X == highest_Data_X-1 {
-    let lowestCell = data.dataLineArray[data_Y].dataCellArray[lowest_Data_X]
-    let upperCell = data.dataLineArray[data_Y].dataCellArray[highest_Data_X]
+    else if computed_Lowest_Data_X == computed_Highest_Data_X-1 {
+    let lowestCell = data.dataLineArray[data_Y].dataCellArray[computed_Lowest_Data_X]
+    let upperCell = data.dataLineArray[data_Y].dataCellArray[computed_Highest_Data_X]
     lowestCell.changeType(newType: .start_Note)
     dataCellArray.append(lowestCell)
     upperCell.changeType(newType: .end_Note)
     dataCellArray.append(upperCell)
     }
 
-    else if lowest_Data_X < highest_Data_X-1 {
-        for x in lowest_Data_X...highest_Data_X {
-            if x == lowest_Data_X {
+    else if computed_Lowest_Data_X < computed_Highest_Data_X-1 {
+        for x in computed_Lowest_Data_X...computed_Highest_Data_X {
+            if x == computed_Lowest_Data_X {
                 let lowCell = data.dataLineArray[data_Y].dataCellArray[x]
                 lowCell.changeType(newType: .start_Note)
                 dataCellArray.append(lowCell)
             }
-            else if x > lowest_Data_X,x < highest_Data_X{
+            else if x > computed_Lowest_Data_X,x < computed_Highest_Data_X{
                 let midCell = data.dataLineArray[data_Y].dataCellArray[x]
                 midCell.changeType(newType: .mid_Note)
                 dataCellArray.append(midCell)
             }
-            else if x == highest_Data_X{
+            else if x == computed_Highest_Data_X{
                 let upperCell = data.dataLineArray[data_Y].dataCellArray[x]
                 upperCell.changeType(newType: .end_Note)
                 dataCellArray.append(upperCell)
