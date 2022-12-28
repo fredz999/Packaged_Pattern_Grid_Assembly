@@ -16,10 +16,6 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public let dimensions = ComponentDimensions.StaticDimensions
     
-//    public var slider_View : SliderView
-//
-//    public var slider_Line_View : SliderLineView
-    
     @Published public var computedLineDisplacement: CGFloat = 0
     
     @Published public var accumulatedDrag : CGFloat = 0
@@ -88,10 +84,10 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
     
     public func calculateCursorCellXPos(){
-        let divided = currentVal/dimensions.pattern_Grid_Unit_Width
+        let divided = currentVal/dimensions.cursor_X_Jump
         let intDivided = Int(divided)
         centralState.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
-        computedLineDisplacement = CGFloat(intDivided) * dimensions.pattern_Grid_Unit_Width
+        computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
     }
     
 }
