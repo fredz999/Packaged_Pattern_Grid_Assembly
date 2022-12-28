@@ -52,9 +52,10 @@ public class Note_Collection {
     
         // atm its 2x
     let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Unit_Width)
+    let addition = 1
         
     let computed_Lowest_Data_X = multiplier*lowest_Data_X
-    let computed_Highest_Data_X = multiplier*highest_Data_X
+    let computed_Highest_Data_X = (multiplier*highest_Data_X)+addition
         
     var dataCellArray : [Underlying_Data_Cell] = []
 
@@ -65,7 +66,7 @@ public class Note_Collection {
     let singleCell = data.dataLineArray[data_Y].dataCellArray[computed_Lowest_Data_X]
 
     //TODO: handle single note now requiring multiple cells
-        singleCell.changeType(newType: .single_Note)
+    singleCell.changeType(newType: .single_Note)
 
     dataCellArray.append(singleCell)
 
