@@ -48,9 +48,8 @@ public class Cursor_Layer_Store : ObservableObject {
     func set_Cursor_Pos(xInt:Int,yInt:Int){
         let floatX = CGFloat(xInt)
         let floatY = CGFloat(yInt)
-        let xVal = floatX*dimensions.pattern_Grid_Unit_Width
-
-        let yVal = floatY*dimensions.pattern_Grid_Unit_Height
+        let xVal = floatX*dimensions.cursor_X_Jump
+        let yVal = floatY*dimensions.cursor_Y_Jump
         offsetSize = CGSize(width: xVal, height: yVal)
     }
 

@@ -25,7 +25,8 @@ public class ComponentDimensions : ObservableObject {
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 8
     @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 2
     
-    //@Published public var pattern_Grid_Unit_Width : CGFloat = 24  // 24 or 16
+    @Published public var cursor_X_Jump : CGFloat = 8
+    @Published public var cursor_Y_Jump : CGFloat = 16
     @Published public var pattern_Grid_Unit_Width : CGFloat = 8
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     
@@ -65,28 +66,12 @@ public class ComponentDimensions : ObservableObject {
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 3
-            //pattern_Grid_Unit_Width = 8
-            // TODO: eval cursor position
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 2
-            //pattern_Grid_Unit_Width = 8
         }
-        
-//    if patternTimingConfiguration == .fourFour {
-//        patternTimingConfiguration = .sixEight
-//        pattern_Grid_Cell_Sub_Unit_Count = 3
-//        pattern_Grid_Unit_Width = 24
-//        // TODO: eval cursor position
-//    }
-//    else if patternTimingConfiguration == .sixEight {
-//        patternTimingConfiguration = .fourFour
-//        pattern_Grid_Cell_Sub_Unit_Count = 2
-//        pattern_Grid_Unit_Width = 16
-//    }
 
-        
     }
     
     
