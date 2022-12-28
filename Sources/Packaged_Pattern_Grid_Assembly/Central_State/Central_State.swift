@@ -222,7 +222,7 @@ public class Central_State : ObservableObject {
             //print("data eval, found cursor layer")
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
-
+            print("currentXCursor_Slider_Position: ",currentXCursor_Slider_Position.description)
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
                 
                 lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
