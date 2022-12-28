@@ -56,8 +56,6 @@ public class Note_Collection {
     let computed_Lowest_Data_X = multiplier*lowest_Data_X
     let computed_Highest_Data_X = multiplier*highest_Data_X
         
-    print("lowest_Data_X: ",computed_Lowest_Data_X.description,", highest_Data_X: ",computed_Highest_Data_X.description)
-        
     var dataCellArray : [Underlying_Data_Cell] = []
 
     if data_Y < dimensions.DATA_final_Line_Y_Index {

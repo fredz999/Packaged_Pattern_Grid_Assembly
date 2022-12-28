@@ -12,7 +12,7 @@ import SwiftUI
 // then in the generic assembly decide at runtime whether or not to use the injected factory methods
 public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
-    public let centralState = Central_State.Static_Central_State
+    public let centralState_H_Slider = Central_State.Static_Central_State
     
     public let dimensions = ComponentDimensions.StaticDimensions
     
@@ -86,7 +86,8 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public func calculateCursorCellXPos(){
         let divided = currentVal/dimensions.cursor_X_Jump
         let intDivided = Int(divided)
-        centralState.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
+        print("intDivided: ",intDivided.description)
+        centralState_H_Slider.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
         computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
     }
     
