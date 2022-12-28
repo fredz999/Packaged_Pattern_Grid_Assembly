@@ -40,19 +40,14 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
       }
     }
     
-    
-    //public init(sliderParam:SliderView,sliderLineParam:SliderLineView){
-    public init(){
-//        slider_View = sliderParam
-//        slider_Line_View = sliderLineParam
-    }
+    public init(){}
     
     public func handleDrag(inputParam:CGFloat){
-        if (inputParam + accumulatedDrag) <= (dimensions.Horz_Cursor_Slider_Width-dimensions.pattern_Grid_Unit_Width),(inputParam + accumulatedDrag) >= 0 {
+        if (inputParam + accumulatedDrag) <= (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump),(inputParam + accumulatedDrag) >= 0 {
             currentVal = inputParam + accumulatedDrag
         }
         else if (inputParam + accumulatedDrag) > (dimensions.Horz_Cursor_Slider_Width-dimensions.pattern_Grid_Unit_Width) {
-            currentVal = (dimensions.Horz_Cursor_Slider_Width-dimensions.pattern_Grid_Unit_Width)
+            currentVal = (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump)
         }
         else if (inputParam + accumulatedDrag) < 0 {
             currentVal = 0
@@ -61,23 +56,23 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         
     public func artificially_H_Increment(){
         
-        accumulatedDrag += dimensions.pattern_Grid_Unit_Width
+        accumulatedDrag += dimensions.cursor_X_Jump
 
-        if (accumulatedDrag) <= (dimensions.Horz_Cursor_Slider_Width-dimensions.pattern_Grid_Unit_Width),accumulatedDrag >= 0{
+        if (accumulatedDrag) <= (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump),accumulatedDrag >= 0{
             currentVal = accumulatedDrag
         }
 
-        else if (accumulatedDrag) > (dimensions.Horz_Cursor_Slider_Width-dimensions.pattern_Grid_Unit_Width) {
-            accumulatedDrag = (dimensions.Horz_Cursor_Slider_Width-dimensions.pattern_Grid_Unit_Width)
-            currentVal = (dimensions.Horz_Cursor_Slider_Width-dimensions.pattern_Grid_Unit_Width)
+        else if (accumulatedDrag) > (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump) {
+            accumulatedDrag = (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump)
+            currentVal = (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump)
         }
 
     }
 
     public func artificially_H_Decrement(){
-        accumulatedDrag -= dimensions.pattern_Grid_Unit_Width
+        accumulatedDrag -= dimensions.cursor_X_Jump
         
-        if (accumulatedDrag) <= (dimensions.Horz_Cursor_Slider_Width-dimensions.pattern_Grid_Unit_Width),(accumulatedDrag) >= 0 {
+        if (accumulatedDrag) <= (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump),(accumulatedDrag) >= 0 {
             currentVal = accumulatedDrag
         }
 

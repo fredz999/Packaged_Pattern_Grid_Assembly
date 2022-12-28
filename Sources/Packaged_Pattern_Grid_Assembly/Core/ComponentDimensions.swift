@@ -25,6 +25,7 @@ public class ComponentDimensions : ObservableObject {
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 8
     @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 2
     
+    @Published public var curr_cursor_X_Offset : CGFloat = 0
     @Published public var cursor_X_Jump : CGFloat = 16
     @Published public var cursor_Y_Jump : CGFloat = 16
     @Published public var pattern_Grid_Unit_Width : CGFloat = 8
