@@ -47,9 +47,9 @@ public class Note_Collection {
         }
     }
     
-    //func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
+ 
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
-        
+        print("lowest_Data_X: ",lowest_Data_X.description,", highest_Data_X: ",highest_Data_X.description)
     var dataCellArray : [Underlying_Data_Cell] = []
 
     if data_Y < dimensions.DATA_final_Line_Y_Index {
