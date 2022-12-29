@@ -77,10 +77,10 @@ public class Note : ObservableObject, Identifiable, Equatable {
         for cell in dataCellArray{
             cell.note_Im_In = nil
             //TODO: subCells
-            print("initial type: ",cell.currentType.rawValue)
-            if cell.currentType == .start_Note{cell.currentType = .start_Blank}
-            else if cell.currentType == .mid_Note{cell.currentType = .mid_Blank}
-            else if cell.currentType == .end_Note{cell.currentType = .end_Blank}
+            //print("initial type: ",cell.currentType.rawValue)
+            if cell.currentType == .start_Note{cell.changeType(newType: .start_Blank)}
+            else if cell.currentType == .mid_Note{cell.changeType(newType: .mid_Blank)}
+            else if cell.currentType == .end_Note{cell.changeType(newType: .end_Blank)}
         }
     }
     
