@@ -100,17 +100,15 @@ public class Note : ObservableObject, Identifiable, Equatable {
             }
         }
         else if dimensions.patternTimingConfiguration == .sixEight{
+            var innerX : Int = 0
             for outerX in 0..<dataCellArray.count{
-                for innerX in 0..<2{
-                    let computedX = (outerX*2)+innerX
-                    print("computedX: ",computedX.description)
-//                    if innerX == 0{
-//                        dataCellArray[computedX].reset_Type(newType: .start_Blank)
-//                    }
-//                    else if innerX == 1{
-//                        dataCellArray[computedX].reset_Type(newType: .end_Blank)
-//                    }
-
+                if innerX == 0{
+                    dataCellArray[outerX].reset_Type(newType: .start_Blank)
+                    innerX = 1
+                }
+                else if innerX == 1{
+                    dataCellArray[outerX].reset_Type(newType: .end_Blank)
+                    innerX = 0
                 }
             }
         }
