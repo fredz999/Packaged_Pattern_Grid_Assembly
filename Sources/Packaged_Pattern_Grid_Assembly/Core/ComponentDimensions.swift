@@ -60,7 +60,7 @@ public class ComponentDimensions : ObservableObject {
         return returnSize
     }
     
-    public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
+    public var patternTimingConfiguration : E_CentralGridTiming = .sixEight
 
     public func flip_Timing_Signature(){
         // potential layer is somehow getting affected by this
