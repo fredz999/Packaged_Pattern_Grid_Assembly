@@ -82,20 +82,19 @@ public class Note : ObservableObject, Identifiable, Equatable {
             cell.change_Highlight(highlightStatusParam: false)
         }
         if dimensions.patternTimingConfiguration == .fourFour{
+            var innerX : Int = 0
             for outerX in 0..<dataCellArray.count{
-                for innerX in 0..<3{
-                    let computedX = (outerX*3)+innerX
-                    
-                    if innerX == 0{
-                        dataCellArray[computedX].reset_Type(newType: .start_Blank)
-                    }
-                    else if innerX == 1{
-                        dataCellArray[computedX].reset_Type(newType: .mid_Blank)
-                    }
-                    else if innerX == 2{
-                        dataCellArray[computedX].reset_Type(newType: .end_Blank)
-                    }
-                    
+                if innerX == 0{
+                    dataCellArray[outerX].reset_Type(newType: .start_Blank)
+                    innerX = 1
+                }
+                else if innerX == 1{
+                    dataCellArray[outerX].reset_Type(newType: .mid_Blank)
+                    innerX = 2
+                }
+                else if innerX == 2{
+                    dataCellArray[outerX].reset_Type(newType: .end_Blank)
+                    innerX = 0
                 }
             }
         }
@@ -112,7 +111,6 @@ public class Note : ObservableObject, Identifiable, Equatable {
                 }
             }
         }
-
     }
     
     func rightSide_Expansion(){
