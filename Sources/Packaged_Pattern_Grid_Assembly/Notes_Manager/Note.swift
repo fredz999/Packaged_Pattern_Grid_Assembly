@@ -81,7 +81,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             cell.note_Im_In = nil
             cell.change_Highlight(highlightStatusParam: false)
         }
-        if dimensions.patternTimingConfiguration == .sixEight{
+        if dimensions.patternTimingConfiguration == .fourFour{
             for outerX in 0..<dataCellArray.count{
                 for innerX in 0..<3{
                     let computedX = (outerX*3)+innerX
@@ -99,7 +99,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                 }
             }
         }
-        else if dimensions.patternTimingConfiguration == .fourFour{
+        else if dimensions.patternTimingConfiguration == .sixEight{
             for outerX in 0..<dataCellArray.count{
                 for innerX in 0..<2{
                     let computedX = (outerX*2)+innerX
