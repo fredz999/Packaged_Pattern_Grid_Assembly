@@ -157,7 +157,6 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
 //            , newHighlightedStatus: false
 //            , newCellStatus: newType, newNoteImIn: nil)
             lcl_Data_Vals.referenced_currentStatus = newType
-            lcl_Data_Vals.referenced_isHighlighted = false
         }
     }
     

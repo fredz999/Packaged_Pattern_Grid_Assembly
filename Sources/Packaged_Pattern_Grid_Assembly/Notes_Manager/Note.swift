@@ -86,6 +86,9 @@ public class Note : ObservableObject, Identifiable, Equatable {
             else if cell.currentType == .end_Note{
                 cell.changeType(newType: .end_Blank)
             }
+            if cell.isHighlighted == true{
+                cell.isHighlighted = false
+            }
         }
     }
     
