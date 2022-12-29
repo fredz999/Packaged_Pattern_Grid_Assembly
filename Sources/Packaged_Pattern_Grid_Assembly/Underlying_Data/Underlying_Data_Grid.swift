@@ -142,11 +142,16 @@ public class Underlying_Data_Cell:Identifiable {
     weak var currentConnectedDataVals : Data_Vals_Holder?
     
     public var currentType : E_CellStatus // = .unassigned
+    var note_Reset_Status : E_CellStatus
     
     public init(xNumParam:Int,yNumParam:Int,statusParam:E_CellStatus){
         dataCell_X_Number = xNumParam
         dataCell_Y_Number = yNumParam
         currentType = statusParam
+        note_Reset_Status = statusParam
+        if statusParam != .start_Blank || statusParam != .mid_Blank{
+            print(statusParam.rawValue)
+        }
     }
     
     public func reset_Type(newType:E_CellStatus){
