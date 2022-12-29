@@ -65,7 +65,9 @@ public class ComponentDimensions : ObservableObject {
     public func flip_Timing_Signature(){
         // potential layer is somehow getting affected by this
         
-    
+        // hslider needs to call //calculateCursorCellXPos(
+        // centralState_H_Slider.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
+         
         
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight

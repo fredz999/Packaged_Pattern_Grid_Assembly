@@ -22,8 +22,8 @@ public class Potential_Note_Layer_Store : ObservableObject {
     
     public init(){}
     
+    // this func is recieving x values that dont take the x-jump into account
     func handlePotentialWrite(gridXParam:Int,gridYParam:Int) {
-        print("handlePotentialWrite, gridXParam: ",gridXParam.description)
         if potential_Initial_Grid_X == nil, potential_Initial_Grid_Y == nil {
             potential_Initial_Grid_X = gridXParam
             potential_Initial_Grid_Y = gridYParam
