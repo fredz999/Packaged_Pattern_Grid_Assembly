@@ -96,6 +96,8 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 //        let intDivided = Int(divided)
         centralState_H_Slider.cursor_Slider_Update(new_X: 0, new_Y: nil)
         computedLineDisplacement = 0//CGFloat(intDivided) * dimensions.cursor_X_Jump
+        currentVal = 0
+        accumulatedDrag = 0
     }
     
 }
