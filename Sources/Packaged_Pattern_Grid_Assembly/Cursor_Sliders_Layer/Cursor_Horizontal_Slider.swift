@@ -84,13 +84,18 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         accumulatedDrag = inputParam
     }
     
-    // this also depends upon the timing sig
     public func calculateCursorCellXPos(){
         let divided = currentVal/dimensions.cursor_X_Jump
         let intDivided = Int(divided)
-        print("currval: ",currentVal.description,", intDivided: ",intDivided.description)
         centralState_H_Slider.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
         computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
+    }
+    
+    public func zeroCursorCellXPos(){
+//        let divided = currentVal/dimensions.cursor_X_Jump
+//        let intDivided = Int(divided)
+        centralState_H_Slider.cursor_Slider_Update(new_X: 0, new_Y: nil)
+        computedLineDisplacement = 0//CGFloat(intDivided) * dimensions.cursor_X_Jump
     }
     
 }

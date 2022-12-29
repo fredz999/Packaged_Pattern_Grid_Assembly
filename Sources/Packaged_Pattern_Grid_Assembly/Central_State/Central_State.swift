@@ -48,7 +48,8 @@ public class Central_State : ObservableObject {
     public func change_Pattern_Data_Length(){
         dimensions.flip_Timing_Signature()
         if let lclHslider = h_Slider_Ref{
-            lclHslider.calculateCursorCellXPos()
+            lclHslider.zeroCursorCellXPos()
+                //.calculateCursorCellXPos()
         }
         data_Grid.changeTimingSignature_Data_Level()
 
