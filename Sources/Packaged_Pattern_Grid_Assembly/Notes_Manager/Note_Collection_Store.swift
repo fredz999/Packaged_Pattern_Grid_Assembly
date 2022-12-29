@@ -126,9 +126,8 @@ public class Note_Collection {
         note_Collection_Highlight_Handler(noteParam: note)
     }
     
-    public func deleteNote(){
-        print("deleteNote(")
-        if let lclCurrHighlighted = currentHighlightedNote{
+    public func reset_Note_Data_Cells(){
+        if let lclCurrHighlighted = currentHighlightedNote {
             lclCurrHighlighted.resetCells()
             noteArray = noteArray.filter{$0.id == lclCurrHighlighted.id}
             currentHighlightedNote = nil

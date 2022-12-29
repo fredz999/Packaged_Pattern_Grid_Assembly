@@ -72,7 +72,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
         let endCellNum = dataCellArray[lastElement].dataCell_X_Number
         return (startCellNum,length,endCellNum)
     }
-    
+    // the visible cells also need to update in data vals holder
     func resetCells(){
         for cell in dataCellArray{
             cell.note_Im_In = nil

@@ -147,7 +147,7 @@ struct Default_Delete_Button_View : View {
             if centralState.a_Note_Is_Highlighted == true {
                 Button(action:{
                     if let lclNoteCollection = centralState.note_Collection_Ref{
-                        lclNoteCollection.deleteNote()
+                        lclNoteCollection.reset_Note_Data_Cells()
                         centralState.a_Note_Is_Highlighted = false
                     }
                 }){
