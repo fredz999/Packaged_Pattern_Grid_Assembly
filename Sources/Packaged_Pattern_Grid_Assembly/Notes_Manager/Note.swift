@@ -79,21 +79,41 @@ public class Note : ObservableObject, Identifiable, Equatable {
     func resetCells(){
         for cell in dataCellArray{
             cell.note_Im_In = nil
-            if cell.currentType == .start_Note{
-                cell.reset_Type(newType: .start_Blank)
-            }
-            else if cell.currentType == .mid_Note{
-                cell.reset_Type(newType: .mid_Blank)
-            }
-            else if cell.currentType == .end_Note{
-                cell.reset_Type(newType: .end_Blank)
-            }
-      
             cell.change_Highlight(highlightStatusParam: false)
-//            if cell.isHighlighted == true{
-//                cell.isHighlighted = false
-//            }
         }
+        if dimensions.patternTimingConfiguration == .sixEight{
+            for outerX in 0..<dataCellArray.count{
+                for innerX in 0..<3{
+                    let computedX = (outerX*3)+innerX
+                    
+                    if innerX == 0{
+                        dataCellArray[computedX].reset_Type(newType: .start_Blank)
+                    }
+                    else if innerX == 1{
+                        dataCellArray[computedX].reset_Type(newType: .mid_Blank)
+                    }
+                    else if innerX == 2{
+                        dataCellArray[computedX].reset_Type(newType: .end_Blank)
+                    }
+                    
+                }
+            }
+        }
+        else if dimensions.patternTimingConfiguration == .fourFour{
+            for outerX in 0..<dataCellArray.count{
+                for innerX in 0..<2{
+                    let computedX = (outerX*2)+innerX
+                    if innerX == 0{
+                        dataCellArray[computedX].reset_Type(newType: .start_Blank)
+                    }
+                    else if innerX == 1{
+                        dataCellArray[computedX].reset_Type(newType: .end_Blank)
+                    }
+
+                }
+            }
+        }
+
     }
     
     func rightSide_Expansion(){

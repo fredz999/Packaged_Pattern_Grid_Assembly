@@ -63,27 +63,16 @@ public class ComponentDimensions : ObservableObject {
     public var patternTimingConfiguration : E_CentralGridTiming = .sixEight
 
     public func flip_Timing_Signature(){
-        // potential layer is somehow getting affected by this
-        
-        // hslider needs to call //calculateCursorCellXPos(
-        // centralState_H_Slider.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
-         
-        
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 2
             cursor_X_Jump = 16
-//            pattern_Grid_Cell_Sub_Unit_Count = 3
-//            cursor_X_Jump = 24
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 3
             cursor_X_Jump = 24
-//            pattern_Grid_Cell_Sub_Unit_Count = 2
-//            cursor_X_Jump = 16
         }
-
     }
     
     
