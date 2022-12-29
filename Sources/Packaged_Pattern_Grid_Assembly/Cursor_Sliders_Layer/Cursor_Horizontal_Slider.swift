@@ -39,6 +39,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public init(){}
     
     public func handleDrag(inputParam:CGFloat){
+        
         if (inputParam + accumulatedDrag) <= (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump),(inputParam + accumulatedDrag) >= 0 {
             currentVal = inputParam + accumulatedDrag
         }
@@ -51,7 +52,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
         
     public func artificially_H_Increment(){
-        
+
         accumulatedDrag += dimensions.cursor_X_Jump
 
         if (accumulatedDrag) <= (dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump),accumulatedDrag >= 0{
@@ -83,9 +84,11 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         accumulatedDrag = inputParam
     }
     
+    // this also depends upon the timing sig
     public func calculateCursorCellXPos(){
         let divided = currentVal/dimensions.cursor_X_Jump
         let intDivided = Int(divided)
+        print("currval: ",currentVal.description,", intDivided: ",intDivided.description)
         centralState_H_Slider.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
         computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
     }

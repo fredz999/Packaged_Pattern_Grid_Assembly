@@ -219,7 +219,6 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
         
         if let lclCursorLayer = cursor_Layer_Ref {
-            //print("data eval, found cursor layer")
             
             let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Unit_Width)
             
