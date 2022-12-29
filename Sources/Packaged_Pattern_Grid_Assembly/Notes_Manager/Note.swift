@@ -78,9 +78,18 @@ public class Note : ObservableObject, Identifiable, Equatable {
             cell.note_Im_In = nil
             //TODO: subCells
             //print("initial type: ",cell.currentType.rawValue)
-            if cell.currentType == .start_Note{cell.changeType(newType: .start_Blank)}
-            else if cell.currentType == .mid_Note{cell.changeType(newType: .mid_Blank)}
-            else if cell.currentType == .end_Note{cell.changeType(newType: .end_Blank)}
+            if cell.currentType == .start_Note{
+                cell.changeType(newType: .start_Blank)
+                print("newType: ",cell.currentType.rawValue)
+            }
+            else if cell.currentType == .mid_Note{
+                cell.changeType(newType: .mid_Blank)
+                print("newType: ",cell.currentType.rawValue)
+            }
+            else if cell.currentType == .end_Note{
+                cell.changeType(newType: .end_Blank)
+                print("newType: ",cell.currentType.rawValue)
+            }
         }
     }
     
