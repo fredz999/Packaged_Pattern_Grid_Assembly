@@ -63,7 +63,9 @@ public class ComponentDimensions : ObservableObject {
     public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
 
     public func flip_Timing_Signature(){
-        print("4:4 hit, cursor_X_Jump: ",cursor_X_Jump.description)
+        // potential layer is somehow getting affected by this
+        
+    
         
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
