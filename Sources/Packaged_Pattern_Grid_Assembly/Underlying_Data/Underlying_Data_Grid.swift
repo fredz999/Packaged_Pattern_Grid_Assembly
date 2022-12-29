@@ -149,7 +149,7 @@ public class Underlying_Data_Cell:Identifiable {
         dataCell_Y_Number = yNumParam
         currentType = statusParam
         note_Reset_Status = statusParam
-        if statusParam != .start_Blank || statusParam != .mid_Blank{
+        if statusParam != .start_Blank && statusParam != .mid_Blank{
             print(statusParam.rawValue)
         }
     }
