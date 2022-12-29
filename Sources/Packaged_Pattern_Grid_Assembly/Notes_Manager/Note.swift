@@ -88,6 +88,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             else if cell.currentType == .end_Note{
                 cell.reset_Type(newType: .end_Blank)
             }
+      
             cell.change_Highlight(highlightStatusParam: false)
 //            if cell.isHighlighted == true{
 //                cell.isHighlighted = false

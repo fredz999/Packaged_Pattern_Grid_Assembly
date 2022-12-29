@@ -157,16 +157,18 @@ public class Underlying_Data_Cell:Identifiable {
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
-        isHighlighted = highlightStatusParam
-        if let lcl_Data_Vals = currentConnectedDataVals{
-            lcl_Data_Vals.referenced_isHighlighted = highlightStatusParam
+        if isHighlighted != highlightStatusParam{
+            isHighlighted = highlightStatusParam
+            if let lcl_Data_Vals = currentConnectedDataVals{
+                lcl_Data_Vals.referenced_isHighlighted = highlightStatusParam
+            }
         }
     }
     
 }
 
 public enum E_CellStatus : String {
-    //case unassigned
+
     case start_Blank = "start_Blank"
     case mid_Blank = "mid_Blank"
     case end_Blank = "end_Blank"
@@ -175,9 +177,5 @@ public enum E_CellStatus : String {
     case mid_Note = "mid_Note"
     case end_Note = "end_Note"
     case single_Note = "single_Note"
-    
-//    case start_Note_Highlighted = "start_Note_Highlighted"
-//    case mid_Note_Highlighted = "mid_Note_Highlighted"
-//    case end_Note_Highlighted = "end_Note_Highlighted"
     
 }
