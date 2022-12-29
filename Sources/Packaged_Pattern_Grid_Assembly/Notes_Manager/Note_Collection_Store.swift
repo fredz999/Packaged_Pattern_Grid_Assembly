@@ -126,6 +126,7 @@ public class Note_Collection {
         note_Collection_Highlight_Handler(noteParam: note)
     }
     
+    // will now be called in central state after which the visual_cells will have their data vals reset
     public func reset_Note_Data_Cells(){
         if let lclCurrHighlighted = currentHighlightedNote {
             lclCurrHighlighted.resetCells()

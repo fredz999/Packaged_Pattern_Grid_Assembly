@@ -139,6 +139,7 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
     @Published public var dataCell_Y_Number : Int
     @Published public var isHighlighted : Bool = false
     var note_Im_In : Note?
+    weak var currentConnectedDataVals : Data_Vals_Holder?
     
     @Published public var currentType : E_CellStatus // = .unassigned
     
@@ -150,6 +151,14 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
     
     public func changeType(newType:E_CellStatus){
         currentType = newType
+        if let lcl_Data_Vals = currentConnectedDataVals{
+//            lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
+//            , newYNum: dataCell_Y_Number
+//            , newHighlightedStatus: false
+//            , newCellStatus: newType, newNoteImIn: nil)
+            lcl_Data_Vals.referenced_currentStatus = newType
+            lcl_Data_Vals.referenced_isHighlighted = false
+        }
     }
     
 }

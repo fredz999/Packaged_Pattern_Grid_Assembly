@@ -72,23 +72,19 @@ public class Note : ObservableObject, Identifiable, Equatable {
         let endCellNum = dataCellArray[lastElement].dataCell_X_Number
         return (startCellNum,length,endCellNum)
     }
+    
     // the visible cells also need to update in data vals holder
     func resetCells(){
         for cell in dataCellArray{
             cell.note_Im_In = nil
-            //TODO: subCells
-            //print("initial type: ",cell.currentType.rawValue)
             if cell.currentType == .start_Note{
                 cell.changeType(newType: .start_Blank)
-                print("newType: ",cell.currentType.rawValue)
             }
             else if cell.currentType == .mid_Note{
                 cell.changeType(newType: .mid_Blank)
-                print("newType: ",cell.currentType.rawValue)
             }
             else if cell.currentType == .end_Note{
                 cell.changeType(newType: .end_Blank)
-                print("newType: ",cell.currentType.rawValue)
             }
         }
     }

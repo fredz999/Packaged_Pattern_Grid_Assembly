@@ -22,7 +22,6 @@ public class Central_State : ObservableObject {
             }
             else if a_Note_Is_Highlighted == true {
                 write_Note_Button_Visible = false
-                // highlight
             }
         }
     }
@@ -41,9 +40,6 @@ public class Central_State : ObservableObject {
     public var note_Collection_Ref : Note_Collection?
     
     public var central_Grid_Store : Central_Grid_Store?
-    
-    //public var current_Pattern_is_Triplet : Bool = false
-    //var thing : E_CentralGridTiming
     
     public func change_Pattern_Data_Length(){
         dimensions.flip_Timing_Signature()
@@ -213,7 +209,6 @@ public class Central_State : ObservableObject {
         }
     }
 
-    
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
