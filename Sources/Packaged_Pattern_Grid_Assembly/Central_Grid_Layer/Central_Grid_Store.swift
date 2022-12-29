@@ -89,11 +89,12 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
     
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
+        
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
+        
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
-        , newHighlightedStatus: new_Data_Cell.isHighlighted
         , newCellStatus: new_Data_Cell.currentType
         , newNoteImIn: new_Data_Cell.note_Im_In)
     }

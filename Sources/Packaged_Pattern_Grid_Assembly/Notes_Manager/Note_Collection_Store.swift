@@ -66,7 +66,7 @@ public class Note_Collection {
     let singleCell = data.dataLineArray[data_Y].dataCellArray[computed_Lowest_Data_X]
 
     //TODO: handle single note now requiring multiple cells
-    singleCell.changeType(newType: .single_Note)
+    singleCell.reset_Type(newType: .single_Note)
 
     dataCellArray.append(singleCell)
 
@@ -74,9 +74,9 @@ public class Note_Collection {
     else if computed_Lowest_Data_X == computed_Highest_Data_X-1 {
     let lowestCell = data.dataLineArray[data_Y].dataCellArray[computed_Lowest_Data_X]
     let upperCell = data.dataLineArray[data_Y].dataCellArray[computed_Highest_Data_X]
-    lowestCell.changeType(newType: .start_Note)
+    lowestCell.reset_Type(newType: .start_Note)
     dataCellArray.append(lowestCell)
-    upperCell.changeType(newType: .end_Note)
+    upperCell.reset_Type(newType: .end_Note)
     dataCellArray.append(upperCell)
     }
 
@@ -84,17 +84,17 @@ public class Note_Collection {
         for x in computed_Lowest_Data_X...computed_Highest_Data_X {
             if x == computed_Lowest_Data_X {
                 let lowCell = data.dataLineArray[data_Y].dataCellArray[x]
-                lowCell.changeType(newType: .start_Note)
+                lowCell.reset_Type(newType: .start_Note)
                 dataCellArray.append(lowCell)
             }
             else if x > computed_Lowest_Data_X,x < computed_Highest_Data_X{
                 let midCell = data.dataLineArray[data_Y].dataCellArray[x]
-                midCell.changeType(newType: .mid_Note)
+                midCell.reset_Type(newType: .mid_Note)
                 dataCellArray.append(midCell)
             }
             else if x == computed_Highest_Data_X{
                 let upperCell = data.dataLineArray[data_Y].dataCellArray[x]
-                upperCell.changeType(newType: .end_Note)
+                upperCell.reset_Type(newType: .end_Note)
                 dataCellArray.append(upperCell)
             }
         }

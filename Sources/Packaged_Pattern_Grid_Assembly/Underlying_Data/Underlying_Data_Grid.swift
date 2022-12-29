@@ -132,16 +132,16 @@ public class Underlying_Data_Line:ObservableObject,Identifiable {
 }
 
 // this things line ref dosent change
-public class Underlying_Data_Cell:ObservableObject,Identifiable {
+public class Underlying_Data_Cell:Identifiable {
     
     public var id = UUID()
-    @Published public var dataCell_X_Number : Int
-    @Published public var dataCell_Y_Number : Int
-    @Published public var isHighlighted : Bool = false
+    public var dataCell_X_Number : Int
+    public var dataCell_Y_Number : Int
+    private var isHighlighted : Bool = false
     var note_Im_In : Note?
     weak var currentConnectedDataVals : Data_Vals_Holder?
     
-    @Published public var currentType : E_CellStatus // = .unassigned
+    public var currentType : E_CellStatus // = .unassigned
     
     public init(xNumParam:Int,yNumParam:Int,statusParam:E_CellStatus){
         dataCell_X_Number = xNumParam
@@ -149,14 +149,17 @@ public class Underlying_Data_Cell:ObservableObject,Identifiable {
         currentType = statusParam
     }
     
-    public func changeType(newType:E_CellStatus){
+    public func reset_Type(newType:E_CellStatus){
         currentType = newType
         if let lcl_Data_Vals = currentConnectedDataVals{
-//            lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
-//            , newYNum: dataCell_Y_Number
-//            , newHighlightedStatus: false
-//            , newCellStatus: newType, newNoteImIn: nil)
             lcl_Data_Vals.referenced_currentStatus = newType
+        }
+    }
+    
+    public func change_Highlight(highlightStatusParam:Bool){
+        isHighlighted = highlightStatusParam
+        if let lcl_Data_Vals = currentConnectedDataVals{
+            lcl_Data_Vals.referenced_isHighlighted = highlightStatusParam
         }
     }
     

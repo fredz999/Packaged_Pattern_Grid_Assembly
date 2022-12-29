@@ -25,7 +25,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
         didSet {
             if note_Highlighted == true {
                 for dataCell in dataCellArray {
-                    dataCell.isHighlighted = true
+                    dataCell.change_Highlight(highlightStatusParam: false)
+                        //.isHighlighted = true
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                
@@ -42,7 +43,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
             }
             else if note_Highlighted == false {
                 for dataCell in dataCellArray {
-                    dataCell.isHighlighted = false
+                    dataCell.change_Highlight(highlightStatusParam: false)
+                        //.isHighlighted = false
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                     // TODO: check this exists b4 attempting
@@ -78,17 +80,18 @@ public class Note : ObservableObject, Identifiable, Equatable {
         for cell in dataCellArray{
             cell.note_Im_In = nil
             if cell.currentType == .start_Note{
-                cell.changeType(newType: .start_Blank)
+                cell.reset_Type(newType: .start_Blank)
             }
             else if cell.currentType == .mid_Note{
-                cell.changeType(newType: .mid_Blank)
+                cell.reset_Type(newType: .mid_Blank)
             }
             else if cell.currentType == .end_Note{
-                cell.changeType(newType: .end_Blank)
+                cell.reset_Type(newType: .end_Blank)
             }
-            if cell.isHighlighted == true{
-                cell.isHighlighted = false
-            }
+            cell.change_Highlight(highlightStatusParam: false)
+//            if cell.isHighlighted == true{
+//                cell.isHighlighted = false
+//            }
         }
     }
     
@@ -154,7 +157,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     //TODO: subCells
                     //firstCell.changeType(newType: .unassigned)
                     firstCell.note_Im_In = nil
-                    firstCell.isHighlighted = false
+                    firstCell.change_Highlight(highlightStatusParam: false)
+                        //.isHighlighted = false
                     dataCellArray.removeFirst()
                     dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
                     redrawCellArray()
@@ -172,7 +176,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     //TODO: subCells
                     //lastCell.changeType(newType: .unassigned)
                     lastCell.note_Im_In = nil
-                    lastCell.isHighlighted = false
+                    lastCell.change_Highlight(highlightStatusParam: false)
+                        //.isHighlighted = false
                     dataCellArray.removeLast()
                     
                     let newCell = parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[firstIndex-1]
