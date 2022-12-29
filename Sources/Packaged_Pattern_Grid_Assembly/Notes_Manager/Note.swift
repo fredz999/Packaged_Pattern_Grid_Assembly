@@ -103,12 +103,13 @@ public class Note : ObservableObject, Identifiable, Equatable {
             for outerX in 0..<dataCellArray.count{
                 for innerX in 0..<2{
                     let computedX = (outerX*2)+innerX
-                    if innerX == 0{
-                        dataCellArray[computedX].reset_Type(newType: .start_Blank)
-                    }
-                    else if innerX == 1{
-                        dataCellArray[computedX].reset_Type(newType: .end_Blank)
-                    }
+                    print("computedX: ",computedX.description)
+//                    if innerX == 0{
+//                        dataCellArray[computedX].reset_Type(newType: .start_Blank)
+//                    }
+//                    else if innerX == 1{
+//                        dataCellArray[computedX].reset_Type(newType: .end_Blank)
+//                    }
 
                 }
             }
