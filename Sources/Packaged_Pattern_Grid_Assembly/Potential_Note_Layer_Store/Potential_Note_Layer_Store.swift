@@ -31,7 +31,7 @@ public class Potential_Note_Layer_Store : ObservableObject {
         }
         else if potential_Initial_Grid_X != nil, potential_Initial_Grid_Y != nil {
             if potential_Initial_Grid_Y == gridYParam,gridXParam != potential_Current_Grid_X {
-                potential_Current_Grid_X = gridXParam //+ dimensions.cellArray_Write_Addition
+                potential_Current_Grid_X = gridXParam + dimensions.cellArray_Write_Addition
                 set_Potential_Note_Dimensions()
             }
             else if potential_Initial_Grid_Y != gridYParam {
