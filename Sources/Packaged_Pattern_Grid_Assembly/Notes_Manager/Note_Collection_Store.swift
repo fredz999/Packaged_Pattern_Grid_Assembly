@@ -52,7 +52,7 @@ public class Note_Collection {
     
         // atm its 2x
     let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Unit_Width)
-    let addition = -1
+    let addition = 0
         
     let computed_Lowest_Data_X = multiplier*lowest_Data_X
     let computed_Highest_Data_X = (multiplier*highest_Data_X)+addition
