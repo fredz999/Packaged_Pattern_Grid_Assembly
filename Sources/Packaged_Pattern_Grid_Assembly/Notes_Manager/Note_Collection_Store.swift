@@ -56,7 +56,7 @@ public class Note_Collection {
 //    if dimensions.patternTimingConfiguration == .fourFour{
 //        addition
 //    }
-        print("dimensions.cellArray_Write_Addition: ",dimensions.cellArray_Write_Addition.description)
+    print("dimensions.cellArray_Write_Addition: ",dimensions.cellArray_Write_Addition.description)
     let computed_Lowest_Data_X = multiplier*lowest_Data_X
     let computed_Highest_Data_X = (multiplier*highest_Data_X)+dimensions.cellArray_Write_Addition
         
