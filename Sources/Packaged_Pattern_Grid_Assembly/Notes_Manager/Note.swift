@@ -85,15 +85,15 @@ public class Note : ObservableObject, Identifiable, Equatable {
             var innerX : Int = 0
             for outerX in 0..<dataCellArray.count{
                 if innerX == 0{
-                    dataCellArray[outerX].reset_Type(newType: .start_Blank)
+                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
                     innerX = 1
                 }
                 else if innerX == 1{
-                    dataCellArray[outerX].reset_Type(newType: .mid_Blank)
+                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
                     innerX = 2
                 }
                 else if innerX == 2{
-                    dataCellArray[outerX].reset_Type(newType: .end_Blank)
+                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
                     innerX = 0
                 }
             }
@@ -102,11 +102,11 @@ public class Note : ObservableObject, Identifiable, Equatable {
             var innerX : Int = 0
             for outerX in 0..<dataCellArray.count{
                 if innerX == 0{
-                    dataCellArray[outerX].reset_Type(newType: .start_Blank)
+                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
                     innerX = 1
                 }
                 else if innerX == 1{
-                    dataCellArray[outerX].reset_Type(newType: .end_Blank)
+                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
                     innerX = 0
                 }
             }

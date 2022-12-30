@@ -86,14 +86,17 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                                 if innerX == 0{
                                     //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .start_Blank{dataCell.currentType = .start_Blank}
+                                    dataCell.note_Reset_Status = .start_Blank
                                 }
                                 else if innerX == 1{
                                     //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
+                                    dataCell.note_Reset_Status = .mid_Blank
                                 }
                                 else if innerX == 2{
                                     //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
+                                    dataCell.note_Reset_Status = .end_Blank
                                 }
                             }
                         }
@@ -109,10 +112,12 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                                 if innerX == 0{
                                     //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .start_Blank{dataCell.currentType = .start_Blank}
+                                    dataCell.note_Reset_Status = .start_Blank
                                 }
                                 else if innerX == 1{
                                     //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
+                                    dataCell.note_Reset_Status = .end_Blank
                                 }
                             }
                         }
@@ -149,9 +154,6 @@ public class Underlying_Data_Cell:Identifiable {
         dataCell_Y_Number = yNumParam
         currentType = statusParam
         note_Reset_Status = statusParam
-        if statusParam != .start_Blank && statusParam != .mid_Blank && statusParam != .end_Blank{
-            print(statusParam.rawValue)
-        }
     }
     
     public func reset_Type(newType:E_CellStatus){
