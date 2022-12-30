@@ -156,7 +156,7 @@ public class Underlying_Data_Cell:Identifiable {
         note_Reset_Status = statusParam
     }
     
-    public func reset_Type(newType:E_CellStatus){
+    public func change_Type(newType:E_CellStatus){
         currentType = newType
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.referenced_currentStatus = newType
@@ -170,6 +170,10 @@ public class Underlying_Data_Cell:Identifiable {
                 lcl_Data_Vals.referenced_isHighlighted = highlightStatusParam
             }
         }
+    }
+    
+    public func reset_To_Original(){
+        currentType = note_Reset_Status
     }
     
 }
