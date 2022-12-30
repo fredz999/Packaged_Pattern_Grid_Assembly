@@ -174,6 +174,7 @@ public class Underlying_Data_Cell:Identifiable {
     
     public func reset_To_Original(){
         currentType = note_Reset_Status
+        print("curr type set to: ",note_Reset_Status.rawValue)
     }
     
 }
