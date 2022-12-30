@@ -16,7 +16,8 @@ public class Potential_Note_Layer_Store : ObservableObject {
     @Published public var weeedth : CGFloat = 0
     @Published public var y_Offset : CGFloat = 0
 
-    var potential_Initial_Grid_X : Int?{
+    var potential_Initial_Grid_X : Int?
+    {
         didSet {
             if let lclPotential_Initial_Grid_X = potential_Initial_Grid_X{
                 print("potential_Initial_Grid_X: ",lclPotential_Initial_Grid_X.description)
@@ -25,13 +26,19 @@ public class Potential_Note_Layer_Store : ObservableObject {
     }
     
     var potential_Initial_Grid_Y : Int?//{didSet{print("potential_Initial_Grid_Y: ",potential_Initial_Grid_Y )}}
-    var potential_Current_Grid_X : Int?//{didSet{print("potential_Current_Grid_X: ",potential_Current_Grid_X )}}
+    var potential_Current_Grid_X : Int?
+    {
+        didSet {
+            if let lclPotential_Current_Grid_X = potential_Current_Grid_X{
+                print("potential_Current_Grid_X: ",lclPotential_Current_Grid_X.description)
+            }
+        }
+    }
     
     public init(){}
     
     // this func is recieving x values that dont take the x-jump into account
     func handlePotentialWrite(gridXParam:Int,gridYParam:Int) {
-        print("handlePotentialWrite: ",gridXParam.description,", ",gridYParam.description)
         if potential_Initial_Grid_X == nil, potential_Initial_Grid_Y == nil {
             potential_Initial_Grid_X = gridXParam
             potential_Initial_Grid_Y = gridYParam
