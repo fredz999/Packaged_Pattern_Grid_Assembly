@@ -52,12 +52,12 @@ public class Potential_Note_Layer_Store : ObservableObject {
             
             if lclInitialX <= currX {
                 x_Offset = dimensions.cursor_X_Jump * CGFloat(lclInitialX)
-                weeedth = (dimensions.cursor_X_Jump * CGFloat(currX+dimensions.cellArray_Write_Addition)) - dimensions.cursor_X_Jump * CGFloat(lclInitialX)
+                weeedth = (dimensions.cursor_X_Jump * CGFloat(currX+1)) - dimensions.cursor_X_Jump * CGFloat(lclInitialX)
                 y_Offset = dimensions.cursor_Y_Jump * CGFloat(initialY)
             }
             else if lclInitialX > currX {
                 x_Offset = dimensions.cursor_X_Jump * CGFloat(currX)
-                weeedth = (dimensions.cursor_X_Jump * CGFloat(lclInitialX+dimensions.cellArray_Write_Addition)) - dimensions.cursor_X_Jump * CGFloat(currX)
+                weeedth = (dimensions.cursor_X_Jump * CGFloat(lclInitialX+1)) - dimensions.cursor_X_Jump * CGFloat(currX)
                 y_Offset = dimensions.cursor_Y_Jump * CGFloat(initialY)
             }
             
