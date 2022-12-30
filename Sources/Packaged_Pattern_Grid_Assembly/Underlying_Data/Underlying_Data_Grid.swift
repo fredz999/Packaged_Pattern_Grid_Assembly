@@ -193,6 +193,7 @@ public class Underlying_Data_Cell:Identifiable {
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
+        print("currHighlight: ",isHighlighted,", highlightStatusParam: ",highlightStatusParam)
         if isHighlighted != highlightStatusParam{
             isHighlighted = highlightStatusParam
             if let lcl_Data_Vals = currentConnectedDataVals{

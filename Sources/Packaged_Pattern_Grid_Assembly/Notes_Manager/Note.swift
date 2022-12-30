@@ -26,7 +26,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             if note_Highlighted == true {
                 for dataCell in dataCellArray {
                     dataCell.change_Highlight(highlightStatusParam: true)
-                    print("cell getting highlighted")
+     
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                
@@ -44,7 +44,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             else if note_Highlighted == false {
                 for dataCell in dataCellArray {
                     dataCell.change_Highlight(highlightStatusParam: false)
-                    print("cell getting un highlighted")
+             
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                     // TODO: check this exists b4 attempting
