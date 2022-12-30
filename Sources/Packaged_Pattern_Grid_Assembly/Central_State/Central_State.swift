@@ -151,6 +151,8 @@ public class Central_State : ObservableObject {
     }
     
     func handlePotential_Note_LiftOff(lcl_Current_X:Int,lcl_Initial_X:Int,lcl_Initial_Y:Int){
+        print("handlePotential_Note_LiftOff(")
+        
         if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
             lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
             , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
