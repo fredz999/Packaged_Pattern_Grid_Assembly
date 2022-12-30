@@ -99,6 +99,23 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                                     dataCell.note_Reset_Status = .end_Blank
                                 }
                             }
+                            else if dataCell.note_Im_In != nil{
+                                if innerX == 0{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+
+                                    dataCell.note_Reset_Status = .start_Blank
+                                }
+                                else if innerX == 1{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 2{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+
+                                    dataCell.note_Reset_Status = .end_Blank
+                                }
+                            }
                         }
                         
                         
@@ -117,6 +134,18 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                                 else if innerX == 1{
                                     //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
+                                    dataCell.note_Reset_Status = .end_Blank
+                                }
+                            }
+                            else if dataCell.note_Im_In != nil{
+                                if innerX == 0{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+
+                                    dataCell.note_Reset_Status = .start_Blank
+                                }
+                                else if innerX == 1{
+                                    //let dataCell = dataLine.dataCellArray[computedX]
+
                                     dataCell.note_Reset_Status = .end_Blank
                                 }
                             }
