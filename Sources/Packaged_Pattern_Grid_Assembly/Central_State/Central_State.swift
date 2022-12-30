@@ -93,7 +93,6 @@ public class Central_State : ObservableObject {
                 }
             }
             else if writingIsOn == false {
-                print("writingIsOn getting set to false")
                 if let lclCursorRef = cursor_Layer_Ref {
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
                     if let lclPotentialLayer = potential_Note_Layer_Ref {

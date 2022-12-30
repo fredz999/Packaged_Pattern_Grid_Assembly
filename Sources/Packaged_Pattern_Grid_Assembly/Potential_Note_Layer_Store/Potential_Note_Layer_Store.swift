@@ -17,23 +17,9 @@ public class Potential_Note_Layer_Store : ObservableObject {
     @Published public var y_Offset : CGFloat = 0
 
     var potential_Initial_Grid_X : Int?
-//    {
-//        didSet {
-//            if let lclPotential_Initial_Grid_X = potential_Initial_Grid_X{
-//                print("potential_Initial_Grid_X: ",lclPotential_Initial_Grid_X.description)
-//            }
-//        }
-//    }
-    
     var potential_Initial_Grid_Y : Int?//{didSet{print("potential_Initial_Grid_Y: ",potential_Initial_Grid_Y )}}
     var potential_Current_Grid_X : Int?
-//    {
-//        didSet {
-//            if let lclPotential_Current_Grid_X = potential_Current_Grid_X{
-//                print("potential_Current_Grid_X: ",lclPotential_Current_Grid_X.description)
-//            }
-//        }
-//    }
+
     
     public init(){}
     
@@ -45,7 +31,7 @@ public class Potential_Note_Layer_Store : ObservableObject {
         }
         else if potential_Initial_Grid_X != nil, potential_Initial_Grid_Y != nil {
             if potential_Initial_Grid_Y == gridYParam,gridXParam != potential_Current_Grid_X {
-                potential_Current_Grid_X = gridXParam
+                potential_Current_Grid_X = gridXParam + dimensions.cellArray_Write_Addition
                 set_Potential_Note_Dimensions()
             }
             else if potential_Initial_Grid_Y != gridYParam {
