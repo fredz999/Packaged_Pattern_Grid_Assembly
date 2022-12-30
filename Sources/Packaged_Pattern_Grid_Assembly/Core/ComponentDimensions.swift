@@ -30,6 +30,9 @@ public class ComponentDimensions : ObservableObject {
     @Published public var cursor_Y_Jump : CGFloat = 16
     @Published public var pattern_Grid_Unit_Width : CGFloat = 8
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
+    var cellArray_Write_Addition : Int = 1
+    
+    
     
     @Published public var dataGrid_X_Unit_Count : Int = 48
     public let visualGrid_Y_Unit_Count : Int = 12
@@ -67,11 +70,13 @@ public class ComponentDimensions : ObservableObject {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 2
             cursor_X_Jump = 16
+            cellArray_Write_Addition = 2
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 3
             cursor_X_Jump = 24
+            cellArray_Write_Addition = 1
         }
     }
     

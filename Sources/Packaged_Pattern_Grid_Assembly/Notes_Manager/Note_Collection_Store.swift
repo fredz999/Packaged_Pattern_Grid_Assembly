@@ -52,10 +52,13 @@ public class Note_Collection {
     
         // atm its 2x
     let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Unit_Width)
-    let addition = 1
+//    var addition = 1
+//    if dimensions.patternTimingConfiguration == .fourFour{
+//        addition
+//    }
         
     let computed_Lowest_Data_X = multiplier*lowest_Data_X
-    let computed_Highest_Data_X = (multiplier*highest_Data_X)+addition
+    let computed_Highest_Data_X = (multiplier*highest_Data_X)+dimensions.cellArray_Write_Addition
         
     var dataCellArray : [Underlying_Data_Cell] = []
 
