@@ -25,8 +25,6 @@ public class Note : ObservableObject, Identifiable, Equatable {
         didSet {
             if note_Highlighted == true {
                 for dataCell in dataCellArray {
-                    dataCell.change_Highlight(highlightStatusParam: true)
-     
                     
                     let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                
@@ -37,6 +35,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
                         }
                     }
                     
+                    dataCell.change_Highlight(highlightStatusParam: true)
+
                     central_State.a_Note_Is_Highlighted = true
                     
                 }
