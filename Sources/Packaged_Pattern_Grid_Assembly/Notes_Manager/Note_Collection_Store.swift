@@ -55,7 +55,7 @@ public class Note_Collection {
 
 
     let computed_Lowest_Data_X = multiplier*lowest_Data_X
-    let computed_Highest_Data_X = (multiplier*highest_Data_X)+1
+    let computed_Highest_Data_X = (multiplier*highest_Data_X)+dimensions.cellArray_Write_Addition
         
     var dataCellArray : [Underlying_Data_Cell] = []
 
