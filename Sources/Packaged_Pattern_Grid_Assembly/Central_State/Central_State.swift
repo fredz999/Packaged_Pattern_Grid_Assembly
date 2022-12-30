@@ -82,6 +82,7 @@ public class Central_State : ObservableObject {
     
     @Published public var writingIsOn : Bool = false {
         didSet {
+            print("writingIsOn getting set")
             if writingIsOn == true {
                 if let lclCursorRef = cursor_Layer_Ref {
                     lclCursorRef.cursorLayerCellColor = colors.cursorWriting
@@ -150,47 +151,47 @@ public class Central_State : ObservableObject {
         }
     }
     
-    func handlePotential_Note_LiftOff(lcl_Current_X:Int,lcl_Initial_X:Int,lcl_Initial_Y:Int){
-        print("handlePotential_Note_LiftOff(")
-        
-        if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-            lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
-            , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-        }
-        else if lcl_Current_X < lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-            lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: lcl_Current_X
-            , highest_Data_X: lcl_Initial_X, data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-        }
-        else if lcl_Current_X == lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-            lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
-            , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-        }
-        
-        if let lcl_Vis_Grid = central_Grid_Store {
-            
-            if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
-            ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
-                
-                if lcl_Current_X > lcl_Initial_X{
-                    for x in lcl_Initial_X...lcl_Current_X{
-                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-                    }
-                }
-                else if lcl_Current_X < lcl_Initial_X{
-                    for x in lcl_Current_X...lcl_Initial_X{
-                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-                    }
-                }
-                else if lcl_Current_X == lcl_Initial_X{
-                    let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
-                    lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-                }
-                
-            }
-        }
-    }
+//    func handlePotential_Note_LiftOff(lcl_Current_X:Int,lcl_Initial_X:Int,lcl_Initial_Y:Int){
+//        print("handlePotential_Note_LiftOff(")
+//
+//        if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+//            lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
+//            , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+//        }
+//        else if lcl_Current_X < lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+//            lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: lcl_Current_X
+//            , highest_Data_X: lcl_Initial_X, data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+//        }
+//        else if lcl_Current_X == lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+//            lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
+//            , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+//        }
+//
+//        if let lcl_Vis_Grid = central_Grid_Store {
+//
+//            if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
+//            ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
+//
+//                if lcl_Current_X > lcl_Initial_X{
+//                    for x in lcl_Initial_X...lcl_Current_X{
+//                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
+//                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
+//                    }
+//                }
+//                else if lcl_Current_X < lcl_Initial_X{
+//                    for x in lcl_Current_X...lcl_Initial_X{
+//                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
+//                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
+//                    }
+//                }
+//                else if lcl_Current_X == lcl_Initial_X{
+//                    let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
+//                    lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
+//                }
+//
+//            }
+//        }
+//    }
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
