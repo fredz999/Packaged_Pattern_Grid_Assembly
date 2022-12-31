@@ -166,6 +166,7 @@ public class Central_State : ObservableObject {
             }
         }
         if writingIsOn == true {
+            print("this one")
             potentialNoteEvaluation()
         }
     }
