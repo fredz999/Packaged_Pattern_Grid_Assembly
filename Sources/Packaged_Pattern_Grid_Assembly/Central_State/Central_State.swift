@@ -218,7 +218,16 @@ public class Central_State : ObservableObject {
     
     func potentialNoteEvaluation(){
         if let lclPotentialLayer = potential_Note_Layer_Ref {
+            // check it can be write here?
+            // TODO: check viability
+            
+            if (currentYCursor_Slider_Position+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
+                ,(currentYCursor_Slider_Position+lower_Bracket_Number) >= 0 {
+                print("proposed Y: ",(currentYCursor_Slider_Position+lower_Bracket_Number).description,", proposedX: ",currentXCursor_Slider_Position.description)
+            }
+            
             lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+            
         }
     }
 

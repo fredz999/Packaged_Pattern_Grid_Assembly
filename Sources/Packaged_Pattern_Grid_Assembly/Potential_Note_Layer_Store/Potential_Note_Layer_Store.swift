@@ -11,6 +11,7 @@ import SwiftUI
 public class Potential_Note_Layer_Store : ObservableObject {
     
     let dimensions = ComponentDimensions.StaticDimensions
+    let data = Underlying_Data_Grid.Static_Underlying_Data_Grid
     
     @Published public var x_Offset : CGFloat = 0
     @Published public var weeedth : CGFloat = 0
@@ -25,6 +26,7 @@ public class Potential_Note_Layer_Store : ObservableObject {
     
     // this func is recieving x values that dont take the x-jump into account
     func handlePotentialWrite(gridXParam:Int,gridYParam:Int) {
+        
         if potential_Initial_Grid_X == nil, potential_Initial_Grid_Y == nil {
             potential_Initial_Grid_X = gridXParam
             potential_Initial_Grid_Y = gridYParam
@@ -35,8 +37,7 @@ public class Potential_Note_Layer_Store : ObservableObject {
                 potential_Current_Grid_X = gridXParam //+ 1
                 set_Potential_Note_Dimensions()
             }
-//            potential_Current_Grid_X = gridXParam + 1
-//            set_Potential_Note_Dimensions()
+
             if potential_Initial_Grid_Y != gridYParam {
                 potential_Initial_Grid_X = gridXParam
                 potential_Current_Grid_X = gridXParam
@@ -44,6 +45,8 @@ public class Potential_Note_Layer_Store : ObservableObject {
                 set_Potential_Note_Dimensions()
             }
         }
+        
+        
     }
     
     func set_Potential_Note_Dimensions(){
@@ -64,7 +67,6 @@ public class Potential_Note_Layer_Store : ObservableObject {
         }
     }
     
-    @Published var NoteIsValid : Bool = true
     
     func endPotentialNote(){
         
