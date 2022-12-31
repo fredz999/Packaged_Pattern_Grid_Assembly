@@ -76,10 +76,6 @@ public class Central_State : ObservableObject {
         didSet {
             
             if writingIsOn == true {
-                print("writingIsOn == true")
-//                if let lclCursorRef = cursor_Layer_Ref {
-//                    lclCursorRef.cursorLayerCellColor = colors.cursorWriting
-//                }
                 if let lclPotentialLayer = potential_Note_Layer_Ref{
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                     potentialNoteEvaluation()
@@ -87,7 +83,7 @@ public class Central_State : ObservableObject {
             }
             
             else if writingIsOn == false {
-                print("writingIsOn == false")
+
                 if let lclCursorRef = cursor_Layer_Ref {
                     
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
@@ -230,11 +226,12 @@ public class Central_State : ObservableObject {
 //            if (currentYCursor_Slider_Position+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
 //                ,(currentYCursor_Slider_Position+lower_Bracket_Number) >= 0 {
 
-                //if data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currentXCursor_Slider_Position].note_Im_In == nil{
-                    lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-                //}
+                if data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currentXCursor_Slider_Position].note_Im_In != nil{
+                    print("hit a note ")
+                }
                 
-                
+                lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+
                 
             //}
             
