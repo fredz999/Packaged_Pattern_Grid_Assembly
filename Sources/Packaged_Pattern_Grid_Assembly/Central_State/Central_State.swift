@@ -169,9 +169,11 @@ public class Central_State : ObservableObject {
         }
         
     }
-
+    
+    var prohibitionSet : Bool = false
+    
     func centralState_Cursor_Position_Evaluation() {
-        if let lclCursorLayer = cursor_Layer_Ref {
+        if let lclCursorLayer = cursor_Layer_Ref,prohibitionSet == false {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
         }
     }
@@ -241,8 +243,14 @@ public class Central_State : ObservableObject {
             //            if data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currentXCursor_Slider_Position].note_Im_In != nil{
             //                print("hit a note @ : ",currentXCursor_Slider_Position.description)
             //            }
-            if isInANote == false{
+            
+            if isInANote == false {
+                // activate prohibition
                 lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+                if prohibitionSet == true{prohibitionSet = false}
+            }
+            else if isInANote == true{
+                if prohibitionSet == false{prohibitionSet = true}
             }
             
 

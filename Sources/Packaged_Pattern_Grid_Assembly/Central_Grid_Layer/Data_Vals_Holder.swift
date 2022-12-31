@@ -21,9 +21,7 @@ public class Data_Vals_Holder : ObservableObject {
    referenced_dataCell_Y_Number = yNumParam
    referenced_currentStatus = typeParam
    }
-    
-    //might link the two here weakly...... starting to wonder if this intermediate class is actually the wrong way to do all this
-    
+
     func link_NewData(underlyingDataCellParam: Underlying_Data_Cell ){
         underlyingDataCellParam.currentConnectedDataVals = self
     }
