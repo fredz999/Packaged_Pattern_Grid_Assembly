@@ -230,7 +230,7 @@ public class Central_State : ObservableObject {
 //                    print("hit a note @ : ",currentXCursor_Slider_Position.description)
 //                }
             
-            print("currentXCursor_Slider_Position : ",currentXCursor_Slider_Position.description)
+            print("currentXCursor_Slider_Position : ",(currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count).description)
                 
                 lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
 
