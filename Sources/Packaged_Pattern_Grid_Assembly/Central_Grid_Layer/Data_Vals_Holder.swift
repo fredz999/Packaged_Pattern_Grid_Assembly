@@ -29,12 +29,11 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellStatus:E_CellStatus,newNoteImIn:Note?){
-       
+       print("am I getting hit?")
+        
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
-    if referenced_isHighlighted != false{
-        referenced_isHighlighted = false
-    }
+//
     if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
 
     if let lclCurrentNote = referenced_note_Im_In {
