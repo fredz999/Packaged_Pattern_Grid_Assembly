@@ -26,36 +26,41 @@ public class Note : ObservableObject, Identifiable, Equatable {
             print("note_Highlighted: ",note_Highlighted)
             if note_Highlighted == true {
                 for dataCell in dataCellArray {
-                    
-                    let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-               
-                    if let lcl_VisGrid = central_State.central_Grid_Store {
-                        if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0{
-                            let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                            visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+                    if dataCell.isHighlighted == false{
+                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+                                       
+                        if let lcl_VisGrid = central_State.central_Grid_Store {
+                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0{
+                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+                            }
                         }
+                        
+                        dataCell.change_Highlight(highlightStatusParam: true)
                     }
                     
-                    dataCell.change_Highlight(highlightStatusParam: true)
 
-                    central_State.a_Note_Is_Highlighted = true
+                    if central_State.a_Note_Is_Highlighted == false{central_State.a_Note_Is_Highlighted = true}
                     
                 }
             }
             else if note_Highlighted == false {
                 for dataCell in dataCellArray {
-                    dataCell.change_Highlight(highlightStatusParam: false)
-             
                     
-                    let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                    // TODO: check this exists b4 attempting
-                    if let lcl_VisGrid = central_State.central_Grid_Store {
-                        if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                            let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                            visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+                    if dataCell.isHighlighted == true{
+                        dataCell.change_Highlight(highlightStatusParam: false)
+                                     
+                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+     
+                        if let lcl_VisGrid = central_State.central_Grid_Store {
+                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+                            }
                         }
                     }
-                    central_State.a_Note_Is_Highlighted = false
+                    
+                    if central_State.a_Note_Is_Highlighted == true{central_State.a_Note_Is_Highlighted = true}
                 }
             }
         }

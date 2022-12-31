@@ -171,7 +171,7 @@ public class Underlying_Data_Cell:Identifiable {
     public var id = UUID()
     public var dataCell_X_Number : Int
     public var dataCell_Y_Number : Int
-    private var isHighlighted : Bool = false
+    var isHighlighted : Bool = false
     var note_Im_In : Note?
     weak var currentConnectedDataVals : Data_Vals_Holder?
     
