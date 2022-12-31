@@ -82,6 +82,7 @@ public class Central_State : ObservableObject {
 //                }
                 if let lclPotentialLayer = potential_Note_Layer_Ref{
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+                    print("this one")
                     potentialNoteEvaluation()
                 }
             }
@@ -166,7 +167,6 @@ public class Central_State : ObservableObject {
             }
         }
         if writingIsOn == true {
-            print("this one")
             potentialNoteEvaluation()
         }
     }
