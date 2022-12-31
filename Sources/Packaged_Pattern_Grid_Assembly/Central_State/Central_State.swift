@@ -10,6 +10,7 @@ import SwiftUI
 
 public class Central_State : ObservableObject {
 
+    
     @Published var write_Note_Button_Visible : Bool = true
     @Published var edit_Layer_Visible : Bool = true
     
@@ -75,6 +76,7 @@ public class Central_State : ObservableObject {
         didSet {
             
             if writingIsOn == true {
+                print("writingIsOn == true")
                 if let lclCursorRef = cursor_Layer_Ref {
                     lclCursorRef.cursorLayerCellColor = colors.cursorWriting
                 }
@@ -83,9 +85,13 @@ public class Central_State : ObservableObject {
                     potentialNoteEvaluation()
                 }
             }
+            
             else if writingIsOn == false {
+                print("writingIsOn == false")
                 if let lclCursorRef = cursor_Layer_Ref {
+                    
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
+                    
                     if let lclPotentialLayer = potential_Note_Layer_Ref {
 
                         if let lcl_Initial_X = lclPotentialLayer.potential_Initial_Grid_X
@@ -102,6 +108,7 @@ public class Central_State : ObservableObject {
                                 lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: lcl_Current_X
                                 , highest_Data_X: lcl_Initial_X, data_Y: (lcl_Initial_Y+lower_Bracket_Number))
                             }
+                            
                             else if lcl_Current_X == lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
                                 lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
                                 , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
@@ -133,12 +140,12 @@ public class Central_State : ObservableObject {
                             }
                             
                         }
-                        
                         lclPotentialLayer.endPotentialNote()
                     }
                 }
                 
             }
+            
         }
     }
     
