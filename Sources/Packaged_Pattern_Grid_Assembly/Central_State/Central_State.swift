@@ -82,7 +82,6 @@ public class Central_State : ObservableObject {
 //                }
                 if let lclPotentialLayer = potential_Note_Layer_Ref{
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-                    print("this one")
                     potentialNoteEvaluation()
                 }
             }
@@ -157,6 +156,9 @@ public class Central_State : ObservableObject {
                 currentXCursor_Slider_Position = lcl_NewX
                 centralState_Cursor_Position_Evaluation()
                 centralState_Data_Evaluation()
+                if writingIsOn == true {
+                    potentialNoteEvaluation()
+                }
             }
         }
         if let lclNew_Y = new_Y {
@@ -164,12 +166,12 @@ public class Central_State : ObservableObject {
                 currentYCursor_Slider_Position = lclNew_Y
                 centralState_Cursor_Position_Evaluation()
                 centralState_Data_Evaluation()
+                if writingIsOn == true {
+                    potentialNoteEvaluation()
+                }
             }
         }
-        if writingIsOn == true {
-            print("no, THIS one")
-            potentialNoteEvaluation()
-        }
+        
     }
 
     func centralState_Cursor_Position_Evaluation() {
