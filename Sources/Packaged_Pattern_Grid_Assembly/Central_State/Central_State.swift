@@ -232,9 +232,11 @@ public class Central_State : ObservableObject {
             
             //print("currentXCursor_Slider_Position : ",(currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count).description)
                 
-            let currDataCell = currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count
+            let currDataCell_Number = currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count
             
-            print("currDataCell: ",currDataCell.description)
+            let isInANote : Bool = data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currDataCell_Number].note_Im_In != nil
+           
+            print("currDataCell_Number: ",currDataCell_Number.description,", isInANote: ",isInANote.description)
             
 //            if data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currentXCursor_Slider_Position].note_Im_In != nil{
 //                print("hit a note @ : ",currentXCursor_Slider_Position.description)
