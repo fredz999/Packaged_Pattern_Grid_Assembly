@@ -77,9 +77,9 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 print("writingIsOn == true")
-                if let lclCursorRef = cursor_Layer_Ref {
-                    lclCursorRef.cursorLayerCellColor = colors.cursorWriting
-                }
+//                if let lclCursorRef = cursor_Layer_Ref {
+//                    lclCursorRef.cursorLayerCellColor = colors.cursorWriting
+//                }
                 if let lclPotentialLayer = potential_Note_Layer_Ref{
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                     potentialNoteEvaluation()
