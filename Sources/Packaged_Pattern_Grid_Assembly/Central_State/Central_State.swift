@@ -226,9 +226,11 @@ public class Central_State : ObservableObject {
 //            if (currentYCursor_Slider_Position+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
 //                ,(currentYCursor_Slider_Position+lower_Bracket_Number) >= 0 {
 
-                if data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currentXCursor_Slider_Position].note_Im_In != nil{
-                    print("hit a note @ : ",currentXCursor_Slider_Position.description)
-                }
+//                if data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currentXCursor_Slider_Position].note_Im_In != nil{
+//                    print("hit a note @ : ",currentXCursor_Slider_Position.description)
+//                }
+            
+            print("currentXCursor_Slider_Position : ",currentXCursor_Slider_Position.description)
                 
                 lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
 
