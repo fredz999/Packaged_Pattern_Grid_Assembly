@@ -96,7 +96,8 @@ public class Central_Cell_Store : ObservableObject,Identifiable {
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
         , newCellStatus: new_Data_Cell.currentType
-        , newNoteImIn: new_Data_Cell.note_Im_In) //, isHighlightedParam: new_Data_Cell.high)
+        , newNoteImIn: new_Data_Cell.note_Im_In
+        , isHighlightedParan: new_Data_Cell.isHighlighted)
         
       
     }
