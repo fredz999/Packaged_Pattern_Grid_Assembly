@@ -42,7 +42,7 @@ public class Central_State : ObservableObject {
     
     public var central_Grid_Store : Central_Grid_Store?
     
-    public func change_Pattern_Data_Length(){
+    public func change_Timing_Signature_Central(){
         dimensions.flip_Timing_Signature()
         if let lclHslider = h_Slider_Ref{
             lclHslider.calculateCursorCellXPos()
@@ -145,7 +145,6 @@ public class Central_State : ObservableObject {
         }
     }
     
-    
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             if lcl_NewX != currentXCursor_Slider_Position {
@@ -171,7 +170,6 @@ public class Central_State : ObservableObject {
     }
     
     var prohibitionSet : Bool = false
-    
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref,prohibitionSet == false {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
