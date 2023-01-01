@@ -33,7 +33,10 @@ public class ComponentDimensions : ObservableObject {
     var cellArray_Write_Addition : Int = 1
     
     //dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump
-    @Published var rightwardBoundary : CGFloat = 368
+    public var rightwardBoundary : CGFloat = 368
+    public func moverightBoundaryLeft(){
+        rightwardBoundary -= cursor_X_Jump
+    }
     
     @Published public var dataGrid_X_Unit_Count : Int = 48
     public let visualGrid_Y_Unit_Count : Int = 12
