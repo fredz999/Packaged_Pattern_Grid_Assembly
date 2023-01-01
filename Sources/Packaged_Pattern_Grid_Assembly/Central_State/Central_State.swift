@@ -176,6 +176,11 @@ public class Central_State : ObservableObject {
 //        }
 //    }
     
+    
+    //var rightwardBoundary : Int? // right will forst set this in a button activated func
+    // when its set, any effort to go across that cells left start side will sinply stop the swipe
+    // eventually it'll get set by a bunch of sets being subsetted but for now we'll just hit an arbitrary 26 or something
+    
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)

@@ -32,7 +32,8 @@ public class ComponentDimensions : ObservableObject {
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     var cellArray_Write_Addition : Int = 1
     
-    
+    //dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump
+    @Published var rightwardBoundary : CGFloat = 368
     
     @Published public var dataGrid_X_Unit_Count : Int = 48
     public let visualGrid_Y_Unit_Count : Int = 12
@@ -65,6 +66,10 @@ public class ComponentDimensions : ObservableObject {
     
     public var patternTimingConfiguration : E_CentralGridTiming = .sixEight
 
+//    func calculateRightBoundary()->CGFloat {
+//        return (Horz_Cursor_Slider_Width-cursor_X_Jump)
+//    }
+    
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
