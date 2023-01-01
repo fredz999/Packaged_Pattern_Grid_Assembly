@@ -12,7 +12,9 @@ public class Data_Vals_Holder : ObservableObject {
    @Published public var referenced_dataCell_X_Number : Int
    @Published public var referenced_dataCell_Y_Number : Int
    @Published public var referenced_isHighlighted : Bool = false
+   @Published public var referenced_isProhibited : Bool = false
    @Published public var referenced_currentStatus : E_CellStatus
+    
    public var referenced_note_Im_In : Note?
    
 

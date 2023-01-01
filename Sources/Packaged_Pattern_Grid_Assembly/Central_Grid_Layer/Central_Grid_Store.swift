@@ -87,8 +87,20 @@ public class Central_Line_Store : ObservableObject,Identifiable {
 //        if visual_Cell_Store_Array[currentX].data_Vals_Holder.referenced_note_Im_In != nil{
 //            parentGrid.central_State_Ref.rightBoundaryInt = visual_Cell_Store_Array[currentX].data_Vals_Holder.referenced_dataCell_X_Number
 //        }
-        let currCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number == parentGrid.central_State_Ref.currentXCursor_Slider_Position})
-    
+        
+//        if let currCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number == parentGrid.central_State_Ref.currentXCursor_Slider_Position})
+//        {
+//
+//        }
+        if let rightNoteCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number >= parentGrid.central_State_Ref.currentXCursor_Slider_Position
+            && $0.data_Vals_Holder.referenced_note_Im_In != nil})
+        {
+            rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
+//            for cell in cellSet.filter({$0 != rightNoteCell}){
+//                cell.data_Vals_Holder.$referenced_isProhibited = false
+//            }
+        }
+        
         
         // maybe check
         

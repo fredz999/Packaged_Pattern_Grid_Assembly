@@ -221,4 +221,6 @@ public enum E_CellStatus : String {
     case end_Note = "end_Note"
     case single_Note = "single_Note"
     
+    case prohibited_Note = "prohibited_Note"
+    
 }
