@@ -169,9 +169,15 @@ public class Central_State : ObservableObject {
         
     }
     
-    var prohibitionSet : Bool = false
+    //var prohibitionSet : Bool = false
+//    func centralState_Cursor_Position_Evaluation() {
+//        if let lclCursorLayer = cursor_Layer_Ref,prohibitionSet == false {
+//            lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
+//        }
+//    }
+    
     func centralState_Cursor_Position_Evaluation() {
-        if let lclCursorLayer = cursor_Layer_Ref,prohibitionSet == false {
+        if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
         }
     }
@@ -218,42 +224,43 @@ public class Central_State : ObservableObject {
     
     func potentialNoteEvaluation(){
         if let lclPotentialLayer = potential_Note_Layer_Ref {
-            // check it can be write here?
-            // TODO: check viability
-            
-            
-            
-//          if (currentYCursor_Slider_Position+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
-//                ,(currentYCursor_Slider_Position+lower_Bracket_Number) >= 0 {
-//          if data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currentXCursor_Slider_Position].note_Im_In != nil{
-//                print("hit a note @ : ",currentXCursor_Slider_Position.description)
-//          }
-//          print("currentXCursor_Slider_Position : ",(currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count).description)
+
                 
-            
+            // ============== VIABILITY ==============================================================================================================================
             let currDataCell_Number = currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count
             
             let isInANote : Bool = data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currDataCell_Number].note_Im_In != nil
            
             print("currDataCell_Number: ",currDataCell_Number.description,", isInANote: ",isInANote.description,", lastNoteInCell: ")
             
-            // if its
-            //            if data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currentXCursor_Slider_Position].note_Im_In != nil{
-            //                print("hit a note @ : ",currentXCursor_Slider_Position.description)
-            //            }
+            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
             
-            if isInANote == false {
-                // activate prohibition
-                lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-                if prohibitionSet == true{prohibitionSet = false}
-            }
-            else if isInANote == true{
-                if prohibitionSet == false{prohibitionSet = true}
-            }
+//            if isInANote == false {
+//                lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+//                if prohibitionSet == true{prohibitionSet = false}
+//            }
+//            else if isInANote == true {
+//                if prohibitionSet == false{prohibitionSet = true}
+//            }
             
+            
+            
+            // write a new var into central state : noteProcessingOpen : Bool
+            // get noteProcessingOpen set to false in a btn and get it to halt all note write, cursor and line, and probably the slider accumulated val to stop jumps
+            // event: init of line
+            // get the line cells into a set -- this happens in each line
+            //==========================================
+            // event: note write up
+            // get the note-cells on the line into a subSet of cells, each note write -- this happens in note collection
+            //==========================================
+            // write two new vars into central state : leftNoteBoundary : Int optional, and rightNoteBoundary
+            // event: note write on
+            // use the sets to establish leftNoteBoundary and rightNoteBoundary if cursor line tries to go above rightward/below leftward, noteProcessingOpen is set to false
+            
+            // ============== VIABILITY ==============================================================================================================================
 
                 
-            //}
+
             
             
             

@@ -14,8 +14,6 @@ public class Cursor_Layer_Store : ObservableObject {
     let colors = ComponentColors.StaticColors
     
     @Published public var offsetSize : CGSize = CGSize(width: 0, height: 0)
-    //needs to be changeable
-    //@Published public var width : CGFloat
     @Published public var height : CGFloat
     @Published public var cursorLayerCellColor : Color
     @Published public var cursorText = ""
@@ -37,14 +35,6 @@ public class Cursor_Layer_Store : ObservableObject {
         set_Cursor_Pos(xInt:0,yInt:0)
     }
     
-//    @ViewBuilder func currView()->(some View){
-//        ZStack(alignment: .topLeading){
-//            ZStack(alignment: .center){
-//                Default_Cursor_Marker_View(cursor_Layer_Store: self)
-//            }.offset(offsetSize)
-//        }
-//    }
-    
     func set_Cursor_Pos(xInt:Int,yInt:Int){
         let floatX = CGFloat(xInt)
         let floatY = CGFloat(yInt)
@@ -60,24 +50,3 @@ public class Cursor_Layer_Store : ObservableObject {
     }
     
 }
-
-//struct Cursor_Layer_View : View {
-//    @ObservedObject var cursor_Layer_Store : Cursor_Layer_Store
-//    var body: some View {
-//        return ZStack(alignment: .topLeading){
-//            cursor_Layer_Store.currView()
-//        }
-//    }
-//}
-
-//struct Default_Cursor_Marker_View : View {
-//    @ObservedObject var cursor_Layer_Store : Cursor_Layer_Store
-//    var body: some View {
-//        return ZStack(alignment: .topLeading){
-//            ZStack(alignment: .center){
-//                Rectangle().frame(width:cursor_Layer_Store.width,height:cursor_Layer_Store.height).foregroundColor(cursor_Layer_Store.cursorLayerCellColor)
-//                Text(cursor_Layer_Store.cursorText).foregroundColor(.black)
-//            }
-//        }
-//    }
-//}

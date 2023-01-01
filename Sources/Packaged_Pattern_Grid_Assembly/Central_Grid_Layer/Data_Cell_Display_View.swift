@@ -10,8 +10,7 @@ import SwiftUI
 
 // need all this on the other side
 public struct Data_Cell_Display_View<UnassignedView:View,StartView:View,MidView:View,EndView:View,SingleView:View> : View {
-    
-    //@ObservedObject public var current_Underlying_Data_Cell : Underlying_Data_Cell
+
     @ObservedObject public var current_Data_Vals_Holder : Data_Vals_Holder
     
     public var unassigned_View : UnassignedView?
