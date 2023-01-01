@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 
 public class Central_Grid_Store : ObservableObject {
+    let central_State_Ref = Central_State.Static_Central_State
     let dimensions = ComponentDimensions.StaticDimensions
+    
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
 
     public init(){
@@ -34,6 +36,7 @@ public class Central_Grid_Store : ObservableObject {
 }
 
 public class Central_Line_Store : ObservableObject,Identifiable {
+    
     public var data = Underlying_Data_Grid.Static_Underlying_Data_Grid
     var dimensions = ComponentDimensions.StaticDimensions
     public var id = UUID()
@@ -41,10 +44,15 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     @Published public var y_Index : Int
     @Published public var visual_Cell_Store_Array : [Central_Cell_Store] = []
     
+    
+    var cellSet = Set<Central_Cell_Store>()
+    var cells_In_A_Note_Set = Set<Central_Cell_Store>()
+    
     public init(y_Index: Int,gridParam:Central_Grid_Store){
         self.y_Index = y_Index
         parentGrid = gridParam
         fillLine()
+        resetCellSets()
     }
  
     public func fillLine(){
@@ -63,9 +71,42 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
     }
     
+    // this gets called in the note_Write_Up and init
+    public func resetCellSets(){
+        if cellSet.count > 0{cellSet.removeAll()}
+        if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
+        for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
+        cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
+    }
+    
+    // this gets called in the note_Write_down
+    public func set_Boundary_Indices(){
+        // figure oot where the nearest rightward note cell is at
+        // cursor_X
+        let currentX = parentGrid.central_State_Ref.currentXCursor_Slider_Position
+//        if visual_Cell_Store_Array[currentX].data_Vals_Holder.referenced_note_Im_In != nil{
+//            parentGrid.central_State_Ref.rightBoundaryInt = visual_Cell_Store_Array[currentX].data_Vals_Holder.referenced_dataCell_X_Number
+//        }
+        let currCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number == parentGrid.central_State_Ref.currentXCursor_Slider_Position})
+    
+        
+        // maybe check
+        
+        // set this in an optional int in either central state or dimensions....ill try central first
+    }
+    
 }
 
-public class Central_Cell_Store : ObservableObject,Identifiable {
+public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hashable {
+    
+    public static func == (lhs: Central_Cell_Store, rhs: Central_Cell_Store) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     public var id = UUID()
     public let dimensions = ComponentDimensions.StaticDimensions
     

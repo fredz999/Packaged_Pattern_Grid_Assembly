@@ -40,11 +40,11 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public func handleDrag(inputParam:CGFloat){
         
-        if (inputParam + accumulatedDrag) <= (dimensions.rightwardBoundary),(inputParam + accumulatedDrag) >= 0 {
+        if (inputParam + accumulatedDrag) <= (dimensions.current_Rightward_Boundary),(inputParam + accumulatedDrag) >= 0 {
             currentVal = inputParam + accumulatedDrag
         }
-        else if (inputParam + accumulatedDrag) > (dimensions.rightwardBoundary) {
-            currentVal = (dimensions.rightwardBoundary)
+        else if (inputParam + accumulatedDrag) > (dimensions.current_Rightward_Boundary) {
+            currentVal = (dimensions.current_Rightward_Boundary)
         }
         else if (inputParam + accumulatedDrag) < 0 {
             currentVal = 0
@@ -55,13 +55,13 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 
         accumulatedDrag += dimensions.cursor_X_Jump
 
-        if (accumulatedDrag) <= (dimensions.rightwardBoundary),accumulatedDrag >= 0{
+        if (accumulatedDrag) <= (dimensions.current_Rightward_Boundary),accumulatedDrag >= 0{
             currentVal = accumulatedDrag
         }
 
-        else if (accumulatedDrag) > (dimensions.rightwardBoundary) {
-            accumulatedDrag = (dimensions.rightwardBoundary)
-            currentVal = (dimensions.rightwardBoundary)
+        else if (accumulatedDrag) > (dimensions.current_Rightward_Boundary) {
+            accumulatedDrag = (dimensions.current_Rightward_Boundary)
+            currentVal = (dimensions.current_Rightward_Boundary)
         }
 
     }
@@ -69,7 +69,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public func artificially_H_Decrement(){
         accumulatedDrag -= dimensions.cursor_X_Jump
         
-        if (accumulatedDrag) <= (dimensions.rightwardBoundary),accumulatedDrag >= 0 {
+        if (accumulatedDrag) <= (dimensions.current_Rightward_Boundary),accumulatedDrag >= 0 {
             currentVal = accumulatedDrag
         }
 

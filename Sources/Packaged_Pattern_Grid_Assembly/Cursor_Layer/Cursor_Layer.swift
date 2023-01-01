@@ -25,7 +25,6 @@ public class Cursor_Layer_Store : ObservableObject {
     var currPosY : Int
     
     public init(){
-        //width = dimensions.pattern_Grid_Unit_Width
         height = dimensions.pattern_Grid_Unit_Height
         cursorLayerCellColor = colors.cursorNotWriting
         currDataX = 0

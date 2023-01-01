@@ -33,9 +33,11 @@ public class ComponentDimensions : ObservableObject {
     var cellArray_Write_Addition : Int = 1
     
     //dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump
-    public var rightwardBoundary : CGFloat = 368
-    public func moverightBoundaryLeft(){
-        rightwardBoundary -= cursor_X_Jump
+    //public var initial_Rightward_Boundary : CGFloat = 368//.....miiiiiight not need this
+    public var current_Rightward_Boundary : CGFloat = 368
+    // this func probably gets called ..... in ....... line.....?
+    public func set_Current_Rightward_Boundary(newRightBoundary:Int){
+        current_Rightward_Boundary = cursor_X_Jump*CGFloat(newRightBoundary)
     }
     
     @Published public var dataGrid_X_Unit_Count : Int = 48

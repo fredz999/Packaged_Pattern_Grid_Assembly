@@ -169,18 +169,6 @@ public class Central_State : ObservableObject {
         
     }
     
-    //var prohibitionSet : Bool = false
-//    func centralState_Cursor_Position_Evaluation() {
-//        if let lclCursorLayer = cursor_Layer_Ref,prohibitionSet == false {
-//            lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
-//        }
-//    }
-    
-    
-    //var rightwardBoundary : Int? // right will forst set this in a button activated func
-    // when its set, any effort to go across that cells left start side will sinply stop the swipe
-    // eventually it'll get set by a bunch of sets being subsetted but for now we'll just hit an arbitrary 26 or something
-    
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
@@ -227,6 +215,9 @@ public class Central_State : ObservableObject {
     centralState_Data_Evaluation()
     }
     
+    //var prohibitedCell : Central_Cell_Store? later use this to indicate to the user that theyve gone over the limit
+    var rightBoundaryInt : Int?
+    
     func potentialNoteEvaluation(){
         if let lclPotentialLayer = potential_Note_Layer_Ref {
 
@@ -237,15 +228,17 @@ public class Central_State : ObservableObject {
             let isInANote : Bool = data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currDataCell_Number].note_Im_In != nil
            
             print("currDataCell_Number: ",currDataCell_Number.description,", isInANote: ",isInANote.description,", lastNoteInCell: ")
+            // from here get the nearest occupied cell from a set, this'll be 
             
             lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
             
+            
 //            if isInANote == false {
 //                lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-//                if prohibitionSet == true{prohibitionSet = false}
+//                //if prohibitionSet == true{prohibitionSet = false}
 //            }
 //            else if isInANote == true {
-//                if prohibitionSet == false{prohibitionSet = true}
+//                dimensions.set_Current_Rightward_Boundary(newRightBoundary: <#T##Int#>)
 //            }
             
             
