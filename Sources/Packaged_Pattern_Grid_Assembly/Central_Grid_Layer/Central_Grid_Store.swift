@@ -102,6 +102,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         
         if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             nearest_Right_Note = nearestRight
+            
             if nearestRight.data_Vals_Holder.referenced_dataCell_X_Number == cell_X {
                 dimensions.set_Current_Rightward_Boundary(newRightBoundary: cursor_X)
                 nearestRight.data_Vals_Holder.referenced_isProhibited = true

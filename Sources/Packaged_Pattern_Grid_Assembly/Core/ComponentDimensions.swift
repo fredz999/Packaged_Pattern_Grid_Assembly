@@ -37,6 +37,7 @@ public class ComponentDimensions : ObservableObject {
     public var current_Rightward_Boundary : CGFloat = 368
     // this func probably gets called ..... in ....... line.....?
     public func set_Current_Rightward_Boundary(newRightBoundary:Int){
+        print("set_Current_Rightward_Boundary: ",newRightBoundary.description)
         current_Rightward_Boundary = cursor_X_Jump*CGFloat(newRightBoundary)
     }
     
