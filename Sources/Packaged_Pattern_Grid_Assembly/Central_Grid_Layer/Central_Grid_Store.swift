@@ -81,7 +81,9 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         
         
         if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
+        
         cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
+        print("cells_In_A_Note_Set count: ",cells_In_A_Note_Set.count)
         
         if cells_Marking_Boundaries.count > 0 {
             for cell in cells_Marking_Boundaries {
