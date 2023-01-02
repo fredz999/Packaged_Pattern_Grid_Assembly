@@ -84,27 +84,18 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         // figure oot where the nearest rightward note cell is at
         // cursor_X
         let currentX = parentGrid.central_State_Ref.currentXCursor_Slider_Position
-//        if visual_Cell_Store_Array[currentX].data_Vals_Holder.referenced_note_Im_In != nil{
-//            parentGrid.central_State_Ref.rightBoundaryInt = visual_Cell_Store_Array[currentX].data_Vals_Holder.referenced_dataCell_X_Number
-//        }
-        
-//        if let currCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number == parentGrid.central_State_Ref.currentXCursor_Slider_Position})
+
+//        if let rightNoteCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > currentX
+//            && $0.data_Vals_Holder.referenced_note_Im_In != nil})
 //        {
-//
+//            rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
 //        }
-        if let rightNoteCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number == currentX+dimensions.pattern_Grid_Cell_Sub_Unit_Count
-            && $0.data_Vals_Holder.referenced_note_Im_In != nil})
-        {
+        
+        if let rightNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number >= currentX}){
             rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
-//            for cell in cellSet.filter({$0 != rightNoteCell}){
-//                cell.data_Vals_Holder.$referenced_isProhibited = false
-//            }
         }
+
         
-        
-        // maybe check
-        
-        // set this in an optional int in either central state or dimensions....ill try central first
     }
     
 }
