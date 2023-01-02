@@ -105,11 +105,12 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
         if let rightNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
         {
-            if let leftNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
-            {
-                cells_Marking_Boundaries.insert(leftNoteCell)
+            //if let nearestLeft = cells_In_A_Note_Set.
+//            if let leftNoteCell = cells_In_A_Note_Set.last(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
+//            {
+//                cells_Marking_Boundaries.insert(leftNoteCell)
                 cells_Marking_Boundaries.insert(rightNoteCell)
-            }
+//            }
         }
         
         
