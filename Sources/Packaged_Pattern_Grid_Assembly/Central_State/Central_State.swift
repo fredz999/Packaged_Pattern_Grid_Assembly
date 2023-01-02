@@ -133,6 +133,7 @@ public class Central_State : ObservableObject {
                                     }
                                     
                                 }
+                                lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].resetCellSets()
                             }
                             
                         }
