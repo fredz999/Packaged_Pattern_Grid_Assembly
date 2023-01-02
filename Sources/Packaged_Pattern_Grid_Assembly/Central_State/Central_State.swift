@@ -228,11 +228,11 @@ public class Central_State : ObservableObject {
             let isInANote : Bool = data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currDataCell_Number].note_Im_In != nil
            
             print("currDataCell_Number: ",currDataCell_Number.description,", isInANote: ",isInANote.description,", lastNoteInCell: ")
-            // from here get the nearest occupied cell from a set, this'll be
             
-            if let lclCentralGrid = central_Grid_Store{
+            if let lclCentralGrid = central_Grid_Store {
                 lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Indices()
             }
+            
             //let currLine = central_Grid_Store?.vis_Line_Store_Array
             
             //set_Boundary_Indices()

@@ -92,7 +92,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
 //        {
 //
 //        }
-        if let rightNoteCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number >= currentX
+        if let rightNoteCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number == currentX+1
             && $0.data_Vals_Holder.referenced_note_Im_In != nil})
         {
             rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
