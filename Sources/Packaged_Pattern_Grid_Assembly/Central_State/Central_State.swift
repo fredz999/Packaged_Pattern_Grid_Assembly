@@ -172,6 +172,7 @@ public class Central_State : ObservableObject {
         }
         if let lclNew_Y = new_Y {
             //if lclNew_Y != currentYCursor_Slider_Position {
+                print("new_Y sent")
                 currentYCursor_Slider_Position = lclNew_Y
                 centralState_Cursor_Position_Evaluation()
                 centralState_Data_Evaluation()
