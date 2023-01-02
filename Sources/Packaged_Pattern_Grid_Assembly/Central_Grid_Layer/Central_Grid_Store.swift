@@ -101,15 +101,14 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     // this gets called in the note_Write_down
     public func set_Boundary_Markers(){
 
-        let currentX = parentGrid.central_State_Ref.currentXCursor_Slider_Position * dimensions.pattern_Grid_Cell_Sub_Unit_Count
-        print("current x: ",currentX)
-        if let rightNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > currentX})
+        let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
+        let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
+        if let rightNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
         {
-            if let leftNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number < currentX})
+            if let leftNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
             {
-                print("currentX: ",currentX,",leftNoteCell: "
-                              ,leftNoteCell.data_Vals_Holder.referenced_dataCell_X_Number
-                              ,", rightNoteCell: ",rightNoteCell.data_Vals_Holder.referenced_dataCell_X_Number)
+                cells_Marking_Boundaries.insert(leftNoteCell)
+                cells_Marking_Boundaries.insert(rightNoteCell)
             }
         }
         
@@ -120,9 +119,9 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         //rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
         //cells_Marking_Boundaries.insert(rightNoteCell)
 
-//        for cell in cells_Marking_Boundaries{
-//            cell.data_Vals_Holder.referenced_isProhibited = true
-//        }
+        for cell in cells_Marking_Boundaries{
+            cell.data_Vals_Holder.referenced_isProhibited = true
+        }
         
         
         
