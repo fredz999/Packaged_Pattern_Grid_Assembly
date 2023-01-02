@@ -47,6 +47,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     var cellSet = Set<Central_Cell_Store>()
     var cells_In_A_Note_Set = Set<Central_Cell_Store>()
+    var cells_Marking_Boundaries = Set<Central_Cell_Store>()
     
     public init(y_Index: Int,gridParam:Central_Grid_Store){
         self.y_Index = y_Index
@@ -75,24 +76,22 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     public func resetCellSets(){
         if cellSet.count > 0{cellSet.removeAll()}
         if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
+        if cells_Marking_Boundaries.count > 0{
+            for cell in cells_Marking_Boundaries{cell.data_Vals_Holder.referenced_isProhibited = false}
+            cells_Marking_Boundaries.removeAll()
+        }
         for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
         cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
     }
     
     // this gets called in the note_Write_down
-    public func set_Boundary_Indices(){
-        // figure oot where the nearest rightward note cell is at
-        // cursor_X
+    public func set_Boundary_Markers(){
+
         let currentX = parentGrid.central_State_Ref.currentXCursor_Slider_Position
 
-//        if let rightNoteCell = cellSet.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > currentX
-//            && $0.data_Vals_Holder.referenced_note_Im_In != nil})
-//        {
-//            rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
-//        }
-        
         if let rightNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number >= currentX}){
             rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
+            cells_Marking_Boundaries.insert(rightNoteCell)
         }
 
         
