@@ -74,16 +74,10 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     // this gets called in the note_Write_Up and init
     public func resetCellSets(){
-        
-//        if cellSet.count > 0{
-//            cellSet.removeAll()
-//        }
-        
-        
+
         if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
         
         cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
-        print("cells_In_A_Note_Set count: ",cells_In_A_Note_Set.count)
         
         if cells_Marking_Boundaries.count > 0 {
             for cell in cells_Marking_Boundaries {
@@ -91,11 +85,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
             }
             cells_Marking_Boundaries.removeAll()
         }
-        
-        //for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
-        
-        
-        
+
     }
     
     // this gets called in the note_Write_down
@@ -114,32 +104,11 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             cells_Marking_Boundaries.insert(nearestLeft)
         }
-        
-            //.filter(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
-            
-       // if let nearestRight = cells_To_Right.
-     
-        
-        
-        
 
-                //cells_Marking_Boundaries.insert(rightNoteCell)
-
-        
-        
-        
-        //leftNoteCell.data_Vals_Holder.referenced_isProhibited = true
-        //cells_Marking_Boundaries.insert(leftNoteCell)
-        //rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
-        //cells_Marking_Boundaries.insert(rightNoteCell)
-
-        for cell in cells_Marking_Boundaries{
+        for cell in cells_Marking_Boundaries {
             cell.data_Vals_Holder.referenced_isProhibited = true
         }
-        
-        
-        
-        
+
     }
     
 }

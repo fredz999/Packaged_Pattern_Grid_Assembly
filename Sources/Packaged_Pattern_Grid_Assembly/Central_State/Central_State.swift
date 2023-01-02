@@ -146,8 +146,13 @@ public class Central_State : ObservableObject {
         }
     }
     
+//    var right_Boundary_Cell_X_Index : Int?
+//    var left_Boundary_Cell_X_Index : Int?
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
+        // check the prohibition
+        
         if let lcl_NewX = new_X {
+            print("cursorX: ",lcl_NewX.description,", cellX: ",(lcl_NewX*dimensions.pattern_Grid_Cell_Sub_Unit_Count).description)
             if lcl_NewX != currentXCursor_Slider_Position {
                 currentXCursor_Slider_Position = lcl_NewX
                 centralState_Cursor_Position_Evaluation()
@@ -167,7 +172,6 @@ public class Central_State : ObservableObject {
                 }
             }
         }
-        
     }
     
     func centralState_Cursor_Position_Evaluation() {
