@@ -91,7 +91,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
 
         if let rightNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number >= currentX}){
             rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
-            cells_Marking_Boundaries.insert(rightNoteCell)
+            //cells_Marking_Boundaries.insert(rightNoteCell)
         }
 
         
