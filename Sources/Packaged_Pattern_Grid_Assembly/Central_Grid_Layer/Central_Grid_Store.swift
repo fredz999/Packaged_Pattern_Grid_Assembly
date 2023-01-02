@@ -106,7 +106,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         
         let cells_To_Right = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
         
-        if let nearestRight = cells_To_Right.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
+        if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             cells_Marking_Boundaries.insert(nearestRight)
         }
         
