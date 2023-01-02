@@ -133,7 +133,8 @@ public class Note_Collection {
     public func reset_Note_Data_Cells(){
         if let lclCurrHighlighted = currentHighlightedNote {
             lclCurrHighlighted.resetCells()
-            noteArray = noteArray.filter{$0.id == lclCurrHighlighted.id}
+            noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
+            //= noteArray.filter{$0.id == lclCurrHighlighted.id}
             currentHighlightedNote = nil
         }
     }
