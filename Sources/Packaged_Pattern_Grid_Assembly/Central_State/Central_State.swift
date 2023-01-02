@@ -153,24 +153,24 @@ public class Central_State : ObservableObject {
         
         if let lcl_NewX = new_X {
             print("cursorX: ",lcl_NewX.description,", cellX: ",(lcl_NewX*dimensions.pattern_Grid_Cell_Sub_Unit_Count).description)
-            if lcl_NewX != currentXCursor_Slider_Position {
+            //if lcl_NewX != currentXCursor_Slider_Position {
                 currentXCursor_Slider_Position = lcl_NewX
                 centralState_Cursor_Position_Evaluation()
                 centralState_Data_Evaluation()
                 if writingIsOn == true {
                     potentialNoteEvaluation()
                 }
-            }
+            //}
         }
         if let lclNew_Y = new_Y {
-            if lclNew_Y != currentYCursor_Slider_Position {
+            //if lclNew_Y != currentYCursor_Slider_Position {
                 currentYCursor_Slider_Position = lclNew_Y
                 centralState_Cursor_Position_Evaluation()
                 centralState_Data_Evaluation()
                 if writingIsOn == true {
                     potentialNoteEvaluation()
                 }
-            }
+            //}
         }
     }
     

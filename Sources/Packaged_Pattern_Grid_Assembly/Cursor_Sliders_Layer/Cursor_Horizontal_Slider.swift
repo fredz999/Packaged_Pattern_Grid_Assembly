@@ -87,7 +87,11 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public func calculateCursorCellXPos(){
         let divided = currentVal/dimensions.cursor_X_Jump
         let intDivided = Int(divided)
-        central_State_Ref.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
+        
+        if intDivided != central_State_Ref.currentXCursor_Slider_Position {
+            central_State_Ref.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
+        }
+        
         computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
     }
     
