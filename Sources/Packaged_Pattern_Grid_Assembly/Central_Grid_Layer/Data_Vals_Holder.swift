@@ -23,9 +23,6 @@ public class Data_Vals_Holder : ObservableObject {
    referenced_currentStatus = typeParam
    }
 
-    func link_NewData(underlyingDataCellParam: Underlying_Data_Cell ){
-        underlyingDataCellParam.currentConnectedDataVals = self
-    }
     
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellStatus:E_CellStatus,newNoteImIn:Note?,isHighlightedParan:Bool){
         
@@ -49,8 +46,7 @@ public class Data_Vals_Holder : ObservableObject {
             referenced_note_Im_In = lclNewNote
         }
     }
-       
-       
    }
+    
 
 }

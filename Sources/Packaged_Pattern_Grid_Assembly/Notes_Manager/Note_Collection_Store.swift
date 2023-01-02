@@ -134,7 +134,6 @@ public class Note_Collection {
         if let lclCurrHighlighted = currentHighlightedNote {
             lclCurrHighlighted.resetCells()
             noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
-            //= noteArray.filter{$0.id == lclCurrHighlighted.id}
             currentHighlightedNote = nil
         }
     }

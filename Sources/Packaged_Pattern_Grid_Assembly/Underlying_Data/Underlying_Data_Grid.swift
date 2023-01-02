@@ -204,7 +204,10 @@ public class Underlying_Data_Cell:Identifiable {
     public func reset_To_Original(){
         currentType = note_Reset_Status
         if let lcl_Data_Vals = currentConnectedDataVals{
-            lcl_Data_Vals.referenced_currentStatus = note_Reset_Status
+            lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
+            , newYNum: dataCell_Y_Number
+            , newCellStatus: note_Reset_Status
+            , newNoteImIn: nil, isHighlightedParan: false)
         }
     }
     
