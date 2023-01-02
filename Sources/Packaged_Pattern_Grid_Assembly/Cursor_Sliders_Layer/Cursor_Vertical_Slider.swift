@@ -21,7 +21,7 @@ public class Cursor_Vertical_Slider_Store:ObservableObject{
     
     @Published public var currentVal : CGFloat = 0 {
         didSet {
-            calculateCursorCellYPos()
+            //calculateCursorCellYPos()
         }
     }
     
@@ -78,6 +78,7 @@ public class Cursor_Vertical_Slider_Store:ObservableObject{
     }
     
     public func calculateCursorCellYPos(){
+        print("calculateCursorCellYPos(")
         let divided = currentVal/dimensions.pattern_Grid_Unit_Height
         let intDivided = Int(divided)
         

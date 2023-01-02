@@ -152,7 +152,13 @@ public class Central_State : ObservableObject {
         // check the prohibition
         
         if let lcl_NewX = new_X {
-            print("cursorX: ",lcl_NewX.description,", cellX: ",(lcl_NewX*dimensions.pattern_Grid_Cell_Sub_Unit_Count).description)
+            
+            if let lclCentralGrid = central_Grid_Store{
+                print("cursorX: ",lcl_NewX.description
+                ,", cellX: ",(lcl_NewX*dimensions.pattern_Grid_Cell_Sub_Unit_Count).description
+                      ,", ",lclCentralGrid.vis_Line_Store_Array[0].cells_Marking_Boundaries.count.description  )
+            }
+            
             //if lcl_NewX != currentXCursor_Slider_Position {
                 currentXCursor_Slider_Position = lcl_NewX
                 centralState_Cursor_Position_Evaluation()
