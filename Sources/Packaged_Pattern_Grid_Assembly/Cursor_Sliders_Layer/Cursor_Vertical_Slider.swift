@@ -21,7 +21,7 @@ public class Cursor_Vertical_Slider_Store:ObservableObject{
     
     @Published public var currentVal : CGFloat = 0 {
         didSet {
-            calculateCursorCellYPos()
+            //calculateCursorCellYPos()
         }
     }
     
