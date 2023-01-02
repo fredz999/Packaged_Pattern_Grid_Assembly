@@ -105,9 +105,14 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
         
         let cells_To_Right = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
+        let cells_To_Left = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
         
         if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             cells_Marking_Boundaries.insert(nearestRight)
+        }
+        
+        if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
+            cells_Marking_Boundaries.insert(nearestLeft)
         }
         
             //.filter(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
