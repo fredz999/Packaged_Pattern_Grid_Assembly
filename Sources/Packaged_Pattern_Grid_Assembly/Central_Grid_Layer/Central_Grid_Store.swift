@@ -103,15 +103,23 @@ public class Central_Line_Store : ObservableObject,Identifiable {
 
         let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
         let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
-        if let rightNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
-        {
-            //if let nearestLeft = cells_In_A_Note_Set.
-//            if let leftNoteCell = cells_In_A_Note_Set.last(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
-//            {
-//                cells_Marking_Boundaries.insert(leftNoteCell)
-                cells_Marking_Boundaries.insert(rightNoteCell)
-//            }
+        
+        let cells_To_Right = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
+        
+        if let nearestRight = cells_To_Right.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
+            cells_Marking_Boundaries.insert(nearestRight)
         }
+        
+            //.filter(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
+            
+       // if let nearestRight = cells_To_Right.
+     
+        
+        
+        
+
+                //cells_Marking_Boundaries.insert(rightNoteCell)
+
         
         
         
