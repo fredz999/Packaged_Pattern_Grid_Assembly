@@ -18,7 +18,7 @@ public class Potential_Note_Layer_Store : ObservableObject {
     @Published public var y_Offset : CGFloat = 0
 
     var potential_Initial_Grid_X : Int?
-    var potential_Initial_Grid_Y : Int?//{didSet{print("potential_Initial_Grid_Y: ",potential_Initial_Grid_Y )}}
+    var potential_Initial_Grid_Y : Int?
     var potential_Current_Grid_X : Int?
 
     

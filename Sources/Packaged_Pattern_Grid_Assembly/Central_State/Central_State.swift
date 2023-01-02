@@ -228,7 +228,6 @@ public class Central_State : ObservableObject {
             
             let isInANote : Bool = data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currDataCell_Number].note_Im_In != nil
            
-            print("currDataCell_Number: ",currDataCell_Number.description,", isInANote: ",isInANote.description,", lastNoteInCell: ")
             
             if let lclCentralGrid = central_Grid_Store {
                 lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()

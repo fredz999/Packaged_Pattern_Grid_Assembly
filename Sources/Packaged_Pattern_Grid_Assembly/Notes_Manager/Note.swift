@@ -23,7 +23,6 @@ public class Note : ObservableObject, Identifiable, Equatable {
     
     var note_Highlighted : Bool = false {
         didSet {
-            print("note_Highlighted: ",note_Highlighted)
             if note_Highlighted == true {
                 for dataCell in dataCellArray {
                     if dataCell.isHighlighted == false{
