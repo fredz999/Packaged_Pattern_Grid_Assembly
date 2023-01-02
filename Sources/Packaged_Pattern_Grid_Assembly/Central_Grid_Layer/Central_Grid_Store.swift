@@ -47,7 +47,9 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     var cellSet = Set<Central_Cell_Store>()
     var cells_In_A_Note_Set = Set<Central_Cell_Store>()
-    var cells_Marking_Boundaries = Set<Central_Cell_Store>()
+    //var cells_Marking_Boundaries = Set<Central_Cell_Store>()
+    var nearest_Right_Note : Central_Cell_Store?
+    var nearest_Left_Note : Central_Cell_Store?
     
     public init(y_Index: Int,gridParam:Central_Grid_Store){
         self.y_Index = y_Index
@@ -79,16 +81,17 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         
         cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
         
-        if cells_Marking_Boundaries.count > 0 {
-            for cell in cells_Marking_Boundaries {
-                if cell.data_Vals_Holder.referenced_isProhibited == true{cell.data_Vals_Holder.referenced_isProhibited = false}
-            }
-            cells_Marking_Boundaries.removeAll()
+        if let lclNearest_Right_Note = nearest_Right_Note{
+            if lclNearest_Right_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Right_Note.data_Vals_Holder.referenced_isProhibited = false}
         }
+        nearest_Right_Note = nil
+        if let lclNearest_Left_Note = nearest_Left_Note{
+            if lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited = false}
+        }
+        nearest_Left_Note = nil
 
     }
     
-    // this gets called in the note_Write_down
     public func set_Boundary_Markers(){
 
         let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
@@ -98,15 +101,13 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         let cells_To_Left = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
         
         if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
-            cells_Marking_Boundaries.insert(nearestRight)
+            nearest_Right_Note = nearestRight
+            nearestRight.data_Vals_Holder.referenced_isProhibited = true
         }
         
         if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
-            cells_Marking_Boundaries.insert(nearestLeft)
-        }
-
-        for cell in cells_Marking_Boundaries {
-            cell.data_Vals_Holder.referenced_isProhibited = true
+            nearest_Left_Note = nearestLeft
+            nearestLeft.data_Vals_Holder.referenced_isProhibited = true
         }
 
     }
