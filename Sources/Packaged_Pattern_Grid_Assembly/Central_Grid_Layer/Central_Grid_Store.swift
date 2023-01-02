@@ -53,7 +53,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         self.y_Index = y_Index
         parentGrid = gridParam
         fillLine()
-        resetCellSets()
+        for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
     }
  
     public func fillLine(){
@@ -74,14 +74,26 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     // this gets called in the note_Write_Up and init
     public func resetCellSets(){
-        if cellSet.count > 0{cellSet.removeAll()}
+        
+//        if cellSet.count > 0{
+//            cellSet.removeAll()
+//        }
+        
+        
         if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
-        if cells_Marking_Boundaries.count > 0{
-            for cell in cells_Marking_Boundaries{cell.data_Vals_Holder.referenced_isProhibited = false}
+        cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
+        
+        if cells_Marking_Boundaries.count > 0 {
+            for cell in cells_Marking_Boundaries {
+                if cell.data_Vals_Holder.referenced_isProhibited == true{cell.data_Vals_Holder.referenced_isProhibited = false}
+            }
             cells_Marking_Boundaries.removeAll()
         }
-        for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
-        cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
+        
+        //for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
+        
+        
+        
     }
     
     // this gets called in the note_Write_down
@@ -95,7 +107,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
         
         if let leftNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number < currentX}){
-            //rightNoteCell.data_Vals_Holder.referenced_isProhibited = true
+            //leftNoteCell.data_Vals_Holder.referenced_isProhibited = true
             cells_Marking_Boundaries.insert(leftNoteCell)
         }
 
