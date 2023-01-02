@@ -102,7 +102,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     public func set_Boundary_Markers(){
 
         let currentX = parentGrid.central_State_Ref.currentXCursor_Slider_Position
-
+        print("current x: ",currentX)
         if let rightNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number > currentX})
         {
             if let leftNoteCell = cells_In_A_Note_Set.first(where: {$0.data_Vals_Holder.referenced_dataCell_X_Number < currentX})
