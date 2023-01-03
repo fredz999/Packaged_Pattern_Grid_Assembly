@@ -221,9 +221,9 @@ public class Central_State : ObservableObject {
             // ============== VIABILITY ==============================================================================================================================
             let currDataCell_Number = currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count
             
-            let isInANote : Bool = data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currDataCell_Number].note_Im_In != nil
+//            let isInANote : Bool = data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currDataCell_Number].note_Im_In != nil
            
-            
+            // this is a one time event till the btn gets lifted
             if let lclCentralGrid = central_Grid_Store {
                 lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
             }

@@ -93,7 +93,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
     
     public func set_Boundary_Markers(){
-
+print("set boundary markers")
         let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
         let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
         
@@ -102,12 +102,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         
         if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             nearest_Right_Note = nearestRight
-            
-            if nearestRight.data_Vals_Holder.referenced_dataCell_X_Number == cell_X {
-                dimensions.set_Current_Rightward_Boundary(newRightBoundary: cursor_X)
-                nearestRight.data_Vals_Holder.referenced_isProhibited = true
-            }
-            
+            nearestRight.data_Vals_Holder.referenced_isProhibited = true
         }
         
         if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
