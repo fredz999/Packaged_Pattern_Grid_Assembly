@@ -89,11 +89,11 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         
         cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
         
-        if let lclNearest_Right_Note = nearest_Right_Note{
+        if let lclNearest_Right_Note = nearest_Right_Note {
             if lclNearest_Right_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Right_Note.data_Vals_Holder.referenced_isProhibited = false}
         }
         nearest_Right_Note = nil
-        if let lclNearest_Left_Note = nearest_Left_Note{
+        if let lclNearest_Left_Note = nearest_Left_Note {
             if lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited = false}
         }
         nearest_Left_Note = nil
