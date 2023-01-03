@@ -40,7 +40,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public func handleDrag(inputParam:CGFloat){
         
-        if (inputParam + accumulatedDrag) <= (dimensions.current_Rightward_Boundary),(inputParam + accumulatedDrag) >= 0 {
+        if (inputParam + accumulatedDrag) <= (dimensions.current_Rightward_Boundary),(inputParam + accumulatedDrag) >= dimensions.current_Leftward_Boundary {
             currentVal = inputParam + accumulatedDrag
         }
         else if (inputParam + accumulatedDrag) > (dimensions.current_Rightward_Boundary) {
