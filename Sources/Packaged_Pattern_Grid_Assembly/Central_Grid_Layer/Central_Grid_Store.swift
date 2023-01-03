@@ -114,6 +114,10 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         if dimensions.current_Rightward_Boundary != dimensions.initial_Right_Boundary{
             dimensions.current_Rightward_Boundary = dimensions.initial_Right_Boundary
         }
+        
+        if dimensions.current_Leftward_Boundary != dimensions.initial_Left_Boundary{
+            dimensions.current_Leftward_Boundary = dimensions.initial_Left_Boundary
+        }
 
     }
     
