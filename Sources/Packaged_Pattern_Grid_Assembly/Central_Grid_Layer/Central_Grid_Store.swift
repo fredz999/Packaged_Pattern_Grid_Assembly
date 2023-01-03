@@ -66,7 +66,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
             if let lclNearestLeftNote = nearest_Left_Note {
                 let lastCellBeforeLeftBoundary = lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number+1
                 let boundaryLeftStart = Int(lastCellBeforeLeftBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
-                dimensions.set_Current_Rightward_Boundary(newRightBoundary: boundaryLeftStart)
+                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: boundaryLeftStart)
                 //dimensions.set_Current_Leftward_Boundary(newLeftBoundary: Int(lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number/dimensions.pattern_Grid_Cell_Sub_Unit_Count))
             }
         }

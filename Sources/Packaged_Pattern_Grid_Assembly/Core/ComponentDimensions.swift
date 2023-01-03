@@ -46,8 +46,9 @@ public class ComponentDimensions : ObservableObject {
     var initial_Left_Boundary : CGFloat = 0
     public var current_Leftward_Boundary : CGFloat = 0
     public func set_Current_Leftward_Boundary(newLeftBoundary:Int){
-        print("newLeftBoundary: ",newLeftBoundary.description)
-        current_Leftward_Boundary = cursor_X_Jump*CGFloat(newLeftBoundary)
+        let newLeftBoundaryFloat = cursor_X_Jump*CGFloat(newLeftBoundary)
+        print("newLeftBoundaryFloat: ",newLeftBoundaryFloat.description)
+        current_Leftward_Boundary = newLeftBoundaryFloat
     }
     
     @Published public var dataGrid_X_Unit_Count : Int = 48
