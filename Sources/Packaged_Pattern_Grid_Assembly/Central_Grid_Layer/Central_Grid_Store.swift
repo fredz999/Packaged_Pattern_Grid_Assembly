@@ -49,9 +49,9 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     var cells_In_A_Note_Set = Set<Central_Cell_Store>()
     //var cells_Marking_Boundaries = Set<Central_Cell_Store>()
     var nearest_Right_Note : Central_Cell_Store?{
-        didSet{
-            if let lclNearestRightNote = nearest_Right_Note{
-                dimensions.set_Current_Rightward_Boundary(newRightBoundary: Int(lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number/2))
+        didSet {
+            if let lclNearestRightNote = nearest_Right_Note {
+                dimensions.set_Current_Rightward_Boundary(newRightBoundary: Int(lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number/dimensions.pattern_Grid_Cell_Sub_Unit_Count))
             }
         }
     }
