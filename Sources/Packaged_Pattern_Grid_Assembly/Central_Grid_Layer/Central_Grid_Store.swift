@@ -53,7 +53,10 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         didSet {
             if let lclNearestRightNote = nearest_Right_Note {
                 // get the right boundary one cell to the left
-                let boundaryRightStart = Int(lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number-1/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
+                
+                let lastCellBeforeRightBoundary = lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number-1
+                let boundaryRightStart = Int(lastCellBeforeRightBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
+                print("boundaryRightStart: ",boundaryRightStart.description)
                 dimensions.set_Current_Rightward_Boundary(newRightBoundary: boundaryRightStart)
             }
         }
