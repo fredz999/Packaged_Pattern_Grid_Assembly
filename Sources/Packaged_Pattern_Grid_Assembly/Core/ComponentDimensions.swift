@@ -32,12 +32,11 @@ public class ComponentDimensions : ObservableObject {
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
     var cellArray_Write_Addition : Int = 1
     
-    //dimensions.Horz_Cursor_Slider_Width-dimensions.cursor_X_Jump
-    //public var initial_Rightward_Boundary : CGFloat = 368//.....miiiiiight not need this
+
+    
+    var initial_Right_Boundary : CGFloat = 368
     public var current_Rightward_Boundary : CGFloat = 368
-    // this func probably gets called ..... in ....... line.....?
     public func set_Current_Rightward_Boundary(newRightBoundary:Int){
-        print("set_Current_Rightward_Boundary: ",newRightBoundary.description)
         current_Rightward_Boundary = cursor_X_Jump*CGFloat(newRightBoundary)
     }
     
@@ -71,26 +70,23 @@ public class ComponentDimensions : ObservableObject {
     }
     
     public var patternTimingConfiguration : E_CentralGridTiming = .sixEight
-
-//    func calculateRightBoundary()->CGFloat {
-//        return (Horz_Cursor_Slider_Width-cursor_X_Jump)
-//    }
     
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 2
             cursor_X_Jump = 16
+            //current_Rightward_Boundary_Cell_Number = 16
             cellArray_Write_Addition = 1
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 3
             cursor_X_Jump = 24
+            //current_Rightward_Boundary_Cell_Number = 24
             cellArray_Write_Addition = 2
         }
     }
-    
     
     public static let StaticDimensions = ComponentDimensions()
 }

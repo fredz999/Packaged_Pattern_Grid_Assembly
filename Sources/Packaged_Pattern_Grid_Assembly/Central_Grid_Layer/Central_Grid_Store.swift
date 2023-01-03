@@ -98,8 +98,10 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
         nearest_Left_Note = nil
         
-        
-        dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.pattern_Grid_Cell_Sub_Unit_Count)
+        if dimensions.current_Rightward_Boundary != dimensions.initial_Right_Boundary{
+            dimensions.current_Rightward_Boundary = dimensions.initial_Right_Boundary
+        }
+        //dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.pattern_Grid_Cell_Sub_Unit_Count)
 
     }
     
