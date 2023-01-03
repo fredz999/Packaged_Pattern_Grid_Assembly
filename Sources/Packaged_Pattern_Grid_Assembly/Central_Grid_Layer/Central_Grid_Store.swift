@@ -48,6 +48,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     var cellSet = Set<Central_Cell_Store>()
     var cells_In_A_Note_Set = Set<Central_Cell_Store>()
     //var cells_Marking_Boundaries = Set<Central_Cell_Store>()
+    
     var nearest_Right_Note : Central_Cell_Store?{
         didSet {
             if let lclNearestRightNote = nearest_Right_Note {
@@ -55,6 +56,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
             }
         }
     }
+    
     var nearest_Left_Note : Central_Cell_Store?
     
     public init(y_Index: Int,gridParam:Central_Grid_Store){
@@ -80,7 +82,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
     }
     
-    // this gets called in the note_Write_Up and init
+    // NOTE WRITE UP
     public func resetCellSets(){
 
         if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
@@ -95,9 +97,13 @@ public class Central_Line_Store : ObservableObject,Identifiable {
             if lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited = false}
         }
         nearest_Left_Note = nil
+        
+        
+        dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.pattern_Grid_Cell_Sub_Unit_Count)
 
     }
     
+    // NOTE WRITE DOWN
     public func set_Boundary_Markers(){
 
         let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
@@ -115,9 +121,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
             nearest_Left_Note = nearestLeft
             nearestLeft.data_Vals_Holder.referenced_isProhibited = true
         }
-        
-        // now figure out how to stop processing
-        
 
     }
     
