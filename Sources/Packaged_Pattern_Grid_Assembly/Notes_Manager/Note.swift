@@ -163,8 +163,6 @@ public class Note : ObservableObject, Identifiable, Equatable {
             }
 
             if lastIndex > firstIndex {
-                //TODO: subCells
-                //lastCell.changeType(newType: .unassigned)
                 lastCell.note_Im_In = nil
                 dataCellArray.removeLast()
                 redrawCellArray()
@@ -178,11 +176,9 @@ public class Note : ObservableObject, Identifiable, Equatable {
         let lastIndex = lastCell.dataCell_X_Number
             if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
                 if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
-                    //TODO: subCells
-                    //firstCell.changeType(newType: .unassigned)
+
                     firstCell.note_Im_In = nil
                     firstCell.change_Highlight(highlightStatusParam: false)
-                        //.isHighlighted = false
                     dataCellArray.removeFirst()
                     dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
                     redrawCellArray()
@@ -197,11 +193,10 @@ public class Note : ObservableObject, Identifiable, Equatable {
         let firstIndex = firstCell.dataCell_X_Number
             if firstIndex > 0{
                 if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[firstIndex-1].note_Im_In == nil {
-                    //TODO: subCells
-                    //lastCell.changeType(newType: .unassigned)
+
                     lastCell.note_Im_In = nil
                     lastCell.change_Highlight(highlightStatusParam: false)
-                        //.isHighlighted = false
+
                     dataCellArray.removeLast()
                     
                     let newCell = parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[firstIndex-1]
@@ -227,12 +222,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     newCellArray.append(cellBelow)
                 }
             
-            //TODO: subCells
-//                for cell in dataCellArray {
-//                    cell.currentType = .unassigned
-//                    cell.note_Im_In = nil
-//                    cell.isHighlighted = false
-//                }
+
                 
                 dataCellArray.removeAll()
                 
@@ -256,12 +246,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     let cellAbove = central_State.data_Grid.dataLineArray[self.note_Y_Number-1].dataCellArray[cell.dataCell_X_Number]
                     newCellArray.append(cellAbove)
                 }
-            //TODO: subCells
-//                for cell in dataCellArray {
-//                    cell.currentType = .unassigned
-//                    cell.note_Im_In = nil
-//                    cell.isHighlighted = false
-//                }
+
                 
                 dataCellArray.removeAll()
                 

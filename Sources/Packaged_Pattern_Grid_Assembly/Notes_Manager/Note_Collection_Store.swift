@@ -65,7 +65,6 @@ public class Note_Collection {
 
     let singleCell = data.dataLineArray[data_Y].dataCellArray[computed_Lowest_Data_X]
 
-    //TODO: handle single note now requiring multiple cells
     singleCell.change_Type(newType: .single_Note)
 
     dataCellArray.append(singleCell)

@@ -17,7 +17,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     }
     
     func set_Data_Grid(){
-        //TODO: subCells
         let compositeCellCount = dimensions.dataGrid_X_Unit_Count/dimensions.pattern_Grid_Cell_Sub_Unit_Count
         
         for y in 0..<dimensions.DATA_final_Line_Y_Index {
