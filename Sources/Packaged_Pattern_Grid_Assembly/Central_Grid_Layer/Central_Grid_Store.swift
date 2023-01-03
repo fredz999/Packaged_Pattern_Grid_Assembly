@@ -51,7 +51,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     var nearest_Right_Note : Central_Cell_Store?{
         didSet{
             if let lclNearestRightNote = nearest_Right_Note{
-                dimensions.set_Current_Rightward_Boundary(newRightBoundary: 12)
+                dimensions.set_Current_Rightward_Boundary(newRightBoundary: Int(lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number/2))
             }
         }
     }
