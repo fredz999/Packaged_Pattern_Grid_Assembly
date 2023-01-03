@@ -48,7 +48,13 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     var cellSet = Set<Central_Cell_Store>()
     var cells_In_A_Note_Set = Set<Central_Cell_Store>()
     //var cells_Marking_Boundaries = Set<Central_Cell_Store>()
-    var nearest_Right_Note : Central_Cell_Store?
+    var nearest_Right_Note : Central_Cell_Store?{
+        didSet{
+            if let lclNearestRightNote = nearest_Right_Note{
+                dimensions.set_Current_Rightward_Boundary(newRightBoundary: 12)
+            }
+        }
+    }
     var nearest_Left_Note : Central_Cell_Store?
     
     public init(y_Index: Int,gridParam:Central_Grid_Store){
@@ -93,7 +99,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
     
     public func set_Boundary_Markers(){
-print("set boundary markers")
+
         let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
         let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
         
