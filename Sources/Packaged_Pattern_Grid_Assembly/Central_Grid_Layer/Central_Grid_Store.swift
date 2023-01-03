@@ -56,7 +56,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
                 
                 let lastCellBeforeRightBoundary = lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number-1
                 let boundaryRightStart = Int(lastCellBeforeRightBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
-                print("boundaryRightStart: ",boundaryRightStart.description)
                 dimensions.set_Current_Rightward_Boundary(newRightBoundary: boundaryRightStart)
             }
         }
@@ -65,7 +64,10 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     var nearest_Left_Note : Central_Cell_Store?{
         didSet {
             if let lclNearestLeftNote = nearest_Left_Note {
-                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: Int(lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number/dimensions.pattern_Grid_Cell_Sub_Unit_Count))
+                let lastCellBeforeLeftBoundary = lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number+1
+                let boundaryLeftStart = Int(lastCellBeforeLeftBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
+                dimensions.set_Current_Rightward_Boundary(newRightBoundary: boundaryLeftStart)
+                //dimensions.set_Current_Leftward_Boundary(newLeftBoundary: Int(lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number/dimensions.pattern_Grid_Cell_Sub_Unit_Count))
             }
         }
     }
