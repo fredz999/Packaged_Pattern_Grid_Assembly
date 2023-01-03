@@ -147,6 +147,7 @@ public class Central_State : ObservableObject {
     }
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
+        print("=========cursor_Slider_Update,called in central state")
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Cursor_Position_Evaluation()
