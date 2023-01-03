@@ -57,7 +57,13 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
     }
     
-    var nearest_Left_Note : Central_Cell_Store?
+    var nearest_Left_Note : Central_Cell_Store?{
+        didSet {
+            if let lclNearestLeftNote = nearest_Left_Note {
+                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: Int(lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number/dimensions.pattern_Grid_Cell_Sub_Unit_Count))
+            }
+        }
+    }
     
     public init(y_Index: Int,gridParam:Central_Grid_Store){
         self.y_Index = y_Index
@@ -101,7 +107,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         if dimensions.current_Rightward_Boundary != dimensions.initial_Right_Boundary{
             dimensions.current_Rightward_Boundary = dimensions.initial_Right_Boundary
         }
-        //dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.pattern_Grid_Cell_Sub_Unit_Count)
 
     }
     

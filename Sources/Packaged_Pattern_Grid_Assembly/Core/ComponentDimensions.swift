@@ -39,6 +39,11 @@ public class ComponentDimensions : ObservableObject {
     public func set_Current_Rightward_Boundary(newRightBoundary:Int){
         current_Rightward_Boundary = cursor_X_Jump*CGFloat(newRightBoundary)
     }
+    var initial_Left_Boundary : CGFloat = 0
+    public var current_Leftward_Boundary : CGFloat = 0
+    public func set_Current_Leftward_Boundary(newLeftBoundary:Int){
+        current_Leftward_Boundary = cursor_X_Jump*CGFloat(newLeftBoundary)
+    }
     
     @Published public var dataGrid_X_Unit_Count : Int = 48
     public let visualGrid_Y_Unit_Count : Int = 12
@@ -76,14 +81,12 @@ public class ComponentDimensions : ObservableObject {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 2
             cursor_X_Jump = 16
-            //current_Rightward_Boundary_Cell_Number = 16
             cellArray_Write_Addition = 1
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 3
             cursor_X_Jump = 24
-            //current_Rightward_Boundary_Cell_Number = 24
             cellArray_Write_Addition = 2
         }
     }

@@ -46,8 +46,8 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         else if (inputParam + accumulatedDrag) > (dimensions.current_Rightward_Boundary) {
             currentVal = (dimensions.current_Rightward_Boundary)
         }
-        else if (inputParam + accumulatedDrag) < 0 {
-            currentVal = 0
+        else if (inputParam + accumulatedDrag) < dimensions.current_Leftward_Boundary {
+            currentVal = dimensions.current_Leftward_Boundary
         }
     }
         
@@ -55,7 +55,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 
         accumulatedDrag += dimensions.cursor_X_Jump
 
-        if (accumulatedDrag) <= (dimensions.current_Rightward_Boundary),accumulatedDrag >= 0{
+        if (accumulatedDrag) <= (dimensions.current_Rightward_Boundary),accumulatedDrag >= dimensions.current_Leftward_Boundary{
             currentVal = accumulatedDrag
         }
 
@@ -69,7 +69,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public func artificially_H_Decrement(){
         accumulatedDrag -= dimensions.cursor_X_Jump
         
-        if (accumulatedDrag) <= (dimensions.current_Rightward_Boundary),accumulatedDrag >= 0 {
+        if (accumulatedDrag) <= (dimensions.current_Rightward_Boundary),accumulatedDrag >= dimensions.current_Leftward_Boundary {
             currentVal = accumulatedDrag
         }
 
@@ -95,11 +95,11 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
     }
     
-    public func zeroCursorCellXPos(){
-        central_State_Ref.cursor_Slider_Update(new_X: 0, new_Y: nil)
-        computedLineDisplacement = 0
-        currentVal = 0
-        accumulatedDrag = 0
-    }
+//    public func zeroCursorCellXPos(){
+//        central_State_Ref.cursor_Slider_Update(new_X: 0, new_Y: nil)
+//        computedLineDisplacement = 0
+//        currentVal = 0
+//        accumulatedDrag = 0
+//    }
     
 }

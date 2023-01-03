@@ -219,7 +219,7 @@ public class Central_State : ObservableObject {
 
                 
             // ============== VIABILITY ==============================================================================================================================
-            let currDataCell_Number = currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count
+            //let currDataCell_Number = currentXCursor_Slider_Position*dimensions.pattern_Grid_Cell_Sub_Unit_Count
             
 //            let isInANote : Bool = data_Grid.dataLineArray[(currentYCursor_Slider_Position+lower_Bracket_Number)].dataCellArray[currDataCell_Number].note_Im_In != nil
            
@@ -234,30 +234,7 @@ public class Central_State : ObservableObject {
             
             lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
             
-            
-//            if isInANote == false {
-//                lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-//                //if prohibitionSet == true{prohibitionSet = false}
-//            }
-//            else if isInANote == true {
-//                dimensions.set_Current_Rightward_Boundary(newRightBoundary: <#T##Int#>)
-//            }
-            
-            
-            
-            // write a new var into central state : noteProcessingOpen : Bool
-            // get noteProcessingOpen set to false in a btn and get it to halt all note write, cursor and line, and probably the slider accumulated val to stop jumps
-            // event: init of line
-            // get the line cells into a set -- this happens in each line
-            //==========================================
-            // event: note write up
-            // get the note-cells on the line into a subSet of cells, each note write -- this happens in note collection
-            //==========================================
-            // write two new vars into central state : leftNoteBoundary : Int optional, and rightNoteBoundary
-            // event: note write on
-            // use the sets to establish leftNoteBoundary and rightNoteBoundary if cursor line tries to go above rightward/below leftward, noteProcessingOpen is set to false
-            
-            // ============== VIABILITY ==============================================================================================================================
+
 
                 
 
