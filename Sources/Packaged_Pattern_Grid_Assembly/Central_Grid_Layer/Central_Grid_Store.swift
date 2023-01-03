@@ -122,12 +122,12 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         let cells_To_Left = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
         
         if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
-            nearest_Right_Note = nearestRight
+            if nearest_Right_Note == nil{nearest_Right_Note = nearestRight}
             nearestRight.data_Vals_Holder.referenced_isProhibited = true
         }
         
         if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
-            nearest_Left_Note = nearestLeft
+            if nearest_Left_Note == nil{nearest_Left_Note = nearestLeft}
             nearestLeft.data_Vals_Holder.referenced_isProhibited = true
         }
 
