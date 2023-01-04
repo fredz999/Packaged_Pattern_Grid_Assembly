@@ -81,12 +81,12 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     public init(){}
     
-    
     @Published public var writingIsOn : Bool = false {
         didSet {
             
             if writingIsOn == true {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
+                
                     potentialNoteEvaluation()
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                 }
@@ -216,7 +216,7 @@ public class Central_State : ObservableObject {
 
         }
     }
-    // data up
+
     func data_Slider_LowBracket_Update(newLower:Int){
     
     lower_Bracket_Number = newLower
@@ -226,30 +226,27 @@ public class Central_State : ObservableObject {
         lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
     centralState_Data_Evaluation()
-        //possibly in here set the boundaries if the writing is on
-        //if writingIsOn == true{
-            if let lclGridRef = central_Grid_Store{
-                lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
-            }
-        //}
-        if writingIsOn == true{
-            if let lclGridRef = central_Grid_Store{
-                lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
-            }
+    if let lclGridRef = central_Grid_Store{
+        lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
+    }
+    if writingIsOn == true{
+        if let lclGridRef = central_Grid_Store{
+            lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
         }
+    }
 
     }
-    
-    
-    //var prohibitedCell : Central_Cell_Store? later use this to indicate to the user that theyve gone over the limit
+
     var rightBoundaryInt : Int?
     
     func potentialNoteEvaluation(){
-        if let lclPotentialLayer = potential_Note_Layer_Ref {
-            if let lclCentralGrid = central_Grid_Store {
-                lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
+        if a_Note_Is_Highlighted == false {
+            if let lclPotentialLayer = potential_Note_Layer_Ref {
+                if let lclCentralGrid = central_Grid_Store {
+                    lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
+                }
+                lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
             }
-            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
         }
     }
 
