@@ -181,7 +181,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    func togglewriteIsOn(){
+    public func togglewriteIsOn(){
         if a_Note_Is_Highlighted == false{
             writingIsOn.toggle()
         }
