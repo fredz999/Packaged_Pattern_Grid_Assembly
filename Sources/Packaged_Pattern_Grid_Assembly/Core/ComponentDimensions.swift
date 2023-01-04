@@ -37,9 +37,9 @@ public class ComponentDimensions : ObservableObject {
     var initial_Right_Boundary : CGFloat = 368
     public var current_Rightward_Boundary : CGFloat = 368
     public func set_Current_Rightward_Boundary(newRightBoundary:Int){
-        //print("newRightBoundary: ",newRightBoundary.description)
+
         let newRightBoundaryFloat = cursor_X_Jump*CGFloat(newRightBoundary)
-        print("newRightBoundaryFloat: ",newRightBoundaryFloat.description)
+
         current_Rightward_Boundary = newRightBoundaryFloat
     }
     
@@ -47,7 +47,7 @@ public class ComponentDimensions : ObservableObject {
     public var current_Leftward_Boundary : CGFloat = 0
     public func set_Current_Leftward_Boundary(newLeftBoundary:Int){
         let newLeftBoundaryFloat = cursor_X_Jump*CGFloat(newLeftBoundary)
-        print("newLeftBoundaryFloat: ",newLeftBoundaryFloat.description)
+
         current_Leftward_Boundary = newLeftBoundaryFloat
     }
     
