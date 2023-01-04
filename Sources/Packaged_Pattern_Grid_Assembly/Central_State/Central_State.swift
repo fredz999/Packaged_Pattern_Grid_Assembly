@@ -208,10 +208,11 @@ public class Central_State : ObservableObject {
     }
     
     func data_Slider_LowBracket_Update(newLower:Int){
-        // possibly in here reset the boundaries
+    
     if writingIsOn == true{
         if let lclGridRef = central_Grid_Store{
             lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
+            print("line num: ",currentYCursor_Slider_Position,", calls reset cells")
         }
     }
     lower_Bracket_Number = newLower
@@ -225,6 +226,7 @@ public class Central_State : ObservableObject {
         if writingIsOn == true{
             if let lclGridRef = central_Grid_Store{
                 lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
+                print("line num: ",currentYCursor_Slider_Position,", calls set_Boundary_Markers")
             }
         }
     }
