@@ -212,8 +212,14 @@ class Generic_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
 
     var trackedInt : Int {
         didSet {
+            
+            if centralState.writingIsOn == true {
+                if let lclGridRef = centralState.central_Grid_Store{
+                    lclGridRef.vis_Line_Store_Array[centralState.currentYCursor_Slider_Position].resetCellSets()
+                }
+            }
             centralState.data_Slider_LowBracket_Update(newLower: trackedInt)
-            print("Generic_Slider_Responder_Store")
+
         }
     }
 

@@ -208,12 +208,12 @@ public class Central_State : ObservableObject {
     }
     // data up
     func data_Slider_LowBracket_Update(newLower:Int){
-    if writingIsOn == true{
-        if let lclGridRef = central_Grid_Store{
-            lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
-            print("line num: ",currentYCursor_Slider_Position,", calls reset cells")
-        }
-    }
+//    if writingIsOn == true{
+//        if let lclGridRef = central_Grid_Store{
+//            lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
+//            print("line num: ",currentYCursor_Slider_Position,", calls reset cells")
+//        }
+//    }
     lower_Bracket_Number = newLower
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
