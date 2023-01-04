@@ -85,7 +85,7 @@ public class Central_State : ObservableObject {
     @Published public var writingIsOn : Bool = false {
         didSet {
             
-            if writingIsOn == true{
+            if writingIsOn == true {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
                     potentialNoteEvaluation()
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
