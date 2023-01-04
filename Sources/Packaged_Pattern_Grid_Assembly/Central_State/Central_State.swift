@@ -87,8 +87,8 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
-                    lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                     potentialNoteEvaluation()
+                    lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                 }
             }
             
@@ -240,14 +240,14 @@ public class Central_State : ObservableObject {
     var rightBoundaryInt : Int?
     
     func potentialNoteEvaluation(){
-        if a_Note_Is_Highlighted == false {
+    
             if let lclPotentialLayer = potential_Note_Layer_Ref {
                 if let lclCentralGrid = central_Grid_Store {
                     lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
                 }
                 lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
             }
-        }
+  
     }
 
     public func changeNoteLength(isIncrement:Bool) {
