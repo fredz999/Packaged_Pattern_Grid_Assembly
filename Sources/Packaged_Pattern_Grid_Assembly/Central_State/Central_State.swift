@@ -215,6 +215,13 @@ public class Central_State : ObservableObject {
 //            print("line num: ",currentYCursor_Slider_Position,", calls reset cells")
 //        }
 //    }
+        
+    if writingIsOn == true{
+        if let lclGridRef = central_Grid_Store{
+            lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
+        }
+    }
+        
     lower_Bracket_Number = newLower
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
@@ -223,13 +230,8 @@ public class Central_State : ObservableObject {
     }
     centralState_Data_Evaluation()
         //possibly in here set the boundaries if the writing is on
-        if writingIsOn == true{
-            if let lclGridRef = central_Grid_Store{
-                lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
-            }
-        }
+        
     }
-    
     //var prohibitedCell : Central_Cell_Store? later use this to indicate to the user that theyve gone over the limit
     var rightBoundaryInt : Int?
     
