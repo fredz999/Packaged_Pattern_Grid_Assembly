@@ -139,6 +139,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             if nearest_Left_Note == nil{nearest_Left_Note = nearestLeft}
             nearestLeft.data_Vals_Holder.referenced_isProhibited = true
+            print("nearestLeft: ",nearestLeft.data_Vals_Holder.referenced_dataCell_X_Number,", is prohib: ",nearestLeft.data_Vals_Holder.referenced_isProhibited.description)
         }
 
     }

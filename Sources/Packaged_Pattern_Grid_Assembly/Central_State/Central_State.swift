@@ -225,7 +225,6 @@ public class Central_State : ObservableObject {
         if writingIsOn == true{
             if let lclGridRef = central_Grid_Store{
                 lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
-                print("line num: ",currentYCursor_Slider_Position,", calls set_Boundary_Markers")
             }
         }
     }
