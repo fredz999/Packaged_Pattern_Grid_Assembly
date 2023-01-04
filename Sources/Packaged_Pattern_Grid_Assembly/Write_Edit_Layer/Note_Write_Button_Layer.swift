@@ -151,13 +151,14 @@ struct Default_Delete_Button_View : View {
                     
                     
                     
-                    if let lclNoteCollection = centralState.note_Collection_Ref{
-                        lclNoteCollection.reset_Note_Data_Cells()
-                        centralState.a_Note_Is_Highlighted = false
-                    }
-                    if let lclGrid = centralState.central_Grid_Store {
-                        lclGrid.vis_Line_Store_Array[centralState.currentYCursor_Slider_Position].resetCellSets()
-                    }
+//                    if let lclNoteCollection = centralState.note_Collection_Ref {
+//                        lclNoteCollection.reset_Note_Data_Cells()
+//                        centralState.a_Note_Is_Highlighted = false
+//                    }
+//                    if let lclGrid = centralState.central_Grid_Store {
+//                        lclGrid.vis_Line_Store_Array[centralState.currentYCursor_Slider_Position].resetCellSets()
+//                    }
+                    centralState.deleteANote()
                     
                 }){
                     ZStack{
