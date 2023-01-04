@@ -158,6 +158,10 @@ public class Central_State : ObservableObject {
             }
         }
         if let lclNew_Y = new_Y {
+            //no change it here before the new line
+            if let lclCentralGrid = central_Grid_Store {
+                lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
+            }
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Cursor_Position_Evaluation()
             centralState_Data_Evaluation()

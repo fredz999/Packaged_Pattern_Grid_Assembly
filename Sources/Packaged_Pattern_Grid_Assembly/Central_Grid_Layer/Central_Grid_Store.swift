@@ -35,6 +35,9 @@ public class Central_Grid_Store : ObservableObject {
 
 }
 
+
+
+
 public class Central_Line_Store : ObservableObject,Identifiable {
     
     public var data = Underlying_Data_Grid.Static_Underlying_Data_Grid
@@ -93,7 +96,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         }
     }
     
-    // NOTE WRITE UP
+    //TODO: border check call(if write is on)
     public func resetCellSets(){
 
         if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
@@ -119,7 +122,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
 
     }
     
-    // NOTE WRITE DOWN
+    //TODO: border check call(if write is on)
     public func set_Boundary_Markers(){
 
         let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
