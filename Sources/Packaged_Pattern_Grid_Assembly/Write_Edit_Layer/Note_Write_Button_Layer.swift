@@ -155,10 +155,9 @@ struct Default_Delete_Button_View : View {
                         lclNoteCollection.reset_Note_Data_Cells()
                         centralState.a_Note_Is_Highlighted = false
                     }
-                    
-                    if let lclGrid = centralState.central_Grid_Store {
-                        lclGrid.vis_Line_Store_Array[centralState.currentYCursor_Slider_Position].resetCellSets()
-                    }
+//                    if let lclGrid = centralState.central_Grid_Store {
+//                        lclGrid.vis_Line_Store_Array[centralState.currentYCursor_Slider_Position].resetCellSets()
+//                    }
                     
                 }){
                     ZStack{
