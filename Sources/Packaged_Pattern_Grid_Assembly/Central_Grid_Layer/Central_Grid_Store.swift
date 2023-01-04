@@ -124,7 +124,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     //TODO: border check call(if write is on)
     public func set_Boundary_Markers(){
-        print("set_Boundary_Markers for line: ",self.y_Index.description)
         let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
         let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
         
@@ -139,7 +138,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             if nearest_Left_Note == nil{nearest_Left_Note = nearestLeft}
             nearestLeft.data_Vals_Holder.referenced_isProhibited = true
-            print("nearestLeft: ",nearestLeft.data_Vals_Holder.referenced_dataCell_X_Number,", is prohib: ",nearestLeft.data_Vals_Holder.referenced_isProhibited.description)
         }
 
     }
