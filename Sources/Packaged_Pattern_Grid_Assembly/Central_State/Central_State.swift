@@ -11,7 +11,7 @@ import SwiftUI
 public class Central_State : ObservableObject {
 
     
-    @Published var write_Note_Button_Visible : Bool = true
+    //@Published var write_Note_Button_Visible : Bool = true
     @Published var edit_Layer_Visible : Bool = true
     
     // TODO : highlight update for visual cells
@@ -19,10 +19,12 @@ public class Central_State : ObservableObject {
     {
         didSet {
             if a_Note_Is_Highlighted == false {
-                write_Note_Button_Visible = true
+                //write_Note_Button_Visible = true
+                print("a_Note_Is_Highlighted: ",a_Note_Is_Highlighted.description)
             }
             else if a_Note_Is_Highlighted == true {
-                write_Note_Button_Visible = false
+                //write_Note_Button_Visible = false
+                print("a_Note_Is_Highlighted: ",a_Note_Is_Highlighted.description)
             }
         }
     }
