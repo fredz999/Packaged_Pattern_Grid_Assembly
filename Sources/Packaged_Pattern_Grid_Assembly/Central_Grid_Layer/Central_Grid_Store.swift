@@ -133,11 +133,13 @@ public class Central_Line_Store : ObservableObject,Identifiable {
         if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             if nearest_Right_Note == nil{nearest_Right_Note = nearestRight}
             nearestRight.data_Vals_Holder.referenced_isProhibited = true
+            print("prohibition set to right")
         }
         
         if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
             if nearest_Left_Note == nil{nearest_Left_Note = nearestLeft}
             nearestLeft.data_Vals_Holder.referenced_isProhibited = true
+            print("prohibition set to left")
         }
 
     }
