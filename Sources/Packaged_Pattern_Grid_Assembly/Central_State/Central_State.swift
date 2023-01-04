@@ -181,6 +181,12 @@ public class Central_State : ObservableObject {
         }
     }
     
+    func togglewriteIsOn(){
+        if a_Note_Is_Highlighted == false{
+            writingIsOn.toggle()
+        }
+    }
+    
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
@@ -241,12 +247,12 @@ public class Central_State : ObservableObject {
     
     func potentialNoteEvaluation(){
     
-            if let lclPotentialLayer = potential_Note_Layer_Ref {
-                if let lclCentralGrid = central_Grid_Store {
-                    lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
-                }
-                lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+        if let lclPotentialLayer = potential_Note_Layer_Ref {
+            if let lclCentralGrid = central_Grid_Store {
+                lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
             }
+            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+        }
   
     }
 
