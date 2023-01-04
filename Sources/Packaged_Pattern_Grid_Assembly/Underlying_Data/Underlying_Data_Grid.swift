@@ -210,6 +210,7 @@ public class Underlying_Data_Cell:Identifiable {
         currentType = note_Reset_Status
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.referenced_isProhibited = false
+            // get this out of the cell in a note set
             lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
             , newYNum: dataCell_Y_Number
             , newCellStatus: note_Reset_Status
