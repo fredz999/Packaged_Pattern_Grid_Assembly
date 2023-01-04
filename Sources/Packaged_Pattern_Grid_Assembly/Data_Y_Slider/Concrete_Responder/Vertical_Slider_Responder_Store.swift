@@ -16,6 +16,7 @@ class Vertical_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
     var trackedInt : Int {
         didSet {
             centralState.data_Slider_LowBracket_Update(newLower: trackedInt)
+            print("Vertical_Slider_Responder_Store")
         }
     }
     

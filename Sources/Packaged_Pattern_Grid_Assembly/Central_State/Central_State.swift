@@ -206,9 +206,8 @@ public class Central_State : ObservableObject {
 
         }
     }
-    
+    // data up
     func data_Slider_LowBracket_Update(newLower:Int){
-    
     if writingIsOn == true{
         if let lclGridRef = central_Grid_Store{
             lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()

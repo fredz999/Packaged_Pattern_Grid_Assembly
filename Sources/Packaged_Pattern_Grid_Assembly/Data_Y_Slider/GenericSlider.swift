@@ -209,13 +209,14 @@ struct Default_UICollection_Cell_Overlay : View {
 class Generic_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
     let centralState = Central_State.Static_Central_State
     let dimensions = ComponentDimensions.StaticDimensions
-    
+
     var trackedInt : Int {
         didSet {
             centralState.data_Slider_LowBracket_Update(newLower: trackedInt)
+            print("Generic_Slider_Responder_Store")
         }
     }
-    
+
     init(){
         trackedInt = 0
     }
