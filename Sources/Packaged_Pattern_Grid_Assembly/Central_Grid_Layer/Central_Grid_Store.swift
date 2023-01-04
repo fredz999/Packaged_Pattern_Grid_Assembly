@@ -145,6 +145,14 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
 }
 
+
+
+
+
+
+
+
+
 public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hashable {
     
     public static func == (lhs: Central_Cell_Store, rhs: Central_Cell_Store) -> Bool {

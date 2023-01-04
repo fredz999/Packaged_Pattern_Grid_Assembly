@@ -208,6 +208,12 @@ public class Central_State : ObservableObject {
     }
     
     func data_Slider_LowBracket_Update(newLower:Int){
+        // possibly in here reset the boundaries
+        if writingIsOn == true{
+            if let lclGridRef = central_Grid_Store,let lclCursor = cursor_Layer_Ref{
+                lclGridRef.vis_Line_Store_Array[lclCursor.currPosY].resetCellSets()
+            }
+        }
     lower_Bracket_Number = newLower
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
@@ -215,6 +221,12 @@ public class Central_State : ObservableObject {
         lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
     centralState_Data_Evaluation()
+        //possibly in here set the boundaries if the writing is on
+        if writingIsOn == true{
+            if let lclGridRef = central_Grid_Store,let lclCursor = cursor_Layer_Ref{
+                lclGridRef.vis_Line_Store_Array[lclCursor.currPosY].set_Boundary_Markers()
+            }
+        }
     }
     
     //var prohibitedCell : Central_Cell_Store? later use this to indicate to the user that theyve gone over the limit
