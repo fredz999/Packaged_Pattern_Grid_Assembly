@@ -158,7 +158,6 @@ public class Central_State : ObservableObject {
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         //TODO: border check call(if write is on)
-
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Cursor_Position_Evaluation()
@@ -168,7 +167,6 @@ public class Central_State : ObservableObject {
             }
         }
         if let lclNew_Y = new_Y {
-            //no change it here before the new line
             if let lclCentralGrid = central_Grid_Store {
                 lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
             }
@@ -182,9 +180,9 @@ public class Central_State : ObservableObject {
     }
     
     public func togglewriteIsOn(){
-        if a_Note_Is_Highlighted == false{
+        //if a_Note_Is_Highlighted == false{
             writingIsOn.toggle()
-        }
+        //}
     }
     
     func centralState_Cursor_Position_Evaluation() {
