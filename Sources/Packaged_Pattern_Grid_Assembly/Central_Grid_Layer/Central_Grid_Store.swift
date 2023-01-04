@@ -47,13 +47,12 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     var cellSet = Set<Central_Cell_Store>()
     var cells_In_A_Note_Set = Set<Central_Cell_Store>()
-    //TODO: border correction
+    
+    //TODO: border check call(if write is on)
     
     var nearest_Right_Note : Central_Cell_Store?{
         didSet {
             if let lclNearestRightNote = nearest_Right_Note {
-                // get the right boundary one cell to the left
-                
                 let lastCellBeforeRightBoundary = lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number-1
                 let boundaryRightStart = Int(lastCellBeforeRightBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
                 dimensions.set_Current_Rightward_Boundary(newRightBoundary: boundaryRightStart)
@@ -67,7 +66,6 @@ public class Central_Line_Store : ObservableObject,Identifiable {
                 let lastCellBeforeLeftBoundary = lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number+1
                 let boundaryLeftStart = Int(lastCellBeforeLeftBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
                 dimensions.set_Current_Leftward_Boundary(newLeftBoundary: boundaryLeftStart)
-                //dimensions.set_Current_Leftward_Boundary(newLeftBoundary: Int(lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number/dimensions.pattern_Grid_Cell_Sub_Unit_Count))
             }
         }
     }
