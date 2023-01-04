@@ -124,7 +124,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     //TODO: border check call(if write is on)
     public func set_Boundary_Markers(){
-        print("whaaaaaaaaaaaat")
+        print("set_Boundary_Markers for line: ",self.y_Index.description)
         let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
         let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
         
