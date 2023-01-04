@@ -146,20 +146,7 @@ struct Default_Delete_Button_View : View {
         return ZStack(alignment: .topLeading){
             if centralState.a_Note_Is_Highlighted == true {
                 Button(action:{
-                    // put this function into central state and ceheck if the a_Note_Is_Highlighted/current highlighted is doubled
-                    // also after it is triggered in the central function call the reset sets func in the line to get it out of the cell has a note in it set
-                    
-                    
-                    
-//                    if let lclNoteCollection = centralState.note_Collection_Ref {
-//                        lclNoteCollection.reset_Note_Data_Cells()
-//                        centralState.a_Note_Is_Highlighted = false
-//                    }
-//                    if let lclGrid = centralState.central_Grid_Store {
-//                        lclGrid.vis_Line_Store_Array[centralState.currentYCursor_Slider_Position].resetCellSets()
-//                    }
                     centralState.deleteANote()
-                    
                 }){
                     ZStack{
                         Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
