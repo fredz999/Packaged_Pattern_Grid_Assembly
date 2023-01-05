@@ -61,7 +61,7 @@ public class ComponentDimensions : ObservableObject {
     public var Horz_Cursor_Slider_Line_Height : CGFloat = 384
     public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
     
-    public let Vert_Cursor_Slider_Width : CGFloat = 24
+    public let Vert_Cursor_Slider_Width : CGFloat = 36
     public let Vert_Cursor_Slider_Height : CGFloat = 192 // this has to be sought from function (num y grid units-1 * grid unit height)
     
     public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
