@@ -220,9 +220,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
                     newCellArray.append(cellBelow)
                 }
-            
 
-                
                 dataCellArray.removeAll()
                 
                 for newCell in newCellArray {

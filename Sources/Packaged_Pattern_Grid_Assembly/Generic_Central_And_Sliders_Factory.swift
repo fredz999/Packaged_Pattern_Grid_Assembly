@@ -46,7 +46,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     @ViewBuilder public func returnData_Y_Slider() -> some View {
     Generic_Slider_View(generic_Slider_Coordinator_Param: generic_Slider_Y_Coord)
-    .frame(width: dimensions.ui_Unit_Width,height: dimensions.Vert_Cursor_Slider_Height)
+    .frame(width: dimensions.ui_Unit_Width*2,height: dimensions.Vert_Cursor_Slider_Height)
     }
     
     
