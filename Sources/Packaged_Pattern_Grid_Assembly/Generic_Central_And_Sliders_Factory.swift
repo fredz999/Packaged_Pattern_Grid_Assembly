@@ -206,9 +206,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         if let lclCursor = injected_cursor {
             lclCursor
         }
-//        else if injected_cursor == nil{
-//            Default_Cursor_Marker_View(cursor_Layer_Store: cursor_Layer_Store)
-//        }
     }
     
     @ViewBuilder public func returnNoteWriteLayer()->some View {
@@ -216,7 +213,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             lclNoteWritingButton
         }
         else if injected_noteWriteBtn == nil{
-            Default_Note_Write_Button_View()
+            Text("NoteWrite")
         }
     }
     
@@ -225,9 +222,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         if let lclInjectedPotentialNoteView = injected_potential_Note_View {
             lclInjectedPotentialNoteView
         }
-//        else if injected_potential_Note_View == nil {
-//            Default_Potential_Note_View(potential_Note_Layer_Store: potential_Note_Layer_Store)
-//        }
     }
     
     deinit {
