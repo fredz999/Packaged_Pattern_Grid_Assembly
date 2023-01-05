@@ -197,8 +197,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             lclVslider
         }
         else {
-            Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store)
-            Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store)
+            Text("Default_Vertical_Slider_View")
+            //Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store)
+//            Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store)
         }
     }
     
@@ -213,7 +214,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             lclNoteWritingButton
         }
         else if injected_noteWriteBtn == nil{
-            Text("NoteWrite")
+            Text("NoteWriteBtn")
         }
     }
     

@@ -62,17 +62,17 @@ public class ComponentDimensions : ObservableObject {
     public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
     
     public let Vert_Cursor_Slider_Width : CGFloat = 36
-    public let Vert_Cursor_Slider_Height : CGFloat = 192 // this has to be sought from function (num y grid units-1 * grid unit height)
+    public let Vert_Cursor_Slider_Height : CGFloat = 192
     
-    public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
-    public let Vert_Cursor_Slider_Line_Width : CGFloat = 384
+//    public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
+//    public let Vert_Cursor_Slider_Line_Width : CGFloat = 384
     
     public func return_H_Slider_Y_Offset() -> CGFloat{
         let retval = (pattern_Grid_Unit_Height*CGFloat(visualGrid_Y_Unit_Count)) + ui_Unit_Height
         return retval
     }
     
-    public func return_V_Slider_Offset()->CGSize{
+    public func return_V_Slider_Offset() -> CGSize {
         let width = pattern_Grid_Unit_Width*CGFloat(dataGrid_X_Unit_Count)
         let height = ui_Unit_Height
         let returnSize = CGSize(width: width, height: height)
