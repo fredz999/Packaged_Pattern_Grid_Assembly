@@ -182,9 +182,9 @@ public class Central_State : ObservableObject {
     }
     
     public func togglewriteIsOn(){
-        //if a_Note_Is_Highlighted == false{
+        if a_Note_Is_Highlighted == false{
             writingIsOn.toggle()
-        //}
+        }
     }
     
     func centralState_Cursor_Position_Evaluation() {
