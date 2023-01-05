@@ -80,7 +80,7 @@ public class Pattern_Edit_Layer<Injected_Delete_Btn_Type:View,Injected_Lengthen_
         injected_Move_Down_Up_Buttons = injected_Move_Down_Up_Buttons_Param()
     }
     
-    @ViewBuilder public func return_Delete_Button()->some View{
+    @ViewBuilder public func return_Delete_Button() -> some View {
         if let lclDelBtn = injected_Delete_Button{
             lclDelBtn
         }
@@ -89,17 +89,17 @@ public class Pattern_Edit_Layer<Injected_Delete_Btn_Type:View,Injected_Lengthen_
         }
     }
     
-    @ViewBuilder public func return_Lengthen_Shorten_Buttons()->some View{
-        if let lcl_Lengthen_Shorten_Btns = injected_Lengthen_Shorten_Buttons{
+    @ViewBuilder public func return_Lengthen_Shorten_Buttons()->some View {
+        if let lcl_Lengthen_Shorten_Btns = injected_Lengthen_Shorten_Buttons {
             lcl_Lengthen_Shorten_Btns
         }
-        else if injected_Lengthen_Shorten_Buttons == nil{
+        else if injected_Lengthen_Shorten_Buttons == nil {
             Default_Lengthen_Shorten_Buttons_View()
         }
     }
     
-    @ViewBuilder public func return_Move_Left_Right_Buttons()->some View{
-        if let lcl_Move_Left_Right_Btns = injected_Move_Left_Right_Buttons{
+    @ViewBuilder public func return_Move_Left_Right_Buttons()->some View {
+        if let lcl_Move_Left_Right_Btns = injected_Move_Left_Right_Buttons {
             lcl_Move_Left_Right_Btns
         }
         else if injected_Move_Left_Right_Buttons == nil{
