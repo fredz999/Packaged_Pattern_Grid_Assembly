@@ -64,8 +64,8 @@ public class ComponentDimensions : ObservableObject {
     public let Vert_Cursor_Slider_Width : CGFloat = 36
     public let Vert_Cursor_Slider_Height : CGFloat = 192
     
-//    public let Vert_Cursor_Slider_Line_Height : CGFloat = 1
-//    public let Vert_Cursor_Slider_Line_Width : CGFloat = 384
+    public let Vert_Cursor_Slider_Line_Height : CGFloat = 4
+    public let Vert_Cursor_Slider_Line_Width : CGFloat = 384
     
     public func return_H_Slider_Y_Offset() -> CGFloat{
         let retval = (pattern_Grid_Unit_Height*CGFloat(visualGrid_Y_Unit_Count)) + ui_Unit_Height
