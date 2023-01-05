@@ -85,7 +85,7 @@ public class Pattern_Edit_Layer<Injected_Delete_Btn_Type:View,Injected_Lengthen_
             lclDelBtn
         }
         else if injected_Delete_Button == nil{
-            Default_Delete_Button_View()
+            Text("DeletePlaceholder")
         }
     }
     
