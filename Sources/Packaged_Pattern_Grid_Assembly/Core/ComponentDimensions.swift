@@ -57,7 +57,7 @@ public class ComponentDimensions : ObservableObject {
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
     public var Horz_Cursor_Slider_Width : CGFloat = 384
-    public var Horz_Cursor_Slider_Height : CGFloat = 24
+    public var Horz_Cursor_Slider_Height : CGFloat = 36
     
     public var Horz_Cursor_Slider_Line_Height : CGFloat = 384
     public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
