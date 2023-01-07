@@ -126,77 +126,149 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         for dataLine in dataLineArray {
                 for outerX in 0..<compositeCellCount {
                     
-                    
-                    
-                    if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
-                        
-                        for innerX in 0..<3{
-                            let computedX = (outerX*3)+innerX
+                    if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 6{
+                        for innerX in 0..<6{
+                            let computedX = (outerX*6)+innerX
                             let dataCell = dataLine.dataCellArray[computedX]
                             if dataCell.note_Im_In == nil{
                                 if innerX == 0{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .start_Blank{dataCell.currentType = .start_Blank}
                                     dataCell.note_Reset_Status = .start_Blank
                                 }
                                 else if innerX == 1{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
                                     dataCell.note_Reset_Status = .mid_Blank
                                 }
                                 else if innerX == 2{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
+                                    if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 3{
+                                    if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 4{
+                                    if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 5{
                                     if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
                                     dataCell.note_Reset_Status = .end_Blank
                                 }
                             }
                             else if dataCell.note_Im_In != nil{
                                 if innerX == 0{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
-
                                     dataCell.note_Reset_Status = .start_Blank
                                 }
                                 else if innerX == 1{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
-
                                     dataCell.note_Reset_Status = .mid_Blank
                                 }
                                 else if innerX == 2{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
-
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 3{
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 4{
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 5{
                                     dataCell.note_Reset_Status = .end_Blank
                                 }
                             }
                         }
-                        
-                        
-                        
                     }
+                    
+                    else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 4{
+                        for innerX in 0..<4{
+                            let computedX = (outerX*4)+innerX
+                            let dataCell = dataLine.dataCellArray[computedX]
+                            if dataCell.note_Im_In == nil{
+                                if innerX == 0{
+                                    if dataCell.currentType != .start_Blank{dataCell.currentType = .start_Blank}
+                                    dataCell.note_Reset_Status = .start_Blank
+                                }
+                                else if innerX == 1{
+                                    if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 2{
+                                    if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 3{
+                                    if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
+                                    dataCell.note_Reset_Status = .end_Blank
+                                }
+                            }
+                            else if dataCell.note_Im_In != nil{
+                                if innerX == 0{
+                                    dataCell.note_Reset_Status = .start_Blank
+                                }
+                                else if innerX == 1{
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 2{
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 3{
+                                    dataCell.note_Reset_Status = .end_Blank
+                                }
+                            }
+                        }
+                    }
+                    
+                    else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
+                        for innerX in 0..<3{
+                            let computedX = (outerX*3)+innerX
+                            let dataCell = dataLine.dataCellArray[computedX]
+                            if dataCell.note_Im_In == nil{
+                                if innerX == 0{
+                                    if dataCell.currentType != .start_Blank{dataCell.currentType = .start_Blank}
+                                    dataCell.note_Reset_Status = .start_Blank
+                                }
+                                else if innerX == 1{
+                                    if dataCell.currentType != .mid_Blank{dataCell.currentType = .mid_Blank}
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 2{
+                                    if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
+                                    dataCell.note_Reset_Status = .end_Blank
+                                }
+                            }
+                            else if dataCell.note_Im_In != nil{
+                                if innerX == 0{
+                                    dataCell.note_Reset_Status = .start_Blank
+                                }
+                                else if innerX == 1{
+                                    dataCell.note_Reset_Status = .mid_Blank
+                                }
+                                else if innerX == 2{
+                                    dataCell.note_Reset_Status = .end_Blank
+                                }
+                            }
+                        }
+                    }
+                    
                     else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 2{
                         for innerX in 0..<2{
                             let computedX = (outerX*2)+innerX
                             let dataCell = dataLine.dataCellArray[computedX]
                             if dataCell.note_Im_In == nil{
                                 if innerX == 0{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .start_Blank{dataCell.currentType = .start_Blank}
                                     dataCell.note_Reset_Status = .start_Blank
                                 }
                                 else if innerX == 1{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
                                     if dataCell.currentType != .end_Blank{dataCell.currentType = .end_Blank}
                                     dataCell.note_Reset_Status = .end_Blank
                                 }
                             }
                             else if dataCell.note_Im_In != nil{
                                 if innerX == 0{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
-
                                     dataCell.note_Reset_Status = .start_Blank
                                 }
                                 else if innerX == 1{
-                                    //let dataCell = dataLine.dataCellArray[computedX]
-
                                     dataCell.note_Reset_Status = .end_Blank
                                 }
                             }
