@@ -82,21 +82,20 @@ public class ComponentDimensions : ObservableObject {
     
     public var patternTimingConfiguration : E_CentralGridTiming = .sixEight
     
-    @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 8
-    @Published public var cursor_X_Jump : CGFloat = 8
-    //@Published public var pattern_Grid_Unit_Width : CGFloat = 8
+    @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 4
+    @Published public var cursor_X_Jump : CGFloat = 4
     
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 2
-            cursor_X_Jump = 8
+            cursor_X_Jump = 4
             cellArray_Write_Addition = 1
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 3
-            cursor_X_Jump = 8
+            cursor_X_Jump = 4
             cellArray_Write_Addition = 2
         }
     }
