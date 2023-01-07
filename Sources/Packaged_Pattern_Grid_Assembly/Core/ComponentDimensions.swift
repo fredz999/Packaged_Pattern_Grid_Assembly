@@ -24,18 +24,16 @@ public class ComponentDimensions : ObservableObject {
     //============== Central Grid SECTION =========================
     public let DATA_final_Line_Y_Index : Int = 64
     
-    @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 8
+    
+    
     @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 2
     
     @Published public var curr_cursor_X_Offset : CGFloat = 0
-    @Published public var cursor_X_Jump : CGFloat = 8
+    
     @Published public var cursor_Y_Jump : CGFloat = 16
-    @Published public var pattern_Grid_Unit_Width : CGFloat = 8
-    @Published public var pattern_Grid_Unit_Height : CGFloat = 16 // 24 or 16
+    
+    @Published public var pattern_Grid_Unit_Height : CGFloat = 16
     var cellArray_Write_Addition : Int = 1
-    
-
-    
     var initial_Right_Boundary : CGFloat = 368
     public var current_Rightward_Boundary : CGFloat = 368
     
@@ -61,12 +59,12 @@ public class ComponentDimensions : ObservableObject {
     public var Horz_Cursor_Slider_Height : CGFloat = 36
     
     public var Horz_Cursor_Slider_Line_Height : CGFloat = 384
-    public var Horz_Cursor_Slider_Line_Width : CGFloat = 1
+    public var Horz_Cursor_Slider_Line_Width : CGFloat = 2
     
     public let Vert_Cursor_Slider_Width : CGFloat = 36
     public let Vert_Cursor_Slider_Height : CGFloat = 192
     
-    public let Vert_Cursor_Slider_Line_Height : CGFloat = 4
+    public let Vert_Cursor_Slider_Line_Height : CGFloat = 2
     public let Vert_Cursor_Slider_Line_Width : CGFloat = 384
     
     public func return_H_Slider_Y_Offset() -> CGFloat{
@@ -75,13 +73,18 @@ public class ComponentDimensions : ObservableObject {
     }
     
     public func return_V_Slider_Offset() -> CGSize {
-        let width = pattern_Grid_Unit_Width*CGFloat(dataGrid_X_Unit_Count)
+        let width = pattern_Grid_Sub_Cell_Width*CGFloat(dataGrid_X_Unit_Count)
+        //pattern_Grid_Unit_Width*CGFloat(dataGrid_X_Unit_Count)
         let height = ui_Unit_Height
         let returnSize = CGSize(width: width, height: height)
         return returnSize
     }
     
     public var patternTimingConfiguration : E_CentralGridTiming = .sixEight
+    
+    @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 8
+    @Published public var cursor_X_Jump : CGFloat = 8
+    //@Published public var pattern_Grid_Unit_Width : CGFloat = 8
     
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {

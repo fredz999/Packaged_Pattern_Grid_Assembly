@@ -197,7 +197,7 @@ public class Central_State : ObservableObject {
         
         if let lclCursorLayer = cursor_Layer_Ref {
             
-            let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Unit_Width)
+            let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Sub_Cell_Width)
             
             lclCursorLayer.currPosX = currentXCursor_Slider_Position*multiplier
             

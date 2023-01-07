@@ -15,8 +15,7 @@ public class Note_Collection {
     var data = Underlying_Data_Grid.Static_Underlying_Data_Grid
     
     var visual_Grid_Ref : Central_Grid_Store?
-    
-    // this has to be seen externally and they have to be swappable
+
     public var noteArray : [Note] = []{
         didSet{
             if p_ExternalNote_Responder_Array.count > 0 {
@@ -47,14 +46,12 @@ public class Note_Collection {
         }
     }
     
-    //func write_CellArray_Into_Note(computed_Lowest_Data_X:Int,computed_Highest_Data_X:Int,data_Y:Int) {
     func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
     
-        // atm its 2x
-    let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Unit_Width)
-
+        let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Sub_Cell_Width)
 
     let computed_Lowest_Data_X = multiplier*lowest_Data_X
+        
     let computed_Highest_Data_X = (multiplier*highest_Data_X)+dimensions.cellArray_Write_Addition
         
     var dataCellArray : [Underlying_Data_Cell] = []
