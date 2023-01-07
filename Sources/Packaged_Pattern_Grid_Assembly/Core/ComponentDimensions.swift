@@ -26,7 +26,7 @@ public class ComponentDimensions : ObservableObject {
     
     
     
-    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 2
+    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 4
     
     @Published public var curr_cursor_X_Offset : CGFloat = 0
     
@@ -74,7 +74,6 @@ public class ComponentDimensions : ObservableObject {
     
     public func return_V_Slider_Offset() -> CGSize {
         let width = pattern_Grid_Sub_Cell_Width*CGFloat(dataGrid_X_Unit_Count)
-        //pattern_Grid_Unit_Width*CGFloat(dataGrid_X_Unit_Count)
         let height = ui_Unit_Height
         let returnSize = CGSize(width: width, height: height)
         return returnSize
@@ -88,13 +87,13 @@ public class ComponentDimensions : ObservableObject {
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
-            pattern_Grid_Cell_Sub_Unit_Count = 2
+            pattern_Grid_Cell_Sub_Unit_Count = 4
             cursor_X_Jump = 4
             cellArray_Write_Addition = 1
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
-            pattern_Grid_Cell_Sub_Unit_Count = 3
+            pattern_Grid_Cell_Sub_Unit_Count = 6
             cursor_X_Jump = 4
             cellArray_Write_Addition = 2
         }

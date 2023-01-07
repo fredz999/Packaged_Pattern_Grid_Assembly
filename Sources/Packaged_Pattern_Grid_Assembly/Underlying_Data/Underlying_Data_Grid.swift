@@ -16,6 +16,8 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         set_Data_Grid()
     }
     
+    
+    
     func set_Data_Grid(){
         let compositeCellCount = dimensions.dataGrid_X_Unit_Count/dimensions.pattern_Grid_Cell_Sub_Unit_Count
         
@@ -23,8 +25,62 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
             
             let newLine = Underlying_Data_Line()
             for outerX in 0..<compositeCellCount {
-                
-                if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
+                if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 6{
+                    // start mid then end
+                    for innerX in 0..<dimensions.pattern_Grid_Cell_Sub_Unit_Count{
+                        let computedX = (outerX*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+innerX
+                        
+                        if innerX == 0{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 1{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 2{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 3{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 4{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 5{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                    }
+                }
+                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 4{
+                    print("was four")
+                    // start mid then end
+                    for innerX in 0..<dimensions.pattern_Grid_Cell_Sub_Unit_Count{
+                        let computedX = (outerX*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+innerX
+                        
+                        if innerX == 0{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 1{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 2{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                        else if innerX == 3{
+                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
+                            newLine.dataCellArray.append(newDataCell)
+                        }
+                    }
+                }
+                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
                     // start mid then end
                     for innerX in 0..<3{
                         let computedX = (outerX*3)+innerX
@@ -41,10 +97,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                             let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
                             newLine.dataCellArray.append(newDataCell)
                         }
-                        
                     }
-        
-                    
                 }
                 else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 2{
                     // start then end

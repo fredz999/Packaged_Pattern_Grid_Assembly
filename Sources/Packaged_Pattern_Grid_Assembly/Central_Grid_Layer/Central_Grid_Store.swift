@@ -31,11 +31,7 @@ public class Central_Grid_Store : ObservableObject {
         }
     }
     
-
-
 }
-
-
 
 
 public class Central_Line_Store : ObservableObject,Identifiable {
