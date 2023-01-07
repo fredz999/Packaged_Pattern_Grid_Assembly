@@ -26,7 +26,7 @@ public class ComponentDimensions : ObservableObject {
     
     
     
-    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 6
+    
     
     @Published public var curr_cursor_X_Offset : CGFloat = 0
     
@@ -50,7 +50,7 @@ public class ComponentDimensions : ObservableObject {
         current_Leftward_Boundary = newLeftBoundaryFloat
     }
     
-    @Published public var dataGrid_X_Unit_Count : Int = 48
+    @Published public var dataGrid_X_Unit_Count : Int = 96
     public let visualGrid_Y_Unit_Count : Int = 12
     
     public let cellFontSize : CGFloat = 12
@@ -79,8 +79,9 @@ public class ComponentDimensions : ObservableObject {
         return returnSize
     }
     
-    public var patternTimingConfiguration : E_CentralGridTiming = .sixEight
+    public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
     
+    @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 6
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 4
     @Published public var cursor_X_Jump : CGFloat = 4
     

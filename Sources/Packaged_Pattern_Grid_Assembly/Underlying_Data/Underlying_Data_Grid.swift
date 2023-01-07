@@ -57,7 +57,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     }
                 }
                 else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 4{
-                    print("was four")
                     // start mid then end
                     for innerX in 0..<dimensions.pattern_Grid_Cell_Sub_Unit_Count{
                         let computedX = (outerX*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+innerX
