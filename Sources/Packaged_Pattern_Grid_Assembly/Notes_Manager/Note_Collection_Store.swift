@@ -50,9 +50,11 @@ public class Note_Collection {
         print("lowest_Data_X: ",lowest_Data_X.description,", highest_Data_X: ",highest_Data_X.description)
     let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Sub_Cell_Width)
 
-    let computed_Lowest_Data_X = multiplier*lowest_Data_X
+    let computed_Lowest_Data_X = lowest_Data_X
+        //= multiplier*lowest_Data_X
         
-    let computed_Highest_Data_X = (multiplier*highest_Data_X)+dimensions.cellArray_Write_Addition
+    let computed_Highest_Data_X = highest_Data_X
+        //= (multiplier*highest_Data_X)+dimensions.cellArray_Write_Addition
         
     var dataCellArray : [Underlying_Data_Cell] = []
 
