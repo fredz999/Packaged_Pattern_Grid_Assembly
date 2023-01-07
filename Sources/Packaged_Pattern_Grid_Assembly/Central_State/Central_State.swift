@@ -46,11 +46,11 @@ public class Central_State : ObservableObject {
     
     public func change_Timing_Signature_Central(){
         dimensions.flip_Timing_Signature()
-        if let lclHslider = h_Slider_Ref{
-            lclHslider.calculateCursorCellXPos()
-                // .zeroCursorCellXPos()
-                // .calculateCursorCellXPos()
-        }
+//        if let lclHslider = h_Slider_Ref{
+//            lclHslider.calculateCursorCellXPos()
+//                // .zeroCursorCellXPos()
+//                // .calculateCursorCellXPos()
+//        }
         data_Grid.changeTimingSignature_Data_Level()
 
         if let lcl_central_Grid_Store = central_Grid_Store {
