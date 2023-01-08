@@ -180,7 +180,8 @@ public class Central_State : ObservableObject {
             }
         }
         print("4:4 Index: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].subCellIndex_Four_Four
-        ,", 6:8 index: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].subCellIndex_Four_Four)
+        ,", 6:8 index: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].subCellIndex_Four_Four
+        ,", DataCell_X: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].dataCell_X_Number)
     }
     
     public func togglewriteIsOn(){
