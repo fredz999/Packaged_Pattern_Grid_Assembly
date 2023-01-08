@@ -39,9 +39,16 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 else if sixEightCount == 4{currSixStatus = .mid_Blank}
                 else if sixEightCount == 5{currSixStatus = .end_Blank}
                 
+                if dimensions.patternTimingConfiguration == .fourFour {
+                    initialStatus = currFourStatus
+                }
+                else if dimensions.patternTimingConfiguration == .sixEight {
+                    initialStatus = currSixStatus
+                }
+                
                 let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus
                 , sixStatusParam: currSixStatus, initialStatusParam: initialStatus
-                , fourFourParam: fourFourCount, sixEightParam: sixEightCount)
+                , fourFourIndexParam: fourFourCount, sixEightIndexParam: sixEightCount)
                 
                 if sixEightCount + 1 < 6{sixEightCount+=1}
                 else if sixEightCount + 1 == 6{sixEightCount=0}
@@ -349,11 +356,11 @@ public class Underlying_Data_Cell:Identifiable {
     public var subCellIndex_Four_Four : Int
     public var subCellIndex_Six_Eight : Int
     
-    public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus,fourFourParam:Int,sixEightParam:Int){
+    public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus,fourFourIndexParam:Int,sixEightIndexParam:Int){
         if yNumParam == 0 {print("xNumParam: ",xNumParam.description)}
         
-        subCellIndex_Four_Four = fourFourParam
-        subCellIndex_Six_Eight = sixEightParam
+        subCellIndex_Four_Four = fourFourIndexParam
+        subCellIndex_Six_Eight = sixEightIndexParam
         
         dataCell_X_Number = xNumParam
         dataCell_Y_Number = yNumParam
