@@ -403,6 +403,9 @@ public class Underlying_Data_Cell:Identifiable {
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.referenced_currentStatus = newType
         }
+        else if currentConnectedDataVals == nil{
+            print("currentConnectedDataVals == nil somehow .... what?")
+        }
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
