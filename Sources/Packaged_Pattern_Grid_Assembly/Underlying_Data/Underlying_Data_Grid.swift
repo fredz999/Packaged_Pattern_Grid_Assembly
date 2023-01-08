@@ -118,7 +118,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
             dataLineArray.append(newLine)
         }
     }
-    
 
     public func changeTimingSignature_Data_Level(){
 
@@ -298,14 +297,24 @@ public class Underlying_Data_Cell:Identifiable {
     var note_Im_In : Note?
     weak var currentConnectedDataVals : Data_Vals_Holder?
     
+    //o......k....
+    //the cell is either 0 in a four through to 3 in a four OR 0 in a six through to 5 in 6
+    //the cell has both subCellClassifications
+    // subCellIndex_Four_Four and subCellIndex_Six_Eight
+    
     public var currentType : E_CellStatus // = .unassigned
     var note_Reset_Status : E_CellStatus
+    
+    public var subCellIndex_Four_Four : Int
+    public var subCellIndex_Six_Eight : Int
     
     public init(xNumParam:Int,yNumParam:Int,statusParam:E_CellStatus){
         dataCell_X_Number = xNumParam
         dataCell_Y_Number = yNumParam
         currentType = statusParam
         note_Reset_Status = statusParam
+        subCellIndex_Four_Four = Int((xNumParam+1)/4)
+        subCellIndex_Six_Eight = Int((xNumParam+1)/6)
     }
     
     public func change_Type(newType:E_CellStatus){
@@ -324,17 +333,10 @@ public class Underlying_Data_Cell:Identifiable {
         }
     }
     
-//    public func de_Prohib(){
-//        if let lcl_Data_Vals = currentConnectedDataVals{
-//            lcl_Data_Vals.referenced_isHighlighted = highlightStatusParam
-//        }
-//    }
-    
     public func reset_To_Original(){
         currentType = note_Reset_Status
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.referenced_isProhibited = false
-            // get this out of the cell in a note set
             lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
             , newYNum: dataCell_Y_Number
             , newCellStatus: note_Reset_Status

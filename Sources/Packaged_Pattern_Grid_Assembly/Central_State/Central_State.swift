@@ -159,7 +159,7 @@ public class Central_State : ObservableObject {
     }
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-        //TODO: border check call(if write is on)
+
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Cursor_Position_Evaluation()
@@ -179,6 +179,8 @@ public class Central_State : ObservableObject {
                 potentialNoteEvaluation()
             }
         }
+        print("4:4 Index: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].subCellIndex_Four_Four
+        ,", 6:8 index: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].subCellIndex_Four_Four)
     }
     
     public func togglewriteIsOn(){
