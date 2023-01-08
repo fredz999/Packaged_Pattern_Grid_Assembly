@@ -398,6 +398,7 @@ public class Underlying_Data_Cell:Identifiable {
     }
     
     public func change_Type(newType:E_CellStatus){
+        print("changing to: ",newType.rawValue)
         currentType = newType
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.referenced_currentStatus = newType
