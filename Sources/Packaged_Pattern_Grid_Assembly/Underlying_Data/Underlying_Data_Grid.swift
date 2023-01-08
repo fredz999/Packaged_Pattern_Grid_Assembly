@@ -28,6 +28,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 6{
                     // start mid then end
                     for innerX in 0..<dimensions.pattern_Grid_Cell_Sub_Unit_Count{
+                        
                         let computedX = (outerX*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+innerX
                         
                         if innerX == 0{
@@ -309,6 +310,7 @@ public class Underlying_Data_Cell:Identifiable {
     public var subCellIndex_Six_Eight : Int
     
     public init(xNumParam:Int,yNumParam:Int,statusParam:E_CellStatus){
+        if yNumParam == 0 {print("xNumParam: ",xNumParam.description)}
         dataCell_X_Number = xNumParam
         dataCell_Y_Number = yNumParam
         currentType = statusParam
