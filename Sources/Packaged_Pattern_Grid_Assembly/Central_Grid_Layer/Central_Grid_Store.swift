@@ -175,9 +175,13 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         self.x_Index = x_Index_Param
         self.xFloat = CGFloat(x_Index_Param) * dimensions.pattern_Grid_Sub_Cell_Width
         self.yFloat = CGFloat(lineParam.y_Index) * dimensions.pattern_Grid_Unit_Height
+        
         data_Vals_Holder = Data_Vals_Holder(xNumParam: underlying_Data_Cell_Param.dataCell_X_Number
         , yNumParam: underlying_Data_Cell_Param.dataCell_Y_Number
         , typeParam: underlying_Data_Cell_Param.currentType)
+        
+        cell_Swap_Underlying_Data(new_Data_Cell: underlying_Data_Cell_Param)
+        
     }
     
     
