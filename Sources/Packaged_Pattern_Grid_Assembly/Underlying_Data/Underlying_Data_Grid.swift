@@ -16,16 +16,43 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         set_Data_Grid()
     }
     
+    var fourFourCount : Int = 0
+    var sixEightCount : Int = 0
+    var initialStatus : E_CellStatus = .start_Blank
+    var currFourStatus : E_CellStatus = .start_Blank
+    var currSixStatus : E_CellStatus = .start_Blank
+    
     func set_Data_Grid(){
         for y in 0..<dimensions.DATA_final_Line_Y_Index {
             let newLine = Underlying_Data_Line()
             for x in 0..<dimensions.dataGrid_X_Unit_Count{
-                let newDataCell=Underlying_Data_Cell(xNumParam: x, yNumParam: y, statusParam: .start_Blank)
+                
+                if fourFourCount == 0{currFourStatus = .start_Blank}
+                else if fourFourCount == 1{currFourStatus = .mid_Blank}
+                else if fourFourCount == 2{currFourStatus = .mid_Blank}
+                else if fourFourCount == 3{currFourStatus = .end_Blank}
+                
+                if sixEightCount == 0{currSixStatus = .start_Blank}
+                else if sixEightCount == 1{currSixStatus = .mid_Blank}
+                else if sixEightCount == 2{currSixStatus = .mid_Blank}
+                else if sixEightCount == 3{currSixStatus = .mid_Blank}
+                else if sixEightCount == 4{currSixStatus = .mid_Blank}
+                else if sixEightCount == 5{currSixStatus = .end_Blank}
+                
+                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus
+                , sixStatusParam: currSixStatus, initialStatusParam: initialStatus
+                , fourFourParam: fourFourCount, sixEightParam: sixEightCount)
+                
+                if sixEightCount + 1 < 6{sixEightCount+=1}
+                else if sixEightCount + 1 == 6{sixEightCount=0}
+                
+                if fourFourCount + 1 < 4{fourFourCount+=1}
+                else if fourFourCount + 1 == 4{fourFourCount=0}
+                
                 newLine.dataCellArray.append(newDataCell)
             }
             dataLineArray.append(newLine)
         }
-        
     }
     
 //    func set_Data_Grid(){
@@ -314,18 +341,28 @@ public class Underlying_Data_Cell:Identifiable {
     //the cell has both subCellClassifications
     // subCellIndex_Four_Four and subCellIndex_Six_Eight
     
-    public var currentType : E_CellStatus // = .unassigned
     var note_Reset_Status : E_CellStatus
+    public var currentType : E_CellStatus
+    public var fourStatus : E_CellStatus
+    public var sixStatus : E_CellStatus
     
-//    public var subCellIndex_Four_Four : Int
-//    public var subCellIndex_Six_Eight : Int
+    public var subCellIndex_Four_Four : Int
+    public var subCellIndex_Six_Eight : Int
     
-    public init(xNumParam:Int,yNumParam:Int,statusParam:E_CellStatus){
+    public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus,fourFourParam:Int,sixEightParam:Int){
         if yNumParam == 0 {print("xNumParam: ",xNumParam.description)}
+        
+        subCellIndex_Four_Four = fourFourParam
+        subCellIndex_Six_Eight = sixEightParam
+        
         dataCell_X_Number = xNumParam
         dataCell_Y_Number = yNumParam
-        currentType = statusParam
-        note_Reset_Status = statusParam
+        
+        fourStatus = fourStatusParam
+        sixStatus = sixStatusParam
+        
+        currentType = initialStatusParam
+        note_Reset_Status = initialStatusParam
     }
     
     public func react_To_Timing_CHange(){
