@@ -16,109 +16,120 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         set_Data_Grid()
     }
     
-    
-    
     func set_Data_Grid(){
-        let compositeCellCount = dimensions.dataGrid_X_Unit_Count/dimensions.pattern_Grid_Cell_Sub_Unit_Count
-        
         for y in 0..<dimensions.DATA_final_Line_Y_Index {
-            
             let newLine = Underlying_Data_Line()
-            for outerX in 0..<compositeCellCount {
-                if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 6{
-                    // start mid then end
-                    for innerX in 0..<dimensions.pattern_Grid_Cell_Sub_Unit_Count{
-                        
-                        let computedX = (outerX*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+innerX
-                        
-                        if innerX == 0{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 1{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 2{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 3{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 4{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 5{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                    }
-                }
-                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 4{
-                    // start mid then end
-                    for innerX in 0..<dimensions.pattern_Grid_Cell_Sub_Unit_Count{
-                        let computedX = (outerX*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+innerX
-                        
-                        if innerX == 0{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 1{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 2{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 3{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                    }
-                }
-                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
-                    // start mid then end
-                    for innerX in 0..<3{
-                        let computedX = (outerX*3)+innerX
-                        
-                        if innerX == 0{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 1{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 2{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                    }
-                }
-                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 2{
-                    // start then end
-                    for innerX in 0..<2{
-                        let computedX = (outerX*2)+innerX
-                        if innerX == 0{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                        else if innerX == 1{
-                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
-                            newLine.dataCellArray.append(newDataCell)
-                        }
-                    }
-                    
-                }
-                
+            for x in 0..<dimensions.dataGrid_X_Unit_Count{
+                let newDataCell=Underlying_Data_Cell(xNumParam: x, yNumParam: y, statusParam: .start_Blank)
+                newLine.dataCellArray.append(newDataCell)
             }
             dataLineArray.append(newLine)
         }
+        
     }
+    
+//    func set_Data_Grid(){
+//
+//        let compositeCellCount = dimensions.dataGrid_X_Unit_Count/dimensions.pattern_Grid_Cell_Sub_Unit_Count
+//
+//        for y in 0..<dimensions.DATA_final_Line_Y_Index {
+//
+//            let newLine = Underlying_Data_Line()
+//            for outerX in 0..<compositeCellCount {
+//                if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 6{
+//                    // start mid then end
+//                    for innerX in 0..<dimensions.pattern_Grid_Cell_Sub_Unit_Count{
+//
+//                        let computedX = (outerX*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+innerX
+//
+//                        if innerX == 0{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 1{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 2{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 3{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 4{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 5{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                    }
+//                }
+//                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 4{
+//                    // start mid then end
+//                    for innerX in 0..<dimensions.pattern_Grid_Cell_Sub_Unit_Count{
+//                        let computedX = (outerX*dimensions.pattern_Grid_Cell_Sub_Unit_Count)+innerX
+//
+//                        if innerX == 0{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 1{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 2{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 3{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                    }
+//                }
+//                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 3{
+//                    // start mid then end
+//                    for innerX in 0..<3{
+//                        let computedX = (outerX*3)+innerX
+//
+//                        if innerX == 0{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 1{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .mid_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 2{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                    }
+//                }
+//                else if dimensions.pattern_Grid_Cell_Sub_Unit_Count == 2{
+//                    // start then end
+//                    for innerX in 0..<2{
+//                        let computedX = (outerX*2)+innerX
+//                        if innerX == 0{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .start_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                        else if innerX == 1{
+//                            let newDataCell=Underlying_Data_Cell(xNumParam: computedX, yNumParam: y, statusParam: .end_Blank)
+//                            newLine.dataCellArray.append(newDataCell)
+//                        }
+//                    }
+//
+//                }
+//
+//            }
+//            dataLineArray.append(newLine)
+//        }
+//    }
 
     public func changeTimingSignature_Data_Level(){
 
@@ -306,8 +317,8 @@ public class Underlying_Data_Cell:Identifiable {
     public var currentType : E_CellStatus // = .unassigned
     var note_Reset_Status : E_CellStatus
     
-    public var subCellIndex_Four_Four : Int
-    public var subCellIndex_Six_Eight : Int
+//    public var subCellIndex_Four_Four : Int
+//    public var subCellIndex_Six_Eight : Int
     
     public init(xNumParam:Int,yNumParam:Int,statusParam:E_CellStatus){
         if yNumParam == 0 {print("xNumParam: ",xNumParam.description)}
@@ -315,8 +326,10 @@ public class Underlying_Data_Cell:Identifiable {
         dataCell_Y_Number = yNumParam
         currentType = statusParam
         note_Reset_Status = statusParam
-        subCellIndex_Four_Four = Int((xNumParam+1)/4)
-        subCellIndex_Six_Eight = Int((xNumParam+1)/6)
+    }
+    
+    public func react_To_Timing_CHange(){
+        
     }
     
     public func change_Type(newType:E_CellStatus){
