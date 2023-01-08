@@ -85,6 +85,7 @@ public class ComponentDimensions : ObservableObject {
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 4
     @Published public var cursor_X_Jump : CGFloat = 4
     
+    //this is now probably best handled in the central state
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
