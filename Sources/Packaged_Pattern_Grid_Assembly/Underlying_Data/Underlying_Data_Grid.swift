@@ -62,24 +62,24 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         }
     }
     
-    public func changeTimingSignature_Data_Level(){
-        
-        if dimensions.patternTimingConfiguration == .sixEight{
-            for line in dataLineArray {
-                for cell in line.dataCellArray {
-                    cell.react_To_Timing_Change(timingParam: .sixEight)
-                }
-            }
-        }
-        else if dimensions.patternTimingConfiguration == .fourFour{
-            for line in dataLineArray {
-                for cell in line.dataCellArray {
-                    cell.react_To_Timing_Change(timingParam: .fourFour)
-                }
-            }
-        }
-        
-    }
+//    public func changeTimingSignature_Data_Level(){
+//        
+//        if dimensions.patternTimingConfiguration == .sixEight{
+//            for line in dataLineArray {
+//                for cell in line.dataCellArray {
+//                    cell.react_To_Timing_Change(timingParam: .sixEight)
+//                }
+//            }
+//        }
+//        else if dimensions.patternTimingConfiguration == .fourFour{
+//            for line in dataLineArray {
+//                for cell in line.dataCellArray {
+//                    cell.react_To_Timing_Change(timingParam: .fourFour)
+//                }
+//            }
+//        }
+//        
+//    }
     
 //    func set_Data_Grid(){
 //
@@ -398,13 +398,11 @@ public class Underlying_Data_Cell:Identifiable {
     }
     
     public func change_Type(newType:E_CellStatus){
-        //print("changing to: ",newType.rawValue)
+        //TODO: Datavals memory
         currentType = newType
+        
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.referenced_currentStatus = newType
-        }
-        else if currentConnectedDataVals == nil{
-            print("currentConnectedDataVals == nil somehow .... what?")
         }
     }
     
