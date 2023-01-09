@@ -124,14 +124,14 @@ public class Underlying_Data_Cell:Identifiable {
         if timingParam == .fourFour {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
                 change_Type(newType: fourStatus)
-                note_Reset_Status = fourStatus
             }
+            note_Reset_Status = fourStatus
         }
         else if timingParam == .sixEight {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
                 change_Type(newType: sixStatus)
-                note_Reset_Status = sixStatus
             }
+            note_Reset_Status = sixStatus
         }
     }
     
