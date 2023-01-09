@@ -16,8 +16,8 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         set_Data_Grid()
     }
     
-    var fourFourCount : Int = 0
-    var sixEightCount : Int = 0
+    private var fourFourCount : Int = 0
+    private var sixEightCount : Int = 0
     var initialStatus : E_CellStatus = .start_Blank
     var currFourStatus : E_CellStatus = .start_Blank
     var currSixStatus : E_CellStatus = .start_Blank
