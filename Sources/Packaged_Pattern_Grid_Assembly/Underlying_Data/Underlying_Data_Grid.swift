@@ -16,8 +16,11 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         set_Data_Grid()
     }
     
-    private var fourFourCount : Int = 0
-    private var sixEightCount : Int = 0
+    private var fourFour_Sub_Count : Int = 0
+    private var fourFour_Cell_Count : Int = 0
+    private var sixEight_Sub_Count : Int = 0
+    private var sixEight_Cell_Count : Int = 0
+    
     var initialStatus : E_CellStatus = .start_Blank
     var currFourStatus : E_CellStatus = .start_Blank
     var currSixStatus : E_CellStatus = .start_Blank
@@ -27,17 +30,17 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
             let newLine = Underlying_Data_Line()
             for x in 0..<dimensions.dataGrid_X_Unit_Count{
                 
-                if fourFourCount == 0{currFourStatus = .start_Blank}
-                else if fourFourCount == 1{currFourStatus = .mid_Blank}
-                else if fourFourCount == 2{currFourStatus = .mid_Blank}
-                else if fourFourCount == 3{currFourStatus = .end_Blank}
+                if fourFour_Sub_Count == 0{currFourStatus = .start_Blank}
+                else if fourFour_Sub_Count == 1{currFourStatus = .mid_Blank}
+                else if fourFour_Sub_Count == 2{currFourStatus = .mid_Blank}
+                else if fourFour_Sub_Count == 3{currFourStatus = .end_Blank}
                 
-                if sixEightCount == 0{currSixStatus = .start_Blank}
-                else if sixEightCount == 1{currSixStatus = .mid_Blank}
-                else if sixEightCount == 2{currSixStatus = .mid_Blank}
-                else if sixEightCount == 3{currSixStatus = .mid_Blank}
-                else if sixEightCount == 4{currSixStatus = .mid_Blank}
-                else if sixEightCount == 5{currSixStatus = .end_Blank}
+                if sixEight_Sub_Count == 0{currSixStatus = .start_Blank}
+                else if sixEight_Sub_Count == 1{currSixStatus = .mid_Blank}
+                else if sixEight_Sub_Count == 2{currSixStatus = .mid_Blank}
+                else if sixEight_Sub_Count == 3{currSixStatus = .mid_Blank}
+                else if sixEight_Sub_Count == 4{currSixStatus = .mid_Blank}
+                else if sixEight_Sub_Count == 5{currSixStatus = .end_Blank}
                 
                 if dimensions.patternTimingConfiguration == .fourFour {
                     initialStatus = currFourStatus
@@ -48,13 +51,20 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 
                 let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus
                 , sixStatusParam: currSixStatus, initialStatusParam: initialStatus
-                , fourFourIndexParam: fourFourCount, sixEightIndexParam: sixEightCount)
+                , fourFourIndexParam: fourFour_Sub_Count, sixEightIndexParam: sixEight_Sub_Count
+                , four_Four_Cell_Index_Param:fourFour_Cell_Count,six_Eight_Cell_Index_Param:sixEight_Cell_Count)
                 
-                if sixEightCount + 1 < 6{sixEightCount+=1}
-                else if sixEightCount + 1 == 6{sixEightCount=0}
+                if sixEight_Sub_Count + 1 < 6{sixEight_Sub_Count+=1}
+                else if sixEight_Sub_Count + 1 == 6{
+                    sixEight_Sub_Count = 0
+                    sixEight_Cell_Count += 1
+                }
                 
-                if fourFourCount + 1 < 4{fourFourCount+=1}
-                else if fourFourCount + 1 == 4{fourFourCount=0}
+                if fourFour_Sub_Count + 1 < 4{fourFour_Sub_Count+=1}
+                else if fourFour_Sub_Count + 1 == 4{
+                    fourFour_Sub_Count=0
+                    fourFour_Cell_Count=0
+                }
                 
                 newLine.dataCellArray.append(newDataCell)
             }
@@ -102,13 +112,19 @@ public class Underlying_Data_Cell:Identifiable {
     public var fourStatus : E_CellStatus
     public var sixStatus : E_CellStatus
     
-    public var subCellIndex_Four_Four : Int
-    public var subCellIndex_Six_Eight : Int
+    public var four_Four_Sub_Index : Int
+    public var four_Four_Cell_Index : Int
+    public var six_Eight_Sub_Index : Int
+    public var six_Eight_Cell_Index : Int
     
-    public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus,fourFourIndexParam:Int,sixEightIndexParam:Int){
+    public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus
+                ,initialStatusParam:E_CellStatus,fourFourIndexParam:Int,sixEightIndexParam:Int
+                ,four_Four_Cell_Index_Param:Int,six_Eight_Cell_Index_Param:Int){
         
-        subCellIndex_Four_Four = fourFourIndexParam
-        subCellIndex_Six_Eight = sixEightIndexParam
+        four_Four_Sub_Index = fourFourIndexParam
+        four_Four_Cell_Index = four_Four_Cell_Index_Param
+        six_Eight_Sub_Index = sixEightIndexParam
+        six_Eight_Cell_Index = six_Eight_Cell_Index_Param
         
         dataCell_X_Number = xNumParam
         dataCell_Y_Number = yNumParam

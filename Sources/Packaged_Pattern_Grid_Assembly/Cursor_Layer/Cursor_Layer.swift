@@ -48,8 +48,8 @@ public class Cursor_Layer_Store : ObservableObject {
         currDataX = dataX
         currDataY = dataY
         dataCell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[dataY].dataCellArray[dataX]
-        let fourPos = ",fourPos: " + dataCell.subCellIndex_Four_Four.description
-        let sixPos =  ",sixPos: " + dataCell.subCellIndex_Six_Eight.description
+        let fourPos = ",fourPos: " + dataCell.four_Four_Sub_Index.description
+        let sixPos =  ",sixPos: " + dataCell.six_Eight_Sub_Index.description
         cursorText = dataX.description + ", " + dataY.description + fourPos + sixPos
         print(cursorText)
     }
