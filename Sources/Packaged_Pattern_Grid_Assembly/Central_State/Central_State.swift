@@ -46,32 +46,28 @@ public class Central_State : ObservableObject {
     
     public func change_Timing_Signature_Central(){
         dimensions.flip_Timing_Signature()
-        //data_Grid.changeTimingSignature_Data_Level()
+        data_Grid.changeTimingSignature_Data_Level()
 
-        if let lcl_central_Grid_Store = central_Grid_Store {
-            
-            if dimensions.patternTimingConfiguration == .fourFour {
-            for gridLine in lcl_central_Grid_Store.vis_Line_Store_Array {
-                for cell in gridLine.visual_Cell_Store_Array {
-                let currY = cell.data_Vals_Holder.referenced_dataCell_Y_Number
-                let daata : Underlying_Data_Cell = data_Grid.dataLineArray[currY].dataCellArray[cell.x_Index]
-                    daata.react_To_Timing_Change(timingParam: .fourFour)
-                }
-                }
-            }
-            else if dimensions.patternTimingConfiguration == .sixEight {
-            for gridLine in lcl_central_Grid_Store.vis_Line_Store_Array {
-                for cell in gridLine.visual_Cell_Store_Array {
-                let currY = cell.data_Vals_Holder.referenced_dataCell_Y_Number
-                let daata : Underlying_Data_Cell = data_Grid.dataLineArray[currY].dataCellArray[cell.x_Index]
-                    daata.react_To_Timing_Change(timingParam: .sixEight)
-                }
-                }
-            }
-            
-            
-            
-        }
+//        if let lcl_central_Grid_Store = central_Grid_Store {
+//            if dimensions.patternTimingConfiguration == .fourFour {
+//            for gridLine in lcl_central_Grid_Store.vis_Line_Store_Array {
+//                for cell in gridLine.visual_Cell_Store_Array {
+//                let currY = cell.data_Vals_Holder.referenced_dataCell_Y_Number
+//                let daata : Underlying_Data_Cell = data_Grid.dataLineArray[currY].dataCellArray[cell.x_Index]
+//                    daata.react_To_Timing_Change(timingParam: .fourFour)
+//                }
+//                }
+//            }
+//            else if dimensions.patternTimingConfiguration == .sixEight {
+//            for gridLine in lcl_central_Grid_Store.vis_Line_Store_Array {
+//                for cell in gridLine.visual_Cell_Store_Array {
+//                let currY = cell.data_Vals_Holder.referenced_dataCell_Y_Number
+//                let daata : Underlying_Data_Cell = data_Grid.dataLineArray[currY].dataCellArray[cell.x_Index]
+//                    daata.react_To_Timing_Change(timingParam: .sixEight)
+//                }
+//                }
+//            }
+//        }
         
     }
     
