@@ -33,7 +33,7 @@ public class ComponentDimensions : ObservableObject {
     @Published public var cursor_Y_Jump : CGFloat = 16
     
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16
-    var cellArray_Write_Addition : Int = 1
+    
     var initial_Right_Boundary : CGFloat = 368
     public var current_Rightward_Boundary : CGFloat = 368
     
@@ -79,27 +79,37 @@ public class ComponentDimensions : ObservableObject {
         return returnSize
     }
     
-    public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
     
+    
+    
+    
+    public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
     @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 6
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 4
     @Published public var cursor_X_Jump : CGFloat = 4
-    
+    //var cellArray_Write_Addition : Int = 1
     //this is now probably best handled in the central state
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 4
-            cursor_X_Jump = 4
-            cellArray_Write_Addition = 1
+            //cursor_X_Jump = 4
+            //cellArray_Write_Addition = 1
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 6
-            cursor_X_Jump = 6
-            cellArray_Write_Addition = 2
+            //cursor_X_Jump = 4
+            //cellArray_Write_Addition = 2
         }
     }
+    
+    
+    
+    
+    
+    
+    
     
     public static let StaticDimensions = ComponentDimensions()
 }
