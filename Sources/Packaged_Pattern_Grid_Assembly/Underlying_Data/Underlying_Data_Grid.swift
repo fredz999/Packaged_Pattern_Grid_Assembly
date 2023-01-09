@@ -63,7 +63,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 if fourFour_Sub_Count + 1 < 4{fourFour_Sub_Count+=1}
                 else if fourFour_Sub_Count + 1 == 4{
                     fourFour_Sub_Count=0
-                    fourFour_Cell_Count=0
+                    fourFour_Cell_Count+=1
                 }
                 
                 newLine.dataCellArray.append(newDataCell)
