@@ -55,7 +55,7 @@ public class Central_State : ObservableObject {
                 for cell in gridLine.visual_Cell_Store_Array {
                 let currY = cell.data_Vals_Holder.referenced_dataCell_Y_Number
                 let daata : Underlying_Data_Cell = data_Grid.dataLineArray[currY].dataCellArray[cell.x_Index]
-                daata.currentType = daata.fourStatus
+                    daata.react_To_Timing_Change(timingParam: .fourFour)
                 }
                 }
             }
@@ -64,7 +64,7 @@ public class Central_State : ObservableObject {
                 for cell in gridLine.visual_Cell_Store_Array {
                 let currY = cell.data_Vals_Holder.referenced_dataCell_Y_Number
                 let daata : Underlying_Data_Cell = data_Grid.dataLineArray[currY].dataCellArray[cell.x_Index]
-                    daata.currentType = daata.sixStatus
+                    daata.react_To_Timing_Change(timingParam: .sixEight)
                 }
                 }
             }
