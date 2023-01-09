@@ -10,6 +10,7 @@ import SwiftUI
 
 public class Cursor_Layer_Store : ObservableObject {
     let centralState = Central_State.Static_Central_State
+    let data = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
     
@@ -45,7 +46,9 @@ public class Cursor_Layer_Store : ObservableObject {
     public func set_Cursor_Data(dataX:Int,dataY:Int){
         currDataX = dataX
         currDataY = dataY
-        cursorText = dataX.description+","+dataY.description
+        let fourPos = ",fourPos: "+data.fourFourCount.description
+        let sixPos =  ",sixPos: "+data.sixEightCount.description
+        cursorText = dataX.description + ", " + dataY.description + fourPos + sixPos
         print(cursorText)
     }
     
