@@ -19,10 +19,10 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_currentStatus == .start_Note
                     || referenced_currentStatus == .mid_Note
                     || referenced_currentStatus == .end_Note {
-                    statusColor = colors.grid_Note_Color
+                    if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
                 }
                 else{
-                    statusColor = colors.grid_Blank_Color
+                    if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
                 }
             }
         }
@@ -35,10 +35,10 @@ public class Data_Vals_Holder : ObservableObject {
             if referenced_currentStatus == .start_Note
                 || referenced_currentStatus == .mid_Note
                 || referenced_currentStatus == .end_Note {
-                statusColor = colors.grid_Note_Color
+                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
             }
-            else{
-                statusColor = colors.grid_Blank_Color
+            else {
+                if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
             }
         }
     }

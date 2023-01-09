@@ -63,7 +63,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     }
     
     public func changeTimingSignature_Data_Level(){
-
         if dimensions.patternTimingConfiguration == .sixEight{
             for line in dataLineArray {
                 for cell in line.dataCellArray {
@@ -78,7 +77,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 }
             }
         }
-
     }
     
     public static let Static_Underlying_Data_Grid = Underlying_Data_Grid()
@@ -125,17 +123,19 @@ public class Underlying_Data_Cell:Identifiable {
     
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         if timingParam == .fourFour {
-            change_Type(newType: fourStatus)
+            if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
+                change_Type(newType: fourStatus)
+            }
         }
         else if timingParam == .sixEight {
-            change_Type(newType: sixStatus)
+            if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
+                change_Type(newType: sixStatus)
+            }
         }
     }
     
     public func change_Type(newType:E_CellStatus){
-        //TODO: Datavals memory
         currentType = newType
-        
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.referenced_currentStatus = newType
         }
