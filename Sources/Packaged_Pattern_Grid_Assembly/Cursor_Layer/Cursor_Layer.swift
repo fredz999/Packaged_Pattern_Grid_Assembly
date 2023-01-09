@@ -46,6 +46,7 @@ public class Cursor_Layer_Store : ObservableObject {
         currDataX = dataX
         currDataY = dataY
         cursorText = dataX.description+","+dataY.description
+        print(cursorText)
     }
     
 }

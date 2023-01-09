@@ -11,26 +11,11 @@ import SwiftUI
 public class Central_State : ObservableObject {
 
     
-    //@Published var write_Note_Button_Visible : Bool = true
     @Published var edit_Layer_Visible : Bool = true
     
-    // TODO : highlight update for visual cells
     @Published public var a_Note_Is_Highlighted : Bool = false
-    {
-        didSet {
-            if a_Note_Is_Highlighted == false {
-                //write_Note_Button_Visible = true
-                print("a_Note_Is_Highlighted: ",a_Note_Is_Highlighted.description)
-            }
-            else if a_Note_Is_Highlighted == true {
-                //write_Note_Button_Visible = false
-                print("a_Note_Is_Highlighted: ",a_Note_Is_Highlighted.description)
-            }
-        }
-    }
 
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
-    //var central_Grid_Ref : Central_Grid_Store?
     
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -186,9 +171,6 @@ public class Central_State : ObservableObject {
                 potentialNoteEvaluation()
             }
         }
-//        print("4:4 Index: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].subCellIndex_Four_Four
-//        ,", 6:8 index: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].subCellIndex_Four_Four
-//        ,", DataCell_X: ",data_Grid.dataLineArray[currentYCursor_Slider_Position].dataCellArray[currentXCursor_Slider_Position].dataCell_X_Number)
     }
     
     public func togglewriteIsOn(){

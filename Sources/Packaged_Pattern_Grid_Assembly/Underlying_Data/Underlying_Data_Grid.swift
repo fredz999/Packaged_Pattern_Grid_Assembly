@@ -106,7 +106,6 @@ public class Underlying_Data_Cell:Identifiable {
     public var subCellIndex_Six_Eight : Int
     
     public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus,fourFourIndexParam:Int,sixEightIndexParam:Int){
-        if yNumParam == 0 {print("xNumParam: ",xNumParam.description)}
         
         subCellIndex_Four_Four = fourFourIndexParam
         subCellIndex_Six_Eight = sixEightIndexParam
