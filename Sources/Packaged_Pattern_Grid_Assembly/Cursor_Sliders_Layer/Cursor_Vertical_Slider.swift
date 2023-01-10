@@ -78,14 +78,11 @@ public class Cursor_Vertical_Slider_Store:ObservableObject{
     }
     
     public func calculateCursorCellYPos(){
-        
         let divided = currentVal/dimensions.pattern_Grid_Unit_Height
         let intDivided = Int(divided)
-        // reset boundaries here for the current line just before it gets changed
         if intDivided != centralState.currentYCursor_Slider_Position {
             centralState.cursor_Slider_Update(new_X: nil, new_Y: intDivided)
         }
-        
         computedLineDisplacement = CGFloat(intDivided) * dimensions.pattern_Grid_Unit_Height
     }
     

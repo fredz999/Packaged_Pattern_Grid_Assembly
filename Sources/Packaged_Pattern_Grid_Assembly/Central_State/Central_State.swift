@@ -39,9 +39,6 @@ public class Central_State : ObservableObject {
             lclNoteCollection.reset_Note_Data_Cells()
             a_Note_Is_Highlighted = false
         }
-//        if let lclGrid = central_Grid_Store {
-//            lclGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
-//        }
     }
 
     //==================================================
@@ -115,7 +112,7 @@ public class Central_State : ObservableObject {
                                     }
                                     
                                 }
-                                //lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].resetCellSets()
+
                             }
                             
                         }
@@ -129,32 +126,38 @@ public class Central_State : ObservableObject {
     }
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-
+        // est the cells in here set vars then let the cursor layer know about em
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
-            centralState_Cursor_Position_Evaluation()
             centralState_Data_Evaluation()
+            centralState_Cursor_Position_Evaluation()
+            generateCursorInformation()
+            
             if writingIsOn == true {
                 potentialNoteEvaluation()
             }
         }
         if let lclNew_Y = new_Y {
-//            if let lclCentralGrid = central_Grid_Store {
-//                lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
-//            }
             currentYCursor_Slider_Position = lclNew_Y
-            centralState_Cursor_Position_Evaluation()
             centralState_Data_Evaluation()
+            generateCursorInformation()
+            centralState_Cursor_Position_Evaluation()
+            
             if writingIsOn == true {
                 potentialNoteEvaluation()
             }
         }
+        
     }
     
-    public func togglewriteIsOn(){
-        if a_Note_Is_Highlighted == false{
-            writingIsOn.toggle()
-        }
+    func generateCursorInformation(){
+        // generate the info to draw the layers of the multilayer cursor
+        // 1: the line cell set
+      
+        // 1.5: timing sig has to go into central state
+        // 2: the current semi-note validity - red 2 or 3 , a 3 from four4CellIndex or 2 from six8CellIndex depending on the timing sig
+        // 2(contd) a lighter rectangle starting at the beginning of an empty set of cells through to the next cell in a note
+        
     }
     
     func centralState_Cursor_Position_Evaluation() {
@@ -162,6 +165,16 @@ public class Central_State : ObservableObject {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
         }
     }
+    
+    
+    
+    public func togglewriteIsOn(){
+        if a_Note_Is_Highlighted == false{
+            writingIsOn.toggle()
+        }
+    }
+    
+    
 
     func centralState_Data_Evaluation(){
         
@@ -202,15 +215,6 @@ public class Central_State : ObservableObject {
         lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
     centralState_Data_Evaluation()
-//    if let lclGridRef = central_Grid_Store{
-//        lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].resetCellSets()
-//    }
-//    if writingIsOn == true{
-//        if let lclGridRef = central_Grid_Store{
-//            lclGridRef.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
-//        }
-//    }
-
     }
 
     var rightBoundaryInt : Int?
@@ -218,9 +222,6 @@ public class Central_State : ObservableObject {
     func potentialNoteEvaluation(){
     
         if let lclPotentialLayer = potential_Note_Layer_Ref {
-//            if let lclCentralGrid = central_Grid_Store {
-//                lclCentralGrid.vis_Line_Store_Array[currentYCursor_Slider_Position].set_Boundary_Markers()
-//            }
             lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
         }
   
