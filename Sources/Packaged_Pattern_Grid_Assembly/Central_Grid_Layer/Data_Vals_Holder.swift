@@ -13,8 +13,8 @@ public class Data_Vals_Holder : ObservableObject {
     let colors = ComponentColors.StaticColors
    @Published public var referenced_dataCell_X_Number : Int
    @Published public var referenced_dataCell_Y_Number : Int
-    @Published public var cell_Width : CGFloat
-    @Published public var cell_Height : CGFloat
+    @Published public var sub_Cell_Width : CGFloat
+    @Published public var sub_Cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
     @Published public var referenced_isHighlighted : Bool = false{
         didSet{
@@ -40,17 +40,17 @@ public class Data_Vals_Holder : ObservableObject {
                 || referenced_currentStatus == .mid_Note
                 || referenced_currentStatus == .end_Note {
                 if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
-                if cell_Width != dimensions.pattern_Grid_Sub_Cell_Width{cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
+                if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width{sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
                 if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
             }
             else {
                 if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
                 if referenced_currentStatus == .start_Blank{
-                    if cell_Width != dimensions.pattern_Start_Blank_Width {cell_Width = dimensions.pattern_Start_Blank_Width}
+                    if sub_Cell_Width != dimensions.pattern_Start_Blank_Width {sub_Cell_Width = dimensions.pattern_Start_Blank_Width}
                     if cell_X_Offset != dimensions.pattern_Start_Blank_XOffset{cell_X_Offset = dimensions.pattern_Start_Blank_XOffset}
                 }
                 else if referenced_currentStatus != .start_Blank{
-                    if cell_Width != dimensions.pattern_Grid_Sub_Cell_Width {cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
+                    if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width {sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
                     if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
                 }
             }
@@ -62,8 +62,8 @@ public class Data_Vals_Holder : ObservableObject {
    
    public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus,cellWidthParam:CGFloat,cellHeightParam:CGFloat,xOffsetParam:CGFloat){
    cell_X_Offset = xOffsetParam
-   cell_Width = cellWidthParam
-   cell_Height = cellHeightParam
+   sub_Cell_Width = cellWidthParam
+   sub_Cell_Height = cellHeightParam
    referenced_dataCell_X_Number = xNumParam
    referenced_dataCell_Y_Number = yNumParam
    referenced_currentStatus = typeParam
