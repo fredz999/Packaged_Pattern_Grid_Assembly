@@ -14,6 +14,7 @@ public class Data_Vals_Holder : ObservableObject {
    @Published public var referenced_dataCell_X_Number : Int
    @Published public var referenced_dataCell_Y_Number : Int
     @Published public var cell_Width : CGFloat
+    @Published public var cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
     @Published public var referenced_isHighlighted : Bool = false{
         didSet{
@@ -59,9 +60,10 @@ public class Data_Vals_Holder : ObservableObject {
 
    public var referenced_note_Im_In : Note?
    
-   public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus,cellWidthParam:CGFloat,xOffsetParam:CGFloat){
+   public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus,cellWidthParam:CGFloat,cellHeightParam:CGFloat,xOffsetParam:CGFloat){
    cell_X_Offset = xOffsetParam
    cell_Width = cellWidthParam
+   cell_Height = cellHeightParam
    referenced_dataCell_X_Number = xNumParam
    referenced_dataCell_Y_Number = yNumParam
    referenced_currentStatus = typeParam

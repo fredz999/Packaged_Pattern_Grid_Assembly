@@ -181,7 +181,8 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         data_Vals_Holder = Data_Vals_Holder(xNumParam: underlying_Data_Cell_Param.dataCell_X_Number
         , yNumParam: underlying_Data_Cell_Param.dataCell_Y_Number
         , typeParam: underlying_Data_Cell_Param.currentType
-        ,cellWidthParam:widthParam,xOffsetParam:xOffsetParam)
+        , cellWidthParam:widthParam, cellHeightParam: dimensions.pattern_Grid_Unit_Height
+        , xOffsetParam:xOffsetParam)
         
         cell_Swap_Underlying_Data(new_Data_Cell: underlying_Data_Cell_Param)
         
