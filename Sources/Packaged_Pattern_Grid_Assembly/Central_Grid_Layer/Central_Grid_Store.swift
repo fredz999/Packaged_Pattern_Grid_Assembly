@@ -45,7 +45,7 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     
     //var cellSet = Set<Central_Cell_Store>()  // this
-    var cells_In_A_Note_Set = Set<Central_Cell_Store>()
+    //var cells_In_A_Note_Set = Set<Central_Cell_Store>()
     
     //TODO: border check call(if write is on)
 //    var nearest_Right_Note : Central_Cell_Store?{
