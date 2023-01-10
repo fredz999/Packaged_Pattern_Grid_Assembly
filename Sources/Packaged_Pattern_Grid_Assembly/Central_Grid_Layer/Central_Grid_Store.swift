@@ -44,36 +44,35 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     @Published public var visual_Cell_Store_Array : [Central_Cell_Store] = []
     
     
-    var cellSet = Set<Central_Cell_Store>()
+    //var cellSet = Set<Central_Cell_Store>()  // this
     var cells_In_A_Note_Set = Set<Central_Cell_Store>()
     
     //TODO: border check call(if write is on)
+//    var nearest_Right_Note : Central_Cell_Store?{
+//        didSet {
+//            if let lclNearestRightNote = nearest_Right_Note {
+//                let lastCellBeforeRightBoundary = lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number-1
+//                let boundaryRightStart = Int(lastCellBeforeRightBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
+//                dimensions.set_Current_Rightward_Boundary(newRightBoundary: boundaryRightStart)
+//            }
+//        }
+//    }
     
-    var nearest_Right_Note : Central_Cell_Store?{
-        didSet {
-            if let lclNearestRightNote = nearest_Right_Note {
-                let lastCellBeforeRightBoundary = lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number-1
-                let boundaryRightStart = Int(lastCellBeforeRightBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
-                dimensions.set_Current_Rightward_Boundary(newRightBoundary: boundaryRightStart)
-            }
-        }
-    }
-    
-    var nearest_Left_Note : Central_Cell_Store?{
-        didSet {
-            if let lclNearestLeftNote = nearest_Left_Note {
-                let lastCellBeforeLeftBoundary = lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number+1
-                let boundaryLeftStart = Int(lastCellBeforeLeftBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
-                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: boundaryLeftStart)
-            }
-        }
-    }
+//    var nearest_Left_Note : Central_Cell_Store?{
+//        didSet {
+//            if let lclNearestLeftNote = nearest_Left_Note {
+//                let lastCellBeforeLeftBoundary = lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number+1
+//                let boundaryLeftStart = Int(lastCellBeforeLeftBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
+//                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: boundaryLeftStart)
+//            }
+//        }
+//    }
     
     public init(y_Index: Int,gridParam:Central_Grid_Store){
         self.y_Index = y_Index
         parentGrid = gridParam
         fillLine()
-        for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
+        //for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
     }
  
     public func fillLine(){
@@ -93,52 +92,52 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
     
     //TODO: border check call(if write is on)
-    public func resetCellSets(){
-
-        if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
-        
-        cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
-        
-        if let lclNearest_Right_Note = nearest_Right_Note {
-            if lclNearest_Right_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Right_Note.data_Vals_Holder.referenced_isProhibited = false}
-        }
-        nearest_Right_Note = nil
-        if let lclNearest_Left_Note = nearest_Left_Note {
-            if lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited = false}
-        }
-        nearest_Left_Note = nil
-        
-        if dimensions.current_Rightward_Boundary != dimensions.initial_Right_Boundary{
-            dimensions.current_Rightward_Boundary = dimensions.initial_Right_Boundary
-        }
-        
-        if dimensions.current_Leftward_Boundary != dimensions.initial_Left_Boundary{
-            dimensions.current_Leftward_Boundary = dimensions.initial_Left_Boundary
-        }
-
-    }
+//    public func resetCellSets(){
+//
+//        if cells_In_A_Note_Set.count > 0{cells_In_A_Note_Set.removeAll()}
+//        
+//        cells_In_A_Note_Set = cellSet.filter({$0.data_Vals_Holder.referenced_note_Im_In != nil})
+//        
+//        if let lclNearest_Right_Note = nearest_Right_Note {
+//            if lclNearest_Right_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Right_Note.data_Vals_Holder.referenced_isProhibited = false}
+//        }
+//        nearest_Right_Note = nil
+//        if let lclNearest_Left_Note = nearest_Left_Note {
+//            if lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited == true{lclNearest_Left_Note.data_Vals_Holder.referenced_isProhibited = false}
+//        }
+//        nearest_Left_Note = nil
+//        
+//        if dimensions.current_Rightward_Boundary != dimensions.initial_Right_Boundary{
+//            dimensions.current_Rightward_Boundary = dimensions.initial_Right_Boundary
+//        }
+//        
+//        if dimensions.current_Leftward_Boundary != dimensions.initial_Left_Boundary{
+//            dimensions.current_Leftward_Boundary = dimensions.initial_Left_Boundary
+//        }
+//
+//    }
     
-    //TODO: border check call(if write is on)
-    public func set_Boundary_Markers(){
-        let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
-        let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
-        
-        let cells_To_Right = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
-        let cells_To_Left = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
-        
-        if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
-            if nearest_Right_Note == nil{nearest_Right_Note = nearestRight}
-            nearestRight.data_Vals_Holder.referenced_isProhibited = true
-            print("prohibition set to right")
-        }
-        
-        if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
-            if nearest_Left_Note == nil{nearest_Left_Note = nearestLeft}
-            nearestLeft.data_Vals_Holder.referenced_isProhibited = true
-            print("prohibition set to left")
-        }
 
-    }
+//    public func set_Boundary_Markers(){
+//        let cursor_X = parentGrid.central_State_Ref.currentXCursor_Slider_Position
+//        let cell_X = cursor_X * dimensions.pattern_Grid_Cell_Sub_Unit_Count
+//
+//        let cells_To_Right = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number > cell_X})
+//        let cells_To_Left = cells_In_A_Note_Set.filter({$0.data_Vals_Holder.referenced_dataCell_X_Number < cell_X})
+//
+//        if let nearestRight = cells_To_Right.min(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
+//            if nearest_Right_Note == nil{nearest_Right_Note = nearestRight}
+//            nearestRight.data_Vals_Holder.referenced_isProhibited = true
+//            print("prohibition set to right")
+//        }
+//
+//        if let nearestLeft = cells_To_Left.max(by: {$0.data_Vals_Holder.referenced_dataCell_X_Number < $1.data_Vals_Holder.referenced_dataCell_X_Number}){
+//            if nearest_Left_Note == nil{nearest_Left_Note = nearestLeft}
+//            nearestLeft.data_Vals_Holder.referenced_isProhibited = true
+//            print("prohibition set to left")
+//        }
+//
+//    }
     
 }
 
