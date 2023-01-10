@@ -32,8 +32,6 @@ public class ComponentDimensions : ObservableObject {
     
     @Published public var cursor_Y_Jump : CGFloat = 16
     
-    @Published public var pattern_Grid_Unit_Height : CGFloat = 16
-    
     var initial_Right_Boundary : CGFloat = 368
     public var current_Rightward_Boundary : CGFloat = 368
     
@@ -84,6 +82,8 @@ public class ComponentDimensions : ObservableObject {
     
     
     public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
+    @Published public var pattern_Grid_Unit_Height : CGFloat = 16
+    @Published public var pattern_Grid_Sub_Cell_Height : CGFloat = 15
     @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 6
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 4
     
