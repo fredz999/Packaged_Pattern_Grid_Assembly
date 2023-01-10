@@ -164,19 +164,15 @@ public class Central_State : ObservableObject {
         
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-        if writingIsOn == true {
-            
-        }
+        if writingIsOn == true {}
         
         else if writingIsOn == false {
-            // right light translucent rectangle ere for viable cells
-            // startFloat, endFloat, yPosition, xPosition
-            // set those in the cursor layer throught a func with the right args
-            // Set<cells_With_No_Note_Im_In as subset of Set<currCellSet>>
             let cells_Not_In_A_Note = cell_Line_Set.filter({$0.note_Im_In == nil})
             if cells_Not_In_A_Note.count > 0{
-                if let lowestCellX = cells_Not_In_A_Note.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}) {
-                    print("lowestCellX (not in a note): ",lowestCellX.dataCell_X_Number.description)
+                if let lowestCellX = cells_Not_In_A_Note.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number})
+                , let highestCellX = cells_Not_In_A_Note.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
+                    print("lowestCellX (not in a note): ",lowestCellX.dataCell_X_Number.description
+                    ,"highestCellX (not in a note): ",highestCellX.dataCell_X_Number.description)
                 }
             }
         }
