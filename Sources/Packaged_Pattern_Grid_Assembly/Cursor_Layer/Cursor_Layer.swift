@@ -19,6 +19,10 @@ public class Cursor_Layer_Store : ObservableObject {
     @Published public var cursorLayerCellColor : Color
     @Published public var cursorText = ""
     
+    @Published public var lowerViableRegionXFloat : CGFloat = 0
+    @Published public var upperViableRegionXFloat : CGFloat = 0
+    
+    
     var currDataX : Int
     var currDataY : Int
     
@@ -34,6 +38,11 @@ public class Cursor_Layer_Store : ObservableObject {
         currPosY = 0
         dataCell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
         set_Cursor_Pos(xInt:0,yInt:0)
+    }
+    
+    func setViableRegionMarker(lowerXParam:CGFloat,upperXParam:CGFloat){
+        lowerViableRegionXFloat = lowerXParam
+        upperViableRegionXFloat = upperXParam
     }
     
     func set_Cursor_Pos(xInt:Int,yInt:Int){

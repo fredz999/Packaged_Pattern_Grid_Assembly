@@ -164,18 +164,53 @@ public class Central_State : ObservableObject {
         
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-        if writingIsOn == true {}
-        
-        else if writingIsOn == false {
-            let cells_Not_In_A_Note = cell_Line_Set.filter({$0.note_Im_In == nil})
-            if cells_Not_In_A_Note.count > 0{
-                if let lowestCellX = cells_Not_In_A_Note.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number})
-                , let highestCellX = cells_Not_In_A_Note.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
-                    print("lowestCellX (not in a note): ",lowestCellX.dataCell_X_Number.description
-                    ,"highestCellX (not in a note): ",highestCellX.dataCell_X_Number.description)
+        if currentData.note_Im_In == nil{
+            // get the nearest note on right if it exists
+            let nearestNoteRight = cell_Line_Set.first(where: {$0.note_Im_In != nil})
+            let nearestNoteLeft = cell_Line_Set.first(where: {$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number})
+           
+            if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
+                let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+                let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+                if let lclCursorLayer = cursor_Layer_Ref {
+                    lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
                 }
             }
+            else if let lclRight = nearestNoteRight, nearestNoteLeft == nil{
+                let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+                if let lclCursorLayer = cursor_Layer_Ref {
+                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
+                }
+            }
+            else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft{
+                let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+                if let lclCursorLayer = cursor_Layer_Ref {
+                    lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
+                }
+            }
+            else if nearestNoteRight == nil, nearestNoteLeft == nil{
+                if let lclCursorLayer = cursor_Layer_Ref {
+                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
+                }
+            }
+     
+            
         }
+        
+        
+//        if writingIsOn == true {}
+//
+//        else if writingIsOn == false {
+//            let cells_Not_In_A_Note = cell_Line_Set.filter({$0.note_Im_In == nil})
+//            if cells_Not_In_A_Note.count > 0{
+//                if let lowestCellX = cells_Not_In_A_Note.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number})
+//                , let highestCellX = cells_Not_In_A_Note.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
+//
+//                    // got the lowest and highest cells with nowt in them ... now need to divide those into smaller groups
+//
+//                }
+//            }
+//        }
         
         // 1.5: timing sig has to go into central state
         // 2: the current semi-note validity, inviable = - red 2 or 3 , a 3 from four4CellIndex or 2 from six8CellIndex depending on the timing sig
