@@ -176,7 +176,7 @@ public class Central_State : ObservableObject {
             let cells_Not_In_A_Note = cell_Line_Set.filter({$0.note_Im_In == nil})
             if cells_Not_In_A_Note.count > 0{
                 if let lowestCellX = cells_Not_In_A_Note.min(by: {$0.dataCell_X_Number>$1.dataCell_X_Number}) {
-                    print("lowestCellX (not in a note): ",lowestCellX.description)
+                    print("lowestCellX (not in a note): ",lowestCellX.dataCell_X_Number.description)
                 }
             }
         }
