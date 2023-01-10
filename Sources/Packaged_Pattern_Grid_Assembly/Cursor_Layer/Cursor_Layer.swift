@@ -43,6 +43,7 @@ public class Cursor_Layer_Store : ObservableObject {
     }
     
     func setViableRegionMarker(lowerXParam:CGFloat,upperXParam:CGFloat){
+        print("setViableRegionMarker(")
         viableRegionStart = lowerXParam
         if upperXParam - lowerXParam >= 0{
             viableRegionWidth = upperXParam - lowerXParam
