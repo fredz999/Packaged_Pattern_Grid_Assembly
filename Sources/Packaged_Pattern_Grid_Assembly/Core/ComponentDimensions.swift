@@ -86,6 +86,11 @@ public class ComponentDimensions : ObservableObject {
     public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
     @Published public var pattern_Grid_Cell_Sub_Unit_Count : Int = 6
     @Published public var pattern_Grid_Sub_Cell_Width : CGFloat = 4
+    
+    public var pattern_Start_Blank_Width : CGFloat = 3
+    public var pattern_Start_Blank_XOffset : CGFloat = 1
+    public var pattern_Mid_End_XOffset : CGFloat = 0
+    
     @Published public var cursor_X_Jump : CGFloat = 4
     //var cellArray_Write_Addition : Int = 1
     //this is now probably best handled in the central state

@@ -9,9 +9,12 @@ import Foundation
 import SwiftUI
 
 public class Data_Vals_Holder : ObservableObject {
+    let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
    @Published public var referenced_dataCell_X_Number : Int
    @Published public var referenced_dataCell_Y_Number : Int
+    @Published public var cell_Width : CGFloat
+    @Published public var cell_X_Offset : CGFloat = 0
     @Published public var referenced_isHighlighted : Bool = false{
         didSet{
             if referenced_isHighlighted == true{statusColor = colors.grid_Note_Highlighted_Color}
@@ -36,9 +39,15 @@ public class Data_Vals_Holder : ObservableObject {
                 || referenced_currentStatus == .mid_Note
                 || referenced_currentStatus == .end_Note {
                 if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
+                if cell_Width != dimensions.pattern_Grid_Sub_Cell_Width{cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
+                if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
             }
             else {
                 if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
+                if referenced_currentStatus == .start_Blank{
+                    if cell_Width != dimensions.pattern_Start_Blank_Width {cell_Width = dimensions.pattern_Start_Blank_Width}
+                    if cell_X_Offset != dimensions.pattern_Start_Blank_XOffset{cell_X_Offset = dimensions.pattern_Start_Blank_XOffset}
+                }
             }
         }
     }
@@ -46,7 +55,9 @@ public class Data_Vals_Holder : ObservableObject {
 
    public var referenced_note_Im_In : Note?
    
-   public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus){
+   public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus,cellWidthParam:CGFloat,xOffsetParam:CGFloat){
+   cell_X_Offset = xOffsetParam
+   cell_Width = cellWidthParam
    referenced_dataCell_X_Number = xNumParam
    referenced_dataCell_Y_Number = yNumParam
    referenced_currentStatus = typeParam

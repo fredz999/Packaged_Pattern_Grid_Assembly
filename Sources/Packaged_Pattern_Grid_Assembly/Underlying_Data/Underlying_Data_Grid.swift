@@ -97,6 +97,16 @@ public class Underlying_Data_Line:ObservableObject,Identifiable {
     public var dataCellArray : [Underlying_Data_Cell] = []
 }
 
+
+
+
+//==================================================================================================================
+//==================================================================================================================
+
+
+
+
+
 // this things line ref dosent change
 public class Underlying_Data_Cell:Identifiable {
     
