@@ -48,6 +48,7 @@ public class Central_State : ObservableObject {
     //==================================================
     var currentXCursor_Slider_Position : Int = 0
     var currentYCursor_Slider_Position : Int = 0
+    var curr_Data_Pos_Y : Int = 0
     
     public init(){}
     
@@ -153,9 +154,35 @@ public class Central_State : ObservableObject {
     func generateCursorInformation(){
         // generate the info to draw the layers of the multilayer cursor
         // 1: the line cell set
-      
+        let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+        
+        var cell_Line_Set = Set<Underlying_Data_Cell>()
+        
+        for cell in currLine.dataCellArray{
+            cell_Line_Set.insert(cell)
+        }
+        
+        let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+        
+        if writingIsOn == true {
+            
+        }
+        
+        else if writingIsOn == false {
+            // right light translucent rectangle ere for viable cells
+            // startFloat, endFloat, yPosition, xPosition
+            // set those in the cursor layer throught a func with the right args
+            // Set<cells_With_No_Note_Im_In as subset of Set<currCellSet>>
+            let cells_Not_In_A_Note = cell_Line_Set.filter({$0.note_Im_In == nil})
+            if cells_Not_In_A_Note.count > 0{
+                if let lowestCellX = cells_Not_In_A_Note.min(by: {$0.dataCell_X_Number>$1.dataCell_X_Number}) {
+                    print("lowestCellX (not in a note): ",lowestCellX.description)
+                }
+            }
+        }
+        
         // 1.5: timing sig has to go into central state
-        // 2: the current semi-note validity - red 2 or 3 , a 3 from four4CellIndex or 2 from six8CellIndex depending on the timing sig
+        // 2: the current semi-note validity, inviable = - red 2 or 3 , a 3 from four4CellIndex or 2 from six8CellIndex depending on the timing sig
         // 2(contd) a lighter rectangle starting at the beginning of an empty set of cells through to the next cell in a note
         
     }
@@ -180,11 +207,11 @@ public class Central_State : ObservableObject {
         
         if let lclCursorLayer = cursor_Layer_Ref {
             
-            let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Sub_Cell_Width)
+            //let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Sub_Cell_Width)
             
-            lclCursorLayer.currPosX = currentXCursor_Slider_Position*multiplier
-            
-            lclCursorLayer.currPosY = currentYCursor_Slider_Position + lower_Bracket_Number
+            lclCursorLayer.currPosX = currentXCursor_Slider_Position //*multiplier
+            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+            lclCursorLayer.currPosY = curr_Data_Pos_Y
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
                 

@@ -31,7 +31,8 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
     }
-   @Published public var referenced_isProhibited : Bool = false
+   
+    //@Published public var referenced_isProhibited : Bool = false
     
     //TODO: Datavals memory
     @Published public var referenced_currentStatus : E_CellStatus {
@@ -56,6 +57,7 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
     }
+    
    @Published public var statusColor : Color
 
    public var referenced_note_Im_In : Note?
@@ -72,8 +74,6 @@ public class Data_Vals_Holder : ObservableObject {
 
     
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellStatus:E_CellStatus,newNoteImIn:Note?,isHighlightedParan:Bool){
-    //TODO: border check call(if write is on)
-
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
     if referenced_isHighlighted != isHighlightedParan{referenced_isHighlighted = isHighlightedParan}

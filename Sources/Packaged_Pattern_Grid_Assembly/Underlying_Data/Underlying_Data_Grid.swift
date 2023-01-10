@@ -91,6 +91,9 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     
     public static let Static_Underlying_Data_Grid = Underlying_Data_Grid()
 }
+//==================================================================================================================
+//==================================================================================================================
+
 
 public class Underlying_Data_Line:ObservableObject,Identifiable {
     public var id = UUID()
@@ -108,7 +111,16 @@ public class Underlying_Data_Line:ObservableObject,Identifiable {
 
 
 // this things line ref dosent change
-public class Underlying_Data_Cell:Identifiable {
+public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
+    
+    public static func == (lhs: Underlying_Data_Cell, rhs: Underlying_Data_Cell) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     
     public var id = UUID()
     public var dataCell_X_Number : Int
@@ -180,7 +192,7 @@ public class Underlying_Data_Cell:Identifiable {
     public func reset_To_Original(){
         currentType = note_Reset_Status
         if let lcl_Data_Vals = currentConnectedDataVals{
-            lcl_Data_Vals.referenced_isProhibited = false
+            //lcl_Data_Vals.referenced_isProhibited = false
             lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
             , newYNum: dataCell_Y_Number
             , newCellStatus: note_Reset_Status
