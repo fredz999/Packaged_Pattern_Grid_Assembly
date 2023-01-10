@@ -48,6 +48,10 @@ public class Data_Vals_Holder : ObservableObject {
                     if cell_Width != dimensions.pattern_Start_Blank_Width {cell_Width = dimensions.pattern_Start_Blank_Width}
                     if cell_X_Offset != dimensions.pattern_Start_Blank_XOffset{cell_X_Offset = dimensions.pattern_Start_Blank_XOffset}
                 }
+                else if referenced_currentStatus != .start_Blank{
+                    if cell_Width != dimensions.pattern_Grid_Sub_Cell_Width {cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
+                    if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
+                }
             }
         }
     }
