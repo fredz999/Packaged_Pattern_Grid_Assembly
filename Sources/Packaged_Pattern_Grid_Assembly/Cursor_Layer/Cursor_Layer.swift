@@ -44,7 +44,9 @@ public class Cursor_Layer_Store : ObservableObject {
     
     func setViableRegionMarker(lowerXParam:CGFloat,upperXParam:CGFloat){
         viableRegionStart = lowerXParam
-        viableRegionWidth = upperXParam - lowerXParam
+        if upperXParam - lowerXParam >= 0{
+            viableRegionWidth = upperXParam - lowerXParam
+        }
     }
     
     func set_Cursor_Pos(xInt:Int,yInt:Int){
