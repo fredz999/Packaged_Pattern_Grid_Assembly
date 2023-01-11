@@ -47,6 +47,7 @@ public class Cursor_Layer_Store : ObservableObject {
     }
     
     func set_Cursor_Pos(xInt:Int,yInt:Int){
+        print("xInt: ",xInt.description,", yInt: ",yInt.description)
         let floatX = CGFloat(xInt)
         let floatY = CGFloat(yInt)
         let xVal = floatX*dimensions.cursor_X_Jump
