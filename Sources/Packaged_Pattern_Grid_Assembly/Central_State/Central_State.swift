@@ -168,7 +168,7 @@ public class Central_State : ObservableObject {
             // get the nearest note on right if it exists
             //let nearestNoteRight = cell_Line_Set.first(where: {$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number})
             let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-            let nearestNoteRight = notesOnRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             
             
             let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
