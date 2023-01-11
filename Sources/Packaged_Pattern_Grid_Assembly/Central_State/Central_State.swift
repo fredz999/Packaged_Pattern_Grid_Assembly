@@ -118,7 +118,7 @@ public class Central_State : ObservableObject {
                             
                         }
                         lclPotentialLayer.endPotentialNote()
-                        centralState_Data_Evaluation()
+                        generateCursorInformation()
                     }
                 }
                 
