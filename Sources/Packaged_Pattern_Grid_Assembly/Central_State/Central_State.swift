@@ -198,26 +198,7 @@ public class Central_State : ObservableObject {
                 lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 0)
             }
         }
-        
-        
-//        if writingIsOn == true {}
-//
-//        else if writingIsOn == false {
-//            let cells_Not_In_A_Note = cell_Line_Set.filter({$0.note_Im_In == nil})
-//            if cells_Not_In_A_Note.count > 0{
-//                if let lowestCellX = cells_Not_In_A_Note.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number})
-//                , let highestCellX = cells_Not_In_A_Note.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
-//
-//                    // got the lowest and highest cells with nowt in them ... now need to divide those into smaller groups
-//
-//                }
-//            }
-//        }
-        
-        // 1.5: timing sig has to go into central state
-        // 2: the current semi-note validity, inviable = - red 2 or 3 , a 3 from four4CellIndex or 2 from six8CellIndex depending on the timing sig
-        // 2(contd) a lighter rectangle starting at the beginning of an empty set of cells through to the next cell in a note
-        
+
     }
     
     func centralState_Cursor_Position_Evaluation() {
@@ -226,22 +207,15 @@ public class Central_State : ObservableObject {
         }
     }
     
-    
-    
     public func togglewriteIsOn(){
         if a_Note_Is_Highlighted == false{
             writingIsOn.toggle()
         }
     }
     
-    
-
     func centralState_Data_Evaluation(){
         
         if let lclCursorLayer = cursor_Layer_Ref {
-            
-            //let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Sub_Cell_Width)
-            
             lclCursorLayer.currPosX = currentXCursor_Slider_Position //*multiplier
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             lclCursorLayer.currPosY = curr_Data_Pos_Y
