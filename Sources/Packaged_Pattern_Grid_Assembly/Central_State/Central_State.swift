@@ -127,7 +127,6 @@ public class Central_State : ObservableObject {
     }
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-        // est the cells in here set vars then let the cursor layer know about em
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
@@ -152,15 +151,12 @@ public class Central_State : ObservableObject {
     }
     
     func generateCursorInformation(){
-        // generate the info to draw the layers of the multilayer cursor
-        // 1: the line cell set
+        
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
         var cell_Line_Set = Set<Underlying_Data_Cell>()
         
-        for cell in currLine.dataCellArray{
-            cell_Line_Set.insert(cell)
-        }
+        for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
         
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         

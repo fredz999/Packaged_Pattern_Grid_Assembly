@@ -37,6 +37,7 @@ public class Cursor_Layer_Store : ObservableObject {
         currPosY = 0
         dataCell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
         set_Cursor_Pos(xInt:0,yInt:0)
+        setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
     }
     
     public func setViableRegionMarker(lowerXParam:CGFloat,upperXParam:CGFloat){
