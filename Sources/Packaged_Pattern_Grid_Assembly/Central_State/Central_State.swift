@@ -165,30 +165,11 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil{
-            // get the nearest note on right if it exists
-            //let nearestNoteRight = cell_Line_Set.first(where: {$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number})
             let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
             let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             
-            
             let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
             let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            
-            //.max(by: {$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number})
-            //(where: {$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number})
-           
-//            if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-//                print("lclRight x num: ",lclRight.dataCell_X_Number.description,", lclLeft: ",lclLeft.dataCell_X_Number.description)
-//            }
-//            else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
-//                print("nearestNoteRight: ",lclRight.dataCell_X_Number,", nearestNoteLeft nil")
-//            }
-//            else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
-//                print("nearestNoteRight == nil, left: ",lclLeft.dataCell_X_Number.description)
-//            }
-//            else if nearestNoteRight == nil, nearestNoteLeft == nil {
-//                print("nearestNoteRight == nil, nearestNoteLeft == nil")
-//            }
             
             if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
                 let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
@@ -211,11 +192,15 @@ public class Central_State : ObservableObject {
             }
             else if nearestNoteRight == nil, nearestNoteLeft == nil {
                 if let lclCursorLayer = cursor_Layer_Ref {
-                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
+                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 0)
                 }
             }
-     
-            
+
+        }
+        else if currentData.note_Im_In != nil{
+            if let lclCursorLayer = cursor_Layer_Ref {
+                lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 0)
+            }
         }
         
         
