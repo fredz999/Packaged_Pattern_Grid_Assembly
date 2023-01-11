@@ -153,54 +153,94 @@ public class Central_State : ObservableObject {
     }
     
     func generateCursorInformation(){
-        if let lclPotential = potential_Note_Layer_Ref{
-            if lclPotential.potential_Current_Grid_X == nil
-                ,lclPotential.potential_Initial_Grid_X == nil
-                ,lclPotential.potential_Initial_Grid_Y == nil{
+
+        
                 let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
                 var cell_Line_Set = Set<Underlying_Data_Cell>()
                 for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
                 let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-                if currentData.note_Im_In == nil{
-                let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-                let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                
-                let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-                let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                
-                if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-                    let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
-                    let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
-                    if let lclCursorLayer = cursor_Layer_Ref {
-                        lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
+        
+//                if currentData.note_Im_In == nil{
+//
+//                let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+//                let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//
+//                let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+//                let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//
+//                if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
+//                    let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+//                    let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+//                    if let lclCursorLayer = cursor_Layer_Ref {
+//                        lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
+//                    }
+//                }
+//                else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
+//                    let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+//                    if let lclCursorLayer = cursor_Layer_Ref {
+//                        lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
+//                    }
+//                }
+//                else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
+//                    let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+//                    if let lclCursorLayer = cursor_Layer_Ref {
+//                        lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
+//                    }
+//                }
+//                else if nearestNoteRight == nil, nearestNoteLeft == nil {
+//                    if let lclCursorLayer = cursor_Layer_Ref {
+//                        lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
+//                    }
+//                }
+//
+//                }
+//            else if currentData.note_Im_In != nil{
+//                if let lclCursorLayer = cursor_Layer_Ref {
+//                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 0)
+//                }
+//            }
+        
+                if a_Note_Is_Highlighted == false,writingIsOn == false{
+                    
+                    let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+                    let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                    
+                    let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+                    let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                    
+                    if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
+                        let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+                        let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+                        if let lclCursorLayer = cursor_Layer_Ref {
+                            lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
+                        }
                     }
-                }
-                else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
-                    let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
-                    if let lclCursorLayer = cursor_Layer_Ref {
-                        lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
+                    else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
+                        let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+                        if let lclCursorLayer = cursor_Layer_Ref {
+                            lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
+                        }
                     }
-                }
-                else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
-                    let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
-                    if let lclCursorLayer = cursor_Layer_Ref {
-                        lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
+                    else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
+                        let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+                        if let lclCursorLayer = cursor_Layer_Ref {
+                            lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
+                        }
                     }
-                }
-                else if nearestNoteRight == nil, nearestNoteLeft == nil {
-                    if let lclCursorLayer = cursor_Layer_Ref {
-                        lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
+                    else if nearestNoteRight == nil, nearestNoteLeft == nil {
+                        if let lclCursorLayer = cursor_Layer_Ref {
+                            lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
+                        }
                     }
+                    
                 }
-
-            }
-                else if currentData.note_Im_In != nil{
+                else if a_Note_Is_Highlighted == true || writingIsOn == true{
                     if let lclCursorLayer = cursor_Layer_Ref {
                         lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 0)
                     }
                 }
-            }
-        }
+        
+
     }
     
     func centralState_Cursor_Position_Evaluation() {
