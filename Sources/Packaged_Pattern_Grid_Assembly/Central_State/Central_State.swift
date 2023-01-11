@@ -170,43 +170,43 @@ public class Central_State : ObservableObject {
             let nearestNoteLeft = cell_Line_Set.first(where: {$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number})
            
             
+            if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
+                print("lclRight = ",lclRight.dataCell_X_Number,", lclLeft = ",lclLeft.dataCell_X_Number.description)
+            }
+            else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
+                print("nearestNoteRight: ",lclRight.dataCell_X_Number,", nearestNoteLeft nil")
+            }
+            else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
+                print("nearestNoteRight == nil, left: ",lclLeft.dataCell_X_Number.description)
+            }
+            else if nearestNoteRight == nil, nearestNoteLeft == nil {
+                print("nearestNoteRight == nil, nearestNoteLeft == nil")
+            }
+            
 //            if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-//                print("lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft")
+//                let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+//                let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+//                if let lclCursorLayer = cursor_Layer_Ref {
+//                    lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
+//                }
 //            }
 //            else if let lclRight = nearestNoteRight, nearestNoteLeft == nil{
-//                print("lclRight = nearestNoteRight, nearestNoteLeft == nil")
+//                let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+//                if let lclCursorLayer = cursor_Layer_Ref {
+//                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
+//                }
 //            }
 //            else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft{
-//                print("nearestNoteRight == nil, let lclLeft = nearestNoteLeft")
+//                let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+//                if let lclCursorLayer = cursor_Layer_Ref {
+//                    lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
+//                }
 //            }
 //            else if nearestNoteRight == nil, nearestNoteLeft == nil{
-//                print("nearestNoteRight == nil, nearestNoteLeft == nil")
+//                if let lclCursorLayer = cursor_Layer_Ref {
+//                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
+//                }
 //            }
-            
-            if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-                let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
-                let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
-                if let lclCursorLayer = cursor_Layer_Ref {
-                    lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
-                }
-            }
-            else if let lclRight = nearestNoteRight, nearestNoteLeft == nil{
-                let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
-                if let lclCursorLayer = cursor_Layer_Ref {
-                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
-                }
-            }
-            else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft{
-                let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
-                if let lclCursorLayer = cursor_Layer_Ref {
-                    lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
-                }
-            }
-            else if nearestNoteRight == nil, nearestNoteLeft == nil{
-                if let lclCursorLayer = cursor_Layer_Ref {
-                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
-                }
-            }
      
             
         }
