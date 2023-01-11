@@ -50,7 +50,9 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     var curr_Data_Pos_Y : Int = 0
     
-    public init(){}
+    public init(){
+        generateCursorInformation()
+    }
     
     @Published public var writingIsOn : Bool = false {
         didSet {
