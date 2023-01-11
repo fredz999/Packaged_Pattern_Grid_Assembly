@@ -29,7 +29,6 @@ public class Cursor_Layer_Store : ObservableObject {
     var currPosY : Int
     
     public init(){
-        print("cursor layer init")
         height = dimensions.pattern_Grid_Unit_Height
         cursorLayerCellColor = colors.cursorNotWriting
         currDataX = 0
@@ -38,11 +37,9 @@ public class Cursor_Layer_Store : ObservableObject {
         currPosY = 0
         dataCell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
         set_Cursor_Pos(xInt:0,yInt:0)
-        //setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
     }
     
     public func setViableRegionMarker(lowerXParam:CGFloat,upperXParam:CGFloat){
-        print("lowerXParam: ",lowerXParam.description,", upperXParam: ",upperXParam.description)
         viableRegionStart = lowerXParam
         if upperXParam - lowerXParam >= 0 {
             viableRegionWidth = upperXParam - lowerXParam
