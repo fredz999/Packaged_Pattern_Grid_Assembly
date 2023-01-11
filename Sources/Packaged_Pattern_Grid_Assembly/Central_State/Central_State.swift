@@ -192,7 +192,7 @@ public class Central_State : ObservableObject {
             }
             else if nearestNoteRight == nil, nearestNoteLeft == nil {
                 if let lclCursorLayer = cursor_Layer_Ref {
-                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 0)
+                    lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
                 }
             }
 
