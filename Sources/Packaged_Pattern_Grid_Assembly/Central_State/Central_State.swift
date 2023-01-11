@@ -51,7 +51,6 @@ public class Central_State : ObservableObject {
     var curr_Data_Pos_Y : Int = 0
     
     public init(){
-        print("central state init")
         generateCursorInformation()
     }
     
@@ -164,6 +163,7 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil{
+            print(".note_Im_In == nil")
             let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
             let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             
