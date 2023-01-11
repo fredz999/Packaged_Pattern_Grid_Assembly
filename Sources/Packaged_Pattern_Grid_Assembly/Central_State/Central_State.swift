@@ -51,6 +51,7 @@ public class Central_State : ObservableObject {
     var curr_Data_Pos_Y : Int = 0
     
     public init(){
+        print("central state init")
         generateCursorInformation()
     }
     
