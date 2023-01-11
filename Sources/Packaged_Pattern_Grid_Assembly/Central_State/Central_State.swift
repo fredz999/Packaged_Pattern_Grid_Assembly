@@ -166,10 +166,17 @@ public class Central_State : ObservableObject {
         
         if currentData.note_Im_In == nil{
             // get the nearest note on right if it exists
-            let nearestNoteRight = cell_Line_Set.first(where: {$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number})
-            let nearestNoteLeft = cell_Line_Set.first(where: {$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number})
-           
+            //let nearestNoteRight = cell_Line_Set.first(where: {$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number})
+            let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+            let nearestNoteRight = notesOnRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             
+            
+            let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+            let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            
+            //.max(by: {$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number})
+            //(where: {$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number})
+           
             if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
                 print("lclRight = ",lclRight.dataCell_X_Number,", lclLeft = ",lclLeft.dataCell_X_Number.description)
             }
