@@ -236,7 +236,7 @@ public class Central_State : ObservableObject {
 //                    }
 //                }
                 for cell in lclCurrViableSet{
-                    print("change_Viable_Set_Status(")
+                    print("change_Viable_Set_Status( X: ",cell.dataCell_X_Number.description,", Y: ",cell.dataCell_Y_Number.description)
                     cell.change_Viable_Set_Status(viableSetMembershipParam: false)
                 }
             }
