@@ -134,8 +134,8 @@ public class Central_State : ObservableObject {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
-            generateViableSetInformation()
             
+            generateViableSetInformation()
             if writingIsOn == true {
                 potentialNoteEvaluation()
             }
@@ -143,9 +143,9 @@ public class Central_State : ObservableObject {
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
-            generateViableSetInformation()
             centralState_Cursor_Position_Evaluation()
             
+            generateViableSetInformation()
             if writingIsOn == true {
                 potentialNoteEvaluation()
             }
@@ -163,76 +163,72 @@ public class Central_State : ObservableObject {
 
     if a_Note_Is_Highlighted == false,writingIsOn == false{
         
+//        if let lclViableSet = viableSet {
+//            for cell in lclViableSet {
+//                if let lclDataVals = cell.currentConnectedDataVals {
+//                    if lclDataVals.in_Viable_Set == true{lclDataVals.in_Viable_Set = false}
+//                }
+//            }
+//        }
+        
         let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
         let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
         let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        
-        
-//        let viableSet = cell_Line_Set.filter{$0.dataCell_X_Number > nearestNoteLeft.dataCell_X_Number && $0.dataCell_X_Number < nearestNoteRight?.dataCell_X_Number}
-        
+
         if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-//            let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
-//            let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
-//            if let lclCursorLayer = cursor_Layer_Ref {
-//                lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
-//            }
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number
                 && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
+            // all the cells in current viable set that arent in the new viable set have to revert
             viableSet = localViableSet
-            for cell in localViableSet {
-                if let lclDataVals = cell.currentConnectedDataVals {
-                    lclDataVals.in_Viable_Set = true
-                }
+            for dataCell in localViableSet {
+                dataCell.in_Viable_Set = true
+//                if let lclDataVals = cell.currentConnectedDataVals {
+//                    lclDataVals.in_Viable_Set = true
+//                }
             }
         }
         else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
-//            let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
-//            if let lclCursorLayer = cursor_Layer_Ref {
-//                lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
-//            }
+
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number < lclRight.dataCell_X_Number}
             viableSet = localViableSet
-            for cell in localViableSet {
-                if let lclDataVals = cell.currentConnectedDataVals {
-                    lclDataVals.in_Viable_Set = true
-                }
+            for dataCell in localViableSet {
+                dataCell.in_Viable_Set = true
+//                if let lclDataVals = cell.currentConnectedDataVals {
+//                    lclDataVals.in_Viable_Set = true
+//                }
             }
         }
         else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
-//            let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
-//            if let lclCursorLayer = cursor_Layer_Ref {
-//                lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
-//            }
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number}
             viableSet = localViableSet
-            for cell in localViableSet {
-                if let lclDataVals = cell.currentConnectedDataVals {
-                    lclDataVals.in_Viable_Set = true
-                }
+            for dataCell in localViableSet {
+                dataCell.in_Viable_Set = true
+//                if let lclDataVals = cell.currentConnectedDataVals {
+//                    lclDataVals.in_Viable_Set = true
+//                }
             }
         }
         else if nearestNoteRight == nil, nearestNoteLeft == nil {
-//            if let lclCursorLayer = cursor_Layer_Ref {
-//                lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
-//            }
             let localViableSet = cell_Line_Set
             viableSet = localViableSet
-            for cell in localViableSet {
-                if let lclDataVals = cell.currentConnectedDataVals {
-                    lclDataVals.in_Viable_Set = true
-                }
+            for dataCell in localViableSet {
+                dataCell.in_Viable_Set = true
+//                if let lclDataVals = cell.currentConnectedDataVals {
+//                    lclDataVals.in_Viable_Set = true
+//                }
             }
         }
         
     }
     else if a_Note_Is_Highlighted == true || writingIsOn == true {
         if let lclViableSet = viableSet {
-            for cell in lclViableSet {
-                if let lclDataVals = cell.currentConnectedDataVals {
-                    lclDataVals.in_Viable_Set = false
-                }
+            for dataCell in lclViableSet {
+                dataCell.in_Viable_Set = false
+//                if let lclDataVals = cell.currentConnectedDataVals {
+//                    lclDataVals.in_Viable_Set = false
+//                }
             }
         }
     }

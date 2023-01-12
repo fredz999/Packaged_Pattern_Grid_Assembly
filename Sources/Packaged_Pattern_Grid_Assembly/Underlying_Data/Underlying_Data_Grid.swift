@@ -125,6 +125,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var dataCell_X_Number : Int
     public var dataCell_Y_Number : Int
     var isHighlighted : Bool = false
+    var in_Viable_Set : Bool = false
     var note_Im_In : Note?
     weak var currentConnectedDataVals : Data_Vals_Holder?
 
@@ -185,6 +186,13 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lcl_Data_Vals = currentConnectedDataVals{
                 lcl_Data_Vals.referenced_isHighlighted = highlightStatusParam
             }
+        }
+    }
+    
+    public func change_Viable_Set_Status(viableSetMembershipParam:Bool){
+        if in_Viable_Set != viableSetMembershipParam{in_Viable_Set = viableSetMembershipParam}
+        if let lcl_Data_Vals = currentConnectedDataVals{
+            lcl_Data_Vals.in_Viable_Set  = viableSetMembershipParam
         }
     }
     

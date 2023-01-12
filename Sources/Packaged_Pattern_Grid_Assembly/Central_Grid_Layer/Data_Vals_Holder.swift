@@ -35,12 +35,9 @@ public class Data_Vals_Holder : ObservableObject {
     
     @Published public var in_Viable_Set : Bool = false {
         didSet {
-            if in_Viable_Set == true{statusColor = Color(red: 0, green: 0, blue: 0)}
-            else if in_Viable_Set == false{statusColor = colors.grid_Blank_Color}
+            if in_Viable_Set == true{statusColor = colors.viable_Set_Color}
         }
     }
-   
-    //@Published public var referenced_isProhibited : Bool = false
     
     //TODO: Datavals memory
     @Published public var referenced_currentStatus : E_CellStatus {
