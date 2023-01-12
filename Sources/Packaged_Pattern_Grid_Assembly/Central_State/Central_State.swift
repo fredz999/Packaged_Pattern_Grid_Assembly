@@ -226,10 +226,10 @@ public class Central_State : ObservableObject {
         if let lclViableSet = viableSet {
             for dataCell in lclViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:false)
-//                if let lclDataVals = cell.currentConnectedDataVals {
-//                    lclDataVals.in_Viable_Set = false
-//                }
             }
+        }
+        else if viableSet == nil{
+            print("viableSet == nil")
         }
     }
     }
