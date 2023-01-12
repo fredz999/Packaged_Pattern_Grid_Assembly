@@ -183,7 +183,7 @@ public class Central_State : ObservableObject {
             // all the cells in current viable set that arent in the new viable set have to revert
             viableSet = localViableSet
             for dataCell in localViableSet {
-                dataCell.in_Viable_Set = true
+                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
 //                if let lclDataVals = cell.currentConnectedDataVals {
 //                    lclDataVals.in_Viable_Set = true
 //                }
@@ -194,7 +194,7 @@ public class Central_State : ObservableObject {
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number < lclRight.dataCell_X_Number}
             viableSet = localViableSet
             for dataCell in localViableSet {
-                dataCell.in_Viable_Set = true
+                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
 //                if let lclDataVals = cell.currentConnectedDataVals {
 //                    lclDataVals.in_Viable_Set = true
 //                }
@@ -204,7 +204,7 @@ public class Central_State : ObservableObject {
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number}
             viableSet = localViableSet
             for dataCell in localViableSet {
-                dataCell.in_Viable_Set = true
+                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
 //                if let lclDataVals = cell.currentConnectedDataVals {
 //                    lclDataVals.in_Viable_Set = true
 //                }
@@ -214,7 +214,7 @@ public class Central_State : ObservableObject {
             let localViableSet = cell_Line_Set
             viableSet = localViableSet
             for dataCell in localViableSet {
-                dataCell.in_Viable_Set = true
+                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
 //                if let lclDataVals = cell.currentConnectedDataVals {
 //                    lclDataVals.in_Viable_Set = true
 //                }
@@ -225,7 +225,7 @@ public class Central_State : ObservableObject {
     else if a_Note_Is_Highlighted == true || writingIsOn == true {
         if let lclViableSet = viableSet {
             for dataCell in lclViableSet {
-                dataCell.in_Viable_Set = false
+                dataCell.change_Viable_Set_Status(viableSetMembershipParam:false)
 //                if let lclDataVals = cell.currentConnectedDataVals {
 //                    lclDataVals.in_Viable_Set = false
 //                }
