@@ -191,7 +191,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func change_Viable_Set_Status(viableSetMembershipParam:Bool){
 
-        if viableSetMembershipParam == true{
+        //if viableSetMembershipParam == true{
             if in_Viable_Set != viableSetMembershipParam{
                 in_Viable_Set = viableSetMembershipParam
                 if let lcl_Data_Vals = currentConnectedDataVals {
@@ -200,18 +200,17 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                     }
                 }
             }
-        }
-        else if viableSetMembershipParam == false{
-            if in_Viable_Set != viableSetMembershipParam{
-                in_Viable_Set = viableSetMembershipParam
-                if let lcl_Data_Vals = currentConnectedDataVals {
-                    if lcl_Data_Vals.in_Viable_Set != viableSetMembershipParam{
-                        lcl_Data_Vals.in_Viable_Set = viableSetMembershipParam
-                    }
-                }
-            }
-            reset_To_Original()
-        }
+//        }
+//        else if viableSetMembershipParam == false{
+//            if in_Viable_Set != viableSetMembershipParam{
+//                in_Viable_Set = viableSetMembershipParam
+//                if let lcl_Data_Vals = currentConnectedDataVals {
+//                    if lcl_Data_Vals.in_Viable_Set != viableSetMembershipParam{
+//                        lcl_Data_Vals.in_Viable_Set = viableSetMembershipParam
+//                    }
+//                }
+//            }
+//        }
         
         
 //        if in_Viable_Set != viableSetMembershipParam {
