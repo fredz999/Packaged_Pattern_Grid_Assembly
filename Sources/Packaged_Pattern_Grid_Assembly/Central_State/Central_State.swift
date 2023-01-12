@@ -212,7 +212,6 @@ public class Central_State : ObservableObject {
             }
         }
         else if nearestNoteRight == nil, nearestNoteLeft == nil {
-            print("bowthe neeeeel")
             let localViableSet = cell_Line_Set
             viableSet = localViableSet
             for dataCell in localViableSet {
