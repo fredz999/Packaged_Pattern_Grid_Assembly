@@ -163,7 +163,7 @@ public class Central_State : ObservableObject {
     let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
 
     if a_Note_Is_Highlighted == false,writingIsOn == false{
-        print("a_Note_Is_Highlighted == false,writingIsOn == false()")
+        
 //        if let lclViableSet = viableSet {
 //            for cell in lclViableSet {
 //                if let lclDataVals = cell.currentConnectedDataVals {
@@ -183,6 +183,7 @@ public class Central_State : ObservableObject {
                 && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
             // all the cells in current viable set that arent in the new viable set have to revert
             viableSet = localViableSet
+            print("localViableSet count: ",localViableSet.count.description)
             for dataCell in localViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
 //                if let lclDataVals = cell.currentConnectedDataVals {
