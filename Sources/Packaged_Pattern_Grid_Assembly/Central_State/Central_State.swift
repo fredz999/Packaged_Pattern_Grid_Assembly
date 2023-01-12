@@ -174,11 +174,8 @@ public class Central_State : ObservableObject {
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
 
             if let lclCurrViableSet = viableSet {
-                let differenceSet = localViableSet.subtracting(lclCurrViableSet)
-                if differenceSet.count > 0 {
-                    for cell in differenceSet{
-                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-                    }
+                for cell in lclCurrViableSet{
+                    cell.change_Viable_Set_Status(viableSetMembershipParam: false)
                 }
             }
             
@@ -193,11 +190,8 @@ public class Central_State : ObservableObject {
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number < lclRight.dataCell_X_Number}
             
             if let lclCurrViableSet = viableSet {
-                let differenceSet = localViableSet.subtracting(lclCurrViableSet)
-                if differenceSet.count > 0 {
-                    for cell in differenceSet{
-                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-                    }
+                for cell in lclCurrViableSet{
+                    cell.change_Viable_Set_Status(viableSetMembershipParam: false)
                 }
             }
             
@@ -211,11 +205,8 @@ public class Central_State : ObservableObject {
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number}
             
             if let lclCurrViableSet = viableSet {
-                let differenceSet = localViableSet.subtracting(lclCurrViableSet)
-                if differenceSet.count > 0 {
-                    for cell in differenceSet{
-                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-                    }
+                for cell in lclCurrViableSet{
+                    cell.change_Viable_Set_Status(viableSetMembershipParam: false)
                 }
             }
             
@@ -229,18 +220,9 @@ public class Central_State : ObservableObject {
             let localNewSet = cell_Line_Set
             
             if let lclCurrViableSet = viableSet {
-//                let differenceSet = localNewSet.subtracting(lclCurrViableSet)
-//                if differenceSet.count > 0 {
-//                    for cell in differenceSet{
-//                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-//                    }
-//                }
                 for cell in lclCurrViableSet{
-//                    print("change_Viable_Set_Status( X: ",cell.dataCell_X_Number.description,", Y: ",cell.dataCell_Y_Number.description)
-//                    cell.reset_To_Original()
                     cell.change_Viable_Set_Status(viableSetMembershipParam: false)
                 }
-                
             }
             
             viableSet = localNewSet
@@ -256,9 +238,6 @@ public class Central_State : ObservableObject {
             for dataCell in lclViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:false)
             }
-        }
-        else if viableSet == nil{
-            print("viableSet == nil")
         }
     }
     }

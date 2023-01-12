@@ -36,7 +36,7 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var in_Viable_Set : Bool = false {
         didSet {
             if in_Viable_Set == true{statusColor = colors.viable_Set_Color}
-            else if in_Viable_Set == false{
+            else if in_Viable_Set == false {
                 statusColor = colors.grid_Blank_Color
             }
         }
