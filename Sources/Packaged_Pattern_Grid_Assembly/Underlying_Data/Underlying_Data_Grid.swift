@@ -190,23 +190,41 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Viable_Set_Status(viableSetMembershipParam:Bool){
-        print("X: ",dataCell_X_Number.description,", Y: "
-              ,dataCell_Y_Number.description,"Curr in Viable:"
-              ,in_Viable_Set.description
-              ,", new viable set: ",viableSetMembershipParam.description)
-        
-        if in_Viable_Set != viableSetMembershipParam {
-            in_Viable_Set = viableSetMembershipParam
-            if let lcl_Data_Vals = currentConnectedDataVals {
-                lcl_Data_Vals.in_Viable_Set  = viableSetMembershipParam
+
+        if viableSetMembershipParam == true{
+            if in_Viable_Set != viableSetMembershipParam{
+                in_Viable_Set = viableSetMembershipParam
+                if let lcl_Data_Vals = currentConnectedDataVals {
+                    if lcl_Data_Vals.in_Viable_Set != viableSetMembershipParam{
+                        lcl_Data_Vals.in_Viable_Set = viableSetMembershipParam
+                    }
+                }
             }
         }
+        else if viableSetMembershipParam == false{
+            if in_Viable_Set != viableSetMembershipParam{
+                in_Viable_Set = viableSetMembershipParam
+                if let lcl_Data_Vals = currentConnectedDataVals {
+                    if lcl_Data_Vals.in_Viable_Set != viableSetMembershipParam{
+                        lcl_Data_Vals.in_Viable_Set = viableSetMembershipParam
+                    }
+                }
+            }
+            reset_To_Original()
+        }
+        
+        
+//        if in_Viable_Set != viableSetMembershipParam {
+//            in_Viable_Set = viableSetMembershipParam
+//            if let lcl_Data_Vals = currentConnectedDataVals {
+//                lcl_Data_Vals.in_Viable_Set  = viableSetMembershipParam
+//            }
+//        }
         
     }
     
     public func reset_To_Original(){
         currentType = note_Reset_Status
-        if in_Viable_Set == true{in_Viable_Set = false}
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
             , newYNum: dataCell_Y_Number
