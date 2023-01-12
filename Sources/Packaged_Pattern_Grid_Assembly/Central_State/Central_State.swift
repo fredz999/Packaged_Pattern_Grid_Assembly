@@ -161,9 +161,8 @@ public class Central_State : ObservableObject {
     var cell_Line_Set = Set<Underlying_Data_Cell>()
     for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
     let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-        print("cell_Line_Set count: ",cell_Line_Set.count.description)
-    if a_Note_Is_Highlighted == false,writingIsOn == false{
         
+    if a_Note_Is_Highlighted == false,writingIsOn == false{
 //        if let lclViableSet = viableSet {
 //            for cell in lclViableSet {
 //                if let lclDataVals = cell.currentConnectedDataVals {
@@ -213,6 +212,7 @@ public class Central_State : ObservableObject {
             }
         }
         else if nearestNoteRight == nil, nearestNoteLeft == nil {
+            print("bowthe neeeeel")
             let localViableSet = cell_Line_Set
             viableSet = localViableSet
             for dataCell in localViableSet {
