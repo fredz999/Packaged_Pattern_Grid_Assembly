@@ -190,7 +190,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Viable_Set_Status(viableSetMembershipParam:Bool){
-        print("change called: ",viableSetMembershipParam.description)
         if in_Viable_Set != viableSetMembershipParam{in_Viable_Set = viableSetMembershipParam}
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.in_Viable_Set  = viableSetMembershipParam
