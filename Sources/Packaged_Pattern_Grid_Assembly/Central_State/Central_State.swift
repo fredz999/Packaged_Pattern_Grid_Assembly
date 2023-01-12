@@ -162,14 +162,7 @@ public class Central_State : ObservableObject {
     for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
     let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-    if a_Note_Is_Highlighted == false,writingIsOn == false{
-//        if let lclViableSet = viableSet {
-//            for cell in lclViableSet {
-//                if let lclDataVals = cell.currentConnectedDataVals {
-//                    if lclDataVals.in_Viable_Set == true{lclDataVals.in_Viable_Set = false}
-//                }
-//            }
-//        }
+    if a_Note_Is_Highlighted == false,writingIsOn == false {
         
         let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -178,47 +171,76 @@ public class Central_State : ObservableObject {
         let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
 
         if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-            let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number
-                && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
-            // all the cells in current viable set that arent in the new viable set have to revert
+            let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
+
+            if let lclCurrViableSet = viableSet {
+                let differenceSet = localViableSet.subtracting(lclCurrViableSet)
+                if differenceSet.count > 0 {
+                    for cell in differenceSet{
+                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
+                    }
+                }
+            }
+            
             viableSet = localViableSet
             
             for dataCell in localViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-//                if let lclDataVals = cell.currentConnectedDataVals {
-//                    lclDataVals.in_Viable_Set = true
-//                }
             }
         }
         else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
 
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number < lclRight.dataCell_X_Number}
+            
+            if let lclCurrViableSet = viableSet {
+                let differenceSet = localViableSet.subtracting(lclCurrViableSet)
+                if differenceSet.count > 0 {
+                    for cell in differenceSet{
+                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
+                    }
+                }
+            }
+            
             viableSet = localViableSet
+            
             for dataCell in localViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-//                if let lclDataVals = cell.currentConnectedDataVals {
-//                    lclDataVals.in_Viable_Set = true
-//                }
             }
         }
         else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number}
+            
+            if let lclCurrViableSet = viableSet {
+                let differenceSet = localViableSet.subtracting(lclCurrViableSet)
+                if differenceSet.count > 0 {
+                    for cell in differenceSet{
+                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
+                    }
+                }
+            }
+            
             viableSet = localViableSet
+            
             for dataCell in localViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-//                if let lclDataVals = cell.currentConnectedDataVals {
-//                    lclDataVals.in_Viable_Set = true
-//                }
             }
         }
         else if nearestNoteRight == nil, nearestNoteLeft == nil {
             let localViableSet = cell_Line_Set
+            
+            if let lclCurrViableSet = viableSet {
+                let differenceSet = localViableSet.subtracting(lclCurrViableSet)
+                if differenceSet.count > 0 {
+                    for cell in differenceSet{
+                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
+                    }
+                }
+            }
+            
             viableSet = localViableSet
+            
             for dataCell in localViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-//                if let lclDataVals = cell.currentConnectedDataVals {
-//                    lclDataVals.in_Viable_Set = true
-//                }
             }
         }
         
