@@ -198,6 +198,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func reset_To_Original(){
         currentType = note_Reset_Status
+        if in_Viable_Set == true{in_Viable_Set = false}  
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
             , newYNum: dataCell_Y_Number
