@@ -156,14 +156,14 @@ public class Central_State : ObservableObject {
     var viableSet : Set<Underlying_Data_Cell>?
     
     func generateViableSetInformation(){
-        print("generateViableSetInformation()")
+        
     let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
     var cell_Line_Set = Set<Underlying_Data_Cell>()
     for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
     let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
 
     if a_Note_Is_Highlighted == false,writingIsOn == false{
-        
+        print("a_Note_Is_Highlighted == false,writingIsOn == false()")
 //        if let lclViableSet = viableSet {
 //            for cell in lclViableSet {
 //                if let lclDataVals = cell.currentConnectedDataVals {
