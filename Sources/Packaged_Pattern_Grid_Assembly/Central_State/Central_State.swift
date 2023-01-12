@@ -226,20 +226,23 @@ public class Central_State : ObservableObject {
             }
         }
         else if nearestNoteRight == nil, nearestNoteLeft == nil {
-            let localViableSet = cell_Line_Set
+            let localNewSet = cell_Line_Set
             
             if let lclCurrViableSet = viableSet {
-                let differenceSet = localViableSet.subtracting(lclCurrViableSet)
-                if differenceSet.count > 0 {
-                    for cell in differenceSet{
-                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-                    }
+//                let differenceSet = localNewSet.subtracting(lclCurrViableSet)
+//                if differenceSet.count > 0 {
+//                    for cell in differenceSet{
+//                        cell.change_Viable_Set_Status(viableSetMembershipParam: false)
+//                    }
+//                }
+                for cell in lclCurrViableSet{
+                    cell.change_Viable_Set_Status(viableSetMembershipParam: false)
                 }
             }
             
-            viableSet = localViableSet
+            viableSet = localNewSet
             
-            for dataCell in localViableSet {
+            for dataCell in localNewSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
             }
         }
