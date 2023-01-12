@@ -121,7 +121,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         hasher.combine(id)
     }
     
-    
     public var id = UUID()
     public var dataCell_X_Number : Int
     public var dataCell_Y_Number : Int
@@ -140,22 +139,22 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var six_Eight_Cell_Index : Int
     
     public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus
-                ,initialStatusParam:E_CellStatus,fourFourIndexParam:Int,sixEightIndexParam:Int
-                ,four_Four_Cell_Index_Param:Int,six_Eight_Cell_Index_Param:Int){
+    ,initialStatusParam:E_CellStatus,fourFourIndexParam:Int,sixEightIndexParam:Int
+    ,four_Four_Cell_Index_Param:Int,six_Eight_Cell_Index_Param:Int){
         
-        four_Four_Sub_Index = fourFourIndexParam
-        four_Four_Cell_Index = four_Four_Cell_Index_Param
-        six_Eight_Sub_Index = sixEightIndexParam
-        six_Eight_Cell_Index = six_Eight_Cell_Index_Param
-        
-        dataCell_X_Number = xNumParam
-        dataCell_Y_Number = yNumParam
-        
-        fourStatus = fourStatusParam
-        sixStatus = sixStatusParam
-        
-        currentType = initialStatusParam
-        note_Reset_Status = initialStatusParam
+    four_Four_Sub_Index = fourFourIndexParam
+    four_Four_Cell_Index = four_Four_Cell_Index_Param
+    six_Eight_Sub_Index = sixEightIndexParam
+    six_Eight_Cell_Index = six_Eight_Cell_Index_Param
+    
+    dataCell_X_Number = xNumParam
+    dataCell_Y_Number = yNumParam
+    
+    fourStatus = fourStatusParam
+    sixStatus = sixStatusParam
+    
+    currentType = initialStatusParam
+    note_Reset_Status = initialStatusParam
     }
     
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){

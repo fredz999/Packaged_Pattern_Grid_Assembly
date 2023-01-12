@@ -11,15 +11,16 @@ import SwiftUI
 public class Data_Vals_Holder : ObservableObject {
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
-   @Published public var referenced_dataCell_X_Number : Int
-   @Published public var referenced_dataCell_Y_Number : Int
+    @Published public var referenced_dataCell_X_Number : Int
+    @Published public var referenced_dataCell_Y_Number : Int
     @Published public var sub_Cell_Width : CGFloat
     @Published public var sub_Cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
+    
     @Published public var referenced_isHighlighted : Bool = false{
         didSet{
             if referenced_isHighlighted == true{statusColor = colors.grid_Note_Highlighted_Color}
-            else if referenced_isHighlighted == false{
+            else if referenced_isHighlighted == false {
                 if referenced_currentStatus == .start_Note
                     || referenced_currentStatus == .mid_Note
                     || referenced_currentStatus == .end_Note {
@@ -29,6 +30,13 @@ public class Data_Vals_Holder : ObservableObject {
                     if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
                 }
             }
+        }
+    }
+    
+    @Published public var in_Viable_Set : Bool = false {
+        didSet {
+            if in_Viable_Set == true{statusColor = Color(red: 0, green: 0, blue: 0)}
+            else if in_Viable_Set == false{statusColor = colors.grid_Blank_Color}
         }
     }
    

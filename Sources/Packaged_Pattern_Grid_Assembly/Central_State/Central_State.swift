@@ -39,7 +39,7 @@ public class Central_State : ObservableObject {
             lclNoteCollection.reset_Note_Data_Cells()
             a_Note_Is_Highlighted = false
         }
-        generateCursorInformation()
+        generateViableSetInformation()
     }
 
     //==================================================
@@ -60,7 +60,7 @@ public class Central_State : ObservableObject {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
                     potentialNoteEvaluation()
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-                    generateCursorInformation()
+                    generateViableSetInformation()
                 }
             }
             
@@ -120,7 +120,7 @@ public class Central_State : ObservableObject {
                             
                         }
                         lclPotentialLayer.endPotentialNote()
-                        generateCursorInformation()
+                        generateViableSetInformation()
                     }
                 }
                 
@@ -134,7 +134,7 @@ public class Central_State : ObservableObject {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
-            generateCursorInformation()
+            generateViableSetInformation()
             
             if writingIsOn == true {
                 potentialNoteEvaluation()
@@ -143,7 +143,7 @@ public class Central_State : ObservableObject {
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
-            generateCursorInformation()
+            generateViableSetInformation()
             centralState_Cursor_Position_Evaluation()
             
             if writingIsOn == true {
@@ -153,7 +153,9 @@ public class Central_State : ObservableObject {
         
     }
     
-    func generateCursorInformation(){
+    var viableSet : Set<Underlying_Data_Cell>?
+    
+    func generateViableSetInformation(){
     let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
     var cell_Line_Set = Set<Underlying_Data_Cell>()
     for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
@@ -167,35 +169,71 @@ public class Central_State : ObservableObject {
         let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
         let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
+        
+//        let viableSet = cell_Line_Set.filter{$0.dataCell_X_Number > nearestNoteLeft.dataCell_X_Number && $0.dataCell_X_Number < nearestNoteRight?.dataCell_X_Number}
+        
         if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-            let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
-            let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
-            if let lclCursorLayer = cursor_Layer_Ref {
-                lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
+//            let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+//            let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+//            if let lclCursorLayer = cursor_Layer_Ref {
+//                lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: upperXFloat)
+//            }
+            let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number
+                && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
+            viableSet = localViableSet
+            for cell in localViableSet {
+                if let lclDataVals = cell.currentConnectedDataVals {
+                    lclDataVals.in_Viable_Set = true
+                }
             }
         }
         else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
-            let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
-            if let lclCursorLayer = cursor_Layer_Ref {
-                lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
+//            let upperXFloat = CGFloat(lclRight.dataCell_X_Number) * dimensions.pattern_Grid_Sub_Cell_Width
+//            if let lclCursorLayer = cursor_Layer_Ref {
+//                lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: upperXFloat)
+//            }
+            let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number < lclRight.dataCell_X_Number}
+            viableSet = localViableSet
+            for cell in localViableSet {
+                if let lclDataVals = cell.currentConnectedDataVals {
+                    lclDataVals.in_Viable_Set = true
+                }
             }
         }
         else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
-            let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
-            if let lclCursorLayer = cursor_Layer_Ref {
-                lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
+//            let lowerXfloat = CGFloat(lclLeft.dataCell_X_Number+1) * dimensions.pattern_Grid_Sub_Cell_Width
+//            if let lclCursorLayer = cursor_Layer_Ref {
+//                lclCursorLayer.setViableRegionMarker(lowerXParam: lowerXfloat, upperXParam: 384)
+//            }
+            let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number}
+            viableSet = localViableSet
+            for cell in localViableSet {
+                if let lclDataVals = cell.currentConnectedDataVals {
+                    lclDataVals.in_Viable_Set = true
+                }
             }
         }
         else if nearestNoteRight == nil, nearestNoteLeft == nil {
-            if let lclCursorLayer = cursor_Layer_Ref {
-                lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
+//            if let lclCursorLayer = cursor_Layer_Ref {
+//                lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 384)
+//            }
+            let localViableSet = cell_Line_Set
+            viableSet = localViableSet
+            for cell in localViableSet {
+                if let lclDataVals = cell.currentConnectedDataVals {
+                    lclDataVals.in_Viable_Set = true
+                }
             }
         }
         
     }
-    else if a_Note_Is_Highlighted == true || writingIsOn == true{
-        if let lclCursorLayer = cursor_Layer_Ref {
-            lclCursorLayer.setViableRegionMarker(lowerXParam: 0, upperXParam: 0)
+    else if a_Note_Is_Highlighted == true || writingIsOn == true {
+        if let lclViableSet = viableSet {
+            for cell in lclViableSet {
+                if let lclDataVals = cell.currentConnectedDataVals {
+                    lclDataVals.in_Viable_Set = false
+                }
+            }
         }
     }
     }
