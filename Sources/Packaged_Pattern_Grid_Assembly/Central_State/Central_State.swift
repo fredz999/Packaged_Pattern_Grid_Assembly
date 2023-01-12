@@ -168,9 +168,14 @@ public class Central_State : ObservableObject {
         let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
         let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-        let nearestNoteLeft =   notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        let nearestNoteLeft = notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
 
+        
+        
+        
         if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
+            lclRight.change_Prohibition_Status(newProhibitionStatus: true)
+            lclLeft.change_Prohibition_Status(newProhibitionStatus: true)
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
 
             if let lclCurrViableSet = viableSet {

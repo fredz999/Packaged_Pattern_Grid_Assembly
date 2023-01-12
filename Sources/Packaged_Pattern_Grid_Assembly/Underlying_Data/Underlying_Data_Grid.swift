@@ -124,8 +124,13 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var id = UUID()
     public var dataCell_X_Number : Int
     public var dataCell_Y_Number : Int
+    //================================================================================================================
+    // hopefully none of these three can be true at the same time or this model is all wrongggggggg
+    // like theyre mutually exclusive
+    var isProhibited : Bool = false // for now this will be purely for visuals
     var isHighlighted : Bool = false
     var in_Viable_Set : Bool = false
+    //================================================================================================================
     var note_Im_In : Note?
     weak var currentConnectedDataVals : Data_Vals_Holder?
 
@@ -190,36 +195,25 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Viable_Set_Status(viableSetMembershipParam:Bool){
-
-        //if viableSetMembershipParam == true{
-            if in_Viable_Set != viableSetMembershipParam{
-                in_Viable_Set = viableSetMembershipParam
-                if let lcl_Data_Vals = currentConnectedDataVals {
-                    if lcl_Data_Vals.in_Viable_Set != viableSetMembershipParam{
-                        lcl_Data_Vals.in_Viable_Set = viableSetMembershipParam
-                    }
+        if in_Viable_Set != viableSetMembershipParam {
+            in_Viable_Set = viableSetMembershipParam
+            if let lcl_Data_Vals = currentConnectedDataVals {
+                if lcl_Data_Vals.referenced_in_Viable_Set != viableSetMembershipParam {
+                    lcl_Data_Vals.referenced_in_Viable_Set = viableSetMembershipParam
                 }
             }
-//        }
-//        else if viableSetMembershipParam == false{
-//            if in_Viable_Set != viableSetMembershipParam{
-//                in_Viable_Set = viableSetMembershipParam
-//                if let lcl_Data_Vals = currentConnectedDataVals {
-//                    if lcl_Data_Vals.in_Viable_Set != viableSetMembershipParam{
-//                        lcl_Data_Vals.in_Viable_Set = viableSetMembershipParam
-//                    }
-//                }
-//            }
-//        }
-        
-        
-//        if in_Viable_Set != viableSetMembershipParam {
-//            in_Viable_Set = viableSetMembershipParam
-//            if let lcl_Data_Vals = currentConnectedDataVals {
-//                lcl_Data_Vals.in_Viable_Set  = viableSetMembershipParam
-//            }
-//        }
-        
+        }
+    }
+    
+    public func change_Prohibition_Status(newProhibitionStatus:Bool){
+        if isProhibited != newProhibitionStatus {
+            isProhibited = newProhibitionStatus
+            if let lcl_Data_Vals = currentConnectedDataVals {
+                if lcl_Data_Vals.referenced_is_Prohibited_Set != newProhibitionStatus {
+                    lcl_Data_Vals.referenced_is_Prohibited_Set = newProhibitionStatus
+                }
+            }
+        }
     }
     
     public func reset_To_Original(){
@@ -244,7 +238,5 @@ public enum E_CellStatus : String {
     case mid_Note = "mid_Note"
     case end_Note = "end_Note"
     case single_Note = "single_Note"
-    
-    case prohibited_Note = "prohibited_Note"
     
 }

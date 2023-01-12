@@ -33,14 +33,30 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-    @Published public var in_Viable_Set : Bool = false {
+    @Published public var referenced_in_Viable_Set : Bool = false {
         didSet {
-            if in_Viable_Set == true{statusColor = colors.viable_Set_Color}
-            else if in_Viable_Set == false {
+            if referenced_in_Viable_Set == true{statusColor = colors.viable_Set_Color}
+            else if referenced_in_Viable_Set == false {
                 statusColor = colors.grid_Blank_Color
             }
         }
     }
+    
+    // prohibited is going to be mutually exclusive from highlighted
+    @Published public var referenced_is_Prohibited_Set : Bool = false {
+        didSet {
+            if referenced_is_Prohibited_Set == true{statusColor = colors.prohibited_Cell_Color}
+            else if referenced_is_Prohibited_Set == false {
+                if referenced_currentStatus == .start_Note
+                    || referenced_currentStatus == .mid_Note
+                    || referenced_currentStatus == .end_Note {
+                    if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
+                }
+            }
+        }
+    }
+    
+    //prohibited_Cell_Color
     
     //TODO: Datavals memory
     @Published public var referenced_currentStatus : E_CellStatus {
