@@ -42,6 +42,7 @@ public class Data_Vals_Holder : ObservableObject {
     //TODO: Datavals memory
     @Published public var referenced_currentStatus : E_CellStatus {
         didSet{
+            print("Y: ",referenced_dataCell_Y_Number,", Status: ",referenced_currentStatus.rawValue)
             if referenced_currentStatus == .start_Note
                 || referenced_currentStatus == .mid_Note
                 || referenced_currentStatus == .end_Note {
