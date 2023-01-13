@@ -31,16 +31,26 @@ public class ComponentDimensions : ObservableObject {
     public var current_Rightward_Boundary : CGFloat = 380
     
     public func set_Current_Rightward_Boundary(newRightBoundary:Int){
-        let newRightBoundaryFloat = cursor_X_Jump*CGFloat(newRightBoundary)
-        current_Rightward_Boundary = newRightBoundaryFloat
+        if newRightBoundary != dataGrid_X_Unit_Count{
+            let newRightBoundaryFloat = cursor_X_Jump*CGFloat(newRightBoundary)
+            current_Rightward_Boundary = newRightBoundaryFloat
+        }
+        else if newRightBoundary == dataGrid_X_Unit_Count{
+            current_Rightward_Boundary = initial_Right_Boundary
+        }
     }
     
     var initial_Left_Boundary : CGFloat = 0
     public var current_Leftward_Boundary : CGFloat = 0
     
     public func set_Current_Leftward_Boundary(newLeftBoundary:Int){
-        let newLeftBoundaryFloat = cursor_X_Jump*CGFloat(newLeftBoundary)
-        current_Leftward_Boundary = newLeftBoundaryFloat
+        if newLeftBoundary == 0{
+            current_Leftward_Boundary = initial_Left_Boundary
+        }
+        else if newLeftBoundary != 0{
+            let newLeftBoundaryFloat = cursor_X_Jump*CGFloat(newLeftBoundary)
+            current_Leftward_Boundary = newLeftBoundaryFloat
+        }
     }
     
     @Published public var dataGrid_X_Unit_Count : Int = 96

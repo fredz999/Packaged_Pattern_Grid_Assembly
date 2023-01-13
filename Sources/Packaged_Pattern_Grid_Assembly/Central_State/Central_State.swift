@@ -191,7 +191,7 @@ public class Central_State : ObservableObject {
                 dimensions.set_Current_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
             }
             else if rightProhibitedCell == nil{
-                dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count-1)
+                dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
             }
         }
     }
