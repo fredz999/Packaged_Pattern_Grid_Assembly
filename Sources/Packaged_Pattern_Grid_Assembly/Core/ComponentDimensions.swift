@@ -13,7 +13,6 @@ public class ComponentDimensions : ObservableObject {
     public let backGroundWidth : CGFloat = 375
     public let backGroundHeight : CGFloat = 647
     
-    
     public var slider_Width : CGFloat = 36
     public var ui_Unit_Width : CGFloat = 24
     public var ui_Unit_Height : CGFloat = 16
@@ -23,10 +22,6 @@ public class ComponentDimensions : ObservableObject {
     
     //============== Central Grid SECTION =========================
     public let DATA_final_Line_Y_Index : Int = 64
-    
-    
-    
-    
     
     @Published public var curr_cursor_X_Offset : CGFloat = 0
     

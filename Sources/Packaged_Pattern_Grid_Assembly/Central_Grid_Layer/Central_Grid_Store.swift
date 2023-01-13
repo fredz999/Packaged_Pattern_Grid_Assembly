@@ -42,37 +42,11 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     public var parentGrid : Central_Grid_Store
     @Published public var y_Index : Int
     @Published public var visual_Cell_Store_Array : [Central_Cell_Store] = []
-    
-    
-    //var cellSet = Set<Central_Cell_Store>()  // this
-    //var cells_In_A_Note_Set = Set<Central_Cell_Store>()
-    
-    //TODO: border check call(if write is on)
-//    var nearest_Right_Note : Central_Cell_Store?{
-//        didSet {
-//            if let lclNearestRightNote = nearest_Right_Note {
-//                let lastCellBeforeRightBoundary = lclNearestRightNote.data_Vals_Holder.referenced_dataCell_X_Number-1
-//                let boundaryRightStart = Int(lastCellBeforeRightBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
-//                dimensions.set_Current_Rightward_Boundary(newRightBoundary: boundaryRightStart)
-//            }
-//        }
-//    }
-    
-//    var nearest_Left_Note : Central_Cell_Store?{
-//        didSet {
-//            if let lclNearestLeftNote = nearest_Left_Note {
-//                let lastCellBeforeLeftBoundary = lclNearestLeftNote.data_Vals_Holder.referenced_dataCell_X_Number+1
-//                let boundaryLeftStart = Int(lastCellBeforeLeftBoundary/dimensions.pattern_Grid_Cell_Sub_Unit_Count)
-//                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: boundaryLeftStart)
-//            }
-//        }
-//    }
-    
+
     public init(y_Index: Int,gridParam:Central_Grid_Store){
         self.y_Index = y_Index
         parentGrid = gridParam
         fillLine()
-        //for cell in visual_Cell_Store_Array{cellSet.insert(cell)}
     }
  
     public func fillLine(){

@@ -171,6 +171,10 @@ public class Central_State : ObservableObject {
         didSet{
             if let lclLeftProhibCell = leftProhibitedCell{
                 lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
+                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: lclLeftProhibCell.dataCell_X_Number)
+            }
+            else if leftProhibitedCell == nil{
+                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: 0)
             }
         }
     }
@@ -184,6 +188,10 @@ public class Central_State : ObservableObject {
         didSet{
             if let lclRightProhibCell = rightProhibitedCell{
                 lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
+                dimensions.set_Current_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
+            }
+            else if rightProhibitedCell == nil{
+                dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
             }
         }
     }
@@ -195,15 +203,15 @@ public class Central_State : ObservableObject {
     for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
     let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-    //if a_Note_Is_Highlighted == false,writingIsOn == false {
-    if a_Note_Is_Highlighted == false{
+
+    if a_Note_Is_Highlighted == false,writingIsOn == false {
         
         let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
         let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
         let nearestNoteLeft = notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-
+        //====================================================================================================
         if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
             leftProhibitedCell = lclLeft
             rightProhibitedCell = lclRight
@@ -222,6 +230,7 @@ public class Central_State : ObservableObject {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
             }
         }
+        //====================================================================================================
         else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
             leftProhibitedCell = nil
             rightProhibitedCell = lclRight
@@ -240,6 +249,7 @@ public class Central_State : ObservableObject {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
             }
         }
+        //====================================================================================================
         else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
             leftProhibitedCell = lclLeft
             rightProhibitedCell = nil
@@ -257,6 +267,7 @@ public class Central_State : ObservableObject {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
             }
         }
+        //====================================================================================================
         else if nearestNoteRight == nil, nearestNoteLeft == nil {
             leftProhibitedCell = nil
             rightProhibitedCell = nil
@@ -274,15 +285,16 @@ public class Central_State : ObservableObject {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
             }
         }
-        
+        //====================================================================================================
     }
-    else if a_Note_Is_Highlighted == true {
+    else if a_Note_Is_Highlighted == true || writingIsOn == true {
         if let lclViableSet = viableSet {
             for dataCell in lclViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:false)
             }
         }
     }
+        
     }
     
     func centralState_Cursor_Position_Evaluation() {
@@ -292,7 +304,7 @@ public class Central_State : ObservableObject {
     }
     
     public func togglewriteIsOn(){
-        if a_Note_Is_Highlighted == false{
+        if a_Note_Is_Highlighted == false {
             writingIsOn.toggle()
         }
     }
