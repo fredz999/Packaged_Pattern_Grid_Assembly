@@ -186,9 +186,9 @@ public class Central_State : ObservableObject {
                 lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
                 dimensions.set_Current_Leftward_Boundary(newLeftBoundary: lclLeftProhibCell.dataCell_X_Number)
             }
-            else if leftProhibitedCell == nil{
-                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: 0)
-            }
+//            else if leftProhibitedCell == nil{
+//                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: 0)
+//            }
         }
     }
     
@@ -203,9 +203,9 @@ public class Central_State : ObservableObject {
                 lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
                 dimensions.set_Current_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
             }
-            else if rightProhibitedCell == nil{
-                dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
-            }
+//            else if rightProhibitedCell == nil{
+//                dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
+//            }
         }
     }
     
