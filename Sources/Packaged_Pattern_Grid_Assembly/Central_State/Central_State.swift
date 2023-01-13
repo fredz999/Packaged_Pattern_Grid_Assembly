@@ -68,10 +68,12 @@ public class Central_State : ObservableObject {
                     //TODO: snapshot borders
                     var snapString = ""
                     if let lclProhibLeft = leftProhibitedCell{
-                        snapString += "lclProhibLeft: "+lclProhibLeft.dataCell_X_Number.description
+                        //snapString += "lclProhibLeft: "+lclProhibLeft.dataCell_X_Number.description
+                        leftProhibitedCell = nil
                     }
                     if let lclProhibRight = rightProhibitedCell{
-                        snapString += "lclProhibRight: "+lclProhibRight.dataCell_X_Number.description
+                        //snapString += "lclProhibRight: "+lclProhibRight.dataCell_X_Number.description
+                        rightProhibitedCell = nil
                     }
                     
                     print("lBorder: ",dimensions.current_Leftward_Boundary,", rBorder: ",dimensions.current_Rightward_Boundary)
