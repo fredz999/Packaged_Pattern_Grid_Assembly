@@ -155,6 +155,32 @@ public class Central_State : ObservableObject {
     
     var viableSet : Set<Underlying_Data_Cell>?
     
+    var leftProhibitedCell : Underlying_Data_Cell?{
+        willSet{
+            if let lclLeftProhibCell = leftProhibitedCell{
+                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
+            }
+        }
+        didSet{
+            if let lclLeftProhibCell = leftProhibitedCell{
+                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
+            }
+        }
+    }
+    
+    var rightProhibitedCell : Underlying_Data_Cell?{
+        willSet{
+            if let lclRightProhibCell = rightProhibitedCell{
+                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
+            }
+        }
+        didSet{
+            if let lclRightProhibCell = rightProhibitedCell{
+                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
+            }
+        }
+    }
+    
     func generateViableSetInformation(){
         
     let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -170,12 +196,10 @@ public class Central_State : ObservableObject {
         let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
         let nearestNoteLeft = notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
 
-        
-        
-        
         if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-            lclRight.change_Prohibition_Status(newProhibitionStatus: true)
-            lclLeft.change_Prohibition_Status(newProhibitionStatus: true)
+            leftProhibitedCell = lclLeft
+            rightProhibitedCell = lclRight
+            
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
 
             if let lclCurrViableSet = viableSet {
@@ -191,7 +215,9 @@ public class Central_State : ObservableObject {
             }
         }
         else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
-
+            leftProhibitedCell = nil
+            rightProhibitedCell = lclRight
+            
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number < lclRight.dataCell_X_Number}
             
             if let lclCurrViableSet = viableSet {
@@ -207,6 +233,8 @@ public class Central_State : ObservableObject {
             }
         }
         else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
+            leftProhibitedCell = lclLeft
+            rightProhibitedCell = nil
             let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number}
             
             if let lclCurrViableSet = viableSet {
@@ -222,6 +250,8 @@ public class Central_State : ObservableObject {
             }
         }
         else if nearestNoteRight == nil, nearestNoteLeft == nil {
+            leftProhibitedCell = nil
+            rightProhibitedCell = nil
             let localNewSet = cell_Line_Set
             
             if let lclCurrViableSet = viableSet {

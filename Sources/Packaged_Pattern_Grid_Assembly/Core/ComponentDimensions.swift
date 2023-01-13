@@ -89,31 +89,19 @@ public class ComponentDimensions : ObservableObject {
     public var pattern_Mid_End_XOffset : CGFloat = 0
     
     @Published public var cursor_X_Jump : CGFloat = 4
-    //var cellArray_Write_Addition : Int = 1
-    //this is now probably best handled in the central state
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 4
-            //cursor_X_Jump = 4
-            //cellArray_Write_Addition = 1
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 6
-            //cursor_X_Jump = 4
-            //cellArray_Write_Addition = 2
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
     public static let StaticDimensions = ComponentDimensions()
+    
 }
 
 public class ComponentColors {
