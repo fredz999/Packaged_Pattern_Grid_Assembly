@@ -65,6 +65,17 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
+                    //TODO: snapshot borders
+                    var snapString = ""
+                    if let lclProhibLeft = leftProhibitedCell{
+                        snapString += "lclProhibLeft: "+lclProhibLeft.dataCell_X_Number.description
+                    }
+                    if let lclProhibRight = rightProhibitedCell{
+                        snapString += "lclProhibRight: "+lclProhibRight.dataCell_X_Number.description
+                    }
+                    
+                    print("lBorder: ",dimensions.current_Leftward_Boundary,", rBorder: ",dimensions.current_Rightward_Boundary)
+                    // then nil the cells in here
                     potentialNoteEvaluation()
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                     generateViableSetInformation()
@@ -289,21 +300,21 @@ public class Central_State : ObservableObject {
     }
     else if a_Note_Is_Highlighted == true || writingIsOn == true {
         //1: see what thte extremes are at the time of the press
-        var prohibStr = ""
+//        var prohibStr = ""
+//        if let lclLeft = leftProhibitedCell{
+//            prohibStr += "leftProhib: "+lclLeft.dataCell_X_Number.description
+//        }
+//        if let lclRight = rightProhibitedCell{
+//            prohibStr += ", rightProhib: "+lclRight.dataCell_X_Number.description
+//        }
+//        print("at time of write on? prohibStr: ",prohibStr)
         
-        if let lclLeft = leftProhibitedCell{
-            prohibStr += "leftProhib: "+lclLeft.dataCell_X_Number.description
-        }
-        if let lclRight = rightProhibitedCell{
-            prohibStr += ", rightProhib: "+lclRight.dataCell_X_Number.description
-        }
-        
-        print("at time of write on? prohibStr: ",prohibStr)
         if let lclViableSet = viableSet {
             for dataCell in lclViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:false)
             }
         }
+        
     }
         
     }
