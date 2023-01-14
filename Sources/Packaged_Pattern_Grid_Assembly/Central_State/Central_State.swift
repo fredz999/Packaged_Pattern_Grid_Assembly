@@ -226,7 +226,7 @@ public class Central_State : ObservableObject {
             let viableCellsOnLeft = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
              
             viableSet = viableCellsOnRight.union(viableCellsOnLeft)
-
+            print("vSet count: ",viableSet?.count)
         }
         else if currentData.note_Im_In != nil{
             viableSet = nil
