@@ -40,14 +40,14 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public func handleDrag(inputParam:CGFloat){
         
-        if (inputParam + accumulatedDrag) <= (dimensions.current_Rightward_Boundary),(inputParam + accumulatedDrag) >= dimensions.current_Leftward_Boundary {
+        if (inputParam + accumulatedDrag) <= (dimensions.potential_Note_Rightward_Boundary),(inputParam + accumulatedDrag) >= dimensions.potential_Note_Leftward_Boundary {
             currentVal = inputParam + accumulatedDrag
         }
-        else if (inputParam + accumulatedDrag) > (dimensions.current_Rightward_Boundary) {
-            currentVal = (dimensions.current_Rightward_Boundary)
+        else if (inputParam + accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
+            currentVal = (dimensions.potential_Note_Rightward_Boundary)
         }
-        else if (inputParam + accumulatedDrag) < dimensions.current_Leftward_Boundary {
-            currentVal = dimensions.current_Leftward_Boundary
+        else if (inputParam + accumulatedDrag) < dimensions.potential_Note_Leftward_Boundary {
+            currentVal = dimensions.potential_Note_Leftward_Boundary
         }
     }
         
@@ -55,13 +55,13 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 
         accumulatedDrag += dimensions.cursor_X_Jump
 
-        if (accumulatedDrag) <= (dimensions.current_Rightward_Boundary),accumulatedDrag >= dimensions.current_Leftward_Boundary{
+        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
             currentVal = accumulatedDrag
         }
 
-        else if (accumulatedDrag) > (dimensions.current_Rightward_Boundary) {
-            accumulatedDrag = (dimensions.current_Rightward_Boundary)
-            currentVal = (dimensions.current_Rightward_Boundary)
+        else if (accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
+            accumulatedDrag = (dimensions.potential_Note_Rightward_Boundary)
+            currentVal = (dimensions.potential_Note_Rightward_Boundary)
         }
 
     }
@@ -69,7 +69,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public func artificially_H_Decrement(){
         accumulatedDrag -= dimensions.cursor_X_Jump
         
-        if (accumulatedDrag) <= (dimensions.current_Rightward_Boundary),accumulatedDrag >= dimensions.current_Leftward_Boundary {
+        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary {
             currentVal = accumulatedDrag
         }
 
