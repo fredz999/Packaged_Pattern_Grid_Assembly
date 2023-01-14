@@ -165,7 +165,8 @@ public class Central_State : ObservableObject {
                 }
             }
             else if let lclNewval = newValue,let previousViableSet = viableSet {
-            let resettables = previousViableSet.subtracting(lclNewval)
+            let resettables = lclNewval.subtracting(previousViableSet)
+                print("resettables size: ",resettables.count.description)
                 for cell in resettables{
                     if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
                 }
@@ -215,7 +216,7 @@ public class Central_State : ObservableObject {
     }
     
     public func evaluate_Viable_Set(){
-        //print("evaluate_Viable_Set(")
+
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         var cell_Line_Set = Set<Underlying_Data_Cell>()
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
