@@ -203,9 +203,7 @@ public class Central_State : ObservableObject {
         //if a_Note_Is_Highlighted == false, writingIsOn == true {
             let viableCellsOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
             let viableCellsOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-            var viableCells = Set<Underlying_Data_Cell>()
-            
-            viableCells = viableCellsOnRight.union(viableCellsOnLeft)
+            var viableCells = viableCellsOnRight.union(viableCellsOnLeft)
             viableCells.insert(currentData)
             //if let lclViableSet = viableCells{
             for dataCell in viableCells {
