@@ -46,7 +46,7 @@ public class Central_State : ObservableObject {
             lclNoteCollection.reset_Note_Data_Cells()
             a_Note_Is_Highlighted = false
         }
-        evaluate_Viable_Set()
+        //evaluate_Viable_Set()
     }
 
     //==================================================
@@ -224,10 +224,30 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil{
+            // the problem here is that simply saying the notes on right have to exceed the current note dosent make the set stop at the next note
+            // you need the next note on right then make the set from that
             let viableCellsOnRight = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
-            let viableCellsOnLeft = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-             
-            viableSet = viableCellsOnRight.union(viableCellsOnLeft)
+            
+            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+            let firstInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            
+           
+            var singleInviableSet = Set<Underlying_Data_Cell>()
+            if let lclFirstRight = firstInviableRight{
+                singleInviableSet.insert(lclFirstRight)
+                viableSet = singleInviableSet
+            }
+                    
+           
+        
+            
+            
+            
+            
+            
+            
+//            let viableCellsOnLeft = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+//            viableSet = viableCellsOnRight.union(viableCellsOnLeft)
             //print("vSet count: ",viableSet?.count)
         }
         else if currentData.note_Im_In != nil{
