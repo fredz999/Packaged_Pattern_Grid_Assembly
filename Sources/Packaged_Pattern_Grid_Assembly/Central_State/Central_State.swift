@@ -66,7 +66,7 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
                     potentialNoteEvaluation()
-                    evaluate_Viable_Set()
+                    //evaluate_Viable_Set()
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                 }
             }
@@ -127,7 +127,7 @@ public class Central_State : ObservableObject {
                             
                         }
                         lclPotentialLayer.endPotentialNote()
-                        evaluate_Viable_Set()
+                        //evaluate_Viable_Set()
                     }
                 }
                 
@@ -141,18 +141,20 @@ public class Central_State : ObservableObject {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
+            evaluate_Viable_Set()
             if writingIsOn == true {
                 potentialNoteEvaluation()
-                evaluate_Viable_Set()
+                
             }
         }
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
+            evaluate_Viable_Set()
             if writingIsOn == true {
                 potentialNoteEvaluation()
-                evaluate_Viable_Set()
+                
             }
         }
     }
@@ -166,7 +168,6 @@ public class Central_State : ObservableObject {
             }
             else if let lclNewval = newValue,let previousViableSet = viableSet {
             let resettables = lclNewval.subtracting(previousViableSet)
-                print("resettables size: ",resettables.count.description)
                 for cell in resettables{
                     if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
                 }
@@ -227,7 +228,7 @@ public class Central_State : ObservableObject {
             let viableCellsOnLeft = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
              
             viableSet = viableCellsOnRight.union(viableCellsOnLeft)
-            print("vSet count: ",viableSet?.count)
+            //print("vSet count: ",viableSet?.count)
         }
         else if currentData.note_Im_In != nil{
             viableSet = nil
