@@ -193,7 +193,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    func evaluate_Viable_Set(){
+    public func evaluate_Viable_Set(){
         //print("evaluate_Viable_Set(")
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         var cell_Line_Set = Set<Underlying_Data_Cell>()
