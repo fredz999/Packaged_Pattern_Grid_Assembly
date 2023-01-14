@@ -217,7 +217,7 @@ public class Central_State : ObservableObject {
     let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
 
-    if a_Note_Is_Highlighted == false,writingIsOn == true {
+    if a_Note_Is_Highlighted == false,writingIsOn == false {
         
         let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -300,7 +300,8 @@ public class Central_State : ObservableObject {
         }
         //====================================================================================================
     }
-    else if a_Note_Is_Highlighted == true || writingIsOn == false {
+    else if a_Note_Is_Highlighted == true || writingIsOn == true {
+        
         //1: see what thte extremes are at the time of the press
 //        var prohibStr = ""
 //        if let lclLeft = leftProhibitedCell{
