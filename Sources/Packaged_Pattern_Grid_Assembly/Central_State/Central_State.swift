@@ -65,19 +65,19 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
-                    //TODO: snapshot borders
-                    var snapString = ""
-                    if let lclProhibLeft = leftProhibitedCell{
-                        //snapString += "lclProhibLeft: "+lclProhibLeft.dataCell_X_Number.description
-                        leftProhibitedCell = nil
-                    }
-                    if let lclProhibRight = rightProhibitedCell{
-                        //snapString += "lclProhibRight: "+lclProhibRight.dataCell_X_Number.description
-                        rightProhibitedCell = nil
-                    }
-                    
-                    print("lBorder: ",dimensions.current_Leftward_Boundary,", rBorder: ",dimensions.current_Rightward_Boundary)
+//                    TODO: snapshot borders
+//                    var snapString = ""
+//                    if let lclProhibLeft = leftProhibitedCell{
+//                        //snapString += "lclProhibLeft: "+lclProhibLeft.dataCell_X_Number.description
+//                        leftProhibitedCell = nil
+//                    }
+//                    if let lclProhibRight = rightProhibitedCell{
+//                        //snapString += "lclProhibRight: "+lclProhibRight.dataCell_X_Number.description
+//                        rightProhibitedCell = nil
+//                    }
+//                    print("lBorder: ",dimensions.current_Leftward_Boundary,", rBorder: ",dimensions.current_Rightward_Boundary)
                     // then nil the cells in here
+                    
                     potentialNoteEvaluation()
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                     generateViableSetInformation()
@@ -186,9 +186,9 @@ public class Central_State : ObservableObject {
                 lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
                 dimensions.set_Current_Leftward_Boundary(newLeftBoundary: lclLeftProhibCell.dataCell_X_Number)
             }
-//            else if leftProhibitedCell == nil{
-//                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: 0)
-//            }
+            else if leftProhibitedCell == nil{
+                dimensions.set_Current_Leftward_Boundary(newLeftBoundary: 0)
+            }
         }
     }
     
@@ -203,9 +203,9 @@ public class Central_State : ObservableObject {
                 lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
                 dimensions.set_Current_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
             }
-//            else if rightProhibitedCell == nil{
-//                dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
-//            }
+            else if rightProhibitedCell == nil{
+                dimensions.set_Current_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
+            }
         }
     }
     
@@ -217,7 +217,7 @@ public class Central_State : ObservableObject {
     let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
 
-    if a_Note_Is_Highlighted == false,writingIsOn == false {
+    if a_Note_Is_Highlighted == false,writingIsOn == true {
         
         let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -300,7 +300,7 @@ public class Central_State : ObservableObject {
         }
         //====================================================================================================
     }
-    else if a_Note_Is_Highlighted == true || writingIsOn == true {
+    else if a_Note_Is_Highlighted == true || writingIsOn == false {
         //1: see what thte extremes are at the time of the press
 //        var prohibStr = ""
 //        if let lclLeft = leftProhibitedCell{
