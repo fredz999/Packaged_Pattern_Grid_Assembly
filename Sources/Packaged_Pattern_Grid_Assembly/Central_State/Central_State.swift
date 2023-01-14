@@ -157,7 +157,28 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var viableSet : Set<Underlying_Data_Cell>?
+    var viableSet : Set<Underlying_Data_Cell>?{
+        willSet {
+            if newValue == nil,let lclViableSet = viableSet {
+                for cell in lclViableSet {
+                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
+                }
+            }
+            else if let lclNewval = newValue,let previousViableSet = viableSet {
+            let resettables = previousViableSet.subtracting(lclNewval)
+                for cell in resettables{
+                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
+                }
+            }
+        }
+        didSet {
+            if let lclViableSet = viableSet {
+                for cell in lclViableSet {
+                    if cell.in_Viable_Set == false{cell.in_Viable_Set = true}
+                }
+            }
+        }
+    }
     
     var leftProhibitedCell : Underlying_Data_Cell?{
         willSet{
@@ -200,127 +221,24 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-        //if a_Note_Is_Highlighted == false, writingIsOn == true {
         if currentData.note_Im_In == nil{
-            let viableCellsOnRight = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+            let viableCellsOnRight = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
             let viableCellsOnLeft = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-            var viableCells = viableCellsOnRight.union(viableCellsOnLeft)
-            viableCells.insert(currentData)
+             
+            viableSet = viableCellsOnRight.union(viableCellsOnLeft)
 
-            for dataCell in viableCells {
-                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-            }
-            print("viableCells.count: ",viableCells.count)
         }
+        else if currentData.note_Im_In != nil{
+            viableSet = nil
+        }
+        
             
 
             
 
 
     }
-    
-//    func evaluate_Viable_Set(){
-//
-//    let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-//    var cell_Line_Set = Set<Underlying_Data_Cell>()
-//    for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
-//    let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-//
-//    //if a_Note_Is_Highlighted == false {
-//    if a_Note_Is_Highlighted == false,writingIsOn == false {
-//
-//        let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-//        let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//
-//        let notesOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-//        let nearestNoteLeft = notesOnLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        //====================================================================================================
-//        if let lclRight = nearestNoteRight, let lclLeft = nearestNoteLeft {
-//            //TODO: prohibs to be in viable set
-//            leftProhibitedCell = lclLeft
-//            rightProhibitedCell = lclRight
-//
-//            let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number && $0.dataCell_X_Number < lclRight.dataCell_X_Number}
-//
-//            if let lclCurrViableSet = viableSet {
-//                for cell in lclCurrViableSet{
-//                    cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-//                }
-//            }
-//
-//            viableSet = localViableSet
-//
-//            for dataCell in localViableSet {
-//                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-//            }
-//        }
-//        //====================================================================================================
-//        else if let lclRight = nearestNoteRight, nearestNoteLeft == nil {
-//            leftProhibitedCell = nil
-//            rightProhibitedCell = lclRight
-//
-//            let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number < lclRight.dataCell_X_Number}
-//
-//            if let lclCurrViableSet = viableSet {
-//                for cell in lclCurrViableSet{
-//                    cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-//                }
-//            }
-//
-//            viableSet = localViableSet
-//
-//            for dataCell in localViableSet {
-//                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-//            }
-//        }
-//        //====================================================================================================
-//        else if nearestNoteRight == nil, let lclLeft = nearestNoteLeft {
-//            leftProhibitedCell = lclLeft
-//            rightProhibitedCell = nil
-//            let localViableSet = cell_Line_Set.filter{$0.dataCell_X_Number > lclLeft.dataCell_X_Number}
-//
-//            if let lclCurrViableSet = viableSet {
-//                for cell in lclCurrViableSet{
-//                    cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-//                }
-//            }
-//
-//            viableSet = localViableSet
-//
-//            for dataCell in localViableSet {
-//                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-//            }
-//        }
-//        //====================================================================================================
-//        else if nearestNoteRight == nil, nearestNoteLeft == nil {
-//            leftProhibitedCell = nil
-//            rightProhibitedCell = nil
-//            let localNewSet = cell_Line_Set
-//
-//            if let lclCurrViableSet = viableSet {
-//                for cell in lclCurrViableSet{
-//                    cell.change_Viable_Set_Status(viableSetMembershipParam: false)
-//                }
-//            }
-//
-//            viableSet = localNewSet
-//
-//            for dataCell in localNewSet {
-//                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-//            }
-//        }
-//        //====================================================================================================
-//    }
-//    //else if a_Note_Is_Highlighted == true{
-//    else if a_Note_Is_Highlighted == true || writingIsOn == true {
-//        if let lclViableSet = viableSet {
-//            for dataCell in lclViableSet {
-//                dataCell.change_Viable_Set_Status(viableSetMembershipParam:false)
-//            }
-//        }
-//    }
-//
-//    }
+
     
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref {
