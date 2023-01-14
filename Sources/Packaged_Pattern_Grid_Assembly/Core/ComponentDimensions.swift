@@ -48,7 +48,7 @@ public class ComponentDimensions : ObservableObject {
             current_Leftward_Boundary = initial_Left_Boundary
         }
         else if newLeftBoundary != 0{
-            let newLeftBoundaryFloat = cursor_X_Jump*CGFloat(newLeftBoundary)
+            let newLeftBoundaryFloat = cursor_X_Jump*CGFloat(newLeftBoundary+1)
             current_Leftward_Boundary = newLeftBoundaryFloat
         }
     }
