@@ -46,7 +46,7 @@ public class Central_State : ObservableObject {
             lclNoteCollection.reset_Note_Data_Cells()
             a_Note_Is_Highlighted = false
         }
-        generateViableSetInformation()
+        evaluate_Viable_Set()
     }
 
     //==================================================
@@ -65,8 +65,8 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
-                    generateViableSetInformation()
                     potentialNoteEvaluation()
+                    evaluate_Viable_Set()
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                 }
             }
@@ -127,7 +127,7 @@ public class Central_State : ObservableObject {
                             
                         }
                         lclPotentialLayer.endPotentialNote()
-                        generateViableSetInformation()
+                        evaluate_Viable_Set()
                     }
                 }
                 
@@ -142,8 +142,8 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             if writingIsOn == true {
-                generateViableSetInformation()
                 potentialNoteEvaluation()
+                evaluate_Viable_Set()
             }
         }
         if let lclNew_Y = new_Y {
@@ -151,8 +151,8 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             if writingIsOn == true {
-                generateViableSetInformation()
                 potentialNoteEvaluation()
+                evaluate_Viable_Set()
             }
         }
     }
@@ -193,7 +193,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    func generateViableSetInformation(){
+    func evaluate_Viable_Set(){
         
     let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
     var cell_Line_Set = Set<Underlying_Data_Cell>()
