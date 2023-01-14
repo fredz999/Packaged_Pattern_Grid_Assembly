@@ -28,7 +28,7 @@ public class ComponentDimensions : ObservableObject {
     @Published public var cursor_Y_Jump : CGFloat = 16
     
     var initial_Right_Boundary : CGFloat = 380
-    public var current_Rightward_Boundary : CGFloat = 380
+    @Published public var current_Rightward_Boundary : CGFloat = 380
     
     public func set_Current_Rightward_Boundary(newRightBoundary:Int){
         if newRightBoundary != dataGrid_X_Unit_Count{
@@ -41,7 +41,7 @@ public class ComponentDimensions : ObservableObject {
     }
     
     var initial_Left_Boundary : CGFloat = 0
-    public var current_Leftward_Boundary : CGFloat = 0
+    @Published public var current_Leftward_Boundary : CGFloat = 0
     
     public func set_Current_Leftward_Boundary(newLeftBoundary:Int){
         if newLeftBoundary == 0{
