@@ -127,9 +127,50 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     //================================================================================================================
     // hopefully none of these three can be true at the same time or this model is all wrongggggggg
     // like theyre mutually exclusive
-    var isProhibited : Bool = false // for now this will be purely for visuals
+    //=================================================== vizzzz -i- bil ==============================================
+    var isProhibited : Bool = false
+    {
+        didSet {
+            handleVisibleStateChange(in_Viable_Set_Param: in_Viable_Set, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
+        }
+    }
     var isHighlighted : Bool = false
+    {
+        didSet {
+            handleVisibleStateChange(in_Viable_Set_Param: in_Viable_Set, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
+        }
+    }
     var in_Viable_Set : Bool = false
+    {
+        didSet {
+            handleVisibleStateChange(in_Viable_Set_Param: in_Viable_Set, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
+        }
+    }
+    // function for prohibited/highlighted/viable state change
+    func handleVisibleStateChange(in_Viable_Set_Param:Bool,isHighlightedParam:Bool,isProhibitedParam:Bool){
+        if isHighlightedParam == true {
+            if in_Viable_Set == true { in_Viable_Set = false }
+            if isProhibited == true { isProhibited = false }
+        }
+        else if in_Viable_Set_Param == true {
+            if isHighlighted == true { isHighlighted = false }
+            if isProhibited == true { isProhibited = false }
+        }
+        else if isProhibitedParam == true {
+            if in_Viable_Set == true { in_Viable_Set = false }
+            if isHighlighted == true { isHighlighted = false }
+        }
+//        else if isHighlightedParam == false, in_Viable_Set_Param == false, isProhibitedParam == true{
+//
+//        }
+        
+        if let lclDataVals = currentConnectedDataVals{
+            lclDataVals.referenced_in_Viable_Set = in_Viable_Set
+            lclDataVals.referenced_isHighlighted = isHighlighted
+            lclDataVals.referenced_is_Prohibited_Set = isProhibited
+            lclDataVals.updateTempVisualStatus()
+        }
+    }
     //================================================================================================================
     var note_Im_In : Note?
     weak var currentConnectedDataVals : Data_Vals_Holder?
