@@ -200,8 +200,8 @@ public class Central_State : ObservableObject {
     for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
     let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-
-    if a_Note_Is_Highlighted == false,writingIsOn == false {
+    if a_Note_Is_Highlighted == false {
+    //if a_Note_Is_Highlighted == false,writingIsOn == false {
         
         let notesOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let nearestNoteRight = notesOnRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -284,7 +284,8 @@ public class Central_State : ObservableObject {
         }
         //====================================================================================================
     }
-    else if a_Note_Is_Highlighted == true || writingIsOn == true {
+    else if a_Note_Is_Highlighted == true{
+    //else if a_Note_Is_Highlighted == true || writingIsOn == true {
         if let lclViableSet = viableSet {
             for dataCell in lclViableSet {
                 dataCell.change_Viable_Set_Status(viableSetMembershipParam:false)
