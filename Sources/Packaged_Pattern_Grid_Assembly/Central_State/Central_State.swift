@@ -194,13 +194,13 @@ public class Central_State : ObservableObject {
     }
     
     func evaluate_Viable_Set(){
-        print("evaluate_Viable_Set(")
+        //print("evaluate_Viable_Set(")
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         var cell_Line_Set = Set<Underlying_Data_Cell>()
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-        if a_Note_Is_Highlighted == false, writingIsOn == false {
+        //if a_Note_Is_Highlighted == false, writingIsOn == true {
             let viableCellsOnRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
             let viableCellsOnLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
             var viableCells = Set<Underlying_Data_Cell>()
@@ -208,12 +208,12 @@ public class Central_State : ObservableObject {
             viableCells = viableCellsOnRight.union(viableCellsOnLeft)
             viableCells.insert(currentData)
             //if let lclViableSet = viableCells{
-                for dataCell in viableCells{
-                    dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
-                }
+            for dataCell in viableCells {
+                dataCell.change_Viable_Set_Status(viableSetMembershipParam:true)
+            }
             //}
             print("viableCells.count: ",viableCells.count)
-        }
+        //}
 
     }
     
