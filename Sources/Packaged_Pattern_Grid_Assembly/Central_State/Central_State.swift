@@ -175,9 +175,9 @@ public class Central_State : ObservableObject {
                 //                }
                 //            }
                 
-//                let delta = lclNewval.symmetricDifference(previousViableSet)
-//                print("delta length: ",delta.count.description)
-                print("lclNewval length: ",lclNewval.count,", previous count: ",previousViableSet.count.description)
+                let delta = lclNewval.symmetricDifference(previousViableSet)
+                print("delta length: ",delta.count.description)
+                //print("lclNewval length: ",lclNewval.count,", previous count: ",previousViableSet.count.description)
                 
 //                for cell in delta {
 //                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
