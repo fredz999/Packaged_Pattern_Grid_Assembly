@@ -167,11 +167,12 @@ public class Central_State : ObservableObject {
                 }
             }
             else if let lclNewval = newValue,let previousViableSet = viableSet {
-            let resettables = lclNewval.subtracting(previousViableSet)
-                for cell in resettables{
-                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
-                    print("cellX: ",cell.dataCell_X_Number,", got set to not in viable")
-                }
+            print("New Set Count: ",lclNewval.count.description,",previousViableSet count: ",previousViableSet.count.description)
+//            let resettables = lclNewval.subtracting(previousViableSet)
+//                for cell in resettables{
+//                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
+//                    print("cellX: ",cell.dataCell_X_Number,", got set to not in viable")
+//                }
             }
         }
         didSet {
