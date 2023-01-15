@@ -232,10 +232,7 @@ public class Central_State : ObservableObject {
             
             if let lclNearestRight = nearestInviableRight {
                 let viable_Cells_Right = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < lclNearestRight.dataCell_X_Number}
-                for cell in viable_Cells_Right{
-                    
-                    viableSet?.insert(cell)
-                }
+                viableSet = viable_Cells_Right
             }
             
             
