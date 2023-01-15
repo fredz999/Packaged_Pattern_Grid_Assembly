@@ -221,7 +221,7 @@ public class Central_State : ObservableObject {
                     if cell.in_Viable_Set_Left == true{cell.in_Viable_Set_Left = false}
                 }
             }
-            else if let lclNewval = newValue,let previousViableSet = viableSet_Right {
+            else if let lclNewval = newValue,let previousViableSet = viableSet_Left {
                 let delta = previousViableSet.symmetricDifference(lclNewval)
                 for cell in delta {
                     if cell.in_Viable_Set_Left == true{cell.in_Viable_Set_Left = false}
