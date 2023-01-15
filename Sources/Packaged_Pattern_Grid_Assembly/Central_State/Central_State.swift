@@ -164,13 +164,13 @@ public class Central_State : ObservableObject {
             if newValue == nil,let lclViableSet = viableSet {
                 for cell in lclViableSet {
                     if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
-                    print("cellX: ",cell.dataCell_X_Number,", got set to not in viable")
                 }
             }
             else if let lclNewval = newValue,let previousViableSet = viableSet {
             let resettables = lclNewval.subtracting(previousViableSet)
                 for cell in resettables{
                     if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
+                    print("cellX: ",cell.dataCell_X_Number,", got set to not in viable")
                 }
             }
         }
