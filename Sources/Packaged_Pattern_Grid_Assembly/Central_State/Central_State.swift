@@ -270,13 +270,14 @@ public class Central_State : ObservableObject {
             //cells right without note
             let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
             let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+            
             if inViableCellsRight.count == 0{
                 let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
                 viableSet_Right = emptyCellsRight
             }
             if inViableCellsLeft.count == 0{
                 let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-                viableSet_Right = emptyCellsLeft
+                viableSet_Left = emptyCellsLeft
             }
             
         }
