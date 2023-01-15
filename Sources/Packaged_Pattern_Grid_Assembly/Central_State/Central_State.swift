@@ -144,7 +144,6 @@ public class Central_State : ObservableObject {
             evaluate_Viable_Set()
             if writingIsOn == true {
                 potentialNoteEvaluation()
-                
             }
         }
         if let lclNew_Y = new_Y {
@@ -154,7 +153,40 @@ public class Central_State : ObservableObject {
             evaluate_Viable_Set()
             if writingIsOn == true {
                 potentialNoteEvaluation()
-                
+            }
+        }
+    }
+    
+    var leftProhibitedCell : Underlying_Data_Cell?{
+        willSet{
+            if let lclLeftProhibCell = leftProhibitedCell{
+                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
+            }
+        }
+        didSet{
+            if let lclLeftProhibCell = leftProhibitedCell{
+                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
+                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: lclLeftProhibCell.dataCell_X_Number)
+            }
+            else if leftProhibitedCell == nil{
+                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: 0)
+            }
+        }
+    }
+    
+    var rightProhibitedCell : Underlying_Data_Cell?{
+        willSet{
+            if let lclRightProhibCell = rightProhibitedCell{
+                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
+            }
+        }
+        didSet{
+            if let lclRightProhibCell = rightProhibitedCell{
+                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
+                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
+            }
+            else if rightProhibitedCell == nil{
+                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
             }
         }
     }
@@ -204,46 +236,7 @@ public class Central_State : ObservableObject {
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    var leftProhibitedCell : Underlying_Data_Cell?{
-        willSet{
-            if let lclLeftProhibCell = leftProhibitedCell{
-                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
-            }
-        }
-        didSet{
-            if let lclLeftProhibCell = leftProhibitedCell{
-                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
-                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: lclLeftProhibCell.dataCell_X_Number)
-            }
-            else if leftProhibitedCell == nil{
-                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: 0)
-            }
-        }
-    }
-    
-    var rightProhibitedCell : Underlying_Data_Cell?{
-        willSet{
-            if let lclRightProhibCell = rightProhibitedCell{
-                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
-            }
-        }
-        didSet{
-            if let lclRightProhibCell = rightProhibitedCell{
-                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
-                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
-            }
-            else if rightProhibitedCell == nil{
-                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
-            }
-        }
-    }
-    
+
     public func evaluate_Viable_Set(){
 
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -287,6 +280,7 @@ public class Central_State : ObservableObject {
         
         else if currentData.note_Im_In != nil{
             viableSet_Right = nil
+            viableSet_Left = nil
         }
 
 
