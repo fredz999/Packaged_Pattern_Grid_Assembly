@@ -226,17 +226,25 @@ public class Central_State : ObservableObject {
         if currentData.note_Im_In == nil{
             // the problem here is that simply saying the notes on right have to exceed the current note dosent make the set stop at the next note
             // you need the next note on right then make the set from that
-            let viableCellsOnRight = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
-            
+
             let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-            let firstInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            let nearestInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            
+            if let lclNearestRight = nearestInviableRight {
+                let viable_Cells_Right = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < lclNearestRight.dataCell_X_Number}
+                for cell in viable_Cells_Right{
+                    
+                    viableSet?.insert(cell)
+                }
+            }
+            
             
            
-            var singleInviableSet = Set<Underlying_Data_Cell>()
-            if let lclFirstRight = firstInviableRight{
-                singleInviableSet.insert(lclFirstRight)
-                viableSet = singleInviableSet
-            }
+//            var singleInviableSet = Set<Underlying_Data_Cell>()
+//            if let lclFirstRight = nearestInviableRight{
+//                singleInviableSet.insert(lclFirstRight)
+//                viableSet = singleInviableSet
+//            }
                     
            
         
