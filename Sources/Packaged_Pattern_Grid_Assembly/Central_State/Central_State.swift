@@ -175,14 +175,14 @@ public class Central_State : ObservableObject {
                 //                }
                 //            }
                 
-                let delta = lclNewval.symmetricDifference(previousViableSet)
+                let delta = previousViableSet.symmetricDifference(lclNewval)
                 print("delta length: ",delta.count.description)
                 //print("lclNewval length: ",lclNewval.count,", previous count: ",previousViableSet.count.description)
                 
-//                for cell in delta {
-//                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
-//                    print("resetting cell: ",cell.dataCell_X_Number," to not in viable set")
-//                }
+                for cell in delta {
+                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
+                    print("resetting cell: ",cell.dataCell_X_Number," to not in viable set")
+                }
                 
             }
             
