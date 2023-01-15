@@ -131,41 +131,54 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var isProhibited : Bool = false
     {
         didSet {
-            handleVisibleStateChange(in_Viable_Set_Param: in_Viable_Set, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
+            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
         }
     }
     var isHighlighted : Bool = false
     {
         didSet {
-            handleVisibleStateChange(in_Viable_Set_Param: in_Viable_Set, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
+            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
         }
     }
-    var in_Viable_Set : Bool = false
+    var in_Viable_Set_Right : Bool = false
     {
         didSet {
-            handleVisibleStateChange(in_Viable_Set_Param: in_Viable_Set, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
+            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
         }
     }
-    // function for prohibited/highlighted/viable state change
-    func handleVisibleStateChange(in_Viable_Set_Param:Bool,isHighlightedParam:Bool,isProhibitedParam:Bool){
+    var in_Viable_Set_Left : Bool = false
+    {
+        didSet {
+            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
+        }
+    }
+
+    // LOL this is absolute LASH - there should be an enum or something HAHAHAHA so rubbish
+    func handleVisibleStateChange(in_Viable_Set_Left_Param:Bool,in_Viable_Set_Right_Param:Bool,isHighlightedParam:Bool,isProhibitedParam:Bool){
         if isHighlightedParam == true {
-            if in_Viable_Set == true { in_Viable_Set = false }
+            if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
+            if in_Viable_Set_Left == true{in_Viable_Set_Left = false}
             if isProhibited == true { isProhibited = false }
         }
-        else if in_Viable_Set_Param == true {
+        else if in_Viable_Set_Right_Param == true {
             if isHighlighted == true { isHighlighted = false }
             if isProhibited == true { isProhibited = false }
+            if in_Viable_Set_Left == true{in_Viable_Set_Left = false}
+        }
+        else if in_Viable_Set_Left_Param == true {
+            if isHighlighted == true { isHighlighted = false }
+            if isProhibited == true { isProhibited = false }
+            if in_Viable_Set_Right == true{in_Viable_Set_Right = false}
         }
         else if isProhibitedParam == true {
-            if in_Viable_Set == true { in_Viable_Set = false }
+            if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
+            if in_Viable_Set_Left == true{in_Viable_Set_Left = false}
             if isHighlighted == true { isHighlighted = false }
         }
-//        else if isHighlightedParam == false, in_Viable_Set_Param == false, isProhibitedParam == true{
-//
-//        }
         
         if let lclDataVals = currentConnectedDataVals{
-            lclDataVals.referenced_in_Viable_Set = in_Viable_Set
+            lclDataVals.referenced_in_Viable_Set_Right = in_Viable_Set_Right
+            lclDataVals.referenced_in_Viable_Set_Left = in_Viable_Set_Left
             lclDataVals.referenced_isHighlighted = isHighlighted
             lclDataVals.referenced_is_Prohibited_Set = isProhibited
             lclDataVals.updateTempVisualStatus()
@@ -236,11 +249,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Viable_Set_Status(viableSetMembershipParam:Bool){
-        if in_Viable_Set != viableSetMembershipParam {
-            in_Viable_Set = viableSetMembershipParam
+        if in_Viable_Set_Right != viableSetMembershipParam {
+            in_Viable_Set_Right = viableSetMembershipParam
             if let lcl_Data_Vals = currentConnectedDataVals {
-                if lcl_Data_Vals.referenced_in_Viable_Set != viableSetMembershipParam {
-                    lcl_Data_Vals.referenced_in_Viable_Set = viableSetMembershipParam
+                if lcl_Data_Vals.referenced_in_Viable_Set_Right != viableSetMembershipParam {
+                    lcl_Data_Vals.referenced_in_Viable_Set_Right = viableSetMembershipParam
                 }
             }
         }

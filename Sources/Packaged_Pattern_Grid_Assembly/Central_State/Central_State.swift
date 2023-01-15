@@ -159,33 +159,56 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var viableSet : Set<Underlying_Data_Cell>?{
+    var viableSet_Right : Set<Underlying_Data_Cell>?{
         willSet {
-            if newValue == nil,let lclViableSet = viableSet {
+            if newValue == nil,let lclViableSet = viableSet_Right {
                 for cell in lclViableSet {
-                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
+                    if cell.in_Viable_Set_Right == true{cell.in_Viable_Set_Right = false}
                 }
             }
-            else if let lclNewval = newValue,let previousViableSet = viableSet {
-
-                
+            else if let lclNewval = newValue,let previousViableSet = viableSet_Right {
                 let delta = previousViableSet.symmetricDifference(lclNewval)
                 for cell in delta {
-                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
+                    if cell.in_Viable_Set_Right == true{cell.in_Viable_Set_Right = false}
                 }
-                
             }
-            
-            
         }
         didSet {
-            if let lclViableSet = viableSet {
+            if let lclViableSet = viableSet_Right {
                 for cell in lclViableSet {
-                    if cell.in_Viable_Set == false{cell.in_Viable_Set = true}
+                    if cell.in_Viable_Set_Right == false{cell.in_Viable_Set_Right = true}
                 }
             }
         }
     }
+    
+    var viableSet_Left : Set<Underlying_Data_Cell>?{
+        willSet {
+            if newValue == nil,let lclViableSet = viableSet_Left {
+                for cell in lclViableSet {
+                    if cell.in_Viable_Set_Left == true{cell.in_Viable_Set_Left = false}
+                }
+            }
+            else if let lclNewval = newValue,let previousViableSet = viableSet_Right {
+                let delta = previousViableSet.symmetricDifference(lclNewval)
+                for cell in delta {
+                    if cell.in_Viable_Set_Left == true{cell.in_Viable_Set_Left = false}
+                }
+            }
+        }
+        didSet {
+            if let lclViableSet = viableSet_Left {
+                for cell in lclViableSet {
+                    if cell.in_Viable_Set_Left == false{cell.in_Viable_Set_Left = true}
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
     
     var leftProhibitedCell : Underlying_Data_Cell?{
         willSet{
@@ -246,9 +269,14 @@ public class Central_State : ObservableObject {
 //
             //cells right without note
             let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+            let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
             if inViableCellsRight.count == 0{
                 let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
-                viableSet = emptyCellsRight
+                viableSet_Right = emptyCellsRight
+            }
+            if inViableCellsLeft.count == 0{
+                let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
+                viableSet_Right = emptyCellsLeft
             }
             
         }
@@ -256,12 +284,8 @@ public class Central_State : ObservableObject {
         
         
         else if currentData.note_Im_In != nil{
-            viableSet = nil
+            viableSet_Right = nil
         }
-        
-            
-
-            
 
 
     }
