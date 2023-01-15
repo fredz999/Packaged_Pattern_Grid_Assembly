@@ -167,21 +167,11 @@ public class Central_State : ObservableObject {
                 }
             }
             else if let lclNewval = newValue,let previousViableSet = viableSet {
-                
-                //            let resettables = lclNewval.subtracting(previousViableSet)
-                //                for cell in resettables {
-                //                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
-                //                    print("resetting cell: ",cell.dataCell_X_Number," to not in viable set")
-                //                }
-                //            }
+
                 
                 let delta = previousViableSet.symmetricDifference(lclNewval)
-                print("delta length: ",delta.count.description)
-                //print("lclNewval length: ",lclNewval.count,", previous count: ",previousViableSet.count.description)
-                
                 for cell in delta {
                     if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
-                    print("resetting cell: ",cell.dataCell_X_Number," to not in viable set")
                 }
                 
             }
@@ -239,36 +229,22 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil{
-            // the problem here is that simply saying the notes on right have to exceed the current note dosent make the set stop at the next note
-            // you need the next note on right then make the set from that
 
-            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-            let nearestInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            
-            if let lclNearestRight = nearestInviableRight {
-                let viable_Cells_Right = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < lclNearestRight.dataCell_X_Number}
-                viableSet = viable_Cells_Right
+//            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+//            let nearestInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//
+//            if let lclNearestRight = nearestInviableRight {
+//                let viable_Cells_Right = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < lclNearestRight.dataCell_X_Number}
+//                viableSet = viable_Cells_Right
+//            }
+
+            let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+            let nearestInviableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            if let lclNearestLeft = nearestInviableLeft {
+                let viable_Cells_Left = cell_Line_Set.filter{$0.dataCell_X_Number <= currentData.dataCell_X_Number && $0.dataCell_X_Number > lclNearestLeft.dataCell_X_Number}
+                viableSet = viable_Cells_Left
             }
             
-            
-           
-//            var singleInviableSet = Set<Underlying_Data_Cell>()
-//            if let lclFirstRight = nearestInviableRight{
-//                singleInviableSet.insert(lclFirstRight)
-//                viableSet = singleInviableSet
-//            }
-                    
-           
-        
-            
-            
-            
-            
-            
-            
-//            let viableCellsOnLeft = cell_Line_Set.filter{$0.note_Im_In == nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-//            viableSet = viableCellsOnRight.union(viableCellsOnLeft)
-            //print("vSet count: ",viableSet?.count)
         }
         else if currentData.note_Im_In != nil{
             viableSet = nil
