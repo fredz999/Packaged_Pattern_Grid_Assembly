@@ -229,23 +229,32 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil{
-
+// cells right with note
 //            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
 //            let nearestInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//
 //            if let lclNearestRight = nearestInviableRight {
 //                let viable_Cells_Right = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < lclNearestRight.dataCell_X_Number}
 //                viableSet = viable_Cells_Right
 //            }
-
-            let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-            let nearestInviableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            if let lclNearestLeft = nearestInviableLeft {
-                let viable_Cells_Left = cell_Line_Set.filter{$0.dataCell_X_Number <= currentData.dataCell_X_Number && $0.dataCell_X_Number > lclNearestLeft.dataCell_X_Number}
-                viableSet = viable_Cells_Left
+// cells left with note
+//            let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+//            let nearestInviableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            if let lclNearestLeft = nearestInviableLeft {
+//                let viable_Cells_Left = cell_Line_Set.filter{$0.dataCell_X_Number <= currentData.dataCell_X_Number && $0.dataCell_X_Number > lclNearestLeft.dataCell_X_Number}
+//                viableSet = viable_Cells_Left
+//            }
+//
+            //cells right without note
+            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+            if inViableCellsRight.count == 0{
+                let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
+                viableSet = emptyCellsRight
             }
             
         }
+            
+        
+        
         else if currentData.note_Im_In != nil{
             viableSet = nil
         }
