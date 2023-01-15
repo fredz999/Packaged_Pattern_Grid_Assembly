@@ -176,11 +176,12 @@ public class Central_State : ObservableObject {
                 //            }
                 
                 let delta = lclNewval.symmetricDifference(previousViableSet)
+                print("delta length: ",delta.count.description)
                 
-                for cell in delta {
-                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
-                    print("resetting cell: ",cell.dataCell_X_Number," to not in viable set")
-                }
+//                for cell in delta {
+//                    if cell.in_Viable_Set == true{cell.in_Viable_Set = false}
+//                    print("resetting cell: ",cell.dataCell_X_Number," to not in viable set")
+//                }
                 
             }
             
