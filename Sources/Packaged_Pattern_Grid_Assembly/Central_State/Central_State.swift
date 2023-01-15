@@ -252,6 +252,7 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil{
+            print("is this jumping line by line?")
 // cells right with note
 //            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
 //            let nearestInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
