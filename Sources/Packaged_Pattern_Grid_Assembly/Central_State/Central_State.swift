@@ -244,7 +244,7 @@ public class Central_State : ObservableObject {
 //            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
 //        }
     }
-    var viableSetHelpers = Viable_Set_Helper_Functions()
+    //var viableSetHelpers = Viable_Set_Helper_Functions()
     public func evaluate_Viable_Set(){
 
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -253,7 +253,7 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil{
-            viableSetHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
+            //viableSetHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
 
               
 //            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
