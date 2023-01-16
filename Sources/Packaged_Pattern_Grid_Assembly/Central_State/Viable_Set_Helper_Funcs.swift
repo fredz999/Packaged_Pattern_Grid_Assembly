@@ -39,7 +39,10 @@ class Viable_Set_Helper_Functions{
         if let lclInitialCell = initial_WriteOnCell {
             
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                let potentialNoteSet = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
+                //let potentialNoteSet = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
+                //initial_WriteOnCell
+                let potentialNoteSet = cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+                
                 for cell in potentialNoteSet{
                     // cell.in_Viable_Set_Left = false
                     // TODO: eval potential cell set
