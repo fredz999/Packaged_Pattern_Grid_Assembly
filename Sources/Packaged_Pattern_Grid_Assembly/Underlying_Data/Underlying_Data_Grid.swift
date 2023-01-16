@@ -162,6 +162,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     {
         didSet{
             if in_Potential_Set == true{handleVisibleStateChange(type: .activate_Potential_Set )}
+            else if in_Potential_Set == false{handleVisibleStateChange(type: .deActivate_Potential_Set )}
         }
     }
 
