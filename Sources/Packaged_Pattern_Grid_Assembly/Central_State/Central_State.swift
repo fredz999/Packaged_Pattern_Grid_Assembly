@@ -58,7 +58,13 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     var curr_Data_Pos_Y : Int = 0
     
-    public init(){}
+    public init(){
+        post_Init_Setup()
+    }
+    
+    func post_Init_Setup(){
+        viableSetHelpers = Viable_Set_Helper_Functions()
+    }
     
     @Published public var writingIsOn : Bool = false {
         didSet {
@@ -240,11 +246,13 @@ public class Central_State : ObservableObject {
    
     func potentialNoteEvaluation(){
         // TODO: eval potential cell set
-//        if let lclPotentialLayer = potential_Note_Layer_Ref {
-//            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-//        }
+        if let lclPotentialLayer = potential_Note_Layer_Ref {
+            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+        }
     }
-    //var viableSetHelpers = Viable_Set_Helper_Functions()
+    
+    var viableSetHelpers : Viable_Set_Helper_Functions?
+    
     public func evaluate_Viable_Set(){
 
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -252,7 +260,19 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-        if currentData.note_Im_In == nil{
+        if currentData.note_Im_In == nil {
+            
+            if let lclViableHelpers = viableSetHelpers {
+                lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
+            }
+            
+//            viableSetHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set,
+//                                                          currentData: currentData,
+//                                                          viableSetRight_Ref: &viableSet_Right,
+//                                                          viableSetLeft_Ref: &viableSet_Left)
+            
+            
+            
             //viableSetHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
 
               
