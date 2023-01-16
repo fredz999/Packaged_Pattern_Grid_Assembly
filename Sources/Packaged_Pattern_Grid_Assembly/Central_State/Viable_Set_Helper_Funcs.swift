@@ -10,6 +10,7 @@ import SwiftUI
 class Viable_Set_Helper_Functions{
     
     let central_State_Ref : Central_State
+    let dimensions = ComponentDimensions.StaticDimensions
     
     init(central_State_Param:Central_State){
         central_State_Ref = central_State_Param
@@ -30,6 +31,23 @@ class Viable_Set_Helper_Functions{
             central_State_Ref.viableSet_Left = emptyCellsLeft
         }
         
+    }
+    
+    var initial_WriteOnCell : Underlying_Data_Cell?
+    
+    func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
+        if let lclInitialCell = initial_WriteOnCell {
+            
+            if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+                let potentialNoteSet = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
+                for cell in potentialNoteSet{
+                    cell.in_Viable_Set_Left = false
+                    // TODO: eval potential cell set
+                }
+            }
+            
+        }
+        //let potentialNoteSet = initial_WriteOnCell
     }
     
     // cells right with note
