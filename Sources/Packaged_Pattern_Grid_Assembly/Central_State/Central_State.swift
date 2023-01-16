@@ -237,6 +237,14 @@ public class Central_State : ObservableObject {
         }
     }
 
+   
+    func potentialNoteEvaluation(){
+        // TODO: eval potential cell set
+//        if let lclPotentialLayer = potential_Note_Layer_Ref {
+//            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+//        }
+    }
+    var viableSetHelpers = Viable_Set_Helper_Functions()
     public func evaluate_Viable_Set(){
 
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -245,48 +253,30 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil{
-            print("is this jumping line by line?")
-// cells right with note
+            viableSetHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
+
+              
 //            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-//            let nearestInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//            if let lclNearestRight = nearestInviableRight {
-//                let viable_Cells_Right = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < lclNearestRight.dataCell_X_Number}
-//                viableSet = viable_Cells_Right
-//            }
-// cells left with note
 //            let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-//            let nearestInviableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//            if let lclNearestLeft = nearestInviableLeft {
-//                let viable_Cells_Left = cell_Line_Set.filter{$0.dataCell_X_Number <= currentData.dataCell_X_Number && $0.dataCell_X_Number > lclNearestLeft.dataCell_X_Number}
-//                viableSet = viable_Cells_Left
+//
+//            if inViableCellsRight.count == 0{
+//                let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
+//                viableSet_Right = emptyCellsRight
 //            }
 //
-            //cells right without note
-            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-            let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-            
-            if inViableCellsRight.count == 0{
-                let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
-                viableSet_Right = emptyCellsRight
-            }
-            if inViableCellsLeft.count == 0{
-                let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-                viableSet_Left = emptyCellsLeft
-            }
+//            if inViableCellsLeft.count == 0{
+//                let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
+//                viableSet_Left = emptyCellsLeft
+//            }
             
         }
-            
-        
-        
+
         else if currentData.note_Im_In != nil{
             viableSet_Right = nil
             viableSet_Left = nil
         }
-
-
     }
 
-    
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
@@ -302,7 +292,7 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
         
         if let lclCursorLayer = cursor_Layer_Ref {
-            lclCursorLayer.currPosX = currentXCursor_Slider_Position //*multiplier
+            lclCursorLayer.currPosX = currentXCursor_Slider_Position
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
@@ -338,26 +328,16 @@ public class Central_State : ObservableObject {
     }
 
     var rightBoundaryInt : Int?
-    
-    func potentialNoteEvaluation(){
-    
-        if let lclPotentialLayer = potential_Note_Layer_Ref {
-            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-        }
-  
-    }
 
     public func changeNoteLength(isIncrement:Bool) {
         if let noteCollection = note_Collection_Ref {
             if let lclCurrNote = noteCollection.currentHighlightedNote {
-
                 if isIncrement == true {
                     lclCurrNote.rightSide_Expansion()
                 }
                 else if isIncrement == false {
                     lclCurrNote.leftSide_Expansion()
                 }
-
             }
         }
     }

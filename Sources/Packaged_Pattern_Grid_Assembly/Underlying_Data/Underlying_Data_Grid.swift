@@ -134,18 +134,21 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
         }
     }
+    
     var isHighlighted : Bool = false
     {
         didSet {
             handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
         }
     }
+    
     var in_Viable_Set_Right : Bool = false
     {
         didSet {
             handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
         }
     }
+    
     var in_Viable_Set_Left : Bool = false
     {
         didSet {
