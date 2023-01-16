@@ -204,6 +204,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if isHighlighted == true { isHighlighted = false }
             if isProhibited == true { isProhibited = false }
         }
+        else if type == .deActivate_Potential_Set{
+            if in_Potential_Set == true {in_Potential_Set = false}
+        }
         
         if let lclDataVals = currentConnectedDataVals{
             lclDataVals.referenced_in_Viable_Set_Right = in_Viable_Set_Right
