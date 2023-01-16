@@ -35,7 +35,6 @@ class Viable_Set_Helper_Functions{
     
     var initial_WriteOnCell : Underlying_Data_Cell?
     
-    
     func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
         if let lclInitialCell = initial_WriteOnCell {
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
