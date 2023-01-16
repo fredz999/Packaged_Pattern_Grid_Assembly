@@ -153,6 +153,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     {
         didSet{
             if in_Viable_Set_Left == true{handleVisibleStateChange(type: .activate_Viable_Set_Left )}
+            else if in_Viable_Set_Left == false{handleVisibleStateChange(type: .deActivate_Viable_Set_Left )}
         }
     }
     
@@ -183,6 +184,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if isProhibited == true { isProhibited = false }
             if in_Viable_Set_Right == true{ in_Viable_Set_Right = false }
             if in_Potential_Set == true { in_Potential_Set = false}
+        }
+        else if type == .deActivate_Viable_Set_Left {
+            if in_Viable_Set_Left == true{in_Viable_Set_Left = false}
         }
         else if type == .activate_Prohibited {
             if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
@@ -321,6 +325,7 @@ enum E_VisibleStateChangeType {
     case activate_Highlighted
     case activate_Viable_Set_Right
     case activate_Viable_Set_Left
+    case deActivate_Viable_Set_Left
     case activate_Potential_Set
 }
 
