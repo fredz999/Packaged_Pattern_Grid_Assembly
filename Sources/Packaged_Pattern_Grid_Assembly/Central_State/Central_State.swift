@@ -63,7 +63,7 @@ public class Central_State : ObservableObject {
     }
     
     func post_Init_Setup(){
-        viableSetHelpers = Viable_Set_Helper_Functions()
+        viableSetHelpers = Viable_Set_Helper_Functions(central_State_Param: self)
     }
     
     @Published public var writingIsOn : Bool = false {

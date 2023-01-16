@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 class Viable_Set_Helper_Functions{
     
-    //let central_State_Ref = Central_State.Static_Central_State
+    let central_State_Ref : Central_State
+    
+    init(central_State_Param:Central_State){
+        central_State_Ref = central_State_Param
+    }
     
     func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
         
@@ -18,12 +22,12 @@ class Viable_Set_Helper_Functions{
         
         if inViableCellsRight.count == 0 {
             let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
-            Central_State.Static_Central_State.viableSet_Right = emptyCellsRight
+            central_State_Ref.viableSet_Right = emptyCellsRight
         }
 
         if inViableCellsLeft.count == 0 {
             let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-            Central_State.Static_Central_State.viableSet_Left = emptyCellsLeft
+            central_State_Ref.viableSet_Left = emptyCellsLeft
         }
         
     }
