@@ -181,7 +181,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Potential_Set == true { in_Potential_Set = false }
         }
         else if type == .deActivate_Viable_Set_Right {
-            if in_Viable_Set_Right == true{in_Viable_Set_Right = false}
+            if in_Viable_Set_Right == true{ in_Viable_Set_Right = false }
         }
         else if type == .activate_Viable_Set_Left {
             if isHighlighted == true { isHighlighted = false }
@@ -210,6 +210,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             lclDataVals.referenced_in_Viable_Set_Left = in_Viable_Set_Left
             lclDataVals.referenced_isHighlighted = isHighlighted
             lclDataVals.referenced_is_Prohibited_Set = isProhibited
+            lclDataVals.referenced_in_Potential_Set = in_Potential_Set
             lclDataVals.updateTempVisualStatus()
         }
     }

@@ -25,6 +25,8 @@ public class Data_Vals_Holder : ObservableObject {
 
     @Published public var referenced_is_Prohibited_Set : Bool = false
     
+    @Published public var referenced_in_Potential_Set : Bool = false
+    
     func updateTempVisualStatus(){
         if referenced_isHighlighted == true{
             statusColor = colors.grid_Note_Highlighted_Color
@@ -37,6 +39,9 @@ public class Data_Vals_Holder : ObservableObject {
         }
         else if referenced_is_Prohibited_Set == true{
             statusColor = colors.prohibited_Cell_Color
+        }
+        else if referenced_in_Potential_Set == true{
+            statusColor = colors.potentialColor
         }
         else {
             if referenced_currentStatus == .start_Note
