@@ -66,16 +66,16 @@ public class Potential_Note_Layer_Store : ObservableObject {
     }
     
     
-    func endPotentialNote(){
-        
-        potential_Initial_Grid_X = nil
-        potential_Current_Grid_X = nil
-        potential_Initial_Grid_Y = nil
-        
-        x_Offset = 0
-        weeedth = 0
-        y_Offset = 0
-
-    }
+//    func endPotentialNote(){
+//        
+//        potential_Initial_Grid_X = nil
+//        potential_Current_Grid_X = nil
+//        potential_Initial_Grid_Y = nil
+//        
+//        x_Offset = 0
+//        weeedth = 0
+//        y_Offset = 0
+//
+//    }
 
 }

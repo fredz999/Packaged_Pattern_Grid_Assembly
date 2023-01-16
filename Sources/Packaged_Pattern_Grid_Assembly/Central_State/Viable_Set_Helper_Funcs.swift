@@ -35,23 +35,23 @@ class Viable_Set_Helper_Functions{
     
     var initial_WriteOnCell : Underlying_Data_Cell?
     
+    
     func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
         if let lclInitialCell = initial_WriteOnCell {
-            
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                //let potentialNoteSet = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
-                //initial_WriteOnCell
-                let potentialNoteSet = cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-                
-                for cell in potentialNoteSet{
-                    // cell.in_Viable_Set_Left = false
-                    // TODO: eval potential cell set
-                    cell.in_Potential_Set = true
-                }
+                central_State_Ref.centralState_PotentialNoteSet =
+                cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number
+                    && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
             }
-            
+            else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+                central_State_Ref.centralState_PotentialNoteSet =
+                cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number
+                    && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
+            }
         }
-        //let potentialNoteSet = initial_WriteOnCell
+    }
+    func endPotentialNote(){
+        central_State_Ref.centralState_PotentialNoteSet.removeAll()
     }
     
     // cells right with note

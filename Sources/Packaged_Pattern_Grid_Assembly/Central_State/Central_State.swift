@@ -85,63 +85,68 @@ public class Central_State : ObservableObject {
             else if writingIsOn == false {
                 if let lclViabilityHelpers = viableSetHelpers {
                     lclViabilityHelpers.initial_WriteOnCell = nil
+                    lclViabilityHelpers.endPotentialNote()
                 }
                 if let lclCursorRef = cursor_Layer_Ref {
                     
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
                     
-                    if let lclPotentialLayer = potential_Note_Layer_Ref {
-
-                        if let lcl_Initial_X = lclPotentialLayer.potential_Initial_Grid_X
-                            ,let lcl_Current_X = lclPotentialLayer.potential_Current_Grid_X
-                        ,let lcl_Initial_Y = lclPotentialLayer.potential_Initial_Grid_Y{
-
-
-                            if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
-                                , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-                            }
-                            
-                            else if lcl_Current_X < lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: lcl_Current_X
-                                , highest_Data_X: lcl_Initial_X, data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-                            }
-                            
-                            else if lcl_Current_X == lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
-                                , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-                            }
-                            
-                            if let lcl_Vis_Grid = central_Grid_Store {
-
-                                if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
-                                ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
-
-                                    if lcl_Current_X > lcl_Initial_X{
-                                        for x in lcl_Initial_X...lcl_Current_X{
-                                            let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-                                        }
-                                    }
-                                    else if lcl_Current_X < lcl_Initial_X{
-                                        for x in lcl_Current_X...lcl_Initial_X{
-                                            let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-                                        }
-                                    }
-                                    else if lcl_Current_X == lcl_Initial_X{
-                                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
-                                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-                                    }
-                                    
-                                }
-
-                            }
-                            
-                        }
-                        lclPotentialLayer.endPotentialNote()
-                        //evaluate_Viable_Set()
-                    }
+//                    if let lclPotentialLayer = potential_Note_Layer_Ref {
+//
+//                        if let lcl_Initial_X = lclPotentialLayer.potential_Initial_Grid_X
+//                            ,let lcl_Current_X = lclPotentialLayer.potential_Current_Grid_X
+//                        ,let lcl_Initial_Y = lclPotentialLayer.potential_Initial_Grid_Y{
+//
+//
+//                            if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+//                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
+//                                , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+//                            }
+//
+//                            else if lcl_Current_X < lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+//                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: lcl_Current_X
+//                                , highest_Data_X: lcl_Initial_X, data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+//                            }
+//
+//                            else if lcl_Current_X == lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
+//                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
+//                                , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
+//                            }
+//
+//                            if let lcl_Vis_Grid = central_Grid_Store {
+//
+//                                if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
+//                                ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
+//
+//                                    if lcl_Current_X > lcl_Initial_X{
+//                                        for x in lcl_Initial_X...lcl_Current_X{
+//                                            let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
+//                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
+//                                        }
+//                                    }
+//                                    else if lcl_Current_X < lcl_Initial_X{
+//                                        for x in lcl_Current_X...lcl_Initial_X{
+//                                            let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
+//                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
+//                                        }
+//                                    }
+//                                    else if lcl_Current_X == lcl_Initial_X{
+//                                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
+//                                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
+//                                    }
+//
+//                                }
+//
+//                            }
+//
+//                        }
+//                        // lclPotentialLayer.endPotentialNote()
+//                        // evaluate_Viable_Set()
+//                        // hit that off in potential
+//                    }
+                    
+                    
+                    
                 }
                 
             }
@@ -200,6 +205,20 @@ public class Central_State : ObservableObject {
             }
             else if rightProhibitedCell == nil{
                 dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
+            }
+        }
+    }
+    
+    var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>(){
+        willSet{
+            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
+            for cell in delta {
+                if cell.in_Potential_Set == true{cell.in_Potential_Set = false}
+            }
+        }
+        didSet{
+            for cell in centralState_PotentialNoteSet {
+                if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
             }
         }
     }
