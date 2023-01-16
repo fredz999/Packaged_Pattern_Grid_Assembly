@@ -131,99 +131,70 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var isProhibited : Bool = false
     {
         didSet{
-            handleVisibleStateChange(type: .activate_Prohibited)
+            if isProhibited == true{handleVisibleStateChange(type: .activate_Prohibited)}
         }
     }
-//    {
-//        didSet {
-//            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
-//        }
-//    }
     
     var isHighlighted : Bool = false
     {
         didSet{
-            handleVisibleStateChange(type: .activate_Highlighted )
+            if isHighlighted == true{handleVisibleStateChange(type: .activate_Highlighted )}
         }
     }
-//    {
-//        didSet {
-//            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
-//        }
-//    }
     
     var in_Viable_Set_Right : Bool = false
     {
         didSet{
-            handleVisibleStateChange(type: .activate_Viable_Set_Right )
+            if in_Viable_Set_Right == true{handleVisibleStateChange(type: .activate_Viable_Set_Right )}
         }
     }
-//    {
-//        didSet {
-//            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
-//        }
-//    }
     
     var in_Viable_Set_Left : Bool = false
     {
         didSet{
-            handleVisibleStateChange(type: .activate_Viable_Set_Left )
+            if in_Viable_Set_Left == true{handleVisibleStateChange(type: .activate_Viable_Set_Left )}
         }
     }
-//    {
-//        didSet {
-//            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left, in_Viable_Set_Right_Param: in_Viable_Set_Right, isHighlightedParam: isHighlighted, isProhibitedParam: isProhibited)
-//        }
-//    }
     
     var in_Potential_Set : Bool = false
     {
         didSet{
-            handleVisibleStateChange(type: .activate_Potential_Set )
+            if in_Potential_Set == true{handleVisibleStateChange(type: .activate_Potential_Set )}
         }
     }
-//    {
-//        didSet {
-//            handleVisibleStateChange(in_Viable_Set_Left_Param: in_Viable_Set_Left
-//                                     , in_Viable_Set_Right_Param: in_Viable_Set_Right
-//                                     , isHighlightedParam: isHighlighted
-//                                     , isProhibitedParam: isProhibited)
-//        }
-//    }
 
     // LOL this is absolute LASH - there should be an enum or something HAHAHAHA so rubbish
-    //handleVisibleStateChange(in_Viable_Set_Left_Param:Bool,in_Viable_Set_Right_Param:Bool,isHighlightedParam:Bool,isProhibitedParam:Bool){
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
         
         if type == .activate_Highlighted {
-        //if isHighlightedParam == true {
             if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
             if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
             if isProhibited == true { isProhibited = false }
+            if in_Potential_Set == true { in_Potential_Set = false}
         }
         else if type == .activate_Viable_Set_Right {
-        //else if in_Viable_Set_Right_Param == true {
             if isHighlighted == true { isHighlighted = false }
             if isProhibited == true { isProhibited = false }
             if in_Viable_Set_Left == true{in_Viable_Set_Left = false }
+            if in_Potential_Set == true { in_Potential_Set = false}
         }
         else if type == .activate_Viable_Set_Left {
-        //else if in_Viable_Set_Left_Param == true {
             if isHighlighted == true { isHighlighted = false }
             if isProhibited == true { isProhibited = false }
             if in_Viable_Set_Right == true{ in_Viable_Set_Right = false }
+            if in_Potential_Set == true { in_Potential_Set = false}
         }
         else if type == .activate_Prohibited {
-        //else if isProhibitedParam == true {
             if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
             if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
             if isHighlighted == true { isHighlighted = false }
+            if in_Potential_Set == true { in_Potential_Set = false}
         }
         else if type == .activate_Potential_Set {
-        //else if isProhibitedParam == true {
             if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
             if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
             if isHighlighted == true { isHighlighted = false }
+            if isProhibited == true { isProhibited = false }
         }
         
         if let lclDataVals = currentConnectedDataVals{
