@@ -51,9 +51,13 @@ class Viable_Set_Helper_Functions{
         }
     }
     func endPotentialNote(){
-        print("removing all")
-        //for cell in central_State_Ref.centralState_PotentialNoteSet
-        central_State_Ref.centralState_PotentialNoteSet = Set<Underlying_Data_Cell>()
+        for cell in central_State_Ref.centralState_PotentialNoteSet{
+            if cell.in_Potential_Set == true {
+                cell.in_Potential_Set = false
+            }
+        }
+        central_State_Ref.centralState_PotentialNoteSet.removeAll()
+        print("removing all, count now: ",central_State_Ref.centralState_PotentialNoteSet.count.description)
     }
     
     // cells right with note
