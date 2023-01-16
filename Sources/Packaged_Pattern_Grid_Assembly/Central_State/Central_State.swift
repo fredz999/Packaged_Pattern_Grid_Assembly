@@ -70,15 +70,22 @@ public class Central_State : ObservableObject {
         didSet {
             
             if writingIsOn == true {
-                if let lclPotentialLayer = potential_Note_Layer_Ref {
+                
+                if let lclViabilityHelpers = viableSetHelpers {
+                    lclViabilityHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+                }
+                
+                //if let lclPotentialLayer = potential_Note_Layer_Ref {
                     //potentialNoteEvaluation()
                     //evaluate_Viable_Set()
-                    lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-                }
+                    //lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+                //}
             }
             
             else if writingIsOn == false {
-
+                if let lclViabilityHelpers = viableSetHelpers {
+                    lclViabilityHelpers.initial_WriteOnCell = nil
+                }
                 if let lclCursorRef = cursor_Layer_Ref {
                     
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
