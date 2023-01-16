@@ -273,7 +273,13 @@ public class Central_State : ObservableObject {
                 viableSet_Left = nil
             }
         }
-        //else if writingIsOn == true{}
+        else if writingIsOn == true {
+            if currentData.note_Im_In == nil {
+                if let lclViableHelpers = viableSetHelpers {
+                    lclViableHelpers.processPotentialNote(cell_Line_Set: cell_Line_Set, currentData: currentData)
+                }
+            }
+        }
         
         
         
