@@ -167,7 +167,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Viable_Set_Left : Bool = false
     {
         didSet{
-            handleVisibleStateChange(type: .activate_Prohibited )
+            handleVisibleStateChange(type: .activate_Viable_Set_Left )
         }
     }
 //    {

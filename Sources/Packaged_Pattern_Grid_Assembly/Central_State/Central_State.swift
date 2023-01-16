@@ -273,7 +273,7 @@ public class Central_State : ObservableObject {
                 viableSet_Left = nil
             }
         }
-        else if writingIsOn == true{}
+        //else if writingIsOn == true{}
         
         
         
