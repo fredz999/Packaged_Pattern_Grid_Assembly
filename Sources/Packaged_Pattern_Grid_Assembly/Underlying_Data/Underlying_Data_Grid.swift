@@ -330,9 +330,12 @@ enum E_VisibleStateChangeType {
     case activate_Highlighted
     case activate_Viable_Set_Right
     case deActivate_Viable_Set_Right
+    
     case activate_Viable_Set_Left
     case deActivate_Viable_Set_Left
+    
     case activate_Potential_Set
+    case deActivate_Potential_Set
 }
 
 
