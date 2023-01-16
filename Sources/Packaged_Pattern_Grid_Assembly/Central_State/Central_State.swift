@@ -259,18 +259,23 @@ public class Central_State : ObservableObject {
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         var cell_Line_Set = Set<Underlying_Data_Cell>()
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
+        
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-//        if currentData.note_Im_In == nil {
-//            if let lclViableHelpers = viableSetHelpers {
-//                lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
-//            }
-//        }
-//        else if currentData.note_Im_In != nil {
-//            viableSet_Right = nil
-//            viableSet_Left = nil
-//        }
-        if writingIsOn == true{}
+        if writingIsOn == false{
+            if currentData.note_Im_In == nil {
+                if let lclViableHelpers = viableSetHelpers {
+                    lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
+                }
+            }
+            else if currentData.note_Im_In != nil {
+                viableSet_Right = nil
+                viableSet_Left = nil
+            }
+        }
+        else if writingIsOn == true{}
+        
+        
         
     }
 
