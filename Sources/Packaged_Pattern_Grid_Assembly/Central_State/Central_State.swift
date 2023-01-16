@@ -246,9 +246,10 @@ public class Central_State : ObservableObject {
    
     func potentialNoteEvaluation(){
         // TODO: eval potential cell set
-        if let lclPotentialLayer = potential_Note_Layer_Ref {
-            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-        }
+//        if let lclPotentialLayer = potential_Note_Layer_Ref {
+//            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+//        }
+        print("potentialNoteEvaluation() ........... ")
     }
     
     var viableSetHelpers : Viable_Set_Helper_Functions?
@@ -261,40 +262,16 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         if currentData.note_Im_In == nil {
-            
             if let lclViableHelpers = viableSetHelpers {
                 lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
             }
-            
-//            viableSetHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set,
-//                                                          currentData: currentData,
-//                                                          viableSetRight_Ref: &viableSet_Right,
-//                                                          viableSetLeft_Ref: &viableSet_Left)
-            
-            
-            
-            //viableSetHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
-
-              
-//            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-//            let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-//
-//            if inViableCellsRight.count == 0{
-//                let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
-//                viableSet_Right = emptyCellsRight
-//            }
-//
-//            if inViableCellsLeft.count == 0{
-//                let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-//                viableSet_Left = emptyCellsLeft
-//            }
-            
         }
 
-        else if currentData.note_Im_In != nil{
+        else if currentData.note_Im_In != nil {
             viableSet_Right = nil
             viableSet_Left = nil
         }
+        
     }
 
     func centralState_Cursor_Position_Evaluation() {
