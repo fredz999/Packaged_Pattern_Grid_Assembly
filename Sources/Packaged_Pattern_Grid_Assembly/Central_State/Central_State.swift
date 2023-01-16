@@ -71,7 +71,7 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 if let lclPotentialLayer = potential_Note_Layer_Ref {
-                    potentialNoteEvaluation()
+                    //potentialNoteEvaluation()
                     //evaluate_Viable_Set()
                     lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
                 }
@@ -148,18 +148,18 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             evaluate_Viable_Set()
-            if writingIsOn == true {
-                potentialNoteEvaluation()
-            }
+//            if writingIsOn == true {
+//                potentialNoteEvaluation()
+//            }
         }
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             evaluate_Viable_Set()
-            if writingIsOn == true {
-                potentialNoteEvaluation()
-            }
+//            if writingIsOn == true {
+//                potentialNoteEvaluation()
+//            }
         }
     }
     
@@ -244,13 +244,13 @@ public class Central_State : ObservableObject {
     }
 
    
-    func potentialNoteEvaluation(){
-        // TODO: eval potential cell set
-//        if let lclPotentialLayer = potential_Note_Layer_Ref {
-//            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-//        }
-        print("potentialNoteEvaluation() ........... ")
-    }
+//    func potentialNoteEvaluation(){
+//        // TODO: eval potential cell set
+////        if let lclPotentialLayer = potential_Note_Layer_Ref {
+////            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
+////        }
+//        print("potentialNoteEvaluation() ........... ")
+//    }
     
     var viableSetHelpers : Viable_Set_Helper_Functions?
     
@@ -261,7 +261,7 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
-        if currentData.note_Im_In == nil {
+        if writingIsOn == true, currentData.note_Im_In == nil {
             if let lclViableHelpers = viableSetHelpers {
                 lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
             }
