@@ -19,16 +19,17 @@ public class Data_Vals_Holder : ObservableObject {
     
     
     // these boyos will become private ======================
-    public var referenced_in_Highlighted_Set : Bool = false
+    private var referenced_in_Highlighted_Set : Bool = false
     
-    public var referenced_in_Viable_Set_Right : Bool = false
+    private var referenced_in_Viable_Set_Right : Bool = false
     
-    public var referenced_in_Viable_Set_Left : Bool = false
+    private var referenced_in_Viable_Set_Left : Bool = false
     
-    public var referenced_in_Prohibited_Set : Bool = false
+    private var referenced_in_Prohibited_Set : Bool = false
     
-    public var referenced_in_Potential_Set : Bool = false
+    private var referenced_in_Potential_Set : Bool = false
     // hmmm maybe do this last ... theres shenanigans with the witdth and so on
+    // need to eventually make this private ... wait ..... no I dont ... but ..... I guess I could
     @Published public var referenced_currentStatus : E_CellStatus
     {
         didSet{
@@ -52,6 +53,51 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
     }
+    
+    public func update_Cell_Status(status_Update_TypeParam:status_Update_Type,value:Bool){
+        if status_Update_TypeParam == .highlighted {
+            if value == true {
+                if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
+            }
+            else if value == false {
+                if referenced_in_Highlighted_Set == true{referenced_in_Highlighted_Set=false}
+            }
+        }
+        else if status_Update_TypeParam == .potentialSet {
+            if value == true {
+                if referenced_in_Potential_Set == false{referenced_in_Potential_Set=true}
+            }
+            else if value == false {
+                if referenced_in_Potential_Set == true{referenced_in_Potential_Set=false}
+            }
+        }
+        else if status_Update_TypeParam == .prohibitedSet {
+            if value == true {
+                if referenced_in_Prohibited_Set == false{referenced_in_Prohibited_Set=true}
+            }
+            else if value == false {
+                if referenced_in_Prohibited_Set == true{referenced_in_Prohibited_Set=false}
+            }
+        }
+        else if status_Update_TypeParam == .viableSetLeft {
+            if value == true {
+                if referenced_in_Viable_Set_Left == false{referenced_in_Viable_Set_Left=true}
+            }
+            else if value == false {
+                if referenced_in_Viable_Set_Left == true{referenced_in_Viable_Set_Left=false}
+            }
+        }
+        else if status_Update_TypeParam == .viableSetRight {
+            if value == true {
+                if referenced_in_Viable_Set_Right == false{referenced_in_Viable_Set_Right=true}
+            }
+            else if value == false {
+                if referenced_in_Viable_Set_Right == true{referenced_in_Viable_Set_Right=false}
+            }
+        }
+    }
+    
+    
     // /these boyos will become private =====================
     // this will have to be called AFTER there hasbeen an assignment to status ... so all the referenced potentials should get set
     // to private and I will write an accessor function with an enum type and a val to set them, then the visual update can get called via
@@ -95,7 +141,7 @@ public class Data_Vals_Holder : ObservableObject {
     //terminal func
     func check_In_Prohib_Set() {
         //if referenced_in_Prohibited_Set
-        if referenced_in_Prohibited_Set == true {   
+        if referenced_in_Prohibited_Set == true {
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
     }
@@ -234,6 +280,26 @@ public class Data_Vals_Holder : ObservableObject {
     }
    }
 }
+
+public enum status_Update_Type {
+    case highlighted
+    case viableSetRight
+    case viableSetLeft
+    case prohibitedSet
+    case potentialSet
+}
+
+//private var referenced_in_Highlighted_Set : Bool = false
+//
+//private var referenced_in_Viable_Set_Right : Bool = false
+//
+//private var referenced_in_Viable_Set_Left : Bool = false
+//
+//private var referenced_in_Prohibited_Set : Bool = false
+//
+//private var referenced_in_Potential_Set : Bool = false
+//// hmmm maybe do this last ... theres shenanigans with the witdth and so on
+//@Published private var referenced_currentStatus : E_CellStatus
 
 
 //func updateTempVisualStatus(){
