@@ -114,7 +114,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         , newYNum: new_Data_Cell.dataCell_Y_Number
         , newCellStatus: new_Data_Cell.currentType
         , newNoteImIn: new_Data_Cell.note_Im_In
-        , isHighlightedParan: new_Data_Cell.isHighlighted)
+        , isHighlightedParan: new_Data_Cell.in_Highlighted_Set)
     }
     
 }

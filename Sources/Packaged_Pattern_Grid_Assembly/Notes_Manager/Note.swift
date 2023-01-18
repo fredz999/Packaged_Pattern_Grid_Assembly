@@ -25,7 +25,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
         didSet {
             if note_Highlighted == true {
                 for dataCell in dataCellArray {
-                    if dataCell.isHighlighted == false{
+                    if dataCell.in_Highlighted_Set == false{
                         let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                                        
                         if let lcl_VisGrid = central_State.central_Grid_Store {
@@ -34,18 +34,15 @@ public class Note : ObservableObject, Identifiable, Equatable {
                                 visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
                             }
                         }
-                        
                         dataCell.change_Highlight(highlightStatusParam: true)
                     }
-                    
                     if central_State.a_Note_Is_Highlighted == false{central_State.a_Note_Is_Highlighted = true}
-                    
                 }
             }
             else if note_Highlighted == false {
                 for dataCell in dataCellArray {
                     
-                    if dataCell.isHighlighted == true{
+                    if dataCell.in_Highlighted_Set == true{
                         dataCell.change_Highlight(highlightStatusParam: false)
                                      
                         let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number

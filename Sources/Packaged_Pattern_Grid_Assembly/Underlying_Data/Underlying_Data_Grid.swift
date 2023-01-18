@@ -128,17 +128,17 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     // hopefully none of these three can be true at the same time or this model is all wrongggggggg
     // like theyre mutually exclusive
     //=================================================== vizzzz -i- bil ==============================================
-    var isProhibited : Bool = false
+    var in_Prohibited_Set : Bool = false
     {
         didSet{
-            if isProhibited == true{handleVisibleStateChange(type: .activate_Prohibited)}
+            if in_Prohibited_Set == true{handleVisibleStateChange(type: .activate_Prohibited)}
         }
     }
     
-    var isHighlighted : Bool = false
+    var in_Highlighted_Set : Bool = false
     {
         didSet{
-            if isHighlighted == true{handleVisibleStateChange(type: .activate_Highlighted )}
+            if in_Highlighted_Set == true{handleVisibleStateChange(type: .activate_Highlighted )}
         }
     }
     
@@ -166,54 +166,45 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
 
-    // LOL this is absolute LASH - there should be an enum or something HAHAHAHA so rubbish
+    //func handleVisibleStateChange(type : E_VisibleStateChangeType){
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
         
         if type == .activate_Highlighted {
-            if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
-            if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
-            if isProhibited == true { isProhibited = false }
-            if in_Potential_Set == true { in_Potential_Set = false}
+            if in_Highlighted_Set == false{in_Highlighted_Set=true}
+        }
+        else if type == .deActivate_Highlighted {
+            if in_Highlighted_Set == true{in_Highlighted_Set=false}
         }
         else if type == .activate_Viable_Set_Right {
-            if isHighlighted == true { isHighlighted = false }
-            if isProhibited == true { isProhibited = false }
-            if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
-            if in_Potential_Set == true { in_Potential_Set = false }
+            if in_Viable_Set_Right == false{in_Viable_Set_Right=true}
         }
         else if type == .deActivate_Viable_Set_Right {
-            if in_Viable_Set_Right == true{ in_Viable_Set_Right = false }
+            if in_Viable_Set_Right == true{in_Viable_Set_Right=false}
         }
         else if type == .activate_Viable_Set_Left {
-            if isHighlighted == true { isHighlighted = false }
-            if isProhibited == true { isProhibited = false }
-            if in_Viable_Set_Right == true{ in_Viable_Set_Right = false }
-            if in_Potential_Set == true { in_Potential_Set = false}
+            if in_Viable_Set_Left == false{in_Viable_Set_Left=true}
         }
         else if type == .deActivate_Viable_Set_Left {
-            if in_Viable_Set_Left == true{in_Viable_Set_Left = false}
+            if in_Viable_Set_Left == true{in_Viable_Set_Left=false}
         }
         else if type == .activate_Prohibited {
-            if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
-            if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
-            if isHighlighted == true { isHighlighted = false }
-            if in_Potential_Set == true { in_Potential_Set = false}
+            if in_Prohibited_Set == false{in_Prohibited_Set=true}
+        }
+        else if type == .deActivate_Prohibited {
+            if in_Prohibited_Set == true{in_Prohibited_Set=false}
         }
         else if type == .activate_Potential_Set {
-            if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
-            if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
-            if isHighlighted == true { isHighlighted = false }
-            if isProhibited == true { isProhibited = false }
+            if in_Potential_Set == false{in_Potential_Set=true}
         }
         else if type == .deActivate_Potential_Set{
-            if in_Potential_Set == true {in_Potential_Set = false}
+            if in_Potential_Set == true{in_Potential_Set=false}
         }
         
         if let lclDataVals = currentConnectedDataVals{
             lclDataVals.referenced_in_Viable_Set_Right = in_Viable_Set_Right
             lclDataVals.referenced_in_Viable_Set_Left = in_Viable_Set_Left
-            lclDataVals.referenced_isHighlighted = isHighlighted
-            lclDataVals.referenced_is_Prohibited_Set = isProhibited
+            lclDataVals.referenced_in_Highlighted_Set = in_Highlighted_Set
+            lclDataVals.referenced_in_Prohibited_Set = in_Prohibited_Set
             lclDataVals.referenced_in_Potential_Set = in_Potential_Set
             lclDataVals.updateTempVisualStatus()
         }
@@ -274,10 +265,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
-        if isHighlighted != highlightStatusParam{
-            isHighlighted = highlightStatusParam
+        if in_Highlighted_Set != highlightStatusParam{
+            in_Highlighted_Set = highlightStatusParam
             if let lcl_Data_Vals = currentConnectedDataVals{
-                lcl_Data_Vals.referenced_isHighlighted = highlightStatusParam
+                lcl_Data_Vals.referenced_in_Highlighted_Set = highlightStatusParam
             }
         }
     }
@@ -294,11 +285,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Prohibition_Status(newProhibitionStatus:Bool){
-        if isProhibited != newProhibitionStatus {
-            isProhibited = newProhibitionStatus
+        if in_Prohibited_Set != newProhibitionStatus {
+            in_Prohibited_Set = newProhibitionStatus
             if let lcl_Data_Vals = currentConnectedDataVals {
-                if lcl_Data_Vals.referenced_is_Prohibited_Set != newProhibitionStatus {
-                    lcl_Data_Vals.referenced_is_Prohibited_Set = newProhibitionStatus
+                if lcl_Data_Vals.referenced_in_Prohibited_Set != newProhibitionStatus {
+                    lcl_Data_Vals.referenced_in_Prohibited_Set = newProhibitionStatus
                 }
             }
         }
@@ -306,7 +297,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func reset_To_Original(){
         currentType = note_Reset_Status
-        if let lcl_Data_Vals = currentConnectedDataVals{
+        if let lcl_Data_Vals = currentConnectedDataVals {
             lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
             , newYNum: dataCell_Y_Number
             , newCellStatus: note_Reset_Status
@@ -331,7 +322,11 @@ public enum E_CellStatus : String {
 
 enum E_VisibleStateChangeType {
     case activate_Prohibited
+    case deActivate_Prohibited
+    
     case activate_Highlighted
+    case deActivate_Highlighted
+    
     case activate_Viable_Set_Right
     case deActivate_Viable_Set_Right
     
@@ -342,6 +337,60 @@ enum E_VisibleStateChangeType {
     case deActivate_Potential_Set
 }
 
+
+
+
+//func handleVisibleStateChange(type : E_VisibleStateChangeType){
+//
+//    if type == .activate_Highlighted {
+//        if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
+//        if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
+//        if in_Prohibited_Set == true { in_Prohibited_Set = false }
+//        if in_Potential_Set == true { in_Potential_Set = false}
+//    }
+//    else if type == .activate_Viable_Set_Right {
+//        if In_Highlighted_Set == true { In_Highlighted_Set = false }
+//        if in_Prohibited_Set == true { in_Prohibited_Set = false }
+//        if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
+//        if in_Potential_Set == true { in_Potential_Set = false }
+//    }
+//    else if type == .deActivate_Viable_Set_Right {
+//        if in_Viable_Set_Right == true{ in_Viable_Set_Right = false }
+//    }
+//    else if type == .activate_Viable_Set_Left {
+//        if In_Highlighted_Set == true { In_Highlighted_Set = false }
+//        if in_Prohibited_Set == true { in_Prohibited_Set = false }
+//        if in_Viable_Set_Right == true{ in_Viable_Set_Right = false }
+//        if in_Potential_Set == true { in_Potential_Set = false}
+//    }
+//    else if type == .deActivate_Viable_Set_Left {
+//        if in_Viable_Set_Left == true{in_Viable_Set_Left = false}
+//    }
+//    else if type == .activate_Prohibited {
+//        if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
+//        if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
+//        if In_Highlighted_Set == true { In_Highlighted_Set = false }
+//        if in_Potential_Set == true { in_Potential_Set = false}
+//    }
+//    else if type == .activate_Potential_Set {
+//        if in_Viable_Set_Right == true { in_Viable_Set_Right = false }
+//        if in_Viable_Set_Left == true{ in_Viable_Set_Left = false }
+//        if In_Highlighted_Set == true { In_Highlighted_Set = false }
+//        if in_Prohibited_Set == true { in_Prohibited_Set = false }
+//    }
+//    else if type == .deActivate_Potential_Set{
+//        if in_Potential_Set == true {in_Potential_Set = false}
+//    }
+//
+//    if let lclDataVals = currentConnectedDataVals{
+//        lclDataVals.referenced_in_Viable_Set_Right = in_Viable_Set_Right
+//        lclDataVals.referenced_in_Viable_Set_Left = in_Viable_Set_Left
+//        lclDataVals.referenced_isHighlighted = In_Highlighted_Set
+//        lclDataVals.referenced_is_Prohibited_Set = in_Prohibited_Set
+//        lclDataVals.referenced_in_Potential_Set = in_Potential_Set
+//        lclDataVals.updateTempVisualStatus()
+//    }
+//}
 
 //var isProhibited : Bool = false
 //{

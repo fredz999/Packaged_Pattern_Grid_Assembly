@@ -17,44 +17,62 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var sub_Cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
     
-    @Published public var referenced_isHighlighted : Bool = false
+    @Published public var referenced_in_Highlighted_Set : Bool = false
     
     @Published public var referenced_in_Viable_Set_Right : Bool = false
     
     @Published public var referenced_in_Viable_Set_Left : Bool = false
 
-    @Published public var referenced_is_Prohibited_Set : Bool = false
+    @Published public var referenced_in_Prohibited_Set : Bool = false
     
     @Published public var referenced_in_Potential_Set : Bool = false
     
     func updateTempVisualStatus(){
-        if referenced_isHighlighted == true{
-            statusColor = colors.grid_Note_Highlighted_Color
-        }
-        else if referenced_in_Viable_Set_Right == true {
-            statusColor = colors.viable_Set_Right_Color
-        }
-        else if referenced_in_Viable_Set_Left == true {
-            statusColor = colors.viable_Set_Left_Color
-        }
-        else if referenced_is_Prohibited_Set == true{
-            statusColor = colors.prohibited_Cell_Color
-        }
-        else if referenced_in_Potential_Set == true{
-            statusColor = colors.potentialColor
-        }
-        else {
-            if referenced_currentStatus == .start_Note
-                || referenced_currentStatus == .mid_Note
-                || referenced_currentStatus == .end_Note {
-                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
-            }
-            else if referenced_currentStatus == .start_Blank
-                || referenced_currentStatus == .mid_Blank
-                || referenced_currentStatus == .end_Blank{
-                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Blank_Color}
-            }
-        }
+        print("updataa the stuffaaa")
+        if referenced_in_Prohibited_Set == true{}
+        if referenced_in_Highlighted_Set == true{}
+        if referenced_in_Potential_Set == true{}
+        // in note takes precedent over viable
+        if referenced_currentStatus == .start_Note || referenced_currentStatus == .mid_Note || referenced_currentStatus == .end_Note{}
+        if referenced_in_Viable_Set_Left || referenced_in_Viable_Set_Right == true {}
+        if referenced_currentStatus == .start_Blank || referenced_currentStatus == .mid_Blank || referenced_currentStatus == .end_Blank{}
+        
+        // what do I do here?......
+        // the thing thats coming to mind are the old school truth tables.....tho im not sure how this will work .....
+        
+        
+        
+//        if referenced_in_Highlighted_Set == true {
+//            statusColor = colors.grid_Note_Highlighted_Color
+//        }
+//        else if referenced_in_Viable_Set_Right == true {
+//            statusColor = colors.viable_Set_Right_Color
+//        }
+//        else if referenced_in_Viable_Set_Left == true {
+//            statusColor = colors.viable_Set_Left_Color
+//        }
+//        else if referenced_in_Prohibited_Set == true {
+//            statusColor = colors.prohibited_Cell_Color
+//        }
+//        else if referenced_in_Potential_Set == true {
+//            statusColor = colors.potentialColor
+//        }
+//        else {
+//            if referenced_currentStatus == .start_Note
+//                || referenced_currentStatus == .mid_Note
+//                || referenced_currentStatus == .end_Note {
+//                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
+//            }
+//            else if referenced_currentStatus == .start_Blank
+//                || referenced_currentStatus == .mid_Blank
+//                || referenced_currentStatus == .end_Blank{
+//                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Blank_Color}
+//            }
+//        }
+        
+        
+        
+        
     }
     
     //TODO: Datavals memory
@@ -99,7 +117,7 @@ public class Data_Vals_Holder : ObservableObject {
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellStatus:E_CellStatus,newNoteImIn:Note?,isHighlightedParan:Bool){
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
-    if referenced_isHighlighted != isHighlightedParan{referenced_isHighlighted = isHighlightedParan}
+    if referenced_in_Highlighted_Set != isHighlightedParan{referenced_in_Highlighted_Set = isHighlightedParan}
     if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
 
     if let lclCurrentNote = referenced_note_Im_In {
@@ -118,8 +136,35 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
    }
-    
-    
-    
-
 }
+
+
+//func updateTempVisualStatus(){
+//    if referenced_isHighlighted == true{
+//        statusColor = colors.grid_Note_Highlighted_Color
+//    }
+//    else if referenced_in_Viable_Set_Right == true {
+//        statusColor = colors.viable_Set_Right_Color
+//    }
+//    else if referenced_in_Viable_Set_Left == true {
+//        statusColor = colors.viable_Set_Left_Color
+//    }
+//    else if referenced_is_Prohibited_Set == true{
+//        statusColor = colors.prohibited_Cell_Color
+//    }
+//    else if referenced_in_Potential_Set == true{
+//        statusColor = colors.potentialColor
+//    }
+//    else {
+//        if referenced_currentStatus == .start_Note
+//            || referenced_currentStatus == .mid_Note
+//            || referenced_currentStatus == .end_Note {
+//            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
+//        }
+//        else if referenced_currentStatus == .start_Blank
+//            || referenced_currentStatus == .mid_Blank
+//            || referenced_currentStatus == .end_Blank{
+//            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Blank_Color}
+//        }
+//    }
+//}
