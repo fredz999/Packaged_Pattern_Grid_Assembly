@@ -37,22 +37,26 @@ class Viable_Set_Helper_Functions{
     
     func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
         if let lclInitialCell = initial_WriteOnCell {
-            if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+            
+            if currentData.dataCell_X_Number >= lclInitialCell.dataCell_X_Number {
                 central_State_Ref.centralState_PotentialNoteSet =
                 cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number
                     && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
             }
+            
             else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
                 central_State_Ref.centralState_PotentialNoteSet =
                 cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number
                     && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
             }
+            
+            
         }
     }
     
     func endPotentialNote(){
         for cell in central_State_Ref.centralState_PotentialNoteSet{
-            print("potential cell type: ",cell.currentType.rawValue)
+            print("potential cell type: ",cell.currentType.rawValue,", xPos: ",cell.dataCell_X_Number.description)
             if cell.in_Potential_Set == true {
                 cell.in_Potential_Set = false
             }
