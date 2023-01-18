@@ -17,66 +17,20 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var sub_Cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
     
-    @Published public var referenced_in_Highlighted_Set : Bool = false
     
-    @Published public var referenced_in_Viable_Set_Right : Bool = false
+    // these boyos will become private ======================
+    public var referenced_in_Highlighted_Set : Bool = false
     
-    @Published public var referenced_in_Viable_Set_Left : Bool = false
-
-    @Published public var referenced_in_Prohibited_Set : Bool = false
+    public var referenced_in_Viable_Set_Right : Bool = false
     
-    @Published public var referenced_in_Potential_Set : Bool = false
+    public var referenced_in_Viable_Set_Left : Bool = false
     
-    func updateTempVisualStatus(){
-        print("updataa the stuffaaa")
-        if referenced_in_Prohibited_Set == true{}
-        if referenced_in_Highlighted_Set == true{}
-        if referenced_in_Potential_Set == true{}
-        // in note takes precedent over viable
-        if referenced_currentStatus == .start_Note || referenced_currentStatus == .mid_Note || referenced_currentStatus == .end_Note{}
-        if referenced_in_Viable_Set_Left || referenced_in_Viable_Set_Right == true {}
-        if referenced_currentStatus == .start_Blank || referenced_currentStatus == .mid_Blank || referenced_currentStatus == .end_Blank{}
-        
-        // what do I do here?......
-        // the thing thats coming to mind are the old school truth tables.....tho im not sure how this will work .....
-        
-        
-        
-//        if referenced_in_Highlighted_Set == true {
-//            statusColor = colors.grid_Note_Highlighted_Color
-//        }
-//        else if referenced_in_Viable_Set_Right == true {
-//            statusColor = colors.viable_Set_Right_Color
-//        }
-//        else if referenced_in_Viable_Set_Left == true {
-//            statusColor = colors.viable_Set_Left_Color
-//        }
-//        else if referenced_in_Prohibited_Set == true {
-//            statusColor = colors.prohibited_Cell_Color
-//        }
-//        else if referenced_in_Potential_Set == true {
-//            statusColor = colors.potentialColor
-//        }
-//        else {
-//            if referenced_currentStatus == .start_Note
-//                || referenced_currentStatus == .mid_Note
-//                || referenced_currentStatus == .end_Note {
-//                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
-//            }
-//            else if referenced_currentStatus == .start_Blank
-//                || referenced_currentStatus == .mid_Blank
-//                || referenced_currentStatus == .end_Blank{
-//                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Blank_Color}
-//            }
-//        }
-        
-        
-        
-        
-    }
+    public var referenced_in_Prohibited_Set : Bool = false
     
-    //TODO: Datavals memory
-    @Published public var referenced_currentStatus : E_CellStatus {
+    public var referenced_in_Potential_Set : Bool = false
+    // hmmm maybe do this last ... theres shenanigans with the witdth and so on
+    @Published public var referenced_currentStatus : E_CellStatus
+    {
         didSet{
             if referenced_currentStatus == .start_Note
                 || referenced_currentStatus == .mid_Note
@@ -98,6 +52,149 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
     }
+    // /these boyos will become private =====================
+    // this will have to be called AFTER there hasbeen an assignment to status ... so all the referenced potentials should get set
+    // to private and I will write an accessor function with an enum type and a val to set them, then the visual update can get called via
+    // the same line of logic
+    func update_Cell_Visual_Status(){
+        if check_Cell_Blank() == false {
+            check_Highlighted() // terminal
+        }
+        else if check_Cell_Blank() == true {
+            if check_In_Viable_Set() == true {
+                if check_In_Potential_Set() == true{
+                    check_In_Prohib_Set()
+                }
+            }
+        }
+    }
+    
+    // remember the functions internal workings set the color - the functions return var determines whether the eval proceeds
+    func check_Cell_Blank()->Bool{
+        var retval = true
+        if referenced_currentStatus == .start_Blank
+            || referenced_currentStatus == .mid_Blank
+            || referenced_currentStatus == .end_Blank {
+            if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
+        }
+        else if referenced_currentStatus == .start_Note
+            || referenced_currentStatus == .mid_Note
+            || referenced_currentStatus == .end_Note {
+            retval = false
+            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
+        }
+        return retval
+    }
+    
+    func check_Highlighted(){
+        if referenced_in_Highlighted_Set == true {
+            if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
+        }
+    }
+    
+    //terminal func
+    func check_In_Prohib_Set() {
+        //if referenced_in_Prohibited_Set
+        if referenced_in_Prohibited_Set == true {   
+            if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
+        }
+    }
+    
+    func check_In_Potential_Set() -> Bool {
+        var retVal = false
+        if referenced_in_Potential_Set == true{
+            retVal = true
+            if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
+        }
+        return retVal
+    }
+    
+    func check_In_Viable_Set()->Bool{
+        var retVal = false
+        if referenced_in_Viable_Set_Left == true || referenced_in_Viable_Set_Right == true {
+            if referenced_in_Viable_Set_Left == true {
+                if statusColor != colors.viable_Set_Left_Color{statusColor = colors.viable_Set_Left_Color}
+            }
+            else if referenced_in_Viable_Set_Right == true {
+                if statusColor != colors.viable_Set_Right_Color{statusColor = colors.viable_Set_Right_Color}
+            }
+            retVal = true
+        }
+        return retVal
+    }
+
+//    if referenced_in_Highlighted_Set == true{}
+//    // in note
+//    if referenced_currentStatus == .start_Note || referenced_currentStatus == .mid_Note || referenced_currentStatus == .end_Note{}
+//    if referenced_in_Prohibited_Set == true{}
+//    if referenced_in_Potential_Set == true{}
+//    if referenced_in_Viable_Set_Left || referenced_in_Viable_Set_Right == true {}
+//    if referenced_currentStatus == .start_Blank || referenced_currentStatus == .mid_Blank || referenced_currentStatus == .end_Blank{}
+    
+    
+    
+    
+//    func updateTempVisualStatus(){
+//
+//
+//        if referenced_in_Highlighted_Set == true{}
+//        // in note
+//        if referenced_currentStatus == .start_Note || referenced_currentStatus == .mid_Note || referenced_currentStatus == .end_Note{}
+//
+//        if referenced_in_Prohibited_Set == true{}
+//        if referenced_in_Potential_Set == true{}
+//        if referenced_in_Viable_Set_Left || referenced_in_Viable_Set_Right == true {}
+//        if referenced_currentStatus == .start_Blank || referenced_currentStatus == .mid_Blank || referenced_currentStatus == .end_Blank{}
+//        // in note takes precedent over viable
+//
+//
+//
+//
+//        // what do I do here?......
+//        // the thing thats coming to mind are the old school truth tables.....tho im not sure how this will work .....
+//
+//
+//
+//
+//
+//
+//
+//
+////        if referenced_in_Highlighted_Set == true {
+////            statusColor = colors.grid_Note_Highlighted_Color
+////        }
+////        else if referenced_in_Viable_Set_Right == true {
+////            statusColor = colors.viable_Set_Right_Color
+////        }
+////        else if referenced_in_Viable_Set_Left == true {
+////            statusColor = colors.viable_Set_Left_Color
+////        }
+////        else if referenced_in_Prohibited_Set == true {
+////            statusColor = colors.prohibited_Cell_Color
+////        }
+////        else if referenced_in_Potential_Set == true {
+////            statusColor = colors.potentialColor
+////        }
+////        else {
+////            if referenced_currentStatus == .start_Note
+////                || referenced_currentStatus == .mid_Note
+////                || referenced_currentStatus == .end_Note {
+////                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
+////            }
+////            else if referenced_currentStatus == .start_Blank
+////                || referenced_currentStatus == .mid_Blank
+////                || referenced_currentStatus == .end_Blank{
+////                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Blank_Color}
+////            }
+////        }
+//
+//
+//
+//
+//    }
+    
+ 
+    
     
    @Published public var statusColor : Color
 

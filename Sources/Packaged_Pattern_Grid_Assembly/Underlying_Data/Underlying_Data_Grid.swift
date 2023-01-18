@@ -206,7 +206,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             lclDataVals.referenced_in_Highlighted_Set = in_Highlighted_Set
             lclDataVals.referenced_in_Prohibited_Set = in_Prohibited_Set
             lclDataVals.referenced_in_Potential_Set = in_Potential_Set
-            lclDataVals.updateTempVisualStatus()
+            lclDataVals.update_Cell_Visual_Status()
         }
     }
     //================================================================================================================
