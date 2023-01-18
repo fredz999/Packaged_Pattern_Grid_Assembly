@@ -56,7 +56,6 @@ class Viable_Set_Helper_Functions{
             }
         }
         central_State_Ref.centralState_PotentialNoteSet.removeAll()
-        print("removing all, count now: ",central_State_Ref.centralState_PotentialNoteSet.count.description)
     }
     
     // cells right with note

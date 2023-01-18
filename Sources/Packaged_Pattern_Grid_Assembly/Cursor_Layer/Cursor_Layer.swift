@@ -61,7 +61,6 @@ public class Cursor_Layer_Store : ObservableObject {
 //        let fourPos = ",fourPos: " + dataCell.four_Four_Sub_Index.description + ", four4CellIndex: " + dataCell.four_Four_Cell_Index.description
 //        let sixPos =  ",sixPos: " + dataCell.six_Eight_Sub_Index.description + ", six8CellIndex: " + dataCell.six_Eight_Cell_Index.description
 //        cursorText = dataX.description + ", " + dataY.description + fourPos + sixPos
-        //print(cursorText)
     }
     
 }

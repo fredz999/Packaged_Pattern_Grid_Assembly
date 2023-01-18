@@ -268,15 +268,6 @@ public class Central_State : ObservableObject {
             }
         }
     }
-
-   
-//    func potentialNoteEvaluation(){
-//        // TODO: eval potential cell set
-////        if let lclPotentialLayer = potential_Note_Layer_Ref {
-////            lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-////        }
-//        print("potentialNoteEvaluation() ........... ")
-//    }
     
     var viableSetHelpers : Viable_Set_Helper_Functions?
     
