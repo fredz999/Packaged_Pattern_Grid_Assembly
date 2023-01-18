@@ -51,6 +51,7 @@ public class Data_Vals_Holder : ObservableObject {
                     if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
                 }
             }
+            print("referenced_currentStatus ==")
             update_Cell_Visual_Status()
         }
     }
