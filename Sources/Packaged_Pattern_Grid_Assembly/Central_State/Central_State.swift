@@ -270,7 +270,7 @@ public class Central_State : ObservableObject {
     var viableSetHelpers : Viable_Set_Helper_Functions?
     
     public func evaluate_Viable_Set(){
-
+        print("evaluate_Viable_Set")
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         var cell_Line_Set = Set<Underlying_Data_Cell>()
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
@@ -298,9 +298,7 @@ public class Central_State : ObservableObject {
                 }
             }
         }
-        
-        
-        
+
     }
 
     func centralState_Cursor_Position_Evaluation() {
