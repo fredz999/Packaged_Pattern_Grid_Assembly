@@ -205,16 +205,16 @@ public class Central_State : ObservableObject {
         willSet {
             let delta = viableSet_Right.symmetricDifference(newValue)
             for cell in delta {
-                if cell.in_Viable_Set_Right == true {
+                //if cell.in_Viable_Set_Right == true {
                     cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Right)
-                }
+                //}
             }
         }
         didSet {
             for cell in viableSet_Right {
-                if cell.in_Viable_Set_Right == false {
+                //if cell.in_Viable_Set_Right == false {
                     cell.handleVisibleStateChange(type : .activate_Viable_Set_Right)
-                }
+                //}
             }
         }
     }

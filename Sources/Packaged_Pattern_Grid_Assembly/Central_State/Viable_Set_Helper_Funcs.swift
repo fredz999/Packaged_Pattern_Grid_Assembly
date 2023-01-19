@@ -66,9 +66,9 @@ class Viable_Set_Helper_Functions{
     }
     
     func endViableRightSet(){
-        for cell in central_State_Ref.viableSet_Right{
-            if cell.in_Potential_Set == true {
-                cell.in_Potential_Set = false
+        for cell in central_State_Ref.viableSet_Right {
+            if cell.in_Viable_Set_Right == true {
+                cell.in_Viable_Set_Right = false
             }
         }
         central_State_Ref.viableSet_Right.removeAll()

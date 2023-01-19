@@ -129,18 +129,18 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     // like theyre mutually exclusive
     //=================================================== vizzzz -i- bil ==============================================
     var in_Prohibited_Set : Bool = false
-    {
-        didSet{
-            if in_Prohibited_Set == true{handleVisibleStateChange(type: .activate_Prohibited)}
-        }
-    }
+//    {
+//        didSet{
+//            if in_Prohibited_Set == true{handleVisibleStateChange(type: .activate_Prohibited)}
+//        }
+//    }
     
     var in_Highlighted_Set : Bool = false
-    {
-        didSet{
-            if in_Highlighted_Set == true{handleVisibleStateChange(type: .activate_Highlighted )}
-        }
-    }
+//    {
+//        didSet{
+//            if in_Highlighted_Set == true{handleVisibleStateChange(type: .activate_Highlighted )}
+//        }
+//    }
     
     var in_Viable_Set_Right : Bool = false
 //    {
@@ -151,20 +151,20 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //    }
     
     var in_Viable_Set_Left : Bool = false
-    {
-        didSet{
-            if in_Viable_Set_Left == true{handleVisibleStateChange(type: .activate_Viable_Set_Left )}
-            else if in_Viable_Set_Left == false{handleVisibleStateChange(type: .deActivate_Viable_Set_Left )}
-        }
-    }
+//    {
+//        didSet{
+//            if in_Viable_Set_Left == true{handleVisibleStateChange(type: .activate_Viable_Set_Left )}
+//            else if in_Viable_Set_Left == false{handleVisibleStateChange(type: .deActivate_Viable_Set_Left )}
+//        }
+//    }
     
     var in_Potential_Set : Bool = false
-    {
-        didSet{
-            if in_Potential_Set == true{handleVisibleStateChange(type: .activate_Potential_Set )}
-            else if in_Potential_Set == false{handleVisibleStateChange(type: .deActivate_Potential_Set )}
-        }
-    }
+//    {
+//        didSet{
+//            if in_Potential_Set == true{handleVisibleStateChange(type: .activate_Potential_Set )}
+//            else if in_Potential_Set == false{handleVisibleStateChange(type: .deActivate_Potential_Set )}
+//        }
+//    }
 
     //func handleVisibleStateChange(type : E_VisibleStateChangeType){
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
@@ -176,7 +176,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Highlighted_Set == true{
                 in_Highlighted_Set=false}
         }
-        
         
         else if type == .activate_Viable_Set_Right {
             if in_Viable_Set_Right == false {
