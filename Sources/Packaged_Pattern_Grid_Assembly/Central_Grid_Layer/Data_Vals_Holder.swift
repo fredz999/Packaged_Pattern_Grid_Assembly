@@ -175,11 +175,8 @@ public class Data_Vals_Holder : ObservableObject {
         return retVal
     }
  
-    @Published public var statusColor : Color{
-        willSet{
-            if referenced_dataCell_X_Number == 0,referenced_dataCell_Y_Number==0{print("change to: ",statusColor.description)}  
-        }
-    }
+    @Published public var statusColor : Color
+
 
    public var referenced_note_Im_In : Note?
    
