@@ -13,14 +13,15 @@ public class Central_State : ObservableObject {
     
     @Published var edit_Layer_Visible : Bool = true
     
-    @Published public var a_Note_Is_Highlighted : Bool = false {
-        didSet {
-            if a_Note_Is_Highlighted == true {
-                leftProhibitedCell = nil
-                rightProhibitedCell = nil
-            }
-        }
-    }
+    @Published public var a_Note_Is_Highlighted : Bool = false
+//    {
+//        didSet {
+//            if a_Note_Is_Highlighted == true {
+//                //leftProhibitedCell = nil
+//                //rightProhibitedCell = nil
+//            }
+//        }
+//    }
 
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     
@@ -176,39 +177,39 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var leftProhibitedCell : Underlying_Data_Cell?{
-        willSet{
-            if let lclLeftProhibCell = leftProhibitedCell{
-                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
-            }
-        }
-        didSet{
-            if let lclLeftProhibCell = leftProhibitedCell{
-                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
-                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: lclLeftProhibCell.dataCell_X_Number)
-            }
-            else if leftProhibitedCell == nil{
-                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: 0)
-            }
-        }
-    }
+//    var leftProhibitedCell : Underlying_Data_Cell?{
+//        willSet{
+//            if let lclLeftProhibCell = leftProhibitedCell{
+//                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
+//            }
+//        }
+//        didSet{
+//            if let lclLeftProhibCell = leftProhibitedCell{
+//                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
+//                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: lclLeftProhibCell.dataCell_X_Number)
+//            }
+//            else if leftProhibitedCell == nil{
+//                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: 0)
+//            }
+//        }
+//    }
     
-    var rightProhibitedCell : Underlying_Data_Cell?{
-        willSet{
-            if let lclRightProhibCell = rightProhibitedCell{
-                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
-            }
-        }
-        didSet{
-            if let lclRightProhibCell = rightProhibitedCell{
-                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
-                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
-            }
-            else if rightProhibitedCell == nil{
-                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
-            }
-        }
-    }
+//    var rightProhibitedCell : Underlying_Data_Cell?{
+//        willSet{
+//            if let lclRightProhibCell = rightProhibitedCell{
+//                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
+//            }
+//        }
+//        didSet{
+//            if let lclRightProhibCell = rightProhibitedCell{
+//                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
+//                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
+//            }
+//            else if rightProhibitedCell == nil{
+//                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
+//            }
+//        }
+//    }
     
     var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>(){
         willSet{
