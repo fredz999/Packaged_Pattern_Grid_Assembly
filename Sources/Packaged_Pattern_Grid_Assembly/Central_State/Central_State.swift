@@ -204,6 +204,7 @@ public class Central_State : ObservableObject {
             }
         }
         didSet{
+            print("viable right got set")
             for cell in viableSet_Right {
                 if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
             }
