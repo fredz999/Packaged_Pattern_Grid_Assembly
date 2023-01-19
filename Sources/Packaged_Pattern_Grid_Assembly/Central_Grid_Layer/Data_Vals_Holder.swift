@@ -97,7 +97,7 @@ public class Data_Vals_Holder : ObservableObject {
             if value == true {
                 if referenced_in_Viable_Set_Right == false{
                     referenced_in_Viable_Set_Right=true
-                    update_Cell_Visual_Status()
+                    //update_Cell_Visual_Status()
                 }
             }
             else if value == false {
