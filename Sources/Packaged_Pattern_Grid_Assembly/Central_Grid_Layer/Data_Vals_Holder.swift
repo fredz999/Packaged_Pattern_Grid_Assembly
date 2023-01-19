@@ -103,12 +103,11 @@ public class Data_Vals_Holder : ObservableObject {
             else if value == false {
                 if referenced_in_Viable_Set_Right == true {
                     referenced_in_Viable_Set_Right=false
-                    update_Cell_Visual_Status()
+                    //update_Cell_Visual_Status()
                 }
             }
         }
     }
-    
     
     // /these boyos will become private =====================
     // this will have to be called AFTER there hasbeen an assignment to status ... so all the referenced potentials should get set
