@@ -193,7 +193,7 @@ public class Central_State : ObservableObject {
             }
         }
     }
-    
+    // needs pushed, trying to lessen the amount of times the update gets tripped I think I might be inside looping
     var viableSet_Right = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
