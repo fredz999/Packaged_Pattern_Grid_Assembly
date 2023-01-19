@@ -142,7 +142,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-    private var in_Viable_Set_Right : Bool = false
+    var in_Viable_Set_Right : Bool = false
 //    {
 //        didSet{
 //            if in_Viable_Set_Right == true{handleVisibleStateChange(type: .activate_Viable_Set_Right )}
