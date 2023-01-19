@@ -33,6 +33,7 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var referenced_currentStatus : E_CellStatus
     {
         didSet{
+            print("Im getting extremely frustrated")
             if referenced_currentStatus == .start_Note
                 || referenced_currentStatus == .mid_Note
                 || referenced_currentStatus == .end_Note {
@@ -68,7 +69,6 @@ public class Data_Vals_Holder : ObservableObject {
             if value == true {
                 if referenced_in_Potential_Set == false {
                     referenced_in_Potential_Set=true
-                    print("set num: ",referenced_dataCell_X_Number.description," to true")
                 }
             }
             else if value == false {

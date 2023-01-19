@@ -216,7 +216,6 @@ public class Central_State : ObservableObject {
             for cell in delta {
                 if cell.in_Potential_Set == true {
                     cell.in_Potential_Set = false
-                    print("set: ",cell.dataCell_X_Number," to false...")
                 }
             }
         }
