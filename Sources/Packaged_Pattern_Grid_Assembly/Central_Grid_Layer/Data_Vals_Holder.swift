@@ -95,11 +95,15 @@ public class Data_Vals_Holder : ObservableObject {
         else if status_Update_TypeParam == .viableSetRight {
             
             if value == true {
-                if referenced_in_Viable_Set_Right == false{referenced_in_Viable_Set_Right=true}
+                if referenced_in_Viable_Set_Right == false{
+                    referenced_in_Viable_Set_Right=true
+                    update_Cell_Visual_Status()
+                }
             }
             else if value == false {
                 if referenced_in_Viable_Set_Right == true {
                     referenced_in_Viable_Set_Right=false
+                    update_Cell_Visual_Status()
                 }
             }
         }
