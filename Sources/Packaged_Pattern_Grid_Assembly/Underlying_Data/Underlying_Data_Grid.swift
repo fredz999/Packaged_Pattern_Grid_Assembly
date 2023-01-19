@@ -173,13 +173,24 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Highlighted_Set == false{in_Highlighted_Set=true}
         }
         else if type == .deActivate_Highlighted {
-            if in_Highlighted_Set == true{in_Highlighted_Set=false}
+            if in_Highlighted_Set == true{
+                in_Highlighted_Set=false}
         }
         else if type == .activate_Viable_Set_Right {
-            if in_Viable_Set_Right == false{in_Viable_Set_Right=true}
+            if in_Viable_Set_Right == false {
+                in_Viable_Set_Right = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
+                }
+            }
         }
         else if type == .deActivate_Viable_Set_Right {
-            if in_Viable_Set_Right == true{in_Viable_Set_Right=false}
+            if in_Viable_Set_Right == true {
+                in_Viable_Set_Right=false
+                if let lclDataVals = currentConnectedDataVals{
+                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
+                }
+            }
         }
         else if type == .activate_Viable_Set_Left {
             if in_Viable_Set_Left == false{in_Viable_Set_Left=true}
@@ -199,21 +210,21 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .deActivate_Potential_Set{
             if in_Potential_Set == true{in_Potential_Set=false}
         }
-        
-        if let lclDataVals = currentConnectedDataVals {
+        // should only happen if thres a change
+        //if let lclDataVals = currentConnectedDataVals {
 //            lclDataVals.referenced_in_Viable_Set_Right = in_Viable_Set_Right
-            lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
+            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
 //            lclDataVals.referenced_in_Viable_Set_Left = in_Viable_Set_Left
-            lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetLeft, value: in_Viable_Set_Left)
+            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetLeft, value: in_Viable_Set_Left)
 //            lclDataVals.referenced_in_Highlighted_Set = in_Highlighted_Set
-            lclDataVals.update_Cell_Status(status_Update_TypeParam: .highlighted , value: in_Highlighted_Set)
+            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .highlighted , value: in_Highlighted_Set)
 //            lclDataVals.referenced_in_Prohibited_Set = in_Prohibited_Set
-            lclDataVals.update_Cell_Status(status_Update_TypeParam: .prohibitedSet, value: in_Prohibited_Set)
+            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .prohibitedSet, value: in_Prohibited_Set)
 //            lclDataVals.referenced_in_Potential_Set = in_Potential_Set
-            lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet, value: in_Potential_Set)
+            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet, value: in_Potential_Set)
             
 //            lclDataVals.update_Cell_Visual_Status()
-        }
+        //}
     }
     //================================================================================================================
     var note_Im_In : Note?

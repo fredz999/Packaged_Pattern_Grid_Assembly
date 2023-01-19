@@ -57,7 +57,7 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     public func update_Cell_Status(status_Update_TypeParam:status_Update_Type,value:Bool){
- 
+
         if status_Update_TypeParam == .highlighted {
             if value == true {
                 if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
@@ -114,7 +114,7 @@ public class Data_Vals_Holder : ObservableObject {
     func update_Cell_Visual_Status(){
         print("update_Cell_Visual_Status():",referenced_dataCell_X_Number.description)
         if check_Cell_Blank() == false {
-            check_Highlighted() // terminal
+            check_Highlighted()
         }
         else if check_Cell_Blank() == true {
             if check_In_Viable_Set() == true {
