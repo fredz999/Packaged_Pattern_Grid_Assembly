@@ -236,7 +236,7 @@ public class Central_State : ObservableObject {
     var viableSetHelpers : Viable_Set_Helper_Functions?
     
     public func evaluate_Viable_Set(){
-        print("evaluate_Viable_Set")
+        
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         var cell_Line_Set = Set<Underlying_Data_Cell>()
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
@@ -244,13 +244,13 @@ public class Central_State : ObservableObject {
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         // get the right viable set at start?
         if writingIsOn == false{
+            print("writingIsOn == false")
             if currentData.note_Im_In == nil {
                 if let lclViableHelpers = viableSetHelpers {
                     lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
                 }
             }
             else if currentData.note_Im_In != nil {
-                //viableSet_Right = nil
                 if let lclViableHelpers = viableSetHelpers {
                     lclViableHelpers.endViableRightSet()
                 }
@@ -258,6 +258,7 @@ public class Central_State : ObservableObject {
             }
         }
         else if writingIsOn == true {
+            print("writingIsOn == true")
             if currentData.note_Im_In == nil {
                 if let lclViableHelpers = viableSetHelpers {
                     lclViableHelpers.processPotentialNote(cell_Line_Set: cell_Line_Set, currentData: currentData)
