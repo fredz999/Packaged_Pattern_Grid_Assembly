@@ -33,7 +33,7 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var referenced_currentStatus : E_CellStatus
     {
         didSet{
-            print("Im getting extremely frustrated")
+            print("Im getting extremely frustrated: referenced_currentStatus")
             if referenced_currentStatus == .start_Note
                 || referenced_currentStatus == .mid_Note
                 || referenced_currentStatus == .end_Note {
@@ -57,6 +57,7 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     public func update_Cell_Status(status_Update_TypeParam:status_Update_Type,value:Bool){
+        print("Im getting extremely frustrated: update_Cell_Status")
         if status_Update_TypeParam == .highlighted {
             if value == true {
                 if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
