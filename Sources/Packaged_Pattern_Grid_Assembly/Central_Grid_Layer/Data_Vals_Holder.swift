@@ -93,24 +93,21 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         else if status_Update_TypeParam == .viableSetRight {
-            
             if value == true {
                 if referenced_in_Viable_Set_Right == false{
                     referenced_in_Viable_Set_Right = true
-                    //update_Cell_Visual_Status()
                 }
             }
             else if value == false {
                 if referenced_in_Viable_Set_Right == true {
                     referenced_in_Viable_Set_Right = false
-                    //update_Cell_Visual_Status()
                 }
             }
-            update_Cell_Visual_Status()
         }
+        update_Cell_Visual_Status()
     }
     
-    // /these boyos will become private =====================
+    // these boyos will become private =====================
     // this will have to be called AFTER there hasbeen an assignment to status ... so all the referenced potentials should get set
     // to private and I will write an accessor function with an enum type and a val to set them, then the visual update can get called via
     // the same line of logic
