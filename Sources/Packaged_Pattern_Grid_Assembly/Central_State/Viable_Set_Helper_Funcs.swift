@@ -17,14 +17,15 @@ class Viable_Set_Helper_Functions{
     }
     
     func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
-        print("process_CurrData_Not_In_Note, currX", currentData.dataCell_X_Number.description)
+        //print("process_CurrData_Not_In_Note, currX", currentData.dataCell_X_Number.description)
         
         let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-        let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+        //let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
 
         if inViableCellsRight.count == 0 {
             let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
             central_State_Ref.viableSet_Right = emptyCellsRight
+            print("count: ",central_State_Ref.viableSet_Right.count.description)
         }
 
 //        if inViableCellsLeft.count == 0 {
