@@ -197,15 +197,16 @@ public class Central_State : ObservableObject {
     var viableSet_Right = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
+            print("delta size")
             for cell in delta {
                 cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Right)
             }
         }
-        didSet {
-            for cell in viableSet_Right {
-                cell.handleVisibleStateChange(type : .activate_Viable_Set_Right)
-            }
-        }
+//        didSet {
+//            for cell in viableSet_Right {
+//                cell.handleVisibleStateChange(type : .activate_Viable_Set_Right)
+//            }
+//        }
     }
     
     var viableSet_Left : Set<Underlying_Data_Cell>?{

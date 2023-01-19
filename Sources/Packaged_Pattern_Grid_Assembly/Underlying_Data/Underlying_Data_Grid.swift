@@ -176,6 +176,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Highlighted_Set == true{
                 in_Highlighted_Set=false}
         }
+        
+        
         else if type == .activate_Viable_Set_Right {
             if in_Viable_Set_Right == false {
                 in_Viable_Set_Right = true
@@ -192,6 +194,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
+        
+        
         else if type == .activate_Viable_Set_Left {
             if in_Viable_Set_Left == false{in_Viable_Set_Left=true}
         }
