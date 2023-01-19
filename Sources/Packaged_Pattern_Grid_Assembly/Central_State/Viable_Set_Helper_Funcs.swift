@@ -45,6 +45,7 @@ class Viable_Set_Helper_Functions{
     }
     
     func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
+        print("cell_Line_Set count: ",cell_Line_Set.count.description)
         if let lclInitialCell = initial_WriteOnCell {
             
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
