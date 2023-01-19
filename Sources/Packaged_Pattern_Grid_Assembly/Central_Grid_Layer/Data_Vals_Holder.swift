@@ -93,11 +93,15 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         else if status_Update_TypeParam == .viableSetRight {
+            
             if value == true {
                 if referenced_in_Viable_Set_Right == false{referenced_in_Viable_Set_Right=true}
             }
             else if value == false {
-                if referenced_in_Viable_Set_Right == true{referenced_in_Viable_Set_Right=false}
+                if referenced_in_Viable_Set_Right == true {
+                    referenced_in_Viable_Set_Right=false
+                    print("status_Update_TypeParam == .viableSetRight: ",referenced_dataCell_X_Number.description)
+                }
             }
         }
         update_Cell_Visual_Status()

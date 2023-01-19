@@ -142,13 +142,13 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-    var in_Viable_Set_Right : Bool = false
-    {
-        didSet{
-            if in_Viable_Set_Right == true{handleVisibleStateChange(type: .activate_Viable_Set_Right )}
-            else if in_Viable_Set_Right == false{handleVisibleStateChange(type: .deActivate_Viable_Set_Right)}
-        }
-    }
+    private var in_Viable_Set_Right : Bool = false
+//    {
+//        didSet{
+//            if in_Viable_Set_Right == true{handleVisibleStateChange(type: .activate_Viable_Set_Right )}
+//            else if in_Viable_Set_Right == false{handleVisibleStateChange(type: .deActivate_Viable_Set_Right)}
+//        }
+//    }
     
     var in_Viable_Set_Left : Bool = false
     {
@@ -302,7 +302,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func reset_To_Original(){
-        print("reset_To_Original")
         currentType = note_Reset_Status
         if let lcl_Data_Vals = currentConnectedDataVals {
             lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
