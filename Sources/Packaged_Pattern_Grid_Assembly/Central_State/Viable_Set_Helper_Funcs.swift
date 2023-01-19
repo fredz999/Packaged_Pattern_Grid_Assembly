@@ -22,7 +22,7 @@ class Viable_Set_Helper_Functions{
         //let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
 
         if inViableCellsRight.count == 0 {
-            let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number}
+            let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
             central_State_Ref.viableSet_Right = emptyCellsRight
         }
 //
@@ -63,6 +63,15 @@ class Viable_Set_Helper_Functions{
             }
             
         }
+    }
+    
+    func endViableRightSet(){
+        for cell in central_State_Ref.viableSet_Right{
+            if cell.in_Potential_Set == true {
+                cell.in_Potential_Set = false
+            }
+        }
+        central_State_Ref.viableSet_Right.removeAll()
     }
     
     func endPotentialNote(){

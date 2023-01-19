@@ -226,36 +226,22 @@ public class Central_State : ObservableObject {
         }
     }
     
-    //TODO: might make these non optional
-    var viableSet_Right : Set<Underlying_Data_Cell>?{
-        willSet {
-            if newValue == nil,let lclViableSet = viableSet_Right {
-                for cell in lclViableSet {
-                    if cell.in_Viable_Set_Right == true{cell.in_Viable_Set_Right = false}
-                }
-            }
-            else if let lclNewval = newValue,let previousViableSet = viableSet_Right {
-                let delta = previousViableSet.symmetricDifference(lclNewval)
-                for cell in delta {
-                    if cell.in_Viable_Set_Right == true{
-                        cell.in_Viable_Set_Right = false
-//                        if cell.dataCell_X_Number == 0{
-//                            print("zero set to not")
-//                        }
-                    }
+    var viableSet_Right = Set<Underlying_Data_Cell>(){
+        
+        willSet{
+            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
+            for cell in delta {
+                if cell.in_Viable_Set_Right == true {
+                    cell.in_Viable_Set_Right = false
                 }
             }
         }
-        didSet {
-            if let lclViableSet = viableSet_Right {
-                for cell in lclViableSet {
-                    if cell.in_Viable_Set_Right == false{cell.in_Viable_Set_Right = true}
-//                    if cell.dataCell_X_Number == 0{
-//                        print("zero set to is")
-//                    }
-                }
+        didSet{
+            for cell in viableSet_Right {
+                if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
             }
         }
+        
     }
     
     var viableSet_Left : Set<Underlying_Data_Cell>?{
@@ -298,7 +284,10 @@ public class Central_State : ObservableObject {
                 }
             }
             else if currentData.note_Im_In != nil {
-                viableSet_Right = nil
+                //viableSet_Right = nil
+                if let lclViableHelpers = viableSetHelpers {
+                    lclViableHelpers.endViableRightSet()
+                }
                 viableSet_Left = nil
             }
         }
