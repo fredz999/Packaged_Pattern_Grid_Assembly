@@ -195,21 +195,21 @@ public class Central_State : ObservableObject {
     }
     
     var viableSet_Right = Set<Underlying_Data_Cell>(){
-        willSet{
+        willSet {
             let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
             for cell in delta {
                 if cell.in_Viable_Set_Right == true {
                     cell.in_Viable_Set_Right = false
+                    print("cell.in_Viable_Set_Right = false: ",cell.dataCell_X_Number.description)
                 }
             }
         }
-        didSet{
+        didSet {
             for cell in viableSet_Right {
-                if cell.in_Viable_Set_Right == false{
+                if cell.in_Viable_Set_Right == false {
                     cell.in_Viable_Set_Right = true
                 }
             }
-
         }
     }
     

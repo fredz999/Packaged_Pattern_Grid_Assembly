@@ -25,7 +25,6 @@ class Viable_Set_Helper_Functions{
         if inViableCellsRight.count == 0 {
             let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
             central_State_Ref.viableSet_Right = emptyCellsRight
-            print("count: ",central_State_Ref.viableSet_Right.count.description)
         }
 
 //        if inViableCellsLeft.count == 0 {
