@@ -194,10 +194,16 @@ public class Central_State : ObservableObject {
         }
     }
     // needs pushed, trying to lessen the amount of times the update gets tripped I think I might be inside looping
+    // TODO: cells outside of set reset needs changed
+    // I think Ive got this seriously wrong, the nature of this is actually more like left and right sets after all
+    // when you have a r.h.s set i.e current to right limit AND a lhs set which has initial to current ..... those are
+    // always going to be in two seperate sets, and the reason is because the position of the current has to be monitored
+    // because you may also need to start making a potential set .... I .... thiiiiink.....hmmm alot going on here
+    // this is a bit like field theory or something I mean you cant just think of it as being directional
+    
     var viableSet_Right = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
-            print("delta count=======================================: ",delta.count)
+            let delta = viableSet_Right.symmetricDifference(newValue)
             for cell in delta {
                 if cell.in_Viable_Set_Right == true {
                     cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Right)
@@ -205,7 +211,6 @@ public class Central_State : ObservableObject {
             }
         }
         didSet {
-            print("viableSet_Right count=======================================: ",viableSet_Right.count)
             for cell in viableSet_Right {
                 if cell.in_Viable_Set_Right == false {
                     cell.handleVisibleStateChange(type : .activate_Viable_Set_Right)
