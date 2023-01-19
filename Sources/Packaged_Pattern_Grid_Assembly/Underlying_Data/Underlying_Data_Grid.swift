@@ -264,7 +264,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Type(newType:E_CellStatus){
-        print("change_Type")
         currentType = newType
         if let lcl_Data_Vals = currentConnectedDataVals{
             lcl_Data_Vals.referenced_currentStatus = newType
@@ -272,7 +271,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
-        print("change_Highlight")
         if in_Highlighted_Set != highlightStatusParam{
             in_Highlighted_Set = highlightStatusParam
             if let lcl_Data_Vals = currentConnectedDataVals{
@@ -292,7 +290,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //    }
     
     public func change_Prohibition_Status(newProhibitionStatus:Bool){
-        print("change_Prohibition_Status")
         if in_Prohibited_Set != newProhibitionStatus {
             in_Prohibited_Set = newProhibitionStatus
             if let lcl_Data_Vals = currentConnectedDataVals {

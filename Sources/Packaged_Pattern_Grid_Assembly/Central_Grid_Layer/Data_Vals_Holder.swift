@@ -100,7 +100,6 @@ public class Data_Vals_Holder : ObservableObject {
             else if value == false {
                 if referenced_in_Viable_Set_Right == true {
                     referenced_in_Viable_Set_Right=false
-                    print("status_Update_TypeParam == .viableSetRight: ",referenced_dataCell_X_Number.description)
                 }
             }
         }
@@ -113,6 +112,7 @@ public class Data_Vals_Holder : ObservableObject {
     // to private and I will write an accessor function with an enum type and a val to set them, then the visual update can get called via
     // the same line of logic
     func update_Cell_Visual_Status(){
+        print("update_Cell_Visual_Status():",referenced_dataCell_X_Number.description)
         if check_Cell_Blank() == false {
             check_Highlighted() // terminal
         }
