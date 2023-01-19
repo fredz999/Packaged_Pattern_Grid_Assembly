@@ -97,13 +97,13 @@ public class Data_Vals_Holder : ObservableObject {
             if value == true {
                 if referenced_in_Viable_Set_Right == false{
                     referenced_in_Viable_Set_Right=true
-                    //update_Cell_Visual_Status()
+                    update_Cell_Visual_Status()
                 }
             }
             else if value == false {
                 if referenced_in_Viable_Set_Right == true {
                     referenced_in_Viable_Set_Right=false
-                    //update_Cell_Visual_Status()
+                    update_Cell_Visual_Status()
                 }
             }
         }
@@ -115,6 +115,7 @@ public class Data_Vals_Holder : ObservableObject {
     // the same line of logic
     func update_Cell_Visual_Status(){
         print("update_Cell_Visual_Status():",referenced_dataCell_X_Number.description)
+        
         if check_Cell_Blank() == false {
             check_Highlighted()
         }
