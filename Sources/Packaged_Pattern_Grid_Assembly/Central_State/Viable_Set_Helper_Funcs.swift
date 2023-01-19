@@ -33,9 +33,14 @@ class Viable_Set_Helper_Functions{
         
     }
     
-    var initial_WriteOnCell : Underlying_Data_Cell? {
-        didSet {
-            print("initial_WriteOnCell set")
+    var initial_WriteOnCell : Underlying_Data_Cell?{
+        willSet {
+            // want to set the Set if its going from nil
+            if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
+                var initialSet = Set<Underlying_Data_Cell>()
+                initialSet.insert(lclFirstPotential)
+                processPotentialNote(cell_Line_Set: initialSet, currentData: lclFirstPotential)
+            }
         }
     }
     
@@ -53,10 +58,9 @@ class Viable_Set_Helper_Functions{
             }
             
             else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-                central_State_Ref.centralState_PotentialNoteSet =
-                cell_Line_Set.filter{$0.dataCell_X_Number == lclInitialCell.dataCell_X_Number}
+                central_State_Ref.centralState_PotentialNoteSet = cell_Line_Set
+                //cell_Line_Set.filter{$0.dataCell_X_Number == lclInitialCell.dataCell_X_Number}
             }
-            
             
         }
     }
