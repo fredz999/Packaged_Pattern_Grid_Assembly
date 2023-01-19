@@ -26,10 +26,10 @@ class Viable_Set_Helper_Functions{
             central_State_Ref.viableSet_Right = emptyCellsRight
         }
 
-//        if inViableCellsLeft.count == 0 {
-//            let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-//            central_State_Ref.viableSet_Left = emptyCellsLeft
-//        }
+        if inViableCellsLeft.count == 0 {
+            let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
+            central_State_Ref.viableSet_Left = emptyCellsLeft
+        }
         
     }
     
