@@ -211,21 +211,24 @@ public class Central_State : ObservableObject {
 //        }
 //    }
     
-    var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>(){
-        willSet{
-            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
-            for cell in delta {
-                if cell.in_Potential_Set == true {
-                    cell.in_Potential_Set = false
-                }
-            }
-        }
-        didSet{
-            for cell in centralState_PotentialNoteSet {
-                if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
-            }
-        }
-    }
+    var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>()
+//    {
+//        
+//        willSet{
+//            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
+//            for cell in delta {
+//                if cell.in_Potential_Set == true {
+//                    cell.in_Potential_Set = false
+//                }
+//            }
+//        }
+//        didSet{
+//            for cell in centralState_PotentialNoteSet {
+//                if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
+//            }
+//        }
+//        
+//    }
     
     var viableSet_Right = Set<Underlying_Data_Cell>(){
         
