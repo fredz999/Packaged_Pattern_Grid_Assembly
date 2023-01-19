@@ -207,10 +207,9 @@ public class Central_State : ObservableObject {
             for cell in viableSet_Right {
                 if cell.in_Viable_Set_Right == false{
                     cell.in_Viable_Set_Right = true
-                    print("cell.in_Potential_Set = true")
                 }
             }
-            //print("viable right got set, new count: ",viableSet_Right.count.description)
+
         }
     }
     
