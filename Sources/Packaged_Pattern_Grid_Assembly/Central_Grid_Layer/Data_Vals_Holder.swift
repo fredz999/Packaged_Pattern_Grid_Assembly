@@ -103,7 +103,7 @@ public class Data_Vals_Holder : ObservableObject {
                 }
             }
         }
-        update_Cell_Visual_Status()
+        //update_Cell_Visual_Status()
     }
     
     
