@@ -66,7 +66,10 @@ public class Data_Vals_Holder : ObservableObject {
         }
         else if status_Update_TypeParam == .potentialSet {
             if value == true {
-                if referenced_in_Potential_Set == false{referenced_in_Potential_Set=true}
+                if referenced_in_Potential_Set == false{
+                    referenced_in_Potential_Set=true
+                    print("set num: ",referenced_dataCell_X_Number.description," to true")
+                }
             }
             else if value == false {
                 if referenced_in_Potential_Set == true{referenced_in_Potential_Set=false}

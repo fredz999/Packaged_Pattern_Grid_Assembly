@@ -216,14 +216,12 @@ public class Central_State : ObservableObject {
             for cell in delta {
                 if cell.in_Potential_Set == true {
                     cell.in_Potential_Set = false
-                    print("cell set to false: ",cell.dataCell_X_Number)
                 }
             }
         }
         didSet{
             for cell in centralState_PotentialNoteSet {
                 if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
-                //print("cell X Num: ",cell.dataCell_X_Number.description)
             }
         }
     }

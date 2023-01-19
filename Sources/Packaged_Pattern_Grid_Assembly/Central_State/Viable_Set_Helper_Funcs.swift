@@ -59,7 +59,6 @@ class Viable_Set_Helper_Functions{
     
     func endPotentialNote(){
         for cell in central_State_Ref.centralState_PotentialNoteSet{
-            //print("potential cell type: ",cell.currentType.rawValue,", xPos: ",cell.dataCell_X_Number.description)
             if cell.in_Potential_Set == true {
                 cell.in_Potential_Set = false
             }
