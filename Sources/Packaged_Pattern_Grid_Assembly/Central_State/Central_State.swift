@@ -197,6 +197,7 @@ public class Central_State : ObservableObject {
     var viableSet_Right = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
+            print("delta count=======================================: ",delta.count)
             for cell in delta {
                 if cell.in_Viable_Set_Right == true {
                     cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Right)
