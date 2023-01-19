@@ -276,7 +276,7 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
         
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-        
+        // get the right viable set at start?
         if writingIsOn == false{
             if currentData.note_Im_In == nil {
                 if let lclViableHelpers = viableSetHelpers {
