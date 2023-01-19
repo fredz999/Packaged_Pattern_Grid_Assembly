@@ -311,7 +311,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    public func togglewriteIsOn(){
+    public func toggle_Write_Is_On(){
         if a_Note_Is_Highlighted == false {
             writingIsOn.toggle()
         }
@@ -338,9 +338,7 @@ public class Central_State : ObservableObject {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                     }
                 }
-                
             }
-
         }
     }
 
