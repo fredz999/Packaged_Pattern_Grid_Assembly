@@ -33,7 +33,7 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var referenced_currentStatus : E_CellStatus
     {
         didSet{
-            print("Im getting extremely frustrated: referenced_currentStatus")
+     
             if referenced_currentStatus == .start_Note
                 || referenced_currentStatus == .mid_Note
                 || referenced_currentStatus == .end_Note {
@@ -57,7 +57,7 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     public func update_Cell_Status(status_Update_TypeParam:status_Update_Type,value:Bool){
-        print("Im getting extremely frustrated: update_Cell_Status")
+ 
         if status_Update_TypeParam == .highlighted {
             if value == true {
                 if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
@@ -174,81 +174,12 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retVal
     }
-
-//    if referenced_in_Highlighted_Set == true{}
-//    // in note
-//    if referenced_currentStatus == .start_Note || referenced_currentStatus == .mid_Note || referenced_currentStatus == .end_Note{}
-//    if referenced_in_Prohibited_Set == true{}
-//    if referenced_in_Potential_Set == true{}
-//    if referenced_in_Viable_Set_Left || referenced_in_Viable_Set_Right == true {}
-//    if referenced_currentStatus == .start_Blank || referenced_currentStatus == .mid_Blank || referenced_currentStatus == .end_Blank{}
-    
-    
-    
-    
-//    func updateTempVisualStatus(){
-//
-//
-//        if referenced_in_Highlighted_Set == true{}
-//        // in note
-//        if referenced_currentStatus == .start_Note || referenced_currentStatus == .mid_Note || referenced_currentStatus == .end_Note{}
-//
-//        if referenced_in_Prohibited_Set == true{}
-//        if referenced_in_Potential_Set == true{}
-//        if referenced_in_Viable_Set_Left || referenced_in_Viable_Set_Right == true {}
-//        if referenced_currentStatus == .start_Blank || referenced_currentStatus == .mid_Blank || referenced_currentStatus == .end_Blank{}
-//        // in note takes precedent over viable
-//
-//
-//
-//
-//        // what do I do here?......
-//        // the thing thats coming to mind are the old school truth tables.....tho im not sure how this will work .....
-//
-//
-//
-//
-//
-//
-//
-//
-////        if referenced_in_Highlighted_Set == true {
-////            statusColor = colors.grid_Note_Highlighted_Color
-////        }
-////        else if referenced_in_Viable_Set_Right == true {
-////            statusColor = colors.viable_Set_Right_Color
-////        }
-////        else if referenced_in_Viable_Set_Left == true {
-////            statusColor = colors.viable_Set_Left_Color
-////        }
-////        else if referenced_in_Prohibited_Set == true {
-////            statusColor = colors.prohibited_Cell_Color
-////        }
-////        else if referenced_in_Potential_Set == true {
-////            statusColor = colors.potentialColor
-////        }
-////        else {
-////            if referenced_currentStatus == .start_Note
-////                || referenced_currentStatus == .mid_Note
-////                || referenced_currentStatus == .end_Note {
-////                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
-////            }
-////            else if referenced_currentStatus == .start_Blank
-////                || referenced_currentStatus == .mid_Blank
-////                || referenced_currentStatus == .end_Blank{
-////                if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Blank_Color}
-////            }
-////        }
-//
-//
-//
-//
-//    }
-    
  
-    
-    
-   @Published public var statusColor : Color
+    @Published public var statusColor : Color{
+        willSet{
+            if referenced_dataCell_X_Number == 0,referenced_dataCell_Y_Number==0{print("change to: ",statusColor.description)}  
+        }
+    }
 
    public var referenced_note_Im_In : Note?
    
@@ -294,46 +225,3 @@ public enum status_Update_Type {
     case prohibitedSet
     case potentialSet
 }
-
-//private var referenced_in_Highlighted_Set : Bool = false
-//
-//private var referenced_in_Viable_Set_Right : Bool = false
-//
-//private var referenced_in_Viable_Set_Left : Bool = false
-//
-//private var referenced_in_Prohibited_Set : Bool = false
-//
-//private var referenced_in_Potential_Set : Bool = false
-//// hmmm maybe do this last ... theres shenanigans with the witdth and so on
-//@Published private var referenced_currentStatus : E_CellStatus
-
-
-//func updateTempVisualStatus(){
-//    if referenced_isHighlighted == true{
-//        statusColor = colors.grid_Note_Highlighted_Color
-//    }
-//    else if referenced_in_Viable_Set_Right == true {
-//        statusColor = colors.viable_Set_Right_Color
-//    }
-//    else if referenced_in_Viable_Set_Left == true {
-//        statusColor = colors.viable_Set_Left_Color
-//    }
-//    else if referenced_is_Prohibited_Set == true{
-//        statusColor = colors.prohibited_Cell_Color
-//    }
-//    else if referenced_in_Potential_Set == true{
-//        statusColor = colors.potentialColor
-//    }
-//    else {
-//        if referenced_currentStatus == .start_Note
-//            || referenced_currentStatus == .mid_Note
-//            || referenced_currentStatus == .end_Note {
-//            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
-//        }
-//        else if referenced_currentStatus == .start_Blank
-//            || referenced_currentStatus == .mid_Blank
-//            || referenced_currentStatus == .end_Blank{
-//            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Blank_Color}
-//        }
-//    }
-//}
