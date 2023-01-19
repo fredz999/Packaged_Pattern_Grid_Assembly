@@ -177,61 +177,24 @@ public class Central_State : ObservableObject {
         }
     }
     
-//    var leftProhibitedCell : Underlying_Data_Cell?{
-//        willSet{
-//            if let lclLeftProhibCell = leftProhibitedCell{
-//                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
-//            }
-//        }
-//        didSet{
-//            if let lclLeftProhibCell = leftProhibitedCell{
-//                lclLeftProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
-//                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: lclLeftProhibCell.dataCell_X_Number)
-//            }
-//            else if leftProhibitedCell == nil{
-//                dimensions.set_Potential_Note_Leftward_Boundary(newLeftBoundary: 0)
-//            }
-//        }
-//    }
-    
-//    var rightProhibitedCell : Underlying_Data_Cell?{
-//        willSet{
-//            if let lclRightProhibCell = rightProhibitedCell{
-//                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: false)
-//            }
-//        }
-//        didSet{
-//            if let lclRightProhibCell = rightProhibitedCell{
-//                lclRightProhibCell.change_Prohibition_Status(newProhibitionStatus: true)
-//                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: lclRightProhibCell.dataCell_X_Number)
-//            }
-//            else if rightProhibitedCell == nil{
-//                dimensions.set_Potential_Note_Rightward_Boundary(newRightBoundary: dimensions.dataGrid_X_Unit_Count)
-//            }
-//        }
-//    }
-    
     var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>()
-//    {
-//        
-//        willSet{
-//            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
-//            for cell in delta {
-//                if cell.in_Potential_Set == true {
-//                    cell.in_Potential_Set = false
-//                }
-//            }
-//        }
-//        didSet{
-//            for cell in centralState_PotentialNoteSet {
-//                if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
-//            }
-//        }
-//        
-//    }
+    {
+        willSet{
+            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
+            for cell in delta {
+                if cell.in_Potential_Set == true {
+                    cell.in_Potential_Set = false
+                }
+            }
+        }
+        didSet{
+            for cell in centralState_PotentialNoteSet {
+                if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
+            }
+        }
+    }
     
     var viableSet_Right = Set<Underlying_Data_Cell>(){
-        
         willSet{
             let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
             for cell in delta {
@@ -245,7 +208,6 @@ public class Central_State : ObservableObject {
                 if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
             }
         }
-        
     }
     
     var viableSet_Left : Set<Underlying_Data_Cell>?{
