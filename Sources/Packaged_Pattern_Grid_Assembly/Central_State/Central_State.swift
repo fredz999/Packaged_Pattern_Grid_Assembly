@@ -188,6 +188,7 @@ public class Central_State : ObservableObject {
             }
         }
         didSet{
+            print("set potential")
             for cell in centralState_PotentialNoteSet {
                 if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
             }
