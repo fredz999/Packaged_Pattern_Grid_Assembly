@@ -79,9 +79,7 @@ class Viable_Set_Helper_Functions{
     func endPotentialNote(){
         print("po set length: ",central_State_Ref.centralState_PotentialNoteSet.count.description)
         for cell in central_State_Ref.centralState_PotentialNoteSet {
-            if cell.in_Potential_Set == true {
-                cell.in_Potential_Set = false
-            }
+            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
         }
         central_State_Ref.centralState_PotentialNoteSet.removeAll()
     }
