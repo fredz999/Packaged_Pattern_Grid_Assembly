@@ -191,22 +191,22 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
         
         
-        else if type == .activate_Viable_Set_Right {
-            if in_Viable_Set_Right == false {
-                in_Viable_Set_Right = true
-                if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
-                }
-            }
-        }
-        else if type == .deActivate_Viable_Set_Right {
-            if in_Viable_Set_Right == true {
-                in_Viable_Set_Right=false
-                if let lclDataVals = currentConnectedDataVals{
-                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
-                }
-            }
-        }
+//        else if type == .activate_Viable_Set_Right {
+//            if in_Viable_Set_Right == false {
+//                in_Viable_Set_Right = true
+//                if let lclDataVals = currentConnectedDataVals {
+//                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
+//                }
+//            }
+//        }
+//        else if type == .deActivate_Viable_Set_Right {
+//            if in_Viable_Set_Right == true {
+//                in_Viable_Set_Right=false
+//                if let lclDataVals = currentConnectedDataVals{
+//                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
+//                }
+//            }
+//        }
         
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false{ in_Potential_Set = true }
@@ -223,12 +223,13 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
         
         
-        else if type == .activate_Viable_Set_Left {
-            if in_Viable_Set_Left == false{in_Viable_Set_Left=true}
-        }
-        else if type == .deActivate_Viable_Set_Left {
-            if in_Viable_Set_Left == true{in_Viable_Set_Left=false}
-        }
+//        else if type == .activate_Viable_Set_Left {
+//            if in_Viable_Set_Left == false{in_Viable_Set_Left=true}
+//        }
+//        else if type == .deActivate_Viable_Set_Left {
+//            if in_Viable_Set_Left == true{in_Viable_Set_Left=false}
+//        }
+        
         else if type == .activate_Prohibited {
             if in_Prohibited_Set == false{in_Prohibited_Set=true}
         }
@@ -367,10 +368,10 @@ enum E_VisibleStateChangeType {
     case activate_Highlighted
     case deActivate_Highlighted
     
-    case activate_Viable_Set_Right
-    case deActivate_Viable_Set_Right
-    case activate_Viable_Set_Left
-    case deActivate_Viable_Set_Left
+//    case activate_Viable_Set_Right
+//    case deActivate_Viable_Set_Right
+//    case activate_Viable_Set_Left
+//    case deActivate_Viable_Set_Left
     
     case activate_Viable_Set_Combined
     case deActivate_Viable_Set_Combined

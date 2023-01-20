@@ -218,42 +218,42 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var viableSet_Right = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = viableSet_Right.symmetricDifference(newValue)
-            for cell in delta {
-                    cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Right)
-            }
-        }
-        didSet {
-            for cell in viableSet_Right {
-                    cell.handleVisibleStateChange(type : .activate_Viable_Set_Right)
-            }
-        }
-    }
+//    var viableSet_Right = Set<Underlying_Data_Cell>(){
+//        willSet {
+//            let delta = viableSet_Right.symmetricDifference(newValue)
+//            for cell in delta {
+//                    cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Right)
+//            }
+//        }
+//        didSet {
+//            for cell in viableSet_Right {
+//                    cell.handleVisibleStateChange(type : .activate_Viable_Set_Right)
+//            }
+//        }
+//    }
     
-    var viableSet_Left : Set<Underlying_Data_Cell>?{
-        willSet {
-            if newValue == nil,let lclViableSet = viableSet_Left {
-                for cell in lclViableSet {
-                    if cell.in_Viable_Set_Left == true{cell.in_Viable_Set_Left = false}
-                }
-            }
-            else if let lclNewval = newValue,let previousViableSet = viableSet_Left {
-                let delta = previousViableSet.symmetricDifference(lclNewval)
-                for cell in delta {
-                    if cell.in_Viable_Set_Left == true{cell.in_Viable_Set_Left = false}
-                }
-            }
-        }
-        didSet {
-            if let lclViableSet = viableSet_Left {
-                for cell in lclViableSet {
-                    if cell.in_Viable_Set_Left == false{cell.in_Viable_Set_Left = true}
-                }
-            }
-        }
-    }
+//    var viableSet_Left : Set<Underlying_Data_Cell>?{
+//        willSet {
+//            if newValue == nil,let lclViableSet = viableSet_Left {
+//                for cell in lclViableSet {
+//                    if cell.in_Viable_Set_Left == true{cell.in_Viable_Set_Left = false}
+//                }
+//            }
+//            else if let lclNewval = newValue,let previousViableSet = viableSet_Left {
+//                let delta = previousViableSet.symmetricDifference(lclNewval)
+//                for cell in delta {
+//                    if cell.in_Viable_Set_Left == true{cell.in_Viable_Set_Left = false}
+//                }
+//            }
+//        }
+//        didSet {
+//            if let lclViableSet = viableSet_Left {
+//                for cell in lclViableSet {
+//                    if cell.in_Viable_Set_Left == false{cell.in_Viable_Set_Left = true}
+//                }
+//            }
+//        }
+//    }
     
     var viableSetHelpers : Viable_Set_Helper_Functions?
     
@@ -271,12 +271,12 @@ public class Central_State : ObservableObject {
                     lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
                 }
             }
-            else if currentData.note_Im_In != nil {
-                if let lclViableHelpers = viableSetHelpers {
-                    lclViableHelpers.endViableRightSet()
-                }
-                viableSet_Left = nil
-            }
+//            else if currentData.note_Im_In != nil {
+//                if let lclViableHelpers = viableSetHelpers {
+//                    lclViableHelpers.endViableRightSet()
+//                }
+//                viableSet_Left = nil
+//            }
         }
         else if writingIsOn == true {
             if currentData.note_Im_In == nil {

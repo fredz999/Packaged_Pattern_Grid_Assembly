@@ -20,12 +20,13 @@ class Viable_Set_Helper_Functions{
         
         
         let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-        //let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+        let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
 
-        if inViableCellsRight.count == 0 {
+        if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
             let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
+            let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
             let currentCellSet = cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
-            central_State_Ref.viableSet_Combined = emptyCellsRight.union(currentCellSet)
+            central_State_Ref.viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
         }
 
 //        if inViableCellsLeft.count == 0 {
@@ -67,17 +68,17 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    func endViableRightSet(){
-        for cell in central_State_Ref.viableSet_Right {
-            if cell.in_Viable_Set_Right == true {
-                cell.in_Viable_Set_Right = false
-            }
-        }
-        central_State_Ref.viableSet_Right.removeAll()
-    }
+//    func endViableRightSet(){
+//        for cell in central_State_Ref.viableSet_Right {
+//            if cell.in_Viable_Set_Right == true {
+//                cell.in_Viable_Set_Right = false
+//            }
+//        }
+//        central_State_Ref.viableSet_Right.removeAll()
+//    }
     
     func endPotentialNote(){
-        for cell in central_State_Ref.centralState_PotentialNoteSet{
+        for cell in central_State_Ref.centralState_PotentialNoteSet {
             if cell.in_Potential_Set == true {
                 cell.in_Potential_Set = false
             }

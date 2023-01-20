@@ -71,18 +71,18 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         
-        else if status_Update_TypeParam == .viableSetRight {
-            if value == true {
-                if referenced_in_Viable_Set_Right == false{
-                    referenced_in_Viable_Set_Right = true
-                }
-            }
-            else if value == false {
-                if referenced_in_Viable_Set_Right == true {
-                    referenced_in_Viable_Set_Right = false
-                }
-            }
-        }
+//        else if status_Update_TypeParam == .viableSetRight {
+//            if value == true {
+//                if referenced_in_Viable_Set_Right == false{
+//                    referenced_in_Viable_Set_Right = true
+//                }
+//            }
+//            else if value == false {
+//                if referenced_in_Viable_Set_Right == true {
+//                    referenced_in_Viable_Set_Right = false
+//                }
+//            }
+//        }
         
         else if status_Update_TypeParam == .potentialSet {
             if value == true {
@@ -112,14 +112,14 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Prohibited_Set == true{referenced_in_Prohibited_Set=false}
             }
         }
-        else if status_Update_TypeParam == .viableSetLeft {
-            if value == true {
-                if referenced_in_Viable_Set_Left == false{referenced_in_Viable_Set_Left=true}
-            }
-            else if value == false {
-                if referenced_in_Viable_Set_Left == true{referenced_in_Viable_Set_Left=false}
-            }
-        }
+//        else if status_Update_TypeParam == .viableSetLeft {
+//            if value == true {
+//                if referenced_in_Viable_Set_Left == false{referenced_in_Viable_Set_Left=true}
+//            }
+//            else if value == false {
+//                if referenced_in_Viable_Set_Left == true{referenced_in_Viable_Set_Left=false}
+//            }
+//        }
         
         update_Cell_Visual_Status()
     }
