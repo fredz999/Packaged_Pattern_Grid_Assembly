@@ -173,23 +173,44 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Highlighted_Set == false{in_Highlighted_Set=true}
         }
         else if type == .deActivate_Highlighted {
-            if in_Highlighted_Set == true{
-                in_Highlighted_Set=false}
+            if in_Highlighted_Set == true{in_Highlighted_Set=false}
         }
         
+        
+        //==============================================================================================================
         else if type == .activate_Viable_Set_Combined {
-            if in_Viable_Set_Combined == false{in_Viable_Set_Combined = true}
-            if let lclDataVals = currentConnectedDataVals {
-                lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+            if in_Viable_Set_Combined == false{
+                in_Viable_Set_Combined = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+                }
             }
         }
         else if type == .deActivate_Viable_Set_Combined {
-            if in_Viable_Set_Combined == true{in_Viable_Set_Combined = false}
-            if let lclDataVals = currentConnectedDataVals {
-                lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+            if in_Viable_Set_Combined == true{
+                in_Viable_Set_Combined = false
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+                }
             }
         }
-        
+        else if type == .activate_Potential_Set {
+            if in_Potential_Set == false{
+                in_Potential_Set = true
+                if let lclDataVals = currentConnectedDataVals{
+                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
+                }
+            }
+        }
+        else if type == .deActivate_Potential_Set {
+            if in_Potential_Set == true{
+                in_Potential_Set = false
+                if let lclDataVals = currentConnectedDataVals{
+                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
+                }
+            }
+        }
+        //==============================================================================================================
         
 //        else if type == .activate_Viable_Set_Right {
 //            if in_Viable_Set_Right == false {
@@ -208,19 +229,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //            }
 //        }
         
-        else if type == .activate_Potential_Set {
-            if in_Potential_Set == false{ in_Potential_Set = true }
-            if let lclDataVals = currentConnectedDataVals{
-                lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
-            }
-        }
-        
-        else if type == .deActivate_Potential_Set {
-            if in_Potential_Set == true{ in_Potential_Set = false }
-            if let lclDataVals = currentConnectedDataVals{
-                lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
-            }
-        }
+
         
         
 //        else if type == .activate_Viable_Set_Left {
