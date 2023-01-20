@@ -179,18 +179,19 @@ public class Central_State : ObservableObject {
     
     var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>()
     {
-        willSet{
+        willSet {
             let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
             for cell in delta {
-                if cell.in_Potential_Set == true {
-                    cell.in_Potential_Set = false
-                }
+//                if cell.in_Potential_Set == true {
+//                    cell.in_Potential_Set = false
+//                }
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
             }
         }
-        didSet{
-            print("set potential")
+        didSet {
             for cell in centralState_PotentialNoteSet {
-                if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
+                //if cell.in_Potential_Set == false{cell.in_Potential_Set = true}
+                cell.handleVisibleStateChange(type: .activate_Potential_Set)
             }
         }
     }
