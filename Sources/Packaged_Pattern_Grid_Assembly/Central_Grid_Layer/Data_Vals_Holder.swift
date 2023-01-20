@@ -58,14 +58,20 @@ public class Data_Vals_Holder : ObservableObject {
     
     public func update_Cell_Status(status_Update_TypeParam:status_Update_Type,value:Bool){
 
-        if status_Update_TypeParam == .highlighted {
+        
+        if status_Update_TypeParam == .viableSetRight {
             if value == true {
-                if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
+                if referenced_in_Viable_Set_Right == false{
+                    referenced_in_Viable_Set_Right = true
+                }
             }
             else if value == false {
-                if referenced_in_Highlighted_Set == true{referenced_in_Highlighted_Set=false}
+                if referenced_in_Viable_Set_Right == true {
+                    referenced_in_Viable_Set_Right = false
+                }
             }
         }
+        
         else if status_Update_TypeParam == .potentialSet {
             if value == true {
                 if referenced_in_Potential_Set == false {
@@ -76,6 +82,16 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Potential_Set == true{referenced_in_Potential_Set=false}
             }
         }
+        
+        else if status_Update_TypeParam == .highlighted {
+            if value == true {
+                if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
+            }
+            else if value == false {
+                if referenced_in_Highlighted_Set == true{referenced_in_Highlighted_Set=false}
+            }
+        }
+        
         else if status_Update_TypeParam == .prohibitedSet {
             if value == true {
                 if referenced_in_Prohibited_Set == false{referenced_in_Prohibited_Set=true}
@@ -92,18 +108,7 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Viable_Set_Left == true{referenced_in_Viable_Set_Left=false}
             }
         }
-        else if status_Update_TypeParam == .viableSetRight {
-            if value == true {
-                if referenced_in_Viable_Set_Right == false{
-                    referenced_in_Viable_Set_Right = true
-                }
-            }
-            else if value == false {
-                if referenced_in_Viable_Set_Right == true {
-                    referenced_in_Viable_Set_Right = false
-                }
-            }
-        }
+        
         update_Cell_Visual_Status()
     }
     

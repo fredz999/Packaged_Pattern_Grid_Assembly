@@ -194,6 +194,19 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         
+        else if type == .activate_Potential_Set {
+            if in_Potential_Set == false{ in_Potential_Set = true }
+            if let lclDataVals = currentConnectedDataVals{
+                lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
+            }
+        }
+        
+        else if type == .deActivate_Potential_Set {
+            if in_Potential_Set == true{ in_Potential_Set = false }
+            if let lclDataVals = currentConnectedDataVals{
+                lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
+            }
+        }
         
         
         else if type == .activate_Viable_Set_Left {
@@ -208,12 +221,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .deActivate_Prohibited {
             if in_Prohibited_Set == true{in_Prohibited_Set=false}
         }
-        else if type == .activate_Potential_Set {
-            if in_Potential_Set == false{in_Potential_Set=true}
-        }
-        else if type == .deActivate_Potential_Set{
-            if in_Potential_Set == true{in_Potential_Set=false}
-        }
+        
         // should only happen if thres a change
         //if let lclDataVals = currentConnectedDataVals {
 //            lclDataVals.referenced_in_Viable_Set_Right = in_Viable_Set_Right
