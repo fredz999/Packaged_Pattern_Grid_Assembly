@@ -78,43 +78,42 @@ class Viable_Set_Helper_Functions{
     
     func endPotentialNote(){
         
-        print("po set length: ",central_State_Ref.centralState_PotentialNoteSet.count.description)
+        //print("po set length: ",central_State_Ref.centralState_PotentialNoteSet.count.description)
         
         for cell in central_State_Ref.centralState_PotentialNoteSet {
             cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
         }
+        
+        if let lcl_Note_Collection_Ref = central_State_Ref.note_Collection_Ref{
+            let noteArray : [Underlying_Data_Cell] = Array(central_State_Ref.centralState_PotentialNoteSet) //.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            lcl_Note_Collection_Ref.write_Note_Data(cellArrayParam: noteArray)
+        }
 
-        if central_State_Ref.centralState_PotentialNoteSet.count > 2{
-            if let min = central_State_Ref.centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = central_State_Ref.centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            {
-                min.change_Type(newType : .start_Note)
-                max.change_Type(newType : .end_Note)
-                let midz = central_State_Ref.centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
-                for cell in midz{
-                    cell.change_Type(newType : .mid_Note)
-                }
-            }
-        }
-        else if central_State_Ref.centralState_PotentialNoteSet.count == 2{
-            if let min = central_State_Ref.centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = central_State_Ref.centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            {
-                min.change_Type(newType : .start_Note)
-                max.change_Type(newType : .end_Note)
-            }
-        }
-        else if central_State_Ref.centralState_PotentialNoteSet.count == 1 {
-            if let single = central_State_Ref.centralState_PotentialNoteSet.first {
-                single.change_Type(newType : .single_Note)
-            }
-        }
-        
-        
-//        if let max = central_State_Ref.centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//            max.currentType = .end_Note
+//        if central_State_Ref.centralState_PotentialNoteSet.count > 2{
+//            if let min = central_State_Ref.centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            ,let max = central_State_Ref.centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            {
+//                min.change_Type(newType : .start_Note)
+//                max.change_Type(newType : .end_Note)
+//                let midz = central_State_Ref.centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
+//                for cell in midz{
+//                    cell.change_Type(newType : .mid_Note)
+//                }
+//            }
 //        }
-        
+//        else if central_State_Ref.centralState_PotentialNoteSet.count == 2{
+//            if let min = central_State_Ref.centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            ,let max = central_State_Ref.centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            {
+//                min.change_Type(newType : .start_Note)
+//                max.change_Type(newType : .end_Note)
+//            }
+//        }
+//        else if central_State_Ref.centralState_PotentialNoteSet.count == 1 {
+//            if let single = central_State_Ref.centralState_PotentialNoteSet.first {
+//                single.change_Type(newType : .single_Note)
+//            }
+//        }
         
         central_State_Ref.centralState_PotentialNoteSet.removeAll()
     }

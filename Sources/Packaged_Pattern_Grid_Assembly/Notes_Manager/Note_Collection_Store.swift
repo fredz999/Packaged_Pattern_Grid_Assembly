@@ -124,14 +124,15 @@ public class Note_Collection {
     }
     
     func write_Note_Data(cellArrayParam : [Underlying_Data_Cell]){
-        print("cellArrayParam length:",cellArrayParam.count.description
-              ,", startIndy: ",cellArrayParam[0].dataCell_X_Number,", endIndy: ",cellArrayParam[cellArrayParam.count-1].dataCell_X_Number)
-        let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: cellArrayParam[0].dataCell_Y_Number)
-        noteArray.append(note)
-        for cell in cellArrayParam {
-            cell.note_Im_In = note
-        }
-        note_Collection_Highlight_Handler(noteParam: note)
+        print("cellArrayParam length: ",cellArrayParam.count.description)
+//        print("cellArrayParam length:",cellArrayParam.count.description
+//              ,", startIndy: ",cellArrayParam[0].dataCell_X_Number,", endIndy: ",cellArrayParam[cellArrayParam.count-1].dataCell_X_Number)
+//        let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: cellArrayParam[0].dataCell_Y_Number)
+//        noteArray.append(note)
+//        for cell in cellArrayParam {
+//            cell.note_Im_In = note
+//        }
+//        note_Collection_Highlight_Handler(noteParam: note)
     }
     
     // will now be called in central state after which the visual_cells will have their data vals reset

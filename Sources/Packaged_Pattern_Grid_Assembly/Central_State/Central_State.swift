@@ -88,10 +88,7 @@ public class Central_State : ObservableObject {
                     lclViabilityHelpers.initial_WriteOnCell = nil
                     lclViabilityHelpers.endPotentialNote()
                     
-                    if let lcl_Note_Collection_Ref = note_Collection_Ref{
-                        let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet) //.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                        lcl_Note_Collection_Ref.write_Note_Data(cellArrayParam: noteArray)
-                    }
+                    
                 }
                 if let lclCursorRef = cursor_Layer_Ref {
                     
