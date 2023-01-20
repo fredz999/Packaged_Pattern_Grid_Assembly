@@ -183,6 +183,12 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
             }
         }
+        else if type == .deActivate_Viable_Set_Combined {
+            if in_Viable_Set_Combined == true{in_Viable_Set_Combined = false}
+            if let lclDataVals = currentConnectedDataVals {
+                lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+            }
+        }
         
         
         else if type == .activate_Viable_Set_Right {
