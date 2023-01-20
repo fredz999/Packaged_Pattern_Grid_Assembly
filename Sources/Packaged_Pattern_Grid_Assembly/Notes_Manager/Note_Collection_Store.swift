@@ -124,6 +124,8 @@ public class Note_Collection {
     }
     
     func write_Note_Data(cellArrayParam : [Underlying_Data_Cell]){
+        print("cellArrayParam length:",cellArrayParam.count.description
+              ,", startIndy: ",cellArrayParam[0].dataCell_X_Number,", endIndy: ",cellArrayParam[cellArrayParam.count-1].dataCell_X_Number)
         let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: cellArrayParam[0].dataCell_Y_Number)
         noteArray.append(note)
         for cell in cellArrayParam {
