@@ -203,20 +203,31 @@ public class Central_State : ObservableObject {
     // because you may also need to start making a potential set .... I .... thiiiiink.....hmmm alot going on here
     // this is a bit like field theory or something I mean you cant just think of it as being directional
     
+    //this will have centrecell left and right sets
+    var viableSet_Combined = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = viableSet_Combined.symmetricDifference(newValue)
+            for cell in delta {
+                    cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
+            }
+        }
+        didSet {
+            for cell in viableSet_Combined {
+                    cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
+            }
+        }
+    }
+    
     var viableSet_Right = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = viableSet_Right.symmetricDifference(newValue)
             for cell in delta {
-                //if cell.in_Viable_Set_Right == true {
                     cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Right)
-                //}
             }
         }
         didSet {
             for cell in viableSet_Right {
-                //if cell.in_Viable_Set_Right == false {
                     cell.handleVisibleStateChange(type : .activate_Viable_Set_Right)
-                //}
             }
         }
     }

@@ -141,7 +141,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //            if in_Highlighted_Set == true{handleVisibleStateChange(type: .activate_Highlighted )}
 //        }
 //    }
-    
+    var in_Viable_Set_Combined : Bool = false
     var in_Viable_Set_Right : Bool = false
 //    {
 //        didSet{
@@ -176,6 +176,14 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Highlighted_Set == true{
                 in_Highlighted_Set=false}
         }
+        
+        else if type == .activate_Viable_Set_Combined {
+            if in_Viable_Set_Combined == false{in_Viable_Set_Combined = true}
+            if let lclDataVals = currentConnectedDataVals {
+                lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+            }
+        }
+        
         
         else if type == .activate_Viable_Set_Right {
             if in_Viable_Set_Right == false {
@@ -355,9 +363,11 @@ enum E_VisibleStateChangeType {
     
     case activate_Viable_Set_Right
     case deActivate_Viable_Set_Right
-    
     case activate_Viable_Set_Left
     case deActivate_Viable_Set_Left
+    
+    case activate_Viable_Set_Combined
+    case deActivate_Viable_Set_Combined
     
     case activate_Potential_Set
     case deActivate_Potential_Set

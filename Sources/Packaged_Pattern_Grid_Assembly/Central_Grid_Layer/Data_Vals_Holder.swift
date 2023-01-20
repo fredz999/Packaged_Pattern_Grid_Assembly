@@ -20,7 +20,7 @@ public class Data_Vals_Holder : ObservableObject {
     
     // these boyos will become private ======================
     private var referenced_in_Highlighted_Set : Bool = false
-    
+    private var referenced_in_Viable_Set_Combined : Bool = false
     private var referenced_in_Viable_Set_Right : Bool = false
     
     private var referenced_in_Viable_Set_Left : Bool = false
@@ -58,8 +58,20 @@ public class Data_Vals_Holder : ObservableObject {
     
     public func update_Cell_Status(status_Update_TypeParam:status_Update_Type,value:Bool){
 
+        if status_Update_TypeParam == .viableSetCombined {
+            if value == true {
+                if referenced_in_Viable_Set_Combined == false{
+                    referenced_in_Viable_Set_Combined = true
+                }
+            }
+            else if value == false {
+                if referenced_in_Viable_Set_Combined == true {
+                    referenced_in_Viable_Set_Combined = false
+                }
+            }
+        }
         
-        if status_Update_TypeParam == .viableSetRight {
+        else if status_Update_TypeParam == .viableSetRight {
             if value == true {
                 if referenced_in_Viable_Set_Right == false{
                     referenced_in_Viable_Set_Right = true
@@ -173,15 +185,22 @@ public class Data_Vals_Holder : ObservableObject {
     
     func check_In_Viable_Set()->Bool{
         var retVal = false
-        if referenced_in_Viable_Set_Left == true || referenced_in_Viable_Set_Right == true {
-            if referenced_in_Viable_Set_Left == true {
-                if statusColor != colors.viable_Set_Left_Color{statusColor = colors.viable_Set_Left_Color}
-            }
-            else if referenced_in_Viable_Set_Right == true {
-                if statusColor != colors.viable_Set_Right_Color{statusColor = colors.viable_Set_Right_Color}
-            }
+        
+//        if referenced_in_Viable_Set_Left == true || referenced_in_Viable_Set_Right == true {
+//
+//            if referenced_in_Viable_Set_Left == true {
+//                if statusColor != colors.viable_Set_Left_Color{statusColor = colors.viable_Set_Left_Color}
+//            }
+//            else if referenced_in_Viable_Set_Right == true {
+//                if statusColor != colors.viable_Set_Right_Color{statusColor = colors.viable_Set_Right_Color}
+//            }
+//            retVal = true
+//        }
+        if referenced_in_Viable_Set_Combined == true{
+            if statusColor != colors.viable_Set_Combined_Color{statusColor = colors.viable_Set_Combined_Color}
             retVal = true
         }
+        
         return retVal
     }
  
@@ -227,6 +246,7 @@ public class Data_Vals_Holder : ObservableObject {
 
 public enum status_Update_Type {
     case highlighted
+    case viableSetCombined
     case viableSetRight
     case viableSetLeft
     case prohibitedSet
