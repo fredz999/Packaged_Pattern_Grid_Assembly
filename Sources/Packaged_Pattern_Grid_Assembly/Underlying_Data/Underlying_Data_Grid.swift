@@ -12,9 +12,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     public let dimensions = ComponentDimensions.StaticDimensions
     public var id = UUID()
     public var dataLineArray : [Underlying_Data_Line] = []
-    public init(){
-        set_Data_Grid()
-    }
+    public init(){ set_Data_Grid() }
     
     private var fourFour_Sub_Count : Int = 0
     private var fourFour_Cell_Count : Int = 0
@@ -90,27 +88,14 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     }
     
     public static let Static_Underlying_Data_Grid = Underlying_Data_Grid()
+    
 }
-//==================================================================================================================
-//==================================================================================================================
-
 
 public class Underlying_Data_Line:ObservableObject,Identifiable {
     public var id = UUID()
     public var dataCellArray : [Underlying_Data_Cell] = []
 }
 
-
-
-
-//==================================================================================================================
-//==================================================================================================================
-
-
-
-
-
-// this things line ref dosent change
 public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public static func == (lhs: Underlying_Data_Cell, rhs: Underlying_Data_Cell) -> Bool {
@@ -122,51 +107,23 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public var id = UUID()
+    
     public var dataCell_X_Number : Int
+    
     public var dataCell_Y_Number : Int
-    //================================================================================================================
-    // hopefully none of these three can be true at the same time or this model is all wrongggggggg
-    // like theyre mutually exclusive
-    //=================================================== vizzzz -i- bil ==============================================
-    var in_Prohibited_Set : Bool = false
-//    {
-//        didSet{
-//            if in_Prohibited_Set == true{handleVisibleStateChange(type: .activate_Prohibited)}
-//        }
-//    }
-    
-    var in_Highlighted_Set : Bool = false
-//    {
-//        didSet{
-//            if in_Highlighted_Set == true{handleVisibleStateChange(type: .activate_Highlighted )}
-//        }
-//    }
-    var in_Viable_Set_Combined : Bool = false
-    var in_Viable_Set_Right : Bool = false
-//    {
-//        didSet{
-//            if in_Viable_Set_Right == true{handleVisibleStateChange(type: .activate_Viable_Set_Right )}
-//            else if in_Viable_Set_Right == false{handleVisibleStateChange(type: .deActivate_Viable_Set_Right)}
-//        }
-//    }
-    
-    var in_Viable_Set_Left : Bool = false
-//    {
-//        didSet{
-//            if in_Viable_Set_Left == true{handleVisibleStateChange(type: .activate_Viable_Set_Left )}
-//            else if in_Viable_Set_Left == false{handleVisibleStateChange(type: .deActivate_Viable_Set_Left )}
-//        }
-//    }
-    
-    var in_Potential_Set : Bool = false
-//    {
-//        didSet{
-//            if in_Potential_Set == true{handleVisibleStateChange(type: .activate_Potential_Set )}
-//            else if in_Potential_Set == false{handleVisibleStateChange(type: .deActivate_Potential_Set )}
-//        }
-//    }
 
-    //func handleVisibleStateChange(type : E_VisibleStateChangeType){
+    var in_Prohibited_Set : Bool = false
+
+    var in_Highlighted_Set : Bool = false
+
+    var in_Viable_Set_Combined : Bool = false
+    
+    var in_Viable_Set_Right : Bool = false
+
+    var in_Viable_Set_Left : Bool = false
+
+    var in_Potential_Set : Bool = false
+
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
 
         if type == .activate_Highlighted {
@@ -175,7 +132,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .deActivate_Highlighted {
             if in_Highlighted_Set == true{in_Highlighted_Set=false}
         }
-        
         
         //==============================================================================================================
         else if type == .activate_Viable_Set_Combined {
@@ -187,7 +143,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         else if type == .deActivate_Viable_Set_Combined {
-            if in_Viable_Set_Combined == true{
+            if in_Viable_Set_Combined == true {
                 in_Viable_Set_Combined = false
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
@@ -195,15 +151,15 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         else if type == .activate_Potential_Set {
-            if in_Potential_Set == false{
+            if in_Potential_Set == false {
                 in_Potential_Set = true
-                if let lclDataVals = currentConnectedDataVals{
+                if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
                 }
             }
         }
         else if type == .deActivate_Potential_Set {
-            if in_Potential_Set == true{
+            if in_Potential_Set == true {
                 in_Potential_Set = false
                 if let lclDataVals = currentConnectedDataVals{
                     lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
@@ -211,56 +167,13 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         //==============================================================================================================
-        
-//        else if type == .activate_Viable_Set_Right {
-//            if in_Viable_Set_Right == false {
-//                in_Viable_Set_Right = true
-//                if let lclDataVals = currentConnectedDataVals {
-//                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
-//                }
-//            }
-//        }
-//        else if type == .deActivate_Viable_Set_Right {
-//            if in_Viable_Set_Right == true {
-//                in_Viable_Set_Right=false
-//                if let lclDataVals = currentConnectedDataVals{
-//                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
-//                }
-//            }
-//        }
-        
-
-        
-        
-//        else if type == .activate_Viable_Set_Left {
-//            if in_Viable_Set_Left == false{in_Viable_Set_Left=true}
-//        }
-//        else if type == .deActivate_Viable_Set_Left {
-//            if in_Viable_Set_Left == true{in_Viable_Set_Left=false}
-//        }
-        
         else if type == .activate_Prohibited {
             if in_Prohibited_Set == false{in_Prohibited_Set=true}
         }
         else if type == .deActivate_Prohibited {
             if in_Prohibited_Set == true{in_Prohibited_Set=false}
         }
-        
-        // should only happen if thres a change
-        //if let lclDataVals = currentConnectedDataVals {
-//            lclDataVals.referenced_in_Viable_Set_Right = in_Viable_Set_Right
-            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: in_Viable_Set_Right)
-//            lclDataVals.referenced_in_Viable_Set_Left = in_Viable_Set_Left
-            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetLeft, value: in_Viable_Set_Left)
-//            lclDataVals.referenced_in_Highlighted_Set = in_Highlighted_Set
-            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .highlighted , value: in_Highlighted_Set)
-//            lclDataVals.referenced_in_Prohibited_Set = in_Prohibited_Set
-            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .prohibitedSet, value: in_Prohibited_Set)
-//            lclDataVals.referenced_in_Potential_Set = in_Potential_Set
-            //lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet, value: in_Potential_Set)
-            
-//            lclDataVals.update_Cell_Visual_Status()
-        //}
+
     }
     //================================================================================================================
     var note_Im_In : Note?
