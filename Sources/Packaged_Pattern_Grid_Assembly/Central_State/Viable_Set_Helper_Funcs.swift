@@ -104,8 +104,8 @@ class Viable_Set_Helper_Functions{
                 max.change_Type(newType : .end_Note)
             }
         }
-        else if central_State_Ref.centralState_PotentialNoteSet.count == 1{
-            if let single = central_State_Ref.centralState_PotentialNoteSet.first{
+        else if central_State_Ref.centralState_PotentialNoteSet.count == 1 {
+            if let single = central_State_Ref.centralState_PotentialNoteSet.first {
                 single.change_Type(newType : .single_Note)
             }
         }

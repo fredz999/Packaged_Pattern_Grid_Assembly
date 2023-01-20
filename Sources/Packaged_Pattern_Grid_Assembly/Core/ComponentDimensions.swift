@@ -127,7 +127,7 @@ public class ComponentColors {
     public var viable_Set_Left_Color : Color = Color(red:1,green:0.6,blue:0)
     public var prohibited_Cell_Color : Color = Color(red:1,green:0.8,blue:0)
     public var potential_Cell_Color : Color = Color(red:1,green:0,blue:1)
-    public var grid_Note_Color : Color = Color(red:0.4,green:0,blue:0)
+    public var grid_Note_Color : Color = Color(red:1,green:0.5,blue:0)
     public var grid_Note_Highlighted_Color : Color = Color(red:0.4,green:0.8,blue:0)
     
     public static let StaticColors = ComponentColors()
