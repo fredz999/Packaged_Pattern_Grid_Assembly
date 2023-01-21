@@ -22,22 +22,21 @@ class Viable_Set_Helper_Functions{
         let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
 
         if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-            let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
-            let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-            let currentCellSet = cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
-            central_State_Ref.viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
+        let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
+        let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
+        let currentCellSet = cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
+        central_State_Ref.viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
         }
-
-//        if inViableCellsLeft.count == 0 {
-//            let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-//            central_State_Ref.viableSet_Left = emptyCellsLeft
-//        }
+        else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
+        var viablesOnRight = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.note_Im_In != nil}
+        let viablesOnLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number && $0.note_Im_In != nil}
+        central_State_Ref.viableSet_Combined = viablesOnRight.union(viablesOnLeft)
+        }
         
     }
     
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
-            // want to set the Set if its going from nil
             if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
                 var initialSet = Set<Underlying_Data_Cell>()
                 initialSet.insert(lclFirstPotential)
@@ -61,20 +60,10 @@ class Viable_Set_Helper_Functions{
             
             else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
                 central_State_Ref.centralState_PotentialNoteSet = cell_Line_Set
-                //cell_Line_Set.filter{$0.dataCell_X_Number == lclInitialCell.dataCell_X_Number}
             }
             
         }
     }
-    
-//    func endViableRightSet(){
-//        for cell in central_State_Ref.viableSet_Right {
-//            if cell.in_Viable_Set_Right == true {
-//                cell.in_Viable_Set_Right = false
-//            }
-//        }
-//        central_State_Ref.viableSet_Right.removeAll()
-//    }
     
     func endPotentialNote(){
         
