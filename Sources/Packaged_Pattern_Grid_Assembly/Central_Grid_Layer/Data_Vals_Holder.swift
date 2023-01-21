@@ -130,8 +130,6 @@ public class Data_Vals_Holder : ObservableObject {
     // the same line of logic
     func update_Cell_Visual_Status(){
         
-        print("update_Cell_Visual_Status() X:",referenced_dataCell_X_Number.description,",Y: ",referenced_dataCell_Y_Number.description)
-        
         if check_Cell_Blank() == false {
             check_Highlighted()
         }
