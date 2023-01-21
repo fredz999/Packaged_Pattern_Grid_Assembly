@@ -17,8 +17,7 @@ class Viable_Set_Helper_Functions{
     }
     
     func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
-        print("process_CurrData_Not_In_Note......")
-        
+
         let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
 
@@ -28,34 +27,53 @@ class Viable_Set_Helper_Functions{
         let currentCellSet = cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
         central_State_Ref.viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
         }
-        else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
+        else if inViableCellsRight.count != 0 && inViableCellsLeft.count == 0 {
             
-            if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let firstNonViableLeft = inViableCellsRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                let viablesOnRight = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number
+            if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                
+                let viablesOnRight = cell_Line_Set.filter{
+                $0.dataCell_X_Number >= currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
-                && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number}
-                let viablesOnLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number
-                    && $0.note_Im_In == nil
-                    && $0.dataCell_X_Number > firstNonViableLeft.dataCell_X_Number
+                && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                 }
-                central_State_Ref.viableSet_Combined = viablesOnRight.union(viablesOnLeft)
+                central_State_Ref.viableSet_Combined = viablesOnRight//.union(viablesOnLeft)
             }
-        
-            
-        
-            
-        
-            
-            
-            
-        //central_State_Ref.viableSet_Combined = viablesOnRight.union(viablesOnLeft)
-        //print("viablesOnRight count.......: ",central_State_Ref.viableSet_Combined.count.description)
-//
-
+        }
+        else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
+            if let firstNonViableLeft = inViableCellsRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                let viablesOnLeft = cell_Line_Set.filter{
+                $0.dataCell_X_Number < currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                && $0.dataCell_X_Number > firstNonViableLeft.dataCell_X_Number
+                }
+                central_State_Ref.viableSet_Combined = viablesOnLeft//.union(viablesOnLeft)
+            }
         }
         
     }
+    
+//    else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
+//
+//        if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//        ,let firstNonViableLeft = inViableCellsRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//
+//            let viablesOnRight = cell_Line_Set.filter{
+//            $0.dataCell_X_Number >= currentData.dataCell_X_Number
+//            && $0.note_Im_In == nil
+//            && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
+//            }
+//
+//            let viablesOnLeft = cell_Line_Set.filter{
+//            $0.dataCell_X_Number < currentData.dataCell_X_Number
+//            && $0.note_Im_In == nil
+//            && $0.dataCell_X_Number > firstNonViableLeft.dataCell_X_Number
+//            }
+//
+//            central_State_Ref.viableSet_Combined = viablesOnRight.union(viablesOnLeft)
+//        }
+//    }
+    
+    
     
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
