@@ -20,7 +20,7 @@ class Viable_Set_Helper_Functions{
 
         let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-        print("R: ",inViableCellsRight.count.description,",L: ",inViableCellsLeft.count.description)
+        //print("R: ",inViableCellsRight.count.description,",L: ",inViableCellsLeft.count.description)
         if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
         let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
         let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
@@ -41,7 +41,7 @@ class Viable_Set_Helper_Functions{
         }
         else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
             
-            if let nearNonViableLeft = inViableCellsRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                 print("inViableCellsRight.count == 0 && inViableCellsLeft.count != 0...nearNonViableLeft: ", nearNonViableLeft.dataCell_X_Number.description )
                 let viablesOnLeft = cell_Line_Set.filter{
                 $0.dataCell_X_Number < currentData.dataCell_X_Number
