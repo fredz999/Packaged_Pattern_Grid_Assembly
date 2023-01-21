@@ -40,6 +40,7 @@ class Viable_Set_Helper_Functions{
             }
         }
         else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
+            print("inViableCellsRight.count == 0 && inViableCellsLeft.count != 0...............................")
             if let firstNonViableLeft = inViableCellsRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                 let viablesOnLeft = cell_Line_Set.filter{
                 $0.dataCell_X_Number < currentData.dataCell_X_Number
