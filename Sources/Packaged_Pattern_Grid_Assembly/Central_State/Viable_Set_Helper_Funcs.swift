@@ -40,12 +40,13 @@ class Viable_Set_Helper_Functions{
             }
         }
         else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
-            print("inViableCellsRight.count == 0 && inViableCellsLeft.count != 0...............................")
-            if let firstNonViableLeft = inViableCellsRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            
+            if let nearNonViableLeft = inViableCellsRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                print("inViableCellsRight.count == 0 && inViableCellsLeft.count != 0...nearNonViableLeft: ", nearNonViableLeft.dataCell_X_Number.description )
                 let viablesOnLeft = cell_Line_Set.filter{
                 $0.dataCell_X_Number < currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
-                && $0.dataCell_X_Number > firstNonViableLeft.dataCell_X_Number
+                && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
                 }
                 central_State_Ref.viableSet_Combined = viablesOnLeft//.union(viablesOnLeft)
             }
