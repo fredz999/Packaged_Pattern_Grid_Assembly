@@ -18,6 +18,7 @@ class Viable_Set_Helper_Functions{
     
     func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
         print("process_CurrData_Not_In_Note......")
+        
         let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
 
@@ -28,11 +29,11 @@ class Viable_Set_Helper_Functions{
         central_State_Ref.viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
         }
         else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-        
         let viablesOnRight = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.note_Im_In == nil}
-        print("viablesOnRight count.......: ",viablesOnRight.count.description)
+        central_State_Ref.viableSet_Combined = viablesOnRight//.union(viablesOnLeft)
+        print("viablesOnRight count.......: ",central_State_Ref.viableSet_Combined.count.description)
 //        let viablesOnLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number && $0.note_Im_In == nil}
-//        central_State_Ref.viableSet_Combined = viablesOnRight.union(viablesOnLeft)
+
         }
         
     }

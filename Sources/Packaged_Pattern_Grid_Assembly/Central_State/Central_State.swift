@@ -199,12 +199,12 @@ public class Central_State : ObservableObject {
         willSet {
             let delta = viableSet_Combined.symmetricDifference(newValue)
             for cell in delta {
-                    cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
+                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
             }
         }
         didSet {
             for cell in viableSet_Combined {
-                    cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
+                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
             }
         }
     }
