@@ -20,7 +20,7 @@ class Viable_Set_Helper_Functions{
 
         let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-
+        print("R: ",inViableCellsRight.count.description,",L: ",inViableCellsLeft.count.description)
         if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
         let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
         let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
