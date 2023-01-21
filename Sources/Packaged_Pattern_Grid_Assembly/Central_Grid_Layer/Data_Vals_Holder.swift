@@ -129,6 +129,7 @@ public class Data_Vals_Holder : ObservableObject {
     // to private and I will write an accessor function with an enum type and a val to set them, then the visual update can get called via
     // the same line of logic
     func update_Cell_Visual_Status(){
+        
         print("update_Cell_Visual_Status() X:",referenced_dataCell_X_Number.description,",Y: ",referenced_dataCell_Y_Number.description)
         
         if check_Cell_Blank() == false {
@@ -136,7 +137,7 @@ public class Data_Vals_Holder : ObservableObject {
         }
         else if check_Cell_Blank() == true {
             if check_In_Viable_Set() == true {
-                if check_In_Potential_Set() == true{
+                if check_In_Potential_Set() == true {
                     check_In_Prohib_Set()
                 }
             }
@@ -145,6 +146,7 @@ public class Data_Vals_Holder : ObservableObject {
     
     // remember the functions internal workings set the color - the functions return var determines whether the eval proceeds
     func check_Cell_Blank()->Bool{
+        print("check_Cell_Blank()")
         var retval = true
         if referenced_currentStatus == .start_Blank
             || referenced_currentStatus == .mid_Blank
