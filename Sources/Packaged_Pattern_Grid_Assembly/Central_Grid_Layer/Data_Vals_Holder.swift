@@ -144,7 +144,6 @@ public class Data_Vals_Holder : ObservableObject {
     
     // remember the functions internal workings set the color - the functions return var determines whether the eval proceeds
     func check_Cell_Blank()->Bool{
-        print("check_Cell_Blank()")
         var retval = true
         if referenced_currentStatus == .start_Blank
             || referenced_currentStatus == .mid_Blank
