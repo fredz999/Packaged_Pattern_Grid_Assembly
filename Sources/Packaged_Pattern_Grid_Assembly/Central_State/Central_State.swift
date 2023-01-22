@@ -14,14 +14,6 @@ public class Central_State : ObservableObject {
     @Published var edit_Layer_Visible : Bool = true
     
     @Published public var a_Note_Is_Highlighted : Bool = false
-//    {
-//        didSet {
-//            if a_Note_Is_Highlighted == true {
-//                //leftProhibitedCell = nil
-//                //rightProhibitedCell = nil
-//            }
-//        }
-//    }
 
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     
@@ -55,17 +47,13 @@ public class Central_State : ObservableObject {
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
-    var currentXCursor_Slider_Position : Int = 0
+    var currentXCursor_Slider_Position : Int = 0{
+        didSet{
+            viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+        }
+    }
+    
     var currentYCursor_Slider_Position : Int = 0
-    
-    
-    public init(){
-        post_Init_Setup()
-    }
-    
-    func post_Init_Setup(){
-        viableSetHelpers = Viable_Set_Helper_Functions(central_State_Param: self)
-    }
     
     @Published public var writingIsOn : Bool = false {
         didSet {
@@ -90,12 +78,12 @@ public class Central_State : ObservableObject {
             }
             
             else if writingIsOn == false {
-                if let lclViabilityHelpers = viableSetHelpers {
-                    lclViabilityHelpers.initial_WriteOnCell = nil
-                    lclViabilityHelpers.endPotentialNote()
-                    
-                    
-                }
+                
+                //if let lclViabilityHelpers = viableSetHelpers {
+                    viableSetHelpers.initial_WriteOnCell = nil
+                    viableSetHelpers.endPotentialNote()
+                //}
+                
                 if let lclCursorRef = cursor_Layer_Ref {
                     
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
@@ -163,50 +151,60 @@ public class Central_State : ObservableObject {
         }
     }
     
+    public init(){
+        viableSetHelpers = Viable_Set_Helper_Functions()
+        curr_Data_Pos_Y = 0
+    }
+    
+//    func post_Init_Setup(){
+//        
+//    }
+    
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
-            evaluate_Viable_Set()
+            viableSetHelpers.establish_Viable_Cells_Set()
         }
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
-            evaluate_Viable_Set()
+            viableSetHelpers.establish_Viable_Cells_Set()
         }
     }
 
-    var viableSetHelpers : Viable_Set_Helper_Functions?
+    var viableSetHelpers = Viable_Set_Helper_Functions()
     
-    var curr_Data_Pos_Y : Int = 0
-    
-    public func evaluate_Viable_Set(){
-        //curr_Data_Pos_Y change should set a new cell_Line_Set in helper funcs
-        let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-   
-        var cell_Line_Set = Set<Underlying_Data_Cell>() // only formed when the line actually changes
-        
-        for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
-        
-        let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-
-//        if writingIsOn == false {
-//            if currentData.note_Im_In == nil {
-//                if let lclViableHelpers = viableSetHelpers {
-//                    lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
-//                }
-//            }
-//        }
-//        else if writingIsOn == true {
-//            if currentData.note_Im_In == nil {
-//                if let lclViableHelpers = viableSetHelpers {
-//                    lclViableHelpers.processPotentialNote(cell_Line_Set: cell_Line_Set, currentData: currentData)
-//                }
-//            }
-//        }
+    var curr_Data_Pos_Y : Int{
+        didSet {
+            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+            for cell in currLine.dataCellArray{
+                viableSetHelpers.current_Cell_Line_Set.insert(cell)
+            }
+        }
     }
+    
+//    public func evaluate_Viable_Set(){
+//
+//        let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+//
+////        if writingIsOn == false {
+////            if currentData.note_Im_In == nil {
+////                if let lclViableHelpers = viableSetHelpers {
+////                    lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
+////                }
+////            }
+////        }
+////        else if writingIsOn == true {
+////            if currentData.note_Im_In == nil {
+////                if let lclViableHelpers = viableSetHelpers {
+////                    lclViableHelpers.processPotentialNote(cell_Line_Set: cell_Line_Set, currentData: currentData)
+////                }
+////            }
+////        }
+//    }
 
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref {
@@ -255,7 +253,7 @@ public class Central_State : ObservableObject {
     centralState_Data_Evaluation()
     }
 
-    var rightBoundaryInt : Int?
+    //var rightBoundaryInt : Int?
 
     public func changeNoteLength(isIncrement:Bool) {
         if let noteCollection = note_Collection_Ref {

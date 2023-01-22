@@ -12,9 +12,12 @@ class Viable_Set_Helper_Functions{
     //let central_State_Ref : Central_State
     let dimensions = ComponentDimensions.StaticDimensions
     
-    init(central_State_Param:Central_State){
-        //central_State_Ref = central_State_Param
+    init(){
+        currentData = Central_State.Static_Central_State.data_Grid.dataLineArray[0].dataCellArray[0]
     }
+    var currentData : Underlying_Data_Cell
+
+    var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
     
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
@@ -55,9 +58,10 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    func establish_Viable_Cells_Set(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
-        let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-        let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+    func establish_Viable_Cells_Set(){
+        let inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+        let inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+        viableSet_Combined = inViableCellsRight.union(inViableCellsLeft)
     }
     
     func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
