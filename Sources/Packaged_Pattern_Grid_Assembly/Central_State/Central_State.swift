@@ -164,12 +164,12 @@ public class Central_State : ObservableObject {
 //        }
 //    }
     
-    //var viableSetHelpers : Viable_Set_Helper_Functions
+    var viableSetHelpers : Viable_Set_Helper_Functions
     
     public init(){
         currentXCursor_Slider_Position = 0
         curr_Data_Pos_Y = 0
-//        viableSetHelpers = Viable_Set_Helper_Functions()
+        viableSetHelpers = Viable_Set_Helper_Functions()
 //        viableSetHelpers.currentData = data_Grid.dataLineArray[0].dataCellArray[0]
 //
 //        let currLine = data_Grid.dataLineArray[0]
