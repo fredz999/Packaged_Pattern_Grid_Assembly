@@ -150,6 +150,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 in_Viable_Set_Combined = false
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+                    print("update_Cell_Status called , in_Viable_Set_Combined: ",in_Viable_Set_Combined.description,", Y: ",dataCell_Y_Number)
                 }
 //                else {
 //                    print("currentConnectedDataVals not yet set or summink for DE - activate viable")
