@@ -49,6 +49,7 @@ class Viable_Set_Helper_Functions{
         willSet {
             let delta = viableSet_Combined.symmetricDifference(newValue)
             for cell in delta {
+                print("delta trigered")
                 cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
             }
         }
