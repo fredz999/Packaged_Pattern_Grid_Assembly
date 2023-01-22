@@ -59,10 +59,11 @@ public class Data_Vals_Holder : ObservableObject {
     public func update_Cell_Status(status_Update_TypeParam:status_Update_Type,value:Bool){
 
         if status_Update_TypeParam == .viableSetCombined {
+            print("status_Update_TypeParam == .viableSetCombined")
             if value == true {
                 if referenced_in_Viable_Set_Combined == false {
                     referenced_in_Viable_Set_Combined = true
-                    print("..........set to true")
+                    
                 }
             }
             else if value == false {
