@@ -171,7 +171,7 @@ public class Central_State : ObservableObject {
         viableSetHelpers = Viable_Set_Helper_Functions()
         currentXCursor_Slider_Position = 0
         curr_Data_Pos_Y = 0
-        
+        viableSetHelpers.establish_Viable_Cells_Set()
         
 //        viableSetHelpers.currentData = data_Grid.dataLineArray[0].dataCellArray[0]
 //        let currLine = data_Grid.dataLineArray[0]
