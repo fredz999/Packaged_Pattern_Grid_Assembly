@@ -151,6 +151,8 @@ public class Central_State : ObservableObject {
     {
         didSet {
             let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+            //this might have to be new each time its used
+            viableSetHelpers.current_Cell_Line_Set.removeAll()
             for cell in currLine.dataCellArray{
                 viableSetHelpers.current_Cell_Line_Set.insert(cell)
             }
