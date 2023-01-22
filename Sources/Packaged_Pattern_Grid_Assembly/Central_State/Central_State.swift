@@ -197,13 +197,13 @@ public class Central_State : ObservableObject {
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
-            //viableSetHelpers.establish_Viable_Cells_Set()
+            viableSetHelpers.establish_Viable_Cells_Set()
         }
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
-            //viableSetHelpers.establish_Viable_Cells_Set()
+            viableSetHelpers.establish_Viable_Cells_Set()
         }
     }
 
