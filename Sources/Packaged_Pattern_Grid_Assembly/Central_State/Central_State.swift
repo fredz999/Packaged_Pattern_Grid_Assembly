@@ -72,9 +72,15 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 
-                if let lclViabilityHelpers = viableSetHelpers {
-                    lclViabilityHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-                }
+//                if let lclViabilityHelpers = viableSetHelpers {
+//                    lclViabilityHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+//                }
+                
+                // if the cell its in is in a viable set then do the start cell write
+                // otherwise its not going to get written over
+                // viable set is being assessed all the time
+                // then - out here start the
+                
                 
                 //if let lclPotentialLayer = potential_Note_Layer_Ref {
                     //potentialNoteEvaluation()

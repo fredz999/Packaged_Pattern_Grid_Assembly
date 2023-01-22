@@ -16,11 +16,21 @@ class Viable_Set_Helper_Functions{
         central_State_Ref = central_State_Param
     }
     
+    var initial_WriteOnCell : Underlying_Data_Cell?{
+        willSet {
+            if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
+                var initialSet = Set<Underlying_Data_Cell>()
+                initialSet.insert(lclFirstPotential)
+                processPotentialNote(cell_Line_Set: initialSet, currentData: lclFirstPotential)
+            }
+        }
+    }
+    
     func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
 
         let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-        //print("R: ",inViableCellsRight.count.description,",L: ",inViableCellsLeft.count.description)
+
         if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
         let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
         let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
@@ -68,39 +78,8 @@ class Viable_Set_Helper_Functions{
         }
         
     }
+
     
-//    else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-//
-//        if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        ,let firstNonViableLeft = inViableCellsRight.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//            let viablesOnRight = cell_Line_Set.filter{
-//            $0.dataCell_X_Number >= currentData.dataCell_X_Number
-//            && $0.note_Im_In == nil
-//            && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
-//            }
-//
-//            let viablesOnLeft = cell_Line_Set.filter{
-//            $0.dataCell_X_Number < currentData.dataCell_X_Number
-//            && $0.note_Im_In == nil
-//            && $0.dataCell_X_Number > firstNonViableLeft.dataCell_X_Number
-//            }
-//
-//            central_State_Ref.viableSet_Combined = viablesOnRight.union(viablesOnLeft)
-//        }
-//    }
-    
-    
-    
-    var initial_WriteOnCell : Underlying_Data_Cell?{
-        willSet {
-            if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
-                var initialSet = Set<Underlying_Data_Cell>()
-                initialSet.insert(lclFirstPotential)
-                processPotentialNote(cell_Line_Set: initialSet, currentData: lclFirstPotential)
-            }
-        }
-    }
     
     func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
         if let lclInitialCell = initial_WriteOnCell {
