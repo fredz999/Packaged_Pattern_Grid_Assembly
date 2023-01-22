@@ -62,9 +62,12 @@ class Viable_Set_Helper_Functions{
     func establish_Viable_Cells_Set(){
         let inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+        
         if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-            viableSet_Combined = current_Cell_Line_Set
-            //inViableCellsRight.union(inViableCellsLeft)
+        let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
+        let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
+        let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
+        viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
         }
         
     }
