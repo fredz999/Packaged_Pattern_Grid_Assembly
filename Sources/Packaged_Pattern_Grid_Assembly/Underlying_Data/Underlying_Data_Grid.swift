@@ -118,9 +118,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var in_Viable_Set_Combined : Bool = false
     
-    var in_Viable_Set_Right : Bool = false
-
-    var in_Viable_Set_Left : Bool = false
+//    var in_Viable_Set_Right : Bool = false
+//
+//    var in_Viable_Set_Left : Bool = false
 
     var in_Potential_Set : Bool = false
 
@@ -135,8 +135,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         
         //==============================================================================================================
         else if type == .activate_Viable_Set_Combined {
-            if in_Viable_Set_Combined == false{
-                
+            if in_Viable_Set_Combined == false {
                 in_Viable_Set_Combined = true
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)

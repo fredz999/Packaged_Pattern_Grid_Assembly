@@ -11,7 +11,6 @@ import SwiftUI
 public class Central_Grid_Store : ObservableObject {
     let central_State_Ref = Central_State.Static_Central_State
     let dimensions = ComponentDimensions.StaticDimensions
-    
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
 
     public init(){
@@ -96,11 +95,20 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         let widthParam : CGFloat = underlying_Data_Cell_Param.currentType == .start_Blank ? dimensions.pattern_Start_Blank_Width : dimensions.pattern_Grid_Sub_Cell_Width
         let xOffsetParam : CGFloat = underlying_Data_Cell_Param.currentType == .start_Blank ? dimensions.pattern_Start_Blank_XOffset : dimensions.pattern_Mid_End_XOffset
         
+        //TODO: cell_Swap_Underlying_Data needs updated to include visual config
         data_Vals_Holder = Data_Vals_Holder(xNumParam: underlying_Data_Cell_Param.dataCell_X_Number
         , yNumParam: underlying_Data_Cell_Param.dataCell_Y_Number
         , typeParam: underlying_Data_Cell_Param.currentType
         , cellWidthParam:widthParam, cellHeightParam: dimensions.pattern_Grid_Sub_Cell_Height
         , xOffsetParam:xOffsetParam)
+        
+        if underlying_Data_Cell_Param.in_Viable_Set_Combined == true{
+            data_Vals_Holder.update_Cell_Status(status_Update_TypeParam: .viableSetCombined , value: underlying_Data_Cell_Param.in_Viable_Set_Combined)
+        }
+        
+        if underlying_Data_Cell_Param.in_Highlighted_Set == true{
+            data_Vals_Holder.update_Cell_Status(status_Update_TypeParam: .highlighted , value: underlying_Data_Cell_Param.in_Highlighted_Set)
+        }
         
         cell_Swap_Underlying_Data(new_Data_Cell: underlying_Data_Cell_Param)
         
@@ -109,7 +117,6 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
-        print("data vals just got set ..... add the viable bool in here....? ")
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number

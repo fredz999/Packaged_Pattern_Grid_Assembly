@@ -186,17 +186,7 @@ public class Data_Vals_Holder : ObservableObject {
     
     func check_In_Viable_Set()->Bool{
         var retVal = false
-        
-//        if referenced_in_Viable_Set_Left == true || referenced_in_Viable_Set_Right == true {
-//
-//            if referenced_in_Viable_Set_Left == true {
-//                if statusColor != colors.viable_Set_Left_Color{statusColor = colors.viable_Set_Left_Color}
-//            }
-//            else if referenced_in_Viable_Set_Right == true {
-//                if statusColor != colors.viable_Set_Right_Color{statusColor = colors.viable_Set_Right_Color}
-//            }
-//            retVal = true
-//        }
+
         if referenced_in_Viable_Set_Combined == true{
             if statusColor != colors.viable_Set_Combined_Color{statusColor = colors.viable_Set_Combined_Color}
             retVal = true
@@ -248,8 +238,8 @@ public class Data_Vals_Holder : ObservableObject {
 public enum status_Update_Type {
     case highlighted
     case viableSetCombined
-    case viableSetRight
-    case viableSetLeft
+//    case viableSetRight
+//    case viableSetLeft
     case prohibitedSet
     case potentialSet
 }

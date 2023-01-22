@@ -170,11 +170,8 @@ class Viable_Set_Helper_Functions{
             }
         }
         
-        //if let lcl_Note_Collection_Ref = Note_Collection.Static_Note_Collection{
-            //central_State_Ref.note_Collection_Ref{
-            let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
-            Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
-        //}
+        let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
+        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
         
         for cell in centralState_PotentialNoteSet {
             cell.handleVisibleStateChange(type: .deActivate_Potential_Set)

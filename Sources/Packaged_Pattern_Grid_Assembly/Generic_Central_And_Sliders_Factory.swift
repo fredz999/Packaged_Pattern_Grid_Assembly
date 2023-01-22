@@ -18,7 +18,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    public var visible_Grid_Store = Central_Grid_Store()
+    public var visible_Grid_Store : Central_Grid_Store
+    
     public var centralState = Central_State.Static_Central_State
     
     
@@ -58,7 +59,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord)
         // I want this to happen before central state
-        //visible_Grid_Store = Central_Grid_Store()
+        visible_Grid_Store = Central_Grid_Store()
         
         cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store()
         
