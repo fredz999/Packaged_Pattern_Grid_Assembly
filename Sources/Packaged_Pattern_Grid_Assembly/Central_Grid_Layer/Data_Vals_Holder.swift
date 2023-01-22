@@ -60,7 +60,7 @@ public class Data_Vals_Holder : ObservableObject {
 
         if status_Update_TypeParam == .viableSetCombined {
             if value == true {
-                if referenced_in_Viable_Set_Combined == false{
+                if referenced_in_Viable_Set_Combined == false {
                     referenced_in_Viable_Set_Combined = true
                     print("..........set to true")
                 }
