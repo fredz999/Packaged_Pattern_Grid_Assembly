@@ -155,10 +155,10 @@ public class Central_State : ObservableObject {
             viableSetHelpers.current_Cell_Line_Set.removeAll()
             var newSet = Set<Underlying_Data_Cell>()
             
-            for cell in currLine.dataCellArray{
-                newSet.insert(cell)
-            }
-            viableSetHelpers.current_Cell_Line_Set = newSet
+//            for cell in currLine.dataCellArray{
+//                newSet.insert(cell)
+//            }
+//            viableSetHelpers.current_Cell_Line_Set = newSet
         }
     }
     
