@@ -136,10 +136,13 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         //==============================================================================================================
         else if type == .activate_Viable_Set_Combined {
             if in_Viable_Set_Combined == false{
-                print("type == .activate_Viable_Set_Combined ")
+                
                 in_Viable_Set_Combined = true
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+                }
+                else {
+                    print("currentConnectedDataVals not yet set or summink ")
                 }
             }
         }
