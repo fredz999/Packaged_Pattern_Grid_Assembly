@@ -148,41 +148,39 @@ public class Central_State : ObservableObject {
     }
     
     var curr_Data_Pos_Y : Int
-//    {
-//        didSet {
-//            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-//            for cell in currLine.dataCellArray{
-//                viableSetHelpers.current_Cell_Line_Set.insert(cell)
-//            }
-//        }
-//    }
+    {
+        didSet {
+            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+            for cell in currLine.dataCellArray{
+                viableSetHelpers.current_Cell_Line_Set.insert(cell)
+            }
+        }
+    }
     
     var currentXCursor_Slider_Position : Int
-//    {
-//        didSet{
-//            viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-//        }
-//    }
+    {
+        didSet{
+            viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+        }
+    }
     
     var viableSetHelpers : Viable_Set_Helper_Functions
     
     public init(){
+        
+        viableSetHelpers = Viable_Set_Helper_Functions()
         currentXCursor_Slider_Position = 0
         curr_Data_Pos_Y = 0
-        viableSetHelpers = Viable_Set_Helper_Functions()
+        
+        
 //        viableSetHelpers.currentData = data_Grid.dataLineArray[0].dataCellArray[0]
-//
 //        let currLine = data_Grid.dataLineArray[0]
 //        for cell in currLine.dataCellArray{
 //            viableSetHelpers.current_Cell_Line_Set.insert(cell)
 //        }
         
     }
-    
-//    func post_Init_Setup(){
-//
-//    }
-    
+
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
