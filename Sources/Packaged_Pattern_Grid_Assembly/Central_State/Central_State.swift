@@ -147,21 +147,22 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var curr_Data_Pos_Y : Int{
-        didSet {
-            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-            for cell in currLine.dataCellArray{
-                viableSetHelpers.current_Cell_Line_Set.insert(cell)
-            }
-        }
-    }
+    var curr_Data_Pos_Y : Int
+//    {
+//        didSet {
+//            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+//            for cell in currLine.dataCellArray{
+//                viableSetHelpers.current_Cell_Line_Set.insert(cell)
+//            }
+//        }
+//    }
     
     var currentXCursor_Slider_Position : Int
-    {
-        didSet{
-            viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-        }
-    }
+//    {
+//        didSet{
+//            viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+//        }
+//    }
     
     var viableSetHelpers : Viable_Set_Helper_Functions
     
