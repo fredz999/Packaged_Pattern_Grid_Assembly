@@ -135,6 +135,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         
         //==============================================================================================================
         else if type == .activate_Viable_Set_Combined {
+            print("type == .activate_Viable_Set_Combined ")
             if in_Viable_Set_Combined == false{
                 in_Viable_Set_Combined = true
                 if let lclDataVals = currentConnectedDataVals {
