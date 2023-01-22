@@ -147,7 +147,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var curr_Data_Pos_Y : Int
+    var curr_Data_Pos_Y : Int = 0
     {
         didSet {
             let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -157,7 +157,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var currentXCursor_Slider_Position : Int
+    var currentXCursor_Slider_Position : Int = 0
     {
         didSet{
             viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
@@ -169,8 +169,7 @@ public class Central_State : ObservableObject {
     public init(){
         
         viableSetHelpers = Viable_Set_Helper_Functions()
-        curr_Data_Pos_Y = 0
-        currentXCursor_Slider_Position = 0
+        
         
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         for cell in currLine.dataCellArray{
@@ -180,6 +179,9 @@ public class Central_State : ObservableObject {
         viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         viableSetHelpers.establish_Viable_Cells_Set()
+        
+//        curr_Data_Pos_Y = 0
+//        currentXCursor_Slider_Position = 0
         
 //        viableSetHelpers.currentData = data_Grid.dataLineArray[0].dataCellArray[0]
 //        let currLine = data_Grid.dataLineArray[0]
