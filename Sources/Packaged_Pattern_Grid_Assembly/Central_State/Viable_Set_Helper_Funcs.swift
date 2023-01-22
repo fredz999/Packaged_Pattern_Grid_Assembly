@@ -18,7 +18,11 @@ class Viable_Set_Helper_Functions{
     }
     var currentData : Underlying_Data_Cell
 
-    var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
+    var current_Cell_Line_Set = Set<Underlying_Data_Cell>(){
+        didSet{
+            print("current_Cell_Line_Set got set")
+        }
+    }
     
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
@@ -49,7 +53,6 @@ class Viable_Set_Helper_Functions{
         willSet {
             let delta = viableSet_Combined.symmetricDifference(newValue)
             for cell in delta {
-                print("delta trigered")
                 cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
             }
         }
