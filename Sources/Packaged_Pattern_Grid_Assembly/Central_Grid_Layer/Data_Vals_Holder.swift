@@ -62,6 +62,7 @@ public class Data_Vals_Holder : ObservableObject {
             if value == true {
                 if referenced_in_Viable_Set_Combined == false{
                     referenced_in_Viable_Set_Combined = true
+                    print("..........set to true")
                 }
             }
             else if value == false {

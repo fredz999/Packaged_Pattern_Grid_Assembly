@@ -55,7 +55,6 @@ class Viable_Set_Helper_Functions{
         didSet {
             for cell in viableSet_Combined {
                 cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
-                print("viableSet_Combined count:",viableSet_Combined.count.description)
             }
         }
     }
