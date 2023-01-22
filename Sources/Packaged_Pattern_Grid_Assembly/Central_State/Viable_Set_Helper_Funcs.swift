@@ -13,7 +13,8 @@ class Viable_Set_Helper_Functions{
     let dimensions = ComponentDimensions.StaticDimensions
     
     init(){
-        currentData = Central_State.Static_Central_State.data_Grid.dataLineArray[0].dataCellArray[0]
+        currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
+        //Central_State.Static_Central_State.data_Grid.dataLineArray[0].dataCellArray[0]
     }
     var currentData : Underlying_Data_Cell
 
