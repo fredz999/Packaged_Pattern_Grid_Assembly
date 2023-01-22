@@ -57,7 +57,7 @@ public class Central_State : ObservableObject {
     //==================================================
     var currentXCursor_Slider_Position : Int = 0
     var currentYCursor_Slider_Position : Int = 0
-    var curr_Data_Pos_Y : Int = 0
+    
     
     public init(){
         post_Init_Setup()
@@ -177,68 +177,35 @@ public class Central_State : ObservableObject {
             evaluate_Viable_Set()
         }
     }
-    
-    var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>()
-    {
-        willSet {
-            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-            }
-        }
-        didSet {
-            for cell in centralState_PotentialNoteSet {
-                cell.handleVisibleStateChange(type: .activate_Potential_Set)
-            }
-        }
-    }
-    // needs pushed, trying to lessen the amount of times the update gets tripped I think I might be inside looping
-    // TODO: cells outside of set reset needs changed
-    // I think Ive got this seriously wrong, the nature of this is actually more like left and right sets after all
-    // when you have a r.h.s set i.e current to right limit AND a lhs set which has initial to current ..... those are
-    // always going to be in two seperate sets, and the reason is because the position of the current has to be monitored
-    // because you may also need to start making a potential set .... I .... thiiiiink.....hmmm alot going on here
-    // this is a bit like field theory or something I mean you cant just think of it as being directional
-    
-    //this will have centrecell left and right sets
-    var viableSet_Combined = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = viableSet_Combined.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
-            }
-        }
-        didSet {
-            for cell in viableSet_Combined {
-                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
-            }
-        }
-    }
 
     var viableSetHelpers : Viable_Set_Helper_Functions?
     
+    var curr_Data_Pos_Y : Int = 0
+    
     public func evaluate_Viable_Set(){
-        
+        //curr_Data_Pos_Y change should set a new cell_Line_Set in helper funcs
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-        var cell_Line_Set = Set<Underlying_Data_Cell>()
+   
+        var cell_Line_Set = Set<Underlying_Data_Cell>() // only formed when the line actually changes
+        
         for cell in currLine.dataCellArray{cell_Line_Set.insert(cell)}
         
         let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
 
-        if writingIsOn == false {
-            if currentData.note_Im_In == nil {
-                if let lclViableHelpers = viableSetHelpers {
-                    lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
-                }
-            }
-        }
-        else if writingIsOn == true {
-            if currentData.note_Im_In == nil {
-                if let lclViableHelpers = viableSetHelpers {
-                    lclViableHelpers.processPotentialNote(cell_Line_Set: cell_Line_Set, currentData: currentData)
-                }
-            }
-        }
+//        if writingIsOn == false {
+//            if currentData.note_Im_In == nil {
+//                if let lclViableHelpers = viableSetHelpers {
+//                    lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
+//                }
+//            }
+//        }
+//        else if writingIsOn == true {
+//            if currentData.note_Im_In == nil {
+//                if let lclViableHelpers = viableSetHelpers {
+//                    lclViableHelpers.processPotentialNote(cell_Line_Set: cell_Line_Set, currentData: currentData)
+//                }
+//            }
+//        }
     }
 
     func centralState_Cursor_Position_Evaluation() {

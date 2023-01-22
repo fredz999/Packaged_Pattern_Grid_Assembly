@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 class Viable_Set_Helper_Functions{
     
-    let central_State_Ref : Central_State
+    //let central_State_Ref : Central_State
     let dimensions = ComponentDimensions.StaticDimensions
     
     init(central_State_Param:Central_State){
-        central_State_Ref = central_State_Param
+        //central_State_Ref = central_State_Param
     }
     
     var initial_WriteOnCell : Underlying_Data_Cell?{
@@ -26,6 +26,40 @@ class Viable_Set_Helper_Functions{
         }
     }
     
+    var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>()
+    {
+        willSet {
+            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+        }
+        didSet {
+            for cell in centralState_PotentialNoteSet {
+                cell.handleVisibleStateChange(type: .activate_Potential_Set)
+            }
+        }
+    }
+
+    var viableSet_Combined = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = viableSet_Combined.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
+            }
+        }
+        didSet {
+            for cell in viableSet_Combined {
+                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
+            }
+        }
+    }
+    
+    func establish_Viable_Cells_Set(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
+        let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+        let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+    }
+    
     func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
 
         let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
@@ -35,7 +69,7 @@ class Viable_Set_Helper_Functions{
         let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
         let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
         let currentCellSet = cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
-        central_State_Ref.viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
+        viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
         }
         else if inViableCellsRight.count != 0 && inViableCellsLeft.count == 0 {
             
@@ -46,7 +80,7 @@ class Viable_Set_Helper_Functions{
                 && $0.note_Im_In == nil
                 && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                 }
-                central_State_Ref.viableSet_Combined = viablesOnRight//.union(viablesOnLeft)
+                viableSet_Combined = viablesOnRight//.union(viablesOnLeft)
             }
         }
         else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
@@ -57,7 +91,7 @@ class Viable_Set_Helper_Functions{
                 && $0.note_Im_In == nil
                 && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
                 }
-                central_State_Ref.viableSet_Combined = viablesOnLeft//.union(viablesOnLeft)
+                viableSet_Combined = viablesOnLeft//.union(viablesOnLeft)
             }
         }
         else if inViableCellsRight.count != 0 && inViableCellsLeft.count != 0 {
@@ -73,29 +107,27 @@ class Viable_Set_Helper_Functions{
                 && $0.note_Im_In == nil
                 && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                 }
-                central_State_Ref.viableSet_Combined = viablesOnLeft.union(viablesOnRight)
+                viableSet_Combined = viablesOnLeft.union(viablesOnRight)
             }
         }
         
     }
 
-    
-    
     func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
         if let lclInitialCell = initial_WriteOnCell {
             
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                central_State_Ref.centralState_PotentialNoteSet =
+                centralState_PotentialNoteSet =
                 cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
             }
             
             else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-                central_State_Ref.centralState_PotentialNoteSet =
+                centralState_PotentialNoteSet =
                 cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
             }
             
             else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-                central_State_Ref.centralState_PotentialNoteSet = cell_Line_Set
+                centralState_PotentialNoteSet = cell_Line_Set
             }
             
         }
@@ -103,42 +135,43 @@ class Viable_Set_Helper_Functions{
     
     func endPotentialNote(){
         
-        if central_State_Ref.centralState_PotentialNoteSet.count > 2{
-            if let min = central_State_Ref.centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = central_State_Ref.centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        if centralState_PotentialNoteSet.count > 2{
+            if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             {
                 min.change_Type(newType : .start_Note)
                 max.change_Type(newType : .end_Note)
-                let midz = central_State_Ref.centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
+                let midz = centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
                 for cell in midz{
                     cell.change_Type(newType : .mid_Note)
                 }
             }
         }
-        else if central_State_Ref.centralState_PotentialNoteSet.count == 2{
-            if let min = central_State_Ref.centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = central_State_Ref.centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        else if centralState_PotentialNoteSet.count == 2{
+            if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             {
                 min.change_Type(newType : .start_Note)
                 max.change_Type(newType : .end_Note)
             }
         }
-        else if central_State_Ref.centralState_PotentialNoteSet.count == 1 {
-            if let single = central_State_Ref.centralState_PotentialNoteSet.first {
+        else if centralState_PotentialNoteSet.count == 1 {
+            if let single = centralState_PotentialNoteSet.first {
                 single.change_Type(newType : .single_Note)
             }
         }
         
-        if let lcl_Note_Collection_Ref = central_State_Ref.note_Collection_Ref{
-            let noteArray : [Underlying_Data_Cell] = Array(central_State_Ref.centralState_PotentialNoteSet)
-            lcl_Note_Collection_Ref.write_Note_Data(cellArrayParam: noteArray)
-        }
+        //if let lcl_Note_Collection_Ref = Note_Collection.Static_Note_Collection{
+            //central_State_Ref.note_Collection_Ref{
+            let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
+            Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
+        //}
         
-        for cell in central_State_Ref.centralState_PotentialNoteSet {
+        for cell in centralState_PotentialNoteSet {
             cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
         }
         
-        central_State_Ref.centralState_PotentialNoteSet.removeAll()
+        centralState_PotentialNoteSet.removeAll()
         
     }
     
