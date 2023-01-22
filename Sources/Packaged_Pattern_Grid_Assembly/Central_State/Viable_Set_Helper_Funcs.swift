@@ -179,22 +179,4 @@ class Viable_Set_Helper_Functions{
         
     }
     
-    // cells right with note
-    //            let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-    //            let nearestInviableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-    //            if let lclNearestRight = nearestInviableRight {
-    //                let viable_Cells_Right = cell_Line_Set.filter{$0.dataCell_X_Number >= currentData.dataCell_X_Number && $0.dataCell_X_Number < lclNearestRight.dataCell_X_Number}
-    //                viableSet = viable_Cells_Right
-    //            }
-    // cells left with note
-    //            let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-    //            let nearestInviableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-    //            if let lclNearestLeft = nearestInviableLeft {
-    //                let viable_Cells_Left = cell_Line_Set.filter{$0.dataCell_X_Number <= currentData.dataCell_X_Number && $0.dataCell_X_Number > lclNearestLeft.dataCell_X_Number}
-    //                viableSet = viable_Cells_Left
-    //            }
-    //
-    
-    
-    
 }

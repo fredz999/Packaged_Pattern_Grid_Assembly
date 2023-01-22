@@ -47,11 +47,7 @@ public class Central_State : ObservableObject {
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
-    var currentXCursor_Slider_Position : Int = 0{
-        didSet{
-            viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-        }
-    }
+    
     
     var currentYCursor_Slider_Position : Int = 0
     
@@ -151,13 +147,37 @@ public class Central_State : ObservableObject {
         }
     }
     
+    var curr_Data_Pos_Y : Int{
+        didSet {
+            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+            for cell in currLine.dataCellArray{
+                viableSetHelpers.current_Cell_Line_Set.insert(cell)
+            }
+        }
+    }
+    
+    var currentXCursor_Slider_Position : Int
+    {
+        didSet{
+            viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+        }
+    }
+    
     public init(){
         viableSetHelpers = Viable_Set_Helper_Functions()
+        viableSetHelpers.currentData = data_Grid.dataLineArray[0].dataCellArray[0]
+        
+        let currLine = data_Grid.dataLineArray[0]
+        for cell in currLine.dataCellArray{
+            viableSetHelpers.current_Cell_Line_Set.insert(cell)
+        }
+        
+        currentXCursor_Slider_Position = 0
         curr_Data_Pos_Y = 0
     }
     
 //    func post_Init_Setup(){
-//        
+//
 //    }
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
@@ -177,14 +197,7 @@ public class Central_State : ObservableObject {
 
     var viableSetHelpers = Viable_Set_Helper_Functions()
     
-    var curr_Data_Pos_Y : Int{
-        didSet {
-            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-            for cell in currLine.dataCellArray{
-                viableSetHelpers.current_Cell_Line_Set.insert(cell)
-            }
-        }
-    }
+    
     
 //    public func evaluate_Viable_Set(){
 //
