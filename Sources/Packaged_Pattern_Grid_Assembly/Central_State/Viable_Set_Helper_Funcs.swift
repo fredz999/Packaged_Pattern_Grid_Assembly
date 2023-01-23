@@ -145,7 +145,7 @@ class Viable_Set_Helper_Functions{
                     && $0.note_Im_In == nil
                     }
                     
-                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number != currentData.dataCell_X_Number})
+                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == currentData.dataCell_X_Number})
                     print("currentCellSet count: ",currentCellSet.count)
             
                     
