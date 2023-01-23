@@ -9,20 +9,14 @@ import Foundation
 import SwiftUI
 class Viable_Set_Helper_Functions{
     
-    //let central_State_Ref : Central_State
     let dimensions = ComponentDimensions.StaticDimensions
     
     init(){
         currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
-        //Central_State.Static_Central_State.data_Grid.dataLineArray[0].dataCellArray[0]
     }
     var currentData : Underlying_Data_Cell
 
-    var current_Cell_Line_Set = Set<Underlying_Data_Cell>(){
-        didSet{
-            print("current_Cell_Line_Set got set")
-        }
-    }
+    var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
     
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {

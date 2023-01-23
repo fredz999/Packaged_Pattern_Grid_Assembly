@@ -268,10 +268,16 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public func reset_To_Original(){
         currentType = note_Reset_Status
         if let lcl_Data_Vals = currentConnectedDataVals {
-            lcl_Data_Vals.updateValsFromNewData(newXNum: dataCell_X_Number
+            lcl_Data_Vals.updateValsFromNewData(
+            newXNum: dataCell_X_Number
             , newYNum: dataCell_Y_Number
             , newCellStatus: note_Reset_Status
-            , newNoteImIn: nil, isHighlightedParan: false)
+            , newNoteImIn: nil
+            , isHighlightedParan: false
+            , referenced_in_Viable_Set_CombinedParam : false
+            , referenced_in_Prohibited_SetParam : false
+            , referenced_in_Potential_SetParam : false
+            )
         }
     }
     

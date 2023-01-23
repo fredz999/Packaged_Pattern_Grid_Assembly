@@ -19,15 +19,21 @@ public class Data_Vals_Holder : ObservableObject {
     
     
     // these boyos will become private ======================
-    private var referenced_in_Highlighted_Set : Bool = false
-    private var referenced_in_Viable_Set_Combined : Bool = false
-    private var referenced_in_Viable_Set_Right : Bool = false
     
-    private var referenced_in_Viable_Set_Left : Bool = false
+
+//    private var referenced_in_Viable_Set_Right : Bool = false
+//
+//    private var referenced_in_Viable_Set_Left : Bool = false
+
+    
+    private var referenced_in_Viable_Set_Combined : Bool = false
+
+    private var referenced_in_Highlighted_Set : Bool = false
     
     private var referenced_in_Prohibited_Set : Bool = false
     
     private var referenced_in_Potential_Set : Bool = false
+    
     // hmmm maybe do this last ... theres shenanigans with the witdth and so on
     // need to eventually make this private ... wait ..... no I dont ... but ..... I guess I could
     @Published public var referenced_currentStatus : E_CellStatus
@@ -209,12 +215,18 @@ public class Data_Vals_Holder : ObservableObject {
    referenced_currentStatus = typeParam
    statusColor = colors.grid_Blank_Color
    }
-
     
-    func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellStatus:E_CellStatus,newNoteImIn:Note?,isHighlightedParan:Bool){
+    func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellStatus:E_CellStatus,newNoteImIn:Note?
+    ,isHighlightedParan:Bool,referenced_in_Viable_Set_CombinedParam:Bool,referenced_in_Prohibited_SetParam:Bool,referenced_in_Potential_SetParam:Bool){
+        
+    if referenced_in_Highlighted_Set != isHighlightedParan{referenced_in_Highlighted_Set = isHighlightedParan}
+    if referenced_in_Viable_Set_Combined != referenced_in_Viable_Set_CombinedParam{referenced_in_Viable_Set_Combined = referenced_in_Viable_Set_CombinedParam}
+    if referenced_in_Prohibited_Set != referenced_in_Prohibited_SetParam{referenced_in_Prohibited_Set = referenced_in_Prohibited_SetParam}
+    if referenced_in_Potential_Set != referenced_in_Potential_SetParam{referenced_in_Potential_Set = referenced_in_Potential_SetParam}
+        
+        
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
-    if referenced_in_Highlighted_Set != isHighlightedParan{referenced_in_Highlighted_Set = isHighlightedParan}
     if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
 
     if let lclCurrentNote = referenced_note_Im_In {
