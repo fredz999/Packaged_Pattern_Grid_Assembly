@@ -100,7 +100,6 @@ class Viable_Set_Helper_Functions{
             let inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
             
             if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-                print("hit the inviables left and right == 0 zone")
             let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
             let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
             let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
@@ -117,11 +116,14 @@ class Viable_Set_Helper_Functions{
                     && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                     }
     
+                    // think this is the one that stays during a write .... ?
                     let viablesOnLeft = current_Cell_Line_Set.filter{
                     $0.dataCell_X_Number < currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
                     }
-    
+                    
+                    print(".....viables on Left: ",viablesOnLeft.count.description)
+                    
                     let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == currentData.dataCell_X_Number})
     
                     viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
@@ -131,9 +133,6 @@ class Viable_Set_Helper_Functions{
             else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
                 
                 if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                    
-                    print("nearNonViableLeft data x: ",nearNonViableLeft.dataCell_X_Number.description)
-
                     let viablesOnLeft = current_Cell_Line_Set.filter {
                     $0.dataCell_X_Number < currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
@@ -146,8 +145,6 @@ class Viable_Set_Helper_Functions{
                     }
                     
                     let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == currentData.dataCell_X_Number})
-                    print("currentCellSet count: ",currentCellSet.count)
-            
                     viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
                     
                 }
