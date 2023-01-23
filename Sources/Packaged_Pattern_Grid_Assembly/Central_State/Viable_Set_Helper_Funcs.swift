@@ -126,9 +126,10 @@ class Viable_Set_Helper_Functions{
 //        }
         
         else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
-            print("hit the inViableCellsLeft.count != 0 zone")
+            
             if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                
+                print("nearNonViableLeft data x: ",nearNonViableLeft.dataCell_X_Number.description)
+
                 let viablesOnLeft = current_Cell_Line_Set.filter {
                 $0.dataCell_X_Number < currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
