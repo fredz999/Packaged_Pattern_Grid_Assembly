@@ -17,14 +17,15 @@ class Viable_Set_Helper_Functions{
     
     var currentData : Underlying_Data_Cell
 
-    var initial_WriteOnCell : Underlying_Data_Cell?{
-        willSet {
-            if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
-                var initialSet = Set<Underlying_Data_Cell>()
-                initialSet.insert(lclFirstPotential)
-            }
-        }
-    }
+    var initial_WriteOnCell : Underlying_Data_Cell?
+//    {
+//        willSet {
+//            if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
+//                var initialSet = Set<Underlying_Data_Cell>()
+//                initialSet.insert(lclFirstPotential)
+//            }
+//        }
+//    }
     
     var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
     

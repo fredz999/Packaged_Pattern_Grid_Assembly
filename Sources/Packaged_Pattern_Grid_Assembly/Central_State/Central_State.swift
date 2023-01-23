@@ -56,9 +56,9 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 
-//                if let lclViabilityHelpers = viableSetHelpers {
-//                    lclViabilityHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-//                }
+                //if let lclViabilityHelpers = viableSetHelpers {
+                viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+                //}
                 
                 // if the cell its in is in a viable set then do the start cell write
                 // otherwise its not going to get written over
@@ -75,6 +75,9 @@ public class Central_State : ObservableObject {
             
             else if writingIsOn == false {
                 
+                if viableSetHelpers.initial_WriteOnCell != nil {
+                    viableSetHelpers.initial_WriteOnCell = nil
+                }
                 //if let lclViabilityHelpers = viableSetHelpers {
 //                    viableSetHelpers.initial_WriteOnCell = nil
 //                    viableSetHelpers.endPotentialNote()
