@@ -138,7 +138,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Viable_Set_Combined == false {
                 in_Viable_Set_Combined = true
                 if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
                 }
                 else {
                     print("currentConnectedDataVals not yet set or summink for activate viable")
@@ -149,7 +149,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Viable_Set_Combined == true {
                 in_Viable_Set_Combined = false
                 if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
                     //print("update_Cell_Status called , in_Viable_Set_Combined: ",in_Viable_Set_Combined.description,", Y: ",dataCell_Y_Number)
                 }
 //                else {
@@ -161,7 +161,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Potential_Set == false {
                 in_Potential_Set = true
                 if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
                 }
             }
         }
@@ -169,7 +169,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Potential_Set == true {
                 in_Potential_Set = false
                 if let lclDataVals = currentConnectedDataVals{
-                    lclDataVals.update_Cell_Status(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .potentialSet , value: in_Potential_Set)
                 }
             }
         }
@@ -242,7 +242,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             in_Highlighted_Set = highlightStatusParam
             if let lcl_Data_Vals = currentConnectedDataVals{
                 //lcl_Data_Vals.referenced_in_Highlighted_Set = highlightStatusParam
-                lcl_Data_Vals.update_Cell_Status(status_Update_TypeParam: .highlighted , value: highlightStatusParam)
+                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: highlightStatusParam)
             }
         }
     }
@@ -260,7 +260,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         if in_Prohibited_Set != newProhibitionStatus {
             in_Prohibited_Set = newProhibitionStatus
             if let lcl_Data_Vals = currentConnectedDataVals {
-                lcl_Data_Vals.update_Cell_Status(status_Update_TypeParam: .prohibitedSet, value: newProhibitionStatus)
+                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet, value: newProhibitionStatus)
             }
         }
     }
@@ -271,12 +271,12 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             lcl_Data_Vals.updateValsFromNewData(
             newXNum: dataCell_X_Number
             , newYNum: dataCell_Y_Number
-            , newCellStatus: note_Reset_Status
+            , newCellNoteStatus: note_Reset_Status
             , newNoteImIn: nil
-            , isHighlightedParan: false
-            , referenced_in_Viable_Set_CombinedParam : false
-            , referenced_in_Prohibited_SetParam : false
-            , referenced_in_Potential_SetParam : false
+//            , isHighlightedParan: false
+//            , referenced_in_Viable_Set_CombinedParam : false
+//            , referenced_in_Prohibited_SetParam : false
+//            , referenced_in_Potential_SetParam : false
             )
         }
     }

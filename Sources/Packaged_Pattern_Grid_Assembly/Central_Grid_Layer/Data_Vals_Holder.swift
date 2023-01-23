@@ -17,15 +17,6 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var sub_Cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
     
-    
-    // these boyos will become private ======================
-    
-
-//    private var referenced_in_Viable_Set_Right : Bool = false
-//
-//    private var referenced_in_Viable_Set_Left : Bool = false
-
-    
     private var referenced_in_Viable_Set_Combined : Bool = false
 
     private var referenced_in_Highlighted_Set : Bool = false
@@ -62,14 +53,13 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-    public func update_Cell_Status(status_Update_TypeParam:status_Update_Type,value:Bool){
+    public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
 
         if status_Update_TypeParam == .viableSetCombined {
             
             if value == true {
                 if referenced_in_Viable_Set_Combined == false {
                     referenced_in_Viable_Set_Combined = true
-                    
                 }
             }
             else if value == false {
@@ -129,14 +119,14 @@ public class Data_Vals_Holder : ObservableObject {
 //            }
 //        }
         
-        update_Cell_Visual_Status()
+        update_Cell_Set_Visual_Status()
     }
     
     // these boyos will become private =====================
     // this will have to be called AFTER there hasbeen an assignment to status ... so all the referenced potentials should get set
     // to private and I will write an accessor function with an enum type and a val to set them, then the visual update can get called via
     // the same line of logic
-    func update_Cell_Visual_Status(){
+    func update_Cell_Set_Visual_Status(){
         
         if check_Cell_Blank() == false {
             check_Highlighted()
@@ -216,18 +206,17 @@ public class Data_Vals_Holder : ObservableObject {
    statusColor = colors.grid_Blank_Color
    }
     
-    func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellStatus:E_CellStatus,newNoteImIn:Note?
-    ,isHighlightedParan:Bool,referenced_in_Viable_Set_CombinedParam:Bool,referenced_in_Prohibited_SetParam:Bool,referenced_in_Potential_SetParam:Bool){
-        
-    if referenced_in_Highlighted_Set != isHighlightedParan{referenced_in_Highlighted_Set = isHighlightedParan}
-    if referenced_in_Viable_Set_Combined != referenced_in_Viable_Set_CombinedParam{referenced_in_Viable_Set_Combined = referenced_in_Viable_Set_CombinedParam}
-    if referenced_in_Prohibited_Set != referenced_in_Prohibited_SetParam{referenced_in_Prohibited_Set = referenced_in_Prohibited_SetParam}
-    if referenced_in_Potential_Set != referenced_in_Potential_SetParam{referenced_in_Potential_Set = referenced_in_Potential_SetParam}
+    func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus,newNoteImIn:Note?){
+    //,isHighlightedParan:Bool,referenced_in_Viable_Set_CombinedParam:Bool,referenced_in_Prohibited_SetParam:Bool,referenced_in_Potential_SetParam:Bool){
+//    if referenced_in_Highlighted_Set != isHighlightedParan{ referenced_in_Highlighted_Set = isHighlightedParan}
+//    if referenced_in_Viable_Set_Combined != referenced_in_Viable_Set_CombinedParam{referenced_in_Viable_Set_Combined = referenced_in_Viable_Set_CombinedParam}
+//    if referenced_in_Prohibited_Set != referenced_in_Prohibited_SetParam{referenced_in_Prohibited_Set = referenced_in_Prohibited_SetParam}
+//    if referenced_in_Potential_Set != referenced_in_Potential_SetParam{referenced_in_Potential_Set = referenced_in_Potential_SetParam}
         
         
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
-    if referenced_currentStatus != newCellStatus{referenced_currentStatus = newCellStatus}
+    if referenced_currentStatus != newCellNoteStatus{referenced_currentStatus = newCellNoteStatus}
 
     if let lclCurrentNote = referenced_note_Im_In {
         if let lclNewNote = newNoteImIn {

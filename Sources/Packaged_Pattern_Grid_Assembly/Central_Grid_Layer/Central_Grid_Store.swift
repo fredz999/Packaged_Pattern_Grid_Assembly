@@ -121,13 +121,14 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
-        , newCellStatus: new_Data_Cell.currentType
+        , newCellNoteStatus: new_Data_Cell.currentType
         , newNoteImIn: new_Data_Cell.note_Im_In
-        , isHighlightedParan: new_Data_Cell.in_Highlighted_Set
-        ,referenced_in_Viable_Set_CombinedParam : new_Data_Cell.in_Viable_Set_Combined
-        ,referenced_in_Prohibited_SetParam : new_Data_Cell.in_Prohibited_Set
-        ,referenced_in_Potential_SetParam : new_Data_Cell.in_Potential_Set
         )
+        
+        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: new_Data_Cell.in_Highlighted_Set)
+        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined , value: new_Data_Cell.in_Viable_Set_Combined)
+        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .potentialSet , value: new_Data_Cell.in_Potential_Set)
+        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet , value: new_Data_Cell.in_Prohibited_Set)
 
     }
     
