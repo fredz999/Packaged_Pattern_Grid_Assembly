@@ -23,7 +23,7 @@ class Viable_Set_Helper_Functions{
             if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
                 var initialSet = Set<Underlying_Data_Cell>()
                 initialSet.insert(lclFirstPotential)
-                processPotentialNote(cell_Line_Set: initialSet, currentData: lclFirstPotential)
+                //processPotentialNote(cell_Line_Set: initialSet, currentData: lclFirstPotential)
             }
         }
     }
@@ -67,119 +67,125 @@ class Viable_Set_Helper_Functions{
         let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
         viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
         }
+    }
+    
+    func establish_Potential_Cells_Set(){
         
     }
     
-    func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
-
-        let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-        let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-
-        if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-        let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
-        let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-        let currentCellSet = cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
-        viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
-        }
-        else if inViableCellsRight.count != 0 && inViableCellsLeft.count == 0 {
-            
-            if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                
-                let viablesOnRight = cell_Line_Set.filter{
-                $0.dataCell_X_Number >= currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
-                }
-                viableSet_Combined = viablesOnRight//.union(viablesOnLeft)
-            }
-        }
-        else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
-            
-            if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                let viablesOnLeft = cell_Line_Set.filter{
-                $0.dataCell_X_Number < currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
-                }
-                viableSet_Combined = viablesOnLeft//.union(viablesOnLeft)
-            }
-        }
-        else if inViableCellsRight.count != 0 && inViableCellsLeft.count != 0 {
-            if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                let viablesOnLeft = cell_Line_Set.filter{
-                $0.dataCell_X_Number < currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
-                }
-                let viablesOnRight = cell_Line_Set.filter{
-                $0.dataCell_X_Number >= currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
-                }
-                viableSet_Combined = viablesOnLeft.union(viablesOnRight)
-            }
-        }
-        
-    }
-
-    func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
-        if let lclInitialCell = initial_WriteOnCell {
-            
-            if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                centralState_PotentialNoteSet =
-                cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
-            }
-            
-            else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-                centralState_PotentialNoteSet =
-                cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
-            }
-            
-            else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-                centralState_PotentialNoteSet = cell_Line_Set
-            }
-            
-        }
-    }
-    
-    func endPotentialNote(){
-        
-        if centralState_PotentialNoteSet.count > 2{
-            if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            {
-                min.change_Type(newType : .start_Note)
-                max.change_Type(newType : .end_Note)
-                let midz = centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
-                for cell in midz{
-                    cell.change_Type(newType : .mid_Note)
-                }
-            }
-        }
-        else if centralState_PotentialNoteSet.count == 2{
-            if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            {
-                min.change_Type(newType : .start_Note)
-                max.change_Type(newType : .end_Note)
-            }
-        }
-        else if centralState_PotentialNoteSet.count == 1 {
-            if let single = centralState_PotentialNoteSet.first {
-                single.change_Type(newType : .single_Note)
-            }
-        }
-        
-        let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
-        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
-        
-        for cell in centralState_PotentialNoteSet {
-            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-        }
-        
-        centralState_PotentialNoteSet.removeAll()
-        
-    }
     
 }
+
+
+//
+//func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
+//
+//    let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
+//    let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+//
+//    if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
+//    let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
+//    let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
+//    let currentCellSet = cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
+//    viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
+//    }
+//    else if inViableCellsRight.count != 0 && inViableCellsLeft.count == 0 {
+//
+//        if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//
+//            let viablesOnRight = cell_Line_Set.filter{
+//            $0.dataCell_X_Number >= currentData.dataCell_X_Number
+//            && $0.note_Im_In == nil
+//            && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
+//            }
+//            viableSet_Combined = viablesOnRight//.union(viablesOnLeft)
+//        }
+//    }
+//    else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
+//
+//        if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//            let viablesOnLeft = cell_Line_Set.filter{
+//            $0.dataCell_X_Number < currentData.dataCell_X_Number
+//            && $0.note_Im_In == nil
+//            && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
+//            }
+//            viableSet_Combined = viablesOnLeft//.union(viablesOnLeft)
+//        }
+//    }
+//    else if inViableCellsRight.count != 0 && inViableCellsLeft.count != 0 {
+//        if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//        ,let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//            let viablesOnLeft = cell_Line_Set.filter{
+//            $0.dataCell_X_Number < currentData.dataCell_X_Number
+//            && $0.note_Im_In == nil
+//            && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
+//            }
+//            let viablesOnRight = cell_Line_Set.filter{
+//            $0.dataCell_X_Number >= currentData.dataCell_X_Number
+//            && $0.note_Im_In == nil
+//            && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
+//            }
+//            viableSet_Combined = viablesOnLeft.union(viablesOnRight)
+//        }
+//    }
+//
+//}
+//
+//func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
+//    if let lclInitialCell = initial_WriteOnCell {
+//
+//        if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+//            centralState_PotentialNoteSet =
+//            cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
+//        }
+//
+//        else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+//            centralState_PotentialNoteSet =
+//            cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
+//        }
+//
+//        else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
+//            centralState_PotentialNoteSet = cell_Line_Set
+//        }
+//
+//    }
+//}
+//
+//func endPotentialNote(){
+//
+//    if centralState_PotentialNoteSet.count > 2{
+//        if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//        ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//        {
+//            min.change_Type(newType : .start_Note)
+//            max.change_Type(newType : .end_Note)
+//            let midz = centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
+//            for cell in midz{
+//                cell.change_Type(newType : .mid_Note)
+//            }
+//        }
+//    }
+//    else if centralState_PotentialNoteSet.count == 2{
+//        if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//        ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//        {
+//            min.change_Type(newType : .start_Note)
+//            max.change_Type(newType : .end_Note)
+//        }
+//    }
+//    else if centralState_PotentialNoteSet.count == 1 {
+//        if let single = centralState_PotentialNoteSet.first {
+//            single.change_Type(newType : .single_Note)
+//        }
+//    }
+//
+//    let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
+//    Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
+//
+//    for cell in centralState_PotentialNoteSet {
+//        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//    }
+//
+//    centralState_PotentialNoteSet.removeAll()
+//
+//}
