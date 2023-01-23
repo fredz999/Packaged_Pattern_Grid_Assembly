@@ -108,23 +108,40 @@ class Viable_Set_Helper_Functions{
             if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
     
                 let viablesOnRight = current_Cell_Line_Set.filter{
-                $0.dataCell_X_Number >= currentData.dataCell_X_Number
+                $0.dataCell_X_Number > currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
                 && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                 }
-                viableSet_Combined = viablesOnRight//.union(viablesOnLeft)
+                
+                let viablesOnLeft = current_Cell_Line_Set.filter{
+                $0.dataCell_X_Number < currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                }
+                
+                let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number != currentData.dataCell_X_Number})
+      
+                viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
             }
         }
         
         else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
     
             if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                let viablesOnLeft = current_Cell_Line_Set.filter{
+                
+                let viablesOnLeft = current_Cell_Line_Set.filter {
                 $0.dataCell_X_Number < currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
                 && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
                 }
-                viableSet_Combined = viablesOnLeft
+                // gotta have on right as well
+                let viablesOnRight = current_Cell_Line_Set.filter{
+                $0.dataCell_X_Number > currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                }
+                
+                let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number != currentData.dataCell_X_Number})
+                
+                viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
             }
         }
         
@@ -139,12 +156,14 @@ class Viable_Set_Helper_Functions{
                 }
                 
                 let viablesOnRight = current_Cell_Line_Set.filter{
-                $0.dataCell_X_Number >= currentData.dataCell_X_Number
+                $0.dataCell_X_Number > currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
                 && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                 }
                 
-                viableSet_Combined = viablesOnLeft.union(viablesOnRight)
+                let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number != currentData.dataCell_X_Number})
+                
+                viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
                 
             }
         }
