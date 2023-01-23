@@ -18,33 +18,33 @@ class Viable_Set_Helper_Functions{
     var currentData : Underlying_Data_Cell
     
     func writeNote(){
-        if centralState_PotentialNoteSet.count > 2{
-            if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        if helperFuncs_PotentialNoteSet.count > 2{
+            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             {
                 min.change_Type(newType : .start_Note)
                 max.change_Type(newType : .end_Note)
-                let midz = centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
+                let midz = helperFuncs_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
                 for cell in midz{
                     cell.change_Type(newType : .mid_Note)
                 }
             }
         }
-        else if centralState_PotentialNoteSet.count == 2{
-            if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        else if helperFuncs_PotentialNoteSet.count == 2{
+            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             {
                 min.change_Type(newType : .start_Note)
                 max.change_Type(newType : .end_Note)
             }
         }
-        else if centralState_PotentialNoteSet.count == 1 {
-            if let single = centralState_PotentialNoteSet.first {
+        else if helperFuncs_PotentialNoteSet.count == 1 {
+            if let single = helperFuncs_PotentialNoteSet.first {
                 single.change_Type(newType : .single_Note)
             }
         }
 
-        let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
+        let noteArray : [Underlying_Data_Cell] = Array(helperFuncs_PotentialNoteSet)
         Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
 
     }
@@ -53,10 +53,10 @@ class Viable_Set_Helper_Functions{
     {
         willSet {
             if newValue == nil {
-                for cell in centralState_PotentialNoteSet {
+                for cell in helperFuncs_PotentialNoteSet {
                     cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                 }
-                centralState_PotentialNoteSet.removeAll()
+                helperFuncs_PotentialNoteSet.removeAll()
             }
         }
     }
@@ -77,16 +77,16 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    var centralState_PotentialNoteSet = Set<Underlying_Data_Cell>()
+    var helperFuncs_PotentialNoteSet = Set<Underlying_Data_Cell>()
     {
         willSet {
-            let delta = centralState_PotentialNoteSet.symmetricDifference(newValue)
+            let delta = helperFuncs_PotentialNoteSet.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
             }
         }
         didSet {
-            for cell in centralState_PotentialNoteSet {
+            for cell in helperFuncs_PotentialNoteSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
             }
         }
@@ -178,7 +178,16 @@ class Viable_Set_Helper_Functions{
             
             
         }
-        
+        else if currentData.note_Im_In != nil {
+            for cell in viableSet_Combined{
+                cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+            }
+            viableSet_Combined.removeAll()
+            for cell in helperFuncs_PotentialNoteSet {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
+            }
+            helperFuncs_PotentialNoteSet.removeAll()
+        }
         
         
     }
@@ -189,20 +198,20 @@ class Viable_Set_Helper_Functions{
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
 //                centralState_PotentialNoteSet =
 //                cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
-                centralState_PotentialNoteSet = viableSet_Combined
+                helperFuncs_PotentialNoteSet = viableSet_Combined
                 .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number})
             }
     
             else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
 //                centralState_PotentialNoteSet =
 //                cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
-                centralState_PotentialNoteSet =
+                helperFuncs_PotentialNoteSet =
                 viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
             }
     
             else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
 //                centralState_PotentialNoteSet = cell_Line_Set
-                centralState_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
+                helperFuncs_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
             }
     
         }
