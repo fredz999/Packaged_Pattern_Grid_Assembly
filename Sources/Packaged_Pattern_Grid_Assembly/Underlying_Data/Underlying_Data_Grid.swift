@@ -117,10 +117,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Highlighted_Set : Bool = false
 
     var in_Viable_Set_Combined : Bool = false
-    
-//    var in_Viable_Set_Right : Bool = false
-//
-//    var in_Viable_Set_Left : Bool = false
 
     var in_Potential_Set : Bool = false
 
@@ -140,9 +136,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
                 }
-//                else {
-//                    print("currentConnectedDataVals not yet set or summink for activate viable")
-//                }
             }
         }
         else if type == .deActivate_Viable_Set_Combined {
@@ -150,11 +143,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 in_Viable_Set_Combined = false
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
-                    //print("update_Cell_Status called , in_Viable_Set_Combined: ",in_Viable_Set_Combined.description,", Y: ",dataCell_Y_Number)
                 }
-//                else {
-//                    print("currentConnectedDataVals not yet set or summink for DE - activate viable")
-//                }
             }
         }
         else if type == .activate_Potential_Set {

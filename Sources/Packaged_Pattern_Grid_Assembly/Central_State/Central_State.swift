@@ -75,13 +75,11 @@ public class Central_State : ObservableObject {
             
             else if writingIsOn == false {
                 
+                viableSetHelpers.writeNote()
+                
                 if viableSetHelpers.initial_WriteOnCell != nil {
                     viableSetHelpers.initial_WriteOnCell = nil
                 }
-                //if let lclViabilityHelpers = viableSetHelpers {
-//                    viableSetHelpers.initial_WriteOnCell = nil
-//                    viableSetHelpers.endPotentialNote()
-                //}
                 
                 if let lclCursorRef = cursor_Layer_Ref {
                     

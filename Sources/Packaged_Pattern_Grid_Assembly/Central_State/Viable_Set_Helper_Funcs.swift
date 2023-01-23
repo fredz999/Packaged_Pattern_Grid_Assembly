@@ -16,17 +16,56 @@ class Viable_Set_Helper_Functions{
     }
     
     var currentData : Underlying_Data_Cell
-
-    var initial_WriteOnCell : Underlying_Data_Cell?
-//    {
-//        willSet {
-//            if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
-//                var initialSet = Set<Underlying_Data_Cell>()
-//                initialSet.insert(lclFirstPotential)
-//            }
-//        }
-//    }
     
+    func writeNote(){
+        if centralState_PotentialNoteSet.count > 2{
+            if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            {
+                min.change_Type(newType : .start_Note)
+                max.change_Type(newType : .end_Note)
+                let midz = centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
+                for cell in midz{
+                    cell.change_Type(newType : .mid_Note)
+                }
+            }
+        }
+        else if centralState_PotentialNoteSet.count == 2{
+            if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            {
+                min.change_Type(newType : .start_Note)
+                max.change_Type(newType : .end_Note)
+            }
+        }
+        else if centralState_PotentialNoteSet.count == 1 {
+            if let single = centralState_PotentialNoteSet.first {
+                single.change_Type(newType : .single_Note)
+            }
+        }
+
+        let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
+        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
+
+//        for cell in centralState_PotentialNoteSet {
+//            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//        }
+//
+//        centralState_PotentialNoteSet.removeAll()
+    }
+    
+    var initial_WriteOnCell : Underlying_Data_Cell?
+    {
+        willSet {
+            if newValue == nil {
+                for cell in centralState_PotentialNoteSet {
+                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                }
+                centralState_PotentialNoteSet.removeAll()
+            }
+        }
+    }
+
     var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
     
     var viableSet_Combined = Set<Underlying_Data_Cell>(){
