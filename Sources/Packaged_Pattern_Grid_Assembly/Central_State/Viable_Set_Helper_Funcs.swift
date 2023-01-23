@@ -47,11 +47,6 @@ class Viable_Set_Helper_Functions{
         let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
         Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
 
-//        for cell in centralState_PotentialNoteSet {
-//            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-//        }
-//
-//        centralState_PotentialNoteSet.removeAll()
     }
     
     var initial_WriteOnCell : Underlying_Data_Cell?
@@ -107,6 +102,41 @@ class Viable_Set_Helper_Functions{
         let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
         viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
         }
+        
+        else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
+    
+            if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                let viablesOnLeft = current_Cell_Line_Set.filter{
+                $0.dataCell_X_Number < currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
+                }
+                viableSet_Combined = viablesOnLeft
+            }
+        }
+        
+        else if inViableCellsRight.count != 0 && inViableCellsLeft.count != 0 {
+            if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            ,let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                
+                let viablesOnLeft = current_Cell_Line_Set.filter{
+                $0.dataCell_X_Number < currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
+                }
+                
+                let viablesOnRight = current_Cell_Line_Set.filter{
+                $0.dataCell_X_Number >= currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
+                }
+                
+                viableSet_Combined = viablesOnLeft.union(viablesOnRight)
+                
+            }
+        }
+        
+        
     }
     
     func establish_Potential_Cells_Set(){
