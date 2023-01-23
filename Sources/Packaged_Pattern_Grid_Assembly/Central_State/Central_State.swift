@@ -186,15 +186,6 @@ public class Central_State : ObservableObject {
         
         viableSetHelpers.establish_Viable_Cells_Set()
         
-//        curr_Data_Pos_Y = 0
-//        currentXCursor_Slider_Position = 0
-        
-//        viableSetHelpers.currentData = data_Grid.dataLineArray[0].dataCellArray[0]
-//        let currLine = data_Grid.dataLineArray[0]
-//        for cell in currLine.dataCellArray{
-//            viableSetHelpers.current_Cell_Line_Set.insert(cell)
-//        }
-        
     }
 
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
@@ -203,38 +194,20 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
+            if writingIsOn == true{
+                viableSetHelpers.establish_Potential_Cells_Set()
+            }
         }
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
+            if writingIsOn == true{
+                viableSetHelpers.establish_Potential_Cells_Set()
+            }
         }
     }
-
-    
-    
-    
-    
-//    public func evaluate_Viable_Set(){
-//
-//        let currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-//
-////        if writingIsOn == false {
-////            if currentData.note_Im_In == nil {
-////                if let lclViableHelpers = viableSetHelpers {
-////                    lclViableHelpers.process_CurrData_Not_In_Note(cell_Line_Set: cell_Line_Set, currentData: currentData)
-////                }
-////            }
-////        }
-////        else if writingIsOn == true {
-////            if currentData.note_Im_In == nil {
-////                if let lclViableHelpers = viableSetHelpers {
-////                    lclViableHelpers.processPotentialNote(cell_Line_Set: cell_Line_Set, currentData: currentData)
-////                }
-////            }
-////        }
-//    }
 
     func centralState_Cursor_Position_Evaluation() {
         if let lclCursorLayer = cursor_Layer_Ref {

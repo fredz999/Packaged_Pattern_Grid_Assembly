@@ -14,16 +14,30 @@ class Viable_Set_Helper_Functions{
     init(){
         currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
     }
+    
     var currentData : Underlying_Data_Cell
 
-    var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
-    
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
             if initial_WriteOnCell == nil, let lclFirstPotential = newValue {
                 var initialSet = Set<Underlying_Data_Cell>()
                 initialSet.insert(lclFirstPotential)
-                //processPotentialNote(cell_Line_Set: initialSet, currentData: lclFirstPotential)
+            }
+        }
+    }
+    
+    var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
+    
+    var viableSet_Combined = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = viableSet_Combined.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
+            }
+        }
+        didSet {
+            for cell in viableSet_Combined {
+                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
             }
         }
     }
@@ -43,20 +57,6 @@ class Viable_Set_Helper_Functions{
         }
     }
 
-    var viableSet_Combined = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = viableSet_Combined.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
-            }
-        }
-        didSet {
-            for cell in viableSet_Combined {
-                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
-            }
-        }
-    }
-    
     func establish_Viable_Cells_Set(){
         let inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
         let inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
@@ -70,7 +70,28 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Potential_Cells_Set(){
-        
+        if let lclInitialCell = initial_WriteOnCell {
+    
+            if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+//                centralState_PotentialNoteSet =
+//                cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
+                centralState_PotentialNoteSet = viableSet_Combined
+                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number})
+            }
+    
+            else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+//                centralState_PotentialNoteSet =
+//                cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
+                centralState_PotentialNoteSet =
+                viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
+            }
+    
+            else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
+//                centralState_PotentialNoteSet = cell_Line_Set
+                centralState_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
+            }
+    
+        }
     }
     
     
