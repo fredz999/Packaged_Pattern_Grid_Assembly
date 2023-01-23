@@ -140,9 +140,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
                 }
-                else {
-                    print("currentConnectedDataVals not yet set or summink for activate viable")
-                }
+//                else {
+//                    print("currentConnectedDataVals not yet set or summink for activate viable")
+//                }
             }
         }
         else if type == .deActivate_Viable_Set_Combined {
