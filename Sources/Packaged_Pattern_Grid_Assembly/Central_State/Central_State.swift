@@ -169,19 +169,13 @@ public class Central_State : ObservableObject {
     }
 
     var currentYCursor_Slider_Position : Int = 0
-    {
-        didSet{
-            print("currentYCursor_Slider_Position set")
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-        }
-    }
     var currentXCursor_Slider_Position : Int = 0
-    {
-        didSet{
-            print("currentXCursor_Slider_Position set")
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-        }
-    }
+//    {
+//        didSet{
+//            print("currentXCursor_Slider_Position set")
+//            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+//        }
+//    }
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
@@ -231,9 +225,11 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
+        print("centralState_Data_Evaluation()")
         if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
