@@ -93,7 +93,6 @@ class Viable_Set_Helper_Functions{
     }
 
     func establish_Viable_Cells_Set(){
-        print("establish_Viable_Cells_Set()")
         if currentData.note_Im_In == nil {
             
             let inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
@@ -186,7 +185,6 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Potential_Cells_Set(){
-        print("establish_Potential_Cells_Set()")
         if let lclInitialCell = initial_WriteOnCell {
     
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {

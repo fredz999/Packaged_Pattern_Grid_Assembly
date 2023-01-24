@@ -148,21 +148,6 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var curr_Data_Pos_Y : Int = 0
-    {
-        didSet {
-            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-            viableSetHelpers.current_Cell_Line_Set.removeAll()
-            var newSet = Set<Underlying_Data_Cell>()
-            for cell in currLine.dataCellArray{
-                newSet.insert(cell)
-            }
-            viableSetHelpers.current_Cell_Line_Set = newSet
-            viableSetHelpers.establish_Viable_Cells_Set()
-            print("curr_Data_Pos_Y : Int = 0")
-        }
-    }
-    
     var currentXCursor_Slider_Position : Int = 0
     {
         didSet{
@@ -186,7 +171,6 @@ public class Central_State : ObservableObject {
         viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         viableSetHelpers.establish_Viable_Cells_Set()
-        print("centralState public init()")
         
     }
 
@@ -196,20 +180,34 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
-            print("cursor_Slider_Update new X")
             if writingIsOn == true {
                 viableSetHelpers.establish_Potential_Cells_Set()
             }
         }
         if let lclNew_Y = new_Y {
+            print("cursor_Slider_Update Y set")
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
-            print("cursor_Slider_Update new T")
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
             }
+        }
+    }
+    
+    var curr_Data_Pos_Y : Int = 0
+    {
+        didSet {
+            print("curr_Data_Pos_Y set")
+            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+            viableSetHelpers.current_Cell_Line_Set.removeAll()
+            var newSet = Set<Underlying_Data_Cell>()
+            for cell in currLine.dataCellArray{
+                newSet.insert(cell)
+            }
+            viableSetHelpers.current_Cell_Line_Set = newSet
+            viableSetHelpers.establish_Viable_Cells_Set()
         }
     }
 
