@@ -201,6 +201,7 @@ public class Central_State : ObservableObject {
                 newSet.insert(cell)
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
+            
             viableSetHelpers.establish_Viable_Cells_Set()
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
@@ -221,7 +222,6 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-        print("centralState_Data_Evaluation()")
         if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number

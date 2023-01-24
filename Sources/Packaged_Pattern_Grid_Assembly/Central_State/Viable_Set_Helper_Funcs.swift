@@ -15,7 +15,11 @@ class Viable_Set_Helper_Functions{
         helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
     }
     
-    var helperFuncs_currentData : Underlying_Data_Cell
+    var helperFuncs_currentData : Underlying_Data_Cell{
+        didSet{
+            print("helperFuncs_currentData in a note?: ",helperFuncs_currentData.note_Im_In == nil ? ", nil" : "not nil")
+        }
+    }
     
     func writeNote(note_Y_Param:Int){
         if helperFuncs_PotentialNoteSet.count > 2{
@@ -93,7 +97,7 @@ class Viable_Set_Helper_Functions{
     }
 
     func establish_Viable_Cells_Set(){
-        print("current_Cell_Line_Set length: ",current_Cell_Line_Set.count.description)
+        
         if helperFuncs_currentData.note_Im_In == nil {
             
             let inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
