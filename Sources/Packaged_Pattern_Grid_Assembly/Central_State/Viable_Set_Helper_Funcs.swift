@@ -121,9 +121,7 @@ class Viable_Set_Helper_Functions{
                     $0.dataCell_X_Number < currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
                     }
-                    
-                    print(".....viables on Left: ",viablesOnLeft.count.description)
-                    
+
                     let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == currentData.dataCell_X_Number})
     
                     viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
@@ -193,21 +191,16 @@ class Viable_Set_Helper_Functions{
         if let lclInitialCell = initial_WriteOnCell {
     
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-//                centralState_PotentialNoteSet =
-//                cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
                 helperFuncs_PotentialNoteSet = viableSet_Combined
                 .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number})
             }
     
             else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-//                centralState_PotentialNoteSet =
-//                cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
                 helperFuncs_PotentialNoteSet =
                 viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
             }
     
             else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-//                centralState_PotentialNoteSet = cell_Line_Set
                 helperFuncs_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
             }
     
