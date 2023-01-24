@@ -172,6 +172,7 @@ public class Central_State : ObservableObject {
     var currentXCursor_Slider_Position : Int = 0
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
+            print("new X hit")
             currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
@@ -181,6 +182,7 @@ public class Central_State : ObservableObject {
             }
         }
         if let lclNew_Y = new_Y {
+            print("new Y hit")
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()

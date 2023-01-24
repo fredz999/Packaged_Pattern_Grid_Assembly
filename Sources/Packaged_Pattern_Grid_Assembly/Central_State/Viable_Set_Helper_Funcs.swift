@@ -177,7 +177,7 @@ class Viable_Set_Helper_Functions{
 
         }
         else if helperFuncs_currentData.note_Im_In != nil {
-            print("currentData.note_Im_In != nil: ",current_Cell_Line_Set.count.description)
+            print("helperFuncs_currentData.note_Im_In != nil.................................")
             for cell in viableSet_Combined{
                 cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
             }
