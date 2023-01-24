@@ -75,7 +75,7 @@ public class Central_State : ObservableObject {
             
             else if writingIsOn == false {
                 
-                viableSetHelpers.writeNote()
+                viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 
                 if viableSetHelpers.initial_WriteOnCell != nil {
                     viableSetHelpers.initial_WriteOnCell = nil
@@ -196,11 +196,11 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 viableSetHelpers.establish_Potential_Cells_Set()
-                viableSetHelpers.clearViableSet()
+                //viableSetHelpers.clearViableSet()
             }
-            else if writingIsOn == false{
+            //else if writingIsOn == false{
                 viableSetHelpers.establish_Viable_Cells_Set()
-            }
+            //}
         }
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
@@ -209,11 +209,11 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 viableSetHelpers.establish_Potential_Cells_Set()
-                viableSetHelpers.clearViableSet()
+                //viableSetHelpers.clearViableSet()
             }
-            else if writingIsOn == false{
+            //else if writingIsOn == false{
                 viableSetHelpers.establish_Viable_Cells_Set()
-            }
+            //}
             
         }
     }

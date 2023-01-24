@@ -17,7 +17,7 @@ class Viable_Set_Helper_Functions{
     
     var currentData : Underlying_Data_Cell
     
-    func writeNote(){
+    func writeNote(note_Y_Param:Int){
         if helperFuncs_PotentialNoteSet.count > 2{
             if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -45,7 +45,7 @@ class Viable_Set_Helper_Functions{
         }
 
         let noteArray : [Underlying_Data_Cell] = Array(helperFuncs_PotentialNoteSet)
-        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
+        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
 
     }
     
@@ -207,12 +207,12 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    func clearViableSet(){
-        for cell in viableSet_Combined {
-            cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
-        }
-        viableSet_Combined.removeAll()
-    }
+//    func clearViableSet(){
+//        for cell in viableSet_Combined {
+//            cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+//        }
+//        viableSet_Combined.removeAll()
+//    }
     
     
 }

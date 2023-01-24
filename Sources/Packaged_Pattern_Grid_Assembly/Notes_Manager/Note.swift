@@ -78,7 +78,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
     
     // the visible cells also need to update in data vals holder
     func resetCells(){
-        for cell in dataCellArray{
+        for cell in dataCellArray {
             cell.note_Im_In = nil
             cell.change_Highlight(highlightStatusParam: false)
             cell.reset_To_Original()

@@ -104,7 +104,7 @@ public class Note_Collection {
     }
 
     }
-    write_Note_Data(cellArrayParam: dataCellArray)
+        write_Note_Data(cellArrayParam: dataCellArray, note_Y_Num: data_Y)
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
@@ -123,8 +123,8 @@ public class Note_Collection {
         }
     }
     
-    func write_Note_Data(cellArrayParam : [Underlying_Data_Cell]){
-        let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: cellArrayParam[0].dataCell_Y_Number)
+    func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
+        let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: note_Y_Num)
         noteArray.append(note)
         for cell in cellArrayParam {
             cell.note_Im_In = note
