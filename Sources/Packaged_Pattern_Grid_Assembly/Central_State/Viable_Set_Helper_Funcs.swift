@@ -89,6 +89,7 @@ class Viable_Set_Helper_Functions{
             for cell in helperFuncs_PotentialNoteSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
             }
+            print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description)
         }
     }
 
