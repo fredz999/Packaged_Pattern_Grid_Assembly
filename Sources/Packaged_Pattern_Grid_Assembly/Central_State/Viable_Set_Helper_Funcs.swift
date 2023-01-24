@@ -89,7 +89,6 @@ class Viable_Set_Helper_Functions{
             for cell in helperFuncs_PotentialNoteSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
             }
-            print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description)
         }
     }
 
@@ -116,8 +115,7 @@ class Viable_Set_Helper_Functions{
                     && $0.note_Im_In == nil
                     && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                     }
-    
-                    // think this is the one that stays during a write .... ?
+
                     let viablesOnLeft = current_Cell_Line_Set.filter{
                     $0.dataCell_X_Number < currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
@@ -171,8 +169,7 @@ class Viable_Set_Helper_Functions{
                     
                 }
             }
-            
-            
+
         }
         else if currentData.note_Im_In != nil {
             for cell in viableSet_Combined{
@@ -184,12 +181,11 @@ class Viable_Set_Helper_Functions{
             }
             helperFuncs_PotentialNoteSet.removeAll()
         }
-        
-        
+
     }
     
     func establish_Potential_Cells_Set(){
-        print("establish_Potential_Cells_Set()")
+
         if let lclInitialCell = initial_WriteOnCell {
     
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
@@ -208,15 +204,7 @@ class Viable_Set_Helper_Functions{
     
         }
     }
-    
-//    func clearViableSet(){
-//        for cell in viableSet_Combined {
-//            cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
-//        }
-//        viableSet_Combined.removeAll()
-//    }
-    
-    
+
 }
 
 
