@@ -189,6 +189,7 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Potential_Cells_Set(){
+        print("establish_Potential_Cells_Set()")
         if let lclInitialCell = initial_WriteOnCell {
     
             if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
