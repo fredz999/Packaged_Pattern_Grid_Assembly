@@ -196,11 +196,9 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 viableSetHelpers.establish_Potential_Cells_Set()
-                //viableSetHelpers.clearViableSet()
             }
-            //else if writingIsOn == false{
-                viableSetHelpers.establish_Viable_Cells_Set()
-            //}
+            viableSetHelpers.establish_Viable_Cells_Set()
+  
         }
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
@@ -209,12 +207,10 @@ public class Central_State : ObservableObject {
             
             if writingIsOn == true {
                 viableSetHelpers.establish_Potential_Cells_Set()
-                //viableSetHelpers.clearViableSet()
             }
-            //else if writingIsOn == false{
-                viableSetHelpers.establish_Viable_Cells_Set()
-            //}
-            
+
+            viableSetHelpers.establish_Viable_Cells_Set()
+
         }
     }
 
