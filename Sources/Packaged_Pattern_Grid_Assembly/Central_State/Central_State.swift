@@ -49,7 +49,6 @@ public class Central_State : ObservableObject {
     //==================================================
     
     
-    var currentYCursor_Slider_Position : Int = 0
     
     @Published public var writingIsOn : Bool = false {
         didSet {
@@ -148,12 +147,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var currentXCursor_Slider_Position : Int = 0
-    {
-        didSet{
-            viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-        }
-    }
+    
     
     var viableSetHelpers : Viable_Set_Helper_Functions
     
@@ -168,12 +162,25 @@ public class Central_State : ObservableObject {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
         
-        viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+        viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         viableSetHelpers.establish_Viable_Cells_Set()
         
     }
 
+    var currentYCursor_Slider_Position : Int = 0
+    {
+        didSet{
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+        }
+    }
+    var currentXCursor_Slider_Position : Int = 0
+    {
+        didSet{
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+        }
+    }
+    
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX

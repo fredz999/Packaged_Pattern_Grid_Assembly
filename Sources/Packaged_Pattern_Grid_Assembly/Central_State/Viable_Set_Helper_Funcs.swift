@@ -12,10 +12,10 @@ class Viable_Set_Helper_Functions{
     let dimensions = ComponentDimensions.StaticDimensions
     
     init(){
-        currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
+        helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
     }
     
-    var currentData : Underlying_Data_Cell
+    var helperFuncs_currentData : Underlying_Data_Cell
     
     func writeNote(note_Y_Param:Int){
         if helperFuncs_PotentialNoteSet.count > 2{
@@ -94,15 +94,15 @@ class Viable_Set_Helper_Functions{
 
     func establish_Viable_Cells_Set(){
         print("current_Cell_Line_Set length: ",current_Cell_Line_Set.count.description)
-        if currentData.note_Im_In == nil {
+        if helperFuncs_currentData.note_Im_In == nil {
             
-            let inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-            let inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
+            let inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
+            let inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
             
             if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-            let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
-            let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-            let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
+            let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
+            let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
+            let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
             }
             
@@ -111,17 +111,17 @@ class Viable_Set_Helper_Functions{
                 if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
     
                     let viablesOnRight = current_Cell_Line_Set.filter {
-                    $0.dataCell_X_Number > currentData.dataCell_X_Number
+                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
                     && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                     }
 
                     let viablesOnLeft = current_Cell_Line_Set.filter {
-                    $0.dataCell_X_Number < currentData.dataCell_X_Number
+                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
                     }
 
-                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == currentData.dataCell_X_Number})
+                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
     
                     viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
                 }
@@ -132,17 +132,17 @@ class Viable_Set_Helper_Functions{
                 if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     
                     let viablesOnLeft = current_Cell_Line_Set.filter {
-                    $0.dataCell_X_Number < currentData.dataCell_X_Number
+                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
                     && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
                     }
 
                     let viablesOnRight = current_Cell_Line_Set.filter {
-                    $0.dataCell_X_Number > currentData.dataCell_X_Number
+                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
                     }
                     
-                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == currentData.dataCell_X_Number})
+                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
                     viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
                     
                 }
@@ -153,18 +153,18 @@ class Viable_Set_Helper_Functions{
                 ,let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     
                     let viablesOnLeft = current_Cell_Line_Set.filter{
-                    $0.dataCell_X_Number < currentData.dataCell_X_Number
+                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
                     && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
                     }
                     
                     let viablesOnRight = current_Cell_Line_Set.filter{
-                    $0.dataCell_X_Number > currentData.dataCell_X_Number
+                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
                     && $0.note_Im_In == nil
                     && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
                     }
                     
-                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == currentData.dataCell_X_Number})
+                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
                     
                     viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
                     
@@ -172,7 +172,7 @@ class Viable_Set_Helper_Functions{
             }
 
         }
-        else if currentData.note_Im_In != nil {
+        else if helperFuncs_currentData.note_Im_In != nil {
             print("currentData.note_Im_In != nil: ",current_Cell_Line_Set.count.description)
             for cell in viableSet_Combined{
                 cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
@@ -189,18 +189,18 @@ class Viable_Set_Helper_Functions{
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
     
-            if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+            if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteSet = viableSet_Combined
-                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number})
+                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number})
             }
     
-            else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+            else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteSet =
-                viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
+                viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number}
             }
     
-            else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-                helperFuncs_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
+            else if helperFuncs_currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
+                helperFuncs_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
             }
     
         }
