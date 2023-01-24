@@ -203,9 +203,9 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
-            //if writingIsOn == true {
+            if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
-            //}
+            }
         }
     }
 
