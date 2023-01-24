@@ -159,6 +159,7 @@ public class Central_State : ObservableObject {
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
             viableSetHelpers.establish_Viable_Cells_Set()
+            print("curr_Data_Pos_Y : Int = 0")
         }
     }
     
@@ -185,6 +186,7 @@ public class Central_State : ObservableObject {
         viableSetHelpers.currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         
         viableSetHelpers.establish_Viable_Cells_Set()
+        print("centralState public init()")
         
     }
 
@@ -194,6 +196,7 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
+            print("cursor_Slider_Update new X")
             if writingIsOn == true {
                 viableSetHelpers.establish_Potential_Cells_Set()
             }
@@ -203,6 +206,7 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
+            print("cursor_Slider_Update new T")
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
             }
