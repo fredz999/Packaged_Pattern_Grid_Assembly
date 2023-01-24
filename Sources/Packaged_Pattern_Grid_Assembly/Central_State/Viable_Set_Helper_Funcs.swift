@@ -97,7 +97,7 @@ class Viable_Set_Helper_Functions{
             
             let inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
             let inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-            
+            print("current_Cell_Line_Set length: ",current_Cell_Line_Set.count.description)
             if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
             let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
             let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
