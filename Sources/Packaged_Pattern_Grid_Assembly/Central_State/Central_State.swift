@@ -201,11 +201,6 @@ public class Central_State : ObservableObject {
                 newSet.insert(cell)
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
-            
-//            viableSetHelpers.establish_Viable_Cells_Set()
-//            if writingIsOn == true {
-//            viableSetHelpers.establish_Potential_Cells_Set()
-//            }
         }
     }
 
