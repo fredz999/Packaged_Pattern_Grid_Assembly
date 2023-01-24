@@ -207,6 +207,13 @@ class Viable_Set_Helper_Functions{
         }
     }
     
+    func clearViableSet(){
+        for cell in viableSet_Combined {
+            cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+        }
+        viableSet_Combined.removeAll()
+    }
+    
     
 }
 
