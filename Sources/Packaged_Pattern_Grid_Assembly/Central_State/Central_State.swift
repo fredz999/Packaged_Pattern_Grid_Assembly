@@ -170,13 +170,6 @@ public class Central_State : ObservableObject {
 
     var currentYCursor_Slider_Position : Int = 0
     var currentXCursor_Slider_Position : Int = 0
-//    {
-//        didSet{
-//            print("currentXCursor_Slider_Position set")
-//            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
-//        }
-//    }
-    
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
@@ -191,10 +184,10 @@ public class Central_State : ObservableObject {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
-            viableSetHelpers.establish_Viable_Cells_Set()
-            if writingIsOn == true {
-            viableSetHelpers.establish_Potential_Cells_Set()
-            }
+//            viableSetHelpers.establish_Viable_Cells_Set()
+//            if writingIsOn == true {
+//            viableSetHelpers.establish_Potential_Cells_Set()
+//            }
         }
     }
     
@@ -209,6 +202,9 @@ public class Central_State : ObservableObject {
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
             viableSetHelpers.establish_Viable_Cells_Set()
+            if writingIsOn == true {
+            viableSetHelpers.establish_Potential_Cells_Set()
+            }
         }
     }
 
