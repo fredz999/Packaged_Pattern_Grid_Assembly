@@ -171,12 +171,14 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     {
         didSet{
+            print("currentYCursor_Slider_Position set")
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         }
     }
     var currentXCursor_Slider_Position : Int = 0
     {
         didSet{
+            print("currentXCursor_Slider_Position set")
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
         }
     }
