@@ -184,10 +184,10 @@ public class Central_State : ObservableObject {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
-//            viableSetHelpers.establish_Viable_Cells_Set()
-//            if writingIsOn == true {
-//            viableSetHelpers.establish_Potential_Cells_Set()
-//            }
+            viableSetHelpers.establish_Viable_Cells_Set()
+            if writingIsOn == true {
+            viableSetHelpers.establish_Potential_Cells_Set()
+            }
         }
     }
     
@@ -202,10 +202,10 @@ public class Central_State : ObservableObject {
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
             
-            viableSetHelpers.establish_Viable_Cells_Set()
-            if writingIsOn == true {
-            viableSetHelpers.establish_Potential_Cells_Set()
-            }
+//            viableSetHelpers.establish_Viable_Cells_Set()
+//            if writingIsOn == true {
+//            viableSetHelpers.establish_Potential_Cells_Set()
+//            }
         }
     }
 
