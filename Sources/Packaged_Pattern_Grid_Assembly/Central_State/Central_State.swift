@@ -185,7 +185,7 @@ public class Central_State : ObservableObject {
             }
         }
         if let lclNew_Y = new_Y {
-            print("cursor_Slider_Update Y set")
+            print("cursor_Slider_Update Y set to: ",lclNew_Y.description)
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
@@ -199,7 +199,7 @@ public class Central_State : ObservableObject {
     var curr_Data_Pos_Y : Int = 0
     {
         didSet {
-            print("curr_Data_Pos_Y set")
+            print("curr_Data_Pos_Y set to: ",curr_Data_Pos_Y.description)
             let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             viableSetHelpers.current_Cell_Line_Set.removeAll()
             var newSet = Set<Underlying_Data_Cell>()
