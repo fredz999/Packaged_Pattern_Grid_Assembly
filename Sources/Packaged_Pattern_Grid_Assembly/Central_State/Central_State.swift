@@ -221,10 +221,11 @@ public class Central_State : ObservableObject {
     
     func centralState_Data_Evaluation(){
         if let lclCursorLayer = cursor_Layer_Ref {
-            
+             
             computedXCursor_Slider_Position = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
             
-            lclCursorLayer.currPosX = computedXCursor_Slider_Position //currentXCursor_Slider_Position
+            lclCursorLayer.currPosX = computedXCursor_Slider_Position
+            
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
 
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
@@ -240,12 +241,15 @@ public class Central_State : ObservableObject {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                     }
                 }
-                else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil{
+                else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
                     if let lclNoteCollection = note_Collection_Ref {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                     }
                 }
+                
             }
+            
+            
         }
     }
 

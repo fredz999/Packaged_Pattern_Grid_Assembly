@@ -16,7 +16,14 @@ class Viable_Set_Helper_Functions{
         //cellNumberMultiplier = 2 // need this to be a val straight outta dimensions
     }
     
-    var helperFuncs_currentData : Underlying_Data_Cell
+    var helperFuncs_currentData : Underlying_Data_Cell {
+        didSet {
+            print("dataX: ",helperFuncs_currentData.dataCell_X_Number.description
+            ,", 4:4 Cell: ",helperFuncs_currentData.four_Four_Cell_Index.description
+            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description)
+        }
+    }
+    
     //var cellNumberMultiplier : Int
     
     func writeNote(note_Y_Param:Int){
@@ -189,6 +196,8 @@ class Viable_Set_Helper_Functions{
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
     
+            // the filter has to be confined to the 1/2 cells.....hmmmm
+            
             if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteSet = viableSet_Combined
                 .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number
