@@ -191,16 +191,16 @@ class Viable_Set_Helper_Functions{
     
             if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteSet = viableSet_Combined
-                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= (helperFuncs_currentData.dataCell_X_Number*cellNumberMultiplier)})
+                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= (helperFuncs_currentData.dataCell_X_Number)})
             }
     
             else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteSet =
-                viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= (helperFuncs_currentData.dataCell_X_Number*cellNumberMultiplier)}
+                viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= (helperFuncs_currentData.dataCell_X_Number)}
             }
     
             else if helperFuncs_currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-                helperFuncs_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == (helperFuncs_currentData.dataCell_X_Number*cellNumberMultiplier)}
+                helperFuncs_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == (helperFuncs_currentData.dataCell_X_Number)}
             }
     
         }
