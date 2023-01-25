@@ -55,7 +55,7 @@ public class Note_Collection {
     // when you
         
         
-    let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Sub_Cell_Width)
+    //let multiplier = Int(dimensions.cursor_X_Jump/dimensions.pattern_Grid_Sub_Cell_Width)
 
     let computed_Lowest_Data_X = lowest_Data_X
         
