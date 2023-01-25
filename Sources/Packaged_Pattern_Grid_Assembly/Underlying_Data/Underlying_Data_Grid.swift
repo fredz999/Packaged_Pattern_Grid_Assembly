@@ -221,29 +221,19 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func change_Type(newType:E_CellStatus){
         currentType = newType
-        if let lcl_Data_Vals = currentConnectedDataVals{
+        if let lcl_Data_Vals = currentConnectedDataVals {
             lcl_Data_Vals.referenced_currentStatus = newType
         }
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
-        if in_Highlighted_Set != highlightStatusParam{
+        if in_Highlighted_Set != highlightStatusParam {
             in_Highlighted_Set = highlightStatusParam
-            if let lcl_Data_Vals = currentConnectedDataVals{
-                //lcl_Data_Vals.referenced_in_Highlighted_Set = highlightStatusParam
+            if let lcl_Data_Vals = currentConnectedDataVals {
                 lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: highlightStatusParam)
             }
         }
     }
-    
-//    public func change_Viable_Set_Status(viableSetMembershipParam:Bool){
-//        if in_Viable_Set_Right != viableSetMembershipParam {
-//            in_Viable_Set_Right = viableSetMembershipParam
-//            if let lcl_Data_Vals = currentConnectedDataVals {
-//                lcl_Data_Vals.update_Cell_Status(status_Update_TypeParam: .viableSetRight, value: viableSetMembershipParam)
-//            }
-//        }
-//    }
     
     public func change_Prohibition_Status(newProhibitionStatus:Bool){
         if in_Prohibited_Set != newProhibitionStatus {
@@ -262,10 +252,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             , newYNum: dataCell_Y_Number
             , newCellNoteStatus: note_Reset_Status
             , newNoteImIn: nil
-//            , isHighlightedParan: false
-//            , referenced_in_Viable_Set_CombinedParam : false
-//            , referenced_in_Prohibited_SetParam : false
-//            , referenced_in_Potential_SetParam : false
             )
         }
     }

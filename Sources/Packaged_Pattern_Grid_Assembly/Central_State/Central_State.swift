@@ -224,13 +224,8 @@ public class Central_State : ObservableObject {
             
             computedXCursor_Slider_Position = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
             
-            lclCursorLayer.currPosX = currentXCursor_Slider_Position
+            lclCursorLayer.currPosX = computedXCursor_Slider_Position //currentXCursor_Slider_Position
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-            
-//print("currentXCursor_Slider_Position: ",currentXCursor_Slider_Position.description
-//,",computedXSliderPosition: ",computedXCursor_Slider_Position.description
-//,", dimensions.cursor_X_Jump_Multiplier: ",dimensions.cursor_X_Jump_Multiplier.description)
-//viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXSliderPosition]
 
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
             
@@ -241,12 +236,12 @@ public class Central_State : ObservableObject {
                 lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
                 
                 if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
-                    if let lclNoteCollection = note_Collection_Ref{
+                    if let lclNoteCollection = note_Collection_Ref {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                     }
                 }
                 else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil{
-                    if let lclNoteCollection = note_Collection_Ref{
+                    if let lclNoteCollection = note_Collection_Ref {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                     }
                 }

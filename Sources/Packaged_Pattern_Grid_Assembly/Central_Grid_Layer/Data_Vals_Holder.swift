@@ -163,9 +163,7 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-    //terminal func
     func check_In_Prohib_Set() {
-        //if referenced_in_Prohibited_Set
         if referenced_in_Prohibited_Set == true {
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
