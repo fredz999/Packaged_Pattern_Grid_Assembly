@@ -225,6 +225,10 @@ public class Central_State : ObservableObject {
             
             let computedXSliderPosition = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
             
+            print("currentXCursor_Slider_Position: ",currentXCursor_Slider_Position.description
+                  ,",computedXSliderPosition: ",computedXSliderPosition.description
+                  ,", dimensions.cursor_X_Jump_Multiplier: ",dimensions.cursor_X_Jump_Multiplier.description)
+            
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXSliderPosition]
             //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
             
