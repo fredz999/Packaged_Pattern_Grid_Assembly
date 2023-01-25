@@ -98,12 +98,12 @@ public class ComponentDimensions : ObservableObject {
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 4
-            cursor_X_Jump = 8
+            cursor_X_Jump = 12
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 6
-            cursor_X_Jump = 12
+            cursor_X_Jump = 8
         }
     }
     
