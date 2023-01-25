@@ -20,7 +20,10 @@ class Viable_Set_Helper_Functions{
         didSet {
             print("dataX: ",helperFuncs_currentData.dataCell_X_Number.description
             ,", 4:4 Cell: ",helperFuncs_currentData.four_Four_Cell_Index.description
-            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description)
+            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description
+            ,", 6:8 Cell: ",helperFuncs_currentData.six_Eight_Cell_Index.description
+            ,", 6:8 Sub: ",helperFuncs_currentData.six_Eight_Sub_Index.description
+            )
         }
     }
     
