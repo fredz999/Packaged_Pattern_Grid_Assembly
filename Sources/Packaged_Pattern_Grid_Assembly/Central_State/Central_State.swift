@@ -30,7 +30,7 @@ public class Central_State : ObservableObject {
     public var central_Grid_Store : Central_Grid_Store?
     
     public func change_Timing_Signature_Central(){
-        dimensions.flip_Timing_Signature()
+        dimensions.flip_Timing_Signature_Dimensions()
         data_Grid.changeTimingSignature_Data_Level()
     }
     
