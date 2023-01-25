@@ -13,11 +13,11 @@ class Viable_Set_Helper_Functions{
     
     init(){
         helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
-        cellNumberMultiplier = 2
+        //cellNumberMultiplier = 2 // need this to be a val straight outta dimensions
     }
     
     var helperFuncs_currentData : Underlying_Data_Cell
-    var cellNumberMultiplier : Int
+    //var cellNumberMultiplier : Int
     
     func writeNote(note_Y_Param:Int){
         if helperFuncs_PotentialNoteSet.count > 2{

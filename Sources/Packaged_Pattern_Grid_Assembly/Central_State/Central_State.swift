@@ -222,7 +222,12 @@ public class Central_State : ObservableObject {
         if let lclCursorLayer = cursor_Layer_Ref {
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+            
+            let computedXSliderPosition = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
+            
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXSliderPosition]
+            //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+            
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {

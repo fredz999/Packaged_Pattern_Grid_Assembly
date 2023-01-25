@@ -94,19 +94,20 @@ public class ComponentDimensions : ObservableObject {
     public var pattern_Mid_End_XOffset : CGFloat = 0
     
     
-    @Published public var cursor_X_Jump : CGFloat = 4
+    @Published public var cursor_X_Jump : CGFloat = 8
+    var cursor_X_Jump_Multiplier : Int = 2
     public func flip_Timing_Signature_Dimensions(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 4
             cursor_X_Jump = 12
-            Central_State.Static_Central_State.viableSetHelpers.cellNumberMultiplier = 3
+            cursor_X_Jump_Multiplier = 3
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 6
             cursor_X_Jump = 8
-            Central_State.Static_Central_State.viableSetHelpers.cellNumberMultiplier = 2
+            cursor_X_Jump_Multiplier = 2
         }
     }
     
