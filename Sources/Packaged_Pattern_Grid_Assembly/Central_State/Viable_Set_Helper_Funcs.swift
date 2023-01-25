@@ -13,9 +13,11 @@ class Viable_Set_Helper_Functions{
     
     init(){
         helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
+        cellNumberMultiplier = 2
     }
     
     var helperFuncs_currentData : Underlying_Data_Cell
+    var cellNumberMultiplier : Int
     
     func writeNote(note_Y_Param:Int){
         if helperFuncs_PotentialNoteSet.count > 2{
@@ -189,16 +191,16 @@ class Viable_Set_Helper_Functions{
     
             if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteSet = viableSet_Combined
-                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number})
+                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= (helperFuncs_currentData.dataCell_X_Number*cellNumberMultiplier)})
             }
     
             else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteSet =
-                viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number}
+                viableSet_Combined.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= (helperFuncs_currentData.dataCell_X_Number*cellNumberMultiplier)}
             }
     
             else if helperFuncs_currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-                helperFuncs_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
+                helperFuncs_PotentialNoteSet = viableSet_Combined.filter{$0.dataCell_X_Number == (helperFuncs_currentData.dataCell_X_Number*cellNumberMultiplier)}
             }
     
         }

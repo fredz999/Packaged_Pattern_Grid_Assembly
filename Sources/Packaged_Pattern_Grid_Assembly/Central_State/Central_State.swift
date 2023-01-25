@@ -168,6 +168,7 @@ public class Central_State : ObservableObject {
         
     }
 
+    var cellNumberMultiplier : Int = 2
     var currentYCursor_Slider_Position : Int = 0
     var currentXCursor_Slider_Position : Int = 0
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
