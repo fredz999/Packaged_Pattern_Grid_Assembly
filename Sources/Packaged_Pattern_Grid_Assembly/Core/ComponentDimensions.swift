@@ -93,7 +93,7 @@ public class ComponentDimensions : ObservableObject {
     public var pattern_Start_Blank_XOffset : CGFloat = 1
     public var pattern_Mid_End_XOffset : CGFloat = 0
     
-    @Published public var cursor_X_Jump : CGFloat = 4
+    @Published public var cursor_X_Jump : CGFloat = 8
     public func flip_Timing_Signature(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
