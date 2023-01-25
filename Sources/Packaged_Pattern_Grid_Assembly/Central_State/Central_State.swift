@@ -56,7 +56,7 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
                 
                 //if let lclViabilityHelpers = viableSetHelpers {
-                viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+                viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
                 //}
                 
                 // if the cell its in is in a viable set then do the start cell write
@@ -162,7 +162,7 @@ public class Central_State : ObservableObject {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
         
-        viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+        viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
         
         viableSetHelpers.establish_Viable_Cells_Set()
         
@@ -171,6 +171,7 @@ public class Central_State : ObservableObject {
     var cellNumberMultiplier : Int = 2
     var currentYCursor_Slider_Position : Int = 0
     var currentXCursor_Slider_Position : Int = 0
+    var computedXCursor_Slider_Position : Int = 0
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             print("new_X: ",lcl_NewX.description)
@@ -221,17 +222,17 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
         if let lclCursorLayer = cursor_Layer_Ref {
             
-            let computedXSliderPosition = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
+            computedXCursor_Slider_Position = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
             
             lclCursorLayer.currPosX = currentXCursor_Slider_Position
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
-            print("currentXCursor_Slider_Position: ",currentXCursor_Slider_Position.description
-            ,",computedXSliderPosition: ",computedXSliderPosition.description
-            ,", dimensions.cursor_X_Jump_Multiplier: ",dimensions.cursor_X_Jump_Multiplier.description)
-            
-            //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXSliderPosition]
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXSliderPosition]
+//print("currentXCursor_Slider_Position: ",currentXCursor_Slider_Position.description
+//,",computedXSliderPosition: ",computedXCursor_Slider_Position.description
+//,", dimensions.cursor_X_Jump_Multiplier: ",dimensions.cursor_X_Jump_Multiplier.description)
+//viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXSliderPosition]
+
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
             
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
