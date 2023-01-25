@@ -220,17 +220,17 @@ public class Central_State : ObservableObject {
     
     func centralState_Data_Evaluation(){
         if let lclCursorLayer = cursor_Layer_Ref {
-            lclCursorLayer.currPosX = currentXCursor_Slider_Position
-            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-            
             let computedXSliderPosition = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
             
-            print("currentXCursor_Slider_Position: ",currentXCursor_Slider_Position.description
-                  ,",computedXSliderPosition: ",computedXSliderPosition.description
-                  ,", dimensions.cursor_X_Jump_Multiplier: ",dimensions.cursor_X_Jump_Multiplier.description)
+            lclCursorLayer.currPosX = computedXSliderPosition //currentXCursor_Slider_Position
+            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXSliderPosition]
-            //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
+            print("currentXCursor_Slider_Position: ",currentXCursor_Slider_Position.description
+            ,",computedXSliderPosition: ",computedXSliderPosition.description
+            ,", dimensions.cursor_X_Jump_Multiplier: ",dimensions.cursor_X_Jump_Multiplier.description)
+            
+            //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXSliderPosition]
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[currentXCursor_Slider_Position]
             
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
