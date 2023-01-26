@@ -244,7 +244,7 @@ class Viable_Set_Helper_Functions{
         if let lclInitialCell = initial_WriteOnCell {
             if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteEdgeSet = viableSet_Combined
-                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number
+                .filter({$0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number
                 && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+dimensions.cursor_X_Jump_Multiplier})
             }
         }
