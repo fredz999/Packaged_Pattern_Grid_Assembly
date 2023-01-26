@@ -119,6 +119,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Viable_Set_Combined : Bool = false
 
     var in_Potential_Set : Bool = false
+    
+    var in_Potential_Edge_Set : Bool = false
 
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
 
@@ -146,6 +148,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        //==============================================================================================================
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
                 in_Potential_Set = true
@@ -162,6 +165,24 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        //==============================================================================================================
+        else if type == .activate_Potential_Edge_Set {
+            if in_Potential_Edge_Set == false {
+                in_Potential_Edge_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .potentialEdgeSet , value: in_Potential_Edge_Set)
+                }
+            }
+        }
+        else if type == .deActivate_Potential_Edge_Set {
+            if in_Potential_Edge_Set == true {
+                in_Potential_Edge_Set = false
+                if let lclDataVals = currentConnectedDataVals{
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .potentialEdgeSet , value: in_Potential_Edge_Set)
+                }
+            }
+        }
+        
         //==============================================================================================================
         else if type == .activate_Prohibited {
             if in_Prohibited_Set == false{in_Prohibited_Set=true}
@@ -278,14 +299,12 @@ enum E_VisibleStateChangeType {
     case activate_Highlighted
     case deActivate_Highlighted
     
-//    case activate_Viable_Set_Right
-//    case deActivate_Viable_Set_Right
-//    case activate_Viable_Set_Left
-//    case deActivate_Viable_Set_Left
-    
     case activate_Viable_Set_Combined
     case deActivate_Viable_Set_Combined
     
     case activate_Potential_Set
     case deActivate_Potential_Set
+    
+    case activate_Potential_Edge_Set
+    case deActivate_Potential_Edge_Set
 }

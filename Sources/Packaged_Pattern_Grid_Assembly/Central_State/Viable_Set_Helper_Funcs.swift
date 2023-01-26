@@ -14,18 +14,20 @@ class Viable_Set_Helper_Functions{
     init(){
         helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
         //cellNumberMultiplier = 2 // need this to be a val straight outta dimensions
+        
     }
     
-    var helperFuncs_currentData : Underlying_Data_Cell {
-        didSet {
-            print("dataX: ",helperFuncs_currentData.dataCell_X_Number.description
-            ,", 4:4 Cell: ",helperFuncs_currentData.four_Four_Cell_Index.description
-            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description
-            ,", 6:8 Cell: ",helperFuncs_currentData.six_Eight_Cell_Index.description
-            ,", 6:8 Sub: ",helperFuncs_currentData.six_Eight_Sub_Index.description
-            )
-        }
-    }
+    var helperFuncs_currentData : Underlying_Data_Cell
+//    {
+//        didSet {
+//            print("dataX: ",helperFuncs_currentData.dataCell_X_Number.description
+//            ,", 4:4 Cell: ",helperFuncs_currentData.four_Four_Cell_Index.description
+//            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description
+//            ,", 6:8 Cell: ",helperFuncs_currentData.six_Eight_Cell_Index.description
+//            ,", 6:8 Sub: ",helperFuncs_currentData.six_Eight_Sub_Index.description
+//            )
+//        }
+//    }
     
     //var cellNumberMultiplier : Int
     
@@ -89,8 +91,7 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    var helperFuncs_PotentialNoteSet = Set<Underlying_Data_Cell>()
-    {
+    var helperFuncs_PotentialNoteSet = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = helperFuncs_PotentialNoteSet.symmetricDifference(newValue)
             for cell in delta {
@@ -100,6 +101,21 @@ class Viable_Set_Helper_Functions{
         didSet {
             for cell in helperFuncs_PotentialNoteSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
+            }
+        }
+    }
+    
+    var helperFuncs_PotentialNoteEdgeSet = Set<Underlying_Data_Cell>()
+    {
+        willSet {
+            let delta = helperFuncs_PotentialNoteEdgeSet.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set)
+            }
+        }
+        didSet {
+            for cell in helperFuncs_PotentialNoteEdgeSet {
+                cell.handleVisibleStateChange(type: .activate_Potential_Edge_Set)
             }
         }
     }
@@ -218,6 +234,19 @@ class Viable_Set_Helper_Functions{
                 .filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number    }
             }
     
+        }
+    }
+    
+    func establish_Potential_Edge_Set(){
+        // want to put half the cell into this cursor
+        // remember .. the cells can be in numerous sets at once
+        // the cells can be in both potential cells and potential edge
+        if let lclInitialCell = initial_WriteOnCell {
+            if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+                helperFuncs_PotentialNoteSet = viableSet_Combined
+                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number
+                && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+dimensions.cursor_X_Jump_Multiplier})
+            }
         }
     }
 

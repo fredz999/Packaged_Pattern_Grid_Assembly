@@ -25,6 +25,8 @@ public class Data_Vals_Holder : ObservableObject {
     
     private var referenced_in_Potential_Set : Bool = false
     
+    private var referenced_in_Potential_Edge_Set : Bool = false
+    
     // hmmm maybe do this last ... theres shenanigans with the witdth and so on
     // need to eventually make this private ... wait ..... no I dont ... but ..... I guess I could
     @Published public var referenced_currentStatus : E_CellStatus
@@ -93,6 +95,17 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         
+        else if status_Update_TypeParam == .potentialEdgeSet {
+            if value == true {
+                if referenced_in_Potential_Edge_Set == false {
+                    referenced_in_Potential_Edge_Set=true
+                }
+            }
+            else if value == false {
+                if referenced_in_Potential_Edge_Set == true{referenced_in_Potential_Edge_Set=false}
+            }
+        }
+        
         else if status_Update_TypeParam == .highlighted {
             if value == true {
                 if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
@@ -134,7 +147,9 @@ public class Data_Vals_Holder : ObservableObject {
         else if check_Cell_Blank() == true {
             if check_In_Viable_Set() == true {
                 if check_In_Potential_Set() == true {
-                    check_In_Prohib_Set()
+                    if check_In_Potential_Edge_Set() == true {
+                        check_In_Prohib_Set()
+                    }
                 }
             }
         }
@@ -174,6 +189,15 @@ public class Data_Vals_Holder : ObservableObject {
         if referenced_in_Potential_Set == true{
             retVal = true
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
+        }
+        return retVal
+    }
+    
+    func check_In_Potential_Edge_Set() -> Bool {
+        var retVal = false
+        if referenced_in_Potential_Edge_Set == true{
+            retVal = true
+            if statusColor != colors.potential_Edge_Cell_Color{statusColor = colors.potential_Edge_Cell_Color }
         }
         return retVal
     }
@@ -241,4 +265,5 @@ public enum status_Update_Type {
 //    case viableSetLeft
     case prohibitedSet
     case potentialSet
+    case potentialEdgeSet
 }
