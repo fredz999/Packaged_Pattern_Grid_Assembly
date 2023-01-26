@@ -243,7 +243,7 @@ class Viable_Set_Helper_Functions{
         // the cells can be in both potential cells and potential edge
         if let lclInitialCell = initial_WriteOnCell {
             if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                helperFuncs_PotentialNoteSet = viableSet_Combined
+                helperFuncs_PotentialNoteEdgeSet = viableSet_Combined
                 .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number
                 && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+dimensions.cursor_X_Jump_Multiplier})
             }
