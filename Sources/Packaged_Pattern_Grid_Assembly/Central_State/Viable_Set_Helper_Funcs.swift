@@ -245,7 +245,7 @@ class Viable_Set_Helper_Functions{
             if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteEdgeSet = viableSet_Combined
                 .filter({$0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number
-                && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+dimensions.cursor_X_Jump_Multiplier})
+                    && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+(dimensions.pattern_Grid_Cell_Sub_Unit_Count-1) })
             }
         }
     }
