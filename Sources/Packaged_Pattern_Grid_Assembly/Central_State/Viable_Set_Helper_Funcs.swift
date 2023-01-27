@@ -67,11 +67,22 @@ class Viable_Set_Helper_Functions{
     {
         willSet {
             if newValue == nil {
-                print("initial_WriteOnCell being set to nil, helperFuncs_PotentialNoteSet has ",helperFuncs_PotentialNoteSet.count.description," members")
-                for cell in helperFuncs_PotentialNoteSet {
-                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                //print("initial_WriteOnCell being set to nil, helperFuncs_PotentialNoteSet has ",helperFuncs_PotentialNoteSet.count.description," members")
+                
+                if helperFuncs_PotentialNoteSet.count > 0 {
+                    for cell in helperFuncs_PotentialNoteSet {
+                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                    }
+                    helperFuncs_PotentialNoteSet.removeAll()
                 }
-                helperFuncs_PotentialNoteSet.removeAll()
+                
+                if helperFuncs_PotentialNoteEdgeSet.count > 0 {
+                    for cell in helperFuncs_PotentialNoteEdgeSet {
+                        cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set)
+                    }
+                    helperFuncs_PotentialNoteEdgeSet.removeAll()
+                }
+                
             }
         }
     }
@@ -202,18 +213,28 @@ class Viable_Set_Helper_Functions{
 
         }
         else if helperFuncs_currentData.note_Im_In != nil {
-            for cell in viableSet_Combined{
-                cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+            
+            if viableSet_Combined.count > 0{
+                for cell in viableSet_Combined{
+                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+                }
+                viableSet_Combined.removeAll()
             }
-            viableSet_Combined.removeAll()
-            for cell in helperFuncs_PotentialNoteSet {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
+            
+            if helperFuncs_PotentialNoteSet.count > 0{
+                for cell in helperFuncs_PotentialNoteSet {
+                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
+                }
+                helperFuncs_PotentialNoteSet.removeAll()
             }
-            helperFuncs_PotentialNoteSet.removeAll()
-            for cell in helperFuncs_PotentialNoteEdgeSet{
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set )
+            
+            if helperFuncs_PotentialNoteEdgeSet.count > 0{
+                for cell in helperFuncs_PotentialNoteEdgeSet{
+                    cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set )
+                }
+                helperFuncs_PotentialNoteEdgeSet.removeAll()
             }
-            helperFuncs_PotentialNoteEdgeSet.removeAll()
+            
         }
     }
     
