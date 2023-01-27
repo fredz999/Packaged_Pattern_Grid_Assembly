@@ -67,6 +67,7 @@ class Viable_Set_Helper_Functions{
     {
         willSet {
             if newValue == nil {
+                print("initial_WriteOnCell being set to nil, helperFuncs_PotentialNoteSet has ",helperFuncs_PotentialNoteSet.count.description," members")
                 for cell in helperFuncs_PotentialNoteSet {
                     cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                 }
@@ -209,6 +210,10 @@ class Viable_Set_Helper_Functions{
                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
             }
             helperFuncs_PotentialNoteSet.removeAll()
+            for cell in helperFuncs_PotentialNoteEdgeSet{
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set )
+            }
+            helperFuncs_PotentialNoteEdgeSet.removeAll()
         }
     }
     
