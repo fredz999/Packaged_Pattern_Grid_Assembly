@@ -92,26 +92,18 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     sixEight_Cell_Count+=1
                 }
                 
-                
-                //fourFour_Half_Cell_Count
-                //fourFour_Half_Sub_Count
-                //sixEight_Half_Cell_Count
-                //sixEight_Half_Sub_Count
-                
                 if fourFour_Half_Sub_Count + 1 < 3{fourFour_Half_Sub_Count+=1}
                 else if fourFour_Half_Sub_Count + 1 == 3{
                     fourFour_Half_Sub_Count = 0
                     fourFour_Half_Cell_Count += 1
                 }
 
-                if sixEight_Half_Cell_Count + 1 < 2{sixEight_Half_Cell_Count+=1}
-                else if sixEight_Half_Cell_Count + 1 == 2{
-                    sixEight_Half_Cell_Count=0
+                if sixEight_Sub_Count + 1 < 2{sixEight_Sub_Count+=1}
+                else if sixEight_Sub_Count + 1 == 2{
+                    sixEight_Sub_Count=0
                     sixEight_Half_Cell_Count+=1
                 }
-                
-                
-                
+
                 newLine.dataCellArray.append(newDataCell)
             }
             dataLineArray.append(newLine)
