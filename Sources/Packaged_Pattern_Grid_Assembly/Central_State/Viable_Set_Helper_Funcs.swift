@@ -32,36 +32,68 @@ class Viable_Set_Helper_Functions{
     //var cellNumberMultiplier : Int
     
     func writeNote(note_Y_Param:Int){
-        if helperFuncs_PotentialNoteSet.count > 2{
-            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        
+        let combinedPotentialSet = helperFuncs_PotentialNoteSet.union(helperFuncs_PotentialNoteEdgeSet)
+        
+        if combinedPotentialSet.count > 2{
+            if let min = combinedPotentialSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                ,let max = combinedPotentialSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             {
                 min.change_Type(newType : .start_Note)
                 max.change_Type(newType : .end_Note)
-                let midz = helperFuncs_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
+                let midz = combinedPotentialSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
                 for cell in midz{
                     cell.change_Type(newType : .mid_Note)
                 }
             }
         }
-        else if helperFuncs_PotentialNoteSet.count == 2{
-            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        else if combinedPotentialSet.count == 2{
+            if let min = combinedPotentialSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                ,let max = combinedPotentialSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             {
                 min.change_Type(newType : .start_Note)
                 max.change_Type(newType : .end_Note)
             }
         }
-        else if helperFuncs_PotentialNoteSet.count == 1 {
-            if let single = helperFuncs_PotentialNoteSet.first {
+        else if combinedPotentialSet.count == 1 {
+            if let single = combinedPotentialSet.first {
                 single.change_Type(newType : .single_Note)
             }
         }
-
-        let noteArray : [Underlying_Data_Cell] = Array(helperFuncs_PotentialNoteSet)
+        
+        let noteArray : [Underlying_Data_Cell] = Array(combinedPotentialSet)
         Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
-
     }
+//        if helperFuncs_PotentialNoteSet.count > 2{
+//            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            {
+//                min.change_Type(newType : .start_Note)
+//                max.change_Type(newType : .end_Note)
+//                let midz = helperFuncs_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
+//                for cell in midz{
+//                    cell.change_Type(newType : .mid_Note)
+//                }
+//            }
+//        }
+//        else if helperFuncs_PotentialNoteSet.count == 2{
+//            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//            {
+//                min.change_Type(newType : .start_Note)
+//                max.change_Type(newType : .end_Note)
+//            }
+//        }
+//        else if helperFuncs_PotentialNoteSet.count == 1 {
+//            if let single = helperFuncs_PotentialNoteSet.first {
+//                single.change_Type(newType : .single_Note)
+//            }
+//        }
+//
+//        let noteArray : [Underlying_Data_Cell] = Array(helperFuncs_PotentialNoteSet)
+//        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
+
+ 
     
     var initial_WriteOnCell : Underlying_Data_Cell?
     {
