@@ -117,6 +117,7 @@ class Viable_Set_Helper_Functions{
             for cell in helperFuncs_PotentialNoteEdgeSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Edge_Set)
             }
+            print("helperFuncs_PotentialNoteEdgeSet count: ",helperFuncs_PotentialNoteEdgeSet.count.description)
         }
     }
 

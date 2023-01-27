@@ -195,13 +195,13 @@ public class Data_Vals_Holder : ObservableObject {
         return retVal
     }
     
-    func check_In_Potential_Edge_Set() -> Bool {
-        var retVal = false
+    func check_In_Potential_Edge_Set() {
+        //var retVal = false
         if referenced_in_Potential_Edge_Set == true{
-            retVal = true
+            //retVal = true
             if statusColor != colors.potential_Edge_Cell_Color{statusColor = colors.potential_Edge_Cell_Color }
         }
-        return retVal
+        //return retVal
     }
     
     func check_In_Viable_Set()->Bool{
