@@ -239,15 +239,15 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Potential_Edge_Set(){
-        // want to put half the cell into this cursor
-        // remember .. the cells can be in numerous sets at once
-        // the cells can be in both potential cells and potential edge
+
         if let lclInitialCell = initial_WriteOnCell {
+            
             if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteEdgeSet = viableSet_Combined
                 .filter({$0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number
-                    && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+4 })
+                    && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+7 })
             }
+
         }
     }
 

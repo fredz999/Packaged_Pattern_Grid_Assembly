@@ -132,26 +132,21 @@ public class Data_Vals_Holder : ObservableObject {
 //            }
 //        }
         
-        update_Cell_Set_Visual_Status()
+        process_Visual_Status()
     }
     
     // these boyos will become private =====================
     // this will have to be called AFTER there hasbeen an assignment to status ... so all the referenced potentials should get set
     // to private and I will write an accessor function with an enum type and a val to set them, then the visual update can get called via
     // the same line of logic
-    func update_Cell_Set_Visual_Status(){
-        
+    func process_Visual_Status(){
         if check_Cell_Blank() == false {
             check_Highlighted()
         }
         else if check_Cell_Blank() == true {
             if check_In_Viable_Set() == true {
                 if check_In_Potential_Set() == true {
-                    // potential edge and potential are mutually exclusive
-                    //check_In_Potential_Edge_Set()
-//                    if check_In_Potential_Edge_Set() == true {
-//                        check_In_Prohib_Set()
-//                    }
+                    check_In_Prohib_Set()
                 }
                 check_In_Potential_Edge_Set()
             }
