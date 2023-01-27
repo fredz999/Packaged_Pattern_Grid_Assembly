@@ -18,16 +18,16 @@ class Viable_Set_Helper_Functions{
     }
     
     var helperFuncs_currentData : Underlying_Data_Cell
-    {
-        didSet {
-            print("dataX: ",helperFuncs_currentData.dataCell_X_Number.description
-            ,", 4:4 Cell: ",helperFuncs_currentData.four_Four_Cell_Index.description
-            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description
-            ,", 6:8 Cell: ",helperFuncs_currentData.six_Eight_Cell_Index.description
-            ,", 6:8 Sub: ",helperFuncs_currentData.six_Eight_Sub_Index.description
-            )
-        }
-    }
+//    {
+//        didSet {
+//            print("dataX: ",helperFuncs_currentData.dataCell_X_Number.description
+//            ,", 4:4 Cell: ",helperFuncs_currentData.four_Four_Cell_Index.description
+//            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description
+//            ,", 6:8 Cell: ",helperFuncs_currentData.six_Eight_Cell_Index.description
+//            ,", 6:8 Sub: ",helperFuncs_currentData.six_Eight_Sub_Index.description
+//            )
+//        }
+//    }
     
     //var cellNumberMultiplier : Int
     
@@ -240,17 +240,31 @@ class Viable_Set_Helper_Functions{
     func establish_Potential_Edge_Set(){
 
         if let lclInitialCell = initial_WriteOnCell {
-            
-            if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                helperFuncs_PotentialNoteEdgeSet = viableSet_Combined
-                .filter({$0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number
-                    && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+7})
+            //if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number { }
+            // helperFuncs_currentData is part of a set by default either 6:8 or 4:4
+            if dimensions.patternTimingConfiguration == .fourFour{
+                // were looking at sets of four
+                //if helperFuncs_currentData.four_Four_Cell_Index
+//                var fourFourSet = Set<Underlying_Data_Cell>()
+//                fourFourSet
+                helperFuncs_PotentialNoteEdgeSet = viableSet_Combined.filter{$0.four_Four_Cell_Index == helperFuncs_currentData.four_Four_Cell_Index}
             }
-
+            else if dimensions.patternTimingConfiguration == .sixEight{
+                // were looking at sets of six
+            }
         }
     }
 
 }
+
+//if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+//    helperFuncs_PotentialNoteEdgeSet = viableSet_Combined
+//    .filter({$0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number
+//        && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+7})
+//}
+
+
+
 
 
 //
