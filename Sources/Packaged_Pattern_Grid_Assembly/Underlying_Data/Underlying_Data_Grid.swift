@@ -52,17 +52,33 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 , fourFourIndexParam: fourFour_Sub_Count, sixEightIndexParam: sixEight_Sub_Count
                 , four_Four_Cell_Index_Param:fourFour_Cell_Count,six_Eight_Cell_Index_Param:sixEight_Cell_Count)
                 
-                if sixEight_Sub_Count + 1 < 6{sixEight_Sub_Count+=1}
-                else if sixEight_Sub_Count + 1 == 6{
-                    sixEight_Sub_Count = 0
-                    sixEight_Cell_Count += 1
+                
+                
+//                if sixEight_Sub_Count + 1 < 6{sixEight_Sub_Count+=1}
+//                else if sixEight_Sub_Count + 1 == 6{
+//                    sixEight_Sub_Count = 0
+//                    sixEight_Cell_Count += 1
+//                }
+//
+//                if fourFour_Sub_Count + 1 < 4{fourFour_Sub_Count+=1}
+//                else if fourFour_Sub_Count + 1 == 4{
+//                    fourFour_Sub_Count=0
+//                    fourFour_Cell_Count+=1
+//                }
+                
+    
+                if fourFour_Sub_Count + 1 < 6{fourFour_Sub_Count+=1}
+                else if fourFour_Sub_Count + 1 == 6{
+                    fourFour_Sub_Count = 0
+                    fourFour_Cell_Count += 1
+                }
+
+                if sixEight_Sub_Count + 1 < 4{sixEight_Sub_Count+=1}
+                else if sixEight_Sub_Count + 1 == 4{
+                    sixEight_Sub_Count=0
+                    sixEight_Cell_Count+=1
                 }
                 
-                if fourFour_Sub_Count + 1 < 4{fourFour_Sub_Count+=1}
-                else if fourFour_Sub_Count + 1 == 4{
-                    fourFour_Sub_Count=0
-                    fourFour_Cell_Count+=1
-                }
                 
                 newLine.dataCellArray.append(newDataCell)
             }
