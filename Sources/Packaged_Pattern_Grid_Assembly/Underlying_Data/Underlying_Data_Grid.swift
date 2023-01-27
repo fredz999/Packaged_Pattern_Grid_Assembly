@@ -16,8 +16,14 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     
     private var fourFour_Sub_Count : Int = 0
     private var fourFour_Cell_Count : Int = 0
+
     private var sixEight_Sub_Count : Int = 0
     private var sixEight_Cell_Count : Int = 0
+    
+    private var fourFour_Half_Cell_Count : Int = 0
+    private var fourFour_Half_Sub_Count : Int = 0
+    private var sixEight_Half_Cell_Count : Int = 0
+    private var sixEight_Half_Sub_Count : Int = 0
     
     var initialStatus : E_CellStatus = .start_Blank
     var currFourStatus : E_CellStatus = .start_Blank
@@ -47,26 +53,33 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     initialStatus = currSixStatus
                 }
                 
-                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus
-                , sixStatusParam: currSixStatus, initialStatusParam: initialStatus
-                , fourFourIndexParam: fourFour_Sub_Count, sixEightIndexParam: sixEight_Sub_Count
-                , four_Four_Cell_Index_Param:fourFour_Cell_Count,six_Eight_Cell_Index_Param:sixEight_Cell_Count)
+//                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus
+//                ,sixStatusParam: currSixStatus, initialStatusParam: initialStatus
+//                ,fourFourSubIndexParam: fourFour_Sub_Count
+//                ,sixEightSubIndexParam: sixEight_Sub_Count
+//                ,four_Four_Cell_Index_Param:fourFour_Cell_Count
+//                ,six_Eight_Cell_Index_Param:sixEight_Cell_Count
+//                ,four_Four_Half_Sub_Index_Param : 1
+//                ,four_Four_Half_Cell_Index : 1
+//                ,six_Eight_Half_Sub_Index : 1
+//                ,six_Eight_Half_Cell_Index : 1 )
                 
                 
+                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
+                , initialStatusParam: initialStatus, fourFourSubIndexParam: fourFour_Sub_Count, sixEightSubIndexParam: sixEight_Sub_Count
+                , four_Four_Cell_Index_Param: fourFour_Cell_Count, six_Eight_Cell_Index_Param: sixEight_Cell_Count
+                , four_Four_Half_Sub_Index_Param: fourFour_Half_Sub_Count
+                , four_Four_Half_Cell_Index_Param: fourFour_Half_Cell_Count
+                , six_Eight_Half_Sub_Index_Param: sixEight_Half_Sub_Count
+                , six_Eight_Half_Cell_Index_Param: sixEight_Half_Cell_Count)
                 
-//                if sixEight_Sub_Count + 1 < 6{sixEight_Sub_Count+=1}
-//                else if sixEight_Sub_Count + 1 == 6{
-//                    sixEight_Sub_Count = 0
-//                    sixEight_Cell_Count += 1
-//                }
-//
-//                if fourFour_Sub_Count + 1 < 4{fourFour_Sub_Count+=1}
-//                else if fourFour_Sub_Count + 1 == 4{
-//                    fourFour_Sub_Count=0
-//                    fourFour_Cell_Count+=1
-//                }
                 
-    
+//                four_Four_Half_Sub_Index = four_Four_Half_Sub_Index_Param
+//                four_Four_Half_Cell_Index = four_Four_Half_Cell_Index_Param
+//                six_Eight_Half_Sub_Index = six_Eight_Half_Sub_Index_Param
+//                six_Eight_Half_Cell_Index = six_Eight_Half_Cell_Index_Param
+                
+                
                 if fourFour_Sub_Count + 1 < 6{fourFour_Sub_Count+=1}
                 else if fourFour_Sub_Count + 1 == 6{
                     fourFour_Sub_Count = 0
@@ -78,6 +91,25 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     sixEight_Sub_Count=0
                     sixEight_Cell_Count+=1
                 }
+                
+                
+                //fourFour_Half_Cell_Count
+                //fourFour_Half_Sub_Count
+                //sixEight_Half_Cell_Count
+                //sixEight_Half_Sub_Count
+                
+                if fourFour_Half_Sub_Count + 1 < 3{fourFour_Half_Sub_Count+=1}
+                else if fourFour_Half_Sub_Count + 1 == 3{
+                    fourFour_Half_Sub_Count = 0
+                    fourFour_Half_Cell_Count += 1
+                }
+
+                if sixEight_Half_Cell_Count + 1 < 2{sixEight_Half_Cell_Count+=1}
+                else if sixEight_Half_Cell_Count + 1 == 2{
+                    sixEight_Half_Cell_Count=0
+                    sixEight_Half_Cell_Count+=1
+                }
+                
                 
                 
                 newLine.dataCellArray.append(newDataCell)
@@ -222,15 +254,30 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var six_Eight_Sub_Index : Int
     public var six_Eight_Cell_Index : Int
     
-    public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus
-    ,initialStatusParam:E_CellStatus,fourFourIndexParam:Int,sixEightIndexParam:Int
-    ,four_Four_Cell_Index_Param:Int,six_Eight_Cell_Index_Param:Int){
-        
-    four_Four_Sub_Index = fourFourIndexParam
-    four_Four_Cell_Index = four_Four_Cell_Index_Param
-    six_Eight_Sub_Index = sixEightIndexParam
-    six_Eight_Cell_Index = six_Eight_Cell_Index_Param
+    public var four_Four_Half_Sub_Index : Int
+    public var four_Four_Half_Cell_Index : Int
+    public var six_Eight_Half_Sub_Index : Int
+    public var six_Eight_Half_Cell_Index : Int
     
+    public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus
+    ,fourFourSubIndexParam:Int
+    ,sixEightSubIndexParam:Int
+    ,four_Four_Cell_Index_Param:Int
+    ,six_Eight_Cell_Index_Param:Int
+    ,four_Four_Half_Sub_Index_Param:Int
+    ,four_Four_Half_Cell_Index_Param:Int
+    ,six_Eight_Half_Sub_Index_Param:Int
+    ,six_Eight_Half_Cell_Index_Param:Int
+    ){
+    four_Four_Sub_Index = fourFourSubIndexParam
+    four_Four_Cell_Index = four_Four_Cell_Index_Param
+    six_Eight_Sub_Index = sixEightSubIndexParam
+    six_Eight_Cell_Index = six_Eight_Cell_Index_Param
+    four_Four_Half_Sub_Index = four_Four_Half_Sub_Index_Param
+    four_Four_Half_Cell_Index = four_Four_Half_Cell_Index_Param
+    six_Eight_Half_Sub_Index = six_Eight_Half_Sub_Index_Param
+    six_Eight_Half_Cell_Index = six_Eight_Half_Cell_Index_Param
+
     dataCell_X_Number = xNumParam
     dataCell_Y_Number = yNumParam
     
