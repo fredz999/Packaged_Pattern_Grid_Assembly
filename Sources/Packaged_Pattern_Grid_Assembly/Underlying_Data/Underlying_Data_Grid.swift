@@ -98,9 +98,9 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     fourFour_Half_Cell_Count += 1
                 }
 
-                if sixEight_Sub_Count + 1 < 2{sixEight_Sub_Count+=1}
-                else if sixEight_Sub_Count + 1 == 2{
-                    sixEight_Sub_Count=0
+                if sixEight_Half_Sub_Count + 1 < 2{sixEight_Half_Sub_Count+=1}
+                else if sixEight_Half_Sub_Count + 1 == 2{
+                    sixEight_Half_Sub_Count=0
                     sixEight_Half_Cell_Count+=1
                 }
 
