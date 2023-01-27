@@ -147,9 +147,11 @@ public class Data_Vals_Holder : ObservableObject {
         else if check_Cell_Blank() == true {
             if check_In_Viable_Set() == true {
                 if check_In_Potential_Set() == true {
-                    if check_In_Potential_Edge_Set() == true {
-                        check_In_Prohib_Set()
-                    }
+                    // potential edge and potential are mutually exclusive
+                    check_In_Potential_Edge_Set()
+//                    if check_In_Potential_Edge_Set() == true {
+//                        check_In_Prohib_Set()
+//                    }
                 }
             }
         }
