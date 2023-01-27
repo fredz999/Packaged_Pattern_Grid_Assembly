@@ -18,16 +18,16 @@ class Viable_Set_Helper_Functions{
     }
     
     var helperFuncs_currentData : Underlying_Data_Cell
-//    {
-//        didSet {
-//            print("dataX: ",helperFuncs_currentData.dataCell_X_Number.description
-//            ,", 4:4 Cell: ",helperFuncs_currentData.four_Four_Cell_Index.description
-//            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description
-//            ,", 6:8 Cell: ",helperFuncs_currentData.six_Eight_Cell_Index.description
-//            ,", 6:8 Sub: ",helperFuncs_currentData.six_Eight_Sub_Index.description
-//            )
-//        }
-//    }
+    {
+        didSet {
+            print("dataX: ",helperFuncs_currentData.dataCell_X_Number.description
+            ,", 4:4 Cell: ",helperFuncs_currentData.four_Four_Cell_Index.description
+            ,", 4:4 Sub: ",helperFuncs_currentData.four_Four_Sub_Index.description
+            ,", 6:8 Cell: ",helperFuncs_currentData.six_Eight_Cell_Index.description
+            ,", 6:8 Sub: ",helperFuncs_currentData.six_Eight_Sub_Index.description
+            )
+        }
+    }
     
     //var cellNumberMultiplier : Int
     
@@ -117,7 +117,6 @@ class Viable_Set_Helper_Functions{
             for cell in helperFuncs_PotentialNoteEdgeSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Edge_Set)
             }
-            print("helperFuncs_PotentialNoteEdgeSet count: ",helperFuncs_PotentialNoteEdgeSet.count.description)
         }
     }
 
@@ -245,7 +244,7 @@ class Viable_Set_Helper_Functions{
             if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 helperFuncs_PotentialNoteEdgeSet = viableSet_Combined
                 .filter({$0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number
-                    && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+7 })
+                    && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+7})
             }
 
         }
