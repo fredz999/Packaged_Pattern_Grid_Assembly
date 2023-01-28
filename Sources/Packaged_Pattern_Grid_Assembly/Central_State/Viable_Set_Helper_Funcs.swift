@@ -115,7 +115,9 @@ class Viable_Set_Helper_Functions{
                 
             }
             else if initial_WriteOnCell == nil{
-                print("initial_WriteOnCell == nil was just caught...........")
+                establish_Viable_Cells_Set()
+                establish_Potential_Cells_Set()
+                establish_Potential_Edge_Set()
             }
         }
     }
