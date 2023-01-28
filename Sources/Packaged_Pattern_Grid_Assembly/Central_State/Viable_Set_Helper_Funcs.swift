@@ -160,6 +160,7 @@ class Viable_Set_Helper_Functions{
             let delta = helperFuncs_PotentialNoteEdgeSet.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set)
+                print("delta hot for xNUm: ", cell.dataCell_X_Number.description)
             }
         }
         didSet {

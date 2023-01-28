@@ -191,7 +191,7 @@ public class Central_State : ObservableObject {
             viableSetHelpers.establish_Viable_Cells_Set()
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
-            //viableSetHelpers.establish_Potential_Edge_Set()
+            viableSetHelpers.establish_Potential_Edge_Set()
             }
         }
     }
