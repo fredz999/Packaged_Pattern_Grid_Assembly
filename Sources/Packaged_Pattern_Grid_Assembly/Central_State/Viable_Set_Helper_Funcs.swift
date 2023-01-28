@@ -115,7 +115,10 @@ class Viable_Set_Helper_Functions{
                 
             }
             else if initial_WriteOnCell == nil{
-                establish_Viable_Cells_Set()
+                // whats happening is that the cells b4 arent getting checked for sub group membership
+                // if the cursor is halfway across a 6:8 square
+                
+                // establish_Viable_Cells_Set()
                 establish_Potential_Cells_Set()
                 establish_Potential_Edge_Set()
             }
