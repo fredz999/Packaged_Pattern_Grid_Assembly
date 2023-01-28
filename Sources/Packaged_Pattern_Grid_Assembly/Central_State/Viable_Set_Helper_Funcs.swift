@@ -284,9 +284,10 @@ class Viable_Set_Helper_Functions{
             // but if theres a note-member-cell between em they have to reset the selection after the pointer emerges back onto
             // note negative territory, meaning current note setter has to evaluate whether or not to nil the initial note
             let combinedSet = initialHalfCellSet.union(currentHalfCellSet)
-            if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}),let max_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-            }
+                if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}),let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+                    print("min_Cell num: ",min_Cell.dataCell_X_Number.description,", max_Cell num: ",max_Cell.dataCell_X_Number.description)
+                }
                 else{
                     print("either min or max didnt materialise")
                 }
