@@ -98,7 +98,6 @@ public class ComponentDimensions : ObservableObject {
     var cursor_X_Jump_Multiplier : Int = 1{
         didSet{
             cursor_X_Jump = cursor_X_Jump_Initial * CGFloat(cursor_X_Jump_Multiplier)
-            print("cursor_X_Jump: ",cursor_X_Jump.description)
         }
     }
 
@@ -107,15 +106,11 @@ public class ComponentDimensions : ObservableObject {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 4
             cursor_X_Jump_Multiplier = 2
-            //cursor_X_Jump = cursor_X_Jump_Initial
-            
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 6
             cursor_X_Jump_Multiplier = 3
-            //cursor_X_Jump = 8
-            
         }
     }
     
