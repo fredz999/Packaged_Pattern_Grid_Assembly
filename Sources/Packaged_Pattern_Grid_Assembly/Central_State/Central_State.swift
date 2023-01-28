@@ -52,26 +52,17 @@ public class Central_State : ObservableObject {
     
     @Published public var writingIsOn : Bool = false {
         didSet {
-            
             if writingIsOn == true {
+
+                if viableSetHelpers.initial_WriteOnCell != nil{
+                    viableSetHelpers.initial_WriteOnCell = nil
+                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
+                }
+                else if viableSetHelpers.initial_WriteOnCell == nil{
+                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
+                }
                 
-                //if let lclViabilityHelpers = viableSetHelpers {
-                viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
-                //}
-                
-                // if the cell its in is in a viable set then do the start cell write
-                // otherwise its not going to get written over
-                // viable set is being assessed all the time
-                // then - out here start the
-                
-                
-                //if let lclPotentialLayer = potential_Note_Layer_Ref {
-                    //potentialNoteEvaluation()
-                    //evaluate_Viable_Set()
-                    //lclPotentialLayer.handlePotentialWrite(gridXParam: currentXCursor_Slider_Position, gridYParam: currentYCursor_Slider_Position)
-                //}
             }
-            
             else if writingIsOn == false {
                 
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
@@ -81,67 +72,8 @@ public class Central_State : ObservableObject {
                 }
                 
                 if let lclCursorRef = cursor_Layer_Ref {
-                    
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
-                    
-//                    if let lclPotentialLayer = potential_Note_Layer_Ref {
-//
-//                        if let lcl_Initial_X = lclPotentialLayer.potential_Initial_Grid_X
-//                            ,let lcl_Current_X = lclPotentialLayer.potential_Current_Grid_X
-//                        ,let lcl_Initial_Y = lclPotentialLayer.potential_Initial_Grid_Y{
-//
-//
-//                            if lcl_Current_X > lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-//                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
-//                                , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-//                            }
-//
-//                            else if lcl_Current_X < lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-//                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: lcl_Current_X
-//                                , highest_Data_X: lcl_Initial_X, data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-//                            }
-//
-//                            else if lcl_Current_X == lcl_Initial_X,let lclNote_Collection = note_Collection_Ref{
-//                                lclNote_Collection.write_CellArray_Into_Note(lowest_Data_X: (lcl_Initial_X)
-//                                , highest_Data_X: (lcl_Current_X), data_Y: (lcl_Initial_Y+lower_Bracket_Number))
-//                            }
-//
-//                            if let lcl_Vis_Grid = central_Grid_Store {
-//
-//                                if (lcl_Initial_Y+lower_Bracket_Number) < dimensions.DATA_final_Line_Y_Index
-//                                ,(lcl_Initial_Y+lower_Bracket_Number) >= 0{
-//
-//                                    if lcl_Current_X > lcl_Initial_X{
-//                                        for x in lcl_Initial_X...lcl_Current_X{
-//                                            let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-//                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-//                                        }
-//                                    }
-//                                    else if lcl_Current_X < lcl_Initial_X{
-//                                        for x in lcl_Current_X...lcl_Initial_X{
-//                                            let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[x]
-//                                            lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[x].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-//                                        }
-//                                    }
-//                                    else if lcl_Current_X == lcl_Initial_X{
-//                                        let redrawCellData = data_Grid.dataLineArray[(lcl_Initial_Y+lower_Bracket_Number)].dataCellArray[lcl_Current_X]
-//                                        lcl_Vis_Grid.vis_Line_Store_Array[lcl_Initial_Y].visual_Cell_Store_Array[lcl_Current_X].cell_Swap_Underlying_Data(new_Data_Cell: redrawCellData)
-//                                    }
-//
-//                                }
-//
-//                            }
-//
-//                        }
-//                        // lclPotentialLayer.endPotentialNote()
-//                        // evaluate_Viable_Set()
-//                        // hit that off in potential
-//                    }
-                    
-                    
-                    
                 }
-                
             }
             
         }
@@ -181,7 +113,7 @@ public class Central_State : ObservableObject {
             viableSetHelpers.establish_Viable_Cells_Set()
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
-            viableSetHelpers.establish_Potential_Edge_Set()
+            //viableSetHelpers.establish_Potential_Edge_Set()
             }
         }
         if let lclNew_Y = new_Y {
@@ -191,7 +123,7 @@ public class Central_State : ObservableObject {
             viableSetHelpers.establish_Viable_Cells_Set()
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
-            viableSetHelpers.establish_Potential_Edge_Set()
+            //viableSetHelpers.establish_Potential_Edge_Set()
             }
         }
     }

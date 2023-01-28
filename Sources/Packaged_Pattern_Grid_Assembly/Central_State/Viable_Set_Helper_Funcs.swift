@@ -33,7 +33,7 @@ class Viable_Set_Helper_Functions{
     
     func writeNote(note_Y_Param:Int){
         
-        let combinedPotentialSet = helperFuncs_PotentialNoteSet.union(helperFuncs_PotentialNoteEdgeSet)
+        let combinedPotentialSet = helperFuncs_PotentialNoteSet //.union(helperFuncs_PotentialNoteEdgeSet)
         
         if combinedPotentialSet.count > 2{
             if let min = combinedPotentialSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -64,6 +64,7 @@ class Viable_Set_Helper_Functions{
         let noteArray : [Underlying_Data_Cell] = Array(combinedPotentialSet)
         Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
     }
+    
 //        if helperFuncs_PotentialNoteSet.count > 2{
 //            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
 //            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -99,6 +100,7 @@ class Viable_Set_Helper_Functions{
     {
         willSet {
             if newValue == nil {
+                
                 if helperFuncs_PotentialNoteSet.count > 0 {
                     for cell in helperFuncs_PotentialNoteSet {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
@@ -106,20 +108,19 @@ class Viable_Set_Helper_Functions{
                     helperFuncs_PotentialNoteSet.removeAll()
                 }
                 
-                if helperFuncs_PotentialNoteEdgeSet.count > 0 {
-                    for cell in helperFuncs_PotentialNoteEdgeSet {
-                        cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set)
-                    }
-                    helperFuncs_PotentialNoteEdgeSet.removeAll()
-                }
-                
             }
-            else if initial_WriteOnCell == nil{
+            else if initial_WriteOnCell == nil {
                 // whats happening is that the cells b4 arent getting checked for sub group membership
                 // if the cursor is halfway across a 6:8 square
                 // establish_Viable_Cells_Set()
+                // establish_Potential_Cells_Set()
+                // establish_Potential_Edge_Set()
+                // I think what I have to do is to automatically incorporate
+                
+                // 1: check that the underlying cell is selectable (on write down)
+                // 2: if 1 passes, get all the potential edge into the potential after it gets moved over....maybe that how they should get added
+          
                 establish_Potential_Cells_Set()
-                establish_Potential_Edge_Set()
             }
         }
     }
@@ -150,24 +151,6 @@ class Viable_Set_Helper_Functions{
         didSet {
             for cell in helperFuncs_PotentialNoteSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
-            }
-        }
-    }
-    
-    var helperFuncs_PotentialNoteEdgeSet = Set<Underlying_Data_Cell>()
-    {
-        willSet {
-            let delta = helperFuncs_PotentialNoteEdgeSet.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set)
-                if newValue == nil{
-                    print("cell: ",cell.dataCell_X_Number.description," was set to nill")
-                }
-            }
-        }
-        didSet {
-            for cell in helperFuncs_PotentialNoteEdgeSet {
-                cell.handleVisibleStateChange(type: .activate_Potential_Edge_Set)
             }
         }
     }
@@ -268,173 +251,53 @@ class Viable_Set_Helper_Functions{
                 helperFuncs_PotentialNoteSet.removeAll()
             }
             
-            if helperFuncs_PotentialNoteEdgeSet.count > 0{
-                for cell in helperFuncs_PotentialNoteEdgeSet{
-                    cell.handleVisibleStateChange(type: .deActivate_Potential_Edge_Set )
-                }
-                helperFuncs_PotentialNoteEdgeSet.removeAll()
-            }
-            
         }
     }
+    
+    
+    // RIGHT!!!!!  this time I HAVE IT!! you run a check at the start of the select, as long as the notes in each of the
+    // which-half-cell-im-in thingy are not in a note you then incorporate them into the potential set immediately the
+    // initial cell is added. every time the slider jumps you add the whole half cell
     
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
-    
-            // the filter has to be confined to the 1/2 cells.....hmmmm
             
-            if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                helperFuncs_PotentialNoteSet = viableSet_Combined
-                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number
-                && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number    })
+            // four things
+            // 0: figure out the timing
+            // 1: the initial cell half cell set
+            // 2: the current cell half cell set
+            // 3: all the cells in between
+            // as long as theyre all devoid of note membership
+            if dimensions.patternTimingConfiguration == .fourFour {
+                let initialHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
+                let currentHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
+                helperFuncs_PotentialNoteSet = initialHalfCellSet.union(currentHalfCellSet)
             }
-    
-            else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-                helperFuncs_PotentialNoteSet = viableSet_Combined
-                .filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number
-                && $0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number     }
+            else if dimensions.patternTimingConfiguration == .sixEight{
+                
             }
-
-            else if helperFuncs_currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-                helperFuncs_PotentialNoteSet = viableSet_Combined
-                .filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number    }
-            }
+            
+            
+            
+//            if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+//                helperFuncs_PotentialNoteSet = viableSet_Combined
+//                .filter({$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number
+//                && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number    })
+//            }
+//
+//            else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+//                helperFuncs_PotentialNoteSet = viableSet_Combined
+//                .filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number
+//                && $0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number     }
+//            }
+//
+//            else if helperFuncs_currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
+//                helperFuncs_PotentialNoteSet = viableSet_Combined
+//                .filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number    }
+//            }
     
         }
     }
-    
-    func establish_Potential_Edge_Set(){
 
-        if dimensions.patternTimingConfiguration == .fourFour{
-            helperFuncs_PotentialNoteEdgeSet = viableSet_Combined.filter{$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index}
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight{
-            helperFuncs_PotentialNoteEdgeSet = viableSet_Combined.filter{$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index}
-        }
- 
-    }
 
 }
-
-//if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-//    helperFuncs_PotentialNoteEdgeSet = viableSet_Combined
-//    .filter({$0.dataCell_X_Number >= helperFuncs_currentData.dataCell_X_Number
-//        && $0.dataCell_X_Number <= helperFuncs_currentData.dataCell_X_Number+7})
-//}
-
-
-
-
-
-//
-//func process_CurrData_Not_In_Note(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
-//
-//    let inViableCellsRight = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > currentData.dataCell_X_Number}
-//    let inViableCellsLeft = cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < currentData.dataCell_X_Number}
-//
-//    if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-//    let emptyCellsRight = cell_Line_Set.filter{$0.dataCell_X_Number > currentData.dataCell_X_Number}
-//    let emptyCellsLeft = cell_Line_Set.filter{$0.dataCell_X_Number < currentData.dataCell_X_Number}
-//    let currentCellSet = cell_Line_Set.filter{$0.dataCell_X_Number == currentData.dataCell_X_Number}
-//    viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
-//    }
-//    else if inViableCellsRight.count != 0 && inViableCellsLeft.count == 0 {
-//
-//        if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//            let viablesOnRight = cell_Line_Set.filter{
-//            $0.dataCell_X_Number >= currentData.dataCell_X_Number
-//            && $0.note_Im_In == nil
-//            && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
-//            }
-//            viableSet_Combined = viablesOnRight//.union(viablesOnLeft)
-//        }
-//    }
-//    else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
-//
-//        if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//            let viablesOnLeft = cell_Line_Set.filter{
-//            $0.dataCell_X_Number < currentData.dataCell_X_Number
-//            && $0.note_Im_In == nil
-//            && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
-//            }
-//            viableSet_Combined = viablesOnLeft//.union(viablesOnLeft)
-//        }
-//    }
-//    else if inViableCellsRight.count != 0 && inViableCellsLeft.count != 0 {
-//        if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        ,let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//            let viablesOnLeft = cell_Line_Set.filter{
-//            $0.dataCell_X_Number < currentData.dataCell_X_Number
-//            && $0.note_Im_In == nil
-//            && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
-//            }
-//            let viablesOnRight = cell_Line_Set.filter{
-//            $0.dataCell_X_Number >= currentData.dataCell_X_Number
-//            && $0.note_Im_In == nil
-//            && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
-//            }
-//            viableSet_Combined = viablesOnLeft.union(viablesOnRight)
-//        }
-//    }
-//
-//}
-//
-//func processPotentialNote(cell_Line_Set : Set<Underlying_Data_Cell>,currentData : Underlying_Data_Cell){
-//    if let lclInitialCell = initial_WriteOnCell {
-//
-//        if currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-//            centralState_PotentialNoteSet =
-//            cell_Line_Set.filter{$0.dataCell_X_Number >= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number <= currentData.dataCell_X_Number}
-//        }
-//
-//        else if currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-//            centralState_PotentialNoteSet =
-//            cell_Line_Set.filter{$0.dataCell_X_Number <= lclInitialCell.dataCell_X_Number && $0.dataCell_X_Number >= currentData.dataCell_X_Number}
-//        }
-//
-//        else if currentData.dataCell_X_Number == lclInitialCell.dataCell_X_Number {
-//            centralState_PotentialNoteSet = cell_Line_Set
-//        }
-//
-//    }
-//}
-//
-//func endPotentialNote(){
-//
-//    if centralState_PotentialNoteSet.count > 2{
-//        if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        {
-//            min.change_Type(newType : .start_Note)
-//            max.change_Type(newType : .end_Note)
-//            let midz = centralState_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
-//            for cell in midz{
-//                cell.change_Type(newType : .mid_Note)
-//            }
-//        }
-//    }
-//    else if centralState_PotentialNoteSet.count == 2{
-//        if let min = centralState_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        ,let max = centralState_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        {
-//            min.change_Type(newType : .start_Note)
-//            max.change_Type(newType : .end_Note)
-//        }
-//    }
-//    else if centralState_PotentialNoteSet.count == 1 {
-//        if let single = centralState_PotentialNoteSet.first {
-//            single.change_Type(newType : .single_Note)
-//        }
-//    }
-//
-//    let noteArray : [Underlying_Data_Cell] = Array(centralState_PotentialNoteSet)
-//    Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray)
-//
-//    for cell in centralState_PotentialNoteSet {
-//        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-//    }
-//
-//    centralState_PotentialNoteSet.removeAll()
-//
-//}

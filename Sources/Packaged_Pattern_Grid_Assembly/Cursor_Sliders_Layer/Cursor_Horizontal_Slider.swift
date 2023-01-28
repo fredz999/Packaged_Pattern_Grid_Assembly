@@ -41,7 +41,6 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public func handleDrag(inputParam:CGFloat){
         // If were in 6:8 jump to start of 6:8 cell
         // If were in 4:4 jump to start of 4:4 cell , use leftward bias in this
-        print("handleDrag(.... current timing sig: ")
         if (inputParam + accumulatedDrag) <= (dimensions.potential_Note_Rightward_Boundary),(inputParam + accumulatedDrag) >= dimensions.potential_Note_Leftward_Boundary {
             currentVal = inputParam + accumulatedDrag
         }
