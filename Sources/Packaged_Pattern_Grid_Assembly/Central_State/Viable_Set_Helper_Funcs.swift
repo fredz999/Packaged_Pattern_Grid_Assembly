@@ -102,10 +102,11 @@ class Viable_Set_Helper_Functions{
             if newValue == nil {
                 
                 if helperFuncs_PotentialNoteSet.count > 0 {
-                    for cell in helperFuncs_PotentialNoteSet {
-                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                    }
-                    helperFuncs_PotentialNoteSet.removeAll()
+//                    for cell in helperFuncs_PotentialNoteSet {
+//                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//                    }
+//                    helperFuncs_PotentialNoteSet.removeAll()
+                    nilPotentialSet()
                 }
                 
             }
@@ -245,10 +246,11 @@ class Viable_Set_Helper_Functions{
             }
             
             if helperFuncs_PotentialNoteSet.count > 0{
-                for cell in helperFuncs_PotentialNoteSet {
-                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
-                }
-                helperFuncs_PotentialNoteSet.removeAll()
+//                for cell in helperFuncs_PotentialNoteSet {
+//                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
+//                }
+//                helperFuncs_PotentialNoteSet.removeAll()
+                nilPotentialSet()
             }
             
         }
@@ -258,7 +260,14 @@ class Viable_Set_Helper_Functions{
     // RIGHT!!!!!  this time I HAVE IT!! you run a check at the start of the select, as long as the notes in each of the
     // which-half-cell-im-in thingy are not in a note you then incorporate them into the potential set immediately the
     // initial cell is added. every time the slider jumps you add the whole half cell
-    
+    func nilPotentialSet(){
+        if helperFuncs_PotentialNoteSet.count > 0 {
+            for cell in helperFuncs_PotentialNoteSet {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+            helperFuncs_PotentialNoteSet.removeAll()
+        }
+    }
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
             
@@ -269,16 +278,27 @@ class Viable_Set_Helper_Functions{
             // 3: all the cells in between
             // as long as theyre all devoid of note membership
             if dimensions.patternTimingConfiguration == .fourFour {
-                let initialHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
-                let currentHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
-                // the in betweens will simply be lowest to highest of these two sets
-                // but if theres a note-member-cell between em they have to reset the selection after the pointer emerges back onto
-                // note negative territory, meaning current note setter has to evaluate whether or not to nil the initial note
-                helperFuncs_PotentialNoteSet = initialHalfCellSet.union(currentHalfCellSet)
+            let initialHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
+            let currentHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
+            // the in betweens will simply be lowest to highest of these two sets
+            // but if theres a note-member-cell between em they have to reset the selection after the pointer emerges back onto
+            // note negative territory, meaning current note setter has to evaluate whether or not to nil the initial note
+            let combinedSet = initialHalfCellSet.union(currentHalfCellSet)
+            if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}),let max_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+            }
+                else{
+                    print("either min or max didnt materialise")
+                }
+
             }
             else if dimensions.patternTimingConfiguration == .sixEight{
-                let initialHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
-                let currentHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
+            let initialHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
+            let currentHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
+            let combinedSet = initialHalfCellSet.union(currentHalfCellSet)
+            if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}),let max_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+            }
             }
             
             
