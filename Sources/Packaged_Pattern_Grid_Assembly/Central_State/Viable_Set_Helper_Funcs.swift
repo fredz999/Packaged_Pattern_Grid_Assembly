@@ -271,10 +271,14 @@ class Viable_Set_Helper_Functions{
             if dimensions.patternTimingConfiguration == .fourFour {
                 let initialHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
                 let currentHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
+                // the in betweens will simply be lowest to highest of these two sets
+                // but if theres a note-member-cell between em they have to reset the selection after the pointer emerges back onto
+                // note negative territory, meaning current note setter has to evaluate whether or not to nil the initial note
                 helperFuncs_PotentialNoteSet = initialHalfCellSet.union(currentHalfCellSet)
             }
             else if dimensions.patternTimingConfiguration == .sixEight{
-                
+                let initialHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
+                let currentHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
             }
             
             

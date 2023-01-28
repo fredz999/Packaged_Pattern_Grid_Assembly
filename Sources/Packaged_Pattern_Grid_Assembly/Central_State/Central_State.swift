@@ -54,13 +54,14 @@ public class Central_State : ObservableObject {
         didSet {
             if writingIsOn == true {
 
-                if viableSetHelpers.initial_WriteOnCell != nil{
-                    viableSetHelpers.initial_WriteOnCell = nil
+//                if viableSetHelpers.initial_WriteOnCell != nil {
+//                    viableSetHelpers.initial_WriteOnCell = nil
+//                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
+//                }
+                if viableSetHelpers.initial_WriteOnCell == nil {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
                 }
-                else if viableSetHelpers.initial_WriteOnCell == nil{
-                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
-                }
+                // nowwwwwww, I have to be able to nil this in the event that the ting is in a note
                 
             }
             else if writingIsOn == false {
@@ -94,7 +95,7 @@ public class Central_State : ObservableObject {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
         
-        viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
+        //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
         
         viableSetHelpers.establish_Viable_Cells_Set()
         
@@ -108,6 +109,7 @@ public class Central_State : ObservableObject {
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
+            
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
@@ -163,6 +165,8 @@ public class Central_State : ObservableObject {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
 
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
+            
+            // this is getting set no matter what, so if its in a write == on AND its in a note AND theres an initial set
             
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
