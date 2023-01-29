@@ -236,9 +236,11 @@ class Viable_Set_Helper_Functions{
                 }
             }
             // --------------------------------- LEFTWARD ----------------------------------
+            // has to be a wee bit more refined than this
+            // I actually need the leftward half cell to get selected AFTER the swipe has gone over the subcell0 mark in each half cell ..... I think .....
             else if lclInitialCell.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number {
-            let initialHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index-1})
-            let currentHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
+            let initialHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
+            let currentHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
         
             let combinedSet = initialHalfCellSet.union(currentHalfCellSet)
                 if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
