@@ -263,7 +263,7 @@ class Viable_Set_Helper_Functions{
             }
             // --------------------------------- STATIONARY ----------------------------------
             else if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-                helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
+                helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
             }
             }
             
