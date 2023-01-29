@@ -29,6 +29,11 @@ class Viable_Set_Helper_Functions{
                 establish_Potential_Cells_Set()
             }
         }
+        didSet{
+            if let lclInitial = initial_WriteOnCell{
+                print("initial_WriteOnCell X set to: ",lclInitial.dataCell_X_Number)
+            }
+        }
     }
     
     var helperFuncs_currentData : Underlying_Data_Cell
