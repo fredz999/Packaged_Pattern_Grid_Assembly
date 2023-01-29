@@ -165,17 +165,11 @@ public class Central_State : ObservableObject {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
 
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
-            
-            // this is getting set no matter what, so if its in a write == on AND current is in a note AND theres an initial set, THEN
-            // the initial is nilled BUT
-            // if write == on AND current aint in a note and viableFuncs.initial_WriteOnCell
-            
+
             if viableSetHelpers.helperFuncs_currentData.note_Im_In != nil, writingIsOn == true,viableSetHelpers.initial_WriteOnCell != nil{
-                // nil the initial cell
                 viableSetHelpers.initial_WriteOnCell = nil
             }
             else if viableSetHelpers.helperFuncs_currentData.note_Im_In == nil, writingIsOn == true,viableSetHelpers.initial_WriteOnCell == nil{
-                // set the initial cell
                 viableSetHelpers.initial_WriteOnCell  = viableSetHelpers.helperFuncs_currentData
             }
             
@@ -213,8 +207,6 @@ public class Central_State : ObservableObject {
     }
     centralState_Data_Evaluation()
     }
-
-    //var rightBoundaryInt : Int?
 
     public func changeNoteLength(isIncrement:Bool) {
         if let noteCollection = note_Collection_Ref {

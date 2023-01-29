@@ -65,62 +65,15 @@ class Viable_Set_Helper_Functions{
         Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
     }
     
-//        if helperFuncs_PotentialNoteSet.count > 2{
-//            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//            {
-//                min.change_Type(newType : .start_Note)
-//                max.change_Type(newType : .end_Note)
-//                let midz = helperFuncs_PotentialNoteSet.filter({$0.dataCell_X_Number != min.dataCell_X_Number})
-//                for cell in midz{
-//                    cell.change_Type(newType : .mid_Note)
-//                }
-//            }
-//        }
-//        else if helperFuncs_PotentialNoteSet.count == 2{
-//            if let min = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//            ,let max = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//            {
-//                min.change_Type(newType : .start_Note)
-//                max.change_Type(newType : .end_Note)
-//            }
-//        }
-//        else if helperFuncs_PotentialNoteSet.count == 1 {
-//            if let single = helperFuncs_PotentialNoteSet.first {
-//                single.change_Type(newType : .single_Note)
-//            }
-//        }
-//
-//        let noteArray : [Underlying_Data_Cell] = Array(helperFuncs_PotentialNoteSet)
-//        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
-
- 
-    
     var initial_WriteOnCell : Underlying_Data_Cell?
     {
         willSet {
             if newValue == nil {
-                
                 if helperFuncs_PotentialNoteSet.count > 0 {
-//                    for cell in helperFuncs_PotentialNoteSet {
-//                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-//                    }
-//                    helperFuncs_PotentialNoteSet.removeAll()
                     nilPotentialSet()
                 }
-                
             }
             else if initial_WriteOnCell == nil {
-                // whats happening is that the cells b4 arent getting checked for sub group membership
-                // if the cursor is halfway across a 6:8 square
-                // establish_Viable_Cells_Set()
-                // establish_Potential_Cells_Set()
-                // establish_Potential_Edge_Set()
-                // I think what I have to do is to automatically incorporate
-                
-                // 1: check that the underlying cell is selectable (on write down)
-                // 2: if 1 passes, get all the potential edge into the potential after it gets moved over....maybe that how they should get added
-          
                 establish_Potential_Cells_Set()
             }
         }
