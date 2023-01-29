@@ -239,14 +239,21 @@ class Viable_Set_Helper_Functions{
             // has to be a wee bit more refined than this
             // I actually need the leftward half cell to get selected AFTER the swipe has gone over the subcell0 mark in each half cell ..... I think .....
             else if lclInitialCell.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number {
-            let initialHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
+                
+            let initialHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index-1})
             let currentHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
-        
-            let combinedSet = initialHalfCellSet.union(currentHalfCellSet)
-                if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+                
+                if helperFuncs_currentData.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index-1{
+                    helperFuncs_PotentialNoteSet = currentHalfCellSet
                 }
+                else if helperFuncs_currentData.four_Four_Half_Cell_Index < lclInitialCell.four_Four_Half_Cell_Index-1{
+                    let combinedSet = initialHalfCellSet.union(currentHalfCellSet)
+                    if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                    ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                    helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+                    }
+                }
+
             }
             // --------------------------------- STATIONARY ----------------------------------
             else if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
