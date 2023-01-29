@@ -54,15 +54,11 @@ public class Central_State : ObservableObject {
         didSet {
             if writingIsOn == true {
 
-//                if viableSetHelpers.initial_WriteOnCell != nil {
-//                    viableSetHelpers.initial_WriteOnCell = nil
-//                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
-//                }
                 if viableSetHelpers.initial_WriteOnCell == nil {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
+                    viableSetHelpers.establish_Potential_Cells_Set()
                 }
-                // nowwwwwww, I have to be able to nil this in the event that the ting is in a note
-                
+
             }
             else if writingIsOn == false {
                 
@@ -71,10 +67,11 @@ public class Central_State : ObservableObject {
                 if viableSetHelpers.initial_WriteOnCell != nil {
                     viableSetHelpers.initial_WriteOnCell = nil
                 }
-                
+                //might remove cursor layer...... hmmm or not ..... hmmmm
                 if let lclCursorRef = cursor_Layer_Ref {
                     lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
                 }
+                
             }
             
         }
