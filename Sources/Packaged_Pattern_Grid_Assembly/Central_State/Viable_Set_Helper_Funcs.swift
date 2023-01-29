@@ -29,11 +29,11 @@ class Viable_Set_Helper_Functions{
                 establish_Potential_Cells_Set()
             }
         }
-        didSet{
-            if let lclInitial = initial_WriteOnCell{
-                print("how to capture when this is a leftward jumpover?....")
-            }
-        }
+//        didSet{
+//            if let lclInitial = initial_WriteOnCell{
+//                print("how to capture when this is a leftward jumpover?....")
+//            }
+//        }
     }
     
     var helperFuncs_currentData : Underlying_Data_Cell
