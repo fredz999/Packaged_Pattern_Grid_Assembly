@@ -95,8 +95,11 @@ class Viable_Set_Helper_Functions{
 
         let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
         let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
-        print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description,", inviableStartCellSet: "
-              ,inviableStartCellSet.count.description,", inviableEndCellSet: ",inviableEndCellSet.count.description)
+        
+        print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description
+        ,", inviableStartCellSet: ",inviableStartCellSet.count.description
+        ,", inviableEndCellSet: ",inviableEndCellSet.count.description)
+        
         var assignStartSet = Set<Underlying_Data_Cell>()
         for cell in inviableEndCellSet{
             if let nextCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number+1)})
@@ -123,31 +126,20 @@ class Viable_Set_Helper_Functions{
         for cell in assignStartSet{cell.currentType = .start_Note}
         for cell in assignMidSet{cell.currentType = .mid_Note}
         for cell in assignEndSet{cell.currentType = .end_Note}
-        
-        
-        //1: remember not all the inviables will be within the swipe
-        
-        if let lclSwipeDirection = currentSwipeDirection {
-            
-            if lclSwipeDirection == .leftward {
-               // get min max of the potential set
-                // get the inviables within this --- well actually those should be available during the swipe - make a class wide var for currentInviables
-                // get the start and end inviables within this
-                //print("current swipe direction left, number inviable: ",in_Swipe_Inviables.count)
-                //have to figure out the starts and the stops of notes
-                // the end of a new note is always just before the start of an existing one
-                // the start of a new note is always just after an end note or at the initialCell
-                
-            }
-            else if lclSwipeDirection == .rightward{
-                
-            }
-            else if lclSwipeDirection == .stationary{
-                
-            }
-            
-            
-        }
+
+//        if let lclSwipeDirection = currentSwipeDirection {
+//
+//            if lclSwipeDirection == .leftward {
+//
+//            }
+//            else if lclSwipeDirection == .rightward{
+//
+//            }
+//            else if lclSwipeDirection == .stationary{
+//
+//            }
+//
+//        }
 
         
         
