@@ -90,23 +90,53 @@ class Viable_Set_Helper_Functions{
  
         }
     }
-    
+    // there cant be inviables till theres actual write capability
     func writeNote(note_Y_Param:Int){
-        let combinedPotentialSet = helperFuncs_PotentialNoteSet
-        let combinedInviables = inViableCellsLeft.union(inViableCellsRight)
+
+        let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
+        let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
+
+        var assignStartSet = Set<Underlying_Data_Cell>()
+        for cell in inviableEndCellSet{
+            if let nextCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number+1)})
+            {
+                assignStartSet.insert(nextCell)
+            }
+        }
+        if let minX = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            assignStartSet.insert(minX)
+        }
         
-        //1: figure out how many notes there actually are
-        //......hmmm if theres two notes they will be seperated by a gap
-        // that gap will be an area where you were expecting a numeric sequence to continue but it dosent
-        // ...ORRRRRR I actually make the inviables visible outside of the function
-        // get the inviables into distinct notes ... emmm start and end note status
+        var assignEndSet = Set<Underlying_Data_Cell>()
+        for cell in inviableStartCellSet{
+            if let prevCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number-1)})
+            {
+                assignStartSet.insert(prevCell)
+            }
+        }
+        if let maxX = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            assignEndSet.insert(maxX)
+        }
+        
+        let assignMidSet =  helperFuncs_PotentialNoteSet.subtracting(assignStartSet.union(assignEndSet))
+        for cell in assignStartSet{cell.currentType = .start_Note}
+        for cell in assignMidSet{cell.currentType = .mid_Note}
+        for cell in assignEndSet{cell.currentType = .end_Note}
+        
+        
+        //1: remember not all the inviables will be within the swipe
         
         if let lclSwipeDirection = currentSwipeDirection {
             
-            if lclSwipeDirection == .leftward{
+            if lclSwipeDirection == .leftward {
                // get min max of the potential set
                 // get the inviables within this --- well actually those should be available during the swipe - make a class wide var for currentInviables
                 // get the start and end inviables within this
+                //print("current swipe direction left, number inviable: ",in_Swipe_Inviables.count)
+                //have to figure out the starts and the stops of notes
+                // the end of a new note is always just before the start of an existing one
+                // the start of a new note is always just after an end note or at the initialCell
+                
             }
             else if lclSwipeDirection == .rightward{
                 
