@@ -163,25 +163,13 @@ public class Central_State : ObservableObject {
 
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
 
-            //TODO: gap breakup
-            // dosent update in fast swipes need to make multi note assignments by gap breakup
-            if viableSetHelpers.helperFuncs_currentData.note_Im_In != nil, writingIsOn == true,viableSetHelpers.initial_WriteOnCell != nil{
-                viableSetHelpers.initial_WriteOnCell = nil
-            }
-            else if viableSetHelpers.helperFuncs_currentData.note_Im_In == nil, writingIsOn == true,viableSetHelpers.initial_WriteOnCell == nil{
-                viableSetHelpers.initial_WriteOnCell = viableSetHelpers.helperFuncs_currentData
-                // this is the jumpover end....how to determine if its leftward?.....
-                //....ok... just try see if the rightward one is in a note and if it is assign the rightward note as the initial
-                //let rightwardCell = viableSetHelpers.helperFuncs_currentData
-//                if let rightSideNoteCell = viableSetHelpers.helperFuncs_currentData.check_For_NextHalfCellNote(){
-//                    viableSetHelpers.initial_WriteOnCell = rightSideNoteCell
-//                }
-//                else if viableSetHelpers.helperFuncs_currentData.check_For_NextHalfCellNote() == nil{
-//                    viableSetHelpers.initial_WriteOnCell = viableSetHelpers.helperFuncs_currentData
-//                }
-
-            }
-            
+            // ok, not going to re-assign the initial_WriteOnCell
+//            if viableSetHelpers.helperFuncs_currentData.note_Im_In != nil, writingIsOn == true,viableSetHelpers.initial_WriteOnCell != nil {
+//
+//            }
+//            else if viableSetHelpers.helperFuncs_currentData.note_Im_In == nil, writingIsOn == true,viableSetHelpers.initial_WriteOnCell == nil {
+//
+//            }
             
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
