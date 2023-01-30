@@ -95,7 +95,8 @@ class Viable_Set_Helper_Functions{
 
         let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
         let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
-
+        print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description,", inviableStartCellSet: "
+              ,inviableStartCellSet.count.description,", inviableEndCellSet: ",inviableEndCellSet.count.description)
         var assignStartSet = Set<Underlying_Data_Cell>()
         for cell in inviableEndCellSet{
             if let nextCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number+1)})
