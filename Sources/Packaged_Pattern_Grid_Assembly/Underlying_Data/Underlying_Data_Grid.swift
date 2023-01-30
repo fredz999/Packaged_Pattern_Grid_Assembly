@@ -71,8 +71,8 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 , four_Four_Half_Sub_Index_Param: fourFour_Half_Sub_Count
                 , four_Four_Half_Cell_Index_Param: fourFour_Half_Cell_Count
                 , six_Eight_Half_Sub_Index_Param: sixEight_Half_Sub_Count
-                , six_Eight_Half_Cell_Index_Param: sixEight_Half_Cell_Count
-                , parentLineParam: newLine)
+                , six_Eight_Half_Cell_Index_Param: sixEight_Half_Cell_Count)
+                //, parentLineParam: newLine)
                 
                 
 //                four_Four_Half_Sub_Index = four_Four_Half_Sub_Index_Param
@@ -253,7 +253,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var six_Eight_Half_Cell_Index : Int
     
     //var final_FourFour_HalfCell : Bool
-    var parentLine : Underlying_Data_Line
+    //var parentLine : Underlying_Data_Line
     
     public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus
     ,fourFourSubIndexParam:Int
@@ -264,9 +264,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     ,four_Four_Half_Cell_Index_Param:Int
     ,six_Eight_Half_Sub_Index_Param:Int
     ,six_Eight_Half_Cell_Index_Param:Int
-    ,parentLineParam:Underlying_Data_Line
+    //,parentLineParam:Underlying_Data_Line
     ){
-    parentLine = parentLineParam
+    //parentLine = parentLineParam
     four_Four_Sub_Index = fourFourSubIndexParam
     four_Four_Cell_Index = four_Four_Cell_Index_Param
     six_Eight_Sub_Index = sixEightSubIndexParam
@@ -285,25 +285,25 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     currentType = initialStatusParam
     note_Reset_Status = initialStatusParam
     }
-    
-    public func check_For_NextHalfCellNote()->Underlying_Data_Cell?{
-        var retVal : Underlying_Data_Cell? = nil
-        //1: see if there actually is a freaking next 1/2 four cell
-        let cellSetImIn : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>(parentLine.dataCellArray)
-        
-        let nextHalf_Cell_Index = four_Four_Half_Cell_Index+1
-        
-        let nextHalfCellSet = cellSetImIn.filter{$0.four_Four_Half_Cell_Index == nextHalf_Cell_Index}
-        
-        if nextHalfCellSet.count > 0 {
-            if let nearestStarter = nextHalfCellSet.min(by:{$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                if nearestStarter.note_Im_In != nil{
-                    retVal = nearestStarter
-                }
-            }
-        }
-        return retVal
-    }
+    //TODO: gap breakup
+//    public func check_For_NextHalfCellNote()->Underlying_Data_Cell?{
+//        var retVal : Underlying_Data_Cell? = nil
+//        //1: see if there actually is a freaking next 1/2 four cell
+//        let cellSetImIn : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>(parentLine.dataCellArray)
+//        
+//        let nextHalf_Cell_Index = four_Four_Half_Cell_Index+1
+//        
+//        let nextHalfCellSet = cellSetImIn.filter{$0.four_Four_Half_Cell_Index == nextHalf_Cell_Index}
+//        
+//        if nextHalfCellSet.count > 0 {
+//            if let nearestStarter = nextHalfCellSet.min(by:{$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//                if nearestStarter.note_Im_In != nil{
+//                    retVal = nearestStarter
+//                }
+//            }
+//        }
+//        return retVal
+//    }
     
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         if timingParam == .fourFour {
