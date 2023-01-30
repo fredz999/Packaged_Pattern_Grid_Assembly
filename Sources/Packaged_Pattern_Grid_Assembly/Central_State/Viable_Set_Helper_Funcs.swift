@@ -123,6 +123,9 @@ class Viable_Set_Helper_Functions{
         }
         
         let midCellSet =  helperFuncs_PotentialNoteSet.subtracting(startCellSet.union(endCellSet))
+        for cell in startCellSet{cell.change_Type(newType: .start_Note)}
+        for cell in midCellSet{cell.change_Type(newType: .mid_Note)}
+        for cell in endCellSet{cell.change_Type(newType: .end_Note)}
         
         
         
@@ -148,9 +151,7 @@ class Viable_Set_Helper_Functions{
 //            Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
 //        }
         
-//        for cell in assignStartSet{cell.change_Type(newType: .start_Note)}
-//        for cell in assignMidSet{cell.change_Type(newType: .mid_Note)}
-//        for cell in assignEndSet{cell.change_Type(newType: .end_Note)}
+
         
         
         //Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
