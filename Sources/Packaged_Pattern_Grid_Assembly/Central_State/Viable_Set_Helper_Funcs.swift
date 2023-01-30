@@ -128,18 +128,21 @@ class Viable_Set_Helper_Functions{
         let startersOrdered = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         //let midsOrdered = midCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         let endsOrdered = endCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        
         for cellNum in 0..<startersOrdered.count{
             // make the nuuuutez hea
             var noteArray = [Underlying_Data_Cell]()
+            startersOrdered[cellNum].currentType = .start_Note
             noteArray.append(startersOrdered[cellNum])
             //for x in startersOrdered[cellNum].dataCell_X_Number ..< endsOrdered[cellNum].dataCell_X_Number{}
             let midNoteArray = midCellSet.filter{$0.dataCell_X_Number > startersOrdered[cellNum].dataCell_X_Number && $0.dataCell_X_Number < endsOrdered[cellNum].dataCell_X_Number}
                 .sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             
             for cell in midNoteArray{
+                cell.currentType = .mid_Note
                 noteArray.append(cell)
             }
-            
+            endsOrdered[cellNum].currentType = .end_Note
             noteArray.append(endsOrdered[cellNum])
             Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
         }
