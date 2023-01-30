@@ -93,9 +93,9 @@ public class ComponentDimensions : ObservableObject {
     public var pattern_Mid_End_XOffset : CGFloat = 0
     
     var cursor_X_Jump_Initial : CGFloat = 4
-    @Published public var cursor_X_Jump : CGFloat = 4
+    @Published public var cursor_X_Jump : CGFloat = 12
     
-    var cursor_X_Jump_Multiplier : Int = 1{
+    var cursor_X_Jump_Multiplier : Int = 3{
         didSet{
             cursor_X_Jump = cursor_X_Jump_Initial * CGFloat(cursor_X_Jump_Multiplier)
         }
