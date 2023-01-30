@@ -96,55 +96,37 @@ class Viable_Set_Helper_Functions{
         let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
         let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
         
-        print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description
-        ,", inviableStartCellSet: ",inviableStartCellSet.count.description
-        ,", inviableEndCellSet: ",inviableEndCellSet.count.description)
+//        print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description
+//        ,", inviableStartCellSet: ",inviableStartCellSet.count.description
+//        ,", inviableEndCellSet: ",inviableEndCellSet.count.description)
         
         var assignStartSet = Set<Underlying_Data_Cell>()
+        if let minX = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            assignStartSet.insert(minX)
+        }
         for cell in inviableEndCellSet{
             if let nextCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number+1)})
             {
                 assignStartSet.insert(nextCell)
             }
         }
-        if let minX = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            assignStartSet.insert(minX)
-        }
         
         var assignEndSet = Set<Underlying_Data_Cell>()
+        if let maxX = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            assignEndSet.insert(maxX)
+        }
         for cell in inviableStartCellSet{
             if let prevCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number-1)})
             {
                 assignStartSet.insert(prevCell)
             }
         }
-        if let maxX = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            assignEndSet.insert(maxX)
-        }
         
         let assignMidSet =  helperFuncs_PotentialNoteSet.subtracting(assignStartSet.union(assignEndSet))
-        for cell in assignStartSet{cell.currentType = .start_Note}
-        for cell in assignMidSet{cell.currentType = .mid_Note}
-        for cell in assignEndSet{cell.currentType = .end_Note}
+        for cell in assignStartSet{cell.change_Type(newType: .start_Note)}
+        for cell in assignMidSet{cell.change_Type(newType: .mid_Note)}
+        for cell in assignEndSet{cell.change_Type(newType: .end_Note)}
 
-//        if let lclSwipeDirection = currentSwipeDirection {
-//
-//            if lclSwipeDirection == .leftward {
-//
-//            }
-//            else if lclSwipeDirection == .rightward{
-//
-//            }
-//            else if lclSwipeDirection == .stationary{
-//
-//            }
-//
-//        }
-
-        
-        
-        
-        
 //        if combinedPotentialSet.count > 2{
 //            if let min = combinedPotentialSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
 //                ,let max = combinedPotentialSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
