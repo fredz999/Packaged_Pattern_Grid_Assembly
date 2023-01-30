@@ -100,32 +100,56 @@ class Viable_Set_Helper_Functions{
 //        ,", inviableStartCellSet: ",inviableStartCellSet.count.description
 //        ,", inviableEndCellSet: ",inviableEndCellSet.count.description)
         
-        var assignStartSet = Set<Underlying_Data_Cell>()
+        var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            assignStartSet.insert(minX)
+            startCellSet.insert(minX)
         }
         for cell in inviableEndCellSet{
             if let nextCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number+1)})
             {
-                assignStartSet.insert(nextCell)
+                startCellSet.insert(nextCell)
             }
         }
         
-        var assignEndSet = Set<Underlying_Data_Cell>()
+        var endCellSet = Set<Underlying_Data_Cell>()
         if let maxX = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            assignEndSet.insert(maxX)
+            endCellSet.insert(maxX)
         }
         for cell in inviableStartCellSet{
             if let prevCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number-1)})
             {
-                assignStartSet.insert(prevCell)
+                startCellSet.insert(prevCell)
             }
         }
         
-        let assignMidSet =  helperFuncs_PotentialNoteSet.subtracting(assignStartSet.union(assignEndSet))
-        for cell in assignStartSet{cell.change_Type(newType: .start_Note)}
-        for cell in assignMidSet{cell.change_Type(newType: .mid_Note)}
-        for cell in assignEndSet{cell.change_Type(newType: .end_Note)}
+        let midCellSet =  helperFuncs_PotentialNoteSet.subtracting(startCellSet.union(endCellSet))
+        // I need to du thus for aech nate
+
+        let startersOrdered = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        //let midsOrdered = midCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        let endsOrdered = endCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        for cellNum in 0..<startersOrdered.count{
+            // make the nuuuutez hea
+            var noteArray = [Underlying_Data_Cell]()
+            noteArray.append(startersOrdered[cellNum])
+            //for x in startersOrdered[cellNum].dataCell_X_Number ..< endsOrdered[cellNum].dataCell_X_Number{}
+            let midNoteArray = midCellSet.filter{$0.dataCell_X_Number > startersOrdered[cellNum].dataCell_X_Number && $0.dataCell_X_Number < endsOrdered[cellNum].dataCell_X_Number}
+                .sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            
+            for cell in midNoteArray{
+                noteArray.append(cell)
+            }
+            
+            noteArray.append(endsOrdered[cellNum])
+            Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
+        }
+        
+//        for cell in assignStartSet{cell.change_Type(newType: .start_Note)}
+//        for cell in assignMidSet{cell.change_Type(newType: .mid_Note)}
+//        for cell in assignEndSet{cell.change_Type(newType: .end_Note)}
+        
+        
+        //Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
 
 //        if combinedPotentialSet.count > 2{
 //            if let min = combinedPotentialSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
