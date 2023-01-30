@@ -373,6 +373,7 @@ public enum E_CellStatus : String {
 }
 
 enum E_VisibleStateChangeType {
+    
     case activate_Prohibited
     case deActivate_Prohibited
     
