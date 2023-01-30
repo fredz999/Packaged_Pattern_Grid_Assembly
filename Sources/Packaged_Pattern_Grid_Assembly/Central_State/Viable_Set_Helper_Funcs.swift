@@ -127,72 +127,88 @@ class Viable_Set_Helper_Functions{
             let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
             }
-            
-            else if inViableCellsRight.count != 0 && inViableCellsLeft.count == 0 {
-    
-                if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-    
-                    let viablesOnRight = current_Cell_Line_Set.filter {
-                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
-                    && $0.note_Im_In == nil
-                    && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
-                    }
-
-                    let viablesOnLeft = current_Cell_Line_Set.filter {
-                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
-                    && $0.note_Im_In == nil
-                    }
-
-                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
-    
-                    viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
-                }
-            }
-            
-            else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
+            else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
+                let currentCellSet = current_Cell_Line_Set.filter({
+                $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                })
                 
-                if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                    
-                    let viablesOnLeft = current_Cell_Line_Set.filter {
-                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
-                    && $0.note_Im_In == nil
-                    && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
-                    }
-
-                    let viablesOnRight = current_Cell_Line_Set.filter {
-                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
-                    && $0.note_Im_In == nil
-                    }
-                    
-                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
-                    viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
-                    
+                let viablesOnLeft = current_Cell_Line_Set.filter {
+                $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
                 }
+                
+                let viablesOnRight = current_Cell_Line_Set.filter {
+                $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                }
+
+                viableSet_Combined = currentCellSet.union(viablesOnLeft).union(viablesOnRight)
             }
             
-            else if inViableCellsRight.count != 0 && inViableCellsLeft.count != 0 {
-                if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                ,let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                    
-                    let viablesOnLeft = current_Cell_Line_Set.filter{
-                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
-                    && $0.note_Im_In == nil
-                    && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
-                    }
-                    
-                    let viablesOnRight = current_Cell_Line_Set.filter{
-                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
-                    && $0.note_Im_In == nil
-                    && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
-                    }
-                    
-                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
-                    
-                    viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
-                    
-                }
-            }
+//            else if inViableCellsRight.count != 0 && inViableCellsLeft.count == 0 {
+//                if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//
+//                    let viablesOnRight = current_Cell_Line_Set.filter {
+//                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
+//                    && $0.note_Im_In == nil
+//                    && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
+//                    }
+//
+//                    let viablesOnLeft = current_Cell_Line_Set.filter {
+//                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
+//                    && $0.note_Im_In == nil
+//                    }
+//
+//                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
+//
+//                    viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
+//                }
+//            }
+//            else if inViableCellsRight.count == 0 && inViableCellsLeft.count != 0 {
+//
+//                if let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//
+//                    let viablesOnLeft = current_Cell_Line_Set.filter {
+//                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
+//                    && $0.note_Im_In == nil
+//                    && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
+//                    }
+//
+//                    let viablesOnRight = current_Cell_Line_Set.filter {
+//                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
+//                    && $0.note_Im_In == nil
+//                    }
+//
+//                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
+//                    viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
+//
+//                }
+//            }
+//            else if inViableCellsRight.count != 0 && inViableCellsLeft.count != 0 {
+//                if let firstNonViableRight = inViableCellsRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//                ,let nearNonViableLeft = inViableCellsLeft.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//
+//                    let viablesOnLeft = current_Cell_Line_Set.filter{
+//                    $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
+//                    && $0.note_Im_In == nil
+//                    && $0.dataCell_X_Number > nearNonViableLeft.dataCell_X_Number
+//                    }
+//
+//                    let viablesOnRight = current_Cell_Line_Set.filter{
+//                    $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
+//                    && $0.note_Im_In == nil
+//                    && $0.dataCell_X_Number < firstNonViableRight.dataCell_X_Number
+//                    }
+//
+//                    let currentCellSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number})
+//
+//                    viableSet_Combined = viablesOnLeft.union(viablesOnRight).union(currentCellSet)
+//
+//                }
+//            }
 
+            
         }
         else if helperFuncs_currentData.note_Im_In != nil {
             
@@ -204,10 +220,6 @@ class Viable_Set_Helper_Functions{
             }
             
             if helperFuncs_PotentialNoteSet.count > 0{
-//                for cell in helperFuncs_PotentialNoteSet {
-//                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
-//                }
-//                helperFuncs_PotentialNoteSet.removeAll()
                 nilPotentialSet()
             }
             
