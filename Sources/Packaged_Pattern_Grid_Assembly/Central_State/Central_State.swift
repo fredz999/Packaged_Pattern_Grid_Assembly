@@ -87,10 +87,14 @@ public class Central_State : ObservableObject {
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
         
-    print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8")
+    print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8",
+          "currentXCursor_Slider_Position: ", currentXCursor_Slider_Position.description)
+        // then move the thing to the next lower half cell start
+        
 //    print("timing sig: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
 //    , " currentXCursor_Slider_Position:",currentXCursor_Slider_Position.description
 //    ,", computedX: ",computedXCursor_Slider_Position.description)
+        
     }
 
     public func deleteANote(){
@@ -104,10 +108,10 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     var currentXCursor_Slider_Position : Int = 0
     var computedXCursor_Slider_Position : Int = 0
+    
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
             currentXCursor_Slider_Position = lcl_NewX
-            
             centralState_Data_Evaluation()
             centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
@@ -130,6 +134,7 @@ public class Central_State : ObservableObject {
                 lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
             }
         }
+    
     func centralState_Data_Evaluation(){
             
             if let lclCursorLayer = cursor_Layer_Ref {
@@ -175,7 +180,7 @@ public class Central_State : ObservableObject {
             viableSetHelpers.current_Cell_Line_Set = newSet
         }
     }
-
+    
     public func toggle_Write_Is_On(){
         if a_Note_Is_Highlighted == false {
             writingIsOn.toggle()
@@ -192,7 +197,7 @@ public class Central_State : ObservableObject {
     }
     centralState_Data_Evaluation()
     }
-
+    
     public func changeNoteLength(isIncrement:Bool) {
         if let noteCollection = note_Collection_Ref {
             if let lclCurrNote = noteCollection.currentHighlightedNote {
