@@ -131,10 +131,9 @@ class Viable_Set_Helper_Functions{
         for cell in endCellSet{cell.change_Type(newType: .end_Note)}
         
         let startCells = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        let endCells = midCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        let endCells = endCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
         for index in 0..<startCellSet.count {
-            
             var noteArr = [Underlying_Data_Cell]()
             let currStartCell = startCells[index]
             let currEndCell = endCells[index]
