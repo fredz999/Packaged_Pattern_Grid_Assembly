@@ -124,8 +124,6 @@ class Viable_Set_Helper_Functions{
    
         let midCellSet = helperFuncs_PotentialNoteSet.subtracting(startCellSet.union(endCellSet))
         
-        print("startCellSet count: ",startCellSet.count.description, ", midCellSet count: ", midCellSet.count.description, ", endCellSet count: ", endCellSet.count.description)
-        
         for cell in startCellSet{cell.change_Type(newType: .start_Note)}
         for cell in midCellSet{cell.change_Type(newType: .mid_Note)}
         for cell in endCellSet{cell.change_Type(newType: .end_Note)}
@@ -141,7 +139,7 @@ class Viable_Set_Helper_Functions{
             let midSet = midCellSet.filter({$0.dataCell_X_Number > currStartCell.dataCell_X_Number && $0.dataCell_X_Number < currEndCell.dataCell_X_Number})
             let midArr = midSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             for midCell in midArr {
-                noteArr.append(midCell)
+            noteArr.append(midCell)
             }
             noteArr.append(currEndCell)
             Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArr, note_Y_Num: note_Y_Param)
