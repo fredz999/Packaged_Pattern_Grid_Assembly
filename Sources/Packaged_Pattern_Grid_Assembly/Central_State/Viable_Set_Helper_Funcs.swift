@@ -118,7 +118,7 @@ class Viable_Set_Helper_Functions{
         for cell in inviableStartCellSet{
             if let prevCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number-1)})
             {
-                startCellSet.insert(prevCell)
+                endCellSet.insert(prevCell)
             }
         }
         
@@ -130,14 +130,15 @@ class Viable_Set_Helper_Functions{
         let startCells = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         let endCells = midCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
-        for index in 0..<startCellSet.count{
+        for index in 0..<startCellSet.count {
+            
             var noteArr = [Underlying_Data_Cell]()
             let currStartCell = startCells[index]
             let currEndCell = endCells[index]
             noteArr.append(currStartCell)
             let midSet = midCellSet.filter({$0.dataCell_X_Number > currStartCell.dataCell_X_Number && $0.dataCell_X_Number < currEndCell.dataCell_X_Number})
             let midArr = midSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            for midCell in midArr{
+            for midCell in midArr {
                 noteArr.append(midCell)
             }
             noteArr.append(currEndCell)
