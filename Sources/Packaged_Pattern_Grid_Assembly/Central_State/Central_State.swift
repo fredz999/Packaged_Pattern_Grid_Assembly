@@ -87,8 +87,9 @@ public class Central_State : ObservableObject {
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
         
-    print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8",
-          "currentXCursor_Slider_Position: ", currentXCursor_Slider_Position.description)
+    print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
+          ,"currentXCursor_Slider_Position: ", currentXCursor_Slider_Position.description
+          ,", currCell dataCell_X_Number: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number)
         // then move the thing to the next lower half cell start
         
 //    print("timing sig: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
