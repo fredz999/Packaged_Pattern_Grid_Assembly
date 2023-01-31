@@ -127,33 +127,26 @@ class Viable_Set_Helper_Functions{
         for cell in midCellSet{cell.change_Type(newType: .mid_Note)}
         for cell in endCellSet{cell.change_Type(newType: .end_Note)}
         
+        let startCells = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        let endCells = midCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
-        
-        //let startersOrdered = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        //let midsOrdered = midCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        //let endsOrdered = endCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        
-//        for cellNum in 0..<startersOrdered.count{
-//            // make the nuuuutez hea
-//            var noteArray = [Underlying_Data_Cell]()
-//            startersOrdered[cellNum].currentType = .start_Note
-//            noteArray.append(startersOrdered[cellNum])
-//            //for x in startersOrdered[cellNum].dataCell_X_Number ..< endsOrdered[cellNum].dataCell_X_Number{}
-//            let midNoteArray = midCellSet.filter{$0.dataCell_X_Number > startersOrdered[cellNum].dataCell_X_Number && $0.dataCell_X_Number < endsOrdered[cellNum].dataCell_X_Number}
-//                .sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//
-//            for cell in midNoteArray{
-//                cell.currentType = .mid_Note
-//                noteArray.append(cell)
-//            }
-//            endsOrdered[cellNum].currentType = .end_Note
-//            noteArray.append(endsOrdered[cellNum])
-//            Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
-//        }
+        for index in 0..<startCellSet.count{
+            var noteArr = [Underlying_Data_Cell]()
+            let currStartCell = startCells[index]
+            let currEndCell = endCells[index]
+            noteArr.append(currStartCell)
+            let midSet = midCellSet.filter({$0.dataCell_X_Number > currStartCell.dataCell_X_Number && $0.dataCell_X_Number < currEndCell.dataCell_X_Number})
+            let midArr = midSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            for midCell in midArr{
+                noteArr.append(midCell)
+            }
+            noteArr.append(currEndCell)
+            Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArr, note_Y_Num: note_Y_Param)
+        }
+            
+    
         
 
-        
-        
         //Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArray, note_Y_Num: note_Y_Param)
 
 //        if combinedPotentialSet.count > 2{
