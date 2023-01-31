@@ -86,9 +86,9 @@ public class Central_State : ObservableObject {
     public func change_Timing_Signature_Central(){
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
-    print("timing sig: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
-    , " currentXCursor_Slider_Position:",currentXCursor_Slider_Position.description
-    ,", computedX: ",computedXCursor_Slider_Position.description)
+//    print("timing sig: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
+//    , " currentXCursor_Slider_Position:",currentXCursor_Slider_Position.description
+//    ,", computedX: ",computedXCursor_Slider_Position.description)
     }
 
     public func deleteANote(){
