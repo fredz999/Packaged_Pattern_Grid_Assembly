@@ -110,7 +110,7 @@ class Viable_Set_Helper_Functions{
                 startCellSet.insert(nextCell)
             }
         }
-        
+    
         var endCellSet = Set<Underlying_Data_Cell>()
         if let maxX = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             endCellSet.insert(maxX)
@@ -121,8 +121,11 @@ class Viable_Set_Helper_Functions{
                 endCellSet.insert(prevCell)
             }
         }
+   
+        let midCellSet = helperFuncs_PotentialNoteSet.subtracting(startCellSet.union(endCellSet))
         
-        let midCellSet =  helperFuncs_PotentialNoteSet.subtracting(startCellSet.union(endCellSet))
+        print("startCellSet count: ",startCellSet.count.description, ", midCellSet count: ", midCellSet.count.description, ", endCellSet count: ", endCellSet.count.description)
+        
         for cell in startCellSet{cell.change_Type(newType: .start_Note)}
         for cell in midCellSet{cell.change_Type(newType: .mid_Note)}
         for cell in endCellSet{cell.change_Type(newType: .end_Note)}
