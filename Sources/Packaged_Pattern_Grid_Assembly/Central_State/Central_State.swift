@@ -113,7 +113,7 @@ public class Central_State : ObservableObject {
             }
             else if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 2{
                 if let lclH_SliderRef = h_Slider_Ref{
-                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: -1)
+                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
                 }
             }
         }
