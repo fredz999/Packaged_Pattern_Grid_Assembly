@@ -90,15 +90,16 @@ public class Central_State : ObservableObject {
         //1: discover the current sig
         
         if dimensions.patternTimingConfiguration == .fourFour{
-            if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 0{
-                print("set to 4:4 not moving")
-            }
-            if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
-                print("set to 4:4 moving back one")
+            print("set to 4:4, sub half index: ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index.description)
+//            if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 0{
+//                print("set to 4:4 not moving")
+//            }
+//            if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
+//                print("set to 4:4 moving back one")
 //                if let lclH_SliderRef = h_Slider_Ref{
 //                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
 //                }
-            }
+//            }
         }
         else if dimensions.patternTimingConfiguration == .sixEight{
             if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 0{
