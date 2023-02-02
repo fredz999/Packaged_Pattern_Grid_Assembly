@@ -29,7 +29,12 @@ class Viable_Set_Helper_Functions{
             }
         }
     }
-    var helperFuncs_currentData : Underlying_Data_Cell
+    var helperFuncs_currentData : Underlying_Data_Cell{
+        didSet{
+            print("4:4 half sub index: ",helperFuncs_currentData.four_Four_Half_Sub_Index.description
+                  ,"6:8 half sub index: ", helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
+        }
+    }
     
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
