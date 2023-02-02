@@ -115,11 +115,12 @@ public class Central_State : ObservableObject {
 //    }
         
         
-    if let lclH_SliderRef = h_Slider_Ref{
-        lclH_SliderRef.jumpToACell(cellNum: 20)
-    }
-
+//    if let lclH_SliderRef = h_Slider_Ref{
+//        lclH_SliderRef.jumpToACell(cellNum: 20)
+//    }
+        
     dimensions.flip_Timing_Signature_Dimensions()
+        
     data_Grid.changeTimingSignature_Data_Level()
 
         // just manually switch to 20
@@ -207,11 +208,12 @@ public class Central_State : ObservableObject {
             }
         }
     }
+    
     func centralState_Cursor_Position_Evaluation() {
-            if let lclCursorLayer = cursor_Layer_Ref {
-                lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
-            }
+        if let lclCursorLayer = cursor_Layer_Ref {
+            lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
         }
+    }
     
     func centralState_Data_Evaluation(){
             
@@ -270,8 +272,8 @@ public class Central_State : ObservableObject {
     lower_Bracket_Number = newLower
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
-    if let lcl_Central_Grid_Ref = central_Grid_Store{
-        lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
+    if let lcl_Central_Grid_Ref = central_Grid_Store {
+    lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
     centralState_Data_Evaluation()
     }
