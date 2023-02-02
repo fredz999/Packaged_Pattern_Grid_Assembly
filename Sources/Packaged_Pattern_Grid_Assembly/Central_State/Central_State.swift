@@ -87,12 +87,12 @@ public class Central_State : ObservableObject {
 
     if dimensions.patternTimingConfiguration == .fourFour {
         print("currdata six_Eight_Half_Sub_Index : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//        if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
-//            if let lclH_SliderRef = h_Slider_Ref {
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-//                print("set to 6:8, sub half index shifted from1 to : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//            }
-//        }
+        if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
+            if let lclH_SliderRef = h_Slider_Ref {
+                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
+                print("set to 6:8, sub half index shifted from1 to : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
+            }
+        }
     }
 //    else if dimensions.patternTimingConfiguration == .sixEight {
 //        if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
