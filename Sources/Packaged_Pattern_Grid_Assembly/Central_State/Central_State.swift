@@ -86,7 +86,9 @@ public class Central_State : ObservableObject {
     public func change_Timing_Signature_Central(){
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
-        
+    h_Slider_Ref?.artificially_H_Decrement() 
+    h_Slider_Ref?.artificially_H_Decrement()
+    h_Slider_Ref?.artificially_H_Decrement()
     print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
     ,"cell six_Eight_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description
     ,"cell four_Four_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index  .description)
