@@ -101,7 +101,12 @@ public class Central_State : ObservableObject {
 //        }
 //    }
         
-        if dimensions.patternTimingConfiguration == .fourFour {
+        
+        
+    dimensions.flip_Timing_Signature_Dimensions()
+    data_Grid.changeTimingSignature_Data_Level()
+        
+        if dimensions.patternTimingConfiguration == .sixEight {
             print("currdata six_Eight_Half_Sub_Index : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
             if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
                 if let lclH_SliderRef = h_Slider_Ref {
@@ -113,11 +118,6 @@ public class Central_State : ObservableObject {
                 }
             }
         }
-        
-    dimensions.flip_Timing_Signature_Dimensions()
-    data_Grid.changeTimingSignature_Data_Level()
-        
-        
         
         
 
