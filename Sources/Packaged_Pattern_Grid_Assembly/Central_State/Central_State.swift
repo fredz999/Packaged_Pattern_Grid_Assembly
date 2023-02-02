@@ -115,9 +115,9 @@ public class Central_State : ObservableObject {
 //    }
         
         
-//    if let lclH_SliderRef = h_Slider_Ref{
-//        lclH_SliderRef.jumpToACell(cellNum: 20)
-//    }
+    if let lclH_SliderRef = h_Slider_Ref{
+        lclH_SliderRef.jumpToACell(cellNum: 20)
+    }
         
     dimensions.flip_Timing_Signature_Dimensions()
         
