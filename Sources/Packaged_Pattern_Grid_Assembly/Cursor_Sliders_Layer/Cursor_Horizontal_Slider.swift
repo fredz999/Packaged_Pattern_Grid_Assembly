@@ -68,6 +68,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
 
     public func artificially_H_Decrement(numberOfCells:Int){
+        print("artificially_H_Decrement(numberOfCells: ",numberOfCells.description)
         let movement = dimensions.pattern_Grid_Sub_Cell_Width * CGFloat(numberOfCells)
         accumulatedDrag -= movement //dimensions.cursor_X_Jump
         
