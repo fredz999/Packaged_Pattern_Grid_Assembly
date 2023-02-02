@@ -21,9 +21,10 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     private var sixEight_Cell_Count : Int = 0
     
     private var fourFour_Half_Cell_Count : Int = 0
-    private var fourFour_Half_Sub_Count : Int = 0
     private var sixEight_Half_Cell_Count : Int = 0
+    
     private var sixEight_Half_Sub_Count : Int = 0
+    private var fourFour_Half_Sub_Count : Int = 0
     
     var initialStatus : E_CellStatus = .start_Blank
     var currFourStatus : E_CellStatus = .start_Blank
@@ -53,17 +54,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     initialStatus = currSixStatus
                 }
                 
-//                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus
-//                ,sixStatusParam: currSixStatus, initialStatusParam: initialStatus
-//                ,fourFourSubIndexParam: fourFour_Sub_Count
-//                ,sixEightSubIndexParam: sixEight_Sub_Count
-//                ,four_Four_Cell_Index_Param:fourFour_Cell_Count
-//                ,six_Eight_Cell_Index_Param:sixEight_Cell_Count
-//                ,four_Four_Half_Sub_Index_Param : 1
-//                ,four_Four_Half_Cell_Index : 1
-//                ,six_Eight_Half_Sub_Index : 1
-//                ,six_Eight_Half_Cell_Index : 1 )
-                
                 
                 let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
                 , initialStatusParam: initialStatus, fourFourSubIndexParam: fourFour_Sub_Count, sixEightSubIndexParam: sixEight_Sub_Count
@@ -72,13 +62,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 , four_Four_Half_Cell_Index_Param: fourFour_Half_Cell_Count
                 , six_Eight_Half_Sub_Index_Param: sixEight_Half_Sub_Count
                 , six_Eight_Half_Cell_Index_Param: sixEight_Half_Cell_Count)
-                //, parentLineParam: newLine)
-                
-                
-//                four_Four_Half_Sub_Index = four_Four_Half_Sub_Index_Param
-//                four_Four_Half_Cell_Index = four_Four_Half_Cell_Index_Param
-//                six_Eight_Half_Sub_Index = six_Eight_Half_Sub_Index_Param
-//                six_Eight_Half_Cell_Index = six_Eight_Half_Cell_Index_Param
                 
                 
                 if fourFour_Sub_Count + 1 < 6{fourFour_Sub_Count+=1}
@@ -96,7 +79,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 if fourFour_Half_Sub_Count + 1 < 3{fourFour_Half_Sub_Count+=1}
                 else if fourFour_Half_Sub_Count + 1 == 3{
                     fourFour_Half_Sub_Count = 0
-                    fourFour_Half_Sub_Count += 1
+                    fourFour_Half_Cell_Count += 1
                 }
 
                 if sixEight_Half_Sub_Count + 1 < 2{sixEight_Half_Sub_Count+=1}
