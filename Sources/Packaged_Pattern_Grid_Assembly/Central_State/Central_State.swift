@@ -119,6 +119,12 @@ public class Central_State : ObservableObject {
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
         print("after data X: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description)
+        // just manually switch to 20
+        if let lclH_SliderRef = h_Slider_Ref{
+            lclH_SliderRef.jumpToACell(cellNum: 10)
+        }
+        
+        
         
 //    if dimensions.patternTimingConfiguration == .fourFour {
 //                print("currdata six_Eight_Half_Sub_Index : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
