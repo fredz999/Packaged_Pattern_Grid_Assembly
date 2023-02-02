@@ -123,8 +123,8 @@ class Viable_Set_Helper_Functions{
             }
             // --------------------------------- STATIONARY ----------------------------------
             else if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                currentSwipeDirection = .stationary
-//                helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
+                currentSwipeDirection = .stationary
+                helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
             }
             }
             
