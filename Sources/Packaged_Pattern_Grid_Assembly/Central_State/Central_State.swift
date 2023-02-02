@@ -85,27 +85,27 @@ public class Central_State : ObservableObject {
     
     public func change_Timing_Signature_Central(){
         // this is B4 the timing sig changes so the move result will be the other timing
-        if dimensions.patternTimingConfiguration == .fourFour {
-            // jumping to 6:8
-            if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
-                if let lclH_SliderRef = h_Slider_Ref{
-                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-                }
-            }
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-            // jumping to 4:4
-            if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
-                if let lclH_SliderRef = h_Slider_Ref{
-                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-                }
-            }
-            else if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 2 {
-                if let lclH_SliderRef = h_Slider_Ref{
-                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
-                }
-            }
-        }
+//        if dimensions.patternTimingConfiguration == .fourFour {
+//            // jumping to 6:8
+//            if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
+//                if let lclH_SliderRef = h_Slider_Ref{
+//                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
+//                }
+//            }
+//        }
+//        else if dimensions.patternTimingConfiguration == .sixEight {
+//            // jumping to 4:4
+//            if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
+//                if let lclH_SliderRef = h_Slider_Ref{
+//                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
+//                }
+//            }
+//            else if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 2 {
+//                if let lclH_SliderRef = h_Slider_Ref{
+//                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
+//                }
+//            }
+//        }
         
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
