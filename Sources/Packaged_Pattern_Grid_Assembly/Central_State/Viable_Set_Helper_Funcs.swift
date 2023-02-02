@@ -29,7 +29,8 @@ class Viable_Set_Helper_Functions{
             }
         }
     }
-    var helperFuncs_currentData : Underlying_Data_Cell{
+    var helperFuncs_currentData : Underlying_Data_Cell
+    {
         didSet{
             print("helperFuncs_currentData set, dataX: ",helperFuncs_currentData.dataCell_X_Number.description)
         }
