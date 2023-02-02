@@ -145,25 +145,25 @@ public class Note : ObservableObject, Identifiable, Equatable {
     func leftSide_Expansion(){
         if let firstCell = dataCellArray.first,let lastCell = dataCellArray.last {
             
-            let firstIndex = firstCell.dataCell_X_Number
-            let lastIndex = lastCell.dataCell_X_Number
-            
-            if let c_Layer = central_State.cursor_Layer_Ref {
-                if c_Layer.currDataX == lastIndex {
-                    if dataCellArray.count > 1 {
-                        if let lclHslider = central_State.h_Slider_Ref {
-                            lclHslider.artificially_H_Decrement()
-                        }
-                    }
-                }
-            }
-
-            if lastIndex > firstIndex {
-                lastCell.note_Im_In = nil
-                dataCellArray.removeLast()
-                redrawCellArray()
-                check_For_Highlight()
-            }
+//            let firstIndex = firstCell.dataCell_X_Number
+//            let lastIndex = lastCell.dataCell_X_Number
+//            
+//            if let c_Layer = central_State.cursor_Layer_Ref {
+//                if c_Layer.currDataX == lastIndex {
+//                    if dataCellArray.count > 1 {
+//                        if let lclHslider = central_State.h_Slider_Ref {
+//                            lclHslider.artificially_H_Decrement()
+//                        }
+//                    }
+//                }
+//            }
+//
+//            if lastIndex > firstIndex {
+//                lastCell.note_Im_In = nil
+//                dataCellArray.removeLast()
+//                redrawCellArray()
+//                check_For_Highlight()
+//            }
         }
     }
     

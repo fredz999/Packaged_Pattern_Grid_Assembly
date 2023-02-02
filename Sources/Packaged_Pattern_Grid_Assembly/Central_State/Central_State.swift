@@ -86,9 +86,8 @@ public class Central_State : ObservableObject {
     public func change_Timing_Signature_Central(){
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
-    h_Slider_Ref?.artificially_H_Decrement() 
-    h_Slider_Ref?.artificially_H_Decrement()
-    h_Slider_Ref?.artificially_H_Decrement()
+    h_Slider_Ref?.artificially_H_Decrement(numberOfCells: 6)
+
     print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
     ,"cell six_Eight_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description
     ,"cell four_Four_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index  .description)
@@ -216,49 +215,49 @@ public class Central_State : ObservableObject {
 
     public func changeNotePosition(movementTyoeParam:E_Note_Movement_Type) {
         
-        if let noteCollection = note_Collection_Ref {
-       
-            if let lclCurrNote = noteCollection.currentHighlightedNote {
-                if movementTyoeParam == .rightWard {
-                    if let lclHSlider = h_Slider_Ref {
-                        if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .toRight) == false{
-                            lclCurrNote.moveRightOne()
-                            lclHSlider.artificially_H_Increment()
-                        }
-                        else {
-                            lclHSlider.artificially_H_Increment()
-                        }
-                    }
-                }
-                else if movementTyoeParam == .leftWard {
-                    if let lclHSlider = h_Slider_Ref {
-                        if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .toLeft) == false {
-                            lclCurrNote.moveLeftOne()
-                            lclHSlider.artificially_H_Decrement()
-                        }
-                        else {
-                            lclHSlider.artificially_H_Decrement()
-                        }
-                    }
-                }
-                else if movementTyoeParam == .downward {
-                    if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .below) == false{
-                        if let lclVSlider = v_Slider_Ref{
-                            lclCurrNote.moveDownOne()
-                            lclVSlider.artificially_V_Increment()
-                        }
-                    }
-                }
-                else if movementTyoeParam == .upward {
-                    if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .above) == false{
-                        if let lclVSlider = v_Slider_Ref{
-                            lclCurrNote.moveUpOne()
-                            lclVSlider.artificially_V_Decrement()
-                        }
-                    }
-                }
-            }
-        }
+//        if let noteCollection = note_Collection_Ref {
+//
+//            if let lclCurrNote = noteCollection.currentHighlightedNote {
+//                if movementTyoeParam == .rightWard {
+//                    if let lclHSlider = h_Slider_Ref {
+//                        if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .toRight) == false{
+//                            lclCurrNote.moveRightOne()
+//                            lclHSlider.artificially_H_Increment()
+//                        }
+//                        else {
+//                            lclHSlider.artificially_H_Increment()
+//                        }
+//                    }
+//                }
+//                else if movementTyoeParam == .leftWard {
+//                    if let lclHSlider = h_Slider_Ref {
+//                        if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .toLeft) == false {
+//                            lclCurrNote.moveLeftOne()
+//                            lclHSlider.artificially_H_Decrement()
+//                        }
+//                        else {
+//                            lclHSlider.artificially_H_Decrement()
+//                        }
+//                    }
+//                }
+//                else if movementTyoeParam == .downward {
+//                    if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .below) == false{
+//                        if let lclVSlider = v_Slider_Ref{
+//                            lclCurrNote.moveDownOne()
+//                            lclVSlider.artificially_V_Increment()
+//                        }
+//                    }
+//                }
+//                else if movementTyoeParam == .upward {
+//                    if lclCurrNote.cell_Is_Beside_Border_Or_Note(connectionType: .above) == false{
+//                        if let lclVSlider = v_Slider_Ref{
+//                            lclCurrNote.moveUpOne()
+//                            lclVSlider.artificially_V_Decrement()
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     public static let Static_Central_State = Central_State()
