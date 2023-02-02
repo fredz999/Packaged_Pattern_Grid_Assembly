@@ -111,27 +111,27 @@ public class Central_State : ObservableObject {
     data_Grid.changeTimingSignature_Data_Level()
         
 
-//    if dimensions.patternTimingConfiguration == .fourFour {
-//        print("set to 4:4, sub half index: ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index.description)
-//        if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
-//            if let lclH_SliderRef = h_Slider_Ref{
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-//            }
-//        }
-//        else if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 2 {
-//            if let lclH_SliderRef = h_Slider_Ref{
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
-//            }
-//        }
-//    }
-//    else if dimensions.patternTimingConfiguration == .sixEight {
-//        print("set to 6:8, sub half index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//        if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
-//            if let lclH_SliderRef = h_Slider_Ref{
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-//            }
-//        }
-//    }
+    if dimensions.patternTimingConfiguration == .fourFour {
+        print("set to 4:4, sub half index: ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index.description)
+        if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
+            if let lclH_SliderRef = h_Slider_Ref{
+                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
+            }
+        }
+        else if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 2 {
+            if let lclH_SliderRef = h_Slider_Ref{
+                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
+            }
+        }
+    }
+    else if dimensions.patternTimingConfiguration == .sixEight {
+        print("set to 6:8, sub half index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
+        if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
+            if let lclH_SliderRef = h_Slider_Ref{
+                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
+            }
+        }
+    }
         
 //    print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
 //    ,"cell six_Eight_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description
