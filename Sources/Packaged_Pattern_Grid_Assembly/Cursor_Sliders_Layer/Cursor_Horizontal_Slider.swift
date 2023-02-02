@@ -70,8 +70,10 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public func artificially_H_Decrement(numberOfCells:Int){
         
         let movement = dimensions.pattern_Grid_Sub_Cell_Width * CGFloat(numberOfCells)
-        accumulatedDrag -= movement //dimensions.cursor_X_Jump
-        print("artificially_H_Decrement movement: ",movement.description)
+        accumulatedDrag -= movement
+        
+        print("1: artificially_H_Decrement movement: ",movement.description,"currentVal: ",currentVal.description)
+        
         if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary {
             currentVal = accumulatedDrag
         }
@@ -80,6 +82,8 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
             accumulatedDrag = 0
             currentVal = 0
         }
+        
+        print("2: artificially_H_Decrement movement: ",movement.description,"currentVal: ",currentVal.description)
 
     }
     
