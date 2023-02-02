@@ -86,6 +86,40 @@ public class Central_State : ObservableObject {
     public func change_Timing_Signature_Central(){
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
+        // discover the nearest zero index of the timing signature
+        //1: discover the current sig
+        
+        if dimensions.patternTimingConfiguration == .fourFour{
+            if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 0{
+                
+            }
+            else if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
+                if let lclH_SliderRef = h_Slider_Ref{
+                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
+                }
+            }
+//            else if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 2{
+//                if let lclH_SliderRef = h_Slider_Ref{
+//                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: -1)
+//                }
+//            }
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight{
+            if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 0{}
+            else if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1{
+                if let lclH_SliderRef = h_Slider_Ref{
+                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
+                }
+            }
+            else if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 2{
+                if let lclH_SliderRef = h_Slider_Ref{
+                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: -1)
+                }
+            }
+        }
+        
+        
+        
     h_Slider_Ref?.artificially_H_Decrement(numberOfCells: 6)
 
     print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
