@@ -86,7 +86,7 @@ public class Central_State : ObservableObject {
     public func change_Timing_Signature_Central(){
         
     if let lclH_SliderRef = h_Slider_Ref {
-        lclH_SliderRef.artificially_H_Decrement(numberOfCells: -5)
+        lclH_SliderRef.artificially_H_Decrement(numberOfCells: -1)
     }
         
     dimensions.flip_Timing_Signature_Dimensions()
