@@ -122,14 +122,11 @@ public class Central_State : ObservableObject {
         
     h_Slider_Ref?.artificially_H_Decrement(numberOfCells: 6)
 
-    print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
-    ,"cell six_Eight_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description
-    ,"cell four_Four_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index  .description)
+//    print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
+//    ,"cell six_Eight_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description
+//    ,"cell four_Four_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index  .description)
         
-//    then move the thing to the next lower half cell start
-//    print("timing sig: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
-//    , " currentXCursor_Slider_Position:",currentXCursor_Slider_Position.description
-//    ,", computedX: ",computedXCursor_Slider_Position.description)
+ 
         
     }
 

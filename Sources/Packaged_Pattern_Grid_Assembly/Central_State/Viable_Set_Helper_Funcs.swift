@@ -29,12 +29,8 @@ class Viable_Set_Helper_Functions{
             }
         }
     }
-    var helperFuncs_currentData : Underlying_Data_Cell{
-        didSet{
-            print("4:4 half sub index: ",helperFuncs_currentData.four_Four_Half_Sub_Index.description
-                  ,"6:8 half sub index: ", helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-        }
-    }
+    var helperFuncs_currentData : Underlying_Data_Cell
+ 
     
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
@@ -101,9 +97,7 @@ class Viable_Set_Helper_Functions{
         let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
         let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
         
-//        print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description
-//        ,", inviableStartCellSet: ",inviableStartCellSet.count.description
-//        ,", inviableEndCellSet: ",inviableEndCellSet.count.description)
+ 
         
         var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
