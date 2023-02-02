@@ -120,7 +120,6 @@ public class Central_State : ObservableObject {
         
         
         
-    h_Slider_Ref?.artificially_H_Decrement(numberOfCells: 6)
 
 //    print("timing switched to: ",dimensions.patternTimingConfiguration == .fourFour ? "4:4" : "6:8"
 //    ,"cell six_Eight_Half_Sub_Index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description
