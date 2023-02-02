@@ -84,12 +84,18 @@ public class Central_State : ObservableObject {
     }
     
     public func change_Timing_Signature_Central(){
+        
+    if let lclH_SliderRef = h_Slider_Ref {
+        lclH_SliderRef.artificially_H_Decrement(numberOfCells: -5)
+    }
+        
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
+        
         // discover the nearest zero index of the timing signature
         //1: discover the current sig
         
-        if dimensions.patternTimingConfiguration == .fourFour{
+        if dimensions.patternTimingConfiguration == .fourFour {
             print("set to 4:4, sub half index: ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index.description)
 //            if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 0{
 //                print("set to 4:4 not moving")
@@ -108,15 +114,15 @@ public class Central_State : ObservableObject {
 //            }
 //            else if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1{
 //                print("set to 6:8 moving back one")
-////                if let lclH_SliderRef = h_Slider_Ref{
-////                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-////                }
+//                if let lclH_SliderRef = h_Slider_Ref{
+//                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
+//                }
 //            }
 //            else if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 2{
 //                print("set to 6:8 moving back two?")
-////                if let lclH_SliderRef = h_Slider_Ref{
-////                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
-////                }
+//                if let lclH_SliderRef = h_Slider_Ref{
+//                    lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
+//                }
 //            }
         }
         
