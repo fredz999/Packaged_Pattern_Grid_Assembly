@@ -115,14 +115,17 @@ public class Central_State : ObservableObject {
 //    }
         
         
-            if let lclH_SliderRef = h_Slider_Ref {
-                lclH_SliderRef.jumpToACell(cellNum: 20)
-            }
+            
 
         
     dimensions.flip_Timing_Signature_Dimensions()
 
     data_Grid.changeTimingSignature_Data_Level()
+        
+        if let lclH_SliderRef = h_Slider_Ref {
+            lclH_SliderRef.jumpToACell(cellNum: 20)
+        }
+
     
     // there is a discrepancy here that both troubles and baffles me
     // print("viable eeX: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description," hslider currentVal: ",h_Slider_Ref?.computedLineDisplacement.description  )
