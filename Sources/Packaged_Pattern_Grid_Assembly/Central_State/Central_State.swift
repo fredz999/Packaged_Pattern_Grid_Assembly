@@ -115,12 +115,13 @@ public class Central_State : ObservableObject {
 //    }
         
         
-    
+            if let lclH_SliderRef = h_Slider_Ref {
+                lclH_SliderRef.jumpToACell(cellNum: 20)
+            }
+
         
     dimensions.flip_Timing_Signature_Dimensions()
-//    if let lclH_SliderRef = h_Slider_Ref {
-//        lclH_SliderRef.jumpToACell(cellNum: 20)
-//    }
+
     data_Grid.changeTimingSignature_Data_Level()
     
     // there is a discrepancy here that both troubles and baffles me
