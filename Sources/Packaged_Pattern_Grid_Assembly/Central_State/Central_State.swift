@@ -114,22 +114,19 @@ public class Central_State : ObservableObject {
 //        }
 //    }
         
-        
-            
+    if let lclH_SliderRef = h_Slider_Ref {
+        lclH_SliderRef.jumpToACell(cellNum: 20)
+    }
 
-        
     dimensions.flip_Timing_Signature_Dimensions()
 
     data_Grid.changeTimingSignature_Data_Level()
         
-        if let lclH_SliderRef = h_Slider_Ref {
-            lclH_SliderRef.jumpToACell(cellNum: 20)
-        }
+    
 
     
     // there is a discrepancy here that both troubles and baffles me
     // print("viable eeX: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description," hslider currentVal: ",h_Slider_Ref?.computedLineDisplacement.description  )
-        
     // you have to do it here this is AMAZINGLY bad programming
     // because of the line of functions it
     // has to go from setting the hslider pos which triggers calc cursor xpos in the hslider which
@@ -137,57 +134,10 @@ public class Central_State : ObservableObject {
     // this is really all over the place
     // the trouble is that the cursor x jump gets set in this func
     // then it gets utilised again when you manually alter the position - it has to
-    //cursor_Slider_Update(new_X: intDivided, new_Y: nil)
-        
-        
-        
-        
-        
-//    if dimensions.patternTimingConfiguration == .fourFour {
-//                print("currdata six_Eight_Half_Sub_Index : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//        if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
-//            if let lclH_SliderRef = h_Slider_Ref {
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-//                print("set to 6:8, sub half index shifted from1 to : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//            }
-//            else if h_Slider_Ref == nil {
-//                print("h_Slider_Ref == nil .........")
-//            }
-//        }
-//    }
-    
-    
-
-    
-        
+    // cursor_Slider_Update(new_X: intDivided, new_Y: nil)
         
 
-//    if dimensions.patternTimingConfiguration == .fourFour {
-//
-//        if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
-//            if let lclH_SliderRef = h_Slider_Ref{
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-//                print("set to 4:4, 4:$ sub half index shifted from 1 to : ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index.description)
-//            }
-//        }
-//        else if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 2 {
-//            if let lclH_SliderRef = h_Slider_Ref{
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
-//                print("set to 4:4, 4:$ sub half index shifted from 2 to : ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index.description)
-//            }
-//        }
-//    }
-//    else if dimensions.patternTimingConfiguration == .sixEight {
-//        //print("set to 6:8, sub half index: ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//        if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
-//            if let lclH_SliderRef = h_Slider_Ref{
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-//                print("set to 6:8, sub half index shifted from1 to : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//            }
-//        }
-//    }
- 
- 
+
         
     }
 
