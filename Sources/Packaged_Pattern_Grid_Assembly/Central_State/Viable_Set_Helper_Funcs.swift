@@ -30,11 +30,11 @@ class Viable_Set_Helper_Functions{
         }
     }
     var helperFuncs_currentData : Underlying_Data_Cell
-    {
-        didSet {
-            print("helperFuncs_currentData set, dataX: ",helperFuncs_currentData.dataCell_X_Number.description)
-        }
-    }
+//    {
+//        didSet {
+//            print("helperFuncs_currentData set, dataX: ",helperFuncs_currentData.dataCell_X_Number.description)
+//        }
+//    }
  
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {

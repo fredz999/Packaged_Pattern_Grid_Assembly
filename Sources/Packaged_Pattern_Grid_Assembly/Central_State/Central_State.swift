@@ -118,12 +118,12 @@ public class Central_State : ObservableObject {
     
         
     dimensions.flip_Timing_Signature_Dimensions()
-//    if let lclH_SliderRef = h_Slider_Ref {
-//        lclH_SliderRef.jumpToACell(cellNum: 20)
-//    }
+    if let lclH_SliderRef = h_Slider_Ref {
+        lclH_SliderRef.jumpToACell(cellNum: 20)
+    }
     data_Grid.changeTimingSignature_Data_Level()
         
-        print("viable X: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description  )
+    print("viable X: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description  )
         
     // you have to do it here this is AMAZINGLY bad programming
     // because of the line of functions it
