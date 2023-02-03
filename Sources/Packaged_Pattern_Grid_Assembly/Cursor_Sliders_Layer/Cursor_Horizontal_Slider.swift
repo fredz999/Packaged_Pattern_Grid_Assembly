@@ -87,16 +87,17 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 
     }
     
-    public func jumpToACell(cellNum:Int){
-        accumulatedDrag = CGFloat(cellNum)*dimensions.pattern_Grid_Sub_Cell_Width
-        currentVal = accumulatedDrag
-    }
+//    public func jumpToACell(cellNum:Int){
+//        accumulatedDrag = CGFloat(cellNum)*dimensions.pattern_Grid_Sub_Cell_Width
+//        currentVal = accumulatedDrag
+//    }
     
     public func handleDragEnd(inputParam:CGFloat){
         accumulatedDrag = inputParam
     }
     
     public func calculateCursorCellXPos(){
+        print("calculateCursorCellXPos() got triggered")
         let divided = currentVal/dimensions.cursor_X_Jump
         let intDivided = Int(divided)
         if intDivided != central_State_Ref.currentXCursor_Slider_Position {
