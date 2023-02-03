@@ -117,7 +117,7 @@ public class Central_State : ObservableObject {
         
     
         
-    dimensions.flip_Timing_Signature_Dimensions()
+    //dimensions.flip_Timing_Signature_Dimensions()
         
     data_Grid.changeTimingSignature_Data_Level()
 
