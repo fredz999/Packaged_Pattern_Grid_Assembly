@@ -101,6 +101,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         let divided = currentVal/dimensions.cursor_X_Jump
         let intDivided = Int(divided)
         if intDivided != central_State_Ref.currentXCursor_Slider_Position {
+            print("central_State_Ref.currentXCursor_Slider_Position: ",central_State_Ref.currentXCursor_Slider_Position.description)
             central_State_Ref.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
         }
         computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump

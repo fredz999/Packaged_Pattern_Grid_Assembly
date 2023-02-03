@@ -122,8 +122,9 @@ public class Central_State : ObservableObject {
         lclH_SliderRef.jumpToACell(cellNum: 20)
     }
     data_Grid.changeTimingSignature_Data_Level()
-        
-        print("viable eeX: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description," hslider currentVal: ",h_Slider_Ref?.computedLineDisplacement.description  )
+    
+    // there is a discrepancy here that both troubles and baffles me
+    print("viable eeX: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description," hslider currentVal: ",h_Slider_Ref?.computedLineDisplacement.description  )
         
     // you have to do it here this is AMAZINGLY bad programming
     // because of the line of functions it
