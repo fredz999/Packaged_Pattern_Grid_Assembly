@@ -118,12 +118,19 @@ public class Central_State : ObservableObject {
     
         
     dimensions.flip_Timing_Signature_Dimensions()
-        
+    if let lclH_SliderRef = h_Slider_Ref {
+        lclH_SliderRef.jumpToACell(cellNum: 20)
+    }
     data_Grid.changeTimingSignature_Data_Level()
-
-//    if let lclH_SliderRef = h_Slider_Ref {
-//        lclH_SliderRef.jumpToACell(cellNum: 20)
-//    }
+    // you have to do it here this is AMAZINGLY bad programming
+    // because of the line of functions it
+    // has to go from setting the hslider pos which triggers calc cursor xpos in the hslider which
+    // triggers this classes cursor_Slider_Update which changes viableSetHelpers.helperFuncs_currentData
+    // this is really all over the place
+    // the trouble is that the cursor x jump gets set in this func
+    // then it gets utilised again when you manually alter the position
+    //cursor_Slider_Update(new_X: intDivided, new_Y: nil)
+        
         
         
         
