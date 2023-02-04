@@ -117,15 +117,7 @@ public class Central_State : ObservableObject {
 //    if let lclH_SliderRef = h_Slider_Ref {
 //        lclH_SliderRef.jumpToACell(cellNum: 20)
 //    }
-    //path 1: the curr t.s = 44, the cursor_X_Jump is 12,
-    //jumpToACell(cellNum: 20 accumulated =
-        //computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump tagged onto the end could be the problem
-        // need to update
-        //1: hslider accumulatedDrag
-        //2: hslider currentVal
-        //3: central_State_Ref.currentXCursor_Slider_Position by a thing called intDivided = Int(currentVal/dimensions.cursor_X_Jump)
-        //4: if central_State_Ref.currentXCursor_Slider_Position is not the same as its original level then cursor_Slider_Update( is called
-        //5: computedLineDisplacement , currently calculated by CGFloat(intDivided) * dimensions.cursor_X_Jump
+ 
 
     dimensions.flip_Timing_Signature_Dimensions()
 
