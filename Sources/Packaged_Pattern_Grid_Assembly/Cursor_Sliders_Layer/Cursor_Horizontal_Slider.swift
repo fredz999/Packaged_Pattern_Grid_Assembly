@@ -17,11 +17,11 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public let dimensions = ComponentDimensions.StaticDimensions
     
     @Published public var computedLineDisplacement: CGFloat = 0
-    {
-        didSet {
-            print("computedLineDisplacement was set to: ",computedLineDisplacement.description)
-        }
-    }
+//    {
+//        didSet {
+//            print("computedLineDisplacement was set to: ",computedLineDisplacement.description)
+//        }
+//    }
     
     @Published public var accumulatedDrag : CGFloat = 0
     
