@@ -116,10 +116,10 @@ public class ComponentDimensions : ObservableObject {
             if lclMaxLesserSix != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix}
         }
         
-        if patternTimingConfiguration == .fourFour{
+        if patternTimingConfiguration == .fourFour {
             if computedLineParam != currentFourFourPosition{computedLineParam = currentFourFourPosition}
         }
-        else if patternTimingConfiguration == .sixEight{
+        else if patternTimingConfiguration == .sixEight {
             if computedLineParam != currentSixEightPosition{computedLineParam = currentSixEightPosition}
         }
     }
