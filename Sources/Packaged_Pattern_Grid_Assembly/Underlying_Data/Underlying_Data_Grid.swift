@@ -54,7 +54,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     initialStatus = currSixStatus
                 }
                 
-                if fourFour_Half_Sub_Count == 0 {
+                if fourFour_Half_Sub_Count == 0 && y == 0 {
                     //dimensions.four_Four_Slider_Positions.append(CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width)
                     let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
                     dimensions.four_Four_Slider_Positions.insert(insertFloat)
