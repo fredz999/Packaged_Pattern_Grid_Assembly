@@ -107,13 +107,13 @@ public class ComponentDimensions : ObservableObject {
         
         // selection here not right....noeeds to be the max of the set that are less
         let lesserSetFourFour = four_Four_Slider_Positions.filter{$0 < currValParam}
-        if let lclMaxLesser = lesserSetFourFour.max(){
-            currentFourFourPosition = lclMaxLesser
+        if let lclMaxLesserFour = lesserSetFourFour.max(){
+            if lclMaxLesserFour != currentFourFourPosition{currentFourFourPosition = lclMaxLesserFour}
         }
         
         let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0 < currValParam}
-        if let lclMaxLesser = lesserSetSixEight.max(){
-            currentSixEightPosition = lclMaxLesser
+        if let lclMaxLesserSix = lesserSetSixEight.max(){
+            if lclMaxLesserSix != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix}
         }
         
         
