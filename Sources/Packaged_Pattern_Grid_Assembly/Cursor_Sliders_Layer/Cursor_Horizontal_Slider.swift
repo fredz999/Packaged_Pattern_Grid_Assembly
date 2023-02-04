@@ -19,7 +19,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     @Published public var computedLineDisplacement: CGFloat = 0
     {
         didSet {
-            print("computedLineDisplacement: ",computedLineDisplacement.description)
+            print("computedLineDisplacement was set to: ",computedLineDisplacement.description)
         }
     }
     
@@ -90,6 +90,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     public func jumpToACell(cellNum:Int){
         accumulatedDrag = CGFloat(cellNum)*dimensions.pattern_Grid_Sub_Cell_Width
         currentVal = accumulatedDrag
+        print("accumulatedDragwas set to",accumulatedDrag.description,"currentVal was set to:",currentVal.description)
     }
     
     public func handleDragEnd(inputParam:CGFloat){
@@ -101,6 +102,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         let divided = currentVal/dimensions.cursor_X_Jump
         let intDivided = Int(divided)
         if intDivided != central_State_Ref.currentXCursor_Slider_Position {
+            print("intDivided != central_State_Ref.currentXCursor_Slider_Position ")
             central_State_Ref.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
         }
         computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
