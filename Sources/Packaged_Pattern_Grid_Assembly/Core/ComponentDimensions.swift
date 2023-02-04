@@ -106,12 +106,12 @@ public class ComponentDimensions : ObservableObject {
         //set both of them regardless but only alter the computedLineParam if needed
         
         // selection here not right....noeeds to be the max of the set that are less
-        let lesserSetFourFour = four_Four_Slider_Positions.filter{$0 < currValParam}
+        let lesserSetFourFour = four_Four_Slider_Positions.filter{$0 <= currValParam}
         if let lclMaxLesserFour = lesserSetFourFour.max(){
             if lclMaxLesserFour != currentFourFourPosition{currentFourFourPosition = lclMaxLesserFour}
         }
         
-        let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0 < currValParam}
+        let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0 <= currValParam}
         if let lclMaxLesserSix = lesserSetSixEight.max(){
             if lclMaxLesserSix != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix}
         }
@@ -122,6 +122,7 @@ public class ComponentDimensions : ObservableObject {
         else if patternTimingConfiguration == .sixEight {
             if computedLineParam != currentSixEightPosition{computedLineParam = currentSixEightPosition}
         }
+        
     }
     
     var cursor_X_Jump_Initial : CGFloat = 4
