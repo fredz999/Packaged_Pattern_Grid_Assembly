@@ -98,13 +98,18 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
     
     public func calculateCursorCellXPos(){
-        print("currval: ",currentVal.description)
-        let divided = currentVal/dimensions.cursor_X_Jump
-        let intDivided = Int(divided)
-        if intDivided != central_State_Ref.currentXCursor_Slider_Position {
-            central_State_Ref.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
-        }
-        computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
+        // maybe use a set of zero half cells? as brackets?
+        
+        
+        
+        
+        
+//        let divided = currentVal/dimensions.cursor_X_Jump
+//        let intDivided = Int(divided)
+//        if intDivided != central_State_Ref.currentXCursor_Slider_Position {
+//            central_State_Ref.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
+//        }
+//        computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
     }
     
 }
