@@ -99,11 +99,13 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public func calculateCursorCellXPos(){
         // maybe use a set of zero half cells? as brackets?
+        // what to do? .... compare to 90+ bracket positions ....? bit slow?
+        // find nearest cell sub half
+
+        dimensions.testPosition(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
         
-        
-        
-        
-        
+        //print("current val: ",currentVal.description)
+
 //        let divided = currentVal/dimensions.cursor_X_Jump
 //        let intDivided = Int(divided)
 //        if intDivided != central_State_Ref.currentXCursor_Slider_Position {

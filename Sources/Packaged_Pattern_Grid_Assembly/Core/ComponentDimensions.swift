@@ -92,6 +92,35 @@ public class ComponentDimensions : ObservableObject {
     public var pattern_Start_Blank_XOffset : CGFloat = 1
     public var pattern_Mid_End_XOffset : CGFloat = 0
     
+    // this is an array of underllying data nums
+    // I want to have this mechanism basically reliant on cell numbers
+    // so I can assign the new cell num to a h-slider prior to changing timing
+    // when I change timing I go to nearest lower x bracket
+    
+    var four_Four_Slider_Positions = Set<CGFloat>()
+    var six_Eight_Slider_Positions = Set<CGFloat>()
+    var currentFourFourPosition : CGFloat = 0
+    var currentSixEightPosition : CGFloat = 0
+    
+    func testPosition(currValParam:CGFloat,computedLineParam:inout CGFloat){
+        //set both of them regardless but only alter the computedLineParam if needed
+        
+        if let lclFourFourCurrent = four_Four_Slider_Positions.first(where: {$0 < currValParam } ){
+            if lclFourFourCurrent != currentFourFourPosition{currentFourFourPosition = lclFourFourCurrent}
+        }
+        
+        if let lclSixEightCurrent = six_Eight_Slider_Positions.first(where: {$0 < currValParam } ){
+            if currentSixEightPosition != lclSixEightCurrent{currentSixEightPosition = lclSixEightCurrent}
+        }
+        
+        if patternTimingConfiguration == .fourFour{
+            computedLineParam = currentFourFourPosition
+        }
+        else if patternTimingConfiguration == .sixEight{
+            computedLineParam = currentSixEightPosition
+        }
+    }
+    
     var cursor_X_Jump_Initial : CGFloat = 4
     @Published public var cursor_X_Jump : CGFloat = 12
     
