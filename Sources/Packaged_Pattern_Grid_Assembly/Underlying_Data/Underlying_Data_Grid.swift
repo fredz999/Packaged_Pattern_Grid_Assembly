@@ -54,18 +54,20 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     initialStatus = currSixStatus
                 }
                 
-                if fourFour_Half_Sub_Count == 0 && y == 0 {
-                    //dimensions.four_Four_Slider_Positions.append(CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width)
-                    let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
-                    dimensions.four_Four_Slider_Positions.insert(insertFloat)
-                    print("four_Four_Slider_Positions added: ",insertFloat.description)
+                if y == 0 {
+                    
+                    if fourFour_Half_Sub_Count == 0  {
+                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
+                        dimensions.four_Four_Slider_Positions.insert(insertFloat)
+                    }
+                    
+                    if sixEight_Half_Sub_Count == 0 {
+                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
+                        dimensions.six_Eight_Slider_Positions.insert(insertFloat)
+                    }
+                    
                 }
                 
-                if sixEight_Half_Sub_Count == 0 {
-                    //dimensions.six_Eight_Slider_Positions.append(CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width)
-                    let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
-                    dimensions.six_Eight_Slider_Positions.insert(insertFloat)
-                }
                 
                 let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
                 , initialStatusParam: initialStatus, fourFourSubIndexParam: fourFour_Sub_Count, sixEightSubIndexParam: sixEight_Sub_Count
