@@ -116,21 +116,11 @@ public class ComponentDimensions : ObservableObject {
             if lclMaxLesserSix != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix}
         }
         
-        
-        
-//        if let lclFourFourCurrent = four_Four_Slider_Positions.first(where: {$0 < currValParam } ){
-//            if lclFourFourCurrent != currentFourFourPosition{currentFourFourPosition = lclFourFourCurrent}
-//        }
-        
-//        if let lclSixEightCurrent = six_Eight_Slider_Positions.first(where: {$0 < currValParam } ){
-//            if currentSixEightPosition != lclSixEightCurrent{currentSixEightPosition = lclSixEightCurrent}
-//        }
-        
         if patternTimingConfiguration == .fourFour{
-            computedLineParam = currentFourFourPosition
+            if computedLineParam != currentFourFourPosition{computedLineParam = currentFourFourPosition}
         }
         else if patternTimingConfiguration == .sixEight{
-            computedLineParam = currentSixEightPosition
+            if computedLineParam != currentSixEightPosition{computedLineParam = currentSixEightPosition}
         }
     }
     
