@@ -39,7 +39,7 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
 
                 if viableSetHelpers.initial_WriteOnCell == nil {
-                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
+                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                     viableSetHelpers.establish_Potential_Cells_Set()
                 }
 
@@ -151,12 +151,14 @@ public class Central_State : ObservableObject {
     
     //var cellNumberMultiplier : Int = 2
     var currentYCursor_Slider_Position : Int = 0
-    var currentXCursor_Slider_Position : Int = 0
-    var computedXCursor_Slider_Position : Int = 0
+   // var currentXCursor_Slider_Position : Int = 0
+    //var computedXCursor_Slider_Position : Int = 0
+    // need a position and datanumber pair
+    var currentXData_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lcl_NewX = new_X {
-            currentXCursor_Slider_Position = lcl_NewX
+            //currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
             //centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
@@ -175,43 +177,43 @@ public class Central_State : ObservableObject {
         }
     }
     
-    func centralState_Cursor_Position_Evaluation() {
-        if let lclCursorLayer = cursor_Layer_Ref {
-            lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
-        }
-    }
+//    func centralState_Cursor_Position_Evaluation() {
+//        if let lclCursorLayer = cursor_Layer_Ref {
+//            lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
+//        }
+//    }
     
     func centralState_Data_Evaluation(){
             
-            if let lclCursorLayer = cursor_Layer_Ref {
-                 
-                lclCursorLayer.currPosX = computedXCursor_Slider_Position
-                
-                curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+        if let lclCursorLayer = cursor_Layer_Ref {
+             
+            //lclCursorLayer.currPosX = computedXCursor_Slider_Position
+            
+            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
 
-                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[computedXCursor_Slider_Position]
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            
+            lclCursorLayer.currPosY = curr_Data_Pos_Y
+            
+            if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
                 
-                lclCursorLayer.currPosY = curr_Data_Pos_Y
+                lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
                 
-                if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
-                    
-                    lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
-                    
-                    if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
-                        if let lclNoteCollection = note_Collection_Ref {
-                            lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
-                        }
+                if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
+                    if let lclNoteCollection = note_Collection_Ref {
+                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                     }
-                    else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-                        if let lclNoteCollection = note_Collection_Ref {
-                            lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                        }
-                    }
-                    
                 }
-
+                else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
+                    if let lclNoteCollection = note_Collection_Ref {
+                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                    }
+                }
+                
             }
+
         }
+    }
     
     var curr_Data_Pos_Y : Int = 0{
         didSet {
@@ -313,4 +315,30 @@ public enum E_Note_Movement_Type{
     case downward
 }
 
+class Cell_X_Descriptor : Equatable,Hashable{
+    static func == (lhs: Cell_X_Descriptor, rhs: Cell_X_Descriptor) -> Bool {
+        lhs.x_Position_Int == rhs.x_Position_Int
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(x_Position_Int)
+    }
+    
+    var x_Position_Int : Int
+    var x_Position_Float : CGFloat
+    init(x_Position_Int: Int, x_Position_Float: CGFloat) {
+        self.x_Position_Int = x_Position_Int
+        self.x_Position_Float = x_Position_Float
+    }
+}
 
+
+//public static func == (lhs: Underlying_Data_Cell, rhs: Underlying_Data_Cell) -> Bool {
+//    lhs.id == rhs.id
+//}
+//
+//public func hash(into hasher: inout Hasher) {
+//    hasher.combine(id)
+//}
+//
+//public var id = UUID()

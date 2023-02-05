@@ -97,24 +97,24 @@ public class ComponentDimensions : ObservableObject {
     // so I can assign the new cell num to a h-slider prior to changing timing
     // when I change timing I go to nearest lower x bracket
     
-    var four_Four_Slider_Positions = Set<CGFloat>()
+    var four_Four_Slider_Positions = Set<Cell_X_Descriptor>() 
     var six_Eight_Slider_Positions = Set<CGFloat>()
-    var currentFourFourPosition : CGFloat = 0
+    public var currentFourFourPosition : CGFloat = 0
+    public var currentFourFourDataIndex : Int = 0
     var currentSixEightPosition : CGFloat = 0
     
     func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
         
-        let lesserSetFourFour = four_Four_Slider_Positions.filter{$0 <= currValParam}
-        if let lclMaxLesserFour = lesserSetFourFour.max(){
-            if lclMaxLesserFour != currentFourFourPosition{currentFourFourPosition = lclMaxLesserFour}
+        let lesserSetFourFour = four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
+        if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int})    {
+            if lclMaxLesserFour.x_Position_Float != currentFourFourPosition{currentFourFourPosition = lclMaxLesserFour.x_Position_Float}
+            if lclMaxLesserFour.x_Position_Int != currentFourFourDataIndex{currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int}
         }
         
         let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0 <= currValParam}
         if let lclMaxLesserSix = lesserSetSixEight.max(){
             if lclMaxLesserSix != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix}
         }
-        
-        print("curr 4 4: ",currentFourFourPosition.description,", curr 6 8: ",currentSixEightPosition)
         
         if patternTimingConfiguration == .fourFour {
             if computedLineParam != currentFourFourPosition{computedLineParam = currentFourFourPosition}
@@ -124,14 +124,6 @@ public class ComponentDimensions : ObservableObject {
         }
         
     }
-    
-    //var cursor_X_Jump_Initial : CGFloat = 4
-    //@Published public var cursor_X_Jump : CGFloat = 12
-//    var cursor_X_Jump_Multiplier : Int = 3 {
-//        didSet {
-//            cursor_X_Jump = cursor_X_Jump_Initial * CGFloat(cursor_X_Jump_Multiplier)
-//        }
-//    }
 
     public func flip_Timing_Signature_Dimensions(){
         if patternTimingConfiguration == .fourFour {

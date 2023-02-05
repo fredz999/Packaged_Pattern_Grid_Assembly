@@ -58,7 +58,8 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     
                     if fourFour_Half_Sub_Count == 0  {
                         let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
-                        dimensions.four_Four_Slider_Positions.insert(insertFloat)
+                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
+                        dimensions.four_Four_Slider_Positions.insert(cellIndexDescriptor)
                     }
                     
                     if sixEight_Half_Sub_Count == 0 {

@@ -99,9 +99,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public func calculateCursorCellXPos(){
         dimensions.test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
-        
-        central_State_Ref.cursor_Slider_Update(new_X: nil, new_Y: nil)
-        
+        central_State_Ref.cursor_Slider_Update(new_X: nil , new_Y: nil)
     }
     
 }
