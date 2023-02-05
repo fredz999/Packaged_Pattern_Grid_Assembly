@@ -149,7 +149,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var cellNumberMultiplier : Int = 2
+    //var cellNumberMultiplier : Int = 2
     var currentYCursor_Slider_Position : Int = 0
     var currentXCursor_Slider_Position : Int = 0
     var computedXCursor_Slider_Position : Int = 0
@@ -185,7 +185,7 @@ public class Central_State : ObservableObject {
             
             if let lclCursorLayer = cursor_Layer_Ref {
                  
-                computedXCursor_Slider_Position = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
+                //computedXCursor_Slider_Position = currentXCursor_Slider_Position * dimensions.cursor_X_Jump_Multiplier
                 
                 lclCursorLayer.currPosX = computedXCursor_Slider_Position
                 

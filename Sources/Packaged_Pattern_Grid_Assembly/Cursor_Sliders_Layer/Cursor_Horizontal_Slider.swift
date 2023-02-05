@@ -102,7 +102,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         // what to do? .... compare to 90+ bracket positions ....? bit slow?
         // find nearest cell sub half
 
-        dimensions.testPosition(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
+        dimensions.test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
         
         //print("current val: ",currentVal.description)
 

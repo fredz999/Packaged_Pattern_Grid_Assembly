@@ -102,10 +102,8 @@ public class ComponentDimensions : ObservableObject {
     var currentFourFourPosition : CGFloat = 0
     var currentSixEightPosition : CGFloat = 0
     
-    func testPosition(currValParam:CGFloat,computedLineParam:inout CGFloat){
-        //set both of them regardless but only alter the computedLineParam if needed
+    func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
         
-        // selection here not right....noeeds to be the max of the set that are less
         let lesserSetFourFour = four_Four_Slider_Positions.filter{$0 <= currValParam}
         if let lclMaxLesserFour = lesserSetFourFour.max(){
             if lclMaxLesserFour != currentFourFourPosition{currentFourFourPosition = lclMaxLesserFour}
@@ -125,25 +123,24 @@ public class ComponentDimensions : ObservableObject {
         
     }
     
-    var cursor_X_Jump_Initial : CGFloat = 4
+    //var cursor_X_Jump_Initial : CGFloat = 4
     @Published public var cursor_X_Jump : CGFloat = 12
-    
-    var cursor_X_Jump_Multiplier : Int = 3 {
-        didSet {
-            cursor_X_Jump = cursor_X_Jump_Initial * CGFloat(cursor_X_Jump_Multiplier)
-        }
-    }
+//    var cursor_X_Jump_Multiplier : Int = 3 {
+//        didSet {
+//            cursor_X_Jump = cursor_X_Jump_Initial * CGFloat(cursor_X_Jump_Multiplier)
+//        }
+//    }
 
     public func flip_Timing_Signature_Dimensions(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 4
-            cursor_X_Jump_Multiplier = 2
+            //cursor_X_Jump_Multiplier = 2
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 6
-            cursor_X_Jump_Multiplier = 3
+            //cursor_X_Jump_Multiplier = 3
         }
     }
     
