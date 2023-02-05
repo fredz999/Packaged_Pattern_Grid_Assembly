@@ -192,7 +192,7 @@ public class Central_State : ObservableObject {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
 
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            
+            print("Data Y: ",curr_Data_Pos_Y.description,",X: ",dimensions.currentFourFourDataIndex.description)
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
