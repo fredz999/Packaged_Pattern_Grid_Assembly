@@ -39,7 +39,12 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
 
                 if viableSetHelpers.initial_WriteOnCell == nil {
-                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    if dimensions.patternTimingConfiguration == .fourFour {
+                        viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    }
+                    else if dimensions.patternTimingConfiguration == .sixEight {
+                        viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                    }
                     viableSetHelpers.establish_Potential_Cells_Set()
                 }
 
