@@ -47,11 +47,11 @@ public class Cursor_Layer_Store : ObservableObject {
 //    }
     
     func set_Cursor_Pos(xInt:Int,yInt:Int){
-        let floatX = CGFloat(xInt)
-        let floatY = CGFloat(yInt)
-        let xVal = floatX*dimensions.cursor_X_Jump
-        let yVal = floatY*dimensions.cursor_Y_Jump
-        offsetSize = CGSize(width: xVal, height: yVal)
+//        let floatX = CGFloat(xInt)
+//        let floatY = CGFloat(yInt)
+//        let xVal = floatX*dimensions.cursor_X_Jump
+//        let yVal = floatY*dimensions.cursor_Y_Jump
+//        offsetSize = CGSize(width: xVal, height: yVal)
     }
 
     public func set_Cursor_Data(dataX:Int,dataY:Int){

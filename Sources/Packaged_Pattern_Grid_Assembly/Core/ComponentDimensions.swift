@@ -30,28 +30,28 @@ public class ComponentDimensions : ObservableObject {
     var initial_Right_Boundary : CGFloat = 380
     @Published public var potential_Note_Rightward_Boundary : CGFloat = 380
     
-    public func set_Potential_Note_Rightward_Boundary(newRightBoundary:Int){
-        if newRightBoundary != dataGrid_X_Unit_Count{
-            let newRightBoundaryFloat = cursor_X_Jump*CGFloat(newRightBoundary)
-            potential_Note_Rightward_Boundary = newRightBoundaryFloat
-        }
-        else if newRightBoundary == dataGrid_X_Unit_Count{
-            potential_Note_Rightward_Boundary = initial_Right_Boundary
-        }
-    }
+//    public func set_Potential_Note_Rightward_Boundary(newRightBoundary:Int){
+//        if newRightBoundary != dataGrid_X_Unit_Count{
+//            let newRightBoundaryFloat = cursor_X_Jump*CGFloat(newRightBoundary)
+//            potential_Note_Rightward_Boundary = newRightBoundaryFloat
+//        }
+//        else if newRightBoundary == dataGrid_X_Unit_Count{
+//            potential_Note_Rightward_Boundary = initial_Right_Boundary
+//        }
+//    }
     
     var initial_Left_Boundary : CGFloat = 0
     @Published public var potential_Note_Leftward_Boundary : CGFloat = 0
     
-    public func set_Potential_Note_Leftward_Boundary(newLeftBoundary:Int){
-        if newLeftBoundary == 0{
-            potential_Note_Leftward_Boundary = initial_Left_Boundary
-        }
-        else if newLeftBoundary != 0{
-            let newLeftBoundaryFloat = cursor_X_Jump*CGFloat(newLeftBoundary)
-            potential_Note_Leftward_Boundary = newLeftBoundaryFloat
-        }
-    }
+//    public func set_Potential_Note_Leftward_Boundary(newLeftBoundary:Int){
+//        if newLeftBoundary == 0{
+//            potential_Note_Leftward_Boundary = initial_Left_Boundary
+//        }
+//        else if newLeftBoundary != 0{
+//            let newLeftBoundaryFloat = cursor_X_Jump*CGFloat(newLeftBoundary)
+//            potential_Note_Leftward_Boundary = newLeftBoundaryFloat
+//        }
+//    }
     
     @Published public var dataGrid_X_Unit_Count : Int = 96
     public let visualGrid_Y_Unit_Count : Int = 12
@@ -124,7 +124,7 @@ public class ComponentDimensions : ObservableObject {
     }
     
     //var cursor_X_Jump_Initial : CGFloat = 4
-    @Published public var cursor_X_Jump : CGFloat = 12
+    //@Published public var cursor_X_Jump : CGFloat = 12
 //    var cursor_X_Jump_Multiplier : Int = 3 {
 //        didSet {
 //            cursor_X_Jump = cursor_X_Jump_Initial * CGFloat(cursor_X_Jump_Multiplier)

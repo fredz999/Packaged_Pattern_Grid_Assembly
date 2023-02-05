@@ -57,35 +57,35 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         }
     }
         
-    public func artificially_H_Increment(){
+//    public func artificially_H_Increment(){
+//
+//        accumulatedDrag += dimensions.cursor_X_Jump
+//
+//        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
+//            currentVal = accumulatedDrag
+//        }
+//
+//        else if (accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
+//            accumulatedDrag = (dimensions.potential_Note_Rightward_Boundary)
+//            currentVal = (dimensions.potential_Note_Rightward_Boundary)
+//        }
+//
+//    }
 
-        accumulatedDrag += dimensions.cursor_X_Jump
-
-        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
-            currentVal = accumulatedDrag
-        }
-
-        else if (accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
-            accumulatedDrag = (dimensions.potential_Note_Rightward_Boundary)
-            currentVal = (dimensions.potential_Note_Rightward_Boundary)
-        }
-
-    }
-
-    public func artificially_H_Decrement(){
-        
-        accumulatedDrag -= dimensions.cursor_X_Jump
-        
-        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary {
-            currentVal = accumulatedDrag
-        }
-
-        else if (accumulatedDrag) < 0 {
-            accumulatedDrag = 0
-            currentVal = 0
-        }
-
-    }
+//    public func artificially_H_Decrement(){
+//
+//        accumulatedDrag -= dimensions.cursor_X_Jump
+//
+//        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary {
+//            currentVal = accumulatedDrag
+//        }
+//
+//        else if (accumulatedDrag) < 0 {
+//            accumulatedDrag = 0
+//            currentVal = 0
+//        }
+//
+//    }
     
     public func jumpToACell(cellNum:Int){
         accumulatedDrag = CGFloat(cellNum)*dimensions.pattern_Grid_Sub_Cell_Width
@@ -98,20 +98,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
     
     public func calculateCursorCellXPos(){
-        // maybe use a set of zero half cells? as brackets?
-        // what to do? .... compare to 90+ bracket positions ....? bit slow?
-        // find nearest cell sub half
-
         dimensions.test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
-        
-        //print("current val: ",currentVal.description)
-
-//        let divided = currentVal/dimensions.cursor_X_Jump
-//        let intDivided = Int(divided)
-//        if intDivided != central_State_Ref.currentXCursor_Slider_Position {
-//            central_State_Ref.cursor_Slider_Update(new_X: intDivided, new_Y: nil)
-//        }
-//        computedLineDisplacement = CGFloat(intDivided) * dimensions.cursor_X_Jump
     }
     
 }

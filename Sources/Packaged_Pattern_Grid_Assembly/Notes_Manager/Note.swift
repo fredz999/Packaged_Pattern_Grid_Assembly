@@ -117,37 +117,37 @@ public class Note : ObservableObject, Identifiable, Equatable {
     
     func rightSide_Expansion(){
 
-        if let lastCell = dataCellArray.last {
-
-            let lastIndex = lastCell.dataCell_X_Number
-
-            if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
-                if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
-                    dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
-                    redrawCellArray()
-                    check_For_Highlight()
-                }
-            }
-
-            if let c_Layer = central_State.cursor_Layer_Ref {
-                if c_Layer.currDataX == lastIndex {
-                    if dataCellArray.count > 1 {
-                        if let lclHslider = central_State.h_Slider_Ref {
-                            lclHslider.artificially_H_Increment()
-                        }
-                    }
-                }
-            }
-
-        }
+//        if let lastCell = dataCellArray.last {
+//
+//            let lastIndex = lastCell.dataCell_X_Number
+//
+//            if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
+//                if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
+//                    dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
+//                    redrawCellArray()
+//                    check_For_Highlight()
+//                }
+//            }
+//
+//            if let c_Layer = central_State.cursor_Layer_Ref {
+//                if c_Layer.currDataX == lastIndex {
+//                    if dataCellArray.count > 1 {
+//                        if let lclHslider = central_State.h_Slider_Ref {
+//                            lclHslider.artificially_H_Increment()
+//                        }
+//                    }
+//                }
+//            }
+//
+//        }
     }
     
     func leftSide_Expansion(){
-        if let firstCell = dataCellArray.first,let lastCell = dataCellArray.last {
-            
+//        if let firstCell = dataCellArray.first,let lastCell = dataCellArray.last {
+//
 //            let firstIndex = firstCell.dataCell_X_Number
 //            let lastIndex = lastCell.dataCell_X_Number
-//            
+//
 //            if let c_Layer = central_State.cursor_Layer_Ref {
 //                if c_Layer.currDataX == lastIndex {
 //                    if dataCellArray.count > 1 {
@@ -164,7 +164,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //                redrawCellArray()
 //                check_For_Highlight()
 //            }
-        }
+//        }
     }
     
     func moveRightOne(){
