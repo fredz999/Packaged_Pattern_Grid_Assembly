@@ -157,7 +157,7 @@ public class Central_State : ObservableObject {
     var currentXData_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-        if let lcl_NewX = new_X {
+        //if let lcl_NewX = new_X {
             //currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
             //centralState_Cursor_Position_Evaluation()
@@ -165,7 +165,7 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
             }
-        }
+        //}
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
