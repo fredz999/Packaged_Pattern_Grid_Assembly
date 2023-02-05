@@ -190,8 +190,13 @@ public class Central_State : ObservableObject {
             //lclCursorLayer.currPosX = computedXCursor_Slider_Position
             
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            
+            if dimensions.patternTimingConfiguration == .fourFour{
+                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            }
+            else if dimensions.patternTimingConfiguration == .sixEight{
+                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            }
 
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
