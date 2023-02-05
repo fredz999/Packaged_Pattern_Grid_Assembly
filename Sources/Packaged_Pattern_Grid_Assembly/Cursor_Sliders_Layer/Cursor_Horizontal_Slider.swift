@@ -11,7 +11,7 @@ import SwiftUI
 // I think I can take these generics oot and use the default ones
 // then in the generic assembly decide at runtime whether or not to use the injected factory methods
 public class Cursor_Horizontal_Slider_Store : ObservableObject {
-    
+    //let centralState = Central_State.Static_Central_State
     public let central_State_Ref = Central_State.Static_Central_State
     
     public let dimensions = ComponentDimensions.StaticDimensions
@@ -99,6 +99,9 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public func calculateCursorCellXPos(){
         dimensions.test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
+        
+        central_State_Ref.cursor_Slider_Update(new_X: nil, new_Y: nil)
+        
     }
     
 }
