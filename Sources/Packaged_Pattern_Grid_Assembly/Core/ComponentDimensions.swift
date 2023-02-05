@@ -98,10 +98,11 @@ public class ComponentDimensions : ObservableObject {
     // when I change timing I go to nearest lower x bracket
     
     var four_Four_Slider_Positions = Set<Cell_X_Descriptor>() 
-    var six_Eight_Slider_Positions = Set<CGFloat>()
+    var six_Eight_Slider_Positions = Set<Cell_X_Descriptor>()
     public var currentFourFourPosition : CGFloat = 0
     public var currentFourFourDataIndex : Int = 0
     var currentSixEightPosition : CGFloat = 0
+    public var currentSixEightDataIndex : Int = 0
     
     func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
         
@@ -111,9 +112,11 @@ public class ComponentDimensions : ObservableObject {
             if lclMaxLesserFour.x_Position_Int != currentFourFourDataIndex{currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int}
         }
         
-        let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0 <= currValParam}
-        if let lclMaxLesserSix = lesserSetSixEight.max(){
-            if lclMaxLesserSix != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix}
+        let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
+        
+        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int})  {
+            if lclMaxLesserSix.x_Position_Float != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
+            if lclMaxLesserSix.x_Position_Int != currentSixEightDataIndex{currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
         }
         
         if patternTimingConfiguration == .fourFour {

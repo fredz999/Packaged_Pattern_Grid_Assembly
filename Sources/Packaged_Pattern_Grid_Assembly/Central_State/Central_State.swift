@@ -154,7 +154,7 @@ public class Central_State : ObservableObject {
    // var currentXCursor_Slider_Position : Int = 0
     //var computedXCursor_Slider_Position : Int = 0
     // need a position and datanumber pair
-    var currentXData_Position : Int = 0
+    //var currentXData_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         //if let lcl_NewX = new_X {
@@ -192,7 +192,7 @@ public class Central_State : ObservableObject {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
 
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            print("Data Y: ",curr_Data_Pos_Y.description,",X: ",dimensions.currentFourFourDataIndex.description)
+
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
@@ -315,7 +315,8 @@ public enum E_Note_Movement_Type{
     case downward
 }
 
-class Cell_X_Descriptor : Equatable,Hashable{
+class Cell_X_Descriptor : Equatable,Hashable {
+    
     static func == (lhs: Cell_X_Descriptor, rhs: Cell_X_Descriptor) -> Bool {
         lhs.x_Position_Int == rhs.x_Position_Int
     }
