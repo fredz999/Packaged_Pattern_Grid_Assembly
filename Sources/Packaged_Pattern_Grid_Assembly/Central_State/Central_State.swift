@@ -180,7 +180,7 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
             print("centralState_Data_Evaluation()")
         if let lclCursorLayer = cursor_Layer_Ref {
-
+            print("lclCursorLayer = cursor_Layer_Ref ")
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
             if dimensions.patternTimingConfiguration == .fourFour{
