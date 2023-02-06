@@ -160,19 +160,23 @@ public class Central_State : ObservableObject {
     //var currentXData_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
+        
+        if let lclNew_X = new_X {print("cursor_Slider_Update new_X: ",lclNew_X.description)}
+        
             centralState_Data_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
             }
-        if let lclNew_Y = new_Y {
-            currentYCursor_Slider_Position = lclNew_Y
-            centralState_Data_Evaluation()
-            viableSetHelpers.establish_Viable_Cells_Set()
-            if writingIsOn == true {
-            viableSetHelpers.establish_Potential_Cells_Set()
-            }
-        }
+//        }
+//        if let lclNew_Y = new_Y {
+            //currentYCursor_Slider_Position = lclNew_Y
+//            centralState_Data_Evaluation()
+//            viableSetHelpers.establish_Viable_Cells_Set()
+//            if writingIsOn == true {
+//            viableSetHelpers.establish_Potential_Cells_Set()
+//            }
+        //}
     }
     
     func centralState_Data_Evaluation(){
