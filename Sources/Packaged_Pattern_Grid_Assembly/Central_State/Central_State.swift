@@ -109,6 +109,21 @@ public class Central_State : ObservableObject {
 //    }
         
     //h_Slider_Ref?.jumpToACell(cellNum: 0)
+        
+        if dimensions.patternTimingConfiguration == .sixEight{
+            let target_X_Num = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
+            if let lclHslider = h_Slider_Ref{
+                lclHslider.jumpToACell(cellNum: target_X_Num)
+            }
+        }
+        else if dimensions.patternTimingConfiguration == .fourFour{
+            let target_X_Num = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
+            if let lclHslider = h_Slider_Ref{
+                lclHslider.jumpToACell(cellNum: target_X_Num)
+            }
+        }
+        
+        
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
         
