@@ -89,62 +89,13 @@ public class Central_State : ObservableObject {
     }
     
     public func change_Timing_Signature_Central(){
-
-    
-//    else if dimensions.patternTimingConfiguration == .sixEight {
-//        if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 1{
-//            if let lclH_SliderRef = h_Slider_Ref{
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-//                print("set to 4:4, 4:$ sub half index shifted from 1 to : ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index.description)
-//            }
-//        }
-//        else if viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index == 2 {
-//            if let lclH_SliderRef = h_Slider_Ref{
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 2)
-//                print("set to 4:4, 4:$ sub half index shifted from 2 to : ",viableSetHelpers.helperFuncs_currentData.four_Four_Half_Sub_Index.description)
-//            }
-//        }
-//    }
-        
-//    if dimensions.patternTimingConfiguration == .fourFour {
-//        print("currdata six_Eight_Half_Sub_Index : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//        if viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index == 1 {
-//            if let lclH_SliderRef = h_Slider_Ref {
-//                lclH_SliderRef.artificially_H_Decrement(numberOfCells: 1)
-//                print("set to 6:8, sub half index shifted from1 to : ",viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Sub_Index.description)
-//            }
-//            else if h_Slider_Ref == nil {
-//                print("h_Slider_Ref == nil .........")
-//            }
-//        }
-//    }
-        
-//    if let lclH_SliderRef = h_Slider_Ref {
-//        lclH_SliderRef.jumpToACell(cellNum: 20)
-//    }
- 
-
+    // figure out the nearest zero half cell index of the other signature
+    // jump to that cell
+    // cursor slider update after that
+         //jumpToACell(
+    h_Slider_Ref?.jumpToACell(cellNum: 0)
     dimensions.flip_Timing_Signature_Dimensions()
-
     data_Grid.changeTimingSignature_Data_Level()
-        
-    
-
-    
-    // there is a discrepancy here that both troubles and baffles me
-    // print("viable eeX: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description," hslider currentVal: ",h_Slider_Ref?.computedLineDisplacement.description  )
-    // you have to do it here this is AMAZINGLY bad programming
-    // because of the line of functions it
-    // has to go from setting the hslider pos which triggers calc cursor xpos in the hslider which
-    // triggers this classes cursor_Slider_Update which changes viableSetHelpers.helperFuncs_currentData
-    // this is really all over the place
-    // the trouble is that the cursor x jump gets set in this func
-    // then it gets utilised again when you manually alter the position - it has to
-    // cursor_Slider_Update(new_X: intDivided, new_Y: nil)
-        
-
-
-        
     }
 
     public func deleteANote(){
@@ -206,7 +157,6 @@ public class Central_State : ObservableObject {
 //            lclCursorLayer.currPosY = curr_Data_Pos_Y
 //
 //            if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
-//                print("lclCursorLayer.currPosY < data_Grid.dataLineArray.count ")
 //
 //                lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
 //
