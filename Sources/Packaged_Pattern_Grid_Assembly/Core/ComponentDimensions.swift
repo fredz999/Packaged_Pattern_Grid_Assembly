@@ -104,12 +104,7 @@ public class ComponentDimensions : ObservableObject {
     var currentSixEightPosition : CGFloat = 0
     
     var currentFourFourDataIndex : Int = 0
-    var currentSixEightDataIndex : Int = 0{
-        didSet {
-            // how to get to the nearest four four zero....
-            print("currentSixEightDataIndex: ",currentSixEightDataIndex.description,",currentFourFourDataIndex: ",currentFourFourDataIndex.description)
-        }
-    }
+    var currentSixEightDataIndex : Int = 0
     
     var nearestLeftFourFourCellStartIndex : Int = 0
     var nearestLeftSixEightCellStartIndex : Int = 0
