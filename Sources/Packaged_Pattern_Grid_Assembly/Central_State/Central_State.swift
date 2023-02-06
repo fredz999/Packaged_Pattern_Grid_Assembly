@@ -92,10 +92,16 @@ public class Central_State : ObservableObject {
     // figure out the nearest zero half cell index of the other signature
     // jump to that cell
     // cursor slider update after that
-         //jumpToACell(
+    //jumpToACell(
+        print("44 place:",dimensions.currentFourFourDataIndex)
+        
     h_Slider_Ref?.jumpToACell(cellNum: 0)
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
+        
+        
+        
+        
     }
 
     public func deleteANote(){

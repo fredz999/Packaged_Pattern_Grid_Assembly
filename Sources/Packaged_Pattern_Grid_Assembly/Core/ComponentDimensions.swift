@@ -99,10 +99,21 @@ public class ComponentDimensions : ObservableObject {
     
     var four_Four_Slider_Positions = Set<Cell_X_Descriptor>() 
     var six_Eight_Slider_Positions = Set<Cell_X_Descriptor>()
-    public var currentFourFourPosition : CGFloat = 0
-    public var currentFourFourDataIndex : Int = 0
+    
+    var currentFourFourPosition : CGFloat = 0
     var currentSixEightPosition : CGFloat = 0
-    public var currentSixEightDataIndex : Int = 0
+    
+    var currentFourFourDataIndex : Int = 0
+    var currentSixEightDataIndex : Int = 0{
+        didSet {
+            // how to get to the nearest four four zero....
+            print("currentSixEightDataIndex: ",currentSixEightDataIndex.description,",currentFourFourDataIndex: ",currentFourFourDataIndex.description)
+        }
+    }
+    
+    var nearestLeftFourFourCellStartIndex : Int = 0
+    var nearestLeftSixEightCellStartIndex : Int = 0
+    
     
     func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
         
