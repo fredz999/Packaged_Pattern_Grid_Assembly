@@ -115,13 +115,13 @@ public class Central_State : ObservableObject {
     if dimensions.patternTimingConfiguration == .sixEight{
         let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
         if fourSub == 1{
-            print("its going to 4.4, the left nearest 4.4 is -1")
+            //print("its going to 4.4, the left nearest 4.4 is -1")
             if let lclHslider = h_Slider_Ref{
                 lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
             }
         }
         else if fourSub == 2{
-            print("its going to 4.4, the left nearest 4.4 is -2")
+            //print("its going to 4.4, the left nearest 4.4 is -2")
             if let lclHslider = h_Slider_Ref{
                 lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-2))
             }
@@ -129,7 +129,7 @@ public class Central_State : ObservableObject {
     }
     else if dimensions.patternTimingConfiguration == .fourFour{
         let sixSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
-        print("its going to 6.8, the left nearest 6.8 is -1")
+        //print("its going to 6.8, the left nearest 6.8 is -1")
         if sixSub == 1{
             if let lclHslider = h_Slider_Ref{
                 lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
@@ -161,7 +161,7 @@ public class Central_State : ObservableObject {
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         
-        if let lclNew_X = new_X {print("cursor_Slider_Update new_X: ",lclNew_X.description)}
+            if let lclNew_X = new_X {print("cursor_Slider_Update new_X: ",lclNew_X.description)}
         
             centralState_Data_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
