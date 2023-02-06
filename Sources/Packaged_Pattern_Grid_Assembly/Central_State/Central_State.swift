@@ -93,19 +93,22 @@ public class Central_State : ObservableObject {
     // jump to that cell
     // cursor slider update after that
     //jumpToACell(
+        print("currentX: ",curr_Data_Pos_X
+        ,", 44 num: ", data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index.description
+        ,", 68 num: ", data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index.description)
         
-    if dimensions.patternTimingConfiguration == .fourFour{
-//        print("four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index
-//        ,", six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index)
-        print("my six eight will have to go back: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index.description)
-    }
-    else if dimensions.patternTimingConfiguration == .sixEight{
-//        print("six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index
-//        ,", four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index)
-        print("my four four will have to go back: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index.description)
-    }
+//    if dimensions.patternTimingConfiguration == .fourFour{
+////        print("four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index
+////        ,", six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index)
+//        print("my six eight will have to go back: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index.description)
+//    }
+//    else if dimensions.patternTimingConfiguration == .sixEight{
+////        print("six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index
+////        ,", four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index)
+//        print("my four four will have to go back: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index.description)
+//    }
         
-    h_Slider_Ref?.jumpToACell(cellNum: 0)
+    //h_Slider_Ref?.jumpToACell(cellNum: 0)
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
         
