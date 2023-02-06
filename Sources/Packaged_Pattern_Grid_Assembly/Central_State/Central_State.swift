@@ -162,19 +162,14 @@ public class Central_State : ObservableObject {
     //var currentXData_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-        //if let lcl_NewX = new_X {
-            //currentXCursor_Slider_Position = lcl_NewX
             centralState_Data_Evaluation()
-            //centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
             }
-        //}
         if let lclNew_Y = new_Y {
             currentYCursor_Slider_Position = lclNew_Y
             centralState_Data_Evaluation()
-            //centralState_Cursor_Position_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
@@ -182,18 +177,10 @@ public class Central_State : ObservableObject {
         }
     }
     
-//    func centralState_Cursor_Position_Evaluation() {
-//        if let lclCursorLayer = cursor_Layer_Ref {
-//            lclCursorLayer.set_Cursor_Pos(xInt: currentXCursor_Slider_Position, yInt: currentYCursor_Slider_Position)
-//        }
-//    }
-    
     func centralState_Data_Evaluation(){
             
         if let lclCursorLayer = cursor_Layer_Ref {
-             
-            //lclCursorLayer.currPosX = computedXCursor_Slider_Position
-            
+
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
             if dimensions.patternTimingConfiguration == .fourFour{
@@ -210,6 +197,7 @@ public class Central_State : ObservableObject {
                 lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
                 
                 if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
+                    print("ht a note")
                     if let lclNoteCollection = note_Collection_Ref {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                     }

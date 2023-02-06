@@ -136,6 +136,9 @@ public class Underlying_Data_Line:ObservableObject,Identifiable {
     public var dataCellArray : [Underlying_Data_Cell] = []
 }
 
+//============================================================================================================
+//============================================================================================================
+
 public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public static func == (lhs: Underlying_Data_Cell, rhs: Underlying_Data_Cell) -> Bool {
@@ -170,7 +173,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .deActivate_Highlighted {
             if in_Highlighted_Set == true{in_Highlighted_Set=false}
         }
-        
         //==============================================================================================================
         else if type == .activate_Viable_Set_Combined {
             if in_Viable_Set_Combined == false {
