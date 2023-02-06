@@ -178,7 +178,7 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-            print("centralState_Data_Evaluation()")
+           
         if let lclCursorLayer = cursor_Layer_Ref {
             print("lclCursorLayer = cursor_Layer_Ref ")
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
@@ -193,11 +193,8 @@ public class Central_State : ObservableObject {
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
-                
                 lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
-                
                 if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
-     
                     if let lclNoteCollection = note_Collection_Ref {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                     }
@@ -207,7 +204,9 @@ public class Central_State : ObservableObject {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                     }
                 }
-                
+            }
+            else{
+                print("else hit ............................ ")
             }
 
         }
