@@ -192,7 +192,7 @@ public class Central_State : ObservableObject {
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
-                print("else hit ............................ ")
+                print("lclCursorLayer.currPosY < data_Grid.dataLineArray.count ")
                 lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
                 if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
                     if let lclNoteCollection = note_Collection_Ref {
