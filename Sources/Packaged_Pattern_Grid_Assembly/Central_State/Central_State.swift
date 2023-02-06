@@ -182,36 +182,51 @@ public class Central_State : ObservableObject {
         if let lclCursorLayer = cursor_Layer_Ref {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
+            
             if dimensions.patternTimingConfiguration == .fourFour{
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                curr_Data_Pos_X = dimensions.currentFourFourDataIndex
             }
             else if dimensions.patternTimingConfiguration == .sixEight{
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+            }
+            
+            if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
+                if let lclNoteCollection = note_Collection_Ref {
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
+                }
+            }
+            else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
+                if let lclNoteCollection = note_Collection_Ref {
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                }
             }
 
-            lclCursorLayer.currPosY = curr_Data_Pos_Y
-            
-            if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
-                print("lclCursorLayer.currPosY < data_Grid.dataLineArray.count ")
-                lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
-                if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
-                    if let lclNoteCollection = note_Collection_Ref {
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
-                    }
-                }
-                else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-                    if let lclNoteCollection = note_Collection_Ref {
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                    }
-                }
-            }
-            else{
-                print("else hit ............................ ")
-            }
+//            lclCursorLayer.currPosY = curr_Data_Pos_Y
+//
+//            if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
+//                print("lclCursorLayer.currPosY < data_Grid.dataLineArray.count ")
+//
+//                lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
+//
+//                if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
+//                    if let lclNoteCollection = note_Collection_Ref {
+//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
+//                    }
+//                }
+//                else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
+//                    if let lclNoteCollection = note_Collection_Ref {
+//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+//                    }
+//                }
+//
+//            }
+
 
         }
     }
-    
+    var curr_Data_Pos_X : Int = 0
     var curr_Data_Pos_Y : Int = 0{
         didSet {
             let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
