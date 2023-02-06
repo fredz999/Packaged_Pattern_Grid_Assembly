@@ -180,7 +180,6 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
            
         if let lclCursorLayer = cursor_Layer_Ref {
-            print("lclCursorLayer = cursor_Layer_Ref ")
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
             if dimensions.patternTimingConfiguration == .fourFour{
@@ -193,6 +192,7 @@ public class Central_State : ObservableObject {
             lclCursorLayer.currPosY = curr_Data_Pos_Y
             
             if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
+                print("else hit ............................ ")
                 lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
                 if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
                     if let lclNoteCollection = note_Collection_Ref {
