@@ -95,10 +95,12 @@ public class Central_State : ObservableObject {
     //jumpToACell(
         
     if dimensions.patternTimingConfiguration == .fourFour{
-        print("four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index)
+        print("four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index
+        ,", six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index)
     }
     else if dimensions.patternTimingConfiguration == .sixEight{
-        print("six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index)
+        print("six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index
+        ,", four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index)
     }
         
     h_Slider_Ref?.jumpToACell(cellNum: 0)
