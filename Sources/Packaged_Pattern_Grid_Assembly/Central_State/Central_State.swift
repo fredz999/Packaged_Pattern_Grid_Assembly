@@ -112,26 +112,30 @@ public class Central_State : ObservableObject {
         
         
         
-        if dimensions.patternTimingConfiguration == .sixEight{
-            let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
-            if fourSub != 0{
-                if let lclHslider = h_Slider_Ref{
-                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-fourSub))
-                }
+    if dimensions.patternTimingConfiguration == .sixEight{
+        let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
+        if fourSub == 1{
+            print("its going to 4.4, the left nearest 4.4 is -1")
+            if let lclHslider = h_Slider_Ref{
+                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
             }
         }
-        else if dimensions.patternTimingConfiguration == .fourFour{
-            let sixSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
-            if sixSub != 0{
-                if let lclHslider = h_Slider_Ref{
-                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-sixSub))
-                }
+        else if fourSub == 2{
+            print("its going to 4.4, the left nearest 4.4 is -2")
+            if let lclHslider = h_Slider_Ref{
+                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-2))
             }
         }
-//        let target_X_Num = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
-//                    if let lclHslider = h_Slider_Ref{
-//                        lclHslider.jumpToACell(cellNum: target_X_Num)
-//                    }
+    }
+    else if dimensions.patternTimingConfiguration == .fourFour{
+        let sixSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
+        print("its going to 6.8, the left nearest 6.8 is -1")
+        if sixSub == 1{
+            if let lclHslider = h_Slider_Ref{
+                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
+            }
+        }
+    }
         
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
