@@ -136,7 +136,7 @@ public class Central_State : ObservableObject {
             }
         }
     }
-        
+    print("curr_Data_Pos_X: ",curr_Data_Pos_X.description)
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
         
