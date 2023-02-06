@@ -45,11 +45,7 @@ public class Note_Collection {
             }
         }
     }
-    func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
-        // all dis is somewhat changed now
-        // prolly best to do dis in sets
-         
-    }
+
 //    func write_CellArray_Into_Note(lowest_Data_X:Int,highest_Data_X:Int,data_Y:Int) {
 //
 //    let computed_Lowest_Data_X = lowest_Data_X
