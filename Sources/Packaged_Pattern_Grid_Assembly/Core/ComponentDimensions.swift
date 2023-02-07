@@ -113,7 +113,8 @@ public class ComponentDimensions : ObservableObject {
     func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
         
         let lesserSetFourFour = four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
-        if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int})    {
+        
+        if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
             if lclMaxLesserFour.x_Position_Float != currentFourFourPosition{currentFourFourPosition = lclMaxLesserFour.x_Position_Float}
             if lclMaxLesserFour.x_Position_Int != currentFourFourDataIndex{currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int}
         }
