@@ -88,11 +88,35 @@ public class Central_State : ObservableObject {
         
     }
     
+    var compensate_Index : Int? = nil
+    
     public func change_Timing_Signature_Central(){
-        print("start, currX: ",curr_Data_Pos_X.description)
+        //let target_Index : Int = 0
+        // decision to jump HERE
+        if dimensions.patternTimingConfiguration == .sixEight{
+            if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index != 0{
+                compensate_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
+            }
+        }
+        else if dimensions.patternTimingConfiguration == .fourFour{
+            if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index != 0{
+                compensate_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
+            }
+        }
+        
+        //print("start, currX: ",curr_Data_Pos_X.description)
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
-        print("post, currX: ",curr_Data_Pos_X.description)
+        //print("post, currX: ",curr_Data_Pos_X.description)
+        
+        if let lclCompensateIndex = compensate_Index {
+            if let lclHslider = h_Slider_Ref {
+                lclHslider.jumpToACell(cellNum: lclCompensateIndex)
+            }
+            compensate_Index = nil
+        }
+        
+        //jump HERE
      
 //        if dimensions.patternTimingConfiguration == .sixEight{
 //
