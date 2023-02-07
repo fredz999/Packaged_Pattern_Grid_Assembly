@@ -123,8 +123,9 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-        if new_Y != nil{
-            viableSetHelpers.viableSet_Combined.removeAll()
+        if let lclNewY = new_Y{
+            //viableSetHelpers.viableSet_Combined.removeAll()
+            if currentYCursor_Slider_Position != new_Y{currentYCursor_Slider_Position = lclNewY}
         }
             centralState_Data_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
