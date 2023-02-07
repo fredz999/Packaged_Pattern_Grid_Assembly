@@ -117,6 +117,7 @@ public class Central_State : ObservableObject {
     print("pre jump currX: ",curr_Data_Pos_X.description, "curr 44 half sub: ",fourSub.description,", targetCellIndex: ",targetCellIndex.description)
     if let lclHslider = h_Slider_Ref{lclHslider.jumpToACell(cellNum: targetCellIndex )}
     print("post jump currX: ",curr_Data_Pos_X.description, "curr 44 half sub: ",fourSub.description)
+        
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
     }
