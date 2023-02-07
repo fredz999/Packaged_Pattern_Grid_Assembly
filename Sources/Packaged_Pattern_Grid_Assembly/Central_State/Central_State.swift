@@ -89,60 +89,32 @@ public class Central_State : ObservableObject {
     }
     
     public func change_Timing_Signature_Central(){
-    // figure out the nearest zero half cell index of the other signature
-    // jump to that cell
-    // cursor slider update after that
-    //jumpToACell(
-        print("currentX: ",curr_Data_Pos_X
-        ,", 44 num: ", data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index.description
-        ,", 68 num: ", data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index.description)
+
         
-//    if dimensions.patternTimingConfiguration == .fourFour{
-////        print("four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index
-////        ,", six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index)
-//        print("my six eight will have to go back: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index.description)
+//    if dimensions.patternTimingConfiguration == .sixEight{
+//        let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
+//        if fourSub == 1{
+//            if let lclHslider = h_Slider_Ref{
+//                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
+//            }
+//        }
+//        else if fourSub == 2{
+//            if let lclHslider = h_Slider_Ref{
+//                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-2))
+//            }
+//        }
 //    }
-//    else if dimensions.patternTimingConfiguration == .sixEight{
-////        print("six_Eight_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].six_Eight_Half_Sub_Index
-////        ,", four_Four_Half_Sub_Index: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index)
-//        print("my four four will have to go back: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex].four_Four_Half_Sub_Index.description)
+//    else if dimensions.patternTimingConfiguration == .fourFour{
+//        let sixSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
+//        if sixSub == 1{
+//            if let lclHslider = h_Slider_Ref{
+//                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
+//            }
+//        }
 //    }
-        
-    //h_Slider_Ref?.jumpToACell(cellNum: 0)
-        
-        
-        
-    if dimensions.patternTimingConfiguration == .sixEight{
-        let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
-        if fourSub == 1{
-            //print("its going to 4.4, the left nearest 4.4 is -1")
-            if let lclHslider = h_Slider_Ref{
-                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
-            }
-        }
-        else if fourSub == 2{
-            //print("its going to 4.4, the left nearest 4.4 is -2")
-            if let lclHslider = h_Slider_Ref{
-                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-2))
-            }
-        }
-    }
-    else if dimensions.patternTimingConfiguration == .fourFour{
-        let sixSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
-        //print("its going to 6.8, the left nearest 6.8 is -1")
-        if sixSub == 1{
-            if let lclHslider = h_Slider_Ref{
-                lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
-            }
-        }
-    }
-    print("curr_Data_Pos_X: ",curr_Data_Pos_X.description)
+
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
-        
-        
-        
-        
     }
 
     public func deleteANote(){
@@ -151,13 +123,8 @@ public class Central_State : ObservableObject {
             a_Note_Is_Highlighted = false
         }
     }
-    
-    //var cellNumberMultiplier : Int = 2
+
     var currentYCursor_Slider_Position : Int = 0
-   // var currentXCursor_Slider_Position : Int = 0
-    //var computedXCursor_Slider_Position : Int = 0
-    // need a position and datanumber pair
-    //var currentXData_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         
@@ -168,15 +135,6 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
             viableSetHelpers.establish_Potential_Cells_Set()
             }
-//        }
-//        if let lclNew_Y = new_Y {
-            //currentYCursor_Slider_Position = lclNew_Y
-//            centralState_Data_Evaluation()
-//            viableSetHelpers.establish_Viable_Cells_Set()
-//            if writingIsOn == true {
-//            viableSetHelpers.establish_Potential_Cells_Set()
-//            }
-        //}
     }
     
     func centralState_Data_Evaluation(){
