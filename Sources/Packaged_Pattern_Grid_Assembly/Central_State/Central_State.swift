@@ -91,8 +91,6 @@ public class Central_State : ObservableObject {
     var compensate_Index : Int? = nil
     
     public func change_Timing_Signature_Central(){
-        //let target_Index : Int = 0
-        // decision to jump HERE
         if dimensions.patternTimingConfiguration == .sixEight{
             if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index != 0{
                 compensate_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
@@ -103,48 +101,15 @@ public class Central_State : ObservableObject {
                 compensate_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
             }
         }
-        
-        //print("start, currX: ",curr_Data_Pos_X.description)
-    dimensions.flip_Timing_Signature_Dimensions()
-    data_Grid.changeTimingSignature_Data_Level()
-        //print("post, currX: ",curr_Data_Pos_X.description)
-        
+            dimensions.flip_Timing_Signature_Dimensions()
+            data_Grid.changeTimingSignature_Data_Level()
         if let lclCompensateIndex = compensate_Index {
             if let lclHslider = h_Slider_Ref {
                 lclHslider.jumpToACell(cellNum: lclCompensateIndex)
             }
             compensate_Index = nil
         }
-        
-        //jump HERE
-     
-//        if dimensions.patternTimingConfiguration == .sixEight{
-//
-//            let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
-//            let targetXIndex = curr_Data_Pos_X - fourSub
-//            print("4:4, targetXIndex: ",targetXIndex.description)
-//
-////            if fourSub == 1{
-////                if let lclHslider = h_Slider_Ref{
-////                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
-////                }
-////            }
-////            else if fourSub == 2{
-////                if let lclHslider = h_Slider_Ref{
-////                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-2))
-////                }
-////            }
-//        }
-//        else if dimensions.patternTimingConfiguration == .fourFour{
-//            let sixSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
-//            let targetXIndex = curr_Data_Pos_X - sixSub
-//            print("6:8, targetXIndex: ",targetXIndex.description)
-////            if sixSub == 1{
-////                if let lclHslider = h_Slider_Ref{
-////                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
-////                }
-////            }
-//        }
+
 
     }
 
@@ -158,9 +123,9 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-        
-            if let lclNew_X = new_X {print("cursor_Slider_Update new_X: ",lclNew_X.description)}
-        
+        if new_Y != nil{
+            viableSetHelpers.viableSet_Combined.removeAll()
+        }
             centralState_Data_Evaluation()
             viableSetHelpers.establish_Viable_Cells_Set()
             if writingIsOn == true {
@@ -172,7 +137,6 @@ public class Central_State : ObservableObject {
            
         if let lclCursorLayer = cursor_Layer_Ref {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-            
             
             if dimensions.patternTimingConfiguration == .fourFour{
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -193,9 +157,8 @@ public class Central_State : ObservableObject {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
             }
-
-//            lclCursorLayer.currPosY = curr_Data_Pos_Y
-//
+            //============================================================================================================================================
+            //============================================================================================================================================
 //            if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
 //
 //                lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
@@ -210,8 +173,7 @@ public class Central_State : ObservableObject {
 //                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
 //                    }
 //                }
-//
-//            }
+//             }
 
 
         }
