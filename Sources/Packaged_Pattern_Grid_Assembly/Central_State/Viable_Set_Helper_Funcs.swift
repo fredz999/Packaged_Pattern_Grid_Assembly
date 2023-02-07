@@ -95,7 +95,7 @@ class Viable_Set_Helper_Functions{
             
                 currentSwipeDirection = .leftward
                 let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
-                let upperHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
+                let upperHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index-1})
                 
                 var combinedSet = Set<Underlying_Data_Cell>()
                 
