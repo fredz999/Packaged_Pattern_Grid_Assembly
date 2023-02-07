@@ -92,27 +92,33 @@ public class Central_State : ObservableObject {
 
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
-        
+     
         if dimensions.patternTimingConfiguration == .sixEight{
+            
             let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
-            if fourSub == 1{
-                if let lclHslider = h_Slider_Ref{
-                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
-                }
-            }
-            else if fourSub == 2{
-                if let lclHslider = h_Slider_Ref{
-                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-2))
-                }
-            }
+            let targetXIndex = curr_Data_Pos_X - fourSub
+            print("4:4, targetXIndex: ",targetXIndex.description)
+            
+//            if fourSub == 1{
+//                if let lclHslider = h_Slider_Ref{
+//                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
+//                }
+//            }
+//            else if fourSub == 2{
+//                if let lclHslider = h_Slider_Ref{
+//                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-2))
+//                }
+//            }
         }
         else if dimensions.patternTimingConfiguration == .fourFour{
             let sixSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
-            if sixSub == 1{
-                if let lclHslider = h_Slider_Ref{
-                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
-                }
-            }
+            let targetXIndex = curr_Data_Pos_X - sixSub
+            print("6:8, targetXIndex: ",targetXIndex.description)
+//            if sixSub == 1{
+//                if let lclHslider = h_Slider_Ref{
+//                    lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))
+//                }
+//            }
         }
 
     }
