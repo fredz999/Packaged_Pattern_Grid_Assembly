@@ -112,7 +112,9 @@ public class Central_State : ObservableObject {
 //            }
 //        }
 //    }
-    print("curr 44 half sub: ",data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index.description)
+    let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
+        print("currX: ",curr_Data_Pos_X.description, "curr 44 half sub: ",fourSub.description)
+        
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
     }
