@@ -113,8 +113,9 @@ public class Central_State : ObservableObject {
 //        }
 //    }
     let fourSub = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
-        print("currX: ",curr_Data_Pos_X.description, "curr 44 half sub: ",fourSub.description)
-        
+    print("pre jump currX: ",curr_Data_Pos_X.description, "curr 44 half sub: ",fourSub.description)
+    if let lclHslider = h_Slider_Ref{lclHslider.jumpToACell(cellNum: (curr_Data_Pos_X-1))}
+    print("post jump currX: ",curr_Data_Pos_X.description, "curr 44 half sub: ",fourSub.description)
     dimensions.flip_Timing_Signature_Dimensions()
     data_Grid.changeTimingSignature_Data_Level()
     }
