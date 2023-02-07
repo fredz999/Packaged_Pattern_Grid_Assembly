@@ -33,8 +33,7 @@ class Viable_Set_Helper_Functions{
  
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
-            
-            
+
             if dimensions.patternTimingConfiguration == .fourFour {
             // --------------------------------- RIGHTWARD ----------------------------------
             if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
@@ -77,7 +76,7 @@ class Viable_Set_Helper_Functions{
             // --------------------------------- STATIONARY ----------------------------------
             else if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                 currentSwipeDirection = .stationary
-                helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
+                //helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
             }
             }
             
@@ -126,10 +125,7 @@ class Viable_Set_Helper_Functions{
                 helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
             }
             }
-            
-            
-            
-            
+
         }
     }
     // there cant be inviables till theres actual write capability
