@@ -78,18 +78,18 @@ public class Central_State : ObservableObject {
         
         viableSetHelpers = Viable_Set_Helper_Functions()
         
-        
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
         for cell in currLine.dataCellArray{
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
         
-        viableSetHelpers.establish_Viable_Cells_Set()
-        
+        //viableSetHelpers.establish_Viable_Cells_Set()
+        //exposedWriteGesture = toggleWrite_Gesture_Sticky
     }
     
-    @Published public var write_Needs_Held_Down : Bool = true
+    @Published public var write_Needs_Held_Down : Bool = false
+    
     public func change_Write_Needs_Held_Down(){
         if write_Needs_Held_Down == true {
             write_Needs_Held_Down = false
@@ -98,14 +98,15 @@ public class Central_State : ObservableObject {
             write_Needs_Held_Down = true
         }
     }
+
     
     public var toggleWrite_Gesture_Springy : some Gesture {
       DragGesture(minimumDistance: 0, coordinateSpace: .local)
       .onChanged { val in
-          
+          if self.writingIsOn == false{self.writingIsOn=true}
       }
       .onEnded { val in
-     
+          if self.writingIsOn == true{self.writingIsOn=false}
       }
     }
     
