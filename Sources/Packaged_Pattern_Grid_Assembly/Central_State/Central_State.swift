@@ -98,6 +98,26 @@ public class Central_State : ObservableObject {
             write_Needs_Held_Down = true
         }
     }
+    
+    public var toggleWrite_Gesture_Springy : some Gesture {
+      DragGesture(minimumDistance: 0, coordinateSpace: .local)
+      .onChanged { val in
+          
+      }
+      .onEnded { val in
+     
+      }
+    }
+    
+    public var toggleWrite_Gesture_Sticky : some Gesture {
+        TapGesture(count: 1).onEnded({
+            if self.a_Note_Is_Highlighted == false {
+                self.writingIsOn.toggle()
+            }
+        })
+    }
+    
+    
 
     var compensate_Index : Int? = nil
     @Published public var timing_Sig_Change_Possible : Bool = true
@@ -189,23 +209,7 @@ public class Central_State : ObservableObject {
 //        }
 //    }
     
-    public var toggleWrite_Gesture_Springy : some Gesture {
-      DragGesture(minimumDistance: 0, coordinateSpace: .local)
-      .onChanged { val in
-          
-      }
-      .onEnded { val in
-     
-      }
-    }
     
-    public var toggleWrite_Gesture_Sticky : some Gesture {
-        TapGesture(count: 1).onEnded({
-            if self.a_Note_Is_Highlighted == false {
-                self.writingIsOn.toggle()
-            }
-        })
-    }
     
     
     
