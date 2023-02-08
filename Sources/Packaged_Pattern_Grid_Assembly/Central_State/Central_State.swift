@@ -37,7 +37,7 @@ public class Central_State : ObservableObject {
     @Published public var writingIsOn : Bool = false {
         didSet {
             if writingIsOn == true {
-
+                if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
                 if viableSetHelpers.initial_WriteOnCell == nil {
                     if dimensions.patternTimingConfiguration == .fourFour {
                         viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -50,6 +50,7 @@ public class Central_State : ObservableObject {
 
             }
             else if writingIsOn == false {
+                if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 viableSetHelpers.inViableCellsLeft.removeAll()
                 viableSetHelpers.inViableCellsRight.removeAll()
@@ -89,9 +90,11 @@ public class Central_State : ObservableObject {
     }
     
     var compensate_Index : Int? = nil
+    @Published public var timing_Sig_Change_Possible : Bool = true
     
-    public func change_Timing_Signature_Central(){
-        if dimensions.patternTimingConfiguration == .sixEight{
+    public func change_Timing_Signature_Central() {
+        if timing_Sig_Change_Possible == true {
+        if dimensions.patternTimingConfiguration == .sixEight {
             if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index != 0{
                 compensate_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
             }
@@ -101,16 +104,15 @@ public class Central_State : ObservableObject {
                 compensate_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
             }
         }
-            dimensions.flip_Timing_Signature_Dimensions()
-            data_Grid.changeTimingSignature_Data_Level()
+        dimensions.flip_Timing_Signature_Dimensions()
+        data_Grid.changeTimingSignature_Data_Level()
         if let lclCompensateIndex = compensate_Index {
             if let lclHslider = h_Slider_Ref {
                 lclHslider.jumpToACell(cellNum: lclCompensateIndex)
             }
             compensate_Index = nil
         }
-
-
+        }
     }
 
     public func deleteANote(){
@@ -124,14 +126,13 @@ public class Central_State : ObservableObject {
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lclNewY = new_Y{
-            //viableSetHelpers.viableSet_Combined.removeAll()
-            if currentYCursor_Slider_Position != new_Y{currentYCursor_Slider_Position = lclNewY}
+        if currentYCursor_Slider_Position != new_Y{currentYCursor_Slider_Position = lclNewY}
         }
-            centralState_Data_Evaluation()
-            viableSetHelpers.establish_Viable_Cells_Set()
-            if writingIsOn == true {
-            viableSetHelpers.establish_Potential_Cells_Set()
-            }
+        centralState_Data_Evaluation()
+        viableSetHelpers.establish_Viable_Cells_Set()
+        if writingIsOn == true {
+        viableSetHelpers.establish_Potential_Cells_Set()
+        }
     }
     
     func centralState_Data_Evaluation(){
