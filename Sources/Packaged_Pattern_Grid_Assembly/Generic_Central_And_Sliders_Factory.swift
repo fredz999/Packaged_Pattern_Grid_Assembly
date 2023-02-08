@@ -32,7 +32,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var injected_h_Slider : Injected_H_SliderType?
     var injected_v_Slider : Injected_V_SliderType?
     var injected_cursor : Injected_Cursor_Type?
-    var injected_noteWriteBtn : Injected_Note_Write_Button_Type?
+    //var injected_noteWriteBtn : Injected_Note_Write_Button_Type?
     var injected_potential_Note_View : Injected_Potential_Note_Type?
     
     var potential_Note_Layer_Store : Potential_Note_Layer_Store
@@ -105,9 +105,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         injected_cursor = cursor_Factory_Method(cursor_Layer_Store)
     }
 
-    public func inject_NoteWriteBtn_Factory_Method(noteWriteBtn_Factory_Method: (()->Injected_Note_Write_Button_Type)){
-        injected_noteWriteBtn = noteWriteBtn_Factory_Method()
-    }
+//    public func inject_NoteWriteBtn_Factory_Method(noteWriteBtn_Factory_Method: (()->Injected_Note_Write_Button_Type)){
+//        injected_noteWriteBtn = noteWriteBtn_Factory_Method()
+//    }
     
     public func inject_PotentialNote_Factory_Method(potentialNote_Factory_Method: ((Potential_Note_Layer_Store)->Injected_Potential_Note_Type)){
         injected_potential_Note_View = potentialNote_Factory_Method(potential_Note_Layer_Store)
@@ -213,14 +213,14 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
     }
     
-    @ViewBuilder public func returnNoteWriteLayer()->some View {
-        if let lclNoteWritingButton = injected_noteWriteBtn {
-            lclNoteWritingButton
-        }
-        else if injected_noteWriteBtn == nil{
-            Text("NoteWriteBtn")
-        }
-    }
+//    @ViewBuilder public func returnNoteWriteLayer()->some View {
+//        if let lclNoteWritingButton = injected_noteWriteBtn {
+//            lclNoteWritingButton
+//        }
+//        else if injected_noteWriteBtn == nil{
+//            Text("NoteWriteBtn")
+//        }
+//    }
     
     
     @ViewBuilder public func returnPotentialLayer()->some View {
