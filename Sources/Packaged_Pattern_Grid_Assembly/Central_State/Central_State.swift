@@ -89,9 +89,18 @@ public class Central_State : ObservableObject {
         
     }
     
+    @Published public var write_Needs_Held_Down : Bool = true
+    public func change_Write_Needs_Held_Down(){
+        if write_Needs_Held_Down == true {
+            write_Needs_Held_Down = false
+        }
+        else if write_Needs_Held_Down == false {
+            write_Needs_Held_Down = true
+        }
+    }
+
     var compensate_Index : Int? = nil
     @Published public var timing_Sig_Change_Possible : Bool = true
-    
     public func change_Timing_Signature_Central() {
         if timing_Sig_Change_Possible == true {
         if dimensions.patternTimingConfiguration == .sixEight {
@@ -99,7 +108,7 @@ public class Central_State : ObservableObject {
                 compensate_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
             }
         }
-        else if dimensions.patternTimingConfiguration == .fourFour{
+        else if dimensions.patternTimingConfiguration == .fourFour {
             if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index != 0{
                 compensate_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
             }
@@ -159,25 +168,6 @@ public class Central_State : ObservableObject {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
             }
-            //============================================================================================================================================
-            //============================================================================================================================================
-//            if lclCursorLayer.currPosY < data_Grid.dataLineArray.count, lclCursorLayer.currPosX < dimensions.dataGrid_X_Unit_Count {
-//
-//                lclCursorLayer.set_Cursor_Data(dataX: lclCursorLayer.currPosX, dataY: lclCursorLayer.currPosY)
-//
-//                if let lclNote = data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In {
-//                    if let lclNoteCollection = note_Collection_Ref {
-//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
-//                    }
-//                }
-//                else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-//                    if let lclNoteCollection = note_Collection_Ref {
-//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-//                    }
-//                }
-//             }
-
-
         }
     }
     var curr_Data_Pos_X : Int = 0
@@ -193,11 +183,31 @@ public class Central_State : ObservableObject {
         }
     }
     
-    public func toggle_Write_Is_On(){
-        if a_Note_Is_Highlighted == false {
-            writingIsOn.toggle()
-        }
+//    public func toggle_Write_Is_On(){
+//        if a_Note_Is_Highlighted == false {
+//            writingIsOn.toggle()
+//        }
+//    }
+    
+    public var toggleWrite_Gesture_Springy : some Gesture {
+      DragGesture(minimumDistance: 0, coordinateSpace: .local)
+      .onChanged { val in
+          
+      }
+      .onEnded { val in
+     
+      }
     }
+    
+    public var toggleWrite_Gesture_Sticky : some Gesture {
+        TapGesture(count: 1).onEnded({
+            if self.a_Note_Is_Highlighted == false {
+                self.writingIsOn.toggle()
+            }
+        })
+    }
+    
+    
     
     func data_Slider_LowBracket_Update(newLower:Int){
     
