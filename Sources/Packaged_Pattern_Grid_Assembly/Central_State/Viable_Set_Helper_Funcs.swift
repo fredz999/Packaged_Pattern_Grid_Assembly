@@ -40,7 +40,7 @@ class Viable_Set_Helper_Functions{
             if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
             
             let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-            print("emptyCellsRight count: ",emptyCellsRight.count.description)
+                print("emptyCellsRight count: ",emptyCellsRight.count.description,", current_Cell_Line_Set count: ",current_Cell_Line_Set.count,", helperFuncs_currentData.dataCell_X_Number: ",helperFuncs_currentData.dataCell_X_Number.description)
             let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
             let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
