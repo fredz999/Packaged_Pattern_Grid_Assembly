@@ -31,7 +31,7 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Viable_Cells_Set(){
-        print("establish_Viable_Cells_Set()")
+        
         if helperFuncs_currentData.note_Im_In == nil {
             
             inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
@@ -64,7 +64,7 @@ class Viable_Set_Helper_Functions{
             
         }
         else if helperFuncs_currentData.note_Im_In != nil {
-            
+            print("helperFuncs_currentData.note_Im_In != nil")
             if viableSet_Combined.count > 0{
                 for cell in viableSet_Combined{
                     cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
