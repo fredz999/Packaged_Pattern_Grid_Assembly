@@ -185,6 +185,7 @@ public class Central_State : ObservableObject {
             if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
+                    print("hit the pos.......")
                 }
             }
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[curr_Data_Pos_X].note_Im_In == nil {
