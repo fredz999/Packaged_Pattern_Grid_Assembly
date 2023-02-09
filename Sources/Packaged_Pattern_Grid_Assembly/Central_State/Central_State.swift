@@ -196,6 +196,9 @@ public class Central_State : ObservableObject {
                 }
             }
         }
+        else if cursor_Layer_Ref == nil{
+            print("cursor_Layer_Ref == nil?.......: ")
+        }
     }
     
     var curr_Data_Pos_X : Int = 0
