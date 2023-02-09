@@ -45,7 +45,8 @@ class Viable_Set_Helper_Functions{
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
             }
             else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-                print("inViableCellsRight.count != 0 || inViableCellsLeft.count != 0")
+                print("currentData X:",helperFuncs_currentData.dataCell_X_Number.description,", Y: ",helperFuncs_currentData.dataCell_Y_Number.description)
+                
                 let currentCellSet = current_Cell_Line_Set.filter({
                 $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
