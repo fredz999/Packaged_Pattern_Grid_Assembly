@@ -219,7 +219,6 @@ class Viable_Set_Helper_Functions{
     }
     // there cant be inviables till theres actual write capability
     func writeNote(note_Y_Param:Int){
-        print("writeNote(.... ")
         let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
         let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
     

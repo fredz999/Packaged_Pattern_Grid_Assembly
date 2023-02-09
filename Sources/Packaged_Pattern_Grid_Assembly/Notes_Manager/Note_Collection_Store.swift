@@ -105,11 +105,9 @@ public class Note_Collection {
                 lclCurrHighlighted.note_Highlighted = false
                 currentHighlightedNote = nil
             }
-            else if currentHighlightedNote == nil{
-                
-            }
         }
         else if let lclNoteParam = noteParam {
+            print("if let lclNoteParam = noteParam")
             if lclNoteParam.note_Highlighted == false{
                 currentHighlightedNote = lclNoteParam
                 lclNoteParam.note_Highlighted = true
