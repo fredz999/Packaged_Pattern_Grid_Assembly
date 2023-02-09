@@ -101,7 +101,6 @@ public class Note_Collection {
     func note_Collection_Highlight_Handler(noteParam:Note?){
         
         if noteParam == nil {
-            print("noteParam == nil ")
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlighted = false
                 currentHighlightedNote = nil
