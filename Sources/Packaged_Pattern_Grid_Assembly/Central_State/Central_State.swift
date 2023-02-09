@@ -150,7 +150,10 @@ public class Central_State : ObservableObject {
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
         if let lclNewY = new_Y{
-        if currentYCursor_Slider_Position != new_Y{currentYCursor_Slider_Position = lclNewY}
+        if currentYCursor_Slider_Position != new_Y{
+            currentYCursor_Slider_Position = lclNewY
+        
+        }
         }
         centralState_Data_Evaluation()
         viableSetHelpers.establish_Viable_Cells_Set()
@@ -160,7 +163,6 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-        print("centralState_Data_Evaluation() hit")
         if let lclCursorLayer = cursor_Layer_Ref {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
@@ -179,6 +181,7 @@ public class Central_State : ObservableObject {
                 }
             }
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
+                print("centralState_Data_Evaluation() hit")
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }

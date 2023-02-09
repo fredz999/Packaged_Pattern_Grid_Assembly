@@ -212,21 +212,21 @@ public class Note : ObservableObject, Identifiable, Equatable {
 
         if self.note_Y_Number+1 < dimensions.DATA_final_Line_Y_Index {
 
-                var newCellArray : [Underlying_Data_Cell] = []
-                for cell in dataCellArray {
-                    let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
-                    newCellArray.append(cellBelow)
-                }
+            var newCellArray : [Underlying_Data_Cell] = []
+            for cell in dataCellArray {
+                let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
+                newCellArray.append(cellBelow)
+            }
 
-                dataCellArray.removeAll()
-                
-                for newCell in newCellArray {
-                    dataCellArray.append(newCell)
-                }
-                
-                redrawCellArray()
-                self.note_Y_Number += 1
-                check_For_Highlight()
+            dataCellArray.removeAll()
+            
+            for newCell in newCellArray {
+                dataCellArray.append(newCell)
+            }
+            
+            redrawCellArray()
+            self.note_Y_Number += 1
+            check_For_Highlight()
 
         }
 
@@ -241,7 +241,6 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     newCellArray.append(cellAbove)
                 }
 
-                
                 dataCellArray.removeAll()
                 
                 for newCell in newCellArray {
