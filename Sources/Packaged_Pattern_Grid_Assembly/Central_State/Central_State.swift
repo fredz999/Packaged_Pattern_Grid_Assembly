@@ -50,6 +50,7 @@ public class Central_State : ObservableObject {
 
             }
             else if writingIsOn == false {
+                print("writing on set to false")
                 if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 viableSetHelpers.inViableCellsLeft.removeAll()
@@ -176,13 +177,13 @@ public class Central_State : ObservableObject {
             }
             
             if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
-                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  ".note_Im_In is not nillll")
+                 
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                 }
             }
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  ".note_Im_In == nil")
+                //print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  ".note_Im_In == nil")
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }

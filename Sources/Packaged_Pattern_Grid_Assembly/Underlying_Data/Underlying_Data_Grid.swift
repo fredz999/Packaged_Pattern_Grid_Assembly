@@ -69,8 +69,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     }
                     
                 }
-                
-                print("6:8 halfSub: ",sixEight_Half_Sub_Count.description,", 4:4 halfSub: ",fourFour_Half_Sub_Count.description)
                 let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
                 , initialStatusParam: initialStatus, fourFourSubIndexParam: fourFour_Sub_Count, sixEightSubIndexParam: sixEight_Sub_Count
                 , four_Four_Cell_Index_Param: fourFour_Cell_Count, six_Eight_Cell_Index_Param: sixEight_Cell_Count
