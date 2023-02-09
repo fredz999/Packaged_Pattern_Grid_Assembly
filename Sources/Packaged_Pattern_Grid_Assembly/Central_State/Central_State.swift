@@ -186,13 +186,13 @@ public class Central_State : ObservableObject {
             //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X]
             
             if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
-                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In is not nil")
+                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In is not nil",", note highlighted: ",a_Note_Is_Highlighted.description)
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                 }
             }
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In == nil")
+                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In == nil",", note highlighted: ",a_Note_Is_Highlighted.description)
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
