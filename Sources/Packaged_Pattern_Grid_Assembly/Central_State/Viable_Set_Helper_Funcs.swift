@@ -27,7 +27,9 @@ class Viable_Set_Helper_Functions{
     
     init(){
         helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
+        //current_Cell_Line_Set =
         establish_Viable_Cells_Set()
+        
     }
     
     func establish_Viable_Cells_Set(){
@@ -40,7 +42,12 @@ class Viable_Set_Helper_Functions{
             if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
             
             let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-                print("emptyCellsRight count: ",emptyCellsRight.count.description,", current_Cell_Line_Set count: ",current_Cell_Line_Set.count,", helperFuncs_currentData.dataCell_X_Number: ",helperFuncs_currentData.dataCell_X_Number.description)
+                
+                print("emptyCellsRight count: ",emptyCellsRight.count.description
+                      ,", current_Cell_Line_Set count: ",current_Cell_Line_Set.count
+                      ,", helperFuncs_currentData.dataCell_X_Number: ",helperFuncs_currentData.dataCell_X_Number.description)
+                
+                
             let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
             let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)

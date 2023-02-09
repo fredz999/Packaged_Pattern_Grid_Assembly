@@ -81,7 +81,8 @@ public class Central_State : ObservableObject {
     var viableSetHelpers : Viable_Set_Helper_Functions
     
     public init(){
-        
+        curr_Data_Pos_X = 0
+        curr_Data_Pos_Y = 0
         viableSetHelpers = Viable_Set_Helper_Functions()
         
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -196,9 +197,9 @@ public class Central_State : ObservableObject {
 
     }
     
-    var curr_Data_Pos_X : Int = 0
+    var curr_Data_Pos_X : Int
     
-    var curr_Data_Pos_Y : Int = 0{
+    var curr_Data_Pos_Y : Int{
         didSet {
             let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             viableSetHelpers.current_Cell_Line_Set.removeAll()
@@ -207,6 +208,7 @@ public class Central_State : ObservableObject {
                 newSet.insert(cell)
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
+            print("viableSetHelpers.current_Cell_Line_Set count: ",viableSetHelpers.current_Cell_Line_Set.count)
         }
     }
 
