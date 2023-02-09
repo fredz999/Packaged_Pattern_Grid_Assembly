@@ -169,7 +169,7 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-        print("centralState_Data_Evaluation: ")
+        
         if let lclCursorLayer = cursor_Layer_Ref {
             
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
@@ -198,6 +198,12 @@ public class Central_State : ObservableObject {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
             }
+            else{
+                print("centralState_Data_Evaluation: dont know whats going on here at all, currX: ",curr_Data_Pos_X.description)
+            }
+            
+            
+            
         }
 
     }
