@@ -170,7 +170,7 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-        print("centralState_Data_Evaluation()")
+        
         if let lclCursorLayer = cursor_Layer_Ref {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
@@ -184,13 +184,13 @@ public class Central_State : ObservableObject {
             }
             
             if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
-                
+                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In is not nil")
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                 }
             }
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-                //print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  ".note_Im_In == nil")
+                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In == nil")
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
