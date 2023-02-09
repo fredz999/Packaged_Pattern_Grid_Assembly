@@ -159,7 +159,6 @@ public class Central_State : ObservableObject {
         if let lclNewY = new_Y{
         if currentYCursor_Slider_Position != new_Y{
             currentYCursor_Slider_Position = lclNewY
-        
         }
         }
         centralState_Data_Evaluation()
@@ -172,17 +171,20 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
 //        print("centralState_Data_Evaluation: ")
         if let lclCursorLayer = cursor_Layer_Ref {
+            
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             
-//            if dimensions.patternTimingConfiguration == .fourFour{
-//                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-//                curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-//            }
-//            else if dimensions.patternTimingConfiguration == .sixEight{
-//                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-//                curr_Data_Pos_X = dimensions.currentSixEightDataIndex
-//            }
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X]
+            if dimensions.patternTimingConfiguration == .fourFour{
+                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                //curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+                curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+            }
+            else if dimensions.patternTimingConfiguration == .sixEight{
+                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                //curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+                curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+            }
+            //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X]
             
             if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
                 //print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In is not nil")
