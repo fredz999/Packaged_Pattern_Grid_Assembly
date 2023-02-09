@@ -28,6 +28,17 @@ class Viable_Set_Helper_Functions{
     init(){
         helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
         //current_Cell_Line_Set =
+        
+//        for cell in currLine.dataCellArray{
+//            newSet.insert(cell)
+//        }
+//        viableSetHelpers.current_Cell_Line_Set = newSet
+        //data_Grid.dataLineArray[current_Cell_Line_Set]
+        for cell in Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray{
+            //.dataLineArray[0].dataCellArray{
+            current_Cell_Line_Set.insert(cell)
+        }
+        
         establish_Viable_Cells_Set()
         
     }
