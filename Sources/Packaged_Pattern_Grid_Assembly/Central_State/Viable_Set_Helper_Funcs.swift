@@ -11,8 +11,72 @@ class Viable_Set_Helper_Functions{
     
     let dimensions = ComponentDimensions.StaticDimensions
     
+    var viableSet_Combined = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = viableSet_Combined.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
+            }
+        }
+        didSet {
+            for cell in viableSet_Combined {
+                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
+            }
+        }
+    }
+    
     init(){
         helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
+        establish_Viable_Cells_Set()
+    }
+    
+    func establish_Viable_Cells_Set(){
+        
+        if helperFuncs_currentData.note_Im_In == nil {
+            
+            inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
+            inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
+            
+            if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
+            let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
+            let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
+            let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
+            viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
+            }
+            else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
+                let currentCellSet = current_Cell_Line_Set.filter({
+                $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                })
+                
+                let viablesOnLeft = current_Cell_Line_Set.filter {
+                $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                }
+                
+                let viablesOnRight = current_Cell_Line_Set.filter {
+                $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
+                && $0.note_Im_In == nil
+                }
+
+                viableSet_Combined = currentCellSet.union(viablesOnLeft).union(viablesOnRight)
+            }
+            
+        }
+        else if helperFuncs_currentData.note_Im_In != nil {
+            
+            if viableSet_Combined.count > 0{
+                for cell in viableSet_Combined{
+                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+                }
+                viableSet_Combined.removeAll()
+            }
+            
+            if helperFuncs_PotentialNoteSet.count > 0{
+                nilPotentialSet()
+            }
+            
+        }
     }
     
     var in_Swipe_Inviables = Set<Underlying_Data_Cell>()
@@ -29,6 +93,7 @@ class Viable_Set_Helper_Functions{
             }
         }
     }
+    
     var helperFuncs_currentData : Underlying_Data_Cell
  
     func establish_Potential_Cells_Set(){
@@ -217,7 +282,7 @@ class Viable_Set_Helper_Functions{
 
         }
     }
-    // there cant be inviables till theres actual write capability
+
     func writeNote(note_Y_Param:Int){
         let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
         let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
@@ -271,20 +336,6 @@ class Viable_Set_Helper_Functions{
 
     var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
     
-    var viableSet_Combined = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = viableSet_Combined.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
-            }
-        }
-        didSet {
-            for cell in viableSet_Combined {
-                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
-            }
-        }
-    }
-    
     var helperFuncs_PotentialNoteSet = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = helperFuncs_PotentialNoteSet.symmetricDifference(newValue)
@@ -302,54 +353,7 @@ class Viable_Set_Helper_Functions{
     var inViableCellsLeft = Set<Underlying_Data_Cell>()
     var inViableCellsRight = Set<Underlying_Data_Cell>()
     
-    func establish_Viable_Cells_Set(){
-        
-        if helperFuncs_currentData.note_Im_In == nil {
-            
-            inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-            inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
-            
-            if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-            let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-            let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
-            let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
-            viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
-            }
-            else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-                let currentCellSet = current_Cell_Line_Set.filter({
-                $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                })
-                
-                let viablesOnLeft = current_Cell_Line_Set.filter {
-                $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                }
-                
-                let viablesOnRight = current_Cell_Line_Set.filter {
-                $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                }
-
-                viableSet_Combined = currentCellSet.union(viablesOnLeft).union(viablesOnRight)
-            }
-            
-        }
-        else if helperFuncs_currentData.note_Im_In != nil {
-            
-            if viableSet_Combined.count > 0{
-                for cell in viableSet_Combined{
-                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
-                }
-                viableSet_Combined.removeAll()
-            }
-            
-            if helperFuncs_PotentialNoteSet.count > 0{
-                nilPotentialSet()
-            }
-            
-        }
-    }
+    
 
     func nilPotentialSet(){
         if helperFuncs_PotentialNoteSet.count > 0 {
