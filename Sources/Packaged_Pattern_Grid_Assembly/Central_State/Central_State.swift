@@ -175,38 +175,30 @@ public class Central_State : ObservableObject {
             
             if dimensions.patternTimingConfiguration == .fourFour{
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                //curr_Data_Pos_X = dimensions.currentFourFourDataIndex
                 curr_Data_Pos_X = dimensions.currentFourFourDataIndex
             }
             else if dimensions.patternTimingConfiguration == .sixEight{
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                //curr_Data_Pos_X = dimensions.currentSixEightDataIndex
                 curr_Data_Pos_X = dimensions.currentSixEightDataIndex
             }
-            //viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X]
             
             if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
-                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In is not nil",", note highlighted: ",a_Note_Is_Highlighted.description)
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                 }
             }
-            else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  "  .note_Im_In == nil",", note highlighted: ",a_Note_Is_Highlighted.description)
+            //else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
+            else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[curr_Data_Pos_X].note_Im_In == nil {
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
             }
-            else {
-                print("centralState_Data_Evaluation: dont know whats going on here at all, currX: ",curr_Data_Pos_X.description,", note highlighted: ",a_Note_Is_Highlighted.description)
-                if let lclNoteCollection = note_Collection_Ref {
-                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                    //if a_Note_Is_Highlighted == true{a_Note_Is_Highlighted = false}
-                }
-            }
-            
-            
-            
+            // TODO: ???
+//            else {
+//                if let lclNoteCollection = note_Collection_Ref {
+//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+//                }
+//            }
         }
 
     }
