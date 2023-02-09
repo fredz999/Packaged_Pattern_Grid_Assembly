@@ -13,9 +13,8 @@ public class Central_State : ObservableObject {
     
     @Published var edit_Layer_Visible : Bool = true
     
-    @Published public var a_Note_Is_Highlighted : Bool = false{
-        didSet{print("a_Note_Is_Highlighted = true")}
-    }
+    @Published public var a_Note_Is_Highlighted : Bool = false
+
 
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
@@ -198,10 +197,11 @@ public class Central_State : ObservableObject {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
             }
-            else{
-                print("centralState_Data_Evaluation: dont know whats going on here at all, currX: ",curr_Data_Pos_X.description)
+            else {
+                print("centralState_Data_Evaluation: dont know whats going on here at all, currX: ",curr_Data_Pos_X.description,", note highlighted: ",a_Note_Is_Highlighted.description)
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                    //if a_Note_Is_Highlighted == true{a_Note_Is_Highlighted = false}
                 }
             }
             
