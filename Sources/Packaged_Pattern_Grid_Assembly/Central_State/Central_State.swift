@@ -156,6 +156,7 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     
     func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
+        print("cursor_Slider_Update(")
         if let lclNewY = new_Y{
         if currentYCursor_Slider_Position != new_Y{
             currentYCursor_Slider_Position = lclNewY
@@ -183,13 +184,13 @@ public class Central_State : ObservableObject {
             }
             
             if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
-                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  ".note_Im_In != nil")
+                
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                 }
             }
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-                print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  ".note_Im_In == nil")
+                //print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description,", curr_Data_Pos_X: ",curr_Data_Pos_X.description,  ".note_Im_In == nil")
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
