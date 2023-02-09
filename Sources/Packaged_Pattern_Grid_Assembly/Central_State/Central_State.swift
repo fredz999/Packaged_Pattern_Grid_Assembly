@@ -200,6 +200,9 @@ public class Central_State : ObservableObject {
             }
             else{
                 print("centralState_Data_Evaluation: dont know whats going on here at all, currX: ",curr_Data_Pos_X.description)
+                if let lclNoteCollection = note_Collection_Ref {
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                }
             }
             
             
