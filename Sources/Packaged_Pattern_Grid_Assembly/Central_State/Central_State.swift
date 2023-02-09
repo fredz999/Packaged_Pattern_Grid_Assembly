@@ -176,12 +176,13 @@ public class Central_State : ObservableObject {
             }
             
             if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
+                print(".note_Im_In != nil")
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                 }
             }
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
-                print("centralState_Data_Evaluation() hit")
+                print(".note_Im_In == nil")
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
