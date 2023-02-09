@@ -187,18 +187,11 @@ public class Central_State : ObservableObject {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
                 }
             }
-            //else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[lclCursorLayer.currPosX].note_Im_In == nil {
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[curr_Data_Pos_X].note_Im_In == nil {
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                 }
             }
-            // TODO: ???
-//            else {
-//                if let lclNoteCollection = note_Collection_Ref {
-//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-//                }
-//            }
         }
 
     }
