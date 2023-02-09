@@ -13,7 +13,9 @@ public class Central_State : ObservableObject {
     
     @Published var edit_Layer_Visible : Bool = true
     
-    @Published public var a_Note_Is_Highlighted : Bool = false
+    @Published public var a_Note_Is_Highlighted : Bool = false{
+        didSet{print("a_Note_Is_Highlighted = true")}   
+    }
 
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
