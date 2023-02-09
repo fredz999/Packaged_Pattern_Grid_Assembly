@@ -38,12 +38,14 @@ class Viable_Set_Helper_Functions{
             inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
             
             if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
+                print("inViableCellsRight.count == 0,inViableCellsLeft.count == 0")
             let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
             let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
             let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
             }
             else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
+                print("inViableCellsRight.count != 0 || inViableCellsLeft.count != 0")
                 let currentCellSet = current_Cell_Line_Set.filter({
                 $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
