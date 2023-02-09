@@ -190,6 +190,7 @@ public class Central_State : ObservableObject {
             else if data_Grid.dataLineArray[lclCursorLayer.currPosY].dataCellArray[curr_Data_Pos_X].note_Im_In == nil {
                 if let lclNoteCollection = note_Collection_Ref {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                    print("hit the nil.......")
                 }
             }
         }
