@@ -50,12 +50,16 @@ public class Central_State : ObservableObject {
 
             }
             else if writingIsOn == false {
-                print("writing on set to false")
+                
+                
                 if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
+                
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
+                
                 viableSetHelpers.inViableCellsLeft.removeAll()
                 viableSetHelpers.inViableCellsRight.removeAll()
                 viableSetHelpers.in_Swipe_Inviables.removeAll()
+                
                 if viableSetHelpers.currentSwipeDirection != nil {
                     viableSetHelpers.currentSwipeDirection = nil
                 }
@@ -64,9 +68,9 @@ public class Central_State : ObservableObject {
                     viableSetHelpers.initial_WriteOnCell = nil
                 }
 
-                if let lclCursorRef = cursor_Layer_Ref {
-                    lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
-                }
+//                if let lclCursorRef = cursor_Layer_Ref {
+//                    lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
+//                }
                 
             }
             
