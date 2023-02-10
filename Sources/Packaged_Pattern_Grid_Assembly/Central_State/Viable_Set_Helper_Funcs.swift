@@ -44,27 +44,21 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Viable_Cells_Set(){
-        print("establish_Viable_Cells_Set()")
+
         if helperFuncs_currentData.note_Im_In == nil {
-            print("helperFuncs_currentData.note_Im_In == nil")
+
             inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
             inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
             
             if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
             
             let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-                
-                print("emptyCellsRight count: ",emptyCellsRight.count.description
-                      ,", current_Cell_Line_Set count: ",current_Cell_Line_Set.count
-                      ,", helperFuncs_currentData.dataCell_X_Number: ",helperFuncs_currentData.dataCell_X_Number.description)
-                
-                
+
             let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
             let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
             }
             else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-                print("currentData X:",helperFuncs_currentData.dataCell_X_Number.description,", Y: ",helperFuncs_currentData.dataCell_Y_Number.description)
                 
                 let currentCellSet = current_Cell_Line_Set.filter({
                 $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
@@ -86,7 +80,6 @@ class Viable_Set_Helper_Functions{
             
         }
         else if helperFuncs_currentData.note_Im_In != nil {
-            print("helperFuncs_currentData.note_Im_In != nil")
             if viableSet_Combined.count > 0{
                 for cell in viableSet_Combined{
                     cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
@@ -94,7 +87,7 @@ class Viable_Set_Helper_Functions{
                 viableSet_Combined.removeAll()
             }
             
-            if helperFuncs_PotentialNoteSet.count > 0{
+            if helperFuncs_PotentialNoteSet.count > 0 {
                 nilPotentialSet()
             }
             
