@@ -166,7 +166,7 @@ class Viable_Set_Helper_Functions{
                             if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                                 
                                 helperFuncs_PotentialNoteSet = swipeSet.filter{$0.dataCell_X_Number < lowestInANote.dataCell_X_Number}
-                                print("swipeSet_InNote.count > 0")
+                                print("swipeSet_InNote.count > 0, count: ",helperFuncs_PotentialNoteSet.count.description)
                                 //in_Swipe_Inviables = swipeSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
                             }
                         }
