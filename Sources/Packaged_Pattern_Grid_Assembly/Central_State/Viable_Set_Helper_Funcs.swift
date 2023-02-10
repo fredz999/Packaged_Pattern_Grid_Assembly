@@ -112,8 +112,9 @@ class Viable_Set_Helper_Functions{
     var helperFuncs_currentData : Underlying_Data_Cell
     
     func establish_Potential_Cells_Set(){
-        print("else establish_Potential_Cells_Set?")
+        
         if let lclInitialCell = initial_WriteOnCell {
+            print("lclInitialCell = initial_WriteOnCell")
             if dimensions.patternTimingConfiguration == .fourFour {
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
 
