@@ -117,7 +117,7 @@ class Viable_Set_Helper_Functions{
             
             if dimensions.patternTimingConfiguration == .fourFour {
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
-                    print("lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number")
+                     
                     currentSwipeDirection = .rightward
 
                     let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
@@ -136,6 +136,8 @@ class Viable_Set_Helper_Functions{
                     // this time just make the inviables everything after the lowest selected
 
                     let inANoteSet = combinedSet.filter{$0.note_Im_In == nil}
+                    
+                    print("inANoteSet count: ",inANoteSet.count.description,", combinedSet count: ",combinedSet.count.description)
 
                     if let lowestInANote = inANoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                         helperFuncs_PotentialNoteSet = combinedSet.filter{$0.dataCell_X_Number <  lowestInANote.dataCell_X_Number}
