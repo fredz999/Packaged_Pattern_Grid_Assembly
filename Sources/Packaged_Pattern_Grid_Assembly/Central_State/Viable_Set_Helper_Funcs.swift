@@ -114,10 +114,10 @@ class Viable_Set_Helper_Functions{
     func establish_Potential_Cells_Set(){
         
         if let lclInitialCell = initial_WriteOnCell {
-            print("lclInitialCell = initial_WriteOnCell")
+            
             if dimensions.patternTimingConfiguration == .fourFour {
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
-
+                    print("lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number")
                     currentSwipeDirection = .rightward
 
                     let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
