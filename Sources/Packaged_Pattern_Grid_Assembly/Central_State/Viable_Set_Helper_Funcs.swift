@@ -147,6 +147,7 @@ class Viable_Set_Helper_Functions{
                         in_Swipe_Inviables = combinedSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
                     }
                     else {
+                        print("else hit?")
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                     ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                         
