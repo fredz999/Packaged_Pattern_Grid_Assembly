@@ -122,9 +122,13 @@ class Viable_Set_Helper_Functions{
         if let lclInitialCell = initial_WriteOnCell {
             if dimensions.patternTimingConfiguration == .fourFour {
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
+                    
                     currentSwipeDirection = .rightward
+                    
                     let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
+
                     let upperHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
+                    
                     var combinedSet = Set<Underlying_Data_Cell>()
                     
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
@@ -134,16 +138,38 @@ class Viable_Set_Helper_Functions{
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
                     }
                     
+                    // this time just make the inviables everything after the lowest selected
+                    
+                    let inANoteSet = combinedSet.filter{$0.note_Im_In == nil}
+                    
+                    if let lowestInANote = inANoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        helperFuncs_PotentialNoteSet = combinedSet.filter{$0.dataCell_X_Number <  lowestInANote.dataCell_X_Number}
+                        in_Swipe_Inviables = combinedSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
+                    }
+                    else {
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                     ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-    
-                    helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-    
-                    let fullSwipeSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-    
-                    in_Swipe_Inviables = fullSwipeSet.filter({$0.note_Im_In != nil})
-    
+                        
+                        helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
+                        && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+                        
                     }
+                    }
+                    
+                    
+                    
+                    
+                    
+//                    if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//                    ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//
+//                    helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+//
+//                    let fullSwipeSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+//
+//                    in_Swipe_Inviables = fullSwipeSet.filter({$0.note_Im_In != nil})
+//
+//                    }
 
                 }
             }
