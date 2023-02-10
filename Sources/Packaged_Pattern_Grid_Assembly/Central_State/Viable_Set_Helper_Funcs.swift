@@ -156,13 +156,14 @@ class Viable_Set_Helper_Functions{
                         
                         let swipeSet_InNote = swipeSet.filter{$0.note_Im_In == nil}
                         
-                        if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                            helperFuncs_PotentialNoteSet = swipeSet.filter{$0.dataCell_X_Number < lowestInANote.dataCell_X_Number}
-                            in_Swipe_Inviables = swipeSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
-                        }
-                        else {
-                            helperFuncs_PotentialNoteSet = swipeSet
-                        }
+//                        if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//                            helperFuncs_PotentialNoteSet = swipeSet.filter{$0.dataCell_X_Number < lowestInANote.dataCell_X_Number}
+//                            in_Swipe_Inviables = swipeSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
+//                        }
+//                        else {
+//                            helperFuncs_PotentialNoteSet = swipeSet
+//                        }
+                        helperFuncs_PotentialNoteSet = swipeSet
                         
                     }
                     
