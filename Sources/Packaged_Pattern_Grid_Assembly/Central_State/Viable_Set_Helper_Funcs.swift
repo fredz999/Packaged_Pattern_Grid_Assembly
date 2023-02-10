@@ -150,7 +150,7 @@ class Viable_Set_Helper_Functions{
                         
                         helperFuncs_PotentialNoteSet = swipeSet
                         
-                        //let swipeSet_InNote = swipeSet.filter{$0.note_Im_In == nil}
+                        let swipeSet_InNote = swipeSet.filter{$0.note_Im_In != nil}
                         print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description)
 
                         
