@@ -45,7 +45,7 @@ public class Central_State : ObservableObject {
                     else if dimensions.patternTimingConfiguration == .sixEight {
                         viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     }
-                    viableSetHelpers.establish_Potential_Cells_Set()
+                    //viableSetHelpers.establish_Potential_Cells_Set()
                 }
 
             }

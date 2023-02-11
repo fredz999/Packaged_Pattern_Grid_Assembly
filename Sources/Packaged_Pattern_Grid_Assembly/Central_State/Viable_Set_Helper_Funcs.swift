@@ -110,9 +110,9 @@ class Viable_Set_Helper_Functions{
                     nilPotentialSet()
                 }
             }
-            else if initial_WriteOnCell == nil {
-                establish_Potential_Cells_Set()
-            }
+//            else if initial_WriteOnCell == nil {
+//                establish_Potential_Cells_Set()
+//            }
         }
     }
     
