@@ -39,60 +39,60 @@ class Viable_Set_Helper_Functions{
             current_Cell_Line_Set.insert(cell)
         }
         
-        establish_Viable_Cells_Set()
+        //establish_Viable_Cells_Set()
         
     }
     
-    func establish_Viable_Cells_Set(){
-
-        if helperFuncs_currentData.note_Im_In == nil {
-
-            inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-            inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
-            
-            if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-            
-            let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-
-            let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
-            let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
-            viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
-            }
-            else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-                
-                let currentCellSet = current_Cell_Line_Set.filter({
-                $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                })
-                
-                let viablesOnLeft = current_Cell_Line_Set.filter {
-                $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                }
-                
-                let viablesOnRight = current_Cell_Line_Set.filter {
-                $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
-                && $0.note_Im_In == nil
-                }
-
-                viableSet_Combined = currentCellSet.union(viablesOnLeft).union(viablesOnRight)
-            }
-            
-        }
-        else if helperFuncs_currentData.note_Im_In != nil {
-            if viableSet_Combined.count > 0{
-                for cell in viableSet_Combined{
-                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
-                }
-                viableSet_Combined.removeAll()
-            }
-            
-            if helperFuncs_PotentialNoteSet.count > 0 {
-                nilPotentialSet()
-            }
-            
-        }
-    }
+//    func establish_Viable_Cells_Set(){
+//
+//        if helperFuncs_currentData.note_Im_In == nil {
+//
+//            inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
+//            inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
+//
+//            if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
+//
+//            let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
+//
+//            let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
+//            let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
+//            viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
+//            }
+//            else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
+//
+//                let currentCellSet = current_Cell_Line_Set.filter({
+//                $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
+//                && $0.note_Im_In == nil
+//                })
+//
+//                let viablesOnLeft = current_Cell_Line_Set.filter {
+//                $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
+//                && $0.note_Im_In == nil
+//                }
+//
+//                let viablesOnRight = current_Cell_Line_Set.filter {
+//                $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
+//                && $0.note_Im_In == nil
+//                }
+//
+//                viableSet_Combined = currentCellSet.union(viablesOnLeft).union(viablesOnRight)
+//            }
+//
+//        }
+//        else if helperFuncs_currentData.note_Im_In != nil {
+//            if viableSet_Combined.count > 0{
+//                for cell in viableSet_Combined{
+//                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+//                }
+//                viableSet_Combined.removeAll()
+//            }
+//
+//            if helperFuncs_PotentialNoteSet.count > 0 {
+//                nilPotentialSet()
+//            }
+//
+//        }
+//    }
     
     var in_Swipe_Inviables = Set<Underlying_Data_Cell>()
     var currentSwipeDirection : E_SwipeDirections?
@@ -156,17 +156,19 @@ class Viable_Set_Helper_Functions{
 
                         let swipeSet_InNote = swipeSet.filter{$0.note_Im_In != nil}
                         
-                        if swipeSet_InNote.count > 0{
-                            if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                                print("lowestInANote.dataX: ",lowestInANote.dataCell_X_Number.description)
-                                helperFuncs_PotentialNoteSet = combinedSet.filter{$0.dataCell_X_Number <  lowestInANote.dataCell_X_Number}
-                                in_Swipe_Inviables = combinedSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
-                                
-                            }
-                        }
-                        else if swipeSet_InNote.count == 0{
-                            helperFuncs_PotentialNoteSet = swipeSet
-                        }
+                        helperFuncs_PotentialNoteSet = swipeSet
+                        
+//                        if swipeSet_InNote.count > 0{
+//                            if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//                                print("lowestInANote.dataX: ",lowestInANote.dataCell_X_Number.description)
+//                                helperFuncs_PotentialNoteSet = combinedSet.filter{$0.dataCell_X_Number <  lowestInANote.dataCell_X_Number}
+//                                in_Swipe_Inviables = combinedSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
+//
+//                            }
+//                        }
+//                        else if swipeSet_InNote.count == 0{
+//                            helperFuncs_PotentialNoteSet = swipeSet
+//                        }
                         
                         
                         //print("swipeSet count: ", swipeSet.count.description,", swipeSet_InNote count: " ,swipeSet_InNote.count.description)
