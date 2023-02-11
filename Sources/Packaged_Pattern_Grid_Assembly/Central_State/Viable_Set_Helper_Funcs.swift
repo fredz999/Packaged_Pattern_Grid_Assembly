@@ -94,7 +94,7 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    var in_Swipe_Inviables = Set<Underlying_Data_Cell>()
+    //var in_Swipe_Inviables = Set<Underlying_Data_Cell>()
     var currentSwipeDirection : E_SwipeDirections?
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
@@ -330,30 +330,30 @@ class Viable_Set_Helper_Functions{
 //    }
 
     func writeNote(note_Y_Param:Int){
-        let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
-        let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
+//        let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
+//        let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
     
         var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             startCellSet.insert(minX)
         }
-        for cell in inviableEndCellSet{
-            if let nextCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number+1)})
-            {
-                startCellSet.insert(nextCell)
-            }
-        }
+//        for cell in inviableEndCellSet{
+//            if let nextCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number+1)})
+//            {
+//                startCellSet.insert(nextCell)
+//            }
+//        }
     
         var endCellSet = Set<Underlying_Data_Cell>()
         if let maxX = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             endCellSet.insert(maxX)
         }
-        for cell in inviableStartCellSet{
-            if let prevCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number-1)})
-            {
-                endCellSet.insert(prevCell)
-            }
-        }
+//        for cell in inviableStartCellSet{
+//            if let prevCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number-1)})
+//            {
+//                endCellSet.insert(prevCell)
+//            }
+//        }
    
         let midCellSet = helperFuncs_PotentialNoteSet.subtracting(startCellSet.union(endCellSet))
         

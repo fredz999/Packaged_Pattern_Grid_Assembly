@@ -57,9 +57,9 @@ public class Central_State : ObservableObject {
                 
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 
-                viableSetHelpers.inViableCellsLeft.removeAll()
-                viableSetHelpers.inViableCellsRight.removeAll()
-                viableSetHelpers.in_Swipe_Inviables.removeAll()
+//                viableSetHelpers.inViableCellsLeft.removeAll()
+//                viableSetHelpers.inViableCellsRight.removeAll()
+//                viableSetHelpers.in_Swipe_Inviables.removeAll()
                 
                 if viableSetHelpers.currentSwipeDirection != nil {
                     viableSetHelpers.currentSwipeDirection = nil
