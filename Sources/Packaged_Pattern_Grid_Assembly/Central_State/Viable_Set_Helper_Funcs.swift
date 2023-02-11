@@ -158,7 +158,7 @@ class Viable_Set_Helper_Functions{
                         
                         if swipeSet_InNote.count > 0{
                             if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                                
+                                print("lowestInANote.dataX: ",lowestInANote.dataCell_X_Number.description)
                                 helperFuncs_PotentialNoteSet = combinedSet.filter{$0.dataCell_X_Number <  lowestInANote.dataCell_X_Number}
                                 in_Swipe_Inviables = combinedSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
                                 
@@ -169,7 +169,7 @@ class Viable_Set_Helper_Functions{
                         }
                         
                         
-                        print("swipeSet count: ", swipeSet.count.description,", swipeSet_InNote count: " ,swipeSet_InNote.count.description)
+                        //print("swipeSet count: ", swipeSet.count.description,", swipeSet_InNote count: " ,swipeSet_InNote.count.description)
 
                         
                     }
