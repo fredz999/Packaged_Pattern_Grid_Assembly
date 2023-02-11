@@ -139,23 +139,28 @@ class Viable_Set_Helper_Functions{
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
                     }
 
-                    // this time just make the inviables everything after the lowest selected
-
-                    //let inANoteSet = combinedSet.filter{$0.note_Im_In == nil}
-                    
-                    //print("inANoteSet count: ",inANoteSet.count.description,", combinedSet count: ",combinedSet.count.description)
-
-                    //print("combinedSet count: ",combinedSet.count.description)
 
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        
+                        
+                        let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
+                        
+                        print("illegalSet count: ",illegalSet.count)
                         
                         let swipeSet =
                         viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
 
                         helperFuncs_PotentialNoteSet = swipeSet
-                        print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count)
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
 //                        if swipeSet_InNote.count > 0{
 //                            if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 //                                print("lowestInANote.dataX: ",lowestInANote.dataCell_X_Number.description)
