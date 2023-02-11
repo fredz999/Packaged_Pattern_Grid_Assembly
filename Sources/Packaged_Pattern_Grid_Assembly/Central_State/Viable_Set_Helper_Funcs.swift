@@ -119,7 +119,7 @@ class Viable_Set_Helper_Functions{
     var helperFuncs_currentData : Underlying_Data_Cell
     
     func establish_Potential_Cells_Set(){
-        print("est potential set")
+
         let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
         
         if let lclInitialCell = initial_WriteOnCell {
