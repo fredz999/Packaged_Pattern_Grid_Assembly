@@ -84,20 +84,20 @@ class Viable_Set_Helper_Functions{
 
         }
         
-        else if helperFuncs_currentData.note_Im_In != nil {
-            
-            if viableSet_Combined.count > 0{
-                for cell in viableSet_Combined{
-                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
-                }
-                viableSet_Combined.removeAll()
-            }
-
-            if helperFuncs_PotentialNoteSet.count > 0 {
-                nilPotentialSet()
-            }
-
-        }
+//        else if helperFuncs_currentData.note_Im_In != nil {
+//
+//            if viableSet_Combined.count > 0{
+//                for cell in viableSet_Combined{
+//                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+//                }
+//                viableSet_Combined.removeAll()
+//            }
+//
+//            if helperFuncs_PotentialNoteSet.count > 0 {
+//                nilPotentialSet()
+//            }
+//
+//        }
         
     }
     
@@ -119,7 +119,7 @@ class Viable_Set_Helper_Functions{
     var helperFuncs_currentData : Underlying_Data_Cell
     
     func establish_Potential_Cells_Set(){
-        
+        print("est potential set")
         let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
         
         if let lclInitialCell = initial_WriteOnCell {
