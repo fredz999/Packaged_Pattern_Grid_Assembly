@@ -86,16 +86,16 @@ class Viable_Set_Helper_Functions{
         
         else if helperFuncs_currentData.note_Im_In != nil {
             
-//            if viableSet_Combined.count > 0{
-//                for cell in viableSet_Combined{
-//                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
-//                }
-//                viableSet_Combined.removeAll()
-//            }
-//
-//            if helperFuncs_PotentialNoteSet.count > 0 {
-//                nilPotentialSet()
-//            }
+            if viableSet_Combined.count > 0{
+                for cell in viableSet_Combined{
+                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+                }
+                viableSet_Combined.removeAll()
+            }
+
+            if helperFuncs_PotentialNoteSet.count > 0 {
+                nilPotentialSet()
+            }
 
         }
         
