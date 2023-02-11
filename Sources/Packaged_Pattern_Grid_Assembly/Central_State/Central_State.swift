@@ -34,7 +34,6 @@ public class Central_State : ObservableObject {
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
-    
     @Published public var writingIsOn : Bool = false {
         didSet {
             if writingIsOn == true {
@@ -51,8 +50,6 @@ public class Central_State : ObservableObject {
 
             }
             else if writingIsOn == false {
-                
-                
                 if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
                 
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)

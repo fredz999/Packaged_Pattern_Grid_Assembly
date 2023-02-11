@@ -43,6 +43,10 @@ class Viable_Set_Helper_Functions{
         
     }
     
+    //want jish to
+    //1: stary on in the event of a highlighted note
+    //2: remain on one side of a highlighted note
+    
     func establish_Viable_Cells_Set(){
 
         if helperFuncs_currentData.note_Im_In == nil {
@@ -79,19 +83,22 @@ class Viable_Set_Helper_Functions{
             }
 
         }
+        
         else if helperFuncs_currentData.note_Im_In != nil {
-            if viableSet_Combined.count > 0{
-                for cell in viableSet_Combined{
-                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
-                }
-                viableSet_Combined.removeAll()
-            }
-
-            if helperFuncs_PotentialNoteSet.count > 0 {
-                nilPotentialSet()
-            }
+            
+//            if viableSet_Combined.count > 0{
+//                for cell in viableSet_Combined{
+//                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
+//                }
+//                viableSet_Combined.removeAll()
+//            }
+//
+//            if helperFuncs_PotentialNoteSet.count > 0 {
+//                nilPotentialSet()
+//            }
 
         }
+        
     }
     
     //var in_Swipe_Inviables = Set<Underlying_Data_Cell>()
