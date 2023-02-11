@@ -101,6 +101,7 @@ public class ComponentDimensions : ObservableObject {
             if lclMaxLesserSix.x_Position_Int != currentSixEightDataIndex{currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
         }
         
+        // TODO: 4:4 change in here
         if patternTimingConfiguration == .fourFour {
             if computedLineParam != currentFourFourPosition{
                 computedLineParam = currentFourFourPosition
