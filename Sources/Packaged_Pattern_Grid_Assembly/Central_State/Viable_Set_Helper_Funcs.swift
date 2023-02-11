@@ -119,7 +119,7 @@ class Viable_Set_Helper_Functions{
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
                      
                     currentSwipeDirection = .rightward
-print("establish_Potential_Cells_Set()")
+
 //                    let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
 //
 //                    let upperHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
@@ -157,7 +157,7 @@ print("establish_Potential_Cells_Set()")
                         let swipeSet_InNote = swipeSet.filter{$0.note_Im_In != nil}
                         
                         helperFuncs_PotentialNoteSet = swipeSet
-                        
+                        print("helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count)
 //                        if swipeSet_InNote.count > 0{
 //                            if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 //                                print("lowestInANote.dataX: ",lowestInANote.dataCell_X_Number.description)
