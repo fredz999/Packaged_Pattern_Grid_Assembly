@@ -115,11 +115,14 @@ class Viable_Set_Helper_Functions{
         
         let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
         
-        let minIllegal = illegalSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        
         if let lclInitialCell = initial_WriteOnCell {
+            // min illegal is supposed to be above initial cell
+            let illegalSetRight = illegalSet.filter{$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number}
+            
+            let minIllegal = illegalSetRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             
             if dimensions.patternTimingConfiguration == .fourFour {
+                
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
                      
                     currentSwipeDirection = .rightward
@@ -137,40 +140,24 @@ class Viable_Set_Helper_Functions{
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
                     }
 
-
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                        ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                        
-                        
+                    ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 
-                                               
-                        
-                        if let lclMinIllegal = minIllegal{
-                            print("minIllegal xnum: ",lclMinIllegal.dataCell_X_Number)
-                            let swipeSet =
-                            viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
-                            && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number
-                                && $0.dataCell_X_Number < lclMinIllegal.dataCell_X_Number
-                            })
-                            helperFuncs_PotentialNoteSet = swipeSet
-                        }
-                        else if minIllegal == nil{
-                            let swipeSet =
-                            viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
-                            && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-                            helperFuncs_PotentialNoteSet = swipeSet
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                    if let lclMinIllegal = minIllegal{
+                        let swipeSet =
+                        viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
+                        && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number
+                            && $0.dataCell_X_Number < lclMinIllegal.dataCell_X_Number
+                        })
+                        helperFuncs_PotentialNoteSet = swipeSet
+                    }
+                    else if minIllegal == nil{
+                        let swipeSet =
+                        viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
+                        && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
+                        helperFuncs_PotentialNoteSet = swipeSet
+                    }
+
 //                        if swipeSet_InNote.count > 0{
 //                            if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 //                                print("lowestInANote.dataX: ",lowestInANote.dataCell_X_Number.description)
@@ -182,11 +169,8 @@ class Viable_Set_Helper_Functions{
 //                        else if swipeSet_InNote.count == 0{
 //                            helperFuncs_PotentialNoteSet = swipeSet
 //                        }
-                        
-                        
                         //print("swipeSet count: ", swipeSet.count.description,", swipeSet_InNote count: " ,swipeSet_InNote.count.description)
 
-                        
                     }
                     
                     
