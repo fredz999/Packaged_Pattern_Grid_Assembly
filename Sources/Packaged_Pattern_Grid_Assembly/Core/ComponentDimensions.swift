@@ -96,13 +96,16 @@ public class ComponentDimensions : ObservableObject {
         
         let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
         
-        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int})  {
+        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
             if lclMaxLesserSix.x_Position_Float != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
             if lclMaxLesserSix.x_Position_Int != currentSixEightDataIndex{currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
         }
         
         if patternTimingConfiguration == .fourFour {
-            if computedLineParam != currentFourFourPosition{computedLineParam = currentFourFourPosition}
+            if computedLineParam != currentFourFourPosition{
+                computedLineParam = currentFourFourPosition
+                print("four four change in here")
+            }
         }
         else if patternTimingConfiguration == .sixEight {
             if computedLineParam != currentSixEightPosition{computedLineParam = currentSixEightPosition}
