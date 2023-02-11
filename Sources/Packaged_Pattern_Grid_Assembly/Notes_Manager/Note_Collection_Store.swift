@@ -45,20 +45,20 @@ public class Note_Collection {
             }
         }
     }
-    
+    let centralStateRef = Central_State.Static_Central_State
     func note_Collection_Highlight_Handler(noteParam:Note?){
-        
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlighted = false
                 currentHighlightedNote = nil
+                if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
             }
         }
         else if let lclNoteParam = noteParam {
-            
             if lclNoteParam.note_Highlighted == false{
                 currentHighlightedNote = lclNoteParam
                 lclNoteParam.note_Highlighted = true
+                if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
             }
         }
     }

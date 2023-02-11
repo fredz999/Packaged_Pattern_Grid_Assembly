@@ -36,7 +36,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                         }
                         dataCell.change_Highlight(highlightStatusParam: true)
                     }
-                    if central_State.a_Note_Is_Highlighted == false{central_State.a_Note_Is_Highlighted = true}
+                    //if central_State.a_Note_Is_Highlighted == false{central_State.a_Note_Is_Highlighted = true}
                 }
             }
             else if note_Highlighted == false {
@@ -54,8 +54,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                             }
                         }
                     }
-                    
-                    if central_State.a_Note_Is_Highlighted == true{central_State.a_Note_Is_Highlighted = false}
+                    //if central_State.a_Note_Is_Highlighted == true{central_State.a_Note_Is_Highlighted = false}
                 }
             }
         }
