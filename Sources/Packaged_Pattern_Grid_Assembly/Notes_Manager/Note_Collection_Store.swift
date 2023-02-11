@@ -69,7 +69,7 @@ public class Note_Collection {
         for cell in cellArrayParam {
             cell.note_Im_In = note
         }
-        note_Collection_Highlight_Handler(noteParam: note)
+        //note_Collection_Highlight_Handler(noteParam: note)
     }
     
     // will now be called in central state after which the visual_cells will have their data vals reset
