@@ -120,9 +120,9 @@ class Viable_Set_Helper_Functions{
         //let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
         
         if let lclInitialCell = initial_WriteOnCell {
-            print("establish_Potential_Cells_Set, helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description)
+            
             if dimensions.patternTimingConfiguration == .fourFour {
-                
+                print("establish_Potential_Cells_Set, helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description)
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
 
 
