@@ -95,7 +95,7 @@ class Viable_Set_Helper_Functions{
 
         }
         else if helperFuncs_currentData.note_Im_In != nil {
-            print("helperFuncs_currentData.note_Im_In != nil ")
+            print("helperFuncs_currentData.note_Im_In != nil viableSet_Combined length: ",viableSet_Combined.count.description)
         }
         
 //        else if helperFuncs_currentData.note_Im_In != nil {
