@@ -158,12 +158,16 @@ class Viable_Set_Helper_Functions{
                             && $0.dataCell_X_Number <= lclMinIllegal.dataCell_X_Number
                         })
                         
-                        print(
-//                              "lowerHalfCellSet count: ",lowerHalfCellSet.count.description
-                              ", upperHalfCellSet count: ",upperHalfCellSet.count.description
-//                              ,", combinedSet length: ", combinedSet.count.description
-                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description
-                              ,", helperFuncs_currentData.four_Four_Half_Cell_Index-1: ",(helperFuncs_currentData.four_Four_Half_Cell_Index-1).description)
+                        if let viableUpper = viableSet_Combined.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                            print("viableUpper: ",viableUpper.dataCell_X_Number.description)
+                        }
+                        
+//                        print(
+////                              "lowerHalfCellSet count: ",lowerHalfCellSet.count.description
+//                              ", upperHalfCellSet count: ",upperHalfCellSet.count.description
+////                              ,", combinedSet length: ", combinedSet.count.description
+//                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description
+//                              ,", helperFuncs_currentData.four_Four_Half_Cell_Index-1: ",(helperFuncs_currentData.four_Four_Half_Cell_Index-1).description)
                         
                         helperFuncs_PotentialNoteSet = swipeSet
                     }
