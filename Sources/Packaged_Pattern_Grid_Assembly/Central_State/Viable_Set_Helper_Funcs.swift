@@ -158,9 +158,10 @@ class Viable_Set_Helper_Functions{
                             && $0.dataCell_X_Number <= lclMinIllegal.dataCell_X_Number
                         })
                         
-                        print("combinedSet length: ", combinedSet.count.description
-                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description
-                              ,", lclMinIllegal.dataCell_X_Number: ",lclMinIllegal.dataCell_X_Number.description)
+                        print("lowerHalfCellSet count: ",lowerHalfCellSet.count.description
+                              ,", upperHalfCellSet count: ",upperHalfCellSet.count.description
+                            ,", combinedSet length: ", combinedSet.count.description
+                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description)
                         
                         helperFuncs_PotentialNoteSet = swipeSet
                     }
