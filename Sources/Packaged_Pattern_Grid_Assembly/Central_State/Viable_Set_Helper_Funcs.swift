@@ -134,18 +134,18 @@ class Viable_Set_Helper_Functions{
                     let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
                     
                     let upperHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
-
+                    print("helperFuncs_currentData.four_Four_Half_Cell_Index-1: ",(helperFuncs_currentData.four_Four_Half_Cell_Index-1).description)
                     var combinedSet = Set<Underlying_Data_Cell>()
 
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                    
                         combinedSet = lowerHalfCellSet
-                        print("combinedSet = lowerHalfCellSet")
+                        //print("combinedSet = lowerHalfCellSet")
                     }
                     else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
      
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-                        print("combinedSet = lowerHalfCellSet.union(upperHalfCellSet)")
+                        //print("combinedSet = lowerHalfCellSet.union(upperHalfCellSet)")
                     }
 
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -159,9 +159,9 @@ class Viable_Set_Helper_Functions{
                             && $0.dataCell_X_Number <= lclMinIllegal.dataCell_X_Number
                         })
                         
-                        print("min_Cell.dataCell_X_Number: ", min_Cell.dataCell_X_Number.description
-                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description
-                              ,", lclMinIllegal.dataCell_X_Number: ",lclMinIllegal.dataCell_X_Number.description)
+//                        print("min_Cell.dataCell_X_Number: ", min_Cell.dataCell_X_Number.description
+//                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description
+//                              ,", lclMinIllegal.dataCell_X_Number: ",lclMinIllegal.dataCell_X_Number.description)
                         
                         helperFuncs_PotentialNoteSet = swipeSet
                     }
