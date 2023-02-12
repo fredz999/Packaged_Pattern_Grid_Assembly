@@ -140,10 +140,12 @@ class Viable_Set_Helper_Functions{
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                    
                         combinedSet = lowerHalfCellSet
+                        print("combinedSet = lowerHalfCellSet")
                     }
                     else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
      
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
+                        print("combinedSet = lowerHalfCellSet.union(upperHalfCellSet)")
                     }
 
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
