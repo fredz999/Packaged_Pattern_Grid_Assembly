@@ -120,7 +120,6 @@ class Viable_Set_Helper_Functions{
         //let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
 
         if let lclInitialCell = initial_WriteOnCell {
-            print("lclInitialCell = initial_WriteOnCell")
             if dimensions.patternTimingConfiguration == .fourFour {
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
 
@@ -143,7 +142,6 @@ class Viable_Set_Helper_Functions{
                         viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
                         helperFuncs_PotentialNoteSet = swipeSet
-
                     }
 
                 }
@@ -277,6 +275,7 @@ class Viable_Set_Helper_Functions{
         didSet {
             for cell in helperFuncs_PotentialNoteSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
+                print("helperFuncs_PotentialNoteSet count:",helperFuncs_PotentialNoteSet.count.description)
             }
         }
     }
