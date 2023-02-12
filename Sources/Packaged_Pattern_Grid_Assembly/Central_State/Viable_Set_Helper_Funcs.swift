@@ -119,7 +119,7 @@ class Viable_Set_Helper_Functions{
     var helperFuncs_currentData : Underlying_Data_Cell
     
     func establish_Potential_Cells_Set(){
-
+        print("establish_Potential_Cells_Set()")
         let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
         
         if let lclInitialCell = initial_WriteOnCell {
@@ -142,7 +142,7 @@ class Viable_Set_Helper_Functions{
 
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet
-                        print("combined set smallest")
+                        
                     }
                     else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
