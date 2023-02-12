@@ -123,7 +123,7 @@ class Viable_Set_Helper_Functions{
         let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
         
         if let lclInitialCell = initial_WriteOnCell {
-            // min illegal is supposed to be above initial cell
+
             let illegalSetRight = illegalSet.filter{$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number}
             
             let minIllegal = illegalSetRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -142,6 +142,7 @@ class Viable_Set_Helper_Functions{
 
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet
+                        print("combined set smallest")
                     }
                     else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)

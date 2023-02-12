@@ -105,7 +105,6 @@ public class ComponentDimensions : ObservableObject {
         if patternTimingConfiguration == .fourFour {
             if computedLineParam != currentFourFourPosition{
                 computedLineParam = currentFourFourPosition
-                print("four four change in here")
             }
         }
         else if patternTimingConfiguration == .sixEight {
@@ -113,6 +112,11 @@ public class ComponentDimensions : ObservableObject {
         }
         
     }
+    
+    
+    
+    
+    
 
     public func flip_Timing_Signature_Dimensions(){
         if patternTimingConfiguration == .fourFour {
