@@ -116,7 +116,7 @@ class Viable_Set_Helper_Functions{
 //    }
     
     func establish_Potential_Cells_Set(){
-        
+        print("establish_Potential_Cells_Set")
         //let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
 
         if let lclInitialCell = initial_WriteOnCell {
