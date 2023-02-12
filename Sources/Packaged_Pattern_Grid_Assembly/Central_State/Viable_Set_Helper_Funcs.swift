@@ -125,11 +125,13 @@ class Viable_Set_Helper_Functions{
                 
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
                     
-                    print("establish_Potential_Cells_Set, current_Cell_Line_Set count: ",current_Cell_Line_Set.count.description)
+                    
 
                     let lowerHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
                     let upperHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
                     var combinedSet = Set<Underlying_Data_Cell>()
+                    
+                    print("establish_Potential_Cells_Set, lowerHalfCellSet count: ",lowerHalfCellSet.count.description)
 
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet
