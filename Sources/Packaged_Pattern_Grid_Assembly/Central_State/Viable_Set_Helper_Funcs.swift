@@ -138,28 +138,33 @@ class Viable_Set_Helper_Functions{
                     var combinedSet = Set<Underlying_Data_Cell>()
 
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-                        print("1")
+                   
                         combinedSet = lowerHalfCellSet
                     }
                     else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                        print("2")
+     
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
                     }
 
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                     ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                        print("3")
+     
                     if let lclMinIllegal = minIllegal{
-                        print("4")
+   
                         let swipeSet =
                         viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number
                             && $0.dataCell_X_Number <= lclMinIllegal.dataCell_X_Number
                         })
+                        
+                        print("min_Cell.dataCell_X_Number: ", min_Cell.dataCell_X_Number.description
+                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description
+                              ,", lclMinIllegal.dataCell_X_Number: ",lclMinIllegal.dataCell_X_Number.description)
+                        
                         helperFuncs_PotentialNoteSet = swipeSet
                     }
                     else if minIllegal == nil{
-                        print("5")
+        
                         let swipeSet =
                         viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
