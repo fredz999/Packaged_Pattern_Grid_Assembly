@@ -161,7 +161,8 @@ class Viable_Set_Helper_Functions{
                         print("lowerHalfCellSet count: ",lowerHalfCellSet.count.description
                               ,", upperHalfCellSet count: ",upperHalfCellSet.count.description
                             ,", combinedSet length: ", combinedSet.count.description
-                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description)
+                              ,", max_Cell.dataCell_X_Number: ",max_Cell.dataCell_X_Number.description
+                              ,", helperFuncs_currentData X: ",helperFuncs_currentData.dataCell_X_Number.description)
                         
                         helperFuncs_PotentialNoteSet = swipeSet
                     }
