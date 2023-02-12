@@ -122,9 +122,10 @@ class Viable_Set_Helper_Functions{
         if let lclInitialCell = initial_WriteOnCell {
             
             if dimensions.patternTimingConfiguration == .fourFour {
-                print("establish_Potential_Cells_Set, helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description)
+                
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
-
+                    
+                    print("establish_Potential_Cells_Set, helperFuncs_PotentialNoteSet count: ",helperFuncs_PotentialNoteSet.count.description)
 
                     let lowerHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
                     let upperHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
