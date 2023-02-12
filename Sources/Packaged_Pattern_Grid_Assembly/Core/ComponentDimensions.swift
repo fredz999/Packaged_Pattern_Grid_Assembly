@@ -113,7 +113,15 @@ public class ComponentDimensions : ObservableObject {
         
     }
     
-    
+    func test_Y_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
+        let divided = currValParam/pattern_Grid_Unit_Height
+        let intDivided = Int(divided)
+        if intDivided != Central_State.Static_Central_State.currentYCursor_Slider_Position {
+            Central_State.Static_Central_State.currentYCursor_Slider_Position = intDivided
+            Central_State.Static_Central_State.cursor_Slider_Update()
+            computedLineParam = CGFloat(intDivided) * pattern_Grid_Unit_Height
+        }
+    }
     
     
     

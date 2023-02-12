@@ -153,43 +153,48 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
     //var currentXCursor_Slider_Position : Int = 0
     
-    func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-        
-        if let lclNewY = new_Y{
-        if currentYCursor_Slider_Position != new_Y{currentYCursor_Slider_Position = lclNewY}
-        }
-//        if let lclNewX = new_X{
-//        if currentXCursor_Slider_Position != new_X{currentXCursor_Slider_Position = lclNewX}
+//    func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
+//
+//        if let lclNewY = new_Y{
+//        if currentYCursor_Slider_Position != new_Y{currentYCursor_Slider_Position = lclNewY}
 //        }
+////        if let lclNewX = new_X{
+////        if currentXCursor_Slider_Position != new_X{currentXCursor_Slider_Position = lclNewX}
+////        }
+//        centralState_Data_Evaluation()
+//        viableSetHelpers.establish_Viable_Cells_Set()
+//        if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
+//    }
+    
+    func cursor_Slider_Update(){
         centralState_Data_Evaluation()
         viableSetHelpers.establish_Viable_Cells_Set()
         if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
-        
     }
     
     func centralState_Data_Evaluation(){
 
-            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-            
-            if dimensions.patternTimingConfiguration == .fourFour{
-                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+        
+        if dimensions.patternTimingConfiguration == .fourFour{
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight{
+            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+        }
+        
+        if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
+            if let lclNoteCollection = note_Collection_Ref {
+                lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
             }
-            else if dimensions.patternTimingConfiguration == .sixEight{
-                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+        }
+        else if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In == nil {
+            if let lclNoteCollection = note_Collection_Ref {
+                lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
             }
-            
-            if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
-                if let lclNoteCollection = note_Collection_Ref {
-                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
-                }
-            }
-            else if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In == nil {
-                if let lclNoteCollection = note_Collection_Ref {
-                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                }
-            }
+        }
 
     }
     

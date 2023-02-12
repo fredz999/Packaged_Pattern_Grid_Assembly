@@ -77,13 +77,17 @@ public class Cursor_Vertical_Slider_Store:ObservableObject{
         accumulatedDrag = inputParam
     }
     
+//    public func calculateCursorCellYPos(){
+//        let divided = currentVal/dimensions.pattern_Grid_Unit_Height
+//        let intDivided = Int(divided)
+//        if intDivided != centralState.currentYCursor_Slider_Position{
+//            centralState.cursor_Slider_Update(new_X: nil, new_Y: intDivided)
+//        }
+//        computedLineDisplacement = CGFloat(intDivided) * dimensions.pattern_Grid_Unit_Height
+//    }
     public func calculateCursorCellYPos(){
-        let divided = currentVal/dimensions.pattern_Grid_Unit_Height
-        let intDivided = Int(divided)
-        if intDivided != centralState.currentYCursor_Slider_Position{
-            centralState.cursor_Slider_Update(new_X: nil, new_Y: intDivided)
-        }
-        computedLineDisplacement = CGFloat(intDivided) * dimensions.pattern_Grid_Unit_Height
+        dimensions.test_Y_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
+        //central_State_Ref.cursor_Slider_Update(new_X: nil , new_Y: nil)
     }
     
 }
