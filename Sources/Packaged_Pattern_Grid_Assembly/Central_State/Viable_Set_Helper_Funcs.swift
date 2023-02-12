@@ -131,13 +131,14 @@ class Viable_Set_Helper_Functions{
                     let upperHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
                     var combinedSet = Set<Underlying_Data_Cell>()
                     
-                    print("establish_Potential_Cells_Set, lowerHalfCellSet count: ",lowerHalfCellSet.count.description)
+                    
 
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet
                     }
                     else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
+                        print("establish_Potential_Cells_Set, combinedSet count: ",combinedSet.count.description)
                     }
 
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
