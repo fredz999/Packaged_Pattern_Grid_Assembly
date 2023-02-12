@@ -145,7 +145,7 @@ class Viable_Set_Helper_Functions{
                     ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 
                         let swipeSet =
-                        viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
+                        current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
                         helperFuncs_PotentialNoteSet = swipeSet
                     }
