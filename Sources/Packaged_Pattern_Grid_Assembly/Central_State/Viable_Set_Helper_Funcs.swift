@@ -74,7 +74,7 @@ class Viable_Set_Helper_Functions{
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
             }
             else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-                print("in hea............")
+                
                 let currentCellSet = current_Cell_Line_Set.filter({
                 $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
@@ -93,6 +93,9 @@ class Viable_Set_Helper_Functions{
                 viableSet_Combined = currentCellSet.union(viablesOnLeft).union(viablesOnRight)
             }
 
+        }
+        else if helperFuncs_currentData.note_Im_In != nil {
+            print("helperFuncs_currentData.note_Im_In != nil ")
         }
         
 //        else if helperFuncs_currentData.note_Im_In != nil {
