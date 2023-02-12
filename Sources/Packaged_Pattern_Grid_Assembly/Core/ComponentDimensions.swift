@@ -105,10 +105,14 @@ public class ComponentDimensions : ObservableObject {
         if patternTimingConfiguration == .fourFour {
             if computedLineParam != currentFourFourPosition{
                 computedLineParam = currentFourFourPosition
+                Central_State.Static_Central_State.cursor_Slider_Update()
             }
         }
         else if patternTimingConfiguration == .sixEight {
-            if computedLineParam != currentSixEightPosition{computedLineParam = currentSixEightPosition}
+            if computedLineParam != currentSixEightPosition{
+                computedLineParam = currentSixEightPosition
+                Central_State.Static_Central_State.cursor_Slider_Update()
+            }
         }
         
     }
