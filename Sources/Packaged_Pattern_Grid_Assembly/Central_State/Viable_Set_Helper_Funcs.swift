@@ -43,9 +43,20 @@ class Viable_Set_Helper_Functions{
         
     }
     
-    //want jish to
-    //1: stary on in the event of a highlighted note
-    //2: remain on one side of a highlighted note
+    
+    var currentSwipeDirection : E_SwipeDirections?
+    var initial_WriteOnCell : Underlying_Data_Cell?{
+        willSet {
+            if newValue == nil {
+                if helperFuncs_PotentialNoteSet.count > 0 {
+                    nilPotentialSet()
+                }
+            }
+        }
+    }
+    var helperFuncs_currentData : Underlying_Data_Cell
+    
+    
     
     func establish_Viable_Cells_Set(){
 
@@ -63,7 +74,7 @@ class Viable_Set_Helper_Functions{
             viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
             }
             else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-
+                print("in hea............")
                 let currentCellSet = current_Cell_Line_Set.filter({
                 $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
                 && $0.note_Im_In == nil
@@ -101,25 +112,8 @@ class Viable_Set_Helper_Functions{
         
     }
     
-    //var in_Swipe_Inviables = Set<Underlying_Data_Cell>()
-    var currentSwipeDirection : E_SwipeDirections?
-    var initial_WriteOnCell : Underlying_Data_Cell?{
-        willSet {
-            if newValue == nil {
-                if helperFuncs_PotentialNoteSet.count > 0 {
-                    nilPotentialSet()
-                }
-            }
-//            else if initial_WriteOnCell == nil {
-//                establish_Potential_Cells_Set()
-//            }
-        }
-    }
-    
-    var helperFuncs_currentData : Underlying_Data_Cell
-    
     func establish_Potential_Cells_Set(){
-        //print("establish_Potential_Cells_Set()")
+
         let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
         
         if let lclInitialCell = initial_WriteOnCell {
@@ -151,7 +145,6 @@ class Viable_Set_Helper_Functions{
                     ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 
                     if let lclMinIllegal = minIllegal{
-                        print("lclMinIllegal = minIllegal")
                         let swipeSet =
                         viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number
