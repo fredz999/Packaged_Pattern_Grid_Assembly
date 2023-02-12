@@ -168,7 +168,7 @@ public class Central_State : ObservableObject {
     
     func cursor_Slider_Update(){
         centralState_Data_Evaluation()
-        //viableSetHelpers.establish_Viable_Cells_Set()
+        // viableSetHelpers.establish_Viable_Cells_Set()
         if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
     }
     

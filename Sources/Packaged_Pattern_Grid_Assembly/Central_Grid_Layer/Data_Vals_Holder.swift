@@ -17,7 +17,7 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var sub_Cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
     
-    private var referenced_in_Viable_Set_Combined : Bool = false
+    //private var referenced_in_Viable_Set_Combined : Bool = false
 
     private var referenced_in_Highlighted_Set : Bool = false
     
@@ -57,19 +57,19 @@ public class Data_Vals_Holder : ObservableObject {
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
 
-        if status_Update_TypeParam == .viableSetCombined {
-            
-            if value == true {
-                if referenced_in_Viable_Set_Combined == false {
-                    referenced_in_Viable_Set_Combined = true
-                }
-            }
-            else if value == false {
-                if referenced_in_Viable_Set_Combined == true {
-                    referenced_in_Viable_Set_Combined = false
-                }
-            }
-        }
+//        if status_Update_TypeParam == .viableSetCombined {
+//
+//            if value == true {
+//                if referenced_in_Viable_Set_Combined == false {
+//                    referenced_in_Viable_Set_Combined = true
+//                }
+//            }
+//            else if value == false {
+//                if referenced_in_Viable_Set_Combined == true {
+//                    referenced_in_Viable_Set_Combined = false
+//                }
+//            }
+//        }
         
 //        else if status_Update_TypeParam == .viableSetRight {
 //            if value == true {
@@ -84,7 +84,7 @@ public class Data_Vals_Holder : ObservableObject {
 //            }
 //        }
         
-        else if status_Update_TypeParam == .potentialSet {
+        if status_Update_TypeParam == .potentialSet {
             if value == true {
                 if referenced_in_Potential_Set == false {
                     referenced_in_Potential_Set=true
@@ -144,12 +144,12 @@ public class Data_Vals_Holder : ObservableObject {
             check_Highlighted()
         }
         else if check_Cell_Blank() == true {
-            if check_In_Viable_Set() == true {
+            //if check_In_Viable_Set() == true {
                 if check_In_Potential_Set() == true {
                     check_In_Prohib_Set()
                 }
                 check_In_Potential_Edge_Set()
-            }
+            //}
         }
     }
     
@@ -200,16 +200,16 @@ public class Data_Vals_Holder : ObservableObject {
         //return retVal
     }
     
-    func check_In_Viable_Set()->Bool{
-        var retVal = false
-
-        if referenced_in_Viable_Set_Combined == true{
-            if statusColor != colors.viable_Set_Combined_Color{statusColor = colors.viable_Set_Combined_Color}
-            retVal = true
-        }
-        
-        return retVal
-    }
+//    func check_In_Viable_Set()->Bool{
+//        var retVal = false
+//
+//        if referenced_in_Viable_Set_Combined == true{
+//            if statusColor != colors.viable_Set_Combined_Color{statusColor = colors.viable_Set_Combined_Color}
+//            retVal = true
+//        }
+//
+//        return retVal
+//    }
  
     @Published public var statusColor : Color
 
@@ -258,9 +258,9 @@ public class Data_Vals_Holder : ObservableObject {
 
 public enum status_Update_Type {
     case highlighted
-    case viableSetCombined
-//    case viableSetRight
-//    case viableSetLeft
+    // case viableSetCombined
+    // case viableSetRight
+    // case viableSetLeft
     case prohibitedSet
     case potentialSet
     case potentialEdgeSet

@@ -126,7 +126,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         )
         
         data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: new_Data_Cell.in_Highlighted_Set)
-        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined , value: new_Data_Cell.in_Viable_Set_Combined)
+        //data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined , value: new_Data_Cell.in_Viable_Set_Combined)
         data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .potentialSet , value: new_Data_Cell.in_Potential_Set)
         data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet , value: new_Data_Cell.in_Prohibited_Set)
 
