@@ -119,7 +119,7 @@ class Viable_Set_Helper_Functions{
     var helperFuncs_currentData : Underlying_Data_Cell
     
     func establish_Potential_Cells_Set(){
-        print("establish_Potential_Cells_Set()")
+        //print("establish_Potential_Cells_Set()")
         let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
         
         if let lclInitialCell = initial_WriteOnCell {
@@ -142,7 +142,6 @@ class Viable_Set_Helper_Functions{
 
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet
-                        
                     }
                     else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
@@ -152,6 +151,7 @@ class Viable_Set_Helper_Functions{
                     ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 
                     if let lclMinIllegal = minIllegal{
+                        print("lclMinIllegal = minIllegal")
                         let swipeSet =
                         viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number
@@ -166,18 +166,6 @@ class Viable_Set_Helper_Functions{
                         helperFuncs_PotentialNoteSet = swipeSet
                     }
 
-//                        if swipeSet_InNote.count > 0{
-//                            if let lowestInANote = swipeSet_InNote.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//                                print("lowestInANote.dataX: ",lowestInANote.dataCell_X_Number.description)
-//                                helperFuncs_PotentialNoteSet = combinedSet.filter{$0.dataCell_X_Number <  lowestInANote.dataCell_X_Number}
-//                                in_Swipe_Inviables = combinedSet.filter{$0.dataCell_X_Number > lowestInANote.dataCell_X_Number}
-//
-//                            }
-//                        }
-//                        else if swipeSet_InNote.count == 0{
-//                            helperFuncs_PotentialNoteSet = swipeSet
-//                        }
-                        //print("swipeSet count: ", swipeSet.count.description,", swipeSet_InNote count: " ,swipeSet_InNote.count.description)
 
                     }
                     

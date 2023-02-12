@@ -209,7 +209,6 @@ public class Central_State : ObservableObject {
                 newSet.insert(cell)
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
-            //print("viableSetHelpers.current_Cell_Line_Set count: ",viableSetHelpers.current_Cell_Line_Set.count)
         }
     }
 
