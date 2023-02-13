@@ -131,18 +131,12 @@ public class Central_State : ObservableObject {
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
             self.deleteANote()
-            let currval = self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description
-            
-            if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
-                print("helperFuncs_PotentialNoteSet count: ",self.viableSetHelpers.helperFuncs_PotentialNoteSet.count.description
-                ,", helperFuncs_currentData - initial_WriteOnCell: "
-                ,(self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number).description)
+            if self.writingIsOn {
+                if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
+                    let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
+                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNoteSet.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
+                }
             }
-            
-            self.viableSetHelpers.establish_Potential_Cells_Set()
-            //print("current  line X: ",currval)
-            //viableSetHelpers.hel
-             
         })
     }
 
