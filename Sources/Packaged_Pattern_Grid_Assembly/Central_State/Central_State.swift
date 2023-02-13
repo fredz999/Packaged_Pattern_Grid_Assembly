@@ -117,6 +117,18 @@ public class Central_State : ObservableObject {
             }
         })
     }
+    
+    public var Deactivate_Write_Tap_Gesture : some Gesture {
+        TapGesture(count: 1).onEnded({
+            self.writingIsOn = false
+        })
+    }
+    
+    public var Activate_Write_Tap_Gesture : some Gesture {
+        TapGesture(count: 1).onEnded({
+            self.writingIsOn = true
+        })
+    }
 
     var timing_Change_Compensation_Index : Int? = nil
     @Published public var timing_Sig_Change_Possible : Bool = true

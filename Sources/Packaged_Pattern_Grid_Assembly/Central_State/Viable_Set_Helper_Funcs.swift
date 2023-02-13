@@ -28,23 +28,20 @@ class Viable_Set_Helper_Functions{
     init(){
         helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
         //current_Cell_Line_Set =
-        
 //        for cell in currLine.dataCellArray{
 //            newSet.insert(cell)
 //        }
-//        viableSetHelpers.current_Cell_Line_Set = newSet
+//      viableSetHelpers.current_Cell_Line_Set = newSet
         //data_Grid.dataLineArray[current_Cell_Line_Set]
         for cell in Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray{
             //.dataLineArray[0].dataCellArray{
             current_Cell_Line_Set.insert(cell)
         }
-        
         //establish_Viable_Cells_Set()
-        
     }
     
-    
     var currentSwipeDirection : E_SwipeDirections?
+    
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
             if newValue == nil {
@@ -54,73 +51,11 @@ class Viable_Set_Helper_Functions{
             }
         }
     }
+    
     var helperFuncs_currentData : Underlying_Data_Cell
     
-    
-    
-//    func establish_Viable_Cells_Set(){
-//
-//        if helperFuncs_currentData.note_Im_In == nil {
-//
-//            inViableCellsRight = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-//            inViableCellsLeft = current_Cell_Line_Set.filter{$0.note_Im_In != nil && $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
-//
-//            if inViableCellsRight.count == 0,inViableCellsLeft.count == 0 {
-//
-//            let emptyCellsRight = current_Cell_Line_Set.filter{$0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number}
-//
-//            let emptyCellsLeft = current_Cell_Line_Set.filter{$0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number}
-//            let currentCellSet = current_Cell_Line_Set.filter{$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number}
-//            viableSet_Combined = emptyCellsRight.union(currentCellSet).union(emptyCellsLeft)
-//            }
-//            else if inViableCellsRight.count != 0 || inViableCellsLeft.count != 0 {
-//
-//                let currentCellSet = current_Cell_Line_Set.filter({
-//                $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
-//                && $0.note_Im_In == nil
-//                })
-//
-//                let viablesOnLeft = current_Cell_Line_Set.filter {
-//                $0.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number
-//                && $0.note_Im_In == nil
-//                }
-//
-//                let viablesOnRight = current_Cell_Line_Set.filter {
-//                $0.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number
-//                && $0.note_Im_In == nil
-//                }
-//
-//                viableSet_Combined = currentCellSet.union(viablesOnLeft).union(viablesOnRight)
-//            }
-//
-//        }
-////        else if helperFuncs_currentData.note_Im_In != nil {
-////            print("helperFuncs_currentData.note_Im_In != nil viableSet_Combined length: ",viableSet_Combined.count.description)
-////        }
-//
-////        else if helperFuncs_currentData.note_Im_In != nil {
-////
-////            if viableSet_Combined.count > 0{
-////                for cell in viableSet_Combined{
-////                    cell.handleVisibleStateChange(type: .deActivate_Viable_Set_Combined)
-////                }
-////                viableSet_Combined.removeAll()
-////            }
-////
-////            if helperFuncs_PotentialNoteSet.count > 0 {
-////                nilPotentialSet()
-////            }
-////
-////        }
-//
-//    }
-    
     func establish_Potential_Cells_Set(){
-        
-        //let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
-        
         if let lclInitialCell = initial_WriteOnCell {
-            
             if dimensions.patternTimingConfiguration == .fourFour {
                 
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
@@ -198,99 +133,21 @@ class Viable_Set_Helper_Functions{
 
                 }
             }
-            
-            
         }
-
     }
-    
-    
-//    func establish_Potential_Cells_Set(){
-//
-//        let illegalSet = current_Cell_Line_Set.subtracting(viableSet_Combined)
-//
-//        if let lclInitialCell = initial_WriteOnCell {
-//
-//            let illegalSetRight = illegalSet.filter{$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number}
-//
-//            let minIllegal = illegalSetRight.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//
-//            if dimensions.patternTimingConfiguration == .fourFour {
-//
-//                if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
-//
-//                    currentSwipeDirection = .rightward
-//
-//                    let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
-//
-//                    let upperHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
-//
-//                    var combinedSet = Set<Underlying_Data_Cell>()
-//
-//                    if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                        combinedSet = lowerHalfCellSet
-//                    }
-//                    else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-//                        combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-//                    }
-//
-//                    if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                    ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//                    if let lclMinIllegal = minIllegal{
-//                        print("max_Cell: ",max_Cell.dataCell_X_Number.description )
-//                        let swipeSet =
-//                        viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
-//                        && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number
-//                            && $0.dataCell_X_Number <= lclMinIllegal.dataCell_X_Number
-//                        })
-//
-//                        helperFuncs_PotentialNoteSet = swipeSet
-//                    }
-//                    else if minIllegal == nil{
-//
-//                        let swipeSet =
-//                        viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
-//                        && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//                        helperFuncs_PotentialNoteSet = swipeSet
-//                    }
-//
-//
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
- 
-
 
     func writeNote(note_Y_Param:Int){
-//        let inviableStartCellSet = in_Swipe_Inviables.filter{$0.currentType == .start_Note}
-//        let inviableEndCellSet = in_Swipe_Inviables.filter{$0.currentType == .end_Note}
-    
+
         var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             startCellSet.insert(minX)
         }
-//        for cell in inviableEndCellSet{
-//            if let nextCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number+1)})
-//            {
-//                startCellSet.insert(nextCell)
-//            }
-//        }
-    
+
         var endCellSet = Set<Underlying_Data_Cell>()
         if let maxX = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             endCellSet.insert(maxX)
         }
-//        for cell in inviableStartCellSet{
-//            if let prevCell = helperFuncs_PotentialNoteSet.first(where: {$0.dataCell_X_Number == (cell.dataCell_X_Number-1)})
-//            {
-//                endCellSet.insert(prevCell)
-//            }
-//        }
-   
+
         let midCellSet = helperFuncs_PotentialNoteSet.subtracting(startCellSet.union(endCellSet))
         
         for cell in startCellSet{cell.change_Type(newType: .start_Note)}
