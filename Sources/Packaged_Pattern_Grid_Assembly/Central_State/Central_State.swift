@@ -133,6 +133,10 @@ public class Central_State : ObservableObject {
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
             self.deleteANote()
+            // print the current thingy
+            let currval = self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description
+            print("current  line X: ",currval)
+            
         })
     }
 
