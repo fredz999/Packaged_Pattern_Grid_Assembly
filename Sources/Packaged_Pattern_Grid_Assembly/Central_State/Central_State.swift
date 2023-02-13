@@ -15,7 +15,6 @@ public class Central_State : ObservableObject {
     
     @Published public var a_Note_Is_Highlighted : Bool = false
 
-
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -26,9 +25,7 @@ public class Central_State : ObservableObject {
     var potential_Note_Layer_Ref : Potential_Note_Layer_Store?
     
     public var note_Collection_Ref : Note_Collection?
-    
     public var central_Grid_Store : Central_Grid_Store?
-
     //==================================================
     //==================================================
     var lower_Bracket_Number : Int = 0
@@ -84,9 +81,10 @@ public class Central_State : ObservableObject {
         
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
-        for cell in currLine.dataCellArray{
+        for cell in currLine.dataCellArray {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
+        
     }
     
     @Published public var write_Needs_Held_Down : Bool = false
@@ -133,10 +131,18 @@ public class Central_State : ObservableObject {
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
             self.deleteANote()
-            // print the current thingy
             let currval = self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description
-            print("current  line X: ",currval)
             
+            if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
+                print("helperFuncs_PotentialNoteSet count: ",self.viableSetHelpers.helperFuncs_PotentialNoteSet.count.description
+                ,", helperFuncs_currentData - initial_WriteOnCell: "
+                ,(self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number).description)
+            }
+            
+            self.viableSetHelpers.establish_Potential_Cells_Set()
+            //print("current  line X: ",currval)
+            //viableSetHelpers.hel
+             
         })
     }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+
 class Viable_Set_Helper_Functions{
     
     let dimensions = ComponentDimensions.StaticDimensions
@@ -39,6 +40,26 @@ class Viable_Set_Helper_Functions{
         }
         //establish_Viable_Cells_Set()
     }
+    
+    var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
+    
+    var helperFuncs_PotentialNoteSet = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = helperFuncs_PotentialNoteSet.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+        }
+        didSet {
+            for cell in helperFuncs_PotentialNoteSet {
+                cell.handleVisibleStateChange(type: .activate_Potential_Set)
+            }
+        }
+    }
+    
+    var inViableCellsLeft = Set<Underlying_Data_Cell>()
+    
+    var inViableCellsRight = Set<Underlying_Data_Cell>()
     
     var currentSwipeDirection : E_SwipeDirections?
     
@@ -172,26 +193,6 @@ class Viable_Set_Helper_Functions{
         }
 
     }
-
-    var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
-    
-    var helperFuncs_PotentialNoteSet = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = helperFuncs_PotentialNoteSet.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-            }
-        }
-        didSet {
-            for cell in helperFuncs_PotentialNoteSet {
-                cell.handleVisibleStateChange(type: .activate_Potential_Set)
-            }
-        }
-    }
-    
-    var inViableCellsLeft = Set<Underlying_Data_Cell>()
-    
-    var inViableCellsRight = Set<Underlying_Data_Cell>()
     
     func nilPotentialSet(){
         if helperFuncs_PotentialNoteSet.count > 0 {
@@ -201,9 +202,7 @@ class Viable_Set_Helper_Functions{
             helperFuncs_PotentialNoteSet.removeAll()
         }
     }
-    
-    
-    
+
     }
 
 enum E_SwipeDirections{
