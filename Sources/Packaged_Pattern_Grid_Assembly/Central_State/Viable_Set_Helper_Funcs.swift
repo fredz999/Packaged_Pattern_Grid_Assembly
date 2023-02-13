@@ -125,29 +125,42 @@ class Viable_Set_Helper_Functions{
                 
                 if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
                     
-                    
-
                     let lowerHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
                     let upperHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
                     var combinedSet = Set<Underlying_Data_Cell>()
                     
+                    // 1 find nearest note on right, 2 find the lowest fourFourHalfcell index
+                    let rightSideHasNotesSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
+                    let lowestRightNoteCell = rightSideHasNotesSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                     
-
+                    
                     if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet
                     }
+                    
                     else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                         combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-                        print("establish_Potential_Cells_Set, combinedSet count: ",combinedSet.count.description)
                     }
 
                     if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                     ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-
+                        
                         let swipeSet =
                         current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-                        helperFuncs_PotentialNoteSet = swipeSet
+                        
+                        //let legalSet = swipeSet.filter({$0.dataCell_X_Number})
+                        if let lclLowestRightNoteCell = lowestRightNoteCell {
+                            helperFuncs_PotentialNoteSet = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
+                        }
+                        else if lowestRightNoteCell == nil {
+                            helperFuncs_PotentialNoteSet = swipeSet
+                        }
+                        
+                        
+                        
+                        
+                        
                     }
 
                 }
@@ -281,16 +294,14 @@ class Viable_Set_Helper_Functions{
         didSet {
             for cell in helperFuncs_PotentialNoteSet {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
-                print("helperFuncs_PotentialNoteSet count:",helperFuncs_PotentialNoteSet.count.description)
             }
         }
     }
     
     var inViableCellsLeft = Set<Underlying_Data_Cell>()
+    
     var inViableCellsRight = Set<Underlying_Data_Cell>()
     
-    
-
     func nilPotentialSet(){
         if helperFuncs_PotentialNoteSet.count > 0 {
             for cell in helperFuncs_PotentialNoteSet {
