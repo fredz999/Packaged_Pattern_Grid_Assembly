@@ -102,14 +102,6 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         , cellWidthParam:widthParam, cellHeightParam: dimensions.pattern_Grid_Sub_Cell_Height
         , xOffsetParam:xOffsetParam)
         
-//        if underlying_Data_Cell_Param.in_Viable_Set_Combined == true{
-//            data_Vals_Holder.update_Cell_Status(status_Update_TypeParam: .viableSetCombined , value: underlying_Data_Cell_Param.in_Viable_Set_Combined)
-//        }
-//        
-//        if underlying_Data_Cell_Param.in_Highlighted_Set == true{
-//            data_Vals_Holder.update_Cell_Status(status_Update_TypeParam: .highlighted , value: underlying_Data_Cell_Param.in_Highlighted_Set)
-//        }
-        
         cell_Swap_Underlying_Data(new_Data_Cell: underlying_Data_Cell_Param)
         
     }
@@ -126,7 +118,6 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         )
         
         data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: new_Data_Cell.in_Highlighted_Set)
-        //data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined , value: new_Data_Cell.in_Viable_Set_Combined)
         data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .potentialSet , value: new_Data_Cell.in_Potential_Set)
         data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet , value: new_Data_Cell.in_Prohibited_Set)
 

@@ -101,7 +101,6 @@ public class ComponentDimensions : ObservableObject {
             if lclMaxLesserSix.x_Position_Int != currentSixEightDataIndex{currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
         }
         
-        // TODO: 4:4 change in here
         if patternTimingConfiguration == .fourFour {
             if computedLineParam != currentFourFourPosition{
                 computedLineParam = currentFourFourPosition
@@ -126,20 +125,15 @@ public class ComponentDimensions : ObservableObject {
             computedLineParam = CGFloat(intDivided) * pattern_Grid_Unit_Height
         }
     }
-    
-    
-    
 
     public func flip_Timing_Signature_Dimensions(){
         if patternTimingConfiguration == .fourFour {
             patternTimingConfiguration = .sixEight
             pattern_Grid_Cell_Sub_Unit_Count = 4
-            //cursor_X_Jump_Multiplier = 2
         }
         else if patternTimingConfiguration == .sixEight {
             patternTimingConfiguration = .fourFour
             pattern_Grid_Cell_Sub_Unit_Count = 6
-            //cursor_X_Jump_Multiplier = 3
         }
     }
     

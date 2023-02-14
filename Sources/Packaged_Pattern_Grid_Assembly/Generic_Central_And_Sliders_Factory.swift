@@ -32,7 +32,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var injected_h_Slider : Injected_H_SliderType?
     var injected_v_Slider : Injected_V_SliderType?
     var injected_cursor : Injected_Cursor_Type?
-    //var injected_noteWriteBtn : Injected_Note_Write_Button_Type?
     var injected_potential_Note_View : Injected_Potential_Note_Type?
     
     var potential_Note_Layer_Store : Potential_Note_Layer_Store
@@ -45,7 +44,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public var wrapped_Vertical_Slider : Wrapped_Vertical_Slider<Injected_Data_Y_Slider_Cell_Type>
     public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
-    //var injected_cursor : Injected_Cursor_Type?
     
     @ViewBuilder public func returnData_Y_Slider() -> some View {
     Generic_Slider_View(generic_Slider_Coordinator_Param: generic_Slider_Y_Coord)
@@ -58,7 +56,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
         
         wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord)
-        // I want this to happen before central state
+
         visible_Grid_Store = Central_Grid_Store()
         
         cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store()
@@ -74,7 +72,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
 
         centralState.cursor_Layer_Ref = cursor_Layer_Store
-        //centralState.generateViableSetInformation()
         
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         

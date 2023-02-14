@@ -1,3 +1,11 @@
+//
+//  Packaged_Pattern_Grid_AssemblyTests.swift
+//  
+//
+//  Created by Jon on 14/02/2023.
+//
+
+import Foundation
 import XCTest
 @testable import Packaged_Pattern_Grid_Assembly
 

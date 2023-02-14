@@ -23,7 +23,8 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "Packaged_Pattern_Grid_Assembly",
-            dependencies: []),
+            dependencies: [])
+        ,
         .testTarget(
             name: "Packaged_Pattern_Grid_AssemblyTests",
             dependencies: ["Packaged_Pattern_Grid_Assembly"]),

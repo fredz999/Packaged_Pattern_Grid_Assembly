@@ -176,7 +176,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     firstCell.change_Highlight(highlightStatusParam: false)
                     dataCellArray.removeFirst()
                     dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
-                    redrawCellArray()
+                    //redrawCellArray()
                     check_For_Highlight()
                 }
             }
@@ -198,7 +198,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
 
                     dataCellArray.insert(newCell, at: 0)
                     
-                    redrawCellArray()
+                    //redrawCellArray()
                     
                     check_For_Highlight()
                     
@@ -223,7 +223,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                 dataCellArray.append(newCell)
             }
             
-            redrawCellArray()
+            //redrawCellArray()
             self.note_Y_Number += 1
             check_For_Highlight()
 
@@ -245,38 +245,11 @@ public class Note : ObservableObject, Identifiable, Equatable {
                 for newCell in newCellArray {
                     dataCellArray.append(newCell)
                 }
-                redrawCellArray()
+                //redrawCellArray()
                 self.note_Y_Number -= 1
                 parentRef.currentHighlightedNote = nil
             
         }
-    }
-    
-    // have to trigger the data_vals_Update for each cell.....how....?
-    //  swapData
-    func redrawCellArray(){
-        // this is now never the case
-//        if dataCellArray.count == 1{
-//            dataCellArray[0].changeType(newType: .single)
-//            dataCellArray[0].note_Im_In = self
-//        }
-//        if dataCellArray.count == 2{
-//            dataCellArray[0].changeType(newType: .start)
-//            dataCellArray[0].note_Im_In = self
-//            
-//            dataCellArray[1].changeType(newType: .end)
-//            dataCellArray[1].note_Im_In = self
-//        }
-//        else if dataCellArray.count > 2{
-//            dataCellArray[0].changeType(newType: .start)
-//            dataCellArray[0].note_Im_In = self
-//            for x in 1..<dataCellArray.count-1{
-//            dataCellArray[x].changeType(newType: .mid)
-//            dataCellArray[x].note_Im_In = self
-//            }
-//            dataCellArray[dataCellArray.count-1].changeType(newType: .end)
-//            dataCellArray[dataCellArray.count-1].note_Im_In = self
-//        }
     }
     
     func check_Cursor_Within()->Bool{

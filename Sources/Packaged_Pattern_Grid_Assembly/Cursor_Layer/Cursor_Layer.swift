@@ -19,8 +19,8 @@ public class Cursor_Layer_Store : ObservableObject {
     @Published public var cursorLayerCellColor : Color
     @Published public var cursorText = ""
     
-//    @Published public var viableRegionStart : CGFloat = 0
-//    @Published public var viableRegionWidth : CGFloat = 0
+    @Published public var viableRegionStart : CGFloat = 0
+    @Published public var viableRegionWidth : CGFloat = 0
     
     var currDataX : Int
     var currDataY : Int

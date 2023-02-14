@@ -133,34 +133,9 @@ public class Central_State : ObservableObject {
             self.deleteANote()
             if self.writingIsOn {
                 if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
-                    
-                    
                     let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
                     if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNoteSet.count
                     || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNoteSet.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
-                    
-                    
-                    
-                    
-                    //else if variableDelta < self.viableSetHelpers.helperFuncs_PotentialNoteSet.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
-                    
-                    
-//                    if self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number > lclInitial.dataCell_X_Number{
-//                        let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
-//                        self.viableSetHelpers.establish_Potential_Cells_Set()
-//                    }
-//                    else if self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number < lclInitial.dataCell_X_Number{
-//                        let variableDelta = (lclInitial.dataCell_X_Number - self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number)
-//                        self.viableSetHelpers.establish_Potential_Cells_Set()
-//                    }
-                    
-                    //if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNoteSet.count {
-                    //}
-//                    else if variableDelta < self.viableSetHelpers.helperFuncs_PotentialNoteSet.count {
-//                        let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
-//                        self.viableSetHelpers.establish_Potential_Cells_Set()
-//                    }
-                    
                 }
             }
         })
@@ -199,24 +174,9 @@ public class Central_State : ObservableObject {
     }
 
     var currentYCursor_Slider_Position : Int = 0
-    //var currentXCursor_Slider_Position : Int = 0
-    
-//    func cursor_Slider_Update(new_X:Int?=nil,new_Y:Int?=nil){
-//
-//        if let lclNewY = new_Y{
-//        if currentYCursor_Slider_Position != new_Y{currentYCursor_Slider_Position = lclNewY}
-//        }
-////        if let lclNewX = new_X{
-////        if currentXCursor_Slider_Position != new_X{currentXCursor_Slider_Position = lclNewX}
-////        }
-//        centralState_Data_Evaluation()
-//        viableSetHelpers.establish_Viable_Cells_Set()
-//        if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
-//    }
-    
+
     func cursor_Slider_Update(){
         centralState_Data_Evaluation()
-        // viableSetHelpers.establish_Viable_Cells_Set()
         if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
     }
     
@@ -359,14 +319,3 @@ class Cell_X_Descriptor : Equatable,Hashable {
         self.x_Position_Float = x_Position_Float
     }
 }
-
-
-//public static func == (lhs: Underlying_Data_Cell, rhs: Underlying_Data_Cell) -> Bool {
-//    lhs.id == rhs.id
-//}
-//
-//public func hash(into hasher: inout Hasher) {
-//    hasher.combine(id)
-//}
-//
-//public var id = UUID()
