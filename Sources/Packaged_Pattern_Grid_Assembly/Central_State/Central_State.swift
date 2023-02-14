@@ -133,8 +133,34 @@ public class Central_State : ObservableObject {
             self.deleteANote()
             if self.writingIsOn {
                 if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
+                    
+                    
                     let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
-                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNoteSet.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
+                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNoteSet.count
+                    || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNoteSet.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
+                    
+                    
+                    
+                    
+                    //else if variableDelta < self.viableSetHelpers.helperFuncs_PotentialNoteSet.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
+                    
+                    
+//                    if self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number > lclInitial.dataCell_X_Number{
+//                        let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
+//                        self.viableSetHelpers.establish_Potential_Cells_Set()
+//                    }
+//                    else if self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number < lclInitial.dataCell_X_Number{
+//                        let variableDelta = (lclInitial.dataCell_X_Number - self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number)
+//                        self.viableSetHelpers.establish_Potential_Cells_Set()
+//                    }
+                    
+                    //if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNoteSet.count {
+                    //}
+//                    else if variableDelta < self.viableSetHelpers.helperFuncs_PotentialNoteSet.count {
+//                        let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
+//                        self.viableSetHelpers.establish_Potential_Cells_Set()
+//                    }
+                    
                 }
             }
         })

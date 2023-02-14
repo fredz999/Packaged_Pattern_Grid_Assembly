@@ -173,8 +173,6 @@ class Viable_Set_Helper_Functions{
                     else if highestLeftNoteCell == nil {
                         helperFuncs_PotentialNoteSet = swipeSet
                     }
-                        
-                        
                     }
                 }
             }
