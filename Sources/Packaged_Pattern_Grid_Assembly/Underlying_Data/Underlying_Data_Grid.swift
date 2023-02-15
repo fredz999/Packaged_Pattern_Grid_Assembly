@@ -157,13 +157,28 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var in_Highlighted_Set : Bool = false
 
-    //var in_Viable_Set_Combined : Bool = false
-
     var in_Potential_Set : Bool = false
     
     var in_Potential_Edge_Set : Bool = false
 
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
+        
+        if type == .activate_Cursor_Set {
+            if in_Cursor_Set == false {
+                in_Cursor_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
+                }
+            }
+        }
+        else if type == .deActivate_Cursor_Set{
+            if in_Cursor_Set == true {
+                in_Cursor_Set = false
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
+                }
+            }
+        }
         
         if type == .activate_Highlighted {
             if in_Highlighted_Set == false{in_Highlighted_Set=true}
@@ -171,24 +186,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .deActivate_Highlighted {
             if in_Highlighted_Set == true{in_Highlighted_Set=false}
         }
-        //==============================================================================================================
-//        else if type == .activate_Viable_Set_Combined {
-//            if in_Viable_Set_Combined == false {
-//                in_Viable_Set_Combined = true
-//                if let lclDataVals = currentConnectedDataVals {
-//                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
-//                }
-//            }
-//        }
-//        else if type == .deActivate_Viable_Set_Combined {
-//            if in_Viable_Set_Combined == true {
-//                in_Viable_Set_Combined = false
-//                if let lclDataVals = currentConnectedDataVals {
-//                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .viableSetCombined, value: in_Viable_Set_Combined)
-//                }
-//            }
-//        }
-        //==============================================================================================================
+        
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
                 in_Potential_Set = true
@@ -205,6 +203,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .activate_Prohibited {
             if in_Prohibited_Set == false{in_Prohibited_Set=true}
         }
