@@ -79,7 +79,6 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    //TODO: cursorSet
     func establish_Cursor_Set(){
         //helperFuncs_Cursor_Set is going to be the current half cell
         if dimensions.patternTimingConfiguration == .fourFour {
@@ -228,7 +227,6 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-
     func writeNote(note_Y_Param:Int){
 
         var startCellSet = Set<Underlying_Data_Cell>()
@@ -275,14 +273,14 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    func nilCursorSet(){
-        if helperFuncs_PotentialNote_Set.count > 0 {
-            for cell in helperFuncs_PotentialNote_Set {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-            }
-            helperFuncs_PotentialNote_Set.removeAll()
-        }
-    }
+//    func nilCursorSet(){
+//        if helperFuncs_PotentialNote_Set.count > 0 {
+//            for cell in helperFuncs_PotentialNote_Set {
+//                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//            }
+//            helperFuncs_PotentialNote_Set.removeAll()
+//        }
+//    }
     
     
 

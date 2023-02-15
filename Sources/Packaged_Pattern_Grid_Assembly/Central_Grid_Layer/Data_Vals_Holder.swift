@@ -53,7 +53,8 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
-        
+        //update_Cell_Set_Membership(status_Update_TypeParam: .highlighted, value: true)
+                                   
         if status_Update_TypeParam == .potentialSet {
             if value == true {
                 if referenced_in_Potential_Set == false {
@@ -74,17 +75,6 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Cursor_Set == true{referenced_in_Cursor_Set=false}
             }
         }
-        
-//        else if status_Update_TypeParam == .potentialEdgeSet {
-//            if value == true {
-//                if referenced_in_Potential_Edge_Set == false {
-//                    referenced_in_Potential_Edge_Set=true
-//                }
-//            }
-//            else if value == false {
-//                if referenced_in_Potential_Edge_Set == true{referenced_in_Potential_Edge_Set=false}
-//            }
-//        }
         
         else if status_Update_TypeParam == .highlighted {
             if value == true {

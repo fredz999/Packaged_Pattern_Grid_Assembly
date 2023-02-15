@@ -36,6 +36,8 @@ public class Note_Collection {
         p_ExternalNote_Responder_Array.append(newNoteResponder)
     }
     
+    let centralStateRef = Central_State.Static_Central_State
+    
     var currentHighlightedNote : Note?{
         willSet{
             if let lclCurr = currentHighlightedNote,let lclNewVal = newValue{
@@ -45,7 +47,7 @@ public class Note_Collection {
             }
         }
     }
-    let centralStateRef = Central_State.Static_Central_State
+    
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote {

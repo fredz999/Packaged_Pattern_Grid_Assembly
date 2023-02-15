@@ -108,14 +108,14 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
     
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
+        
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
         
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
         , newCellNoteStatus: new_Data_Cell.currentType
-        , newNoteImIn: new_Data_Cell.note_Im_In
-        )
+        , newNoteImIn: new_Data_Cell.note_Im_In)
         
         data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: new_Data_Cell.in_Highlighted_Set)
         data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .potentialSet , value: new_Data_Cell.in_Potential_Set)

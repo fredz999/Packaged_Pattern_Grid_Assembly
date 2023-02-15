@@ -130,7 +130,9 @@ public class Central_State : ObservableObject {
     }
 
     var timing_Change_Compensation_Index : Int? = nil
+    
     @Published public var timing_Sig_Change_Possible : Bool = true
+    
     public func change_Timing_Signature_Central() {
         if timing_Sig_Change_Possible == true {
         if dimensions.patternTimingConfiguration == .sixEight {
@@ -165,6 +167,7 @@ public class Central_State : ObservableObject {
 
     func cursor_Slider_Update(){
         centralState_Data_Evaluation()
+        
         if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
     }
     
@@ -181,16 +184,16 @@ public class Central_State : ObservableObject {
             curr_Data_Pos_X = dimensions.currentSixEightDataIndex
         }
         
-        if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
-            if let lclNoteCollection = note_Collection_Ref {
-                lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
-            }
-        }
-        else if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In == nil {
-            if let lclNoteCollection = note_Collection_Ref {
-                lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-            }
-        }
+//        if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
+//            if let lclNoteCollection = note_Collection_Ref {
+//                lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
+//            }
+//        }
+//        else if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In == nil {
+//            if let lclNoteCollection = note_Collection_Ref {
+//                lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+//            }
+//        }
 
     }
     
@@ -283,7 +286,7 @@ public class Central_State : ObservableObject {
 
 }
 
-public enum E_Note_Movement_Type{
+public enum E_Note_Movement_Type {
     case leftWard
     case rightWard
     case upward
