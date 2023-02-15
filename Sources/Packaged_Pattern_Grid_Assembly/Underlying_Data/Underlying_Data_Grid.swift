@@ -164,7 +164,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Potential_Edge_Set : Bool = false
 
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
-
+        
         if type == .activate_Highlighted {
             if in_Highlighted_Set == false{in_Highlighted_Set=true}
         }
@@ -205,25 +205,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        //==============================================================================================================
-        else if type == .activate_Potential_Edge_Set {
-            if in_Potential_Edge_Set == false {
-                in_Potential_Edge_Set = true
-                if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .potentialEdgeSet , value: in_Potential_Edge_Set)
-                }
-            }
-        }
-        else if type == .deActivate_Potential_Edge_Set {
-            if in_Potential_Edge_Set == true {
-                in_Potential_Edge_Set = false
-                if let lclDataVals = currentConnectedDataVals{
-                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .potentialEdgeSet , value: in_Potential_Edge_Set)
-                }
-            }
-        }
-        
-        //==============================================================================================================
         else if type == .activate_Prohibited {
             if in_Prohibited_Set == false{in_Prohibited_Set=true}
         }
@@ -284,25 +265,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     currentType = initialStatusParam
     note_Reset_Status = initialStatusParam
     }
-    //TODO: gap breakup
-//    public func check_For_NextHalfCellNote()->Underlying_Data_Cell?{
-//        var retVal : Underlying_Data_Cell? = nil
-//        //1: see if there actually is a freaking next 1/2 four cell
-//        let cellSetImIn : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>(parentLine.dataCellArray)
-//        
-//        let nextHalf_Cell_Index = four_Four_Half_Cell_Index+1
-//        
-//        let nextHalfCellSet = cellSetImIn.filter{$0.four_Four_Half_Cell_Index == nextHalf_Cell_Index}
-//        
-//        if nextHalfCellSet.count > 0 {
-//            if let nearestStarter = nextHalfCellSet.min(by:{$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//                if nearestStarter.note_Im_In != nil{
-//                    retVal = nearestStarter
-//                }
-//            }
-//        }
-//        return retVal
-//    }
     
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         if timingParam == .fourFour {
@@ -340,6 +302,16 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             in_Prohibited_Set = newProhibitionStatus
             if let lcl_Data_Vals = currentConnectedDataVals {
                 lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet, value: newProhibitionStatus)
+            }
+        }
+    }
+    
+    var in_Cursor_Set : Bool = false
+    public func change_Cursor_Status(newCursorStatus:Bool){
+        if in_Cursor_Set != newCursorStatus {
+            in_Cursor_Set = newCursorStatus
+            if let lcl_Data_Vals = currentConnectedDataVals {
+                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: newCursorStatus)
             }
         }
     }
@@ -385,6 +357,9 @@ enum E_VisibleStateChangeType {
     case activate_Potential_Set
     case deActivate_Potential_Set
     
-    case activate_Potential_Edge_Set
-    case deActivate_Potential_Edge_Set
+    case activate_Cursor_Set
+    case deActivate_Cursor_Set
+    
+//    case activate_Potential_Edge_Set
+//    case deActivate_Potential_Edge_Set
 }

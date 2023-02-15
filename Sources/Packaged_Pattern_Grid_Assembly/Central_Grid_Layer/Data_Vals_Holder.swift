@@ -21,6 +21,8 @@ public class Data_Vals_Holder : ObservableObject {
     
     private var referenced_in_Prohibited_Set : Bool = false
     
+    private var referenced_in_Cursor_Set : Bool = false
+    
     private var referenced_in_Potential_Set : Bool = false
     
     private var referenced_in_Potential_Edge_Set : Bool = false
@@ -96,18 +98,19 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func process_Visual_Status(){
-        if check_Cell_Blank() == false {
-            check_Highlighted()
-        }
-        else if check_Cell_Blank() == true {
-            if check_In_Potential_Set() == true {
-                check_In_Prohib_Set()
+        if check_In_Cursor_Set() == false{
+            if check_Cell_Not_In_Note() == false {
+                check_Highlighted()
             }
-            check_In_Potential_Edge_Set()
+            else if check_Cell_Not_In_Note() == true {
+                if check_In_Potential_Set() == true {
+                    check_In_Prohib_Set()
+                }
+            }
         }
     }
     
-    func check_Cell_Blank()->Bool{
+    func check_Cell_Not_In_Note()->Bool{
         var retval = true
         if referenced_currentStatus == .start_Blank
             || referenced_currentStatus == .mid_Blank
@@ -129,11 +132,30 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
+    func check_In_Cursor_Set() -> Bool {
+        var retVal = false
+        if referenced_in_Cursor_Set == true {
+            retVal = true
+            if statusColor != colors.cursor_Set_Cell_Color{statusColor = colors.cursor_Set_Cell_Color}
+        }
+        return retVal
+    }
+    
+    
+//      func check_In_Cursor_Set() {
+//            if referenced_in_Cursor_Set == true {
+//                if statusColor != colors.cursor_Set_Cell_Color{statusColor = colors.cursor_Set_Cell_Color}
+//            }
+//        }
+
+    
     func check_In_Prohib_Set() {
         if referenced_in_Prohibited_Set == true {
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
     }
+    
+    
     
     func check_In_Potential_Set() -> Bool {
         var retVal = false
@@ -142,12 +164,6 @@ public class Data_Vals_Holder : ObservableObject {
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
         }
         return retVal
-    }
-    
-    func check_In_Potential_Edge_Set() {
-        if referenced_in_Potential_Edge_Set == true{
-            if statusColor != colors.potential_Edge_Cell_Color{statusColor = colors.potential_Edge_Cell_Color }
-        }
     }
  
     @Published public var statusColor : Color
@@ -190,6 +206,7 @@ public class Data_Vals_Holder : ObservableObject {
 
 public enum status_Update_Type {
     case highlighted
+    case cursorSet
     case prohibitedSet
     case potentialSet
     case potentialEdgeSet

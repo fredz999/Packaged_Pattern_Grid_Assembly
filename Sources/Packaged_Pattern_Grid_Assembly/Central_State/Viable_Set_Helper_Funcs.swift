@@ -35,38 +35,61 @@ class Viable_Set_Helper_Functions{
     
     var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
     
-    var helperFuncs_PotentialNoteSet = Set<Underlying_Data_Cell>(){
+    var helperFuncs_PotentialNote_Set = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = helperFuncs_PotentialNoteSet.symmetricDifference(newValue)
+            let delta = helperFuncs_PotentialNote_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
             }
         }
         didSet {
-            for cell in helperFuncs_PotentialNoteSet {
+            for cell in helperFuncs_PotentialNote_Set {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
             }
         }
     }
     
-    var inViableCellsLeft = Set<Underlying_Data_Cell>()
-    
-    var inViableCellsRight = Set<Underlying_Data_Cell>()
-    
-    var currentSwipeDirection : E_SwipeDirections?
-    
+    var helperFuncs_Cursor_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = helperFuncs_Cursor_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
+            }
+        }
+        didSet {
+            for cell in helperFuncs_Cursor_Set {
+                cell.handleVisibleStateChange(type: .activate_Cursor_Set)
+            }
+        }
+    }
+
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
             if newValue == nil {
-                if helperFuncs_PotentialNoteSet.count > 0 {
+                if helperFuncs_PotentialNote_Set.count > 0 {
                     nilPotentialSet()
                 }
             }
         }
     }
     
-    var helperFuncs_currentData : Underlying_Data_Cell
-
+    var helperFuncs_currentData : Underlying_Data_Cell{
+        didSet {
+            establish_Cursor_Set()
+        }
+    }
+    
+    //TODO: cursorSet
+    func establish_Cursor_Set(){
+        //helperFuncs_Cursor_Set is going to be the current half cell
+        if dimensions.patternTimingConfiguration == .fourFour {
+            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
+        }
+    }
+    
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
             if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
@@ -95,10 +118,10 @@ class Viable_Set_Helper_Functions{
                     && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
 
                     if let lclLowestRightNoteCell = lowestRightNoteCell {
-                        helperFuncs_PotentialNoteSet = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
+                        helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
                     }
                     else if lowestRightNoteCell == nil {
-                        helperFuncs_PotentialNoteSet = swipeSet
+                        helperFuncs_PotentialNote_Set = swipeSet
                     }
 
                 }
@@ -128,10 +151,10 @@ class Viable_Set_Helper_Functions{
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
 
                         if let lclLowestRightNoteCell = lowestRightNoteCell {
-                            helperFuncs_PotentialNoteSet = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
+                            helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
                         }
                         else if lowestRightNoteCell == nil {
-                            helperFuncs_PotentialNoteSet = swipeSet
+                            helperFuncs_PotentialNote_Set = swipeSet
                         }
                     }
                 }
@@ -162,10 +185,10 @@ class Viable_Set_Helper_Functions{
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
 
                         if let lclHighestLeftNoteCell = highestLeftNoteCell {
-                            helperFuncs_PotentialNoteSet = swipeSet.filter({$0.dataCell_X_Number > lclHighestLeftNoteCell.dataCell_X_Number})
+                            helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number > lclHighestLeftNoteCell.dataCell_X_Number})
                         }
                         else if highestLeftNoteCell == nil {
-                            helperFuncs_PotentialNoteSet = swipeSet
+                            helperFuncs_PotentialNote_Set = swipeSet
                         }
                     }
                 }
@@ -194,30 +217,31 @@ class Viable_Set_Helper_Functions{
                         && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
 
                         if let lclHighestLeftNoteCell = highestLeftNoteCell {
-                            helperFuncs_PotentialNoteSet = swipeSet.filter({$0.dataCell_X_Number > lclHighestLeftNoteCell.dataCell_X_Number})
+                            helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number > lclHighestLeftNoteCell.dataCell_X_Number})
                         }
                         else if highestLeftNoteCell == nil {
-                            helperFuncs_PotentialNoteSet = swipeSet
+                            helperFuncs_PotentialNote_Set = swipeSet
                         }
                     }
                 }
             }
         }
     }
+    
 
     func writeNote(note_Y_Param:Int){
 
         var startCellSet = Set<Underlying_Data_Cell>()
-        if let minX = helperFuncs_PotentialNoteSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+        if let minX = helperFuncs_PotentialNote_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             startCellSet.insert(minX)
         }
 
         var endCellSet = Set<Underlying_Data_Cell>()
-        if let maxX = helperFuncs_PotentialNoteSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+        if let maxX = helperFuncs_PotentialNote_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             endCellSet.insert(maxX)
         }
 
-        let midCellSet = helperFuncs_PotentialNoteSet.subtracting(startCellSet.union(endCellSet))
+        let midCellSet = helperFuncs_PotentialNote_Set.subtracting(startCellSet.union(endCellSet))
         
         for cell in startCellSet{cell.change_Type(newType: .start_Note)}
         for cell in midCellSet{cell.change_Type(newType: .mid_Note)}
@@ -243,13 +267,24 @@ class Viable_Set_Helper_Functions{
     }
     
     func nilPotentialSet(){
-        if helperFuncs_PotentialNoteSet.count > 0 {
-            for cell in helperFuncs_PotentialNoteSet {
+        if helperFuncs_PotentialNote_Set.count > 0 {
+            for cell in helperFuncs_PotentialNote_Set {
                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
             }
-            helperFuncs_PotentialNoteSet.removeAll()
+            helperFuncs_PotentialNote_Set.removeAll()
         }
     }
+    
+    func nilCursorSet(){
+        if helperFuncs_PotentialNote_Set.count > 0 {
+            for cell in helperFuncs_PotentialNote_Set {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+            helperFuncs_PotentialNote_Set.removeAll()
+        }
+    }
+    
+    
 
     }
 
@@ -258,128 +293,3 @@ enum E_SwipeDirections{
     case rightward
     case stationary
 }
-
-
-
-
-
-//    func establish_Potential_Cells_Set(){
-//        if let lclInitialCell = initial_WriteOnCell {
-//
-//            if dimensions.patternTimingConfiguration == .fourFour {
-//            // --------------------------------- RIGHTWARD ----------------------------------
-//            if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
-//
-//                currentSwipeDirection = .rightward
-//                let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
-//                let upperHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
-//                var combinedSet = Set<Underlying_Data_Cell>()
-//
-//                if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                    combinedSet = lowerHalfCellSet
-//                }
-//                else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-//                    combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-//                }
-//
-//                if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//                    helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//
-//                    let fullSwipeSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//
-//                    in_Swipe_Inviables = fullSwipeSet.filter({$0.note_Im_In != nil})
-//
-//                }
-//
-//            }
-//            // --------------------------------- LEFTWARD ----------------------------------
-//            else if lclInitialCell.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number {
-//
-//                currentSwipeDirection = .leftward
-//                let lowerHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
-//                let upperHalfCellSet = viableSet_Combined.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index-1})
-//
-//                var combinedSet = Set<Underlying_Data_Cell>()
-//
-//                if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                    combinedSet = lowerHalfCellSet
-//                }
-//                else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number{
-//                    combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-//                }
-//
-//                if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//                    helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//                    let fullSwipeSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//                    in_Swipe_Inviables = fullSwipeSet.filter({$0.note_Im_In != nil})
-//                }
-//
-//
-//            }
-//            // --------------------------------- STATIONARY ----------------------------------
-//            else if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                currentSwipeDirection = .stationary
-//                if helperFuncs_PotentialNoteSet.count > 0{helperFuncs_PotentialNoteSet.removeAll()}
-//                if in_Swipe_Inviables.count > 0{in_Swipe_Inviables.removeAll()}
-//            }
-//            }
-//
-//            else if dimensions.patternTimingConfiguration == .sixEight {
-//            // --------------------------------- RIGHTWARD ----------------------------------
-//            if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
-//
-//                currentSwipeDirection = .rightward
-//                let lowerHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
-//                let upperHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index-1})
-//                var combinedSet = Set<Underlying_Data_Cell>()
-//                if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number{
-//                    combinedSet = lowerHalfCellSet
-//                }
-//                else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number{
-//                    combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-//                }
-//
-//                if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//                    helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//                    let fullSwipeSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//                    in_Swipe_Inviables = fullSwipeSet.filter({$0.note_Im_In != nil})
-//                }
-//            }
-//            // --------------------------------- LEFTWARD ----------------------------------
-//            else if lclInitialCell.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number {
-//
-//                currentSwipeDirection = .leftward
-//                let lowerHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
-//                let upperHalfCellSet = viableSet_Combined.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index-1})
-//
-//                var combinedSet = Set<Underlying_Data_Cell>()
-//
-//                if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                    combinedSet = lowerHalfCellSet
-//                }
-//                else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number{
-//                    combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-//                }
-//
-//                if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//                    helperFuncs_PotentialNoteSet = viableSet_Combined.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//                    let fullSwipeSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//                    in_Swipe_Inviables = fullSwipeSet.filter({$0.note_Im_In != nil})
-//                }
-//
-//            }
-//            // --------------------------------- STATIONARY ----------------------------------
-//            else if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                currentSwipeDirection = .stationary
-//                if helperFuncs_PotentialNoteSet.count > 0{helperFuncs_PotentialNoteSet.removeAll()}
-//                if in_Swipe_Inviables.count > 0{in_Swipe_Inviables.removeAll()}
-//            }
-//            }
-//
-//        }
-//    }

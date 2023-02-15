@@ -42,7 +42,7 @@ public class Central_State : ObservableObject {
                     else if dimensions.patternTimingConfiguration == .sixEight {
                         viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     }
-                    //viableSetHelpers.establish_Potential_Cells_Set()
+
                 }
 
             }
@@ -50,23 +50,11 @@ public class Central_State : ObservableObject {
                 if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
                 
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
-                
-//                viableSetHelpers.inViableCellsLeft.removeAll()
-//                viableSetHelpers.inViableCellsRight.removeAll()
-//                viableSetHelpers.in_Swipe_Inviables.removeAll()
-                
-                if viableSetHelpers.currentSwipeDirection != nil {
-                    viableSetHelpers.currentSwipeDirection = nil
-                }
-                
+
                 if viableSetHelpers.initial_WriteOnCell != nil {
                     viableSetHelpers.initial_WriteOnCell = nil
                 }
 
-//                if let lclCursorRef = cursor_Layer_Ref {
-//                    lclCursorRef.cursorLayerCellColor = colors.cursorNotWriting
-//                }
-                
             }
             
         }
@@ -134,8 +122,8 @@ public class Central_State : ObservableObject {
             if self.writingIsOn {
                 if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
                     let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
-                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNoteSet.count
-                    || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNoteSet.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
+                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNote_Set.count
+                    || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNote_Set.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
                 }
             }
         })
