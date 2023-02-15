@@ -180,7 +180,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         
-        if type == .activate_Highlighted {
+        else if type == .activate_Highlighted {
             if in_Highlighted_Set == false{in_Highlighted_Set=true}
         }
         else if type == .deActivate_Highlighted {

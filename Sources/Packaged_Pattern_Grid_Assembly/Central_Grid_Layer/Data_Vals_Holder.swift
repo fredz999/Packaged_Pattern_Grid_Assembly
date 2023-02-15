@@ -64,17 +64,27 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Potential_Set == true{referenced_in_Potential_Set=false}
             }
         }
-        
-        else if status_Update_TypeParam == .potentialEdgeSet {
+        else if status_Update_TypeParam == .cursorSet {
             if value == true {
-                if referenced_in_Potential_Edge_Set == false {
-                    referenced_in_Potential_Edge_Set=true
+                if referenced_in_Cursor_Set == false {
+                    referenced_in_Cursor_Set=true
                 }
             }
             else if value == false {
-                if referenced_in_Potential_Edge_Set == true{referenced_in_Potential_Edge_Set=false}
+                if referenced_in_Cursor_Set == true{referenced_in_Cursor_Set=false}
             }
         }
+        
+//        else if status_Update_TypeParam == .potentialEdgeSet {
+//            if value == true {
+//                if referenced_in_Potential_Edge_Set == false {
+//                    referenced_in_Potential_Edge_Set=true
+//                }
+//            }
+//            else if value == false {
+//                if referenced_in_Potential_Edge_Set == true{referenced_in_Potential_Edge_Set=false}
+//            }
+//        }
         
         else if status_Update_TypeParam == .highlighted {
             if value == true {

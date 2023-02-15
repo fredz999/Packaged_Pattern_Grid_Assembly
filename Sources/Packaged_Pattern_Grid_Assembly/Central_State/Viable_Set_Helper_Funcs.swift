@@ -57,7 +57,6 @@ class Viable_Set_Helper_Functions{
             }
         }
         didSet {
-            print("helperFuncs_Cursor_Set set")
             for cell in helperFuncs_Cursor_Set {
                 cell.handleVisibleStateChange(type: .activate_Cursor_Set)
             }
