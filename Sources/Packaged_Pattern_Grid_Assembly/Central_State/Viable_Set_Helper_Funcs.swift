@@ -57,19 +57,26 @@ class Viable_Set_Helper_Functions{
             }
         }
         didSet {
+            // its ANY vs ALL
+            // if ANY of the cells have a note in them then highlight is on
+            // but only if ALL the cells have no note then highlight is off
+            var nillableNote : Note? = nil
             for cell in helperFuncs_Cursor_Set {
                 cell.handleVisibleStateChange(type: .activate_Cursor_Set)
-                
-                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
                 if let lclNote = cell.note_Im_In {
-                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
-                    }
-                    else if cell.note_Im_In == nil {
-                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                    }
+                    nillableNote = lclNote
                 }
-                
             }
+            
+            if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+                if let lclNillableNote = nillableNote {
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+                }
+                else if nillableNote == nil{
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                }
+            }
+            
         }
     }
 
