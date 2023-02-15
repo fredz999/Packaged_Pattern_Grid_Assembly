@@ -59,6 +59,16 @@ class Viable_Set_Helper_Functions{
         didSet {
             for cell in helperFuncs_Cursor_Set {
                 cell.handleVisibleStateChange(type: .activate_Cursor_Set)
+                
+                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+                if let lclNote = cell.note_Im_In {
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNote)
+                    }
+                    else if cell.note_Im_In == nil {
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                    }
+                }
+                
             }
         }
     }

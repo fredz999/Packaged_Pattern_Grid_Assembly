@@ -179,10 +179,13 @@ public class Central_State : ObservableObject {
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
         }
-        else if dimensions.patternTimingConfiguration == .sixEight{
+        else if dimensions.patternTimingConfiguration == .sixEight {
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             curr_Data_Pos_X = dimensions.currentSixEightDataIndex
         }
+        // want to find out whether or not any of the cursor set is in a note
+    
+        
         
 //        if let lclNote = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].note_Im_In {
 //            if let lclNoteCollection = note_Collection_Ref {
