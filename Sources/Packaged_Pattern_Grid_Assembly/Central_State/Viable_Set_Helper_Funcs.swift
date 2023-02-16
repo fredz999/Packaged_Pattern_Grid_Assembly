@@ -103,6 +103,10 @@ class Viable_Set_Helper_Functions{
         }
     }
     
+    func doSomethingSimple(){
+        print("doSomethingSimple")
+    }
+    
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
             if lclInitialCell.dataCell_X_Number < helperFuncs_currentData.dataCell_X_Number {
