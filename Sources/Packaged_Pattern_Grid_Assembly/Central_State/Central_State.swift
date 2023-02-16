@@ -72,8 +72,19 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
-        print("cline cell count: ",viableSetHelpers.current_Cell_Line_Set.count.description)
+        
+        
+        if dimensions.patternTimingConfiguration == .fourFour {
+            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.four_Four_Half_Cell_Index})
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Cell_Index})
+        }
+        
+        //print("cline cell count: ",viableSetHelpers.current_Cell_Line_Set.count.description)
+        
         //viableSetHelpers.doSomethingSimple()
+        
         //print("vs: ",viableSetHelpers.dimensions.patternTimingConfiguration == .fourFour ? "yes" : "no")
     }
     
