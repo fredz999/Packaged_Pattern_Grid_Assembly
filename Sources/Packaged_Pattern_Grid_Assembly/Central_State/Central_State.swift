@@ -74,10 +74,28 @@ public class Central_State : ObservableObject {
         }
 
         postInitSetup()
+        
     }
     
     func postInitSetup(){
-        viableSetHelpers.establish_Cursor_Set()
+        if writingIsOn == false {
+            var nillableNote : Note? = nil
+            for cell in viableSetHelpers.helperFuncs_Cursor_Set {
+                cell.handleVisibleStateChange(type: .activate_Cursor_Set)
+                if let lclNote = cell.note_Im_In {
+                    nillableNote = lclNote
+                }
+            }
+
+            if let lclNoteCollection = note_Collection_Ref {
+                if let lclNillableNote = nillableNote {
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+                }
+                else if nillableNote == nil{
+                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                }
+            }
+        }
     }
     
     @Published public var write_Needs_Held_Down : Bool = false
