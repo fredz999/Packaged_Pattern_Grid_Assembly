@@ -130,6 +130,7 @@ public class Central_State : ObservableObject {
                     if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNote_Set.count
                     || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNote_Set.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
                 }
+                
             }
             else if self.writingIsOn == false {
                 self.viableSetHelpers.establish_Cursor_Set()
@@ -171,7 +172,6 @@ public class Central_State : ObservableObject {
             lclNoteCollection.reset_Note_Data_Cells()
             a_Note_Is_Highlighted = false
         }
-        viableSetHelpers.establish_Cursor_Set()
     }
 
     var currentYCursor_Slider_Position : Int = 0
