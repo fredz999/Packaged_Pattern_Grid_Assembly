@@ -135,6 +135,7 @@ public class Central_State : ObservableObject {
 //            else if self.writingIsOn == false {
 //                self.viableSetHelpers.establish_Cursor_Set()
 //            }
+             
             self.viableSetHelpers.establish_Cursor_Set()
             
         })
