@@ -72,7 +72,7 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
-        viableSetHelpers.establish_Cursor_Set()
+        
     }
     
     @Published public var write_Needs_Held_Down : Bool = false
