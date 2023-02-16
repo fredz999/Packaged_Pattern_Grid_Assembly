@@ -134,7 +134,6 @@ public class Central_State : ObservableObject {
             }
             else if self.writingIsOn == false {
                 self.viableSetHelpers.establish_Cursor_Set()
-                print("delete_Note_Tap_Gesture establish_Cursor_Set() called")
             }
             
         })
