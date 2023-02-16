@@ -76,7 +76,7 @@ public class Central_State : ObservableObject {
     }
     
     public func postInitSetup(){
-        viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
+        viableSetHelpers.establish_Cursor_Set()
 //        if writingIsOn == false {
 //            var nillableNote : Note? = nil
 //            for cell in viableSetHelpers.helperFuncs_Cursor_Set {
