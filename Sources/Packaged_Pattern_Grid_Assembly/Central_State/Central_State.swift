@@ -72,7 +72,8 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
-        viableSetHelpers.doSomethingSimple()
+        print("cline cell count: ",viableSetHelpers.current_Cell_Line_Set.count.description)
+        //viableSetHelpers.doSomethingSimple()
         //print("vs: ",viableSetHelpers.dimensions.patternTimingConfiguration == .fourFour ? "yes" : "no")
     }
     
