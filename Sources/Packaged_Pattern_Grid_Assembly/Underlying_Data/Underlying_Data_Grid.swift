@@ -171,7 +171,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
             else if in_Cursor_Set == true {
-                print(dataCell_X_Number.description,", in activate func ..........")
+                print(dataCell_X_Number.description,", in_Cursor_Set == true..........")
             }
         }
         else if type == .deActivate_Cursor_Set{
