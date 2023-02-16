@@ -78,7 +78,7 @@ public class Central_State : ObservableObject {
     }
     
     func postInitSetup(){
-        
+        viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
 //        if writingIsOn == false {
 //            var nillableNote : Note? = nil
 //            for cell in viableSetHelpers.helperFuncs_Cursor_Set {
@@ -98,14 +98,14 @@ public class Central_State : ObservableObject {
 //            }
 //        }
         
-        if dimensions.patternTimingConfiguration == .fourFour {
-            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
-            .filter({$0.four_Four_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.four_Four_Half_Cell_Index})
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
-            .filter({$0.six_Eight_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Cell_Index})
-        }
+//        if dimensions.patternTimingConfiguration == .fourFour {
+//            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
+//            .filter({$0.four_Four_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.four_Four_Half_Cell_Index})
+//        }
+//        else if dimensions.patternTimingConfiguration == .sixEight {
+//            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
+//            .filter({$0.six_Eight_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Cell_Index})
+//        }
         
     }
     
