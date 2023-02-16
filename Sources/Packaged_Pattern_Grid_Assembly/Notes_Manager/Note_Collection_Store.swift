@@ -82,6 +82,9 @@ public class Note_Collection {
             noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
             currentHighlightedNote = nil
         }
+        else if currentHighlightedNote == nil{
+            print("currentHighlightedNote == nil")
+        }
     }
     
     public static let Static_Note_Collection = Note_Collection()
