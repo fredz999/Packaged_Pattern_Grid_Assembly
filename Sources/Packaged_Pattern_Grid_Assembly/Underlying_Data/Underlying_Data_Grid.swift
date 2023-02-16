@@ -164,12 +164,14 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
         
         if type == .activate_Cursor_Set {
-            print(dataCell_X_Number.description,", in activate func ..........")
             if in_Cursor_Set == false {
                 in_Cursor_Set = true
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
                 }
+            }
+            else if in_Cursor_Set == true {
+                print(dataCell_X_Number.description,", in activate func ..........")
             }
         }
         else if type == .deActivate_Cursor_Set{
