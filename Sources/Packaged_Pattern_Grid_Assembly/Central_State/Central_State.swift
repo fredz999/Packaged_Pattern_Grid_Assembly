@@ -92,7 +92,7 @@ public class Central_State : ObservableObject {
     }
     
     func postInitSetup(){
-        //viableSetHelpers.establish_Cursor_Set()
+        viableSetHelpers.establish_Cursor_Set()
     }
     
     @Published public var write_Needs_Held_Down : Bool = false
