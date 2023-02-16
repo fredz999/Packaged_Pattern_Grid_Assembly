@@ -55,10 +55,12 @@ class Viable_Set_Helper_Functions{
             let delta = helperFuncs_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
+                print("deactivate called in cellX: ",cell.dataCell_X_Number)
             }
         }
         didSet {
             if Central_State.Static_Central_State.writingIsOn == false {
+                print("didset helperFuncs_Cursor_Set: ",helperFuncs_Cursor_Set.count.description)
                 var nillableNote : Note? = nil
                 for cell in helperFuncs_Cursor_Set {
                     cell.handleVisibleStateChange(type: .activate_Cursor_Set)
@@ -75,6 +77,7 @@ class Viable_Set_Helper_Functions{
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                     }
                 }
+                
             }
         }
     }
@@ -96,14 +99,11 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Cursor_Set(){
-        print("establish_Cursor_Set...... called")
         if dimensions.patternTimingConfiguration == .fourFour {
             helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
-            print("helperFuncs_Cursor_Set fourFour count ........ ",helperFuncs_Cursor_Set.count.description)
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
             helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
-            print("helperFuncs_Cursor_Set sixEight count ........ ",helperFuncs_Cursor_Set.count.description)
         }
     }
     
