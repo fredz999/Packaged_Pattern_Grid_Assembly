@@ -62,7 +62,6 @@ class Viable_Set_Helper_Functions{
                 var nillableNote : Note? = nil
                 for cell in helperFuncs_Cursor_Set {
                     cell.handleVisibleStateChange(type: .activate_Cursor_Set)
-                    print("cellX: ",cell.dataCell_X_Number.description," sent to activate_Cursor_Set")
                     if let lclNote = cell.note_Im_In {
                         nillableNote = lclNote
                     }
@@ -299,6 +298,7 @@ class Viable_Set_Helper_Functions{
     }
     
     func nil_Cursor_Set(){
+        print("nil thermal.....")
         if helperFuncs_Cursor_Set.count > 0 {
             for cell in helperFuncs_Cursor_Set {
                 cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)

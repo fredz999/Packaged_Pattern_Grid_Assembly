@@ -36,7 +36,6 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
                 
                 viableSetHelpers.nil_Cursor_Set()
-                print("writingIsOn = false nil_Cursor_Set() called")
                 if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
                 if viableSetHelpers.initial_WriteOnCell == nil {
                     if dimensions.patternTimingConfiguration == .fourFour {
