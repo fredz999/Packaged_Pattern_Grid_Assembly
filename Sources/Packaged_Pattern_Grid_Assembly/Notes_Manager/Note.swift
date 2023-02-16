@@ -81,6 +81,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             cell.note_Im_In = nil
             cell.change_Highlight(highlightStatusParam: false)
             cell.reset_To_Original()
+            print(cell.dataCell_X_Number.description,    ", reset_To_Original()")
         }
 //        if dimensions.patternTimingConfiguration == .fourFour{
 //            var innerX : Int = 0
