@@ -68,14 +68,14 @@ class Viable_Set_Helper_Functions{
                     }
                 }
 
-                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
-                    if let lclNillableNote = nillableNote {
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
-                    }
-                    else if nillableNote == nil{
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                    }
-                }
+//                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+//                    if let lclNillableNote = nillableNote {
+//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+//                    }
+//                    else if nillableNote == nil{
+//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+//                    }
+//                }
                 
             }
         }
