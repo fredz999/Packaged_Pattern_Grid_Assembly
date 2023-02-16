@@ -72,12 +72,10 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
-
-        postInitSetup()
         
     }
     
-    func postInitSetup(){
+    public func postInitSetup(){
         viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
 //        if writingIsOn == false {
 //            var nillableNote : Note? = nil
