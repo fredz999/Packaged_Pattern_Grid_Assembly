@@ -60,8 +60,6 @@ public class Note_Collection {
             if lclNoteParam.note_Highlighted == false{
                 currentHighlightedNote = lclNoteParam
                 lclNoteParam.note_Highlighted = true
-                print("highlighted note min: ",lclNoteParam.dataCellArray[0].dataCell_X_Number
-                      ,"highlighted note max: ",lclNoteParam.dataCellArray[lclNoteParam.dataCellArray.count-1].dataCell_X_Number)
                 if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
             }
         }

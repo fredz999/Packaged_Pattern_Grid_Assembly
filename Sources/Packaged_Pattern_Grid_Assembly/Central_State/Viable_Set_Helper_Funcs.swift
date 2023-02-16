@@ -95,7 +95,6 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Cursor_Set(){
-        //helperFuncs_Cursor_Set is going to be the current half cell
         if dimensions.patternTimingConfiguration == .fourFour {
             helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
         }
