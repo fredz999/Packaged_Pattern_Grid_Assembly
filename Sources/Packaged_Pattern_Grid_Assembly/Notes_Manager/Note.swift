@@ -81,38 +81,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             cell.note_Im_In = nil
             cell.change_Highlight(highlightStatusParam: false)
             cell.reset_To_Original()
-            print(cell.dataCell_X_Number.description,    ", reset_To_Original()")
         }
-//        if dimensions.patternTimingConfiguration == .fourFour{
-//            var innerX : Int = 0
-//            for outerX in 0..<dataCellArray.count{
-//                if innerX == 0{
-//                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
-//                    innerX = 1
-//                }
-//                else if innerX == 1{
-//                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
-//                    innerX = 2
-//                }
-//                else if innerX == 2{
-//                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
-//                    innerX = 0
-//                }
-//            }
-//        }
-//        else if dimensions.patternTimingConfiguration == .sixEight{
-//            var innerX : Int = 0
-//            for outerX in 0..<dataCellArray.count{
-//                if innerX == 0{
-//                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
-//                    innerX = 1
-//                }
-//                else if innerX == 1{
-//                    dataCellArray[outerX].reset_Type(newType: dataCellArray[outerX].note_Reset_Status)
-//                    innerX = 0
-//                }
-//            }
-//        }
     }
     
     func rightSide_Expansion(){

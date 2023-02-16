@@ -121,6 +121,7 @@ public class Central_State : ObservableObject {
     
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
+            
             self.deleteANote()
             
             if self.writingIsOn {
@@ -131,9 +132,10 @@ public class Central_State : ObservableObject {
                 }
                 
             }
-            else if self.writingIsOn == false {
-                self.viableSetHelpers.establish_Cursor_Set()
-            }
+//            else if self.writingIsOn == false {
+//                self.viableSetHelpers.establish_Cursor_Set()
+//            }
+            self.viableSetHelpers.establish_Cursor_Set()
             
         })
     }
