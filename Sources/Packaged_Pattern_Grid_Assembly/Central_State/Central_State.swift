@@ -78,24 +78,35 @@ public class Central_State : ObservableObject {
     }
     
     func postInitSetup(){
-        if writingIsOn == false {
-            var nillableNote : Note? = nil
-            for cell in viableSetHelpers.helperFuncs_Cursor_Set {
-                cell.handleVisibleStateChange(type: .activate_Cursor_Set)
-                if let lclNote = cell.note_Im_In {
-                    nillableNote = lclNote
-                }
-            }
-
-            if let lclNoteCollection = note_Collection_Ref {
-                if let lclNillableNote = nillableNote {
-                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
-                }
-                else if nillableNote == nil{
-                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                }
-            }
+        
+//        if writingIsOn == false {
+//            var nillableNote : Note? = nil
+//            for cell in viableSetHelpers.helperFuncs_Cursor_Set {
+//                cell.handleVisibleStateChange(type: .activate_Cursor_Set)
+//                if let lclNote = cell.note_Im_In {
+//                    nillableNote = lclNote
+//                }
+//            }
+//
+//            if let lclNoteCollection = note_Collection_Ref {
+//                if let lclNillableNote = nillableNote {
+//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+//                }
+//                else if nillableNote == nil{
+//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+//                }
+//            }
+//        }
+        
+        if dimensions.patternTimingConfiguration == .fourFour {
+            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
+            .filter({$0.four_Four_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.four_Four_Half_Cell_Index})
         }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
+            .filter({$0.six_Eight_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Cell_Index})
+        }
+        
     }
     
     @Published public var write_Needs_Held_Down : Bool = false
