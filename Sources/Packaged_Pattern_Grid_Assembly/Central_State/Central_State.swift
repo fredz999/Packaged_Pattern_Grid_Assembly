@@ -85,9 +85,14 @@ public class Central_State : ObservableObject {
         
         //print("cline cell count: ",viableSetHelpers.current_Cell_Line_Set.count.description)
         
-        viableSetHelpers.establish_Cursor_Set()
+        //
         
         //print("vs: ",viableSetHelpers.dimensions.patternTimingConfiguration == .fourFour ? "yes" : "no")
+        postInitSetup()
+    }
+    
+    func postInitSetup(){
+        viableSetHelpers.establish_Cursor_Set()
     }
     
     @Published public var write_Needs_Held_Down : Bool = false
