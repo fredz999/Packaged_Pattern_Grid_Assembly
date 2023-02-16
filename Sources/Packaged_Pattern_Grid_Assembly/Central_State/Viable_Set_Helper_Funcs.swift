@@ -50,15 +50,15 @@ class Viable_Set_Helper_Functions{
     }
     
     var helperFuncs_Cursor_Set = Set<Underlying_Data_Cell>()
-//    {
+    {
 //        willSet {
 //            let delta = helperFuncs_Cursor_Set.symmetricDifference(newValue)
 //            for cell in delta {
 //                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
 //            }
 //        }
-//        didSet {
-//            if Central_State.Static_Central_State.writingIsOn == false {
+        didSet {
+            if Central_State.Static_Central_State.writingIsOn == false {
 //
 //                var nillableNote : Note? = nil
 //                for cell in helperFuncs_Cursor_Set {
@@ -77,9 +77,9 @@ class Viable_Set_Helper_Functions{
 //                    }
 //                }
 //
-//            }
-//        }
-//    }
+            }
+        }
+    }
 
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
