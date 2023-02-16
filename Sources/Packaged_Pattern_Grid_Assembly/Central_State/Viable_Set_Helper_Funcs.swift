@@ -55,15 +55,14 @@ class Viable_Set_Helper_Functions{
             let delta = helperFuncs_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
-                print("deactivate called in cellX: ",cell.dataCell_X_Number)
             }
         }
         didSet {
             if Central_State.Static_Central_State.writingIsOn == false {
-                print("didset helperFuncs_Cursor_Set: ",helperFuncs_Cursor_Set.count.description)
                 var nillableNote : Note? = nil
                 for cell in helperFuncs_Cursor_Set {
                     cell.handleVisibleStateChange(type: .activate_Cursor_Set)
+                    print("cellX: ",cell.dataCell_X_Number.description," sent to activate_Cursor_Set")
                     if let lclNote = cell.note_Im_In {
                         nillableNote = lclNote
                     }
