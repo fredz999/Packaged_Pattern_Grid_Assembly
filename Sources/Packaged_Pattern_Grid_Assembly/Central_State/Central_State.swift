@@ -81,11 +81,11 @@ public class Central_State : ObservableObject {
 //            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Cell_Index})
 //        }
         
-        print("helperFuncsCurrData X number: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description)
+        //print("helperFuncsCurrData X number: ",viableSetHelpers.helperFuncs_currentData.dataCell_X_Number.description)
         
         //print("cline cell count: ",viableSetHelpers.current_Cell_Line_Set.count.description)
         
-        //viableSetHelpers.doSomethingSimple()
+        viableSetHelpers.establish_Cursor_Set()
         
         //print("vs: ",viableSetHelpers.dimensions.patternTimingConfiguration == .fourFour ? "yes" : "no")
     }

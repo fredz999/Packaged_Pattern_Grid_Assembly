@@ -49,34 +49,35 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    var helperFuncs_Cursor_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = helperFuncs_Cursor_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
-            }
-        }
-        didSet {
-            if Central_State.Static_Central_State.writingIsOn == false{
-                var nillableNote : Note? = nil
-                for cell in helperFuncs_Cursor_Set {
-                    cell.handleVisibleStateChange(type: .activate_Cursor_Set)
-                    if let lclNote = cell.note_Im_In {
-                        nillableNote = lclNote
-                    }
-                }
-                
-                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
-                    if let lclNillableNote = nillableNote {
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
-                    }
-                    else if nillableNote == nil{
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                    }
-                }
-            }
-        }
-    }
+    var helperFuncs_Cursor_Set = Set<Underlying_Data_Cell>()
+//    {
+//        willSet {
+//            let delta = helperFuncs_Cursor_Set.symmetricDifference(newValue)
+//            for cell in delta {
+//                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
+//            }
+//        }
+//        didSet {
+//            if Central_State.Static_Central_State.writingIsOn == false{
+//                var nillableNote : Note? = nil
+//                for cell in helperFuncs_Cursor_Set {
+//                    cell.handleVisibleStateChange(type: .activate_Cursor_Set)
+//                    if let lclNote = cell.note_Im_In {
+//                        nillableNote = lclNote
+//                    }
+//                }
+//                
+//                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+//                    if let lclNillableNote = nillableNote {
+//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+//                    }
+//                    else if nillableNote == nil{
+//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
@@ -101,10 +102,6 @@ class Viable_Set_Helper_Functions{
         else if dimensions.patternTimingConfiguration == .sixEight {
             helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
         }
-    }
-    
-    func doSomethingSimple(){
-        print("doSomethingSimple")
     }
     
     func establish_Potential_Cells_Set(){
