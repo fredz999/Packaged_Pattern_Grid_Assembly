@@ -34,6 +34,7 @@ public class Central_State : ObservableObject {
     @Published public var writingIsOn : Bool = false {
         didSet {
             if writingIsOn == true {
+                viableSetHelpers.nil_Cursor_Set()
                 if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
                 if viableSetHelpers.initial_WriteOnCell == nil {
                     if dimensions.patternTimingConfiguration == .fourFour {
@@ -42,21 +43,16 @@ public class Central_State : ObservableObject {
                     else if dimensions.patternTimingConfiguration == .sixEight {
                         viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     }
-
                 }
-
             }
             else if writingIsOn == false {
+                viableSetHelpers.establish_Cursor_Set()
                 if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
-                
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
-
                 if viableSetHelpers.initial_WriteOnCell != nil {
                     viableSetHelpers.initial_WriteOnCell = nil
                 }
-
             }
-            
         }
     }
     
@@ -77,34 +73,6 @@ public class Central_State : ObservableObject {
     
     public func postInitSetup(){
         viableSetHelpers.establish_Cursor_Set()
-//        if writingIsOn == false {
-//            var nillableNote : Note? = nil
-//            for cell in viableSetHelpers.helperFuncs_Cursor_Set {
-//                cell.handleVisibleStateChange(type: .activate_Cursor_Set)
-//                if let lclNote = cell.note_Im_In {
-//                    nillableNote = lclNote
-//                }
-//            }
-//
-//            if let lclNoteCollection = note_Collection_Ref {
-//                if let lclNillableNote = nillableNote {
-//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
-//                }
-//                else if nillableNote == nil{
-//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-//                }
-//            }
-//        }
-        
-//        if dimensions.patternTimingConfiguration == .fourFour {
-//            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
-//            .filter({$0.four_Four_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.four_Four_Half_Cell_Index})
-//        }
-//        else if dimensions.patternTimingConfiguration == .sixEight {
-//            viableSetHelpers.helperFuncs_Cursor_Set = viableSetHelpers.current_Cell_Line_Set
-//            .filter({$0.six_Eight_Half_Cell_Index == viableSetHelpers.helperFuncs_currentData.six_Eight_Half_Cell_Index})
-//        }
-        
     }
     
     @Published public var write_Needs_Held_Down : Bool = false

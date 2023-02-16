@@ -296,6 +296,15 @@ class Viable_Set_Helper_Functions{
         }
     }
     
+    func nil_Cursor_Set(){
+        if helperFuncs_Cursor_Set.count > 0 {
+            for cell in helperFuncs_Cursor_Set {
+                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
+            }
+            helperFuncs_Cursor_Set.removeAll()
+        }
+    }
+    
 
     }
 
