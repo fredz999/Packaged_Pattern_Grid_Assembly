@@ -57,7 +57,7 @@ public class Note_Collection {
             }
         }
         else if let lclNoteParam = noteParam {
-            if lclNoteParam.note_Highlighted == false{
+            if lclNoteParam.note_Highlighted == false {
                 currentHighlightedNote = lclNoteParam
                 lclNoteParam.note_Highlighted = true
                 if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
@@ -71,7 +71,6 @@ public class Note_Collection {
         for cell in cellArrayParam {
             cell.note_Im_In = note
         }
-        //note_Collection_Highlight_Handler(noteParam: note)
     }
     
     // will now be called in central state after which the visual_cells will have their data vals reset

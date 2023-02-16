@@ -34,7 +34,9 @@ public class Central_State : ObservableObject {
     @Published public var writingIsOn : Bool = false {
         didSet {
             if writingIsOn == true {
+                
                 viableSetHelpers.nil_Cursor_Set()
+                
                 if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
                 if viableSetHelpers.initial_WriteOnCell == nil {
                     if dimensions.patternTimingConfiguration == .fourFour {
@@ -46,7 +48,9 @@ public class Central_State : ObservableObject {
                 }
             }
             else if writingIsOn == false {
+                
                 viableSetHelpers.establish_Cursor_Set()
+                
                 if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 if viableSetHelpers.initial_WriteOnCell != nil {
@@ -119,6 +123,7 @@ public class Central_State : ObservableObject {
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
             self.deleteANote()
+            
             if self.writingIsOn {
                 if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
                     let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
@@ -126,6 +131,10 @@ public class Central_State : ObservableObject {
                     || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNote_Set.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
                 }
             }
+            else if self.writingIsOn == false {
+                self.viableSetHelpers.establish_Cursor_Set()
+            }
+            
         })
     }
 
@@ -159,9 +168,9 @@ public class Central_State : ObservableObject {
     public func deleteANote(){
         if let lclNoteCollection = note_Collection_Ref {
             lclNoteCollection.reset_Note_Data_Cells()
-            viableSetHelpers.establish_Cursor_Set()
             a_Note_Is_Highlighted = false
         }
+        viableSetHelpers.establish_Cursor_Set()
     }
 
     var currentYCursor_Slider_Position : Int = 0
