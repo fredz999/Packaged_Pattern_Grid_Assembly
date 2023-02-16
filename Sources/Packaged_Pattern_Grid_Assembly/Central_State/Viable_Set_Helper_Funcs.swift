@@ -58,15 +58,15 @@ class Viable_Set_Helper_Functions{
 //            }
 //        }
         didSet {
-            if Central_State.Static_Central_State.writingIsOn == false {
+            //if Central_State.Static_Central_State.writingIsOn == false {
 //
-//                var nillableNote : Note? = nil
-//                for cell in helperFuncs_Cursor_Set {
-//                    cell.handleVisibleStateChange(type: .activate_Cursor_Set)
-//                    if let lclNote = cell.note_Im_In {
-//                        nillableNote = lclNote
-//                    }
-//                }
+                var nillableNote : Note? = nil
+                for cell in helperFuncs_Cursor_Set {
+                    cell.handleVisibleStateChange(type: .activate_Cursor_Set)
+                    if let lclNote = cell.note_Im_In {
+                        nillableNote = lclNote
+                    }
+                }
 //
 //                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
 //                    if let lclNillableNote = nillableNote {
@@ -77,7 +77,7 @@ class Viable_Set_Helper_Functions{
 //                    }
 //                }
 //
-            }
+            //}
         }
     }
 
