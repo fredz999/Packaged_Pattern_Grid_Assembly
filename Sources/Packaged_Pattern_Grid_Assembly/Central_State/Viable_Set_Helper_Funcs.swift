@@ -96,12 +96,14 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Cursor_Set(){
+        print("establish_Cursor_Set...... called")
         if dimensions.patternTimingConfiguration == .fourFour {
             helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
-            print("helperFuncs_Cursor_Set count ........ ",helperFuncs_Cursor_Set.count.description)
+            print("helperFuncs_Cursor_Set fourFour count ........ ",helperFuncs_Cursor_Set.count.description)
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
             helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
+            print("helperFuncs_Cursor_Set sixEight count ........ ",helperFuncs_Cursor_Set.count.description)
         }
     }
     
