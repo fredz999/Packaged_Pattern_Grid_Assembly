@@ -159,7 +159,7 @@ public class Central_State : ObservableObject {
     public func deleteANote(){
         if let lclNoteCollection = note_Collection_Ref {
             lclNoteCollection.reset_Note_Data_Cells()
-            //viableSetHelpers.establish_Cursor_Set()
+            viableSetHelpers.establish_Cursor_Set()
             a_Note_Is_Highlighted = false
         }
     }
