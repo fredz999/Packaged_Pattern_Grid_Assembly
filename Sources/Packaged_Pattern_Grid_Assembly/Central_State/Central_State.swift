@@ -125,25 +125,18 @@ public class Central_State : ObservableObject {
             
             self.deleteANote()
             
-            
-//
-//
-//
-//            if self.writingIsOn {
-//                if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
-//                    let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
-//                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNote_Set.count
-//                    || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNote_Set.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
-//                }
-//
-//            }
+            if self.writingIsOn {
+                if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
+                    let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
+                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNote_Set.count
+                    || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNote_Set.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
+                }
 
+            }
+
+            self.viableSetHelpers.establish_Cursor_Set()
             
-             
-            //self.viableSetHelpers.establish_Cursor_Set()
-            
-             
-            
+        
         })
     }
 
