@@ -175,7 +175,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Cursor_Set == true {
                 in_Cursor_Set = false
                 if let lclDataVals = currentConnectedDataVals {
-                    print("deActivate_Cursor_Set update_Cell_Set_Membership")
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
                 }
             }
