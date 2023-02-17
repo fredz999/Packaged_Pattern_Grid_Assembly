@@ -56,6 +56,7 @@ public class Note_Collection {
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlighted = false
                 currentHighlightedNote = nil
+                print("2: reset_Note_Data_Cells()")
                 if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
             }
         }
@@ -78,9 +79,9 @@ public class Note_Collection {
     
     public func reset_Note_Data_Cells(){
         if let lclCurrHighlighted = currentHighlightedNote {
-        print("2: reset_Note_Data_Cells()")
         lclCurrHighlighted.resetCells()
         noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
+        print("1: reset_Note_Data_Cells()")
         currentHighlightedNote = nil
         }
     }
