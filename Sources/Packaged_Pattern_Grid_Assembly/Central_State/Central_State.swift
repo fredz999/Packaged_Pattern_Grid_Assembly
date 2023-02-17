@@ -174,7 +174,7 @@ public class Central_State : ObservableObject {
     }
 
     public func deleteANote(){
-        
+        print("delete note called")
         if let lclNoteCollection = note_Collection_Ref {
             lclNoteCollection.reset_Note_Data_Cells()
             a_Note_Is_Highlighted = false
