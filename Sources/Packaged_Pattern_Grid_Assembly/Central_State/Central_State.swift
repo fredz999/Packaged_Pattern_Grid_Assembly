@@ -121,17 +121,20 @@ public class Central_State : ObservableObject {
     
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
-            self.viableSetHelpers.nil_Cursor_Set()
+            
             
             self.deleteANote()
-//            if self.writingIsOn {
-//                if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
-//                    let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
-//                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNote_Set.count
-//                    || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNote_Set.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
-//                }
-//
-//            }
+            
+            self.viableSetHelpers.nil_Cursor_Set()
+            
+            if self.writingIsOn {
+                if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
+                    let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
+                    if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNote_Set.count
+                    || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNote_Set.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
+                }
+
+            }
 //            else if self.writingIsOn == false {
 //                self.viableSetHelpers.establish_Cursor_Set()
 //            }
