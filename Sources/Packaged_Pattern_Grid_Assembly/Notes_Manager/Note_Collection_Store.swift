@@ -46,6 +46,9 @@ public class Note_Collection {
                 }
             }
         }
+        didSet{
+            print("currentHighlightedNote set to:",currentHighlightedNote == nil ? "Nil" : currentHighlightedNote.debugDescription)
+        }
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
