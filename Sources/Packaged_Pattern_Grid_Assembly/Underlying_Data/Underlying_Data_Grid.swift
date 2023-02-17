@@ -318,7 +318,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //    }
     
     public func reset_To_Original(){
-        print("4: reset_To_Original() for cell num: ",dataCell_X_Number.description)
         currentType = note_Reset_Status
         if let lcl_Data_Vals = currentConnectedDataVals {
             lcl_Data_Vals.updateValsFromNewData(
