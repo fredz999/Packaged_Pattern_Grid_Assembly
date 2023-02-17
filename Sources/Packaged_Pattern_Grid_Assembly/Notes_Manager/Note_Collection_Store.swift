@@ -75,15 +75,10 @@ public class Note_Collection {
     
     // will now be called in central state after which the visual_cells will have their data vals reset
     public func reset_Note_Data_Cells(){
-        
         if let lclCurrHighlighted = currentHighlightedNote {
-            print("lclCurrHighlighted = currentHighlightedNote")
             lclCurrHighlighted.resetCells()
             noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
             currentHighlightedNote = nil
-        }
-        else if currentHighlightedNote == nil{
-            print("currentHighlightedNote == nil")
         }
     }
     

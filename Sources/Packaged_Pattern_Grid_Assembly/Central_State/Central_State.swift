@@ -141,6 +141,8 @@ public class Central_State : ObservableObject {
              
             //self.viableSetHelpers.establish_Cursor_Set()
             
+            print("post delete called, should have all cells reset")
+            
         })
     }
 
@@ -176,9 +178,6 @@ public class Central_State : ObservableObject {
         if let lclNoteCollection = note_Collection_Ref {
             lclNoteCollection.reset_Note_Data_Cells()
             a_Note_Is_Highlighted = false
-        }
-        else {
-            print("no note_Collection_Ref ?......")
         }
     }
 
