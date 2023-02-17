@@ -125,7 +125,7 @@ public class Central_State : ObservableObject {
             
             self.deleteANote()
             
-            self.viableSetHelpers.nil_Cursor_Set()
+            //self.viableSetHelpers.nil_Cursor_Set()
             
             if self.writingIsOn {
                 if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
