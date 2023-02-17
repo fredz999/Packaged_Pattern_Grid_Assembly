@@ -98,8 +98,8 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func process_Visual_Status(){
-        //if check_In_Cursor_Set() == false{}
-            check_In_Cursor_Set()
+        if check_In_Cursor_Set() == false{
+
             if check_Cell_Not_In_Note() == false {
                 check_Highlighted()
             }
@@ -108,7 +108,7 @@ public class Data_Vals_Holder : ObservableObject {
                     check_In_Prohib_Set()
                 }
             }
-        //}
+        }
     }
     
     func check_Cell_Not_In_Note()->Bool{
@@ -133,17 +133,13 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-    func check_In_Cursor_Set() {
-        //var retVal = false
+    func check_In_Cursor_Set()->Bool{
+        var retVal = false
         if referenced_in_Cursor_Set == true {
-            //retVal = true
+            retVal = true
             if statusColor != colors.cursor_Set_Cell_Color{statusColor = colors.cursor_Set_Cell_Color}
         }
-//        else if referenced_in_Cursor_Set == false {
-//            if statusColor != colors.cursor_Set_Cell_Color{statusColor = colors.cursor_Set_Cell_Color}
-//        }
-        
-        //return retVal
+        return retVal
     }
     
     
