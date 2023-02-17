@@ -139,9 +139,9 @@ public class Central_State : ObservableObject {
 //                self.viableSetHelpers.establish_Cursor_Set()
 //            }
              
-            //self.viableSetHelpers.establish_Cursor_Set()
+            self.viableSetHelpers.establish_Cursor_Set()
             
-            print("post delete called, should have all cells reset")
+             
             
         })
     }
