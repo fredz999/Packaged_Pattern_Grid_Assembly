@@ -171,10 +171,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        else if type == .deActivate_Cursor_Set{
+        else if type == .deActivate_Cursor_Set {
             if in_Cursor_Set == true {
                 in_Cursor_Set = false
                 if let lclDataVals = currentConnectedDataVals {
+                    print("deActivate_Cursor_Set update_Cell_Set_Membership")
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
                 }
             }
@@ -306,14 +307,15 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     var in_Cursor_Set : Bool = false
-    public func change_Cursor_Status(newCursorStatus:Bool){
-        if in_Cursor_Set != newCursorStatus {
-            in_Cursor_Set = newCursorStatus
-            if let lcl_Data_Vals = currentConnectedDataVals {
-                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: newCursorStatus)
-            }
-        }
-    }
+//    public func change_Cursor_Status(newCursorStatus:Bool)
+//    {
+//        if in_Cursor_Set != newCursorStatus {
+//            in_Cursor_Set = newCursorStatus
+//            if let lcl_Data_Vals = currentConnectedDataVals {
+//                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: newCursorStatus)
+//            }
+//        }
+//    }
     
     public func reset_To_Original(){
         print("4: reset_To_Original() for cell num: ",dataCell_X_Number.description)

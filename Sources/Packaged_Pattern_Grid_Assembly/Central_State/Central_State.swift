@@ -124,6 +124,8 @@ public class Central_State : ObservableObject {
             self.viableSetHelpers.nil_Cursor_Set()
             
             self.deleteANote()
+            
+            
 //
 //
 //
