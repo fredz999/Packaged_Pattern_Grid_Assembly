@@ -170,9 +170,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
                 }
             }
-            else if in_Cursor_Set == true {
-                print(dataCell_X_Number.description,", in_Cursor_Set == true..........")
-            }
         }
         else if type == .deActivate_Cursor_Set{
             if in_Cursor_Set == true {
@@ -319,6 +316,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func reset_To_Original(){
+        print("reset_To_Original()")
         currentType = note_Reset_Status
         if let lcl_Data_Vals = currentConnectedDataVals {
             lcl_Data_Vals.updateValsFromNewData(

@@ -81,8 +81,6 @@ public class Note : ObservableObject, Identifiable, Equatable {
             cell.note_Im_In = nil
             cell.change_Highlight(highlightStatusParam: false)
             cell.reset_To_Original()
-            //if cell.in_Cursor_Set == true{cell.in_Cursor_Set = false}
-            print("note reset, note x num: ",cell.dataCell_X_Number.description)
         }
     }
     
