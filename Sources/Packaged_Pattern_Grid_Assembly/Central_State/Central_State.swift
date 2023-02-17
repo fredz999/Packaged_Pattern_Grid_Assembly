@@ -122,7 +122,7 @@ public class Central_State : ObservableObject {
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
             
-            self.viableSetHelpers.nil_Cursor_Set()
+            //self.viableSetHelpers.nil_Cursor_Set()
             
             self.deleteANote()
 //
