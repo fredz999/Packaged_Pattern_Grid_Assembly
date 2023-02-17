@@ -137,91 +137,91 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //        }
     }
     
-    func moveRightOne(){
-        if let lastCell = dataCellArray.last,let firstCell = dataCellArray.first {
-        let lastIndex = lastCell.dataCell_X_Number
-            if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
-                if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
-
-                    firstCell.note_Im_In = nil
-                    firstCell.change_Highlight(highlightStatusParam: false)
-                    dataCellArray.removeFirst()
-                    dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
-                    //redrawCellArray()
-                    check_For_Highlight()
-                }
-            }
-        }
-    }
+//    func moveRightOne(){
+//        if let lastCell = dataCellArray.last,let firstCell = dataCellArray.first {
+//        let lastIndex = lastCell.dataCell_X_Number
+//            if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
+//                if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
+//
+//                    firstCell.note_Im_In = nil
+//                    firstCell.change_Highlight(highlightStatusParam: false)
+//                    dataCellArray.removeFirst()
+//                    dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
+//                    //redrawCellArray()
+//                    check_For_Highlight()
+//                }
+//            }
+//        }
+//    }
     
-    func moveLeftOne(){
-        if let lastCell = dataCellArray.last,let firstCell = dataCellArray.first {
-        let firstIndex = firstCell.dataCell_X_Number
-            if firstIndex > 0{
-                if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[firstIndex-1].note_Im_In == nil {
-
-                    lastCell.note_Im_In = nil
-                    lastCell.change_Highlight(highlightStatusParam: false)
-
-                    dataCellArray.removeLast()
-                    
-                    let newCell = parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[firstIndex-1]
-
-                    dataCellArray.insert(newCell, at: 0)
-                    
-                    //redrawCellArray()
-                    
-                    check_For_Highlight()
-                    
-                }
-            }
-        }
-    }
+//    func moveLeftOne(){
+//        if let lastCell = dataCellArray.last,let firstCell = dataCellArray.first {
+//        let firstIndex = firstCell.dataCell_X_Number
+//            if firstIndex > 0{
+//                if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[firstIndex-1].note_Im_In == nil {
+//
+//                    lastCell.note_Im_In = nil
+//                    lastCell.change_Highlight(highlightStatusParam: false)
+//
+//                    dataCellArray.removeLast()
+//
+//                    let newCell = parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[firstIndex-1]
+//
+//                    dataCellArray.insert(newCell, at: 0)
+//
+//                    //redrawCellArray()
+//
+//                    check_For_Highlight()
+//
+//                }
+//            }
+//        }
+//    }
     
-    func moveDownOne(){
-
-        if self.note_Y_Number+1 < dimensions.DATA_final_Line_Y_Index {
-
-            var newCellArray : [Underlying_Data_Cell] = []
-            for cell in dataCellArray {
-                let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
-                newCellArray.append(cellBelow)
-            }
-
-            dataCellArray.removeAll()
-            
-            for newCell in newCellArray {
-                dataCellArray.append(newCell)
-            }
-            
-            //redrawCellArray()
-            self.note_Y_Number += 1
-            check_For_Highlight()
-
-        }
-
-    }
+//    func moveDownOne(){
+//
+//        if self.note_Y_Number+1 < dimensions.DATA_final_Line_Y_Index {
+//
+//            var newCellArray : [Underlying_Data_Cell] = []
+//            for cell in dataCellArray {
+//                let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
+//                newCellArray.append(cellBelow)
+//            }
+//
+//            dataCellArray.removeAll()
+//
+//            for newCell in newCellArray {
+//                dataCellArray.append(newCell)
+//            }
+//
+//            //redrawCellArray()
+//            self.note_Y_Number += 1
+//            check_For_Highlight()
+//
+//        }
+//
+//    }
     
-    func moveUpOne(){
-        if self.note_Y_Number > 0 {
-                
-                var newCellArray : [Underlying_Data_Cell] = []
-                for cell in dataCellArray {
-                    let cellAbove = central_State.data_Grid.dataLineArray[self.note_Y_Number-1].dataCellArray[cell.dataCell_X_Number]
-                    newCellArray.append(cellAbove)
-                }
-
-                dataCellArray.removeAll()
-                
-                for newCell in newCellArray {
-                    dataCellArray.append(newCell)
-                }
-                //redrawCellArray()
-                self.note_Y_Number -= 1
-                parentRef.currentHighlightedNote = nil
-            
-        }
-    }
+//    func moveUpOne(){
+//        if self.note_Y_Number > 0 {
+//
+//                var newCellArray : [Underlying_Data_Cell] = []
+//                for cell in dataCellArray {
+//                    let cellAbove = central_State.data_Grid.dataLineArray[self.note_Y_Number-1].dataCellArray[cell.dataCell_X_Number]
+//                    newCellArray.append(cellAbove)
+//                }
+//
+//                dataCellArray.removeAll()
+//
+//                for newCell in newCellArray {
+//                    dataCellArray.append(newCell)
+//                }
+//                //redrawCellArray()
+//                self.note_Y_Number -= 1
+//                parentRef.currentHighlightedNote = nil
+//
+//        }
+//    }
     
     func check_Cursor_Within()->Bool{
         var retval = false
@@ -233,14 +233,14 @@ public class Note : ObservableObject, Identifiable, Equatable {
         return retval
     }
     
-    func check_For_Highlight(){
-        if check_Cursor_Within() == true {
-            note_Highlighted = true
-        }
-        else {
-            parentRef.currentHighlightedNote = nil
-        }
-    }
+//    func check_For_Highlight(){
+//        if check_Cursor_Within() == true {
+//            note_Highlighted = true
+//        }
+//        else {
+//            parentRef.currentHighlightedNote = nil
+//        }
+//    }
     
     func cell_Is_Beside_Border_Or_Note(connectionType:CellConnectionType)->Bool{
         var retval = false
