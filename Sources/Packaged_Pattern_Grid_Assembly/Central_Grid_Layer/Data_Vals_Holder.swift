@@ -66,6 +66,7 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         else if status_Update_TypeParam == .cursorSet {
+            print("status_Update_TypeParam == .cursorSet ")
             if value == true {
                 if referenced_in_Cursor_Set == false {
                     referenced_in_Cursor_Set=true
@@ -77,6 +78,7 @@ public class Data_Vals_Holder : ObservableObject {
         }
         
         else if status_Update_TypeParam == .highlighted {
+            print("status_Update_TypeParam == .highlighted ")
             if value == true {
                 if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
             }
