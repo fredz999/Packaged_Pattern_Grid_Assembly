@@ -80,11 +80,12 @@ public class Note_Collection {
     public func reset_Note_Data_Cells(){
         
         if let lclCurrHighlighted = currentHighlightedNote {
-            print("2: reset_Note_Data_Cells()")
-            lclCurrHighlighted.resetCells()
-            noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
-            currentHighlightedNote = nil
+        print("2: reset_Note_Data_Cells()")
+        lclCurrHighlighted.resetCells()
+        noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
+        currentHighlightedNote = nil
         }
+        
     }
     
     public static let Static_Note_Collection = Note_Collection()

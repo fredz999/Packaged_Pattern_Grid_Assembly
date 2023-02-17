@@ -31,10 +31,11 @@ public class Central_State : ObservableObject {
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
+    //==================================================
+    //==================================================
     @Published public var writingIsOn : Bool = false {
         didSet {
             if writingIsOn == true {
-                
                 viableSetHelpers.nil_Cursor_Set()
                 if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
                 if viableSetHelpers.initial_WriteOnCell == nil {
@@ -47,9 +48,7 @@ public class Central_State : ObservableObject {
                 }
             }
             else if writingIsOn == false {
-                
                 viableSetHelpers.establish_Cursor_Set()
-                
                 if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 if viableSetHelpers.initial_WriteOnCell != nil {
@@ -124,7 +123,7 @@ public class Central_State : ObservableObject {
             
             self.viableSetHelpers.nil_Cursor_Set()
             
-            //self.deleteANote()
+            self.deleteANote()
 //
 //
 //
