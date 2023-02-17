@@ -99,7 +99,7 @@ public class Data_Vals_Holder : ObservableObject {
     
     func process_Visual_Status(){
         //if check_In_Cursor_Set() == false{}
-        check_In_Cursor_Set()
+            check_In_Cursor_Set()
             if check_Cell_Not_In_Note() == false {
                 check_Highlighted()
             }
