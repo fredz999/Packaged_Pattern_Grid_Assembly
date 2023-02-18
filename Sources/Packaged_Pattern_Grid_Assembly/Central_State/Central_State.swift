@@ -200,7 +200,7 @@ public class Central_State : ObservableObject {
     
     var curr_Data_Pos_X : Int
     
-    var curr_Data_Pos_Y : Int{
+    var curr_Data_Pos_Y : Int {
         didSet {
             let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             viableSetHelpers.current_Cell_Line_Set.removeAll()
