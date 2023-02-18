@@ -44,7 +44,6 @@ public class Data_Vals_Holder : ObservableObject {
                 
                 if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false{
                     statusColor = colors.grid_Blank_Color
-                    print("blank and ref in cursor?:",referenced_in_Cursor_Set.description)
                 }
                 
                 if referenced_currentStatus == .start_Blank{

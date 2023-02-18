@@ -46,9 +46,6 @@ public class Note_Collection {
                 }
             }
         }
-        didSet{
-            print("currentHighlightedNote set to:",currentHighlightedNote == nil ? "Nil" : currentHighlightedNote.debugDescription)
-        }
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
@@ -56,7 +53,6 @@ public class Note_Collection {
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlighted = false
                 currentHighlightedNote = nil
-                print("2: currentHighlightedNote = nil")
                 if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
             }
         }

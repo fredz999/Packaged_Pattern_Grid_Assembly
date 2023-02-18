@@ -288,6 +288,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
+        print("change_Highlight to highlightStatusParam: ",highlightStatusParam.description)
         if in_Highlighted_Set != highlightStatusParam {
             in_Highlighted_Set = highlightStatusParam
             if let lcl_Data_Vals = currentConnectedDataVals {
