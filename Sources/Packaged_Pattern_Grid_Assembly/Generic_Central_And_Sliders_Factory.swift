@@ -11,7 +11,7 @@ import SwiftUI
 public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_H_SliderType:View
     ,Injected_V_SliderType:View
-    ,Injected_Cursor_Type:View
+    //,Injected_Cursor_Type:View
     ,Injected_Note_Write_Button_Type:View
     //,Injected_Potential_Note_Type:View
     ,Injected_Data_Y_Slider_Cell_Type:View>{
@@ -27,11 +27,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store
     var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store
-    var cursor_Layer_Store : Cursor_Layer_Store
+    //var cursor_Layer_Store : Cursor_Layer_Store
     
     var injected_h_Slider : Injected_H_SliderType?
     var injected_v_Slider : Injected_V_SliderType?
-    var injected_cursor : Injected_Cursor_Type?
+    //var injected_cursor : Injected_Cursor_Type?
     //var injected_potential_Note_View : Injected_Potential_Note_Type?
     
     var potential_Note_Layer_Store : Potential_Note_Layer_Store
@@ -58,7 +58,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store()
         
-        cursor_Layer_Store = Cursor_Layer_Store()
+        //cursor_Layer_Store = Cursor_Layer_Store()
         
         potential_Note_Layer_Store = Potential_Note_Layer_Store()
         
@@ -66,7 +66,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
 
-        centralState.cursor_Layer_Ref = cursor_Layer_Store
+        //centralState.cursor_Layer_Ref = cursor_Layer_Store
         
         centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         
@@ -97,9 +97,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         injected_v_Slider = vertical_Slider_Factory_Param(cursor_Vertical_Slider_Store)
     }
     
-    public func inject_Cursor_Factory_Method(cursor_Factory_Method: ((Cursor_Layer_Store)->Injected_Cursor_Type)){
-        injected_cursor = cursor_Factory_Method(cursor_Layer_Store)
-    }
+//    public func inject_Cursor_Factory_Method(cursor_Factory_Method: ((Cursor_Layer_Store)->Injected_Cursor_Type)){
+//        injected_cursor = cursor_Factory_Method(cursor_Layer_Store)
+//    }
 
 //    public func inject_NoteWriteBtn_Factory_Method(noteWriteBtn_Factory_Method: (()->Injected_Note_Write_Button_Type)){
 //        injected_noteWriteBtn = noteWriteBtn_Factory_Method()
@@ -163,11 +163,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
     }
     
-    @ViewBuilder public func returnCursorLayer()->some View {
-        if let lclCursor = injected_cursor {
-            lclCursor
-        }
-    }
+//    @ViewBuilder public func returnCursorLayer()->some View {
+//        if let lclCursor = injected_cursor {
+//            lclCursor
+//        }
+//    }
     
 //    @ViewBuilder public func returnNoteWriteLayer()->some View {
 //        if let lclNoteWritingButton = injected_noteWriteBtn {
