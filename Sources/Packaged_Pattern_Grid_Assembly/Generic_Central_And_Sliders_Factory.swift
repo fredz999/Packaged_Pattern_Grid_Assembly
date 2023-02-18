@@ -32,7 +32,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var injected_h_Slider : Injected_H_SliderType?
     var injected_v_Slider : Injected_V_SliderType?
     var injected_cursor : Injected_Cursor_Type?
-    var injected_potential_Note_View : Injected_Potential_Note_Type?
+    //var injected_potential_Note_View : Injected_Potential_Note_Type?
     
     var potential_Note_Layer_Store : Potential_Note_Layer_Store
     
@@ -43,13 +43,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     var noteCollection = Note_Collection.Static_Note_Collection
     
     public var wrapped_Vertical_Slider : Wrapped_Vertical_Slider<Injected_Data_Y_Slider_Cell_Type>
+    
     public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
-    
-    @ViewBuilder public func returnData_Y_Slider() -> some View {
-    Generic_Slider_View(generic_Slider_Coordinator_Param: generic_Slider_Y_Coord)
-    .frame(width: dimensions.ui_Unit_Width*2,height: dimensions.Vert_Cursor_Slider_Height)
-    }
-    
     
     public init(){
         
@@ -90,6 +85,10 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         create_Central_Grid_From_Data()
     }
     
+    public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
+        return visible_Line_View_Array[yParam].unitArray[xParam]
+    }
+    
     public func inject_HSlider_Factory_Method(horizontal_Slider_Factory_Param: ((Cursor_Horizontal_Slider_Store)->Injected_H_SliderType)){
         injected_h_Slider = horizontal_Slider_Factory_Param(cursor_Horizontal_Slider_Store)
     }
@@ -106,30 +105,23 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
 //        injected_noteWriteBtn = noteWriteBtn_Factory_Method()
 //    }
     
-    public func inject_PotentialNote_Factory_Method(potentialNote_Factory_Method: ((Potential_Note_Layer_Store)->Injected_Potential_Note_Type)){
-        injected_potential_Note_View = potentialNote_Factory_Method(potential_Note_Layer_Store)
-    }
+//    public func inject_PotentialNote_Factory_Method(potentialNote_Factory_Method: ((Potential_Note_Layer_Store)->Injected_Potential_Note_Type)){
+//        injected_potential_Note_View = potentialNote_Factory_Method(potential_Note_Layer_Store)
+//    }
     
-    public func returnCentralGridUnit(xParam:Int,yParam:Int)->InjectedCentralCellType{
-        return visible_Line_View_Array[yParam].unitArray[xParam]
-    }
-    
-    public func inject_InjectedSixEightGrid(){}
-    
+//    public func inject_InjectedSixEightGrid(){}
     
     public func create_Central_Grid_From_Data(){
         
         if visible_Line_View_Array.count > 0 {
-            for line in visible_Line_View_Array{
+            for line in visible_Line_View_Array {
                 line.unitArray.removeAll()
             }
             visible_Line_View_Array.removeAll()
         }
         
         if let lclFactoryMethod = central_Grid_Manufacturing_Closure {
-            //dimensions.visualGrid_Y_Unit_Count
-            for y in 0..<dimensions.visualGrid_Y_Unit_Count{
-                    //visible_Grid_Store.gridUnitsVert {
+            for y in 0..<dimensions.visualGrid_Y_Unit_Count {
             let new_Visible_Line : Visible_Injected_Generic_View_Line = Visible_Injected_Generic_View_Line<InjectedCentralCellType>()
                 for x in 0..<dimensions.dataGrid_X_Unit_Count {
                     let visibleGridUnit = lclFactoryMethod(visible_Grid_Store.vis_Line_Store_Array[y].visual_Cell_Store_Array[x])
@@ -142,31 +134,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         //central_Grid_Manufacturing_Closure = nil
     }
     
-    // ==================================== doing the whole grid instead of the single cells ========================================
-//    public var centralGridSize : E_CentralGridTiming = .fourFour{
-//        didSet{
-//            handleCentralGridTimimgChange()
-//        }
-//    }
-    
-    
-
-    
-//    var gridFourFour : [InjectedCentralCellType] = []
-//    var gridSixEight : [InjectedCentralCellType] = []
-//
-//    @ViewBuilder public func returnDualSizeGrid() -> some View {
-//        if centralGridSize == .fourFour {
-//
-//        }
-//        else if centralGridSize == .sixEight{
-//
-//        }
-//    }
-//
-//    func handleCentralGridTimimgChange(){ }
-    // ==================================== doing the whole grid instead of the single cells ========================================
-    
     public var centralGridSet : Bool = false
     
     @ViewBuilder public func returnCentralGrid()->some View {
@@ -174,22 +141,16 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
                     if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
-
                         self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index).offset(x:lclXFloat,y:lclYFloat)
-
                     }
                 }
             }
         }
-//        else if centralGridSet == false {
-//            ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
-//                ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
-//                    if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
-//                        Default_Central_Cell_View(central_Cell_Store: visibleUnit).offset(x:lclXFloat,y:lclYFloat)
-//                    }
-//                }
-//            }
-//        }
+    }
+    
+    @ViewBuilder public func returnData_Y_Slider() -> some View {
+    Generic_Slider_View(generic_Slider_Coordinator_Param: generic_Slider_Y_Coord)
+    .frame(width: dimensions.ui_Unit_Width*2,height: dimensions.Vert_Cursor_Slider_Height)
     }
     
     @ViewBuilder public func returnSliders()->some View {
@@ -199,8 +160,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
         else {
             Text("Default_Vertical_Slider_View")
-            //Default_Horizontal_Slider_View(cursor_Horizontal_Slider_Store: cursor_Horizontal_Slider_Store)
-//            Default_Vertical_Slider_View(cursor_Vertical_Slider_Store: cursor_Vertical_Slider_Store)
         }
     }
     
@@ -220,11 +179,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
 //    }
     
     
-    @ViewBuilder public func returnPotentialLayer()->some View {
-        if let lclInjectedPotentialNoteView = injected_potential_Note_View {
-            lclInjectedPotentialNoteView
-        }
-    }
+//    @ViewBuilder public func returnPotentialLayer()->some View {
+//        if let lclInjectedPotentialNoteView = injected_potential_Note_View {
+//            lclInjectedPotentialNoteView
+//        }
+//    }
     
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
