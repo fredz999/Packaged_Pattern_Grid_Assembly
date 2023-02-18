@@ -131,7 +131,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
             }
             if centralGridSet == false{centralGridSet = true}
         }
-        //central_Grid_Manufacturing_Closure = nil
+        central_Grid_Manufacturing_Closure = nil
     }
     
     public var centralGridSet : Bool = false
@@ -157,9 +157,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         if let lclHslider = injected_h_Slider,let lclVslider = injected_v_Slider {
             lclHslider
             lclVslider
-        }
-        else {
-            Text("Default_Vertical_Slider_View")
         }
     }
     
