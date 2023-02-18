@@ -143,7 +143,6 @@ class Viable_Set_Helper_Functions{
             }
             }
             else if dimensions.patternTimingConfiguration == .sixEight {
-                print("lclInitialCell.dataCell_X_Number > ..... patternTimingConfiguration == .sixEight")
                 let lowerHalfCellSet = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
                 let upperHalfCellSet = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index-1})
                 var combinedSet = Set<Underlying_Data_Cell>()
@@ -309,73 +308,3 @@ enum E_SwipeDirections{
     case rightward
     case stationary
 }
-
-
-
-
-//            else if lclInitialCell.dataCell_X_Number > helperFuncs_currentData.dataCell_X_Number {
-//                if dimensions.patternTimingConfiguration == .fourFour {
-//                    let upperHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index-1})
-//                    let lowerHalfCellSet = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
-//                    var combinedSet = Set<Underlying_Data_Cell>()
-//
-//                    let leftSideHasNotesSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number < lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
-//                    let highestLeftNoteCell = leftSideHasNotesSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//
-//
-//                    if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                        combinedSet = lowerHalfCellSet
-//                    }
-//
-//                    else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-//                        combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-//                    }
-//
-//                    if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                    ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//                        let swipeSet =
-//                        current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
-//                        && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//
-//                        if let lclHighestLeftNoteCell = highestLeftNoteCell {
-//                            helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number > lclHighestLeftNoteCell.dataCell_X_Number})
-//                        }
-//                        else if highestLeftNoteCell == nil {
-//                            helperFuncs_PotentialNote_Set = swipeSet
-//                        }
-//                    }
-//                }
-//                else if dimensions.patternTimingConfiguration == .sixEight {
-//                    let upperHalfCellSet = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index-1})
-//                    let lowerHalfCellSet = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
-//                    var combinedSet = Set<Underlying_Data_Cell>()
-//
-//                    let leftSideHasNotesSet = current_Cell_Line_Set.filter({$0.dataCell_X_Number < lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
-//                    let highestLeftNoteCell = leftSideHasNotesSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//
-//
-//                    if lclInitialCell.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number {
-//                        combinedSet = lowerHalfCellSet
-//                    }
-//
-//                    else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-//                        combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-//                    }
-//
-//                    if let min_Cell = combinedSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                    ,let max_Cell = combinedSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//                        let swipeSet =
-//                        current_Cell_Line_Set.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
-//                        && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//
-//                        if let lclHighestLeftNoteCell = highestLeftNoteCell {
-//                            helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number > lclHighestLeftNoteCell.dataCell_X_Number})
-//                        }
-//                        else if highestLeftNoteCell == nil {
-//                            helperFuncs_PotentialNote_Set = swipeSet
-//                        }
-//                    }
-//                }
-//            }
