@@ -210,7 +210,6 @@ class Viable_Set_Helper_Functions{
                 }
             }
             else if dimensions.patternTimingConfiguration == .sixEight {
-                print("lclInitialCell.dataCell_X_Number < ..... patternTimingConfiguration == .sixEight")
                 let upperHalfCellSet = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index-1})
                 let lowerHalfCellSet = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
                 var combinedSet = Set<Underlying_Data_Cell>()
@@ -223,7 +222,7 @@ class Viable_Set_Helper_Functions{
                     combinedSet = lowerHalfCellSet
                 }
 
-                else if helperFuncs_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+                else if helperFuncs_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
                     combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
                 }
 
@@ -243,9 +242,7 @@ class Viable_Set_Helper_Functions{
                 }
             }
             }
-            
-            
-            
+
         }
     }
     
