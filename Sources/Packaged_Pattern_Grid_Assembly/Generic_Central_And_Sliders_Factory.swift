@@ -34,7 +34,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     //var injected_cursor : Injected_Cursor_Type?
     //var injected_potential_Note_View : Injected_Potential_Note_Type?
     
-    var potential_Note_Layer_Store : Potential_Note_Layer_Store
+    //var potential_Note_Layer_Store : Potential_Note_Layer_Store
     
     //=============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
@@ -60,7 +60,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         //cursor_Layer_Store = Cursor_Layer_Store()
         
-        potential_Note_Layer_Store = Potential_Note_Layer_Store()
+        //potential_Note_Layer_Store = Potential_Note_Layer_Store()
         
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
         
@@ -68,11 +68,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
 
         //centralState.cursor_Layer_Ref = cursor_Layer_Store
         
-        centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
+        //centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         
         centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
         
-        centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
+        //centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         centralState.note_Collection_Ref = noteCollection
         centralState.central_Grid_Store = visible_Grid_Store
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
@@ -163,30 +163,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         }
     }
     
-//    @ViewBuilder public func returnCursorLayer()->some View {
-//        if let lclCursor = injected_cursor {
-//            lclCursor
-//        }
-//    }
-    
-//    @ViewBuilder public func returnNoteWriteLayer()->some View {
-//        if let lclNoteWritingButton = injected_noteWriteBtn {
-//            lclNoteWritingButton
-//        }
-//        else if injected_noteWriteBtn == nil{
-//            Text("NoteWriteBtn")
-//        }
-//    }
-    
-    
-//    @ViewBuilder public func returnPotentialLayer()->some View {
-//        if let lclInjectedPotentialNoteView = injected_potential_Note_View {
-//            lclInjectedPotentialNoteView
-//        }
-//    }
-    
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
+    
     }
     
 }
@@ -229,3 +208,26 @@ public enum E_CentralGridTiming {
 //    case cursor
 //    case data_Y_Slider_Cell
 //}
+
+
+//    @ViewBuilder public func returnCursorLayer()->some View {
+//        if let lclCursor = injected_cursor {
+//            lclCursor
+//        }
+//    }
+    
+//    @ViewBuilder public func returnNoteWriteLayer()->some View {
+//        if let lclNoteWritingButton = injected_noteWriteBtn {
+//            lclNoteWritingButton
+//        }
+//        else if injected_noteWriteBtn == nil{
+//            Text("NoteWriteBtn")
+//        }
+//    }
+    
+    
+//    @ViewBuilder public func returnPotentialLayer()->some View {
+//        if let lclInjectedPotentialNoteView = injected_potential_Note_View {
+//            lclInjectedPotentialNoteView
+//        }
+//    }
