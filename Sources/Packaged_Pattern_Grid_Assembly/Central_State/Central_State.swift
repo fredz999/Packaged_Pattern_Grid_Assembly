@@ -21,7 +21,7 @@ public class Central_State : ObservableObject {
     //==================================================
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
     public var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
-    var cursor_Layer_Ref : Cursor_Layer_Store?
+    //var cursor_Layer_Ref : Cursor_Layer_Store?
     //var potential_Note_Layer_Ref : Potential_Note_Layer_Store?
     
     public var note_Collection_Ref : Note_Collection?

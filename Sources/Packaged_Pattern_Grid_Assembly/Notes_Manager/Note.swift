@@ -222,15 +222,15 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //        }
 //    }
     
-    func check_Cursor_Within()->Bool{
-        var retval = false
-        if let lclCursorLayer = central_State.cursor_Layer_Ref {
-            for cell in dataCellArray {
-                if cell.dataCell_X_Number == lclCursorLayer.currDataX,cell.dataCell_Y_Number == lclCursorLayer.currDataY {retval = true}
-            }
-        }
-        return retval
-    }
+//    func check_Cursor_Within()->Bool{
+//        var retval = false
+//        if let lclCursorLayer = central_State.cursor_Layer_Ref {
+//            for cell in dataCellArray {
+//                if cell.dataCell_X_Number == lclCursorLayer.currDataX,cell.dataCell_Y_Number == lclCursorLayer.currDataY {retval = true}
+//            }
+//        }
+//        return retval
+//    }
     
 //    func check_For_Highlight(){
 //        if check_Cursor_Within() == true {
