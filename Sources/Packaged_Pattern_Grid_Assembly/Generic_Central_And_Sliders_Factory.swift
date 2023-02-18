@@ -11,7 +11,7 @@ import SwiftUI
 public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_H_SliderType:View
     ,Injected_V_SliderType:View
-    ,Injected_Note_Write_Button_Type:View
+    //,Injected_Note_Write_Button_Type:View
     ,Injected_Data_Y_Slider_Cell_Type:View> {
     
     let dimensions = ComponentDimensions.StaticDimensions
@@ -156,7 +156,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     deinit {
         if central_Grid_Manufacturing_Closure != nil{central_Grid_Manufacturing_Closure = nil}
-    
     }
     
 }
