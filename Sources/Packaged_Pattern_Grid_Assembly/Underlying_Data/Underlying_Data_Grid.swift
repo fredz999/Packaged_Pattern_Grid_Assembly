@@ -231,9 +231,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var six_Eight_Half_Sub_Index : Int
     public var six_Eight_Half_Cell_Index : Int
     
-    //var final_FourFour_HalfCell : Bool
-    //var parentLine : Underlying_Data_Line
-    
     public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus
     ,fourFourSubIndexParam:Int
     ,sixEightSubIndexParam:Int
@@ -243,9 +240,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     ,four_Four_Half_Cell_Index_Param:Int
     ,six_Eight_Half_Sub_Index_Param:Int
     ,six_Eight_Half_Cell_Index_Param:Int
-    //,parentLineParam:Underlying_Data_Line
     ){
-    //parentLine = parentLineParam
     four_Four_Sub_Index = fourFourSubIndexParam
     four_Four_Cell_Index = four_Four_Cell_Index_Param
     six_Eight_Sub_Index = sixEightSubIndexParam

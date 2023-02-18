@@ -11,18 +11,12 @@ import SwiftUI
 public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_H_SliderType:View
     ,Injected_V_SliderType:View
-    //,Injected_Cursor_Type:View
     ,Injected_Note_Write_Button_Type:View
-    //,Injected_Potential_Note_Type:View
-    ,Injected_Data_Y_Slider_Cell_Type:View>{
+    ,Injected_Data_Y_Slider_Cell_Type:View> {
     
     let dimensions = ComponentDimensions.StaticDimensions
-    
     public var visible_Grid_Store : Central_Grid_Store
-    
     public var centralState = Central_State.Static_Central_State
-    
-    
     public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
     
     var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store

@@ -84,161 +84,161 @@ public class Pattern_Edit_Layer<Injected_Delete_Btn_Type:View,Injected_Lengthen_
         if let lclDelBtn = injected_Delete_Button{
             lclDelBtn
         }
-        else if injected_Delete_Button == nil{
-            Text("DeleteBtnPlaceholder")
-        }
+//        else if injected_Delete_Button == nil{
+//            Text("DeleteBtnPlaceholder")
+//        }
     }
     
     @ViewBuilder public func return_Lengthen_Shorten_Buttons()->some View {
         if let lcl_Lengthen_Shorten_Btns = injected_Lengthen_Shorten_Buttons {
             lcl_Lengthen_Shorten_Btns
         }
-        else if injected_Lengthen_Shorten_Buttons == nil {
-            Default_Lengthen_Shorten_Buttons_View()
-        }
+//        else if injected_Lengthen_Shorten_Buttons == nil {
+//            Default_Lengthen_Shorten_Buttons_View()
+//        }
     }
     
     @ViewBuilder public func return_Move_Left_Right_Buttons()->some View {
         if let lcl_Move_Left_Right_Btns = injected_Move_Left_Right_Buttons {
             lcl_Move_Left_Right_Btns
         }
-        else if injected_Move_Left_Right_Buttons == nil{
-            Default_Move_Left_Right_Buttons_View()
-        }
+//        else if injected_Move_Left_Right_Buttons == nil{
+//            Default_Move_Left_Right_Buttons_View()
+//        }
     }
     
     @ViewBuilder public func return_Move_Down_Up_Buttons()->some View{
         if let lclMove_Down_Up_Buttons = injected_Move_Down_Up_Buttons{
             lclMove_Down_Up_Buttons
         }
-        else if injected_Move_Down_Up_Buttons == nil{
-            Default_Move_Down_Up_Buttons_View()
-        }
+//        else if injected_Move_Down_Up_Buttons == nil{
+//            Default_Move_Down_Up_Buttons_View()
+//        }
     }
     
     
 }
 
-struct Default_Lengthen_Shorten_Buttons_View : View {
-    @ObservedObject var centralState = Central_State.Static_Central_State
-    var body: some View {
-        return ZStack {
-            if centralState.a_Note_Is_Highlighted == true {
-                HStack{
-                    Button(action:{
-                        centralState.changeNoteLength(isIncrement: true)
-                    }){
-                        ZStack{
-                            Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                            Text("+>").foregroundColor(.white)
-                        }
-                    }
-                    Button(action:{
-                        centralState.changeNoteLength(isIncrement: false)
-                    }){
-                        ZStack{
-                            Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                            Text("<-").foregroundColor(.white)
-                        }
-                    }
-                }
-            }
-            else if centralState.a_Note_Is_Highlighted == false {
-                HStack{
-                    ZStack{
-                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                        Text("+>").foregroundColor(.white)
-                    }
-                    ZStack{
-                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                        Text("<-").foregroundColor(.white)
-                    }
-                }
-            }
-        }
-    }
-}
+//struct Default_Lengthen_Shorten_Buttons_View : View {
+//    @ObservedObject var centralState = Central_State.Static_Central_State
+//    var body: some View {
+//        return ZStack {
+//            if centralState.a_Note_Is_Highlighted == true {
+//                HStack{
+//                    Button(action:{
+//                        centralState.changeNoteLength(isIncrement: true)
+//                    }){
+//                        ZStack{
+//                            Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                            Text("+>").foregroundColor(.white)
+//                        }
+//                    }
+//                    Button(action:{
+//                        centralState.changeNoteLength(isIncrement: false)
+//                    }){
+//                        ZStack{
+//                            Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                            Text("<-").foregroundColor(.white)
+//                        }
+//                    }
+//                }
+//            }
+//            else if centralState.a_Note_Is_Highlighted == false {
+//                HStack{
+//                    ZStack{
+//                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                        Text("+>").foregroundColor(.white)
+//                    }
+//                    ZStack{
+//                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                        Text("<-").foregroundColor(.white)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
-struct Default_Move_Left_Right_Buttons_View : View {
-    @ObservedObject var centralState = Central_State.Static_Central_State
-    var body: some View {
-        return ZStack {
-        if centralState.a_Note_Is_Highlighted == true {
-            HStack{
-                Button(action:{
-                    centralState.changeNotePosition(movementTyoeParam: .rightWard)
-                }){
-                    ZStack{
-                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                        Text("=>").foregroundColor(.white)
-                    }
-                }
-                
-                Button(action:{
-                    centralState.changeNotePosition(movementTyoeParam: .leftWard)
-                }){
-                    ZStack{
-                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                        Text("<=").foregroundColor(.white)
-                    }
-                }
-            }
-        }
-        else if centralState.a_Note_Is_Highlighted == false {
-            HStack {
-                ZStack {
-                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                    Text("=>").foregroundColor(.white)
-                }
-                ZStack {
-                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                    Text("<=").foregroundColor(.white)
-                }
-            }
-        }
-    }
-  }
-}
+//struct Default_Move_Left_Right_Buttons_View : View {
+//    @ObservedObject var centralState = Central_State.Static_Central_State
+//    var body: some View {
+//        return ZStack {
+//        if centralState.a_Note_Is_Highlighted == true {
+//            HStack{
+//                Button(action:{
+//                    centralState.changeNotePosition(movementTyoeParam: .rightWard)
+//                }){
+//                    ZStack{
+//                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                        Text("=>").foregroundColor(.white)
+//                    }
+//                }
+//
+//                Button(action:{
+//                    centralState.changeNotePosition(movementTyoeParam: .leftWard)
+//                }){
+//                    ZStack{
+//                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                        Text("<=").foregroundColor(.white)
+//                    }
+//                }
+//            }
+//        }
+//        else if centralState.a_Note_Is_Highlighted == false {
+//            HStack {
+//                ZStack {
+//                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                    Text("=>").foregroundColor(.white)
+//                }
+//                ZStack {
+//                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                    Text("<=").foregroundColor(.white)
+//                }
+//            }
+//        }
+//    }
+//  }
+//}
 
-struct Default_Move_Down_Up_Buttons_View : View {
-    @ObservedObject var centralState = Central_State.Static_Central_State
-    var body: some View {
-        return ZStack {
-        if centralState.a_Note_Is_Highlighted == true {
-            HStack{
-                
-                Button(action:{
-                    centralState.changeNotePosition(movementTyoeParam: .downward)
-                }){
-                    ZStack{
-                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                        Text("▼").foregroundColor(.white)
-                    }
-                }
-                
-                Button(action:{
-                    centralState.changeNotePosition(movementTyoeParam: .upward)
-                }){
-                    ZStack{
-                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                        Text("▲").foregroundColor(.white)
-                    }
-                }
-                
-            }
-        }
-        else if centralState.a_Note_Is_Highlighted == false {
-            HStack{
-                ZStack{
-                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                    Text("▼").foregroundColor(.white)
-                }
-                ZStack{
-                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
-                    Text("▲").foregroundColor(.white)
-                }
-            }
-        }
-    }
-    }
-}
+//struct Default_Move_Down_Up_Buttons_View : View {
+//    @ObservedObject var centralState = Central_State.Static_Central_State
+//    var body: some View {
+//        return ZStack {
+//        if centralState.a_Note_Is_Highlighted == true {
+//            HStack{
+//
+//                Button(action:{
+//                    centralState.changeNotePosition(movementTyoeParam: .downward)
+//                }){
+//                    ZStack{
+//                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                        Text("▼").foregroundColor(.white)
+//                    }
+//                }
+//
+//                Button(action:{
+//                    centralState.changeNotePosition(movementTyoeParam: .upward)
+//                }){
+//                    ZStack{
+//                        Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                        Text("▲").foregroundColor(.white)
+//                    }
+//                }
+//
+//            }
+//        }
+//        else if centralState.a_Note_Is_Highlighted == false {
+//            HStack{
+//                ZStack{
+//                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                    Text("▼").foregroundColor(.white)
+//                }
+//                ZStack{
+//                    Rectangle().frame(width: 90,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
+//                    Text("▲").foregroundColor(.white)
+//                }
+//            }
+//        }
+//    }
+//    }
+//}
