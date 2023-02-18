@@ -288,7 +288,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
-        print("change_Highlight to highlightStatusParam: ",highlightStatusParam.description)
         if in_Highlighted_Set != highlightStatusParam {
             in_Highlighted_Set = highlightStatusParam
             if let lcl_Data_Vals = currentConnectedDataVals {
@@ -307,15 +306,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     var in_Cursor_Set : Bool = false
-//    public func change_Cursor_Status(newCursorStatus:Bool)
-//    {
-//        if in_Cursor_Set != newCursorStatus {
-//            in_Cursor_Set = newCursorStatus
-//            if let lcl_Data_Vals = currentConnectedDataVals {
-//                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: newCursorStatus)
-//            }
-//        }
-//    }
     
     public func reset_To_Original(){
         currentType = note_Reset_Status
