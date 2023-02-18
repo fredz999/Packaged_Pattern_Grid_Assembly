@@ -13,7 +13,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_V_SliderType:View
     ,Injected_Cursor_Type:View
     ,Injected_Note_Write_Button_Type:View
-    ,Injected_Potential_Note_Type:View
+    //,Injected_Potential_Note_Type:View
     ,Injected_Data_Y_Slider_Cell_Type:View>{
     
     let dimensions = ComponentDimensions.StaticDimensions
