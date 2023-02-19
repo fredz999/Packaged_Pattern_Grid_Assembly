@@ -168,7 +168,9 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
 
     func cursor_Slider_Update(){
-        print("cursor movement........")
+        if let currViable = viableSetHelpers.initial_WriteOnCell {
+            print("cursor mooooovement........initialY: ",currViable.dataCell_Y_Number.description)
+        }
         centralState_Data_Evaluation()
         if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
     }
