@@ -35,7 +35,7 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
                 viableSetHelpers.nil_Cursor_Set()
                 if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
-                if viableSetHelpers.initial_WriteOnCell == nil {
+                if viableSetHelpers.initial_WriteOnCell == nil,a_Note_Is_Highlighted == false {
                     if dimensions.patternTimingConfiguration == .fourFour {
                         viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                     }
@@ -176,9 +176,7 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
         
         if let currViable = viableSetHelpers.initial_WriteOnCell {
-            
-            print("viableSetHelpers.initial_WriteOnCell X: ",currViable.dataCell_X_Number.description,", Y: ",currViable.dataCell_Y_Number.description)
-            
+
             if currViable.dataCell_Y_Number != curr_Data_Pos_Y {
                 viableSetHelpers.nilPotentialSet()
                 if dimensions.patternTimingConfiguration == .fourFour {
