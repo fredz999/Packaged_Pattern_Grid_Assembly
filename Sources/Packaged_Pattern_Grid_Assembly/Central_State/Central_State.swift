@@ -194,7 +194,7 @@ public class Central_State : ObservableObject {
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 curr_Data_Pos_X = dimensions.currentSixEightDataIndex
             }
-            
+            if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
         }
         
         else if  viableSetHelpers.initial_WriteOnCell == nil{
@@ -210,7 +210,7 @@ public class Central_State : ObservableObject {
             }
         }
         
-        if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
+        
 
     }
     
