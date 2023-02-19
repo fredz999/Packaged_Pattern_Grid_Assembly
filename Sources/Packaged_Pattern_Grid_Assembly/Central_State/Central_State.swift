@@ -177,6 +177,8 @@ public class Central_State : ObservableObject {
         
         if let currViable = viableSetHelpers.initial_WriteOnCell {
             
+            print("viableSetHelpers.initial_WriteOnCell X: ",currViable.dataCell_X_Number.description,", Y: ",currViable.dataCell_Y_Number.description)
+            
             if currViable.dataCell_Y_Number != curr_Data_Pos_Y{
                 viableSetHelpers.nilPotentialSet()
             }
