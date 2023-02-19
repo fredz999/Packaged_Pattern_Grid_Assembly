@@ -179,7 +179,7 @@ public class Central_State : ObservableObject {
             
             print("viableSetHelpers.initial_WriteOnCell X: ",currViable.dataCell_X_Number.description,", Y: ",currViable.dataCell_Y_Number.description)
             
-            if currViable.dataCell_Y_Number != curr_Data_Pos_Y{
+            if currViable.dataCell_Y_Number != curr_Data_Pos_Y {
                 viableSetHelpers.nilPotentialSet()
                 if dimensions.patternTimingConfiguration == .fourFour {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -187,7 +187,7 @@ public class Central_State : ObservableObject {
                     curr_Data_Pos_X = dimensions.currentFourFourDataIndex
                 }
                 else if dimensions.patternTimingConfiguration == .sixEight {
-                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     curr_Data_Pos_X = dimensions.currentSixEightDataIndex
                 }
