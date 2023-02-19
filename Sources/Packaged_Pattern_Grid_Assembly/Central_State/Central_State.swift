@@ -174,21 +174,23 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
+        
         if let currViable = viableSetHelpers.initial_WriteOnCell {
-            print("cursor mooooovement........initialY: ",currViable.dataCell_Y_Number.description)
-        }
-        
-        
-        
-        
-        
-        if dimensions.patternTimingConfiguration == .fourFour{
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-            viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+            
+            if currViable.dataCell_Y_Number != curr_Data_Pos_Y{
+                viableSetHelpers.nilPotentialSet()
+            }
+    
+            if dimensions.patternTimingConfiguration == .fourFour{
+                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+            }
+            
+            else if dimensions.patternTimingConfiguration == .sixEight {
+                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+            }
+            
         }
 
     }
