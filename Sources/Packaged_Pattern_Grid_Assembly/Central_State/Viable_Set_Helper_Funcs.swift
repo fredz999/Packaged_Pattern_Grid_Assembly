@@ -102,16 +102,30 @@ class Viable_Set_Helper_Functions{
 //        else if dimensions.patternTimingConfiguration == .sixEight {
 //            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
 //        }
+        
+//        if dimensions.patternTimingConfiguration == .fourFour {
+//            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
+//                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number+1
+//            })
+//        }
+//        else if dimensions.patternTimingConfiguration == .sixEight {
+//            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
+//                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number+1
+//            })
+//        }
+        
         if dimensions.patternTimingConfiguration == .fourFour {
             helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
-                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number+1
+                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
             })
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
             helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
-                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number+1
+                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
             })
         }
+        
+        
     }
     
     func establish_Potential_Cells_Set(){
