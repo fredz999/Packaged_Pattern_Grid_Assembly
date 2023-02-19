@@ -170,7 +170,7 @@ public class Central_State : ObservableObject {
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
-        //if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
+        if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
     }
     
     func centralState_Data_Evaluation(){
@@ -181,20 +181,28 @@ public class Central_State : ObservableObject {
             
             if currViable.dataCell_Y_Number != curr_Data_Pos_Y{
                 viableSetHelpers.nilPotentialSet()
+                if dimensions.patternTimingConfiguration == .fourFour {
+                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+                }
+                else if dimensions.patternTimingConfiguration == .sixEight {
+                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                    curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+                }
             }
-    
-            if dimensions.patternTimingConfiguration == .fourFour {
-                viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+            else if currViable.dataCell_Y_Number == curr_Data_Pos_Y {
+                if dimensions.patternTimingConfiguration == .fourFour {
+                    viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+                }
+                else if dimensions.patternTimingConfiguration == .sixEight {
+                    viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                    curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+                }
             }
-            
-            else if dimensions.patternTimingConfiguration == .sixEight {
-                viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                curr_Data_Pos_X = dimensions.currentSixEightDataIndex
-            }
-            if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
+
         }
         
         else if  viableSetHelpers.initial_WriteOnCell == nil{
