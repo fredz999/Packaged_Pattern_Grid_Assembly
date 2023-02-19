@@ -168,16 +168,19 @@ public class Central_State : ObservableObject {
     var currentYCursor_Slider_Position : Int = 0
 
     func cursor_Slider_Update(){
-        if let currViable = viableSetHelpers.initial_WriteOnCell {
-            print("cursor mooooovement........initialY: ",currViable.dataCell_Y_Number.description)
-        }
+        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
         if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
     }
     
     func centralState_Data_Evaluation(){
-
-        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+        if let currViable = viableSetHelpers.initial_WriteOnCell {
+            print("cursor mooooovement........initialY: ",currViable.dataCell_Y_Number.description)
+        }
+        
+        
+        
+        
         
         if dimensions.patternTimingConfiguration == .fourFour{
             viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
