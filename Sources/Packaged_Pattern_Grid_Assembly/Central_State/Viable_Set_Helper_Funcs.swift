@@ -96,12 +96,12 @@ class Viable_Set_Helper_Functions{
     }
     
     func establish_Cursor_Set(){
-        if dimensions.patternTimingConfiguration == .fourFour {
-            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
-        }
+//        if dimensions.patternTimingConfiguration == .fourFour {
+//            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index})
+//        }
+//        else if dimensions.patternTimingConfiguration == .sixEight {
+//            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == helperFuncs_currentData.six_Eight_Half_Cell_Index})
+//        }
     }
     
     func establish_Potential_Cells_Set(){
