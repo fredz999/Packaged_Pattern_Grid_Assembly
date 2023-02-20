@@ -72,6 +72,10 @@ public class Central_State : ObservableObject {
         
     }
     
+    public func post_init_Setup(){
+        viableSetHelpers.establish_Cursor_Set()
+    }
+    
     @Published public var write_Needs_Held_Down : Bool = false
     
     public func change_Write_Needs_Held_Down(){
