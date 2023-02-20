@@ -14,6 +14,8 @@ public class Central_State : ObservableObject {
     @Published var edit_Layer_Visible : Bool = true
     
     @Published public var a_Note_Is_Highlighted : Bool = false
+    
+    @Published public var note_Write_Locked : Bool = false
 
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
@@ -68,10 +70,6 @@ public class Central_State : ObservableObject {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
         }
         
-    }
-    
-    public func postInitSetup(){
-        viableSetHelpers.establish_Cursor_Set()
     }
     
     @Published public var write_Needs_Held_Down : Bool = false

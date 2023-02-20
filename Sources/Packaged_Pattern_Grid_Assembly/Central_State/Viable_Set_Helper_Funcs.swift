@@ -49,35 +49,7 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    var helperFuncs_Cursor_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = helperFuncs_Cursor_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
-            }
-        }
-        didSet {
-            if Central_State.Static_Central_State.writingIsOn == false {
-                var nillableNote : Note? = nil
-                for cell in helperFuncs_Cursor_Set {
-                    cell.handleVisibleStateChange(type: .activate_Cursor_Set)
-                    if let lclNote = cell.note_Im_In {
-                        nillableNote = lclNote
-                    }
-                }
-
-                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
-                    if let lclNillableNote = nillableNote {
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
-                    }
-                    else if nillableNote == nil{
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-                    }
-                }
-                
-            }
-        }
-    }
+    
 
     var initial_WriteOnCell : Underlying_Data_Cell?{
         willSet {
@@ -92,6 +64,74 @@ class Viable_Set_Helper_Functions{
     var helperFuncs_currentData : Underlying_Data_Cell{
         didSet {
             establish_Cursor_Set()
+        }
+    }
+    
+    var helperFuncs_Cursor_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = helperFuncs_Cursor_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
+            }
+        }
+        didSet {
+            if Central_State.Static_Central_State.writingIsOn == false {
+                // TODO : cursorSet, highlightedNoteWithinCursorSet
+                var nillableNote : Note? = nil
+                for cell in helperFuncs_Cursor_Set {
+                    cell.handleVisibleStateChange(type: .activate_Cursor_Set)
+                    if let lclNote = cell.note_Im_In {
+                        nillableNote = lclNote
+                    }
+                }
+                
+                if let cursorZero = helperFuncs_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+         
+                    if cursorZero.dataCell_X_Number == 0 {
+                        //todo
+                    }
+                    else if cursorZero.dataCell_X_Number == dimensions.dataGrid_X_Unit_Count-1{
+                        //todo
+                    }
+                    if cursorZero.dataCell_X_Number > 0 && cursorZero.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1{
+                        //if the preceding and adjacent cells are note positive then block writing
+                        let write_Block_Set = helperFuncs_Cursor_Set.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
+                            || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
+                        
+                        var write_Getting_Blocked : Bool = true
+                        
+                        for cell in write_Block_Set{
+                            if cell.note_Im_In == nil{
+                                if write_Getting_Blocked == true{write_Getting_Blocked = false}
+                            }
+                        }
+                        if write_Getting_Blocked == true{
+                            if Central_State.Static_Central_State.note_Write_Locked == false{
+                                Central_State.Static_Central_State.note_Write_Locked = true
+                            }
+                        }
+                        else if write_Getting_Blocked == false{
+                            if Central_State.Static_Central_State.note_Write_Locked == true{
+                                Central_State.Static_Central_State.note_Write_Locked = false
+                            }
+                        }
+                       
+                    }
+                    
+                    
+                    //let block_Write_Set = current_Cell_Line_Set
+                }
+
+                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+                    if let lclNillableNote = nillableNote {
+                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+                    }
+                    else if nillableNote == nil {
+                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                    }
+                }
+                
+            }
         }
     }
     
@@ -112,17 +152,6 @@ class Viable_Set_Helper_Functions{
 //        else if dimensions.patternTimingConfiguration == .sixEight {
 //            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
 //                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number+1
-//            })
-//        }
-        
-//        if dimensions.patternTimingConfiguration == .fourFour {
-//            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
-//                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
-//            })
-//        }
-//        else if dimensions.patternTimingConfiguration == .sixEight {
-//            helperFuncs_Cursor_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
-//                || $0.dataCell_X_Number == helperFuncs_currentData.dataCell_X_Number
 //            })
 //        }
         
