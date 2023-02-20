@@ -97,7 +97,7 @@ class Viable_Set_Helper_Functions{
                         //if the preceding and adjacent cells are note positive then block writing
                         let write_Block_Set = helperFuncs_Cursor_Set.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
                             || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
-                        
+                        print("writeBlockSet count:",write_Block_Set.count.description)
                         var write_Getting_Blocked : Bool = true
                         
                         for cell in write_Block_Set{
@@ -134,6 +134,8 @@ class Viable_Set_Helper_Functions{
             }
         }
     }
+    
+    
     
     func establish_Cursor_Set(){
         
