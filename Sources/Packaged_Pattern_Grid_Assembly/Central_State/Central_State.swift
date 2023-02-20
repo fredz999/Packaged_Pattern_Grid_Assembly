@@ -53,6 +53,7 @@ public class Central_State : ObservableObject {
                 if viableSetHelpers.initial_WriteOnCell != nil {
                     viableSetHelpers.initial_WriteOnCell = nil
                 }
+                viableSetHelpers.test_For_Write_Lock()
             }
         }
     }
