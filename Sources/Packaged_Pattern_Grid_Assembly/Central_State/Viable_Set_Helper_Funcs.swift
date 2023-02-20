@@ -95,8 +95,10 @@ class Viable_Set_Helper_Functions{
                     }
                     if cursorZero.dataCell_X_Number > 0 && cursorZero.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1{
                         //if the preceding and adjacent cells are note positive then block writing
-                        let write_Block_Set = helperFuncs_Cursor_Set.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
+                        //current_Cell_Line_Set
+                        let write_Block_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
                             || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
+                        
                         print("writeBlockSet count:",write_Block_Set.count.description)
                         var write_Getting_Blocked : Bool = true
                         
