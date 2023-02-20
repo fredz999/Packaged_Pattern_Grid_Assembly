@@ -83,44 +83,8 @@ class Viable_Set_Helper_Functions{
                     }
                 }
                 
-                if let cursorZero = helperFuncs_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-         
-                    if cursorZero.dataCell_X_Number == 0 {
-                        //todo
-                    }
-                    else if cursorZero.dataCell_X_Number == dimensions.dataGrid_X_Unit_Count-1{
-                        //todo
-                    }
-                    if cursorZero.dataCell_X_Number > 0 && cursorZero.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1{
-                        //if the preceding and adjacent cells are note positive then block writing
-                        //current_Cell_Line_Set
-                        let write_Block_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
-                            || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
-                        
-                        var write_Getting_Blocked : Bool = true
-                        
-                        for cell in write_Block_Set{
-                            if cell.note_Im_In == nil{
-                                if write_Getting_Blocked == true{write_Getting_Blocked = false}
-                            }
-                        }
-                        if write_Getting_Blocked == true{
-                            if Central_State.Static_Central_State.note_Write_Locked == false{
-                                Central_State.Static_Central_State.note_Write_Locked = true
-                            }
-                        }
-                        else if write_Getting_Blocked == false{
-                            if Central_State.Static_Central_State.note_Write_Locked == true{
-                                Central_State.Static_Central_State.note_Write_Locked = false
-                            }
-                        }
-                       
-                    }
-                    
-                    
-                    //let block_Write_Set = current_Cell_Line_Set
-                }
-
+                test_For_Write_Lock()
+                
                 if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
                     if let lclNillableNote = nillableNote {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
@@ -131,6 +95,62 @@ class Viable_Set_Helper_Functions{
                 }
                 
             }
+        }
+    }
+    
+    func test_For_Write_Lock(){
+        if let cursorZero = helperFuncs_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+ 
+            if cursorZero.dataCell_X_Number == 0 {
+                if Central_State.Static_Central_State.a_Note_Is_Highlighted == true {
+                    if Central_State.Static_Central_State.note_Write_Locked == false {
+                        Central_State.Static_Central_State.note_Write_Locked = true
+                    }
+                }
+                else if Central_State.Static_Central_State.a_Note_Is_Highlighted == false {
+                    if Central_State.Static_Central_State.note_Write_Locked == true {
+                        Central_State.Static_Central_State.note_Write_Locked = false
+                    }
+                }
+            }
+            else if cursorZero.dataCell_X_Number == dimensions.dataGrid_X_Unit_Count-1{
+                if Central_State.Static_Central_State.a_Note_Is_Highlighted == true {
+                    if Central_State.Static_Central_State.note_Write_Locked == false {
+                        Central_State.Static_Central_State.note_Write_Locked = true
+                    }
+                }
+                else if Central_State.Static_Central_State.a_Note_Is_Highlighted == false {
+                    if Central_State.Static_Central_State.note_Write_Locked == true {
+                        Central_State.Static_Central_State.note_Write_Locked = false
+                    }
+                }
+            }
+            if cursorZero.dataCell_X_Number > 0 && cursorZero.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1{
+                let write_Block_Set = current_Cell_Line_Set.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
+                    || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
+                
+                var write_Getting_Blocked : Bool = true
+                
+                for cell in write_Block_Set{
+                    if cell.note_Im_In == nil{
+                        if write_Getting_Blocked == true{write_Getting_Blocked = false}
+                    }
+                }
+                if write_Getting_Blocked == true{
+                    if Central_State.Static_Central_State.note_Write_Locked == false{
+                        Central_State.Static_Central_State.note_Write_Locked = true
+                    }
+                }
+                else if write_Getting_Blocked == false{
+                    if Central_State.Static_Central_State.note_Write_Locked == true{
+                        Central_State.Static_Central_State.note_Write_Locked = false
+                    }
+                }
+               
+            }
+            
+            
+            //let block_Write_Set = current_Cell_Line_Set
         }
     }
 

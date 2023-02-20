@@ -76,6 +76,10 @@ public class Central_State : ObservableObject {
         viableSetHelpers.establish_Cursor_Set()
     }
     
+    public func accessTestWriteLock(){
+        viableSetHelpers.test_For_Write_Lock()
+    }
+    
     @Published public var write_Needs_Held_Down : Bool = false
     
     public func change_Write_Needs_Held_Down(){
