@@ -37,7 +37,7 @@ public class Central_State : ObservableObject {
             if writingIsOn == true {
                 viableSetHelpers.nil_Cursor_Set()
                 if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
-                if viableSetHelpers.initial_WriteOnCell == nil,a_Note_Is_Highlighted == false {
+                if viableSetHelpers.initial_WriteOnCell == nil{
                     if dimensions.patternTimingConfiguration == .fourFour {
                         viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                     }
