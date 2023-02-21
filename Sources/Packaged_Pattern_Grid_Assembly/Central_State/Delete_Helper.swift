@@ -14,6 +14,7 @@ class Delete_Helper {
     var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
     {
         didSet {
+            
             print("current_Cell_Line_Set didSet called")
         }
     }
