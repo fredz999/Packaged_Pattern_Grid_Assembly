@@ -32,11 +32,27 @@ public class Central_State : ObservableObject {
     //==================================================
     //==================================================
     //==================================================
+    @Published public var deleteIsOn : Bool = false
+    {
+        didSet {
+            if deleteIsOn == true {
+                if writingIsOn == true {
+                    writingIsOn = false
+                }
+            }
+        }
+    }
+    
     @Published public var writingIsOn : Bool = false {
         didSet {
             if writingIsOn == true {
+                
                 viableSetHelpers.nil_Cursor_Set()
+                if deleteIsOn == true{deleteIsOn = false}
+                delete_Helper.nil_Delete_Square_Set()
+                
                 if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
+                
                 if viableSetHelpers.initial_WriteOnCell == nil{
                     if dimensions.patternTimingConfiguration == .fourFour {
                         viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -45,9 +61,14 @@ public class Central_State : ObservableObject {
                         viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     }
                 }
+                
             }
             else if writingIsOn == false {
-                viableSetHelpers.establish_Cursor_Set()
+                
+                // gonna have to make it so delete switched on automatically offs write
+                if deleteIsOn == true{delete_Helper.establish_Delete_Square_Set()}
+                else if deleteIsOn == false{viableSetHelpers.establish_Cursor_Set()}
+                
                 if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 if viableSetHelpers.initial_WriteOnCell != nil {
@@ -59,19 +80,23 @@ public class Central_State : ObservableObject {
     }
     
     var viableSetHelpers : Viable_Set_Helper_Functions
+    var delete_Helper : Delete_Helper
     
     public init(){
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
-        viableSetHelpers = Viable_Set_Helper_Functions()
-        
+        viableSetHelpers = Viable_Set_Helper_Functions(initialDataParam: initialData)
+        delete_Helper = Delete_Helper(initialDataParam: initialData)
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
         for cell in currLine.dataCellArray {
             viableSetHelpers.current_Cell_Line_Set.insert(cell)
+            delete_Helper.current_Cell_Line_Set.insert(cell)
         }
         
     }
+    
+    var initialData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
     
     public func post_init_Setup(){
         viableSetHelpers.establish_Cursor_Set()
@@ -177,7 +202,14 @@ public class Central_State : ObservableObject {
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
-        if writingIsOn == true {viableSetHelpers.establish_Potential_Cells_Set()}
+        
+        if writingIsOn == true {
+            viableSetHelpers.establish_Potential_Cells_Set()
+        }
+        else if deleteIsOn == true {
+            delete_Helper.establish_Delete_Square_Set()
+        }
+        
     }
     
     func centralState_Data_Evaluation(){
@@ -238,6 +270,7 @@ public class Central_State : ObservableObject {
                 newSet.insert(cell)
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
+            delete_Helper.current_Cell_Line_Set = newSet
         }
     }
 

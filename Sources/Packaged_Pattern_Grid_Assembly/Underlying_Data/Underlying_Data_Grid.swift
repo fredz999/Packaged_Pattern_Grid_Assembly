@@ -161,7 +161,28 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var in_Potential_Edge_Set : Bool = false
 
+    var in_Delete_Square_Set : Bool = false
+    //activate_Delete_Square_Combined
+    //deActivate_Delete_Square_Combined
+    
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
+        
+        if type == .activate_Delete_Square_Set {
+            if in_Delete_Square_Set == false {
+                in_Delete_Square_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .deleteSquareSet , value: in_Delete_Square_Set)
+                }
+            }
+        }
+        else if type == .deActivate_Delete_Square_Set {
+            if in_Delete_Square_Set == true {
+                in_Delete_Square_Set = false
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .deleteSquareSet, value: in_Delete_Square_Set)
+                }
+            }
+        }
         
         if type == .activate_Cursor_Set {
             if in_Cursor_Set == false {
@@ -291,14 +312,26 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-    public func change_Prohibition_Status(newProhibitionStatus:Bool){
-        if in_Prohibited_Set != newProhibitionStatus {
-            in_Prohibited_Set = newProhibitionStatus
-            if let lcl_Data_Vals = currentConnectedDataVals {
-                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet, value: newProhibitionStatus)
-            }
-        }
-    }
+//    public func change_Prohibition_Status(newProhibitionStatus:Bool){
+//        if in_Prohibited_Set != newProhibitionStatus {
+//            in_Prohibited_Set = newProhibitionStatus
+//            if let lcl_Data_Vals = currentConnectedDataVals {
+//                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet, value: newProhibitionStatus)
+//            }
+//        }
+//    }
+    
+    //activate_Delete_Square_Combined
+    //deActivate_Delete_Square_Combined
+    
+//    public func change_DeleteSquare_Status(newProhibitionStatus:Bool){
+//        if in_Prohibited_Set != newProhibitionStatus {
+//            in_Prohibited_Set = newProhibitionStatus
+//            if let lcl_Data_Vals = currentConnectedDataVals {
+//                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet, value: newProhibitionStatus)
+//            }
+//        }
+//    }
     
     var in_Cursor_Set : Bool = false
     
@@ -345,6 +378,9 @@ enum E_VisibleStateChangeType {
     
     case activate_Cursor_Set
     case deActivate_Cursor_Set
+    
+    case activate_Delete_Square_Set
+    case deActivate_Delete_Square_Set
     
 //    case activate_Potential_Edge_Set
 //    case deActivate_Potential_Edge_Set

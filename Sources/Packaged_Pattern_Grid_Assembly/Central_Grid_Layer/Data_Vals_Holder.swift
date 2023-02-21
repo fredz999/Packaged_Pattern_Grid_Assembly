@@ -25,7 +25,7 @@ public class Data_Vals_Holder : ObservableObject {
     
     private var referenced_in_Potential_Set : Bool = false
     
-    private var referenced_in_Potential_Edge_Set : Bool = false
+    private var referenced_in_Delete_Square_Set : Bool = false
 
     @Published public var referenced_currentStatus : E_CellStatus
     {
@@ -62,6 +62,18 @@ public class Data_Vals_Holder : ObservableObject {
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
         //update_Cell_Set_Membership(status_Update_TypeParam: .highlighted, value: true)
+        if status_Update_TypeParam == .deleteSquareSet {
+            if value == true {
+                if referenced_in_Delete_Square_Set == false {
+                    referenced_in_Delete_Square_Set = true
+                }
+            }
+            else if value == false {
+                if referenced_in_Delete_Square_Set == true {
+                    referenced_in_Delete_Square_Set = false
+                }
+            }
+        }
                                    
         if status_Update_TypeParam == .potentialSet {
             if value == true {
@@ -106,14 +118,15 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func process_Visual_Status(){
-        if check_In_Cursor_Set() == false{
-
-            if check_Cell_Not_In_Note() == false {
-                check_Highlighted()
-            }
-            else if check_Cell_Not_In_Note() == true {
-                if check_In_Potential_Set() == true {
-                    check_In_Prohib_Set()
+        if check_In_Delete_Square_Set() == false{
+            if check_In_Cursor_Set() == false {
+                if check_Cell_Not_In_Note() == false {
+                    check_Highlighted()
+                }
+                else if check_Cell_Not_In_Note() == true {
+                    if check_In_Potential_Set() == true {
+                        check_In_Prohib_Set()
+                    }
                 }
             }
         }
@@ -150,21 +163,20 @@ public class Data_Vals_Holder : ObservableObject {
         return retVal
     }
     
-    
-//      func check_In_Cursor_Set() {
-//            if referenced_in_Cursor_Set == true {
-//                if statusColor != colors.cursor_Set_Cell_Color{statusColor = colors.cursor_Set_Cell_Color}
-//            }
-//        }
+    func check_In_Delete_Square_Set()->Bool{
+        var retVal = false
+        if referenced_in_Delete_Square_Set == true {
+            retVal = true
+            if statusColor != colors.delete_Square_Set_Cell_Color{statusColor = colors.delete_Square_Set_Cell_Color}
+        }
+        return retVal
+    }
 
-    
     func check_In_Prohib_Set() {
         if referenced_in_Prohibited_Set == true {
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
     }
-    
-    
     
     func check_In_Potential_Set() -> Bool {
         var retVal = false
@@ -218,6 +230,7 @@ public class Data_Vals_Holder : ObservableObject {
 public enum status_Update_Type {
     case highlighted
     case cursorSet
+    case deleteSquareSet
     case prohibitedSet
     case potentialSet
     case potentialEdgeSet

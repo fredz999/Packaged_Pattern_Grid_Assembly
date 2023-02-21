@@ -12,22 +12,23 @@ class Viable_Set_Helper_Functions{
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    var viableSet_Combined = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = viableSet_Combined.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
-            }
-        }
-        didSet {
-            for cell in viableSet_Combined {
-                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
-            }
-        }
-    }
+//    var viableSet_Combined = Set<Underlying_Data_Cell>(){
+//        willSet {
+//            let delta = viableSet_Combined.symmetricDifference(newValue)
+//            for cell in delta {
+//                cell.handleVisibleStateChange(type : .deActivate_Viable_Set_Combined)
+//            }
+//        }
+//        didSet {
+//            for cell in viableSet_Combined {
+//                cell.handleVisibleStateChange(type : .activate_Viable_Set_Combined)
+//            }
+//        }
+//    }
     
-    init(){
-        helperFuncs_currentData = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
+    init(initialDataParam : Underlying_Data_Cell){
+        //initialData
+        helperFuncs_currentData = initialDataParam //Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
         for cell in Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray{
             current_Cell_Line_Set.insert(cell)
         }
