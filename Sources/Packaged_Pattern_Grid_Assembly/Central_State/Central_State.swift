@@ -39,6 +39,10 @@ public class Central_State : ObservableObject {
                 if writingIsOn == true {
                     writingIsOn = false
                 }
+                delete_Helper.establish_Delete_Square_Set()
+            }
+            else if deleteIsOn == false {
+                delete_Helper.nil_Delete_Square_Set()
             }
         }
     }
