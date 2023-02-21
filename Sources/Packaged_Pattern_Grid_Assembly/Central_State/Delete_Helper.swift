@@ -11,7 +11,11 @@ import SwiftUI
 class Delete_Helper {
     
     let dimensions = ComponentDimensions.StaticDimensions
-    var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
+    var current_Cell_Line_Set = Set<Underlying_Data_Cell>(){
+        didSet {
+            print("current_Cell_Line_Set didSet called")
+        }
+    }
     
     var deleteHelper_currentData : Underlying_Data_Cell{
         didSet {
@@ -36,7 +40,6 @@ class Delete_Helper {
     init(initialDataParam : Underlying_Data_Cell){deleteHelper_currentData = initialDataParam}
     
     func establish_Delete_Square_Set(){
-        print("establish_Delete_Square_Set()")
         if dimensions.patternTimingConfiguration == .fourFour {
             delete_Square_Set = current_Cell_Line_Set.filter({$0.four_Four_Half_Cell_Index == deleteHelper_currentData.four_Four_Half_Cell_Index})
             
