@@ -94,8 +94,8 @@ public class Central_State : ObservableObject {
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
         for cell in currLine.dataCellArray {
-            viableSetHelpers.current_Cell_Line_Set.insert(cell)
-            delete_Helper.current_Cell_Line_Set.insert(cell)
+        viableSetHelpers.current_Cell_Line_Set.insert(cell)
+        delete_Helper.current_Cell_Line_Set.insert(cell)
         }
         
     }
