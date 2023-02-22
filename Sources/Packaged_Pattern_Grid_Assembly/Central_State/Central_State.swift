@@ -221,7 +221,9 @@ public class Central_State : ObservableObject {
         if let currViable = viableSetHelpers.initial_WriteOnCell {
 
             if currViable.dataCell_Y_Number != curr_Data_Pos_Y {
+                
                 viableSetHelpers.nilPotentialSet()
+                
                 if dimensions.patternTimingConfiguration == .fourFour {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                     viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -244,17 +246,20 @@ public class Central_State : ObservableObject {
                 }
             }
 
+
         }
         
         else if  viableSetHelpers.initial_WriteOnCell == nil{
             
             if dimensions.patternTimingConfiguration == .fourFour{
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                delete_Helper.deleteHelper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                 curr_Data_Pos_X = dimensions.currentFourFourDataIndex
             }
             
             else if dimensions.patternTimingConfiguration == .sixEight {
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                delete_Helper.deleteHelper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 curr_Data_Pos_X = dimensions.currentSixEightDataIndex
             }
         }
