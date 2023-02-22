@@ -50,15 +50,16 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    var initial_WriteOnCell : Underlying_Data_Cell?{
-        willSet {
-            if newValue == nil {
-                if helperFuncs_PotentialNote_Set.count > 0 {
-                    nilPotentialSet()
-                }
-            }
-        }
-    }
+    var initial_WriteOnCell : Underlying_Data_Cell?
+//    {
+//        willSet {
+//            if newValue == nil {
+//                if helperFuncs_PotentialNote_Set.count > 0 {
+//                    nilPotentialSet()
+//                }
+//            }
+//        }
+//    }
     
     var helperFuncs_currentData : Underlying_Data_Cell
 //    {
@@ -75,7 +76,8 @@ class Viable_Set_Helper_Functions{
             }
         }
         didSet {
-            if Central_State.Static_Central_State.writingIsOn == false {
+            if Central_State.Static_Central_State.currentPatternMode != .writing{
+                //.writingIsOn == false {
                 // TODO : cursorSet, highlightedNoteWithinCursorSet
                 var nillableNote : Note? = nil
                 for cell in helperFuncs_Cursor_Set {

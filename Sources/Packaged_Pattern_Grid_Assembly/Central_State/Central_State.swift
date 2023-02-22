@@ -32,64 +32,7 @@ public class Central_State : ObservableObject {
     //==================================================
     //==================================================
     //==================================================
-    @Published public var deleteIsOn : Bool = false
-    {
-        didSet {
-            if deleteIsOn == true {
-                if writingIsOn == true {
-                    writingIsOn = false
-                }
-                delete_Helper.establish_Delete_Square_Set()
-            }
-            else if deleteIsOn == false {
-                delete_Helper.nil_Delete_Square_Set()
-                if writingIsOn == true{
-                    viableSetHelpers.establish_Potential_Cells_Set()
-                }
-                else if writingIsOn == false {
-                    viableSetHelpers.establish_Cursor_Set()
-                }
-            }
-        }
-    }
     
-    @Published public var writingIsOn : Bool = false {
-        didSet {
-            if writingIsOn == true {
-                
-                if deleteIsOn == true{deleteIsOn = false}
-                
-                
-                if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
-                
-                if viableSetHelpers.initial_WriteOnCell == nil{
-                    if dimensions.patternTimingConfiguration == .fourFour {
-                        viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                    }
-                    else if dimensions.patternTimingConfiguration == .sixEight {
-                        viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                    }
-                }
-                
-            }
-            else if writingIsOn == false {
-                
-                // gonna have to make it so delete switched on automatically offs write
-                if deleteIsOn == true{delete_Helper.establish_Delete_Square_Set()}
-                else if deleteIsOn == false{viableSetHelpers.establish_Cursor_Set()}
-                
-                if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
-                viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
-                if viableSetHelpers.initial_WriteOnCell != nil {
-                    viableSetHelpers.initial_WriteOnCell = nil
-                }
-                viableSetHelpers.test_For_Write_Lock()
-            }
-        }
-    }
-    
-    var viableSetHelpers : Viable_Set_Helper_Functions
-    var delete_Helper : Delete_Helper
     
     public init(){
         curr_Data_Pos_X = 0
@@ -126,40 +69,41 @@ public class Central_State : ObservableObject {
         }
     }
 
-    public var toggleWrite_Gesture_Springy : some Gesture {
-      DragGesture(minimumDistance: 0, coordinateSpace: .local)
-      .onChanged { val in
-          if self.writingIsOn == false{self.writingIsOn=true}
-      }
-      .onEnded { val in
-          if self.writingIsOn == true{self.writingIsOn=false}
-      }
-    }
+//    public var toggleWrite_Gesture_Springy : some Gesture {
+//      DragGesture(minimumDistance: 0, coordinateSpace: .local)
+//      .onChanged { val in
+//          if self.writingIsOn == false{self.writingIsOn=true}
+//      }
+//      .onEnded { val in
+//          if self.writingIsOn == true{self.writingIsOn=false}
+//      }
+//    }
     
-    public var toggleWrite_Gesture_Sticky : some Gesture {
-        TapGesture(count: 1).onEnded({
-            if self.a_Note_Is_Highlighted == false {
-                self.writingIsOn.toggle()
-            }
-        })
-    }
+//    public var toggleWrite_Gesture_Sticky : some Gesture {
+//        TapGesture(count: 1).onEnded({
+//            if self.a_Note_Is_Highlighted == false {
+//                self.writingIsOn.toggle()
+//            }
+//        })
+//    }
     
-    public var Deactivate_Write_Tap_Gesture : some Gesture {
-        TapGesture(count: 1).onEnded({
-            self.writingIsOn = false
-        })
-    }
-    
-    public var Activate_Write_Tap_Gesture : some Gesture {
-        TapGesture(count: 1).onEnded({
-            self.writingIsOn = true
-        })
-    }
+//    public var Deactivate_Write_Tap_Gesture : some Gesture {
+//        TapGesture(count: 1).onEnded({
+//            self.writingIsOn = false
+//        })
+//    }
+//    
+//    public var Activate_Write_Tap_Gesture : some Gesture {
+//        TapGesture(count: 1).onEnded({
+//            self.writingIsOn = true
+//        })
+//    }
     
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
             self.deleteANote()
-            if self.writingIsOn {
+            //if self.writingIsOn {
+            if self.currentPatternMode == .writing{
                 if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
                     let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
                     if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNote_Set.count
@@ -207,6 +151,104 @@ public class Central_State : ObservableObject {
     }
 
     var currentYCursor_Slider_Position : Int = 0
+    
+//    @Published public var deleteIsOn : Bool = false
+//    {
+//        didSet {
+//            if deleteIsOn == true {
+//                if currentPatternMode == .writing{
+//                //if writingIsOn == true {
+//                    //writingIsOn = false
+//                }
+//                delete_Helper.establish_Delete_Square_Set()
+//            }
+//            else if deleteIsOn == false {
+//                delete_Helper.nil_Delete_Square_Set()
+//                if currentPatternMode == .writing{
+//                //if writingIsOn == true {
+//                    viableSetHelpers.establish_Potential_Cells_Set()
+//                }
+//                else if currentPatternMode == .writing{
+//                //else if writingIsOn == false {
+//                    viableSetHelpers.establish_Cursor_Set()
+//                }
+//            }
+//        }
+//    }
+    
+//    var writingIsOn : Bool = false
+//    {
+//        didSet {
+//            if writingIsOn == true {
+//
+//                if deleteIsOn == true{deleteIsOn = false}
+//
+//                if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
+//
+//                if viableSetHelpers.initial_WriteOnCell == nil{
+//                    if dimensions.patternTimingConfiguration == .fourFour {
+//                        viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+//                    }
+//                    else if dimensions.patternTimingConfiguration == .sixEight {
+//                        viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+//                    }
+//                }
+//            }
+//            else if writingIsOn == false {
+//                if deleteIsOn == true{delete_Helper.establish_Delete_Square_Set()}
+//                else if deleteIsOn == false{viableSetHelpers.establish_Cursor_Set()}
+//
+//                if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
+//                viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
+//                if viableSetHelpers.initial_WriteOnCell != nil {
+//                    viableSetHelpers.initial_WriteOnCell = nil
+//                }
+//                viableSetHelpers.test_For_Write_Lock()
+//            }
+//        }
+//    }
+    
+    @Published public var currentPatternMode : E_PatternModeType = .passive
+    public func setPatternMode(patternModeParam : E_PatternModeType){
+        
+        if patternModeParam == .writing {
+            currentPatternMode = .writing
+            if viableSetHelpers.initial_WriteOnCell == nil{
+                
+                delete_Helper.nil_Delete_Square_Set()
+                viableSetHelpers.nil_Cursor_Set()
+                
+                if dimensions.patternTimingConfiguration == .fourFour {
+                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                }
+                else if dimensions.patternTimingConfiguration == .sixEight {
+                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                }
+                viableSetHelpers.establish_Potential_Cells_Set()
+                
+            }
+        }
+        else if patternModeParam == .deleting {
+            currentPatternMode = .deleting
+            delete_Helper.establish_Delete_Square_Set()
+            viableSetHelpers.initial_WriteOnCell = nil
+            viableSetHelpers.nilPotentialSet()
+            viableSetHelpers.nil_Cursor_Set()
+        }
+        else if patternModeParam == .passive{
+            currentPatternMode = .passive
+            viableSetHelpers.initial_WriteOnCell = nil
+            viableSetHelpers.nilPotentialSet()
+            viableSetHelpers.establish_Cursor_Set()
+            viableSetHelpers.test_For_Write_Lock()
+        }
+        
+        
+    }
+    
+    
+    var viableSetHelpers : Viable_Set_Helper_Functions
+    var delete_Helper : Delete_Helper
 
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
@@ -215,19 +257,22 @@ public class Central_State : ObservableObject {
         // redo this, the nil does not need to be called over and over again
         // the helpers themselves should be looking to the central state for info about the current cursor position
         
-        if writingIsOn == true,deleteIsOn == false {
-            viableSetHelpers.nil_Cursor_Set()
-            delete_Helper.nil_Delete_Square_Set()
+        if currentPatternMode == .writing {
+        //if writingIsOn == true,deleteIsOn == false {
+//            viableSetHelpers.nil_Cursor_Set()
+//            delete_Helper.nil_Delete_Square_Set()
             viableSetHelpers.establish_Potential_Cells_Set()
         }
-        else if deleteIsOn == true,writingIsOn == false {
-            viableSetHelpers.nil_Cursor_Set()
-            viableSetHelpers.nilPotentialSet()
+        else if currentPatternMode == .deleting{
+        //else if deleteIsOn == true,writingIsOn == false {
+//            viableSetHelpers.nil_Cursor_Set()
+//            viableSetHelpers.nilPotentialSet()
             delete_Helper.establish_Delete_Square_Set()
         }
-        else if deleteIsOn == false,writingIsOn == false {
-            viableSetHelpers.nilPotentialSet()
-            delete_Helper.nil_Delete_Square_Set()
+        else if currentPatternMode == .passive{
+        //else if deleteIsOn == false,writingIsOn == false {
+//            viableSetHelpers.nilPotentialSet()
+//            delete_Helper.nil_Delete_Square_Set()
             viableSetHelpers.establish_Cursor_Set()
         }
     }
@@ -279,9 +324,6 @@ public class Central_State : ObservableObject {
                 curr_Data_Pos_X = dimensions.currentSixEightDataIndex
             }
         }
-        
-        
-
     }
     
     var curr_Data_Pos_X : Int
@@ -373,6 +415,14 @@ public class Central_State : ObservableObject {
     public static let Static_Central_State = Central_State()
 
 }
+
+public enum E_PatternModeType{
+    case writing
+    case deleting
+    case passive
+}
+
+
 
 public enum E_Note_Movement_Type {
     case leftWard

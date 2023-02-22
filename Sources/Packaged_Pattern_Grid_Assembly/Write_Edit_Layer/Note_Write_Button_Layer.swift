@@ -27,18 +27,20 @@ class Note_Write_Layer_Store : ObservableObject {
     var centralState = Central_State.Static_Central_State
     
     func pressUpReactor(){
-        centralState.writingIsOn.toggle()
+        //centralState.writingIsOn.toggle()
         //refresh the xisual cells here
     }
     
     @ViewBuilder func currView() -> (some View) {
-        if centralState.writingIsOn == true {
+        if centralState.currentPatternMode == .writing {
+        //if centralState.writingIsOn == true {
             ZStack {
                 Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
                 Text("Turn Write Off").foregroundColor(.white)
             }
         }
-        else if centralState.writingIsOn == false {
+        else if centralState.currentPatternMode != .writing {
+        //else if centralState.writingIsOn == false {
             ZStack {
                 Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
                 Text("Turn Write On").foregroundColor(.white)
