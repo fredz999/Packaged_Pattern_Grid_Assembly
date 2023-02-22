@@ -109,8 +109,8 @@ public class Pattern_Edit_Layer<Injected_Delete_Btn_Type:View,Injected_Lengthen_
 //        }
     }
     
-    @ViewBuilder public func return_Move_Down_Up_Buttons()->some View{
-        if let lclMove_Down_Up_Buttons = injected_Move_Down_Up_Buttons{
+    @ViewBuilder public func return_Move_Down_Up_Buttons()->some View {
+        if let lclMove_Down_Up_Buttons = injected_Move_Down_Up_Buttons {
             lclMove_Down_Up_Buttons
         }
 //        else if injected_Move_Down_Up_Buttons == nil{

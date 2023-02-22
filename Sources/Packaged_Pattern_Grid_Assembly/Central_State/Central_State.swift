@@ -214,10 +214,8 @@ public class Central_State : ObservableObject {
         if patternModeParam == .writing {
             currentPatternMode = .writing
             if viableSetHelpers.initial_WriteOnCell == nil{
-                
                 delete_Helper.nil_Delete_Square_Set()
                 viableSetHelpers.nil_Cursor_Set()
-                
                 if dimensions.patternTimingConfiguration == .fourFour {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                 }
@@ -225,8 +223,8 @@ public class Central_State : ObservableObject {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 }
                 viableSetHelpers.establish_Potential_Cells_Set()
-                
             }
+            else if viableSetHelpers.initial_WriteOnCell != nil{}
         }
         else if patternModeParam == .deleting {
             currentPatternMode = .deleting
