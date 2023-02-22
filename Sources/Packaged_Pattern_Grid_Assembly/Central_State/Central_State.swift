@@ -213,6 +213,7 @@ public class Central_State : ObservableObject {
         else if deleteIsOn == true {
             delete_Helper.establish_Delete_Square_Set()
         }
+        viableSetHelpers.establish_Cursor_Set()
         
     }
     

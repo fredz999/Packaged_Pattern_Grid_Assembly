@@ -60,11 +60,12 @@ class Viable_Set_Helper_Functions{
         }
     }
     
-    var helperFuncs_currentData : Underlying_Data_Cell{
-        didSet {
-            establish_Cursor_Set()
-        }
-    }
+    var helperFuncs_currentData : Underlying_Data_Cell
+//    {
+//        didSet {
+//            establish_Cursor_Set()
+//        }
+//    }
     
     var helperFuncs_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
