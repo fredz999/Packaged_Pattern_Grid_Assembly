@@ -257,12 +257,13 @@ public class Central_State : ObservableObject {
                 viableSetHelpers.nilPotentialSet()
                 viableSetHelpers.initial_WriteOnCell = nil
             }
+            if currentPatternMode != .passive{currentPatternMode = .passive}
             if viableSetHelpers.helperFuncs_Cursor_Set.count == 0{
                 print("calling .establish_Cursor_Set() from")
                 viableSetHelpers.establish_Cursor_Set()
             }
             viableSetHelpers.test_For_Write_Lock()
-            if currentPatternMode != .passive{currentPatternMode = .passive}
+            
         }
         
         
