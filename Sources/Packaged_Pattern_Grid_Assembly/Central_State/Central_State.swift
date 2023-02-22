@@ -207,13 +207,15 @@ public class Central_State : ObservableObject {
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
         
-        if writingIsOn == true {
+        if writingIsOn == true,deleteIsOn == false {
             viableSetHelpers.establish_Potential_Cells_Set()
         }
-        else if deleteIsOn == true {
+        else if deleteIsOn == true,writingIsOn == false {
             delete_Helper.establish_Delete_Square_Set()
         }
-        viableSetHelpers.establish_Cursor_Set()
+        else if deleteIsOn == false,writingIsOn == false {
+            viableSetHelpers.establish_Cursor_Set()
+        }
     }
     
     func centralState_Data_Evaluation(){
