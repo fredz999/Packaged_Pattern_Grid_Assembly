@@ -95,7 +95,7 @@ public class Central_State : ObservableObject {
         
         for cell in currLine.dataCellArray {
         viableSetHelpers.current_Cell_Line_Set.insert(cell)
-        delete_Helper.current_Cell_Line_Set.insert(cell)
+        delete_Helper.current_DellCell_Line_Set.insert(cell)
         }
         
     }
@@ -274,7 +274,7 @@ public class Central_State : ObservableObject {
                 newSet.insert(cell)
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
-            delete_Helper.current_Cell_Line_Set = newSet
+            delete_Helper.current_DellCell_Line_Set = newSet
         }
     }
 
