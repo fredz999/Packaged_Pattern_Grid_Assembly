@@ -259,9 +259,14 @@ public class Central_State : ObservableObject {
                 viableSetHelpers.nilPotentialSet()
                 viableSetHelpers.initial_WriteOnCell = nil
             }
+            if delete_Helper.delete_Square_Set.count > 0{
+                delete_Helper.nil_Delete_Square_Set()
+            }
+            
+            
+            
             if currentPatternMode != .passive{currentPatternMode = .passive}
             if viableSetHelpers.helperFuncs_Cursor_Set.count == 0{
-                //print("calling .establish_Cursor_Set() from")
                 viableSetHelpers.establish_Cursor_Set()
             }
             viableSetHelpers.test_For_Write_Lock()
