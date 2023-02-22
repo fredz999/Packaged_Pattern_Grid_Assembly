@@ -213,7 +213,7 @@ public class Central_State : ObservableObject {
         
         if patternModeParam == .writing {
             currentPatternMode = .writing
-            if viableSetHelpers.initial_WriteOnCell == nil{
+            //if viableSetHelpers.initial_WriteOnCell == nil{
                 
                 delete_Helper.nil_Delete_Square_Set()
                 viableSetHelpers.nil_Cursor_Set()
@@ -225,23 +225,23 @@ public class Central_State : ObservableObject {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 }
                 viableSetHelpers.establish_Potential_Cells_Set()
-            }
-            else if viableSetHelpers.initial_WriteOnCell != nil {
-                //print("viableSetHelpers.initial_WriteOnCell != nil")
-                
-                // print("viableSetHelpers.initial_WriteOnCell != nil")
-                // if deleteIsOn == true{delete_Helper.establish_Delete_Square_Set()}
-                // else if deleteIsOn == false{viableSetHelpers.establish_Cursor_Set()}
-                
-                if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
-                viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
-                if viableSetHelpers.initial_WriteOnCell != nil {
-                    viableSetHelpers.initial_WriteOnCell = nil
-                }
-
-                viableSetHelpers.establish_Cursor_Set()
-                viableSetHelpers.test_For_Write_Lock()
-            }
+            //}
+//            else if viableSetHelpers.initial_WriteOnCell != nil {
+//                //print("viableSetHelpers.initial_WriteOnCell != nil")
+//
+//                // print("viableSetHelpers.initial_WriteOnCell != nil")
+//                // if deleteIsOn == true{delete_Helper.establish_Delete_Square_Set()}
+//                // else if deleteIsOn == false{viableSetHelpers.establish_Cursor_Set()}
+//
+//                if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
+//                viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
+//                if viableSetHelpers.initial_WriteOnCell != nil {
+//                    viableSetHelpers.initial_WriteOnCell = nil
+//                }
+//
+//                viableSetHelpers.establish_Cursor_Set()
+//                viableSetHelpers.test_For_Write_Lock()
+//            }
         }
         else if patternModeParam == .deleting {
             currentPatternMode = .deleting

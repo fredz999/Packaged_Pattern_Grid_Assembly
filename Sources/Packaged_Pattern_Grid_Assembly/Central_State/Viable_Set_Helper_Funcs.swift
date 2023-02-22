@@ -152,8 +152,6 @@ class Viable_Set_Helper_Functions{
                 }
                
             }
-            
-            
             //let block_Write_Set = current_Cell_Line_Set
         }
     }
