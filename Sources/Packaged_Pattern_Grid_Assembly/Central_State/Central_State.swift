@@ -248,8 +248,8 @@ public class Central_State : ObservableObject {
             if viableSetHelpers.initial_WriteOnCell != nil {
                 viableSetHelpers.initial_WriteOnCell = nil
                 viableSetHelpers.nilPotentialSet()
-                viableSetHelpers.nil_Cursor_Set()
             }
+            if viableSetHelpers.current_Cell_Line_Set.count > 0{viableSetHelpers.nil_Cursor_Set()}
             delete_Helper.establish_Delete_Square_Set()
         }
         else if patternModeParam == .passive {
