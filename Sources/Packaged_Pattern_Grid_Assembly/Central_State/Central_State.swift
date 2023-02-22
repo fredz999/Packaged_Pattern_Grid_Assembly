@@ -224,7 +224,9 @@ public class Central_State : ObservableObject {
                 }
                 viableSetHelpers.establish_Potential_Cells_Set()
             }
-            else if viableSetHelpers.initial_WriteOnCell != nil{}
+            else if viableSetHelpers.initial_WriteOnCell != nil {
+                print("viableSetHelpers.initial_WriteOnCell != nil")
+            }
         }
         else if patternModeParam == .deleting {
             currentPatternMode = .deleting
