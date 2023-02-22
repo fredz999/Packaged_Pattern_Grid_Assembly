@@ -12,12 +12,11 @@ class Delete_Helper {
     
     let dimensions = ComponentDimensions.StaticDimensions
     var current_Cell_Line_Set = Set<Underlying_Data_Cell>()
-    {
-        didSet {
-            
-            print("current_Cell_Line_Set didSet called")
-        }
-    }
+//    {
+//        didSet {
+//            print("current_Cell_Line_Set didSet called")
+//        }
+//    }
     
     var deleteHelper_currentData : Underlying_Data_Cell{
         didSet {
