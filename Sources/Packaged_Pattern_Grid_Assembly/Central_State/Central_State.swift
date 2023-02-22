@@ -51,9 +51,8 @@ public class Central_State : ObservableObject {
         didSet {
             if writingIsOn == true {
                 
-                viableSetHelpers.nil_Cursor_Set()
                 if deleteIsOn == true{deleteIsOn = false}
-                delete_Helper.nil_Delete_Square_Set()
+                
                 
                 if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
                 
@@ -207,13 +206,22 @@ public class Central_State : ObservableObject {
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
         
+        // redo this, the nil does not need to be called over and over again
+        // the helpers themselves should be looking to the central state for info about the current cursor position
+        
         if writingIsOn == true,deleteIsOn == false {
+            viableSetHelpers.nil_Cursor_Set()
+            delete_Helper.nil_Delete_Square_Set()
             viableSetHelpers.establish_Potential_Cells_Set()
         }
         else if deleteIsOn == true,writingIsOn == false {
+            viableSetHelpers.nil_Cursor_Set()
+            viableSetHelpers.nilPotentialSet()
             delete_Helper.establish_Delete_Square_Set()
         }
         else if deleteIsOn == false,writingIsOn == false {
+            viableSetHelpers.nilPotentialSet()
+            delete_Helper.nil_Delete_Square_Set()
             viableSetHelpers.establish_Cursor_Set()
         }
     }
