@@ -250,12 +250,17 @@ public class Central_State : ObservableObject {
             viableSetHelpers.nilPotentialSet()
             viableSetHelpers.nil_Cursor_Set()
         }
-        else if patternModeParam == .passive{
-            currentPatternMode = .passive
-            viableSetHelpers.initial_WriteOnCell = nil
-            viableSetHelpers.nilPotentialSet()
+        else if patternModeParam == .passive {
+            //see if theres a write needed
+            if viableSetHelpers.initial_WriteOnCell != nil, viableSetHelpers.helperFuncs_PotentialNote_Set.count > 0 {
+                viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
+                viableSetHelpers.nilPotentialSet()
+                viableSetHelpers.initial_WriteOnCell = nil
+            }
+            
             viableSetHelpers.establish_Cursor_Set()
             viableSetHelpers.test_For_Write_Lock()
+            currentPatternMode = .passive
         }
         
         
