@@ -65,6 +65,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         //centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         
         centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
+        centralState.delete_Helper.note_Collection_Ref = Note_Collection.Static_Note_Collection
         
         //centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         centralState.note_Collection_Ref = noteCollection

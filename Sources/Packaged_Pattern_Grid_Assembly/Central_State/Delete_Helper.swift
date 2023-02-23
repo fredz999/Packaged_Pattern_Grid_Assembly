@@ -42,9 +42,9 @@ class Delete_Helper {
         //postInitSetup()
     }
     
-    func postInitSetup(){
-        note_Collection_Ref = Note_Collection.Static_Note_Collection
-    }
+//    func noteCollectionSetup(noteCollectionParam:Note_Collection){
+//        note_Collection_Ref = noteCollectionParam
+//    }
     
     func establish_Delete_Square_Set() {
         if dimensions.patternTimingConfiguration == .fourFour {
