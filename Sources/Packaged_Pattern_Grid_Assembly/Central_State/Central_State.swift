@@ -226,11 +226,16 @@ public class Central_State : ObservableObject {
            
         }
         else if patternModeParam == .deleting {
+            
+            if note_Write_Locked == true{note_Write_Locked = false}
+            
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
+            
             if viableSetHelpers.initial_WriteOnCell != nil {
                 viableSetHelpers.initial_WriteOnCell = nil
                 viableSetHelpers.nilPotentialSet()
             }
+            
             if viableSetHelpers.current_Cell_Line_Set.count > 0{viableSetHelpers.nil_Cursor_Set()}
             viableSetHelpers.test_For_Write_Lock()
             delete_Helper.establish_Delete_Square_Set()

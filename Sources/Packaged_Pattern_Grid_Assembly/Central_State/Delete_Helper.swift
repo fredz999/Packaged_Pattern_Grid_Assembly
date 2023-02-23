@@ -11,6 +11,7 @@ import SwiftUI
 class Delete_Helper {
     
     let dimensions = ComponentDimensions.StaticDimensions
+    
     var current_DellCell_Line_Set = Set<Underlying_Data_Cell>()
     
     var deleteHelper_currentData : Underlying_Data_Cell
