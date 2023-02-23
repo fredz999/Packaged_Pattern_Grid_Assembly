@@ -233,9 +233,10 @@ public class Central_State : ObservableObject {
             if viableSetHelpers.current_Cell_Line_Set.count > 0{viableSetHelpers.nil_Cursor_Set()}
             viableSetHelpers.test_For_Write_Lock()
             delete_Helper.establish_Delete_Square_Set()
+            viableSetHelpers.test_For_Write_Lock()
         }
         else if patternModeParam == .passive {
-            //see if theres a write needed
+
             if viableSetHelpers.initial_WriteOnCell != nil, viableSetHelpers.helperFuncs_PotentialNote_Set.count > 0 {
                 viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 viableSetHelpers.nilPotentialSet()
@@ -244,9 +245,7 @@ public class Central_State : ObservableObject {
             if delete_Helper.delete_Square_Set.count > 0{
                 delete_Helper.nil_Delete_Square_Set()
             }
-            
-            
-            
+
             if currentPatternMode != .passive{currentPatternMode = .passive}
             if viableSetHelpers.helperFuncs_Cursor_Set.count == 0{
                 viableSetHelpers.establish_Cursor_Set()
@@ -254,8 +253,6 @@ public class Central_State : ObservableObject {
             viableSetHelpers.test_For_Write_Lock()
             
         }
-        
-        
     }
     
     
