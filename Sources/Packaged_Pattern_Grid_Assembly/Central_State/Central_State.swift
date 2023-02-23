@@ -223,7 +223,7 @@ public class Central_State : ObservableObject {
                 viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             }
             viableSetHelpers.establish_Potential_Cells_Set()
-            viableSetHelpers.test_For_Write_Lock()
+           
         }
         else if patternModeParam == .deleting {
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
@@ -234,7 +234,7 @@ public class Central_State : ObservableObject {
             if viableSetHelpers.current_Cell_Line_Set.count > 0{viableSetHelpers.nil_Cursor_Set()}
             viableSetHelpers.test_For_Write_Lock()
             delete_Helper.establish_Delete_Square_Set()
-            viableSetHelpers.test_For_Write_Lock()
+       
         }
         else if patternModeParam == .passive {
 
@@ -251,9 +251,9 @@ public class Central_State : ObservableObject {
             if viableSetHelpers.helperFuncs_Cursor_Set.count == 0{
                 viableSetHelpers.establish_Cursor_Set()
             }
-            viableSetHelpers.test_For_Write_Lock()
             
         }
+        viableSetHelpers.test_For_Write_Lock()
     }
     
     
