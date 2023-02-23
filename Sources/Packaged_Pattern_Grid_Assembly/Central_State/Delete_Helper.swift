@@ -12,7 +12,7 @@ class Delete_Helper {
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    //let lclNoteCollection = Note_Collection.Static_Note_Collection
+    public var note_Collection_Ref : Note_Collection?
     
     var current_DellCell_Line_Set = Set<Underlying_Data_Cell>()
     
@@ -37,7 +37,14 @@ class Delete_Helper {
         }
     }
     
-    init(initialDataParam : Underlying_Data_Cell){deleteHelper_currentData = initialDataParam}
+    init(initialDataParam : Underlying_Data_Cell){
+        deleteHelper_currentData = initialDataParam
+        postInitSetup()
+    }
+    
+    func postInitSetup(){
+        note_Collection_Ref = Note_Collection.Static_Note_Collection
+    }
     
     func establish_Delete_Square_Set() {
         if dimensions.patternTimingConfiguration == .fourFour {
@@ -55,8 +62,9 @@ class Delete_Helper {
         
         for cell in delete_Square_Set {
             if let note = cell.note_Im_In {
-                //lclNoteCollection.reset_Note_Data_Cells(noteParam: note)
-                print("note = cell.note_Im_In")
+                if let lclNoteCollection = note_Collection_Ref{
+                    lclNoteCollection.reset_Note_Data_Cells(noteParam: note)
+                }
             }
         }
     }
