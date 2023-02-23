@@ -213,16 +213,17 @@ public class Central_State : ObservableObject {
         
         if patternModeParam == .writing {
             currentPatternMode = .writing
-                delete_Helper.nil_Delete_Square_Set()
-                viableSetHelpers.nil_Cursor_Set()
-                
-                if dimensions.patternTimingConfiguration == .fourFour {
-                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                }
-                else if dimensions.patternTimingConfiguration == .sixEight {
-                    viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                }
-                viableSetHelpers.establish_Potential_Cells_Set()
+            delete_Helper.nil_Delete_Square_Set()
+            viableSetHelpers.nil_Cursor_Set()
+            
+            if dimensions.patternTimingConfiguration == .fourFour {
+                viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            }
+            else if dimensions.patternTimingConfiguration == .sixEight {
+                viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            }
+            viableSetHelpers.establish_Potential_Cells_Set()
+            viableSetHelpers.test_For_Write_Lock()
         }
         else if patternModeParam == .deleting {
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
