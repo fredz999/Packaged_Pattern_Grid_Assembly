@@ -48,7 +48,7 @@ class Delete_Helper {
             let nuSet = current_DellCell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == deleteHelper_currentData.six_Eight_Half_Cell_Index})
             delete_Square_Set = nuSet
         }
-        analyse_Delete_Square_Set()
+        //analyse_Delete_Square_Set()
     }
     
     func analyse_Delete_Square_Set(){
