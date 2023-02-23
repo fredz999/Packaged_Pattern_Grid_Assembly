@@ -39,7 +39,7 @@ class Delete_Helper {
     
     init(initialDataParam : Underlying_Data_Cell){
         deleteHelper_currentData = initialDataParam
-        postInitSetup()
+        //postInitSetup()
     }
     
     func postInitSetup(){
