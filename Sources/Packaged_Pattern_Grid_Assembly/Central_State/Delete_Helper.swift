@@ -12,6 +12,8 @@ class Delete_Helper {
     
     let dimensions = ComponentDimensions.StaticDimensions
     
+    let lclNoteCollection = Note_Collection.Static_Note_Collection
+    
     var current_DellCell_Line_Set = Set<Underlying_Data_Cell>()
     
     var deleteHelper_currentData : Underlying_Data_Cell
@@ -45,6 +47,16 @@ class Delete_Helper {
         else if dimensions.patternTimingConfiguration == .sixEight {
             let nuSet = current_DellCell_Line_Set.filter({$0.six_Eight_Half_Cell_Index == deleteHelper_currentData.six_Eight_Half_Cell_Index})
             delete_Square_Set = nuSet
+        }
+        analyse_Delete_Square_Set()
+    }
+    
+    func analyse_Delete_Square_Set(){
+        print("analyse_Delete_Square_Set()")
+        for cell in delete_Square_Set {
+            if let note = cell.note_Im_In {
+                lclNoteCollection.reset_Note_Data_Cells(noteParam: note)
+            }
         }
     }
 
