@@ -152,29 +152,6 @@ public class Central_State : ObservableObject {
 
     var currentYCursor_Slider_Position : Int = 0
     
-//    @Published public var deleteIsOn : Bool = false
-//    {
-//        didSet {
-//            if deleteIsOn == true {
-//                if currentPatternMode == .writing{
-//                //if writingIsOn == true {
-//                    //writingIsOn = false
-//                }
-//                delete_Helper.establish_Delete_Square_Set()
-//            }
-//            else if deleteIsOn == false {
-//                delete_Helper.nil_Delete_Square_Set()
-//                if currentPatternMode == .writing{
-//                //if writingIsOn == true {
-//                    viableSetHelpers.establish_Potential_Cells_Set()
-//                }
-//                else if currentPatternMode == .writing{
-//                //else if writingIsOn == false {
-//                    viableSetHelpers.establish_Cursor_Set()
-//                }
-//            }
-//        }
-//    }
     
 //    var writingIsOn : Bool = false
 //    {
@@ -238,6 +215,15 @@ public class Central_State : ObservableObject {
             
             if viableSetHelpers.current_Cell_Line_Set.count > 0{viableSetHelpers.nil_Cursor_Set()}
             viableSetHelpers.test_For_Write_Lock()
+            //delete_Helper.initialCursorCell =
+            
+            if dimensions.patternTimingConfiguration == .fourFour {
+                delete_Helper.initialCursorCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            }
+            else if dimensions.patternTimingConfiguration == .sixEight {
+                delete_Helper.initialCursorCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            }
+            
             delete_Helper.establish_Delete_Square_Set()
        
         }
@@ -273,21 +259,12 @@ public class Central_State : ObservableObject {
         // the helpers themselves should be looking to the central state for info about the current cursor position
         
         if currentPatternMode == .writing {
-        //if writingIsOn == true,deleteIsOn == false {
-//            viableSetHelpers.nil_Cursor_Set()
-//            delete_Helper.nil_Delete_Square_Set()
             viableSetHelpers.establish_Potential_Cells_Set()
         }
         else if currentPatternMode == .deleting{
-        //else if deleteIsOn == true,writingIsOn == false {
-//            viableSetHelpers.nil_Cursor_Set()
-//            viableSetHelpers.nilPotentialSet()
             delete_Helper.establish_Delete_Square_Set()
         }
         else if currentPatternMode == .passive{
-        //else if deleteIsOn == false,writingIsOn == false {
-//            viableSetHelpers.nilPotentialSet()
-//            delete_Helper.nil_Delete_Square_Set()
             viableSetHelpers.establish_Cursor_Set()
         }
     }
