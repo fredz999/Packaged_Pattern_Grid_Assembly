@@ -110,9 +110,9 @@ class Delete_Helper {
                 delete_Area_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                 .filter{$0.dataCell_Y_Number <= lclMax_Y && $0.dataCell_Y_Number >= lclMinY && $0.dataCell_X_Number <= lclMax_X && $0.dataCell_X_Number >= lclMinx}
             }
-            for cell in delete_Area_Set{
-                cell.in_Delete_Square_Set
-            }
+//            for cell in delete_Area_Set{
+//                cell.in_Delete_Square_Set
+//            }
         }
         
         
