@@ -94,7 +94,7 @@ class Delete_Helper {
             }
             else if deleteHelper_currentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number {
                 if let lclMaxY = max_Y {
-                    if deleteHelper_currentData.dataCell_Y_Number < lclMaxY{max_Y=deleteHelper_currentData.dataCell_Y_Number}
+                    if deleteHelper_currentData.dataCell_Y_Number > lclMaxY{max_Y=deleteHelper_currentData.dataCell_Y_Number}
                 }
             }
             if let lclMinx = min_X,let lclMinY = min_Y,let lclMax_X = max_X,let lclMax_Y = max_Y{
