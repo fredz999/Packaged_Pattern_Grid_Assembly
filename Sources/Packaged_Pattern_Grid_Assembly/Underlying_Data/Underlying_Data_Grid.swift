@@ -30,11 +30,16 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     var currFourStatus : E_CellStatus = .start_Blank
     var currSixStatus : E_CellStatus = .start_Blank
     
+    var grid_Of_Cells_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    //var line_Of_Cells_Set : Set<Set<Underlying_Data_Cell>> = Set<Set<Underlying_Data_Cell>>()
+    //var grid_Set : Set<Set<Underlying_Data_Line>> = Set<Set<Underlying_Data_Line>>()
+    
     func set_Data_Grid(){
-        for y in 0..<dimensions.DATA_final_Line_Y_Index {
+        for line_Y_Number in 0..<dimensions.DATA_final_Line_Y_Index {
             let newLine = Underlying_Data_Line()
+            //var new_Line_Set = Set<Underlying_Data_Cell>()
+            
             for x in 0..<dimensions.dataGrid_X_Unit_Count{
-                
                 if fourFour_Sub_Count == 0{currFourStatus = .start_Blank}
                 else if fourFour_Sub_Count == 1{currFourStatus = .mid_Blank}
                 else if fourFour_Sub_Count == 2{currFourStatus = .mid_Blank}
@@ -54,29 +59,29 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     initialStatus = currSixStatus
                 }
                 
-                if y == 0 {
-                    
-                    if fourFour_Half_Sub_Count == 0  {
-                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
-                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
-                        dimensions.four_Four_Slider_Positions.insert(cellIndexDescriptor)
-                    }
-                    
-                    if sixEight_Half_Sub_Count == 0 {
-                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
-                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
-                        dimensions.six_Eight_Slider_Positions.insert(cellIndexDescriptor)
-                    }
-                    
-                }
-                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: y, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
+//                if y == 0 {
+//
+//                    if fourFour_Half_Sub_Count == 0  {
+//                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
+//                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
+//                        dimensions.four_Four_Slider_Positions.insert(cellIndexDescriptor)
+//                    }
+//
+//                    if sixEight_Half_Sub_Count == 0 {
+//                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
+//                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
+//                        dimensions.six_Eight_Slider_Positions.insert(cellIndexDescriptor)
+//                    }
+//
+//                }
+                
+                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: line_Y_Number, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
                 , initialStatusParam: initialStatus, fourFourSubIndexParam: fourFour_Sub_Count, sixEightSubIndexParam: sixEight_Sub_Count
                 , four_Four_Cell_Index_Param: fourFour_Cell_Count, six_Eight_Cell_Index_Param: sixEight_Cell_Count
                 , four_Four_Half_Sub_Index_Param: fourFour_Half_Sub_Count
                 , four_Four_Half_Cell_Index_Param: fourFour_Half_Cell_Count
                 , six_Eight_Half_Sub_Index_Param: sixEight_Half_Sub_Count
                 , six_Eight_Half_Cell_Index_Param: sixEight_Half_Cell_Count)
-                
                 
                 if fourFour_Sub_Count + 1 < 6{fourFour_Sub_Count+=1}
                 else if fourFour_Sub_Count + 1 == 6{
@@ -101,10 +106,12 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     sixEight_Half_Sub_Count=0
                     sixEight_Half_Cell_Count+=1
                 }
-                
+                //new_Line_Set.insert(newDataCell)
                 newLine.dataCellArray.append(newDataCell)
+                grid_Of_Cells_Set.insert(newDataCell)
             }
             dataLineArray.append(newLine)
+            //grid_Of_Cells_Set.insert(new_Line_Set)
         }
     }
     
@@ -129,13 +136,27 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     
 }
 
-public class Underlying_Data_Line:ObservableObject,Identifiable {
+public class Underlying_Data_Line:ObservableObject,Identifiable,Equatable,Hashable {
+    
+    public static func == (lhs: Underlying_Data_Line, rhs: Underlying_Data_Line) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
     public var id = UUID()
+    
     public var dataCellArray : [Underlying_Data_Cell] = []
+    
+    //public var lineNumber : Int
+    
+//    init(lineNumberParam:Int){
+//        lineNumber = lineNumberParam
+//    }
+    
 }
-
-//============================================================================================================
-//============================================================================================================
 
 public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
@@ -162,9 +183,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Potential_Edge_Set : Bool = false
 
     var in_Delete_Square_Set : Bool = false
-    //activate_Delete_Square_Combined
-    //deActivate_Delete_Square_Combined
-    
+
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
         
         if type == .activate_Delete_Square_Set {
@@ -233,8 +252,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
 
     }
-    //================================================================================================================
+
     var note_Im_In : Note?
+    
     weak var currentConnectedDataVals : Data_Vals_Holder?
 
     var note_Reset_Status : E_CellStatus
