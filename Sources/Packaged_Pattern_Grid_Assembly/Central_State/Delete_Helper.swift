@@ -17,11 +17,6 @@ class Delete_Helper {
     var current_DellCell_Line_Set = Set<Underlying_Data_Cell>()
     
     var deleteHelper_currentData : Underlying_Data_Cell
-//    {
-//        didSet {
-//            print("deleteHelper_currentData X: ",deleteHelper_currentData.dataCell_X_Number.description,", Y: ",deleteHelper_currentData.dataCell_Y_Number.description)
-//        }
-//    }
     
     var delete_Square_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -89,26 +84,30 @@ class Delete_Helper {
             
             if deleteHelper_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
                 if let lclMinX = min_X {
-                    if deleteHelper_currentData.dataCell_X_Number < lclMinX{min_X=deleteHelper_currentData.dataCell_X_Number}
+                    //if deleteHelper_currentData.dataCell_X_Number < lclMinX{min_X=deleteHelper_currentData.dataCell_X_Number}
+                    min_X=deleteHelper_currentData.dataCell_X_Number
                 }
             }
             else if deleteHelper_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 if let lclMaxX = max_X {
-                    if deleteHelper_currentData.dataCell_X_Number > lclMaxX{max_X=deleteHelper_currentData.dataCell_X_Number}
+                    //if deleteHelper_currentData.dataCell_X_Number > lclMaxX{max_X=deleteHelper_currentData.dataCell_X_Number}
+                    max_X=deleteHelper_currentData.dataCell_X_Number
                 }
             }
             
             if deleteHelper_currentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number {
                 if let lclMinY = min_Y {
-                    if deleteHelper_currentData.dataCell_Y_Number < lclMinY{min_Y=deleteHelper_currentData.dataCell_Y_Number}
+                    //if deleteHelper_currentData.dataCell_Y_Number < lclMinY{min_Y=deleteHelper_currentData.dataCell_Y_Number}
+                    min_Y=deleteHelper_currentData.dataCell_Y_Number
                 }
             }
             else if deleteHelper_currentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number {
                 if let lclMaxY = max_Y {
-                    if deleteHelper_currentData.dataCell_Y_Number > lclMaxY{max_Y=deleteHelper_currentData.dataCell_Y_Number}
+                    //if deleteHelper_currentData.dataCell_Y_Number > lclMaxY{max_Y=deleteHelper_currentData.dataCell_Y_Number}
+                    max_Y=deleteHelper_currentData.dataCell_Y_Number
                 }
             }
-            
+
             if let lclMinx = min_X,let lclMinY = min_Y,let lclMax_X = max_X,let lclMax_Y = max_Y {
                 delete_Area_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                 .filter{$0.dataCell_Y_Number <= lclMax_Y && $0.dataCell_Y_Number >= lclMinY && $0.dataCell_X_Number <= lclMax_X && $0.dataCell_X_Number >= lclMinx}
