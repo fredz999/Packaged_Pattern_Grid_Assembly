@@ -17,11 +17,11 @@ class Delete_Helper {
     var current_DellCell_Line_Set = Set<Underlying_Data_Cell>()
     
     var deleteHelper_currentData : Underlying_Data_Cell
-    {
-        didSet {
-            print("deleteHelper_currentData X: ",deleteHelper_currentData.dataCell_X_Number.description,", Y: ",deleteHelper_currentData.dataCell_Y_Number.description)
-        }
-    }
+//    {
+//        didSet {
+//            print("deleteHelper_currentData X: ",deleteHelper_currentData.dataCell_X_Number.description,", Y: ",deleteHelper_currentData.dataCell_Y_Number.description)
+//        }
+//    }
     
     var delete_Square_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -57,32 +57,80 @@ class Delete_Helper {
         analyse_Delete_Square_Set()
     }
     
-    var initialCursorCell : Underlying_Data_Cell?
-
-    var maxLeftwardCell : Underlying_Data_Cell?
-    var maxRightwardCell : Underlying_Data_Cell?
-    
-    func analyse_Delete_Square_Set(){
-        // 1: get initial
-        // 2: get max vals of up down left and right
-        
-        for cell in delete_Square_Set {
-            if let note = cell.note_Im_In {
-                if let lclNoteCollection = note_Collection_Ref {
-                    lclNoteCollection.reset_Note_Data_Cells(noteParam: note)
-                }
+    var initialCursorCell : Underlying_Data_Cell?{
+        didSet{
+            if let lclInitialCursorCell = initialCursorCell {
+                min_X = lclInitialCursorCell.dataCell_X_Number
+                max_X = lclInitialCursorCell.dataCell_X_Number
+                min_Y = lclInitialCursorCell.dataCell_Y_Number
+                max_Y = lclInitialCursorCell.dataCell_Y_Number
             }
         }
     }
 
+    var min_X : Int?
+    var max_X : Int?
+    var min_Y : Int?
+    var max_Y : Int?
+    
+    func analyse_Delete_Square_Set(){
+        if let lclInitialCell = initialCursorCell {
+            
+            if deleteHelper_currentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+                if let lclMinX = min_X {
+                    if deleteHelper_currentData.dataCell_X_Number < lclMinX{min_X=deleteHelper_currentData.dataCell_X_Number}
+                }
+            }
+            else if deleteHelper_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+                if let lclMaxX = max_X {
+                    if deleteHelper_currentData.dataCell_X_Number > lclMaxX{max_X=deleteHelper_currentData.dataCell_X_Number}
+                }
+            }
+            
+            if deleteHelper_currentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number {
+                if let lclMinY = min_Y {
+                    if deleteHelper_currentData.dataCell_Y_Number < lclMinY{min_Y=deleteHelper_currentData.dataCell_Y_Number}
+                }
+            }
+            else if deleteHelper_currentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number {
+                if let lclMaxY = max_Y {
+                    if deleteHelper_currentData.dataCell_Y_Number < lclMaxY{max_Y=deleteHelper_currentData.dataCell_Y_Number}
+                }
+            }
+            if let lclMinx = min_X,let lclMinY = min_X,let lclMax_X = max_X,let lclMax_Y = max_Y{
+                print("minX: ",lclMinx,", minY: ",lclMinY,", maxX: ",lclMax_X,", maxY: ",lclMax_Y)
+            }
+        }
+        
+        
+        
+        // 1: get initial
+        // 2: get max vals of up down left and right
+//        for cell in delete_Square_Set {
+//            if let note = cell.note_Im_In {
+//                if let lclNoteCollection = note_Collection_Ref {
+//                    lclNoteCollection.reset_Note_Data_Cells(noteParam: note)
+//                }
+//            }
+//        }
+    }
+
     func nil_Delete_Square_Set(){
+        
         if initialCursorCell != nil{initialCursorCell = nil}
+        
+        if min_X != nil{min_X=nil}
+        if max_X != nil{max_X=nil}
+        if min_Y != nil{min_Y=nil}
+        if max_Y != nil{max_Y=nil}
+
         if delete_Square_Set.count > 0 {
             for cell in delete_Square_Set {
                 cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
             }
             delete_Square_Set.removeAll()
         }
+        
     }
     
     
