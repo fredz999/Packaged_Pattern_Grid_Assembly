@@ -86,12 +86,14 @@ class Delete_Helper {
                 if let lclMinX = min_X {
                     //if deleteHelper_currentData.dataCell_X_Number < lclMinX{min_X=deleteHelper_currentData.dataCell_X_Number}
                     min_X=deleteHelper_currentData.dataCell_X_Number
+                    max_X=lclInitialCell.dataCell_X_Number
                 }
             }
             else if deleteHelper_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 if let lclMaxX = max_X {
                     //if deleteHelper_currentData.dataCell_X_Number > lclMaxX{max_X=deleteHelper_currentData.dataCell_X_Number}
                     max_X=deleteHelper_currentData.dataCell_X_Number
+                    min_X=lclInitialCell.dataCell_X_Number
                 }
             }
             
@@ -99,12 +101,14 @@ class Delete_Helper {
                 if let lclMinY = min_Y {
                     //if deleteHelper_currentData.dataCell_Y_Number < lclMinY{min_Y=deleteHelper_currentData.dataCell_Y_Number}
                     min_Y=deleteHelper_currentData.dataCell_Y_Number
+                    max_Y=lclInitialCell.dataCell_Y_Number
                 }
             }
             else if deleteHelper_currentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number {
                 if let lclMaxY = max_Y {
                     //if deleteHelper_currentData.dataCell_Y_Number > lclMaxY{max_Y=deleteHelper_currentData.dataCell_Y_Number}
                     max_Y=deleteHelper_currentData.dataCell_Y_Number
+                    min_Y=lclInitialCell.dataCell_Y_Number
                 }
             }
 
