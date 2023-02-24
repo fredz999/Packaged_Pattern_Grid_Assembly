@@ -59,21 +59,21 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     initialStatus = currSixStatus
                 }
                 
-//                if y == 0 {
-//
-//                    if fourFour_Half_Sub_Count == 0  {
-//                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
-//                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
-//                        dimensions.four_Four_Slider_Positions.insert(cellIndexDescriptor)
-//                    }
-//
-//                    if sixEight_Half_Sub_Count == 0 {
-//                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
-//                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
-//                        dimensions.six_Eight_Slider_Positions.insert(cellIndexDescriptor)
-//                    }
-//
-//                }
+                if line_Y_Number == 0 {
+
+                    if fourFour_Half_Sub_Count == 0  {
+                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
+                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
+                        dimensions.four_Four_Slider_Positions.insert(cellIndexDescriptor)
+                    }
+
+                    if sixEight_Half_Sub_Count == 0 {
+                        let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
+                        let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
+                        dimensions.six_Eight_Slider_Positions.insert(cellIndexDescriptor)
+                    }
+
+                }
                 
                 let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: line_Y_Number, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
                 , initialStatusParam: initialStatus, fourFourSubIndexParam: fourFour_Sub_Count, sixEightSubIndexParam: sixEight_Sub_Count

@@ -70,7 +70,19 @@ class Delete_Helper {
     var min_Y : Int?
     var max_Y : Int?
     
-    var delete_Area_Set = Set<Underlying_Data_Cell>()
+    var delete_Area_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = delete_Area_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
+            }
+        }
+        didSet {
+            for cell in delete_Area_Set {
+                cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
+            }
+        }
+    }
     
     func analyse_Delete_Square_Set(){
         if let lclInitialCell = initialCursorCell {
@@ -96,23 +108,12 @@ class Delete_Helper {
                     if deleteHelper_currentData.dataCell_Y_Number > lclMaxY{max_Y=deleteHelper_currentData.dataCell_Y_Number}
                 }
             }
-//            if let lclMinx = min_X,let lclMinY = min_Y,let lclMax_X = max_X,let lclMax_Y = max_Y{
-//                print("minX: ",lclMinx,", minY: ",lclMinY,", maxX: ",lclMax_X,", maxY: ",lclMax_Y)
-//            }
-            // ok, now I have to establish the set of lines and for each lineSet the xmin and max
-            // let LinesInDelete
-            
-            //Underlying_Data_Grid.line_Of_Cells_Set.filter{$0 }
-            //line_Of_Cells_Set
-           // delete_Area_Set = Underlying_Data_Grid.line_Of_Cells_Set.filter{$0.ynu}
             
             if let lclMinx = min_X,let lclMinY = min_Y,let lclMax_X = max_X,let lclMax_Y = max_Y {
                 delete_Area_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                 .filter{$0.dataCell_Y_Number <= lclMax_Y && $0.dataCell_Y_Number >= lclMinY && $0.dataCell_X_Number <= lclMax_X && $0.dataCell_X_Number >= lclMinx}
             }
-//            for cell in delete_Area_Set{
-//                cell.in_Delete_Square_Set
-//            }
+
         }
         
         
