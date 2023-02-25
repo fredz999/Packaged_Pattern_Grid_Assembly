@@ -95,15 +95,21 @@ class Delete_Helper {
             
             if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
 
-                if current_Direction != .horizontal{
+                if current_Direction == .stationary{
+                    current_Direction = .horizontal
+                }
+                else if current_Direction == .vertical{
                     current_Start_Cell = delete_Cursor_CurrentData
                     current_Direction = .horizontal
                 }
-                
+
             }
             else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 
-                if current_Direction != .horizontal{
+                if current_Direction == .stationary{
+                    current_Direction = .horizontal
+                }
+                else if current_Direction == .vertical{
                     current_Start_Cell = delete_Cursor_CurrentData
                     current_Direction = .horizontal
                 }
@@ -111,13 +117,19 @@ class Delete_Helper {
             }
 
             if delete_Cursor_CurrentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number {
-                if current_Direction != .vertical{
+                if current_Direction == .stationary {
+                    current_Direction = .vertical
+                }
+                else if current_Direction == .horizontal{
                     current_Start_Cell = delete_Cursor_CurrentData
                     current_Direction = .vertical
                 }
             }
             else if delete_Cursor_CurrentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number {
-                if current_Direction != .vertical{
+                if current_Direction == .stationary {
+                    current_Direction = .vertical
+                }
+                else if current_Direction == .horizontal{
                     current_Start_Cell = delete_Cursor_CurrentData
                     current_Direction = .vertical
                 }
