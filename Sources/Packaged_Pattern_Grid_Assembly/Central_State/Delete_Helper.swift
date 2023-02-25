@@ -53,11 +53,10 @@ class Delete_Helper {
     }
     
     var current_Direction : E_DeleteLineDirection = .stationary {
-        didSet {
-            
-            print("movement plane changed, new plane: ",current_Direction)
-            // you have to re- set the initial here
-            
+        willSet{
+            if newValue != .stationary{
+                current_Start_Cell = delete_Cursor_CurrentData
+            }
         }
     }
 
@@ -98,12 +97,15 @@ class Delete_Helper {
         if let lclInitialCell = current_Start_Cell {
             
             if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-
+                //newCell : same y val, newCell: different x val, current direction: horizontal = no change to currentStartCell
+                //newCell : different y val, newCell: same x val, current direction: horizontal = start cell = current and direction changed to vert
+                
+                
                 if current_Direction == .stationary{
                     current_Direction = .horizontal
                 }
                 else if current_Direction == .vertical{
-                    current_Start_Cell = delete_Cursor_CurrentData
+                    //current_Start_Cell = delete_Cursor_CurrentData.......you want this to be the previous
                     current_Direction = .horizontal
                 }
 
@@ -114,7 +116,7 @@ class Delete_Helper {
                     current_Direction = .horizontal
                 }
                 else if current_Direction == .vertical{
-                    current_Start_Cell = delete_Cursor_CurrentData
+                    //current_Start_Cell = delete_Cursor_CurrentData
                     current_Direction = .horizontal
                 }
                 
@@ -125,7 +127,7 @@ class Delete_Helper {
                     current_Direction = .vertical
                 }
                 else if current_Direction == .horizontal{
-                    current_Start_Cell = delete_Cursor_CurrentData
+                    //current_Start_Cell = delete_Cursor_CurrentData
                     current_Direction = .vertical
                 }
             }
@@ -134,7 +136,7 @@ class Delete_Helper {
                     current_Direction = .vertical
                 }
                 else if current_Direction == .horizontal{
-                    current_Start_Cell = delete_Cursor_CurrentData
+                    //current_Start_Cell = delete_Cursor_CurrentData
                     current_Direction = .vertical
                 }
             }
