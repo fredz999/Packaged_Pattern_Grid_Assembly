@@ -116,7 +116,7 @@ class Delete_Helper {
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
         
         //print("prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
-        
+        print("delete_Cursor_CurrentData.dataCell_X_Number: ",delete_Cursor_CurrentData.dataCell_X_Number,current_Start_Cell == nil ? "nil" : "not nil")
         if let lclCurrent_Start_Cell = current_Start_Cell {
             
             if delete_Cursor_CurrentData.dataCell_X_Number < lclCurrent_Start_Cell.dataCell_X_Number {
