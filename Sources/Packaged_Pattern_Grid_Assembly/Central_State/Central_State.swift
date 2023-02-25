@@ -43,7 +43,7 @@ public class Central_State : ObservableObject {
         
         for cell in currLine.dataCellArray {
         viableSetHelpers.current_Cell_Line_Set.insert(cell)
-        delete_Helper.current_DellCell_Line_Set.insert(cell)
+        delete_Helper.current_Line_Set.insert(cell)
         }
         
     }
@@ -215,16 +215,15 @@ public class Central_State : ObservableObject {
             
             if viableSetHelpers.current_Cell_Line_Set.count > 0{viableSetHelpers.nil_Cursor_Set()}
             viableSetHelpers.test_For_Write_Lock()
-            //delete_Helper.initialCursorCell =
             
             if dimensions.patternTimingConfiguration == .fourFour {
-                delete_Helper.initialCursorCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                delete_Helper.current_Start_Cell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             }
             else if dimensions.patternTimingConfiguration == .sixEight {
-                delete_Helper.initialCursorCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                delete_Helper.current_Start_Cell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             }
             
-            delete_Helper.establish_Delete_Square_Set()
+            delete_Helper.process_Delete_Cursor_Position()
        
         }
         else if patternModeParam == .passive {
@@ -234,10 +233,9 @@ public class Central_State : ObservableObject {
                 viableSetHelpers.nilPotentialSet()
                 viableSetHelpers.initial_WriteOnCell = nil
             }
-            if delete_Helper.delete_Square_Set.count > 0{
+            if delete_Helper.delete_Cursor_Set.count > 0 {
                 delete_Helper.nil_Delete_Square_Set()
             }
-
             if currentPatternMode != .passive{currentPatternMode = .passive}
             if viableSetHelpers.helperFuncs_Cursor_Set.count == 0{
                 viableSetHelpers.establish_Cursor_Set()
@@ -262,7 +260,7 @@ public class Central_State : ObservableObject {
             viableSetHelpers.establish_Potential_Cells_Set()
         }
         else if currentPatternMode == .deleting{
-            delete_Helper.establish_Delete_Square_Set()
+            delete_Helper.process_Delete_Cursor_Position()
         }
         else if currentPatternMode == .passive{
             viableSetHelpers.establish_Cursor_Set()
@@ -306,13 +304,13 @@ public class Central_State : ObservableObject {
             
             if dimensions.patternTimingConfiguration == .fourFour{
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                delete_Helper.deleteHelper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                 curr_Data_Pos_X = dimensions.currentFourFourDataIndex
             }
             
             else if dimensions.patternTimingConfiguration == .sixEight {
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                delete_Helper.deleteHelper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 curr_Data_Pos_X = dimensions.currentSixEightDataIndex
             }
         }
@@ -329,7 +327,7 @@ public class Central_State : ObservableObject {
                 newSet.insert(cell)
             }
             viableSetHelpers.current_Cell_Line_Set = newSet
-            delete_Helper.current_DellCell_Line_Set = newSet
+            delete_Helper.current_Line_Set = newSet
         }
     }
 
