@@ -122,6 +122,7 @@ class Delete_Helper {
             if delete_Cursor_CurrentData.dataCell_X_Number < lclCurrent_Start_Cell.dataCell_X_Number {
                 if current_Direction == .stationary {
                     current_Direction = .horizontal
+                    print("current_Direction: ",current_Direction.rawValue)
                 }
                 else if current_Direction == .vertical {
                     current_Direction = .horizontal
@@ -133,6 +134,7 @@ class Delete_Helper {
             else if delete_Cursor_CurrentData.dataCell_X_Number > lclCurrent_Start_Cell.dataCell_X_Number {
                 if current_Direction == .stationary {
                     current_Direction = .horizontal
+                    print("current_Direction: ",current_Direction.rawValue)
                 }
                 else if current_Direction == .vertical{
                     current_Direction = .horizontal
@@ -144,6 +146,7 @@ class Delete_Helper {
             if delete_Cursor_CurrentData.dataCell_Y_Number < lclCurrent_Start_Cell.dataCell_Y_Number {
                 if current_Direction == .stationary {
                     current_Direction = .vertical
+                    print("current_Direction: ",current_Direction.rawValue)
                 }
                 else if current_Direction == .horizontal{
                     current_Direction = .vertical
@@ -154,6 +157,7 @@ class Delete_Helper {
             else if delete_Cursor_CurrentData.dataCell_Y_Number > lclCurrent_Start_Cell.dataCell_Y_Number {
                 if current_Direction == .stationary {
                     current_Direction = .vertical
+                    print("current_Direction: ",current_Direction.rawValue)
                 }
                 else if current_Direction == .horizontal{
                     current_Direction = .vertical
