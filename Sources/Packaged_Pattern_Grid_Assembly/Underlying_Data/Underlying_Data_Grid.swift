@@ -190,6 +190,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Delete_Square_Set == false {
                 in_Delete_Square_Set = true
                 if let lclDataVals = currentConnectedDataVals {
+                    print("activate del square set")
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .deleteSquareSet , value: in_Delete_Square_Set)
                 }
             }
