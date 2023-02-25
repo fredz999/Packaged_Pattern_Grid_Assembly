@@ -54,9 +54,9 @@ class Delete_Helper {
     
     var current_Direction : E_DeleteLineDirection = .stationary {
         willSet {
-            if newValue != .stationary {
+            //if newValue != .stationary {
                 current_Start_Cell = delete_Cursor_CurrentData
-            }
+            //}
         }
     }
 
