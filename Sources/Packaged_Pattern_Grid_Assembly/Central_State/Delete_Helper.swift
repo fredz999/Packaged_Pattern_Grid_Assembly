@@ -21,7 +21,7 @@ class Delete_Helper {
     
     var current_Line_Set = Set<Underlying_Data_Cell>()
     
-    var delete_Cursor_CurrentData : Underlying_Data_Cell
+    
     
     var delete_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -39,9 +39,9 @@ class Delete_Helper {
     
     var current_Start_Cell : Underlying_Data_Cell?{
         didSet{
-            if let lclInitialCursorCell = current_Start_Cell {
-                print("current_Start_Cell_X: ",lclInitialCursorCell.dataCell_X_Number,", CurrY: ",lclInitialCursorCell.dataCell_Y_Number)
-            }
+//            if let lclInitialCursorCell = current_Start_Cell {
+//                print("current_Start_Cell_X: ",lclInitialCursorCell.dataCell_X_Number,", CurrY: ",lclInitialCursorCell.dataCell_Y_Number)
+//            }
             
 //            if let lclInitialCursorCell = current_Start_Cell {
 //                min_X = lclInitialCursorCell.dataCell_X_Number
@@ -52,13 +52,7 @@ class Delete_Helper {
         }
     }
     
-    var current_Direction : E_DeleteLineDirection = .stationary {
-        willSet {
-            //if newValue != .stationary {
-                current_Start_Cell = delete_Cursor_CurrentData
-            //}
-        }
-    }
+    var current_Direction : E_DeleteLineDirection = .stationary
 
     init(initialDataParam : Underlying_Data_Cell){
         delete_Cursor_CurrentData = initialDataParam
@@ -89,60 +83,43 @@ class Delete_Helper {
             let nuSet = current_Line_Set.filter({$0.six_Eight_Half_Cell_Index == delete_Cursor_CurrentData.six_Eight_Half_Cell_Index})
             delete_Cursor_Set = nuSet
         }
-        process_Current_Line()
+        //process_Current_Line()
+    }
+    
+    var delete_Cursor_CurrentData : Underlying_Data_Cell {
+        willSet{
+            //anticipate the new starter cell in here
+        }
+        didSet{
+            print("delete_Cursor_CurrentData set to X:",delete_Cursor_CurrentData.dataCell_X_Number.description,", Y: ",delete_Cursor_CurrentData.dataCell_Y_Number.description)
+        }
     }
 
-    func process_Current_Line() {
-        // a change of direction is only warranted when the current pos is actually different from the current initial
+    func process_Current_Line(previousDataCell:Underlying_Data_Cell? = nil,nextDataCell:Underlying_Data_Cell) {
         if let lclInitialCell = current_Start_Cell {
+            //note: when a new initial cell is set  the direction must be set at the same time.... except at the very start
+    
+            //1: initial cell set(x:0,y:0), start direction = stationary
+            //2: horz swipe, direction set to horizontal, lands at x:3,y:0
+            //3: up swipe | to x:3,y:1, I want to set x:3,y:0 as the new initial and the direction set to ... how?
             
-            if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-                //newCell : same y val, newCell: different x val, current direction: horizontal = no change to currentStartCell
-                //newCell : different y val, newCell: same x val, current direction: horizontal = start cell = current and direction changed to vert
-                
-                
-                if current_Direction == .stationary{
-                    current_Direction = .horizontal
-                }
-                else if current_Direction == .vertical{
-                    //current_Start_Cell = delete_Cursor_CurrentData.......you want this to be the previous
-                    current_Direction = .horizontal
-                }
-
-            }
-            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                
-                if current_Direction == .stationary{
-                    current_Direction = .horizontal
-                }
-                else if current_Direction == .vertical{
-                    //current_Start_Cell = delete_Cursor_CurrentData
-                    current_Direction = .horizontal
-                }
-                
-            }
-
-            if delete_Cursor_CurrentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number {
-                if current_Direction == .stationary {
-                    current_Direction = .vertical
-                }
-                else if current_Direction == .horizontal{
-                    //current_Start_Cell = delete_Cursor_CurrentData
-                    current_Direction = .vertical
-                }
-            }
-            else if delete_Cursor_CurrentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number {
-                if current_Direction == .stationary {
-                    current_Direction = .vertical
-                }
-                else if current_Direction == .horizontal{
-                    //current_Start_Cell = delete_Cursor_CurrentData
-                    current_Direction = .vertical
-                }
-            }
+//            if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+//                if current_Direction == .stationary {
+//                    current_Direction = .horizontal
+//                }
+//                else if current_Direction == .vertical{
+//                    current_Direction = .horizontal
+//                    // set new initial cell but somehow make it the previous one
+//                }
+//            }
+//            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number{
+//
+//            }
+//
+//            if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_Y_Number{}
+//            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_Y_Number{}
             
         }
-        
     }
 
     var delete_Area_Set = Set<Underlying_Data_Cell>(){
@@ -253,3 +230,56 @@ enum E_DeleteLineDirection : String {
 ////            }
 ////        }
 //    }
+
+//func process_Current_Line() {
+//    // a change of direction is only warranted when the current pos is actually different from the current initial
+//    if let lclInitialCell = current_Start_Cell {
+//
+////            if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+////                //newCell : same y val, newCell: different x val, current direction: horizontal = no change to currentStartCell
+////                //newCell : different y val, newCell: same x val, current direction: horizontal = start cell = current and direction changed to vert
+////
+////
+////                if current_Direction == .stationary{
+////                    current_Direction = .horizontal
+////                }
+////                else if current_Direction == .vertical{
+////                    //current_Start_Cell = delete_Cursor_CurrentData.......you want this to be the previous
+////                    current_Direction = .horizontal
+////                }
+////
+////            }
+////            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
+////
+////                if current_Direction == .stationary{
+////                    current_Direction = .horizontal
+////                }
+////                else if current_Direction == .vertical{
+////                    //current_Start_Cell = delete_Cursor_CurrentData
+////                    current_Direction = .horizontal
+////                }
+////
+////            }
+//
+////            if delete_Cursor_CurrentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number {
+////                if current_Direction == .stationary {
+////                    current_Direction = .vertical
+////                }
+////                else if current_Direction == .horizontal{
+////                    //current_Start_Cell = delete_Cursor_CurrentData
+////                    current_Direction = .vertical
+////                }
+////            }
+////            else if delete_Cursor_CurrentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number {
+////                if current_Direction == .stationary {
+////                    current_Direction = .vertical
+////                }
+////                else if current_Direction == .horizontal{
+////                    //current_Start_Cell = delete_Cursor_CurrentData
+////                    current_Direction = .vertical
+////                }
+////            }
+//
+//    }
+//
+//}
