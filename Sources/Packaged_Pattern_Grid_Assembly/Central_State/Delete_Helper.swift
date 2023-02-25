@@ -40,11 +40,15 @@ class Delete_Helper {
     var current_Start_Cell : Underlying_Data_Cell?{
         didSet{
             if let lclInitialCursorCell = current_Start_Cell {
-                min_X = lclInitialCursorCell.dataCell_X_Number
-                max_X = lclInitialCursorCell.dataCell_X_Number
-                min_Y = lclInitialCursorCell.dataCell_Y_Number
-                max_Y = lclInitialCursorCell.dataCell_Y_Number
+                print("current_Start_Cell_X: ",lclInitialCursorCell.dataCell_X_Number,", CurrY: ",lclInitialCursorCell.dataCell_Y_Number)
             }
+            
+//            if let lclInitialCursorCell = current_Start_Cell {
+//                min_X = lclInitialCursorCell.dataCell_X_Number
+//                max_X = lclInitialCursorCell.dataCell_X_Number
+//                min_Y = lclInitialCursorCell.dataCell_Y_Number
+//                max_Y = lclInitialCursorCell.dataCell_Y_Number
+//            }
         }
     }
     
