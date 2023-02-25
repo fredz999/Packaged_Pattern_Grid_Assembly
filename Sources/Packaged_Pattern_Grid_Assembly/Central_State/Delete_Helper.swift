@@ -49,8 +49,11 @@ class Delete_Helper {
     }
     
     var current_Direction : E_DeleteLineDirection = .stationary {
-        didSet{
+        didSet {
+            current_Start_Cell = delete_Cursor_CurrentData
             print("movement plane changed, new plane: ",current_Direction)
+            // you have to re- set the initial here
+            
         }
     }
 
