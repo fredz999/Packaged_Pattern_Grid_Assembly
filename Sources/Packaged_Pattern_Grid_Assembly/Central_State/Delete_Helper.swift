@@ -39,9 +39,9 @@ class Delete_Helper {
     
     var current_Start_Cell : Underlying_Data_Cell?{
         didSet{
-            if let lclInitialCursorCell = current_Start_Cell {
-                print("current_Start_Cell_X: ",lclInitialCursorCell.dataCell_X_Number,", CurrY: ",lclInitialCursorCell.dataCell_Y_Number)
-            }
+//            if let lclInitialCursorCell = current_Start_Cell {
+//                print("current_Start_Cell_X: ",lclInitialCursorCell.dataCell_X_Number,", CurrY: ",lclInitialCursorCell.dataCell_Y_Number)
+//            }
             
 //            if let lclInitialCursorCell = current_Start_Cell {
 //                min_X = lclInitialCursorCell.dataCell_X_Number
@@ -98,8 +98,10 @@ class Delete_Helper {
     }
 
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
+        
+        print("prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
+        
         if let lclInitialCell = current_Start_Cell {
-            
             
             if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
                 if current_Direction == .stationary {
