@@ -89,14 +89,57 @@ class Delete_Helper {
     var delete_Cursor_CurrentData : Underlying_Data_Cell {
         willSet{
             //anticipate the new starter cell in here
+            //if let newVal == newValue{}
+            process_Current_Line(previousDataCell:delete_Cursor_CurrentData,nextDataCell:newValue)
         }
         didSet{
             print("delete_Cursor_CurrentData set to X:",delete_Cursor_CurrentData.dataCell_X_Number.description,", Y: ",delete_Cursor_CurrentData.dataCell_Y_Number.description)
         }
     }
 
-    func process_Current_Line(previousDataCell:Underlying_Data_Cell? = nil,nextDataCell:Underlying_Data_Cell) {
+    func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
         if let lclInitialCell = current_Start_Cell {
+            
+            
+            if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+                if current_Direction == .stationary {
+                    current_Direction = .horizontal
+                }
+                else if current_Direction == .vertical{
+                    current_Direction = .horizontal
+                    current_Start_Cell = previousDataCell
+                }
+            }
+            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number{
+                if current_Direction == .stationary {
+                    current_Direction = .horizontal
+                }
+                else if current_Direction == .vertical{
+                    current_Direction = .horizontal
+                    current_Start_Cell = previousDataCell
+                }
+            }
+            
+            if delete_Cursor_CurrentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number{
+                if current_Direction == .stationary {
+                    current_Direction = .vertical
+                }
+                else if current_Direction == .horizontal{
+                    current_Direction = .vertical
+                    current_Start_Cell = previousDataCell
+                }
+            }
+            else if delete_Cursor_CurrentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number{
+                if current_Direction == .stationary {
+                    current_Direction = .vertical
+                }
+                else if current_Direction == .horizontal{
+                    current_Direction = .vertical
+                    current_Start_Cell = previousDataCell
+                }
+            }
+            
+            
             //note: when a new initial cell is set  the direction must be set at the same time.... except at the very start
     
             //1: initial cell set(x:0,y:0), start direction = stationary
@@ -116,7 +159,7 @@ class Delete_Helper {
 //
 //            }
 //
-//            if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_Y_Number{}
+//            if delete_Cursor_CurrentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number{}
 //            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_Y_Number{}
             
         }
