@@ -300,8 +300,8 @@ public class Central_State : ObservableObject {
 
         }
         
-        else if  viableSetHelpers.initial_WriteOnCell == nil{
-            
+        else if  viableSetHelpers.initial_WriteOnCell == nil, currentPatternMode == .deleting{
+       
             if dimensions.patternTimingConfiguration == .fourFour{
                 viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                 delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
