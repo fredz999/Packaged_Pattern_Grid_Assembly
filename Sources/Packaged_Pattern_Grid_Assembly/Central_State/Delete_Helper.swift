@@ -36,6 +36,22 @@ class Delete_Helper {
             }
         }
     }
+    var bunch_Of_Lines_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = bunch_Of_Lines_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
+            }
+        }
+        didSet {
+            for cell in bunch_Of_Lines_Set {
+                cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
+            }
+        }
+    }
+    
+    
+    
     
     var current_Start_Cell : Underlying_Data_Cell?{
         didSet{
@@ -99,45 +115,50 @@ class Delete_Helper {
 
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
         
-        print("prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
+        //print("prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
         
-        if let lclInitialCell = current_Start_Cell {
+        if let lclCurrent_Start_Cell = current_Start_Cell {
             
-            if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
+            if delete_Cursor_CurrentData.dataCell_X_Number < lclCurrent_Start_Cell.dataCell_X_Number {
+                if current_Direction == .stationary {
+                    current_Direction = .horizontal
+                }
+                else if current_Direction == .vertical {
+                    current_Direction = .horizontal
+                    current_Start_Cell = previousDataCell
+                    print("1 set to horizontal current_Start_Cell:X:",lclCurrent_Start_Cell.dataCell_X_Number,", Y: ",lclCurrent_Start_Cell.dataCell_Y_Number)
+                }
+
+            }
+            else if delete_Cursor_CurrentData.dataCell_X_Number > lclCurrent_Start_Cell.dataCell_X_Number {
                 if current_Direction == .stationary {
                     current_Direction = .horizontal
                 }
                 else if current_Direction == .vertical{
                     current_Direction = .horizontal
                     current_Start_Cell = previousDataCell
-                }
-            }
-            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number{
-                if current_Direction == .stationary {
-                    current_Direction = .horizontal
-                }
-                else if current_Direction == .vertical{
-                    current_Direction = .horizontal
-                    current_Start_Cell = previousDataCell
+                    print("2 set to horizontal current_Start_Cell:X:",lclCurrent_Start_Cell.dataCell_X_Number,", Y: ",lclCurrent_Start_Cell.dataCell_Y_Number)
                 }
             }
             
-            if delete_Cursor_CurrentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number{
+            if delete_Cursor_CurrentData.dataCell_Y_Number < lclCurrent_Start_Cell.dataCell_Y_Number {
                 if current_Direction == .stationary {
                     current_Direction = .vertical
                 }
                 else if current_Direction == .horizontal{
                     current_Direction = .vertical
                     current_Start_Cell = previousDataCell
+                    print("3 set to vertical current_Start_Cell:X:",lclCurrent_Start_Cell.dataCell_X_Number,", Y: ",lclCurrent_Start_Cell.dataCell_Y_Number)
                 }
             }
-            else if delete_Cursor_CurrentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number{
+            else if delete_Cursor_CurrentData.dataCell_Y_Number > lclCurrent_Start_Cell.dataCell_Y_Number {
                 if current_Direction == .stationary {
                     current_Direction = .vertical
                 }
                 else if current_Direction == .horizontal{
                     current_Direction = .vertical
                     current_Start_Cell = previousDataCell
+                    print("4 set to vertical current_Start_Cell:X:",lclCurrent_Start_Cell.dataCell_X_Number,", Y: ",lclCurrent_Start_Cell.dataCell_Y_Number)
                 }
             }
             
