@@ -50,7 +50,7 @@ class Delete_Helper {
     
     var current_Direction : E_DeleteLineDirection = .stationary {
         didSet {
-            current_Start_Cell = delete_Cursor_CurrentData
+            
             print("movement plane changed, new plane: ",current_Direction)
             // you have to re- set the initial here
             
@@ -94,18 +94,33 @@ class Delete_Helper {
         if let lclInitialCell = current_Start_Cell {
             
             if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-              //the direction is horizontal
-                if current_Direction != .horizontal{current_Direction = .horizontal}
+
+                if current_Direction != .horizontal{
+                    current_Start_Cell = delete_Cursor_CurrentData
+                    current_Direction = .horizontal
+                }
+                
             }
             else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-                if current_Direction != .horizontal{current_Direction = .horizontal}
+                
+                if current_Direction != .horizontal{
+                    current_Start_Cell = delete_Cursor_CurrentData
+                    current_Direction = .horizontal
+                }
+                
             }
 
             if delete_Cursor_CurrentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number {
-                if current_Direction != .vertical{current_Direction = .vertical}
+                if current_Direction != .vertical{
+                    current_Start_Cell = delete_Cursor_CurrentData
+                    current_Direction = .vertical
+                }
             }
             else if delete_Cursor_CurrentData.dataCell_Y_Number > lclInitialCell.dataCell_Y_Number {
-                if current_Direction != .vertical{current_Direction = .vertical}
+                if current_Direction != .vertical{
+                    current_Start_Cell = delete_Cursor_CurrentData
+                    current_Direction = .vertical
+                }
             }
             
         }
