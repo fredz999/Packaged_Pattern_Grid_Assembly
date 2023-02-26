@@ -166,14 +166,14 @@ class Delete_Helper {
             else if current_Direction == .horizontal {
                 if prevY != nextY{
                     delete_Cursor_InitialData = previousDataCell
-                    print("initX:",initialX.description,",initialY:",initialY.description)
+                    print("vert move initX:",initialX.description,",initialY:",initialY.description)
                     current_Direction = .vertical
                 }
             }
             else if current_Direction == .vertical {
                 if prevX != nextX{
                     delete_Cursor_InitialData = previousDataCell
-                    print("initX:",initialX.description,",initialY:",initialY.description)
+                    print("horz move initX:",initialX.description,",initialY:",initialY.description)
                     current_Direction = .horizontal
                 }
             }
