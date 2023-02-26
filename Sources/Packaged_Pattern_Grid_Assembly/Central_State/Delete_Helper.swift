@@ -108,16 +108,17 @@ class Delete_Helper {
         didSet {
             if let lclDelete_Cursor_StartData = delete_Cursor_InitialData {
                 
-                print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
+                //print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
 
-                multiple_Lines_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+                let newInitialSet = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                 .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
                     && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
                 }
-//                for cell in newInitialSet{
-//                    print("initCellX: ",cell.dataCell_X_Number,"Y: ",cell.dataCell_Y_Number)
-//                    cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
-//                }
+                for cell in newInitialSet{
+                    //print("initCellX: ",cell.dataCell_X_Number,"Y: ",cell.dataCell_Y_Number)
+                    //cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
+                    multiple_Lines_Set.insert(cell)
+                }
                 
 //                if dimensions.patternTimingConfiguration == .fourFour {
 //                    //let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index})
