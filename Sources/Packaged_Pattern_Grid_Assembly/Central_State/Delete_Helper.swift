@@ -149,9 +149,13 @@ class Delete_Helper {
             let nextX = nextDataCell.dataCell_X_Number
             let nextY = nextDataCell.dataCell_Y_Number
 
+//            if current_Direction == .stationary {
+//                if prevX != initialX{current_Direction = .horizontal}
+//                else if prevY != initialY{current_Direction = .vertical}
+//            }
             if current_Direction == .stationary {
-                if prevX != initialX{current_Direction = .horizontal}
-                else if prevY != initialY{current_Direction = .vertical}
+                if nextX != initialX{current_Direction = .horizontal}
+                else if nextY != initialY{current_Direction = .vertical}
             }
             else if current_Direction == .horizontal {
                 if prevY != nextY{
