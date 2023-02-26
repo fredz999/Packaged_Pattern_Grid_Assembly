@@ -111,9 +111,9 @@ class Delete_Helper {
                 //print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
 
                 let newInitialSet = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-                    .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
-                        && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-                    }
+                .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
+                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
+                }
                 for cell in newInitialSet{
                     print("initCellX: ",cell.dataCell_X_Number,"Y: ",cell.dataCell_Y_Number)
                 }
