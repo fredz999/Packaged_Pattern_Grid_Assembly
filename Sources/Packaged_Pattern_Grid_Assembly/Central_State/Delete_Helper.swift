@@ -108,7 +108,7 @@ class Delete_Helper {
         didSet {
             if let lclDelete_Cursor_StartData = delete_Cursor_InitialData {
                 
-                //print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
+                print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
 
                 
                 
@@ -167,10 +167,10 @@ class Delete_Helper {
                 if prevY != nextY{
                     delete_Cursor_InitialData = previousDataCell
                     //print("vert move initX:",initialX.description,",initialY:",initialY.description)
-                    if let initial2 = delete_Cursor_InitialData {
-                        print("vert move prevX:",previousDataCell.dataCell_X_Number.description,",prevY:",previousDataCell.dataCell_Y_Number.description
-                              ,", initialX: ",lclCurrent_Initial_Cell.dataCell_X_Number,", initial2_X: ",initial2.dataCell_X_Number)
-                    }
+//                    if let initial2 = delete_Cursor_InitialData {
+//                        print("vert move prevX:",previousDataCell.dataCell_X_Number.description,",prevY:",previousDataCell.dataCell_Y_Number.description
+//                              ,", initialX: ",lclCurrent_Initial_Cell.dataCell_X_Number,", initial2_X: ",initial2.dataCell_X_Number)
+//                    }
                     
                     current_Direction = .vertical
                 }
