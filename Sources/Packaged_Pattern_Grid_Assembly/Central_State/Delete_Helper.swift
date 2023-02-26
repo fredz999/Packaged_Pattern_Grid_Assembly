@@ -122,16 +122,16 @@ class Delete_Helper {
                     
                     for cell in nuSet{
                         //multiple_Lines_Set.insert(cell)
-                        cell.handleVisibleStateChange(type : .activate_Highlighted )
+                        cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
                     }
                 }
-                else if dimensions.patternTimingConfiguration == .sixEight {
-                    let nuSet = current_Line_Set.filter({$0.six_Eight_Half_Cell_Index == lclDelete_Cursor_StartData.six_Eight_Half_Cell_Index})
-                    for cell in nuSet{
-                        //multiple_Lines_Set.insert(cell)
-                        cell.handleVisibleStateChange(type : .activate_Highlighted)
-                    }
-                }
+//                else if dimensions.patternTimingConfiguration == .sixEight {
+//                    let nuSet = current_Line_Set.filter({$0.six_Eight_Half_Cell_Index == lclDelete_Cursor_StartData.six_Eight_Half_Cell_Index})
+//                    for cell in nuSet{
+//                        //multiple_Lines_Set.insert(cell)
+//                        cell.handleVisibleStateChange(type : .activate_Highlighted)
+//                    }
+//                }
                 
             }
         }
