@@ -100,7 +100,6 @@ class Delete_Helper {
             let nuSet = current_Line_Set.filter({$0.six_Eight_Half_Cell_Index == delete_Cursor_CurrentData.six_Eight_Half_Cell_Index})
             delete_Cursor_Set = nuSet
         }
-        //process_Current_Line()
     }
     
     
@@ -108,6 +107,9 @@ class Delete_Helper {
         didSet {
             if let lclDelete_Cursor_StartData = delete_Cursor_StartData {
                 print("lclDelete_Cursor_StartData X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
+            }
+            else if delete_Cursor_StartData == nil{
+                print("delete_Cursor_StartData == nil")
             }
         }
     }
@@ -232,7 +234,6 @@ class Delete_Helper {
             }
             delete_Area_Set.removeAll()
         }
-        //gridSnakeSet
         var lines = Array(gridSnakeSet)
         for l in 0..<lines.count {
             for cell in lines[l] {
