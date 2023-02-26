@@ -196,7 +196,7 @@ public class Data_Vals_Holder : ObservableObject {
         var retVal = false
         if referenced_in_Delete_Trail_Set == true {
             retVal = true
-            if statusColor != colors.delete_Trail_Set_Cell_Color{statusColor = colors.delete_Trail_Set_Cell_Color}
+            if statusColor != colors.delete_Trail_Set_Corners_Color{statusColor = colors.delete_Trail_Set_Corners_Color}
         }
         return retVal
     }

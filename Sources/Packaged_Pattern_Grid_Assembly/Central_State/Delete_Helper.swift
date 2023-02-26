@@ -19,6 +19,20 @@ class Delete_Helper {
     var min_Y : Int?
     var max_Y : Int?
     
+    var delete_Area_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = delete_Area_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
+            }
+        }
+        didSet {
+            for cell in delete_Area_Set {
+                cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
+            }
+        }
+    }
+    
     var current_Line_Set = Set<Underlying_Data_Cell>()
     
     var delete_Cursor_Set = Set<Underlying_Data_Cell>(){
@@ -35,61 +49,38 @@ class Delete_Helper {
         }
     }
     
-    var multiple_Lines_Set = Set<Underlying_Data_Cell>(){
+    var multiple_Line_Corners_Set = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = multiple_Lines_Set.symmetricDifference(newValue)
+            let delta = multiple_Line_Corners_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Delete_Trail_Set)
             }
         }
         didSet {
-            for cell in multiple_Lines_Set {
+            for cell in multiple_Line_Corners_Set {
                 cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
             }
         }
     }
     
-    
-    
-    
-    
-//    {
-//        didSet{
-//            if let lclInitialCursorCell = current_Start_Cell {
-//                print("current_Start_Cell_X: ",lclInitialCursorCell.dataCell_X_Number,", CurrY: ",lclInitialCursorCell.dataCell_Y_Number)
-//            }
-//
-//            if let lclInitialCursorCell = current_Start_Cell {
-//                min_X = lclInitialCursorCell.dataCell_X_Number
-//                max_X = lclInitialCursorCell.dataCell_X_Number
-//                min_Y = lclInitialCursorCell.dataCell_Y_Number
-//                max_Y = lclInitialCursorCell.dataCell_Y_Number
-//            }
-//        }
-//    }
-    
-    
+    var multiple_Line_Cell_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = multiple_Line_Cell_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Delete_Trail_Set)
+            }
+        }
+        didSet {
+            for cell in multiple_Line_Cell_Set {
+                cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
+            }
+        }
+    }
 
     init(initialDataParam : Underlying_Data_Cell){
         delete_Cursor_CurrentData = initialDataParam
     }
-    
-    var currentLineSet = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = currentLineSet.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
-            }
-        }
-        didSet {
-            for cell in currentLineSet {
-                cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
-            }
-        }
-    }
-    
-    var gridSnakeSet : Set<Set<Underlying_Data_Cell>> = Set<Set<Underlying_Data_Cell>>()
-    
+
     func process_Delete_Cursor_Position() {
         if dimensions.patternTimingConfiguration == .fourFour {
             let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.four_Four_Half_Cell_Index})
@@ -103,21 +94,17 @@ class Delete_Helper {
     
     var current_Direction : E_DeleteLineDirection = .stationary
     
-    var delete_Cursor_InitialData : Underlying_Data_Cell?
+    var current_Trail_Corner : Underlying_Data_Cell?
     {
         didSet {
-            if let lclDelete_Cursor_StartData = delete_Cursor_InitialData {
-                
-                //print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
+            if let lclDelete_Cursor_StartData = current_Trail_Corner {
 
-                let newInitialSet = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+                let new_Corner_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                 .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
                     && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
                 }
-                for cell in newInitialSet{
-                    //print("initCellX: ",cell.dataCell_X_Number,"Y: ",cell.dataCell_Y_Number)
-                    //cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
-                    multiple_Lines_Set.insert(cell)
+                for cell in new_Corner_Set{
+                    multiple_Line_Corners_Set.insert(cell)
                 }
                 
 //                if dimensions.patternTimingConfiguration == .fourFour {
@@ -146,53 +133,38 @@ class Delete_Helper {
 
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
         
-        if let lclCurrent_Initial_Cell = delete_Cursor_InitialData {
+        if let lclCurrent_Initial_Cell = current_Trail_Corner {
             
-//            print("Direction:",current_Direction.rawValue
-//            ,"initialX:",lclCurrent_Initial_Cell.dataCell_X_Number,",Y:",lclCurrent_Initial_Cell.dataCell_Y_Number
-//            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
-//            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
+            print("Direction:",current_Direction.rawValue
+            ,"initialX:",lclCurrent_Initial_Cell.dataCell_X_Number,",Y:",lclCurrent_Initial_Cell.dataCell_Y_Number
+            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
+            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
             
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
             let initialY = lclCurrent_Initial_Cell.dataCell_Y_Number
             
             let prevX = previousDataCell.dataCell_X_Number
             let prevY = previousDataCell.dataCell_Y_Number
+            
             let nextX = nextDataCell.dataCell_X_Number
             let nextY = nextDataCell.dataCell_Y_Number
-            
-            
-            //if stationary, next move sets direction
-            //after that the next move which is not the direction is the end of that line
+
             if current_Direction == .stationary {
-                
                 if prevX != initialX{current_Direction = .horizontal}
-                
                 else if prevY != initialY{current_Direction = .vertical}
-                
             }
             else if current_Direction == .horizontal {
                 if prevY != nextY{
-                    delete_Cursor_InitialData = previousDataCell
-                    //print("vert move initX:",initialX.description,",initialY:",initialY.description)
-//                    if let initial2 = delete_Cursor_InitialData {
-//                        print("vert move prevX:",previousDataCell.dataCell_X_Number.description,",prevY:",previousDataCell.dataCell_Y_Number.description
-//                              ,", initialX: ",lclCurrent_Initial_Cell.dataCell_X_Number,", initial2_X: ",initial2.dataCell_X_Number)
-//                    }
-                    
+                    current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
                 }
             }
             else if current_Direction == .vertical {
                 if prevX != nextX{
-                    delete_Cursor_InitialData = previousDataCell
-                    //print("horz move initX:",initialX.description,",initialY:",initialY.description)
+                    current_Trail_Corner = previousDataCell
                     current_Direction = .horizontal
                 }
             }
-            
-            
-            
             
         }
         
@@ -272,23 +244,9 @@ class Delete_Helper {
 //        }
     }
 
-    var delete_Area_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = delete_Area_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
-            }
-        }
-        didSet {
-            for cell in delete_Area_Set {
-                cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
-            }
-        }
-    }
-    
     func nil_Delete_Square_Set(){
         if current_Direction != .stationary{current_Direction = .stationary}
-        if delete_Cursor_InitialData != nil{delete_Cursor_InitialData = nil}
+        if current_Trail_Corner != nil{current_Trail_Corner = nil}
         
         if min_X != nil{min_X=nil}
         if max_X != nil{max_X=nil}
@@ -301,14 +259,9 @@ class Delete_Helper {
             }
             delete_Cursor_Set.removeAll()
         }
-        
-        //multiple_Lines_Set
-        
-        if multiple_Lines_Set.count > 0 {
-//            for cell in multiple_Lines_Set {
-//                cell.handleVisibleStateChange(type: .deActivate_Delete_Trail_Set)
-//            }
-            multiple_Lines_Set.removeAll()
+
+        if multiple_Line_Corners_Set.count > 0 {
+            multiple_Line_Corners_Set.removeAll()
         }
         
         if delete_Area_Set.count > 0 {
@@ -317,14 +270,6 @@ class Delete_Helper {
             }
             delete_Area_Set.removeAll()
         }
-        var lines = Array(gridSnakeSet)
-        for l in 0..<lines.count {
-            for cell in lines[l] {
-                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
-            }
-            lines[l].removeAll()
-        }
-        gridSnakeSet.removeAll()
     }
     
 }
