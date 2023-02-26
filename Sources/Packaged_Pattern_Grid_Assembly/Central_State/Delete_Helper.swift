@@ -69,7 +69,7 @@ class Delete_Helper {
 //        }
 //    }
     
-    var current_Direction : E_DeleteLineDirection = .stationary
+    
 
     init(initialDataParam : Underlying_Data_Cell){
         delete_Cursor_CurrentData = initialDataParam
@@ -103,16 +103,22 @@ class Delete_Helper {
     }
     
     
-    var delete_Cursor_StartData : Underlying_Data_Cell?{
-        didSet {
-            if let lclDelete_Cursor_StartData = delete_Cursor_StartData {
-                print("lclDelete_Cursor_StartData X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
-            }
-            else if delete_Cursor_StartData == nil{
-                print("delete_Cursor_StartData == nil")
-            }
-        }
-    }
+    
+    
+    var current_Direction : E_DeleteLineDirection = .stationary
+    
+    var delete_Cursor_StartData : Underlying_Data_Cell?
+//    {
+//        didSet {
+//            if let lclDelete_Cursor_StartData = delete_Cursor_StartData {
+//                print("lclDelete_Cursor_StartData X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
+//            }
+//            else if delete_Cursor_StartData == nil{
+//                print("delete_Cursor_StartData == nil")
+//            }
+//        }
+//    }
+    
     var delete_Cursor_CurrentData : Underlying_Data_Cell {
         willSet{
             process_Current_Line(previousDataCell:delete_Cursor_CurrentData,nextDataCell:newValue)
@@ -121,8 +127,13 @@ class Delete_Helper {
 
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
         
-        print("prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
-        //print("delete_Cursor_CurrentData.dataCell_X_Number: ",delete_Cursor_CurrentData.dataCell_X_Number,current_Start_Cell == nil ? "nil" : "not nil")
+        if let lclCurrent_Start_Cell = delete_Cursor_StartData {
+            print("Direction:",current_Direction.rawValue,"initialX:",lclCurrent_Start_Cell.dataCell_X_Number,",Y:",lclCurrent_Start_Cell.dataCell_Y_Number
+            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
+            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
+        }
+        
+
 //        if let lclCurrent_Start_Cell = current_Start_Cell {
 //
 //            if delete_Cursor_CurrentData.dataCell_X_Number < lclCurrent_Start_Cell.dataCell_X_Number {
