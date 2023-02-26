@@ -148,14 +148,8 @@ class Delete_Helper {
             }
             else if current_Direction == .horizontal {
                 if prevY != nextY{
-                    current_Trail_Corner = previousDataCell
-                    current_Direction = .vertical
-                    //                let new_Permanent_Line_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-                    //                .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
-                    //                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-                    //                }
-                                    //multiple_Line_Cell_Set
-                    if nextX > initialX{
+                    
+                    if nextX > initialX {
                         let newVerticalLineSet =
                         Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                         .filter{$0.dataCell_Y_Number ==  initialY
@@ -166,9 +160,9 @@ class Delete_Helper {
                         for cell in newVerticalLineSet{
                             multiple_Line_Corners_Set.insert(cell)
                         }
-                        
                     }
-                    
+                    current_Trail_Corner = previousDataCell
+                    current_Direction = .vertical
                 }
             }
             else if current_Direction == .vertical {
