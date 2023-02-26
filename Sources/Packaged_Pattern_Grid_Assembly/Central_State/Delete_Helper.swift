@@ -153,23 +153,21 @@ class Delete_Helper {
             //if stationary, next move sets direction
             //after that the next move which is not the direction is the end of that line
             if current_Direction == .stationary {
-                if prevX != initialX{
-                    delete_Cursor_InitialData = previousDataCell
+                if prevX != initialX{delete_Cursor_InitialData = previousDataCell
                     current_Direction = .horizontal}
                 
-                else if prevY != initialY{
-                    delete_Cursor_InitialData = previousDataCell
+                else if prevY != initialY{delete_Cursor_InitialData = previousDataCell
                     current_Direction = .vertical}
             }
             else if current_Direction == .horizontal {
                 if prevY != nextY{
-                    
+                    delete_Cursor_InitialData = previousDataCell
                     current_Direction = .stationary
                 }
             }
             else if current_Direction == .vertical {
                 if prevX != nextX{
-                    
+                    delete_Cursor_InitialData = previousDataCell
                     current_Direction = .stationary
                 }
             }
