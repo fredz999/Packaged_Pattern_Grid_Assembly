@@ -36,15 +36,16 @@ class Delete_Helper {
             }
         }
     }
-    var bunch_Of_Lines_Set = Set<Underlying_Data_Cell>(){
+    
+    var multiple_Lines_Set = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = bunch_Of_Lines_Set.symmetricDifference(newValue)
+            let delta = multiple_Lines_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
             }
         }
         didSet {
-            for cell in bunch_Of_Lines_Set {
+            for cell in multiple_Lines_Set {
                 cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
             }
         }
@@ -102,9 +103,6 @@ class Delete_Helper {
         }
     }
     
-    
-    
-    
     var current_Direction : E_DeleteLineDirection = .stationary
     
     var delete_Cursor_InitialData : Underlying_Data_Cell?
@@ -112,10 +110,10 @@ class Delete_Helper {
         didSet {
             if let lclDelete_Cursor_StartData = delete_Cursor_InitialData {
                 print("lclDelete_Cursor_StartData X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
+                for cell in delete_Cursor_Set{
+                    multiple_Lines_Set.insert(cell)
+                }
             }
-//            else if delete_Cursor_StartData == nil{
-//                print("delete_Cursor_StartData == nil")
-//            }
         }
     }
     
