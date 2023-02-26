@@ -147,7 +147,7 @@ class Delete_Helper {
             
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
             let initialY = lclCurrent_Initial_Cell.dataCell_Y_Number
-            print("initX:",initialX.description,",initialY:",initialY.description)
+            
             let prevX = previousDataCell.dataCell_X_Number
             let prevY = previousDataCell.dataCell_Y_Number
             let nextX = nextDataCell.dataCell_X_Number
@@ -166,12 +166,14 @@ class Delete_Helper {
             else if current_Direction == .horizontal {
                 if prevY != nextY{
                     delete_Cursor_InitialData = previousDataCell
+                    print("initX:",initialX.description,",initialY:",initialY.description)
                     current_Direction = .vertical
                 }
             }
             else if current_Direction == .vertical {
                 if prevX != nextX{
                     delete_Cursor_InitialData = previousDataCell
+                    print("initX:",initialX.description,",initialY:",initialY.description)
                     current_Direction = .horizontal
                 }
             }
