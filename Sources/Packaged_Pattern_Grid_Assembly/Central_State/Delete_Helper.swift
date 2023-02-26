@@ -109,29 +109,22 @@ class Delete_Helper {
             if let lclDelete_Cursor_StartData = delete_Cursor_InitialData {
                 
                 print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
-                //for cell in lclDelete_Cursor_StartData{
-                    //multiple_Lines_Set.insert(lclDelete_Cursor_StartData)
-                //}
+
                 
-                if dimensions.patternTimingConfiguration == .fourFour {
-                    //let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index})
-                    
-                    let nuSet = current_Line_Set.filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
-                        && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-                    }
-                    
-                    for cell in nuSet{
-                        //multiple_Lines_Set.insert(cell)
-                        cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
-                    }
-                }
-//                else if dimensions.patternTimingConfiguration == .sixEight {
-//                    let nuSet = current_Line_Set.filter({$0.six_Eight_Half_Cell_Index == lclDelete_Cursor_StartData.six_Eight_Half_Cell_Index})
+                
+//                if dimensions.patternTimingConfiguration == .fourFour {
+//                    //let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index})
+//
+//                    let nuSet = current_Line_Set.filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
+//                        && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
+//                    }
+//
 //                    for cell in nuSet{
-//                        //multiple_Lines_Set.insert(cell)
-//                        cell.handleVisibleStateChange(type : .activate_Highlighted)
+//                        multiple_Lines_Set.insert(cell)
+//                        cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
 //                    }
 //                }
+
                 
             }
         }
