@@ -116,11 +116,15 @@ class Delete_Helper {
                 
                 if dimensions.patternTimingConfiguration == .fourFour {
                     let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.four_Four_Half_Cell_Index})
-                    multiple_Lines_Set = multiple_Lines_Set.union(nuSet)
+                    for cell in nuSet{
+                        multiple_Lines_Set.insert(cell)
+                    }
                 }
                 else if dimensions.patternTimingConfiguration == .sixEight {
                     let nuSet = current_Line_Set.filter({$0.six_Eight_Half_Cell_Index == delete_Cursor_CurrentData.six_Eight_Half_Cell_Index})
-                    multiple_Lines_Set = multiple_Lines_Set.union(nuSet)
+                    for cell in nuSet{
+                        multiple_Lines_Set.insert(cell)
+                    }
                 }
                 
             }
@@ -153,11 +157,11 @@ class Delete_Helper {
             //if stationary, next move sets direction
             //after that the next move which is not the direction is the end of that line
             if current_Direction == .stationary {
-                if prevX != initialX{
-                    current_Direction = .horizontal}
                 
-                else if prevY != initialY{
-                    current_Direction = .vertical}
+                if prevX != initialX{current_Direction = .horizontal}
+                
+                else if prevY != initialY{current_Direction = .vertical}
+                
             }
             else if current_Direction == .horizontal {
                 if prevY != nextY{
