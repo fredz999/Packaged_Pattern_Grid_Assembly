@@ -109,7 +109,7 @@ class Delete_Helper {
     {
         didSet {
             if let lclDelete_Cursor_StartData = delete_Cursor_InitialData {
-                print("lclDelete_Cursor_StartData X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
+                print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
                 //for cell in lclDelete_Cursor_StartData{
                     //multiple_Lines_Set.insert(lclDelete_Cursor_StartData)
                 //}
@@ -161,16 +161,14 @@ class Delete_Helper {
             }
             else if current_Direction == .horizontal {
                 if prevY != nextY{
-                    print("initial changed 1")
                     delete_Cursor_InitialData = previousDataCell
-                    current_Direction = .stationary
+                    current_Direction = .vertical
                 }
             }
             else if current_Direction == .vertical {
                 if prevX != nextX{
-                    print("initial changed 2")
                     delete_Cursor_InitialData = previousDataCell
-                    current_Direction = .stationary
+                    current_Direction = .horizontal
                 }
             }
             
