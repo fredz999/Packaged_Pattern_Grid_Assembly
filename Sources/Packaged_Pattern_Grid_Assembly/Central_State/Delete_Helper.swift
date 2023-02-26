@@ -116,7 +116,7 @@ class Delete_Helper {
                 }
                 for cell in newInitialSet{
                     print("initCellX: ",cell.dataCell_X_Number,"Y: ",cell.dataCell_Y_Number)
-                    cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
+                    cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
                 }
                 
 //                if dimensions.patternTimingConfiguration == .fourFour {

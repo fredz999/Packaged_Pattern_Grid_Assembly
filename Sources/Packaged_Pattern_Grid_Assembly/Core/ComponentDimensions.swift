@@ -159,6 +159,7 @@ public class ComponentColors {
     public var potential_Cell_Color : Color = Color(red:0.6,green:0,blue:0.6)
     public var cursor_Set_Cell_Color : Color = .pink
     public var delete_Square_Set_Cell_Color : Color = Color(red:0.3,green:0,blue:0.3)
+    public var delete_Trail_Set_Cell_Color : Color = Color(red:0,green:1,blue:0.6)
     
     public var grid_Note_Color : Color = Color(red:0.4,green:0.8,blue:0)
     public var grid_Note_Highlighted_Color : Color = Color(red:0.5,green:1,blue:0)
