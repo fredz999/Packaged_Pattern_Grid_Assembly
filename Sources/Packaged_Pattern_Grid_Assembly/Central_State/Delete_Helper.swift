@@ -159,13 +159,13 @@ class Delete_Helper {
             else if current_Direction == .horizontal {
                 if prevY != nextY{
                     delete_Cursor_InitialData = previousDataCell
-                    current_Direction = .vertical
+                    current_Direction = .stationary
                 }
             }
             else if current_Direction == .vertical {
                 if prevX != nextX{
                     delete_Cursor_InitialData = previousDataCell
-                    current_Direction = .horizontal
+                    current_Direction = .stationary
                 }
             }
             
