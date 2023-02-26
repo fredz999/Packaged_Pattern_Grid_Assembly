@@ -111,8 +111,18 @@ class Delete_Helper {
             if let lclDelete_Cursor_StartData = delete_Cursor_InitialData {
                 print("lclDelete_Cursor_StartData X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
                 //for cell in lclDelete_Cursor_StartData{
-                    multiple_Lines_Set.insert(lclDelete_Cursor_StartData)
+                    //multiple_Lines_Set.insert(lclDelete_Cursor_StartData)
                 //}
+                
+                if dimensions.patternTimingConfiguration == .fourFour {
+                    let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.four_Four_Half_Cell_Index})
+                    multiple_Lines_Set = multiple_Lines_Set.union(nuSet)
+                }
+                else if dimensions.patternTimingConfiguration == .sixEight {
+                    let nuSet = current_Line_Set.filter({$0.six_Eight_Half_Cell_Index == delete_Cursor_CurrentData.six_Eight_Half_Cell_Index})
+                    multiple_Lines_Set = multiple_Lines_Set.union(nuSet)
+                }
+                
             }
         }
     }
