@@ -140,13 +140,14 @@ class Delete_Helper {
         
         if let lclCurrent_Initial_Cell = delete_Cursor_InitialData {
             
-            print("Direction:",current_Direction.rawValue
-            ,"initialX:",lclCurrent_Initial_Cell.dataCell_X_Number,",Y:",lclCurrent_Initial_Cell.dataCell_Y_Number
-            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
-            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
+//            print("Direction:",current_Direction.rawValue
+//            ,"initialX:",lclCurrent_Initial_Cell.dataCell_X_Number,",Y:",lclCurrent_Initial_Cell.dataCell_Y_Number
+//            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
+//            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
             
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
             let initialY = lclCurrent_Initial_Cell.dataCell_Y_Number
+            print("initX:",initialX.description,",initialY:",initialY.description)
             let prevX = previousDataCell.dataCell_X_Number
             let prevY = previousDataCell.dataCell_Y_Number
             let nextX = nextDataCell.dataCell_X_Number
