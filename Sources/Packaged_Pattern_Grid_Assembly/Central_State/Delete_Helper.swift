@@ -107,19 +107,11 @@ class Delete_Helper {
                     multiple_Line_Corners_Set.insert(cell)
                 }
                 
-//                if dimensions.patternTimingConfiguration == .fourFour {
-//                    //let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index})
-//
-//                    let nuSet = current_Line_Set.filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
-//                        && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-//                    }
-//
-//                    for cell in nuSet{
-//                        multiple_Lines_Set.insert(cell)
-//                        cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
-//                    }
+//                let new_Permanent_Line_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+//                .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
+//                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
 //                }
-
+                //multiple_Line_Cell_Set
                 
             }
         }
@@ -135,10 +127,10 @@ class Delete_Helper {
         
         if let lclCurrent_Initial_Cell = current_Trail_Corner {
             
-            print("Direction:",current_Direction.rawValue
-            ,"initialX:",lclCurrent_Initial_Cell.dataCell_X_Number,",Y:",lclCurrent_Initial_Cell.dataCell_Y_Number
-            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
-            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
+//            print("Direction:",current_Direction.rawValue
+//            ,"initialX:",lclCurrent_Initial_Cell.dataCell_X_Number,",Y:",lclCurrent_Initial_Cell.dataCell_Y_Number
+//            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
+//            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
             
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
             let initialY = lclCurrent_Initial_Cell.dataCell_Y_Number
@@ -149,10 +141,7 @@ class Delete_Helper {
             let nextX = nextDataCell.dataCell_X_Number
             let nextY = nextDataCell.dataCell_Y_Number
 
-//            if current_Direction == .stationary {
-//                if prevX != initialX{current_Direction = .horizontal}
-//                else if prevY != initialY{current_Direction = .vertical}
-//            }
+//note line is always initial to current
             if current_Direction == .stationary {
                 if nextX != initialX{current_Direction = .horizontal}
                 else if nextY != initialY{current_Direction = .vertical}
@@ -161,6 +150,25 @@ class Delete_Helper {
                 if prevY != nextY{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
+                    //                let new_Permanent_Line_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+                    //                .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
+                    //                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
+                    //                }
+                                    //multiple_Line_Cell_Set
+                    if nextX > initialX{
+                        let newVerticalLineSet =
+                        Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+                        .filter{$0.dataCell_Y_Number ==  initialY
+                            && $0.dataCell_X_Number >= initialX
+                            && $0.dataCell_X_Number <= nextX
+                        }
+                        
+                        for cell in newVerticalLineSet{
+                            multiple_Line_Corners_Set.insert(cell)
+                        }
+                        
+                    }
+                    
                 }
             }
             else if current_Direction == .vertical {
