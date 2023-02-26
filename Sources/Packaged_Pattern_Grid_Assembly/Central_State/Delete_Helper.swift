@@ -167,7 +167,11 @@ class Delete_Helper {
                 if prevY != nextY{
                     delete_Cursor_InitialData = previousDataCell
                     //print("vert move initX:",initialX.description,",initialY:",initialY.description)
-                    print("vert move prevX:",previousDataCell.dataCell_X_Number.description,",prevY:",previousDataCell.dataCell_Y_Number.description)
+                    if let initial2 = delete_Cursor_InitialData {
+                        print("vert move prevX:",previousDataCell.dataCell_X_Number.description,",prevY:",previousDataCell.dataCell_Y_Number.description
+                              ,", initialX: ",lclCurrent_Initial_Cell.dataCell_X_Number,", initial2_X: ",initial2.dataCell_X_Number)
+                    }
+                    
                     current_Direction = .vertical
                 }
             }
