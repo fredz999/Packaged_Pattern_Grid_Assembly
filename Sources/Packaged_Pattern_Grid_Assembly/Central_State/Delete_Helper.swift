@@ -39,12 +39,12 @@ class Delete_Helper {
         willSet {
             let delta = multiple_Lines_Set.symmetricDifference(newValue)
             for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
+                cell.handleVisibleStateChange(type: .deActivate_Delete_Trail_Set)
             }
         }
         didSet {
             for cell in multiple_Lines_Set {
-                cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
+                cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
             }
         }
     }
@@ -110,14 +110,14 @@ class Delete_Helper {
                 
                 print("initial X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
 
-                let newInitialSet = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+                multiple_Lines_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                 .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
                     && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
                 }
-                for cell in newInitialSet{
-                    print("initCellX: ",cell.dataCell_X_Number,"Y: ",cell.dataCell_Y_Number)
-                    cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
-                }
+//                for cell in newInitialSet{
+//                    print("initCellX: ",cell.dataCell_X_Number,"Y: ",cell.dataCell_Y_Number)
+//                    cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
+//                }
                 
 //                if dimensions.patternTimingConfiguration == .fourFour {
 //                    //let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index})
@@ -299,6 +299,15 @@ class Delete_Helper {
                 cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
             }
             delete_Cursor_Set.removeAll()
+        }
+        
+        //multiple_Lines_Set
+        
+        if multiple_Lines_Set.count > 0 {
+//            for cell in multiple_Lines_Set {
+//                cell.handleVisibleStateChange(type: .deActivate_Delete_Trail_Set)
+//            }
+            multiple_Lines_Set.removeAll()
         }
         
         if delete_Area_Set.count > 0 {
