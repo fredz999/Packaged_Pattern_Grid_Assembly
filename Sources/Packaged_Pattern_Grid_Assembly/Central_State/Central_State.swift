@@ -217,10 +217,10 @@ public class Central_State : ObservableObject {
             viableSetHelpers.test_For_Write_Lock()
             
             if dimensions.patternTimingConfiguration == .fourFour {
-                delete_Helper.delete_Cursor_StartData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                delete_Helper.delete_Cursor_InitialData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             }
             else if dimensions.patternTimingConfiguration == .sixEight {
-                delete_Helper.delete_Cursor_StartData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                delete_Helper.delete_Cursor_InitialData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             }
             
             delete_Helper.process_Delete_Cursor_Position()

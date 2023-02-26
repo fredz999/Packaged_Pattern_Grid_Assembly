@@ -107,17 +107,17 @@ class Delete_Helper {
     
     var current_Direction : E_DeleteLineDirection = .stationary
     
-    var delete_Cursor_StartData : Underlying_Data_Cell?
-//    {
-//        didSet {
-//            if let lclDelete_Cursor_StartData = delete_Cursor_StartData {
-//                print("lclDelete_Cursor_StartData X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
-//            }
+    var delete_Cursor_InitialData : Underlying_Data_Cell?
+    {
+        didSet {
+            if let lclDelete_Cursor_StartData = delete_Cursor_StartData {
+                print("lclDelete_Cursor_StartData X: ",lclDelete_Cursor_StartData.dataCell_X_Number,",Y:",lclDelete_Cursor_StartData.dataCell_Y_Number)
+            }
 //            else if delete_Cursor_StartData == nil{
 //                print("delete_Cursor_StartData == nil")
 //            }
-//        }
-//    }
+        }
+    }
     
     var delete_Cursor_CurrentData : Underlying_Data_Cell {
         willSet{
@@ -127,10 +127,43 @@ class Delete_Helper {
 
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
         
-        if let lclCurrent_Start_Cell = delete_Cursor_StartData {
-            print("Direction:",current_Direction.rawValue,"initialX:",lclCurrent_Start_Cell.dataCell_X_Number,",Y:",lclCurrent_Start_Cell.dataCell_Y_Number
-            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
-            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
+        if let lclCurrent_Initial_Cell = delete_Cursor_InitialData {
+            
+//            print("Direction:",current_Direction.rawValue
+//            ,"initialX:",lclCurrent_Initial_Cell.dataCell_X_Number,",Y:",lclCurrent_Initial_Cell.dataCell_Y_Number
+//            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
+//            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
+            
+            let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
+            let initialY = lclCurrent_Initial_Cell.dataCell_Y_Number
+            let prevX = previousDataCell.dataCell_X_Number
+            let prevY = previousDataCell.dataCell_Y_Number
+            let nextX = nextDataCell.dataCell_X_Number
+            let nextY = nextDataCell.dataCell_Y_Number
+            
+            
+            //if stationary, next move sets direction
+            //after that the next move which is not the direction is the end of that line
+            if current_Direction == .stationary {
+                if prevX != initialX{current_Direction = .horizontal}
+                else if prevY != initialY{current_Direction = .vertical}
+            }
+            else if current_Direction == .horizontal {
+                if prevY != nextY{
+                    delete_Cursor_InitialData = previousDataCell
+                    current_Direction = .vertical
+                }
+            }
+            else if current_Direction == .vertical {
+                if prevX != nextX{
+                    delete_Cursor_InitialData = previousDataCell
+                    current_Direction = .horizontal
+                }
+            }
+            
+            
+            
+            
         }
         
 
@@ -225,7 +258,7 @@ class Delete_Helper {
     
     func nil_Delete_Square_Set(){
         if current_Direction != .stationary{current_Direction = .stationary}
-        if delete_Cursor_StartData != nil{delete_Cursor_StartData = nil}
+        if delete_Cursor_InitialData != nil{delete_Cursor_InitialData = nil}
         
         if min_X != nil{min_X=nil}
         if max_X != nil{max_X=nil}
