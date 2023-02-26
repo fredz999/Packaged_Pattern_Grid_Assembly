@@ -121,8 +121,8 @@ class Delete_Helper {
                     }
                     
                     for cell in nuSet{
-                        multiple_Lines_Set.insert(cell)
-                        //cell.handleVisibleStateChange(type : .activate_Highlighted )
+                        //multiple_Lines_Set.insert(cell)
+                        cell.handleVisibleStateChange(type : .activate_Highlighted )
                     }
                 }
                 else if dimensions.patternTimingConfiguration == .sixEight {
