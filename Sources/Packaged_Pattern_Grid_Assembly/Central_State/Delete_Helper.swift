@@ -149,7 +149,6 @@ class Delete_Helper {
             let nextY = nextDataCell.dataCell_Y_Number
             
             let nextFourFour = nextDataCell.four_Four_Half_Cell_Index
-            print("nextFourFour: ",nextFourFour.description)
 
             if current_Direction == .stationary {
                 if nextX != initialX{current_Direction = .horizontal}
@@ -157,38 +156,18 @@ class Delete_Helper {
             }
             else if current_Direction == .horizontal {
                 
-                if nextX > initialX {
-                    let new_Horz_Set =
-                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-                    .filter{$0.dataCell_Y_Number ==  initialY
-                        && $0.dataCell_X_Number > initialX
-                        && $0.dataCell_X_Number < nextX
-                    }
-                    for cell in new_Horz_Set{
-                        multiple_Line_Corners_Set.insert(cell)
-                    }
-                }
-                else if nextX < initialX {
-                    let new_Horz_Set =
-                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-                    .filter{$0.dataCell_Y_Number ==  initialY
-                        && $0.dataCell_X_Number < initialX
-                        && $0.dataCell_X_Number > nextX
-                    }
-                    for cell in new_Horz_Set{
-                        multiple_Line_Corners_Set.insert(cell)
-                    }
-                }
+                
                 
                 if prevY != nextY{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
                 }
+                else if prevY == nextY {
+                    
+                }
+                
             }
             else if current_Direction == .vertical {
-                
-                
-                
                 if prevX != nextX{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .horizontal
@@ -196,21 +175,60 @@ class Delete_Helper {
                 else if prevX == nextX{
                     incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
                 }
-                
-                
             }
             
         }
 
     }
     
+    func incorporate_Row_Into_DeleteSet(curr_Y:Int,initialX:Int,finalX:Int){
+        if finalX > initialX {
+            let new_Horz_Set =
+            Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+            .filter{$0.dataCell_Y_Number ==  curr_Y
+                && $0.dataCell_X_Number > initialX
+                && $0.dataCell_X_Number < finalX
+            }
+            for cell in new_Horz_Set{
+                if cell.in_Delete_Trail_Set == false{
+                    multiple_Line_Corners_Set.insert(cell)
+                }
+            }
+        }
+        else if finalX < initialX {
+            let new_Horz_Set =
+            Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+            .filter{$0.dataCell_Y_Number ==  curr_Y
+                && $0.dataCell_X_Number < initialX
+                && $0.dataCell_X_Number > finalX
+            }
+            for cell in new_Horz_Set{
+                if cell.in_Delete_Trail_Set == false{
+                    multiple_Line_Corners_Set.insert(cell)
+                }
+            }
+        }
+    }
+    
     func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
-//        print("incorporate_Column_Into_DeleteSet")
         if finalY > initialY {
             let new_Vert_Set =
             Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
             .filter{$0.dataCell_X_Number == curr_X && $0.dataCell_Y_Number >= initialY && $0.dataCell_Y_Number <= finalY}
 
+            for cell in new_Vert_Set{
+                let cell_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
+                for subCell in cell_Set{
+                    multiple_Line_Corners_Set.insert(subCell)
+                }
+            }
+            
+        }
+        else if finalY < initialY {
+            let new_Vert_Set =
+            Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+            .filter{$0.dataCell_X_Number == curr_X && $0.dataCell_Y_Number >= finalY && $0.dataCell_Y_Number <= initialY}
+            
             for cell in new_Vert_Set{
                 let cell_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
                 for subCell in cell_Set{
