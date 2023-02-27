@@ -201,14 +201,14 @@ class Delete_Helper {
     func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
         if finalY > initialY {
             let new_Vert_Set =
-            Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-            .filter{
-            $0.dataCell_X_Number ==  curr_X
-            && $0.dataCell_Y_Number > initialY
-            && $0.dataCell_Y_Number <= finalY
-            }
+            Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set.filter{
+            $0.dataCell_X_Number ==  curr_X && $0.dataCell_Y_Number > initialY && $0.dataCell_Y_Number <= finalY}
+
             for cell in new_Vert_Set{
-                multiple_Line_Corners_Set.insert(cell)
+                let cell_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Cell_Index == cell.four_Four_Cell_Index}
+                for subCell in cell_Set{
+                    multiple_Line_Corners_Set.insert(subCell)
+                }
             }
         }
     }
