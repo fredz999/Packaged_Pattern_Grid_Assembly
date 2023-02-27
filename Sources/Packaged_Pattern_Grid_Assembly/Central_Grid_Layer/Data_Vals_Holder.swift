@@ -64,18 +64,18 @@ public class Data_Vals_Holder : ObservableObject {
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
         //update_Cell_Set_Membership(status_Update_TypeParam: .highlighted, value: true)
-        if status_Update_TypeParam == .deleteTrailSet {
-            if value == true {
-                if referenced_in_Delete_Trail_Set == false {
-                    referenced_in_Delete_Trail_Set = true
-                }
-            }
-            else if value == false {
-                if referenced_in_Delete_Trail_Set == true {
-                    referenced_in_Delete_Trail_Set = false
-                }
-            }
-        }
+//        if status_Update_TypeParam == .deleteTrailSet {
+//            if value == true {
+//                if referenced_in_Delete_Trail_Set == false {
+//                    referenced_in_Delete_Trail_Set = true
+//                }
+//            }
+//            else if value == false {
+//                if referenced_in_Delete_Trail_Set == true {
+//                    referenced_in_Delete_Trail_Set = false
+//                }
+//            }
+//        }
         if status_Update_TypeParam == .deleteSquareSet {
             if value == true {
                 if referenced_in_Delete_Square_Set == false {
@@ -259,7 +259,7 @@ public enum status_Update_Type {
     case highlighted
     case cursorSet
     case deleteSquareSet
-    case deleteTrailSet
+//    case deleteTrailSet
     case prohibitedSet
     case potentialSet
     case potentialEdgeSet

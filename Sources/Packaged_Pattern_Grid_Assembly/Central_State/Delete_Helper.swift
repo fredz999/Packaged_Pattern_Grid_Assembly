@@ -33,7 +33,7 @@ class Delete_Helper {
         }
     }
     
-    var current_Line_Set = Set<Underlying_Data_Cell>()
+    //var current_Line_Set_Del = Set<Underlying_Data_Cell>()
     
     var delete_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -70,12 +70,15 @@ class Delete_Helper {
 
     func process_Delete_Cursor_Position() {
         if dimensions.patternTimingConfiguration == .fourFour {
-            let nuSet = current_Line_Set.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.four_Four_Half_Cell_Index})
-            delete_Cursor_Set = nuSet
+            //Central_State.Static_Central_State
+            //let nuSet = current_Line_Set_Del.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.four_Four_Half_Cell_Index})
+            //delete_Cursor_Set = nuSet
+            delete_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.four_Four_Half_Cell_Index})
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
-            let nuSet = current_Line_Set.filter({$0.six_Eight_Half_Cell_Index == delete_Cursor_CurrentData.six_Eight_Half_Cell_Index})
-            delete_Cursor_Set = nuSet
+//            let nuSet = current_Line_Set_Del.filter({$0.six_Eight_Half_Cell_Index == delete_Cursor_CurrentData.six_Eight_Half_Cell_Index})
+//            delete_Cursor_Set = nuSet
+            delete_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.six_Eight_Half_Cell_Index})
         }
     }
     
