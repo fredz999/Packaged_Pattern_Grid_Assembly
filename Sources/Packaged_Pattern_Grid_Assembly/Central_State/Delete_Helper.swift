@@ -157,28 +157,29 @@ class Delete_Helper {
             }
             else if current_Direction == .horizontal {
                 
-                if nextX > initialX {
-                    let new_Horz_Set =
-                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-                    .filter{$0.dataCell_Y_Number ==  initialY
-                        && $0.dataCell_X_Number > initialX
-                        && $0.dataCell_X_Number < nextX
-                    }
-                    for cell in new_Horz_Set{
-                        multiple_Line_Corners_Set.insert(cell)
-                    }
-                }
-                else if nextX < initialX {
-                    let new_Horz_Set =
-                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-                    .filter{$0.dataCell_Y_Number ==  initialY
-                        && $0.dataCell_X_Number < initialX
-                        && $0.dataCell_X_Number > nextX
-                    }
-                    for cell in new_Horz_Set{
-                        multiple_Line_Corners_Set.insert(cell)
-                    }
-                }
+//                if nextX > initialX {
+//                    let new_Horz_Set =
+//                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+//                    .filter{$0.dataCell_Y_Number ==  initialY
+//                        && $0.dataCell_X_Number > initialX
+//                        && $0.dataCell_X_Number < nextX
+//                    }
+//                    for cell in new_Horz_Set{
+//                        multiple_Line_Corners_Set.insert(cell)
+//                    }
+//                }
+//                else if nextX < initialX {
+//                    let new_Horz_Set =
+//                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+//                    .filter{$0.dataCell_Y_Number ==  initialY
+//                        && $0.dataCell_X_Number < initialX
+//                        && $0.dataCell_X_Number > nextX
+//                    }
+//                    for cell in new_Horz_Set{
+//                        multiple_Line_Corners_Set.insert(cell)
+//                    }
+//                }
+                
                 if prevY != nextY{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
@@ -192,7 +193,8 @@ class Delete_Helper {
                     current_Trail_Corner = previousDataCell
                     current_Direction = .horizontal
                 }
-                incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
+                
+                //incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
                 
             }
             
@@ -212,6 +214,7 @@ class Delete_Helper {
                     multiple_Line_Corners_Set.insert(subCell)
                 }
             }
+            
         }
     }
 
