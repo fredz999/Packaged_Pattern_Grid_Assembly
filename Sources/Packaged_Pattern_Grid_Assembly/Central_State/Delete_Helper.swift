@@ -63,19 +63,20 @@ class Delete_Helper {
         }
     }
     
-    var multiple_Line_Cell_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = multiple_Line_Cell_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Delete_Trail_Set)
-            }
-        }
-        didSet {
-            for cell in multiple_Line_Cell_Set {
-                cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
-            }
-        }
-    }
+    var multiple_Line_Cell_Set = Set<Underlying_Data_Cell>()
+//    {
+//        willSet {
+//            let delta = multiple_Line_Cell_Set.symmetricDifference(newValue)
+//            for cell in delta {
+//                cell.handleVisibleStateChange(type: .deActivate_Delete_Trail_Set)
+//            }
+//        }
+//        didSet {
+//            for cell in multiple_Line_Cell_Set {
+//                cell.handleVisibleStateChange(type : .activate_Delete_Trail_Set)
+//            }
+//        }
+//    }
 
     init(initialDataParam : Underlying_Data_Cell){
         delete_Cursor_CurrentData = initialDataParam
