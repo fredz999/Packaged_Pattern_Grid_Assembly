@@ -149,41 +149,56 @@ class Delete_Helper {
             let nextY = nextDataCell.dataCell_Y_Number
 
             if current_Direction == .stationary {
-                if nextX != initialX{current_Direction = .horizontal }
+                if nextX != initialX{current_Direction = .horizontal}
                 else if nextY != initialY{current_Direction = .vertical}
             }
             else if current_Direction == .horizontal {
                 
                 if nextX > initialX {
-                    let newVerticalLineSet =
+                    let new_Horz_Set =
                     Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                     .filter{$0.dataCell_Y_Number ==  initialY
                         && $0.dataCell_X_Number > initialX
                         && $0.dataCell_X_Number < nextX
                     }
-                    for cell in newVerticalLineSet{
+                    for cell in new_Horz_Set{
                         multiple_Line_Corners_Set.insert(cell)
                     }
                 }
                 else if nextX < initialX {
-                    let newVerticalLineSet =
+                    let new_Horz_Set =
                     Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                     .filter{$0.dataCell_Y_Number ==  initialY
                         && $0.dataCell_X_Number < initialX
                         && $0.dataCell_X_Number > nextX
                     }
-                    for cell in newVerticalLineSet{
+                    for cell in new_Horz_Set{
                         multiple_Line_Corners_Set.insert(cell)
                     }
                 }
-                
-                
                 if prevY != nextY{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
                 }
             }
             else if current_Direction == .vertical {
+                
+                if nextY > initialY {
+                    let new_Vert_Set =
+                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+//                    .filter{$0.dataCell_Y_Number == initialY
+//                        && $0.dataCell_X_Number > initialX
+//                        && $0.dataCell_X_Number < nextX
+                        .filter{$0.dataCell_Y_Number == initialX
+                            && $0.dataCell_X_Number > initialY
+                            && $0.dataCell_X_Number < nextY
+                    }
+                    for cell in new_Vert_Set{
+                        multiple_Line_Corners_Set.insert(cell)
+                    }
+                }
+                
+                
                 if prevX != nextX{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .horizontal
