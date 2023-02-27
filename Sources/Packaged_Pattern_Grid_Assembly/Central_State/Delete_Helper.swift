@@ -186,12 +186,14 @@ class Delete_Helper {
             }
             else if current_Direction == .vertical {
                 
-                incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
+                
                 
                 if prevX != nextX{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .horizontal
                 }
+                incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
+                
             }
             
         }
@@ -202,7 +204,7 @@ class Delete_Helper {
         if finalY > initialY {
             let new_Vert_Set =
             Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-            .filter{$0.dataCell_X_Number == curr_X && $0.dataCell_Y_Number > initialY && $0.dataCell_Y_Number <= finalY}
+            .filter{$0.dataCell_X_Number == curr_X && $0.dataCell_Y_Number >= initialY && $0.dataCell_Y_Number <= finalY}
 
             for cell in new_Vert_Set{
                 let cell_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
