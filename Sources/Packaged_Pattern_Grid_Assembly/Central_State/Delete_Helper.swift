@@ -149,12 +149,8 @@ class Delete_Helper {
 
             //note line is always initial to current
             if current_Direction == .stationary {
-                if prevX != initialX{current_Direction = .horizontal}
-                else if prevY != initialY{current_Direction = .vertical}
-            }
-            else if current_Direction == .horizontal {
-                if prevY != nextY{
-                    
+                if nextX != initialX{
+                    current_Direction = .horizontal
                     // TODO: deleteLines
                     if nextX > initialX {
                         let newVerticalLineSet =
@@ -167,6 +163,14 @@ class Delete_Helper {
                             multiple_Line_Corners_Set.insert(cell)
                         }
                     }
+                }
+                else if nextY != initialY{
+                    current_Direction = .vertical}
+            }
+            else if current_Direction == .horizontal {
+                if prevY != nextY{
+                    
+                    
                     
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
