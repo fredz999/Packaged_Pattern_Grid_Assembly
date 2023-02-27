@@ -192,7 +192,7 @@ class Delete_Helper {
                     .filter{
                         //$0.dataCell_X_Number ==  nextX
                     $0.four_Four_Half_Cell_Index == nextFourFour
-//                        && $0.dataCell_Y_Number > initialY
+                        && $0.dataCell_Y_Number > initialY
 //                        && $0.dataCell_Y_Number < nextY
                     }
                     for cell in new_Vert_Set{
