@@ -193,8 +193,10 @@ class Delete_Helper {
                     current_Trail_Corner = previousDataCell
                     current_Direction = .horizontal
                 }
+                else if prevX == nextX{
+                    incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
+                }
                 
-                incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
                 
             }
             
@@ -203,6 +205,7 @@ class Delete_Helper {
     }
     
     func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
+        print("incorporate_Column_Into_DeleteSet")
         if finalY > initialY {
             let new_Vert_Set =
             Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
