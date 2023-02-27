@@ -152,6 +152,20 @@ class Delete_Helper {
                 else if nextY != initialY{current_Direction = .vertical}
             }
             else if current_Direction == .horizontal {
+                
+                if nextX > initialX {
+                    let newVerticalLineSet =
+                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+                    .filter{$0.dataCell_Y_Number ==  initialY
+                        && $0.dataCell_X_Number >= initialX
+                        && $0.dataCell_X_Number <= nextX
+                    }
+                    for cell in newVerticalLineSet{
+                        multiple_Line_Corners_Set.insert(cell)
+                    }
+                }
+                
+                
                 if prevY != nextY{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
@@ -216,9 +230,6 @@ enum E_DeleteLineDirection : String {
 //                        }
 //                    }
                     
-                    
-                    
-
 // this is the traditional 'form a rectangle' selection deletion function - this is to form part of the overall set analysis later
 //    func analyse_Delete_Square_Set(){
 //        if let lclInitialCell = initialCursorCell {
