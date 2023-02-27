@@ -189,9 +189,9 @@ class Delete_Helper {
 //                    .filter{$0.dataCell_Y_Number == initialY
 //                        && $0.dataCell_X_Number > initialX
 //                        && $0.dataCell_X_Number < nextX
-                        .filter{$0.dataCell_Y_Number == initialX
-                            && $0.dataCell_X_Number > initialY
-                            && $0.dataCell_X_Number < nextY
+                        .filter{$0.dataCell_X_Number == initialX
+                            && $0.dataCell_Y_Number > initialY
+                            && $0.dataCell_Y_Number < nextY
                     }
                     for cell in new_Vert_Set{
                         multiple_Line_Corners_Set.insert(cell)
