@@ -123,6 +123,12 @@ class Delete_Helper {
         }
     }
 
+    var curr_Max_X_Right : Int?
+    var curr_Max_X_Left : Int?
+    var curr_Max_Y_Up : Int?
+    var curr_Max_Y_Down : Int?
+    
+    
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
         
         if let lclCurrent_Initial_Cell = current_Trail_Corner {
@@ -141,14 +147,15 @@ class Delete_Helper {
             let nextX = nextDataCell.dataCell_X_Number
             let nextY = nextDataCell.dataCell_Y_Number
 
-//note line is always initial to current
+            //note line is always initial to current
             if current_Direction == .stationary {
-                if nextX != initialX{current_Direction = .horizontal}
-                else if nextY != initialY{current_Direction = .vertical}
+                if prevX != initialX{current_Direction = .horizontal}
+                else if prevY != initialY{current_Direction = .vertical}
             }
             else if current_Direction == .horizontal {
                 if prevY != nextY{
                     
+                    // TODO: deleteLines
                     if nextX > initialX {
                         let newVerticalLineSet =
                         Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
@@ -156,11 +163,11 @@ class Delete_Helper {
                             && $0.dataCell_X_Number >= initialX
                             && $0.dataCell_X_Number <= nextX
                         }
-                        
                         for cell in newVerticalLineSet{
                             multiple_Line_Corners_Set.insert(cell)
                         }
                     }
+                    
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
                 }

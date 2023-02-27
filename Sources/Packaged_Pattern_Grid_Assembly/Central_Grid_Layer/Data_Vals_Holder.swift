@@ -135,6 +135,7 @@ public class Data_Vals_Holder : ObservableObject {
         if check_In_Delete_Square_Set() == false{
             
             if check_In_Delete_Trail_Set() == false{
+                
                 if check_In_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
                         check_Highlighted()
@@ -145,10 +146,8 @@ public class Data_Vals_Holder : ObservableObject {
                         }
                     }
                 }
+                
             }
-            
-            
-            
         }
     }
     
