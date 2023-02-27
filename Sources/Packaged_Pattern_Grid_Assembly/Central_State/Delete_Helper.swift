@@ -190,7 +190,7 @@ class Delete_Helper {
                     let new_Vert_Set =
                     Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                     .filter{
-                        $0.dataCell_X_Number ==  initialX
+                        $0.dataCell_X_Number ==  nextX
                         //&& $0.four_Four_Half_Cell_Index == nextFourFour
                         && $0.dataCell_Y_Number > initialY
                         && $0.dataCell_Y_Number < nextY
