@@ -194,7 +194,7 @@ class Delete_Helper {
                     current_Direction = .horizontal
                 }
                 
-                //incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
+                incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
                 
             }
             
