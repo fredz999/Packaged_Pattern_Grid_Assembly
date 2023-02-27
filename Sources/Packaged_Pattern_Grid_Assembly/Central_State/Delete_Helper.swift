@@ -148,7 +148,7 @@ class Delete_Helper {
             let nextX = nextDataCell.dataCell_X_Number
             let nextY = nextDataCell.dataCell_Y_Number
             
-            let nextFourFour = nextDataCell.four_Four_Half_Cell_Index
+            //let nextFourFour = nextDataCell.four_Four_Half_Cell_Index
 
             if current_Direction == .stationary {
                 if nextX != initialX{current_Direction = .horizontal}
@@ -163,7 +163,7 @@ class Delete_Helper {
                     current_Direction = .vertical
                 }
                 else if prevY == nextY {
-                    
+                    incorporate_Row_Into_DeleteSet(curr_Y: nextY, initialX: initialX, finalX: nextX)
                 }
                 
             }
