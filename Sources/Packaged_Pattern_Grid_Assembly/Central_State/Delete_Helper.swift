@@ -134,11 +134,6 @@ class Delete_Helper {
         
         if let lclCurrent_Initial_Cell = current_Trail_Corner {
             
-//            print("Direction:",current_Direction.rawValue
-//            ,"initialX:",lclCurrent_Initial_Cell.dataCell_X_Number,",Y:",lclCurrent_Initial_Cell.dataCell_Y_Number
-//            ,"prev:X:",previousDataCell.dataCell_X_Number,", Y: ",previousDataCell.dataCell_Y_Number
-//            ,", newX: ",nextDataCell.dataCell_X_Number,", newY: ",nextDataCell.dataCell_Y_Number)
-            
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
             let initialY = lclCurrent_Initial_Cell.dataCell_Y_Number
             
@@ -147,17 +142,12 @@ class Delete_Helper {
             
             let nextX = nextDataCell.dataCell_X_Number
             let nextY = nextDataCell.dataCell_Y_Number
-            
-            //let nextFourFour = nextDataCell.four_Four_Half_Cell_Index
 
             if current_Direction == .stationary {
                 if nextX != initialX{current_Direction = .horizontal}
                 else if nextY != initialY{current_Direction = .vertical}
             }
             else if current_Direction == .horizontal {
-                
-                
-                
                 if prevY != nextY{
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
@@ -165,7 +155,6 @@ class Delete_Helper {
                 else if prevY == nextY {
                     incorporate_Row_Into_DeleteSet(curr_Y: nextY, initialX: initialX, finalX: nextX)
                 }
-                
             }
             else if current_Direction == .vertical {
                 if prevX != nextX{
@@ -192,6 +181,10 @@ class Delete_Helper {
             for cell in new_Horz_Set{
                 if cell.in_Delete_Trail_Set == false{
                     multiple_Line_Corners_Set.insert(cell)
+                    //if let cellNote = cell.note_Im_In{note_Collection_Ref?.reset_Note_Data_Cells(noteParam: cellNote)}
+                    if let lclNoteCollectionRef = note_Collection_Ref{
+                        if let cellNote = cell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
+                    }
                 }
             }
         }
@@ -203,8 +196,12 @@ class Delete_Helper {
                 && $0.dataCell_X_Number > finalX
             }
             for cell in new_Horz_Set{
-                if cell.in_Delete_Trail_Set == false{
+                if cell.in_Delete_Trail_Set == false {
                     multiple_Line_Corners_Set.insert(cell)
+                    //if let cellNote = cell.note_Im_In{note_Collection_Ref?.reset_Note_Data_Cells(noteParam: cellNote)}
+                    if let lclNoteCollectionRef = note_Collection_Ref{
+                        if let cellNote = cell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
+                    }
                 }
             }
         }
@@ -220,6 +217,9 @@ class Delete_Helper {
                 let cell_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
                 for subCell in cell_Set{
                     multiple_Line_Corners_Set.insert(subCell)
+                    if let lclNoteCollectionRef = note_Collection_Ref{
+                        if let cellNote = subCell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
+                    }
                 }
             }
             
@@ -233,6 +233,9 @@ class Delete_Helper {
                 let cell_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
                 for subCell in cell_Set{
                     multiple_Line_Corners_Set.insert(subCell)
+                    if let lclNoteCollectionRef = note_Collection_Ref{
+                        if let cellNote = subCell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
+                    }
                 }
             }
             
