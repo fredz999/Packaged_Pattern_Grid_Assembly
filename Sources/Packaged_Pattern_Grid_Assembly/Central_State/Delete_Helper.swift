@@ -63,7 +63,7 @@ class Delete_Helper {
         }
     }
     
-    var multiple_Line_Cell_Set = Set<Underlying_Data_Cell>()
+//    var multiple_Line_Cell_Set = Set<Underlying_Data_Cell>()
 //    {
 //        willSet {
 //            let delta = multiple_Line_Cell_Set.symmetricDifference(newValue)
@@ -158,8 +158,19 @@ class Delete_Helper {
                     let newVerticalLineSet =
                     Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
                     .filter{$0.dataCell_Y_Number ==  initialY
-                        && $0.dataCell_X_Number >= initialX
-                        && $0.dataCell_X_Number <= nextX
+                        && $0.dataCell_X_Number > initialX
+                        && $0.dataCell_X_Number < nextX
+                    }
+                    for cell in newVerticalLineSet{
+                        multiple_Line_Corners_Set.insert(cell)
+                    }
+                }
+                else if nextX < initialX {
+                    let newVerticalLineSet =
+                    Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+                    .filter{$0.dataCell_Y_Number ==  initialY
+                        && $0.dataCell_X_Number < initialX
+                        && $0.dataCell_X_Number > nextX
                     }
                     for cell in newVerticalLineSet{
                         multiple_Line_Corners_Set.insert(cell)
