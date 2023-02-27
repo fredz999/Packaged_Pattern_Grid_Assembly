@@ -147,6 +147,8 @@ class Delete_Helper {
             
             let nextX = nextDataCell.dataCell_X_Number
             let nextY = nextDataCell.dataCell_Y_Number
+            
+            let nextFourFour = nextDataCell.four_Four_Half_Cell_Index
 
             if current_Direction == .stationary {
                 if nextX != initialX{current_Direction = .horizontal}
@@ -186,10 +188,9 @@ class Delete_Helper {
                 if nextY > initialY {
                     let new_Vert_Set =
                     Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-//                    .filter{$0.dataCell_Y_Number == initialY
-//                        && $0.dataCell_X_Number > initialX
-//                        && $0.dataCell_X_Number < nextX
-                        .filter{$0.dataCell_X_Number == initialX
+                        .filter{
+                            //$0.dataCell_X_Number == initialX
+                            $0.four_Four_Half_Cell_Index == nextFourFour
                             && $0.dataCell_Y_Number > initialY
                             && $0.dataCell_Y_Number < nextY
                     }
