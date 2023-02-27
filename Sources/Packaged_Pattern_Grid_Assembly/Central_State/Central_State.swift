@@ -37,7 +37,7 @@ public class Central_State : ObservableObject {
     public init(){
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
-        viableSetHelpers = Viable_Set_Helper_Functions(initialDataParam: initialData)
+        viableSetHelpers = Potential_Helper(initialDataParam: initialData)
         delete_Helper = Delete_Helper(initialDataParam: initialData)
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
@@ -106,7 +106,7 @@ public class Central_State : ObservableObject {
             //if self.writingIsOn {
             if self.currentPatternMode == .writing{
                 if let lclInitial = self.viableSetHelpers.initial_WriteOnCell{
-                    let variableDelta = (self.viableSetHelpers.helperFuncs_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
+                    let variableDelta = (self.viableSetHelpers.potential_Helper_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
                     if variableDelta > self.viableSetHelpers.helperFuncs_PotentialNote_Set.count
                     || variableDelta < self.viableSetHelpers.helperFuncs_PotentialNote_Set.count{self.viableSetHelpers.establish_Potential_Cells_Set()}
                 }
@@ -187,6 +187,7 @@ public class Central_State : ObservableObject {
 //    }
     
     @Published public var currentPatternMode : E_PatternModeType = .passive
+    
     public func setPatternMode(patternModeParam : E_PatternModeType){
         
         if patternModeParam == .writing {
@@ -238,16 +239,31 @@ public class Central_State : ObservableObject {
                 delete_Helper.nil_Delete_Square_Set()
             }
             if currentPatternMode != .passive{currentPatternMode = .passive}
-            if viableSetHelpers.helperFuncs_Cursor_Set.count == 0{
+            if viableSetHelpers.potential_Helper_Cursor_Set.count == 0{
                 viableSetHelpers.establish_Cursor_Set()
             }
             
         }
+        else if patternModeParam == .moving {
+            if viableSetHelpers.initial_WriteOnCell != nil, viableSetHelpers.helperFuncs_PotentialNote_Set.count > 0 {
+                viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
+                viableSetHelpers.nilPotentialSet()
+                viableSetHelpers.initial_WriteOnCell = nil
+            }
+            if delete_Helper.delete_Cursor_Set.count > 0 {
+                delete_Helper.nil_Delete_Square_Set()
+            }
+            if currentPatternMode != .moving{currentPatternMode = .moving}
+            if viableSetHelpers.potential_Helper_Cursor_Set.count == 0{
+                viableSetHelpers.establish_Cursor_Set()
+            }
+        }
+        
         viableSetHelpers.test_For_Write_Lock()
     }
     
     
-    var viableSetHelpers : Viable_Set_Helper_Functions
+    var viableSetHelpers : Potential_Helper
     var delete_Helper : Delete_Helper
 
     func cursor_Slider_Update(){
@@ -278,22 +294,22 @@ public class Central_State : ObservableObject {
                 
                 if dimensions.patternTimingConfiguration == .fourFour {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                    viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    viableSetHelpers.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                     curr_Data_Pos_X = dimensions.currentFourFourDataIndex
                 }
                 else if dimensions.patternTimingConfiguration == .sixEight {
                     viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                    viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                    viableSetHelpers.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     curr_Data_Pos_X = dimensions.currentSixEightDataIndex
                 }
             }
             else if currViable.dataCell_Y_Number == curr_Data_Pos_Y {
                 if dimensions.patternTimingConfiguration == .fourFour {
-                    viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                    viableSetHelpers.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                     curr_Data_Pos_X = dimensions.currentFourFourDataIndex
                 }
                 else if dimensions.patternTimingConfiguration == .sixEight {
-                    viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                    viableSetHelpers.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     curr_Data_Pos_X = dimensions.currentSixEightDataIndex
                 }
             }
@@ -304,7 +320,7 @@ public class Central_State : ObservableObject {
         else if  viableSetHelpers.initial_WriteOnCell == nil{
        
             if dimensions.patternTimingConfiguration == .fourFour{
-                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                viableSetHelpers.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                 //if currentPatternMode == .deleting{
                     delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                 //}
@@ -312,7 +328,7 @@ public class Central_State : ObservableObject {
             }
             
             else if dimensions.patternTimingConfiguration == .sixEight {
-                viableSetHelpers.helperFuncs_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                viableSetHelpers.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 //if currentPatternMode == .deleting {
                     delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 //}
@@ -419,6 +435,8 @@ public class Central_State : ObservableObject {
 public enum E_PatternModeType{
     case writing
     case deleting
+    case moving
+    case resizing
     case passive
 }
 
