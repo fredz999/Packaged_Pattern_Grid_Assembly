@@ -42,7 +42,7 @@ public class Central_State : ObservableObject {
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
         for cell in currLine.dataCellArray {
-        viableSetHelpers.current_Line_Set_Vbl.insert(cell)
+        //viableSetHelpers.current_Line_Set_Vbl.insert(cell)
         currLineSet.insert(cell)// = newSet
         //delete_Helper.current_Line_Set_Del.insert(cell)
         }
@@ -214,7 +214,7 @@ public class Central_State : ObservableObject {
                 viableSetHelpers.nilPotentialSet()
             }
             
-            if viableSetHelpers.current_Line_Set_Vbl.count > 0{viableSetHelpers.nil_Cursor_Set()}
+            if currLineSet.count > 0{viableSetHelpers.nil_Cursor_Set()}
             viableSetHelpers.test_For_Write_Lock()
             
             if dimensions.patternTimingConfiguration == .fourFour {
@@ -328,12 +328,14 @@ public class Central_State : ObservableObject {
     var curr_Data_Pos_Y : Int {
         didSet {
             let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-            viableSetHelpers.current_Line_Set_Vbl.removeAll()
+            //viableSetHelpers.current_Line_Set_Vbl.removeAll()
+            currLineSet.removeAll()
             var newSet = Set<Underlying_Data_Cell>()
             for cell in currLine.dataCellArray{
                 newSet.insert(cell)
             }
-            viableSetHelpers.current_Line_Set_Vbl = newSet
+            //viableSetHelpers.current_Line_Set_Vbl = newSet
+            //Central_State.Static_Central_State.currLineSet
             currLineSet = newSet
             //delete_Helper.current_Line_Set_Del = newSet
         }
