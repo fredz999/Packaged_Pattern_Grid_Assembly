@@ -147,31 +147,12 @@ class Delete_Helper {
             let nextX = nextDataCell.dataCell_X_Number
             let nextY = nextDataCell.dataCell_Y_Number
 
-            //note line is always initial to current
             if current_Direction == .stationary {
-                if nextX != initialX{
-                    current_Direction = .horizontal
-                    // TODO: deleteLines
-                    if nextX > initialX {
-                        let newVerticalLineSet =
-                        Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
-                        .filter{$0.dataCell_Y_Number ==  initialY
-                            && $0.dataCell_X_Number >= initialX
-                            && $0.dataCell_X_Number <= nextX
-                        }
-                        for cell in newVerticalLineSet{
-                            multiple_Line_Corners_Set.insert(cell)
-                        }
-                    }
-                }
-                else if nextY != initialY{
-                    current_Direction = .vertical}
+                if nextX != initialX{current_Direction = .horizontal }
+                else if nextY != initialY{current_Direction = .vertical}
             }
             else if current_Direction == .horizontal {
                 if prevY != nextY{
-                    
-                    
-                    
                     current_Trail_Corner = previousDataCell
                     current_Direction = .vertical
                 }
@@ -184,81 +165,7 @@ class Delete_Helper {
             }
             
         }
-        
 
-//        if let lclCurrent_Start_Cell = current_Start_Cell {
-//
-//            if delete_Cursor_CurrentData.dataCell_X_Number < lclCurrent_Start_Cell.dataCell_X_Number {
-//                if current_Direction == .stationary {
-//                    current_Direction = .horizontal
-//                    print("1 current_Direction: ",current_Direction.rawValue)
-//                }
-//                else if current_Direction == .vertical {
-//                    current_Direction = .horizontal
-//                    current_Start_Cell = previousDataCell
-//                    print("1 set to horizontal current_Start_Cell:X:",lclCurrent_Start_Cell.dataCell_X_Number,", Y: ",lclCurrent_Start_Cell.dataCell_Y_Number)
-//                }
-//
-//            }
-//            else if delete_Cursor_CurrentData.dataCell_X_Number > lclCurrent_Start_Cell.dataCell_X_Number {
-//                if current_Direction == .stationary {
-//                    current_Direction = .horizontal
-//                    print("2 current_Direction: ",current_Direction.rawValue)
-//                }
-//                else if current_Direction == .vertical{
-//                    current_Direction = .horizontal
-//                    current_Start_Cell = previousDataCell
-//                    print("2 set to horizontal current_Start_Cell:X:",lclCurrent_Start_Cell.dataCell_X_Number,", Y: ",lclCurrent_Start_Cell.dataCell_Y_Number)
-//                }
-//            }
-//
-//            if delete_Cursor_CurrentData.dataCell_Y_Number < lclCurrent_Start_Cell.dataCell_Y_Number {
-//                if current_Direction == .stationary {
-//                    current_Direction = .vertical
-//                    print("3 current_Direction: ",current_Direction.rawValue)
-//                }
-//                else if current_Direction == .horizontal{
-//                    current_Direction = .vertical
-//                    current_Start_Cell = previousDataCell
-//                    print("3 set to vertical current_Start_Cell:X:",lclCurrent_Start_Cell.dataCell_X_Number,", Y: ",lclCurrent_Start_Cell.dataCell_Y_Number)
-//                }
-//            }
-//            else if delete_Cursor_CurrentData.dataCell_Y_Number > lclCurrent_Start_Cell.dataCell_Y_Number {
-//                if current_Direction == .stationary {
-//                    current_Direction = .vertical
-//                    print("4 current_Direction: ",current_Direction.rawValue)
-//                }
-//                else if current_Direction == .horizontal{
-//                    current_Direction = .vertical
-//                    current_Start_Cell = previousDataCell
-//                    print("4 set to vertical current_Start_Cell:X:",lclCurrent_Start_Cell.dataCell_X_Number,", Y: ",lclCurrent_Start_Cell.dataCell_Y_Number)
-//                }
-//            }
-//
-//
-//            //note: when a new initial cell is set  the direction must be set at the same time.... except at the very start
-//
-//            //1: initial cell set(x:0,y:0), start direction = stationary
-//            //2: horz swipe, direction set to horizontal, lands at x:3,y:0
-//            //3: up swipe | to x:3,y:1, I want to set x:3,y:0 as the new initial and the direction set to ... how?
-//
-////            if delete_Cursor_CurrentData.dataCell_X_Number < lclInitialCell.dataCell_X_Number {
-////                if current_Direction == .stationary {
-////                    current_Direction = .horizontal
-////                }
-////                else if current_Direction == .vertical{
-////                    current_Direction = .horizontal
-////                    // set new initial cell but somehow make it the previous one
-////                }
-////            }
-////            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number{
-////
-////            }
-////
-////            if delete_Cursor_CurrentData.dataCell_Y_Number < lclInitialCell.dataCell_Y_Number{}
-////            else if delete_Cursor_CurrentData.dataCell_X_Number > lclInitialCell.dataCell_Y_Number{}
-//
-//        }
     }
 
     func nil_Delete_Square_Set(){
@@ -296,6 +203,21 @@ enum E_DeleteLineDirection : String {
     case vertical = "vertical"
     case stationary = "stationary"
 }
+
+//                    if nextX > initialX {
+//                        let newVerticalLineSet =
+//                        Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
+//                        .filter{$0.dataCell_Y_Number ==  initialY
+//                            && $0.dataCell_X_Number >= initialX
+//                            && $0.dataCell_X_Number <= nextX
+//                        }
+//                        for cell in newVerticalLineSet{
+//                            multiple_Line_Corners_Set.insert(cell)
+//                        }
+//                    }
+                    
+                    
+                    
 
 // this is the traditional 'form a rectangle' selection deletion function - this is to form part of the overall set analysis later
 //    func analyse_Delete_Square_Set(){
