@@ -177,21 +177,20 @@ public class Central_State : ObservableObject {
             
             if currentPatternMode != .passive{currentPatternMode = .passive}
             
-            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
-                potential_Helper.establish_Cursor_Set()
-            }
+//            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
+//                potential_Helper.establish_Cursor_Set()
+//            }
             
         }
         else if patternModeParam == .moving {
-            print("set tae moving maude")
-            potential_Helper.nil_Cursor_Set()
+            if potential_Helper.potential_Helper_Cursor_Set.count>0{potential_Helper.nil_Cursor_Set()}
+            if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
+            
             if let lclMoveHelper = move_Helper{
                 lclMoveHelper.process_Move_Cursor_Position()
             }
             if currentPatternMode != .moving{currentPatternMode = .moving}
         }
-        
-        potential_Helper.test_For_Write_Lock()
     }
     
     
