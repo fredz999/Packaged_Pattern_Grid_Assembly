@@ -124,9 +124,10 @@ public class Central_State : ObservableObject {
     public func setPatternMode(patternModeParam : E_PatternModeType){
         
         if patternModeParam == .writing {
-            currentPatternMode = .writing
+            if currentPatternMode != .writing {currentPatternMode = .writing}
             delete_Helper.nil_Delete_Square_Set()
             potential_Helper.nil_Cursor_Set()
+            if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             
             if dimensions.patternTimingConfiguration == .fourFour {
                 potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -135,13 +136,14 @@ public class Central_State : ObservableObject {
                 potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             }
             potential_Helper.establish_Potential_Cells_Set()
-           
         }
         else if patternModeParam == .deleting {
             
             if note_Write_Locked == true{note_Write_Locked = false}
             
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
+            
+            if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             
             if potential_Helper.initial_WriteOnCell != nil {
                 potential_Helper.initial_WriteOnCell = nil
@@ -169,6 +171,8 @@ public class Central_State : ObservableObject {
                 potential_Helper.initial_WriteOnCell = nil
             }
             if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
+            if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
+            
             if currentPatternMode != .passive{currentPatternMode = .passive}
 //            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
 //                potential_Helper.establish_Cursor_Set()
