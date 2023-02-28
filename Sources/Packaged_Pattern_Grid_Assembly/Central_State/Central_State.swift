@@ -44,7 +44,7 @@ public class Central_State : ObservableObject {
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
         potential_Helper = Potential_Helper(initialDataParam: currentData)
-        delete_Helper = Delete_Helper(initialDataParam: currentData)
+        delete_Helper = Delete_Helper()//(initialDataParam: currentData)
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
         for cell in currLine.dataCellArray {
@@ -53,7 +53,7 @@ public class Central_State : ObservableObject {
         
     }
     
-    var currentData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
+    
     
     public func post_init_Setup(){
         potential_Helper.establish_Cursor_Set()
@@ -267,14 +267,31 @@ public class Central_State : ObservableObject {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             curr_Data_Pos_X = dimensions.currentSixEightDataIndex
         }
-        if currentPatternMode == .moving,let lclMoveHelper = move_Helper {
-            lclMoveHelper.process_MoveNote_Cursor_Position()
-        }
+        // these shouldst happen in the willSet of currentData
+//        if currentPatternMode == .moving,let lclMoveHelper = move_Helper {
+//            lclMoveHelper.process_MoveNote_Cursor_Position()
+//        }
+//        else if currentPatternMode == .deleting{
+//
+//        }
         
 
     }
     
-    
+    var currentData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]{
+        willSet{
+            
+            if currentPatternMode == .deleting{
+//process_Current_Line(previousDataCell:delete_Cursor_CurrentData,nextDataCell:newValue)
+                delete_Helper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
+            }
+        }
+        didSet{
+            if currentPatternMode == .moving,let lclMoveHelper = move_Helper {
+                lclMoveHelper.process_MoveNote_Cursor_Position()
+            }
+        }
+    }
     
     var currLineSet = Set<Underlying_Data_Cell>()
     

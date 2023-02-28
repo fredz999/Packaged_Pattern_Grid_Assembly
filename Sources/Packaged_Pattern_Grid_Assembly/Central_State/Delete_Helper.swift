@@ -54,17 +54,17 @@ class Delete_Helper {
     
     var multiple_Line_Corners_Set = Set<Underlying_Data_Cell>()
 
-    init(initialDataParam : Underlying_Data_Cell){
-        delete_Cursor_CurrentData = initialDataParam
-    }
+//    init(initialDataParam : Underlying_Data_Cell){
+//        delete_Cursor_CurrentData = initialDataParam
+//    }
     
     
     
-    var delete_Cursor_CurrentData : Underlying_Data_Cell {
-        willSet{
-            process_Current_Line(previousDataCell:delete_Cursor_CurrentData,nextDataCell:newValue)
-        }
-    }
+//    var delete_Cursor_CurrentData : Underlying_Data_Cell {
+//        willSet{
+//            process_Current_Line(previousDataCell:delete_Cursor_CurrentData,nextDataCell:newValue)
+//        }
+//    }
     
     
     
@@ -85,15 +85,13 @@ class Delete_Helper {
             }
         }
     }
-    
-    
-    
+
     func process_Delete_Cursor_Position() {
         if dimensions.patternTimingConfiguration == .fourFour {
-            delete_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.four_Four_Half_Cell_Index})
+            delete_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
-            delete_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == delete_Cursor_CurrentData.six_Eight_Half_Cell_Index})
+            delete_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
         }
     }
     
@@ -137,7 +135,7 @@ class Delete_Helper {
 
     }
     
-    func incorporate_Row_Into_DeleteSet(curr_Y:Int,initialX:Int,finalX:Int){
+    private func incorporate_Row_Into_DeleteSet(curr_Y:Int,initialX:Int,finalX:Int){
         if finalX > initialX {
             let new_Horz_Set =
             Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
@@ -174,7 +172,7 @@ class Delete_Helper {
         }
     }
     
-    func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
+    private func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
         if finalY > initialY {
             let new_Vert_Set =
             Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
