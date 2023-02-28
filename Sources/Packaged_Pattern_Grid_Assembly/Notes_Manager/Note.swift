@@ -136,6 +136,12 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //        }
     }
     
+    
+//    func moveRightOne(){
+//        // this is now going to be a set op
+//        //1 number of cells in a jump, 4:4 = 3, 6:8 = 2
+//    }
+    
 //    func moveRightOne(){
 //        if let lastCell = dataCellArray.last,let firstCell = dataCellArray.first {
 //        let lastIndex = lastCell.dataCell_X_Number
@@ -147,7 +153,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //                    dataCellArray.removeFirst()
 //                    dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
 //                    //redrawCellArray()
-//                    check_For_Highlight()
+//                    //check_For_Highlight()
 //                }
 //            }
 //        }
