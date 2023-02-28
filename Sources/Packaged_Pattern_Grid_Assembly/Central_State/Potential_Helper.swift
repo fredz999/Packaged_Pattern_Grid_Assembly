@@ -138,15 +138,11 @@ class Potential_Helper {
             if lclInitialCell.dataCell_X_Number < potential_Helper_currentData.dataCell_X_Number {
             if dimensions.patternTimingConfiguration == .fourFour {
             let lowerHalfCellSet = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
-                //current_Line_Set_Vbl.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
             let upperHalfCellSet = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == potential_Helper_currentData.four_Four_Half_Cell_Index-1})
-                //current_Line_Set_Vbl.filter({$0.four_Four_Half_Cell_Index == helperFuncs_currentData.four_Four_Half_Cell_Index-1})
             var combinedSet = Set<Underlying_Data_Cell>()
 
             let rightSideHasNotesSet = Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
-                //current_Line_Set_Vbl.filter({$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
             let lowestRightNoteCell = rightSideHasNotesSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-
 
             if lclInitialCell.dataCell_X_Number == potential_Helper_currentData.dataCell_X_Number {
                 combinedSet = lowerHalfCellSet
@@ -162,9 +158,6 @@ class Potential_Helper {
             let swipeSet =
                 Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                 && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-//            current_Line_Set_Vbl.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
-//            && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
-
             if let lclLowestRightNoteCell = lowestRightNoteCell {
                 helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
             }

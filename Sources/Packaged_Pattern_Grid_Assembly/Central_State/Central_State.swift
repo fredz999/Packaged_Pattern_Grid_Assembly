@@ -123,6 +123,7 @@ public class Central_State : ObservableObject {
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
         
+        
         if patternModeParam == .writing {
             if currentPatternMode != .writing {currentPatternMode = .writing}
             delete_Helper.nil_Delete_Square_Set()
@@ -135,8 +136,11 @@ public class Central_State : ObservableObject {
             else if dimensions.patternTimingConfiguration == .sixEight {
                 potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             }
-            potential_Helper.establish_Potential_Cells_Set()
+            //potential_Helper.establish_Potential_Cells_Set()
         }
+        
+        
+        
         else if patternModeParam == .deleting {
             
             if note_Write_Locked == true{note_Write_Locked = false}
