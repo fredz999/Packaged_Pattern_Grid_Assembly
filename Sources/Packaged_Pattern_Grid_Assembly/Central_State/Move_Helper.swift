@@ -18,29 +18,15 @@ class Move_Helper {
         willSet {
             let delta = move_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
+                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
             }
         }
         didSet {
             for cell in move_Cursor_Set {
-                cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
+                cell.handleVisibleStateChange(type : .activate_MoveNote_Cursor_Set)
             }
         }
     }
-    
-//    var move_Cursor_CurrentData : Underlying_Data_Cell {
-//        willSet{
-//            process_Move_Cursor_Movement()
-//        }
-//    }
-    
-//    init(){
-//        //move_Cursor_CurrentData = initialDataParam
-//    }
-    
-//    func process_Move_Cursor_Movement(){
-//
-//    }
     
 
     

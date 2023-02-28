@@ -217,7 +217,6 @@ class Delete_Helper {
             let new_Vert_Set =
             Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set
             .filter{$0.dataCell_X_Number == curr_X && $0.dataCell_Y_Number >= finalY && $0.dataCell_Y_Number <= initialY}
-            
             for cell in new_Vert_Set{
                 let cell_Set = Underlying_Data_Grid.Static_Underlying_Data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
                 for subCell in cell_Set{

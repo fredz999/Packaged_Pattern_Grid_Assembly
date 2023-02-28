@@ -150,12 +150,6 @@ public class Underlying_Data_Line:ObservableObject,Identifiable,Equatable,Hashab
     
     public var dataCellArray : [Underlying_Data_Cell] = []
     
-    //public var lineNumber : Int
-    
-//    init(lineNumberParam:Int){
-//        lineNumber = lineNumberParam
-//    }
-    
 }
 
 public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
@@ -185,25 +179,27 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Delete_Square_Set : Bool = false
     
     var in_Delete_Trail_Set : Bool = false
+    
+    var in_MoveNote_Cursor_Set : Bool = false
 
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
         
-//        if type == .activate_Delete_Trail_Set{
-//            if in_Delete_Trail_Set == false {
-//                in_Delete_Trail_Set = true
-//                if let lclDataVals = currentConnectedDataVals {
-//                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .deleteTrailSet , value: in_Delete_Trail_Set)
-//                }
-//            }
-//        }
-//        else if type == .deActivate_Delete_Trail_Set {
-//            if in_Delete_Trail_Set == true {
-//                in_Delete_Trail_Set = false
-//                if let lclDataVals = currentConnectedDataVals {
-//                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .deleteTrailSet, value: in_Delete_Trail_Set)
-//                }
-//            }
-//        }
+        if type == .activate_MoveNote_Cursor_Set{
+            if in_MoveNote_Cursor_Set == false {
+                in_MoveNote_Cursor_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .moveNote_Cursor_Set, value: in_MoveNote_Cursor_Set)
+                }
+            }
+        }
+        else if type == .deActivate_MoveNote_Cursor_Set {
+            if in_MoveNote_Cursor_Set == true {
+                in_MoveNote_Cursor_Set = false
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .moveNote_Cursor_Set, value: in_MoveNote_Cursor_Set)
+                }
+            }
+        }
         
         if type == .activate_Delete_Square_Set {
             if in_Delete_Square_Set == false {
@@ -421,6 +417,6 @@ enum E_VisibleStateChangeType {
     case activate_Delete_Square_Set
     case deActivate_Delete_Square_Set
     
-//    case activate_Delete_Trail_Set
-//    case deActivate_Delete_Trail_Set
+    case activate_MoveNote_Cursor_Set
+    case deActivate_MoveNote_Cursor_Set
 }
