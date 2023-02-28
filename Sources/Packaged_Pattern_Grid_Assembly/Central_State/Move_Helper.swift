@@ -29,7 +29,8 @@ class Move_Helper {
     }
 
     func process_Move_Cursor_Position() {
-        print("process_Move_Cursor_Position()  called .....")
+        print("process_Move_Cursor_Position()  called .....currentDataX:"
+              ,Central_State.Static_Central_State.currentData.dataCell_X_Number,",Y:",Central_State.Static_Central_State.currentData.dataCell_Y_Number)
         if dimensions.patternTimingConfiguration == .fourFour {
         move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
         }
