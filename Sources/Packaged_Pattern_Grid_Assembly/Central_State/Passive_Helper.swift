@@ -37,4 +37,13 @@ class Passive_Helper {
         }
     }
     
+    func nil_passive_Cursor_Set(){
+        if passive_Cursor_Set.count > 0 {
+            for cell in passive_Cursor_Set {
+                cell.handleVisibleStateChange(type: .deActivate_Passive_Cursor_Set)
+            }
+            passive_Cursor_Set.removeAll()
+        }
+    }
+    
 }

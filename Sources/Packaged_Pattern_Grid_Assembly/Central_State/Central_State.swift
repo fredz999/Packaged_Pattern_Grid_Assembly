@@ -132,9 +132,12 @@ public class Central_State : ObservableObject {
         
         if patternModeParam == .writing {
             if currentPatternMode != .writing {currentPatternMode = .writing}
-            potential_Helper.nil_Cursor_Set()
+            
+            //potential_Helper.nil_Cursor_Set()
             delete_Helper.nil_Delete_Square_Set()
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
+            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+            
 
             if dimensions.patternTimingConfiguration == .fourFour {
                 potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -152,6 +155,7 @@ public class Central_State : ObservableObject {
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
             
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
+            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
             
             if potential_Helper.initial_WriteOnCell != nil {
                 potential_Helper.initial_WriteOnCell = nil
@@ -172,11 +176,12 @@ public class Central_State : ObservableObject {
        
         }
         else if patternModeParam == .passive {
-            if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
-                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
-                potential_Helper.nilPotentialSet()
-                potential_Helper.initial_WriteOnCell = nil
-            }
+//            if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
+//                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
+//                potential_Helper.nilPotentialSet()
+//                potential_Helper.initial_WriteOnCell = nil
+//            }
+            
             
             if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
             
@@ -185,6 +190,7 @@ public class Central_State : ObservableObject {
             if currentPatternMode != .passive{currentPatternMode = .passive}
             
             if let lclPassiveHelper = passive_Helper{
+                lclPassiveHelper.nil_passive_Cursor_Set()
                 lclPassiveHelper.process_Passive_Cursor_Position()
             }
 //            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
@@ -196,7 +202,7 @@ public class Central_State : ObservableObject {
         else if patternModeParam == .moving {
             if potential_Helper.potential_Helper_Cursor_Set.count>0{potential_Helper.nil_Cursor_Set()}
             if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
-            
+            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
             if let lclMoveHelper = move_Helper{
                 lclMoveHelper.process_MoveNote_Cursor_Position()
             }
