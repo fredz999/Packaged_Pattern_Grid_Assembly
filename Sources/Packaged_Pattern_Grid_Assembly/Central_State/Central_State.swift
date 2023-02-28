@@ -50,6 +50,7 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
+        
     }
     
     var currentData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
