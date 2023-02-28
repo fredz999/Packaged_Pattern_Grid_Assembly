@@ -14,28 +14,26 @@ class Move_Helper {
     
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
     
-    var move_Cursor_Set = Set<Underlying_Data_Cell>(){
+    var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = move_Cursor_Set.symmetricDifference(newValue)
+            let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
             }
         }
         didSet {
-            for cell in move_Cursor_Set {
+            for cell in move_Note_Cursor_Set {
                 cell.handleVisibleStateChange(type : .activate_MoveNote_Cursor_Set)
             }
         }
     }
-    
 
-    
     func process_Move_Cursor_Position() {
         if dimensions.patternTimingConfiguration == .fourFour {
-        move_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
+        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
-        move_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
+        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
         }
         print("process_Move_Cursor_Position()  called .....")
     }
@@ -53,6 +51,14 @@ class Move_Helper {
         }
     }
     
+    func nil_Move_Note_Cursor_Set(){
+        if move_Note_Cursor_Set.count > 0 {
+            for cell in move_Note_Cursor_Set {
+                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
+            }
+            move_Note_Cursor_Set.removeAll()
+        }
+    }
     
     
     
