@@ -56,7 +56,7 @@ public class Central_State : ObservableObject {
     
     public func post_init_Setup(){
         potential_Helper.establish_Cursor_Set()
-        //move_Helper = Move_Helper()
+        move_Helper = Move_Helper()
     }
     
     public func accessTestWriteLock(){
