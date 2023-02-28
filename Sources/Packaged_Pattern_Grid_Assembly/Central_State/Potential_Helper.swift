@@ -29,7 +29,7 @@ class Potential_Helper {
                     }
                 }
                 
-                test_For_Write_Lock()
+                //test_For_Write_Lock()
                 
                 if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
                     if let lclNillableNote = nillableNote {
@@ -55,63 +55,63 @@ class Potential_Helper {
             for cell in helperFuncs_PotentialNote_Set {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
             }
-            print("helperFuncs_PotentialNote_Set set to count: ",helperFuncs_PotentialNote_Set.count.description)
+            //print("helperFuncs_PotentialNote_Set set to count: ",helperFuncs_PotentialNote_Set.count.description)
         }
     }
     
     var initial_WriteOnCell : Underlying_Data_Cell?
 
-    func test_For_Write_Lock(){
-        if let cursorZero = potential_Helper_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
- 
-            if cursorZero.dataCell_X_Number == 0 {
-                if Central_State.Static_Central_State.a_Note_Is_Highlighted == true {
-                    if Central_State.Static_Central_State.note_Write_Locked == false {
-                        Central_State.Static_Central_State.note_Write_Locked = true
-                    }
-                }
-                else if Central_State.Static_Central_State.a_Note_Is_Highlighted == false {
-                    if Central_State.Static_Central_State.note_Write_Locked == true {
-                        Central_State.Static_Central_State.note_Write_Locked = false
-                    }
-                }
-            }
-            else if cursorZero.dataCell_X_Number == dimensions.dataGrid_X_Unit_Count-1{
-                if Central_State.Static_Central_State.a_Note_Is_Highlighted == true {
-                    if Central_State.Static_Central_State.note_Write_Locked == false {
-                        Central_State.Static_Central_State.note_Write_Locked = true
-                    }
-                }
-                else if Central_State.Static_Central_State.a_Note_Is_Highlighted == false {
-                    if Central_State.Static_Central_State.note_Write_Locked == true {
-                        Central_State.Static_Central_State.note_Write_Locked = false
-                    }
-                }
-            }
-            if cursorZero.dataCell_X_Number > 0 && cursorZero.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1{
-                let write_Block_Set = Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
-                    || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
-                
-                var write_Getting_Blocked : Bool = true
-                
-                for cell in write_Block_Set{
-                    if cell.note_Im_In == nil{
-                        if write_Getting_Blocked == true{write_Getting_Blocked = false}
-                    }
-                }
-                if write_Getting_Blocked == true{
-                    if Central_State.Static_Central_State.note_Write_Locked == false{
-                        Central_State.Static_Central_State.note_Write_Locked = true
-                    }
-                }
-                else if write_Getting_Blocked == false{
-                    if Central_State.Static_Central_State.note_Write_Locked == true{
-                        Central_State.Static_Central_State.note_Write_Locked = false
-                    }
-                }
-            }
-        }
-    }
+//    func test_For_Write_Lock(){
+//        if let cursorZero = potential_Helper_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+// 
+//            if cursorZero.dataCell_X_Number == 0 {
+//                if Central_State.Static_Central_State.a_Note_Is_Highlighted == true {
+//                    if Central_State.Static_Central_State.note_Write_Locked == false {
+//                        Central_State.Static_Central_State.note_Write_Locked = true
+//                    }
+//                }
+//                else if Central_State.Static_Central_State.a_Note_Is_Highlighted == false {
+//                    if Central_State.Static_Central_State.note_Write_Locked == true {
+//                        Central_State.Static_Central_State.note_Write_Locked = false
+//                    }
+//                }
+//            }
+//            else if cursorZero.dataCell_X_Number == dimensions.dataGrid_X_Unit_Count-1{
+//                if Central_State.Static_Central_State.a_Note_Is_Highlighted == true {
+//                    if Central_State.Static_Central_State.note_Write_Locked == false {
+//                        Central_State.Static_Central_State.note_Write_Locked = true
+//                    }
+//                }
+//                else if Central_State.Static_Central_State.a_Note_Is_Highlighted == false {
+//                    if Central_State.Static_Central_State.note_Write_Locked == true {
+//                        Central_State.Static_Central_State.note_Write_Locked = false
+//                    }
+//                }
+//            }
+//            if cursorZero.dataCell_X_Number > 0 && cursorZero.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1{
+//                let write_Block_Set = Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
+//                    || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
+//                
+//                var write_Getting_Blocked : Bool = true
+//                
+//                for cell in write_Block_Set{
+//                    if cell.note_Im_In == nil{
+//                        if write_Getting_Blocked == true{write_Getting_Blocked = false}
+//                    }
+//                }
+//                if write_Getting_Blocked == true{
+//                    if Central_State.Static_Central_State.note_Write_Locked == false{
+//                        Central_State.Static_Central_State.note_Write_Locked = true
+//                    }
+//                }
+//                else if write_Getting_Blocked == false{
+//                    if Central_State.Static_Central_State.note_Write_Locked == true{
+//                        Central_State.Static_Central_State.note_Write_Locked = false
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     func establish_Cursor_Set(){
         if dimensions.patternTimingConfiguration == .fourFour {

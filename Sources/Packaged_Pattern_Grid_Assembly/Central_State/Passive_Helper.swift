@@ -21,8 +21,87 @@ class Passive_Helper {
             }
         }
         didSet {
-            for cell in passive_Cursor_Set {
-                cell.handleVisibleStateChange(type : .activate_Passive_Cursor_Set)
+//            for cell in passive_Cursor_Set {
+//                cell.handleVisibleStateChange(type : .activate_Passive_Cursor_Set)
+//            }
+            
+            if Central_State.Static_Central_State.currentPatternMode != .writing{
+                var nillableNote : Note? = nil
+                for cell in passive_Cursor_Set {
+                    cell.handleVisibleStateChange(type: .activate_Passive_Cursor_Set)
+                    if let lclNote = cell.note_Im_In {
+                        nillableNote = lclNote
+                    }
+                }
+                
+                test_For_Write_Lock()
+                
+                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+                    if let lclNillableNote = nillableNote {
+                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+                    }
+                    else if nillableNote == nil {
+                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                    }
+                }
+                
+            }
+            
+            
+            
+            
+            
+        }
+    }
+    
+    func test_For_Write_Lock(){
+        if let cursorZero = passive_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+ 
+            if cursorZero.dataCell_X_Number == 0 {
+                if Central_State.Static_Central_State.a_Note_Is_Highlighted == true {
+                    if Central_State.Static_Central_State.note_Write_Locked == false {
+                        Central_State.Static_Central_State.note_Write_Locked = true
+                    }
+                }
+                else if Central_State.Static_Central_State.a_Note_Is_Highlighted == false {
+                    if Central_State.Static_Central_State.note_Write_Locked == true {
+                        Central_State.Static_Central_State.note_Write_Locked = false
+                    }
+                }
+            }
+            else if cursorZero.dataCell_X_Number == dimensions.dataGrid_X_Unit_Count-1{
+                if Central_State.Static_Central_State.a_Note_Is_Highlighted == true {
+                    if Central_State.Static_Central_State.note_Write_Locked == false {
+                        Central_State.Static_Central_State.note_Write_Locked = true
+                    }
+                }
+                else if Central_State.Static_Central_State.a_Note_Is_Highlighted == false {
+                    if Central_State.Static_Central_State.note_Write_Locked == true {
+                        Central_State.Static_Central_State.note_Write_Locked = false
+                    }
+                }
+            }
+            if cursorZero.dataCell_X_Number > 0 && cursorZero.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1{
+                let write_Block_Set = Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
+                    || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
+                
+                var write_Getting_Blocked : Bool = true
+                
+                for cell in write_Block_Set{
+                    if cell.note_Im_In == nil{
+                        if write_Getting_Blocked == true{write_Getting_Blocked = false}
+                    }
+                }
+                if write_Getting_Blocked == true{
+                    if Central_State.Static_Central_State.note_Write_Locked == false{
+                        Central_State.Static_Central_State.note_Write_Locked = true
+                    }
+                }
+                else if write_Getting_Blocked == false{
+                    if Central_State.Static_Central_State.note_Write_Locked == true{
+                        Central_State.Static_Central_State.note_Write_Locked = false
+                    }
+                }
             }
         }
     }
