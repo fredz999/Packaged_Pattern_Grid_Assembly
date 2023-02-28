@@ -177,9 +177,9 @@ public class Central_State : ObservableObject {
             
             if currentPatternMode != .passive{currentPatternMode = .passive}
             
-//            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
-//                potential_Helper.establish_Cursor_Set()
-//            }
+            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
+                potential_Helper.establish_Cursor_Set()
+            }
             
         }
         else if patternModeParam == .moving {
@@ -247,7 +247,6 @@ public class Central_State : ObservableObject {
                     curr_Data_Pos_X = dimensions.currentSixEightDataIndex
                 }
             }
-
 
         }
 
