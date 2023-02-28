@@ -187,14 +187,11 @@ public class Central_State : ObservableObject {
             if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
             
             if let lclMoveHelper = move_Helper{
-                lclMoveHelper.process_Move_Cursor_Position()
+                lclMoveHelper.process_MoveNote_Cursor_Position()
             }
             if currentPatternMode != .moving{currentPatternMode = .moving}
         }
     }
-    
-    
-    
 
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
@@ -210,12 +207,11 @@ public class Central_State : ObservableObject {
             delete_Helper.process_Delete_Cursor_Position()
         }
         else if currentPatternMode == .moving,let lclMoveHelper = move_Helper{
-            lclMoveHelper.process_Move_Cursor_Position()
+            lclMoveHelper.process_MoveNote_Cursor_Position()
         }
-        
-//        else if currentPatternMode == .passive{
-//            potential_Helper.establish_Cursor_Set()
-//        }
+        else if currentPatternMode == .passive{
+            potential_Helper.establish_Cursor_Set()
+        }
     }
     
     func centralState_Data_Evaluation(){
@@ -229,22 +225,22 @@ public class Central_State : ObservableObject {
                 if dimensions.patternTimingConfiguration == .fourFour {
                     potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                     potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                    curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+                    //curr_Data_Pos_X = dimensions.currentFourFourDataIndex
                 }
                 else if dimensions.patternTimingConfiguration == .sixEight {
                     potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                     potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                    curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+                    //curr_Data_Pos_X = dimensions.currentSixEightDataIndex
                 }
             }
             else if currViable.dataCell_Y_Number == curr_Data_Pos_Y {
                 if dimensions.patternTimingConfiguration == .fourFour {
                     potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                    curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+                    //curr_Data_Pos_X = dimensions.currentFourFourDataIndex
                 }
                 else if dimensions.patternTimingConfiguration == .sixEight {
                     potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                    curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+                    //curr_Data_Pos_X = dimensions.currentSixEightDataIndex
                 }
             }
 
@@ -254,29 +250,30 @@ public class Central_State : ObservableObject {
 
             if dimensions.patternTimingConfiguration == .fourFour{
                 potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+                delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
 
-                    delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-
-                curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+                //curr_Data_Pos_X = dimensions.currentFourFourDataIndex
             }
 
             else if dimensions.patternTimingConfiguration == .sixEight {
                 potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 //if currentPatternMode == .deleting {
-                    delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+                delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 //}
-                curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+                //curr_Data_Pos_X = dimensions.currentSixEightDataIndex
             }
         }
     
         if dimensions.patternTimingConfiguration == .fourFour {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            curr_Data_Pos_X = dimensions.currentFourFourDataIndex
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
         }
         if currentPatternMode == .moving,let lclMoveHelper = move_Helper {
-            lclMoveHelper.process_Move_Cursor_Position()
+            lclMoveHelper.process_MoveNote_Cursor_Position()
         }
         
 

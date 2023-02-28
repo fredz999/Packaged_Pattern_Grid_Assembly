@@ -12,26 +12,6 @@ class Potential_Helper {
     
     let dimensions = ComponentDimensions.StaticDimensions
 
-    init(initialDataParam : Underlying_Data_Cell){
-        potential_Helper_currentData = initialDataParam
-    }
-
-    var helperFuncs_PotentialNote_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = helperFuncs_PotentialNote_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-            }
-        }
-        didSet {
-            for cell in helperFuncs_PotentialNote_Set {
-                cell.handleVisibleStateChange(type: .activate_Potential_Set)
-            }
-        }
-    }
-    
-    var initial_WriteOnCell : Underlying_Data_Cell?
-    
     var potential_Helper_currentData : Underlying_Data_Cell
     
     var potential_Helper_Cursor_Set = Set<Underlying_Data_Cell>(){
@@ -68,6 +48,34 @@ class Potential_Helper {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    init(initialDataParam : Underlying_Data_Cell){
+        potential_Helper_currentData = initialDataParam
+    }
+
+    var helperFuncs_PotentialNote_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = helperFuncs_PotentialNote_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+        }
+        didSet {
+            for cell in helperFuncs_PotentialNote_Set {
+                cell.handleVisibleStateChange(type: .activate_Potential_Set)
+            }
+        }
+    }
+    
+    var initial_WriteOnCell : Underlying_Data_Cell?
+
     func test_For_Write_Lock(){
         if let cursorZero = potential_Helper_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
  
@@ -97,7 +105,6 @@ class Potential_Helper {
             }
             if cursorZero.dataCell_X_Number > 0 && cursorZero.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1{
                 let write_Block_Set = Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
-                //current_Line_Set_Vbl.filter({$0.dataCell_X_Number == cursorZero.dataCell_X_Number+1
                     || $0.dataCell_X_Number == cursorZero.dataCell_X_Number-1})
                 
                 var write_Getting_Blocked : Bool = true
@@ -117,9 +124,7 @@ class Potential_Helper {
                         Central_State.Static_Central_State.note_Write_Locked = false
                     }
                 }
-               
             }
-            //let block_Write_Set = current_Cell_Line_Set
         }
     }
 
