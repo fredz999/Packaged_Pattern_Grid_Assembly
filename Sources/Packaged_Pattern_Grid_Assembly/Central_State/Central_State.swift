@@ -183,19 +183,9 @@ public class Central_State : ObservableObject {
             
         }
         else if patternModeParam == .moving {
-            if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
-                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
-                potential_Helper.nilPotentialSet()
-                potential_Helper.initial_WriteOnCell = nil
-            }
-            if delete_Helper.delete_Cursor_Set.count > 0 {
-                delete_Helper.nil_Delete_Square_Set()
-            }
+            print("set tae moving maude")
+            potential_Helper.nil_Cursor_Set()
             if currentPatternMode != .moving{currentPatternMode = .moving}
-            
-//            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
-//                potential_Helper.establish_Cursor_Set()
-//            }
         }
         
         potential_Helper.test_For_Write_Lock()
