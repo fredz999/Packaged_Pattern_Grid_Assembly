@@ -248,20 +248,15 @@ public class Central_State : ObservableObject {
 
         else if  potential_Helper.initial_WriteOnCell == nil{
 
-            if dimensions.patternTimingConfiguration == .fourFour{
-                potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-
-                //curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-            }
-
-            else if dimensions.patternTimingConfiguration == .sixEight {
-                potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                //if currentPatternMode == .deleting {
-                delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                //}
-                //curr_Data_Pos_X = dimensions.currentSixEightDataIndex
-            }
+//            if dimensions.patternTimingConfiguration == .fourFour{
+//                potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+//                delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+//            }
+//
+//            else if dimensions.patternTimingConfiguration == .sixEight {
+//                potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+//                delete_Helper.delete_Cursor_CurrentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+//            }
         }
     
         if dimensions.patternTimingConfiguration == .fourFour {
