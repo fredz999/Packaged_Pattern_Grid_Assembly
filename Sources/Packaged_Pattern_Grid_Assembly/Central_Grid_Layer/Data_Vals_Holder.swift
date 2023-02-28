@@ -65,8 +65,7 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
-        //update_Cell_Set_Membership(status_Update_TypeParam: .highlighted, value: true)
-        
+
         if status_Update_TypeParam == .passiveCursorSet  {
             if value == true {
                 if referenced_in_PassiveCursor_Set == false {

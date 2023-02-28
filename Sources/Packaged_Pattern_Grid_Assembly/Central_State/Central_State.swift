@@ -54,7 +54,12 @@ public class Central_State : ObservableObject {
     }
     
     public func post_init_Setup(){
-        potential_Helper.establish_Cursor_Set()
+        //potential_Helper.establish_Cursor_Set()
+        
+        passive_Helper = Passive_Helper()
+        if let lclPassiveHelper = passive_Helper{
+            lclPassiveHelper.process_Passive_Cursor_Position()
+        }
         move_Helper = Move_Helper()
     }
     
@@ -107,7 +112,10 @@ public class Central_State : ObservableObject {
             timing_Change_Compensation_Index = nil
         }
         }
-        potential_Helper.establish_Cursor_Set()
+        //potential_Helper.establish_Cursor_Set()
+        if let lclPassiveHelper = passive_Helper{
+            lclPassiveHelper.process_Passive_Cursor_Position()
+        }
     }
 
     public func deleteANote(){
@@ -212,8 +220,9 @@ public class Central_State : ObservableObject {
         else if currentPatternMode == .moving,let lclMoveHelper = move_Helper{
             lclMoveHelper.process_MoveNote_Cursor_Position()
         }
-        else if currentPatternMode == .passive{
-            potential_Helper.establish_Cursor_Set()
+        else if currentPatternMode == .passive,let lclPassiveHelper = passive_Helper{
+            //potential_Helper.establish_Cursor_Set()
+            lclPassiveHelper.process_Passive_Cursor_Position()
         }
     }
     

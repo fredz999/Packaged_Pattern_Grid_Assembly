@@ -24,6 +24,7 @@ class Passive_Helper {
             for cell in passive_Cursor_Set {
                 cell.handleVisibleStateChange(type : .activate_Passive_Cursor_Set)
             }
+            print("passive_Cursor_Set set....count:",passive_Cursor_Set.count.description)
         }
     }
     
