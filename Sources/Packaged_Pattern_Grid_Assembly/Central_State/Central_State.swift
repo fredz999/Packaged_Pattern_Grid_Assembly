@@ -185,6 +185,9 @@ public class Central_State : ObservableObject {
         else if patternModeParam == .moving {
             print("set tae moving maude")
             potential_Helper.nil_Cursor_Set()
+            if let lclMoveHelper = move_Helper{
+                lclMoveHelper.process_Move_Cursor_Position()
+            }
             if currentPatternMode != .moving{currentPatternMode = .moving}
         }
         
