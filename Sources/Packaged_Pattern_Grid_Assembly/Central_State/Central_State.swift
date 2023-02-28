@@ -16,6 +16,13 @@ public class Central_State : ObservableObject {
     @Published public var a_Note_Is_Highlighted : Bool = false
     
     @Published public var note_Write_Locked : Bool = false
+    
+    @Published public var write_Needs_Held_Down : Bool = false
+    
+    @Published public var timing_Sig_Change_Possible : Bool = true
+    
+    @Published public var currentPatternMode : E_PatternModeType = .passive
+    
 
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
@@ -26,45 +33,35 @@ public class Central_State : ObservableObject {
     public var note_Collection_Ref : Note_Collection?
     public var central_Grid_Store : Central_Grid_Store?
     //==================================================
-    //==================================================
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
     var potential_Helper : Potential_Helper
     var delete_Helper : Delete_Helper
     var move_Helper : Move_Helper?
-    //Move_Helper
-    
-    
+
     public init(){
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
         potential_Helper = Potential_Helper(initialDataParam: currentData)
         delete_Helper = Delete_Helper(initialDataParam: currentData)
-        
-        
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
         for cell in currLine.dataCellArray {
-        //viableSetHelpers.current_Line_Set_Vbl.insert(cell)
-        currLineSet.insert(cell)// = newSet
-        //delete_Helper.current_Line_Set_Del.insert(cell)
+        currLineSet.insert(cell)
         }
-        
     }
+    
     var currentData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
-    //var initialData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
     
     public func post_init_Setup(){
         potential_Helper.establish_Cursor_Set()
-        move_Helper = Move_Helper()
+        //move_Helper = Move_Helper()
     }
     
     public func accessTestWriteLock(){
         potential_Helper.test_For_Write_Lock()
     }
-    
-    @Published public var write_Needs_Held_Down : Bool = false
     
     public func change_Write_Needs_Held_Down(){
         if write_Needs_Held_Down == true {
@@ -75,55 +72,20 @@ public class Central_State : ObservableObject {
         }
     }
 
-//    public var toggleWrite_Gesture_Springy : some Gesture {
-//      DragGesture(minimumDistance: 0, coordinateSpace: .local)
-//      .onChanged { val in
-//          if self.writingIsOn == false{self.writingIsOn=true}
-//      }
-//      .onEnded { val in
-//          if self.writingIsOn == true{self.writingIsOn=false}
-//      }
-//    }
-    
-//    public var toggleWrite_Gesture_Sticky : some Gesture {
-//        TapGesture(count: 1).onEnded({
-//            if self.a_Note_Is_Highlighted == false {
-//                self.writingIsOn.toggle()
-//            }
-//        })
-//    }
-    
-//    public var Deactivate_Write_Tap_Gesture : some Gesture {
-//        TapGesture(count: 1).onEnded({
-//            self.writingIsOn = false
-//        })
-//    }
-//    
-//    public var Activate_Write_Tap_Gesture : some Gesture {
-//        TapGesture(count: 1).onEnded({
-//            self.writingIsOn = true
-//        })
-//    }
-    
     public var delete_Note_Tap_Gesture : some Gesture {
         TapGesture(count: 1).onEnded({
             self.deleteANote()
-            //if self.writingIsOn {
             if self.currentPatternMode == .writing{
                 if let lclInitial = self.potential_Helper.initial_WriteOnCell{
                     let variableDelta = (self.potential_Helper.potential_Helper_currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
                     if variableDelta > self.potential_Helper.helperFuncs_PotentialNote_Set.count
                     || variableDelta < self.potential_Helper.helperFuncs_PotentialNote_Set.count{self.potential_Helper.establish_Potential_Cells_Set()}
                 }
-
             }
-
         })
     }
 
     var timing_Change_Compensation_Index : Int? = nil
-    
-    @Published public var timing_Sig_Change_Possible : Bool = true
     
     public func change_Timing_Signature_Central() {
         if timing_Sig_Change_Possible == true {
@@ -157,41 +119,6 @@ public class Central_State : ObservableObject {
     }
 
     var currentYCursor_Slider_Position : Int = 0
-    
-    
-//    var writingIsOn : Bool = false
-//    {
-//        didSet {
-//            if writingIsOn == true {
-//
-//                if deleteIsOn == true{deleteIsOn = false}
-//
-//                if timing_Sig_Change_Possible == true{timing_Sig_Change_Possible = false}
-//
-//                if viableSetHelpers.initial_WriteOnCell == nil{
-//                    if dimensions.patternTimingConfiguration == .fourFour {
-//                        viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-//                    }
-//                    else if dimensions.patternTimingConfiguration == .sixEight {
-//                        viableSetHelpers.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-//                    }
-//                }
-//            }
-//            else if writingIsOn == false {
-//                if deleteIsOn == true{delete_Helper.establish_Delete_Square_Set()}
-//                else if deleteIsOn == false{viableSetHelpers.establish_Cursor_Set()}
-//
-//                if timing_Sig_Change_Possible == false{timing_Sig_Change_Possible = true}
-//                viableSetHelpers.writeNote(note_Y_Param: curr_Data_Pos_Y)
-//                if viableSetHelpers.initial_WriteOnCell != nil {
-//                    viableSetHelpers.initial_WriteOnCell = nil
-//                }
-//                viableSetHelpers.test_For_Write_Lock()
-//            }
-//        }
-//    }
-    
-    @Published public var currentPatternMode : E_PatternModeType = .passive
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
         
@@ -440,3 +367,34 @@ class Cell_X_Descriptor : Equatable,Hashable {
         self.x_Position_Float = x_Position_Float
     }
 }
+
+
+//    public var toggleWrite_Gesture_Springy : some Gesture {
+//      DragGesture(minimumDistance: 0, coordinateSpace: .local)
+//      .onChanged { val in
+//          if self.writingIsOn == false{self.writingIsOn=true}
+//      }
+//      .onEnded { val in
+//          if self.writingIsOn == true{self.writingIsOn=false}
+//      }
+//    }
+    
+//    public var toggleWrite_Gesture_Sticky : some Gesture {
+//        TapGesture(count: 1).onEnded({
+//            if self.a_Note_Is_Highlighted == false {
+//                self.writingIsOn.toggle()
+//            }
+//        })
+//    }
+    
+//    public var Deactivate_Write_Tap_Gesture : some Gesture {
+//        TapGesture(count: 1).onEnded({
+//            self.writingIsOn = false
+//        })
+//    }
+//
+//    public var Activate_Write_Tap_Gesture : some Gesture {
+//        TapGesture(count: 1).onEnded({
+//            self.writingIsOn = true
+//        })
+//    }
