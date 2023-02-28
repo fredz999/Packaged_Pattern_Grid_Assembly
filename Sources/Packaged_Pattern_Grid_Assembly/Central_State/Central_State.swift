@@ -270,13 +270,13 @@ public class Central_State : ObservableObject {
             }
         }
     
+        if dimensions.patternTimingConfiguration == .fourFour {
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+        }
         if currentPatternMode == .moving,let lclMoveHelper = move_Helper {
-            if dimensions.patternTimingConfiguration == .fourFour {
-                currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            }
-            else if dimensions.patternTimingConfiguration == .sixEight {
-                currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-            }
             lclMoveHelper.process_Move_Cursor_Position()
         }
         
