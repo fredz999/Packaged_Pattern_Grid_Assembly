@@ -209,9 +209,13 @@ public class Central_State : ObservableObject {
         else if currentPatternMode == .deleting{
             delete_Helper.process_Delete_Cursor_Position()
         }
-        else if currentPatternMode == .passive{
-            potential_Helper.establish_Cursor_Set()
+        else if currentPatternMode == .moving,let lclMoveHelper = move_Helper{
+            lclMoveHelper.process_Move_Cursor_Position()
         }
+        
+//        else if currentPatternMode == .passive{
+//            potential_Helper.establish_Cursor_Set()
+//        }
     }
     
     func centralState_Data_Evaluation(){
