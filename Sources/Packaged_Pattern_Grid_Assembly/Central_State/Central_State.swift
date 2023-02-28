@@ -126,9 +126,9 @@ public class Central_State : ObservableObject {
         
         if patternModeParam == .writing {
             if currentPatternMode != .writing {currentPatternMode = .writing}
-//            delete_Helper.nil_Delete_Square_Set()
-//            potential_Helper.nil_Cursor_Set()
-//            if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
+            delete_Helper.nil_Delete_Square_Set()
+            potential_Helper.nil_Cursor_Set()
+            if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
 //
 //            if dimensions.patternTimingConfiguration == .fourFour {
 //                potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
