@@ -55,6 +55,7 @@ class Potential_Helper {
             for cell in helperFuncs_PotentialNote_Set {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
             }
+            print("helperFuncs_PotentialNote_Set set to count: ",helperFuncs_PotentialNote_Set.count.description)
         }
     }
     
