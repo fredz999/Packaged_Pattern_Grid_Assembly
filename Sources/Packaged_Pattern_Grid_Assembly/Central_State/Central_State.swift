@@ -166,7 +166,7 @@ public class Central_State : ObservableObject {
        
         }
         else if patternModeParam == .passive {
-print("set tae passive maude")
+            print("set tae passive maude")
             if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
                 potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 potential_Helper.nilPotentialSet()
