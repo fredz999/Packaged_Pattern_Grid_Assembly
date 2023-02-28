@@ -176,9 +176,10 @@ print("set tae passive maude")
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             
             if currentPatternMode != .passive{currentPatternMode = .passive}
-//            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
-//                potential_Helper.establish_Cursor_Set()
-//            }
+            
+            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
+                potential_Helper.establish_Cursor_Set()
+            }
             
         }
         else if patternModeParam == .moving {
