@@ -28,6 +28,8 @@ public class Data_Vals_Holder : ObservableObject {
     private var referenced_in_Delete_Square_Set : Bool = false
     
     private var referenced_in_MoveCursor_Set : Bool = false
+    
+    private var referenced_in_PassiveCursor_Set : Bool = false
 
     @Published public var referenced_currentStatus : E_CellStatus
     {
@@ -65,7 +67,20 @@ public class Data_Vals_Holder : ObservableObject {
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
         //update_Cell_Set_Membership(status_Update_TypeParam: .highlighted, value: true)
         
-        if status_Update_TypeParam == .moveNote_Cursor_Set {
+        if status_Update_TypeParam == .passiveCursorSet  {
+            if value == true {
+                if referenced_in_PassiveCursor_Set == false {
+                    referenced_in_PassiveCursor_Set = true
+                }
+            }
+            else if value == false {
+                if referenced_in_PassiveCursor_Set == true {
+                    referenced_in_PassiveCursor_Set = false
+                }
+            }
+        }
+        
+        else if status_Update_TypeParam == .moveNote_Cursor_Set {
             if value == true {
                 if referenced_in_MoveCursor_Set == false {
                     referenced_in_MoveCursor_Set = true
@@ -78,7 +93,7 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         
-        if status_Update_TypeParam == .deleteSquareSet {
+        else if status_Update_TypeParam == .deleteSquareSet {
             if value == true {
                 if referenced_in_Delete_Square_Set == false {
                     referenced_in_Delete_Square_Set = true
@@ -91,7 +106,7 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
                                    
-        if status_Update_TypeParam == .potentialSet {
+        else if status_Update_TypeParam == .potentialSet {
             if value == true {
                 if referenced_in_Potential_Set == false {
                     referenced_in_Potential_Set=true
@@ -138,7 +153,7 @@ public class Data_Vals_Holder : ObservableObject {
             
             if check_In_MoveCursor_Set() == false{
                 
-                if check_In_Cursor_Set() == false {
+                if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
                         check_Highlighted()
                     }
@@ -175,9 +190,18 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-    func check_In_Cursor_Set()->Bool{
+//    func check_In_Cursor_Set()->Bool{
+//        var retVal = false
+//        if referenced_in_Cursor_Set == true {
+//            retVal = true
+//            if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
+//        }
+//        return retVal
+//    }
+    
+    func check_In_Passive_Cursor_Set()->Bool{
         var retVal = false
-        if referenced_in_Cursor_Set == true {
+        if referenced_in_PassiveCursor_Set == true {
             retVal = true
             if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
         }
@@ -262,6 +286,7 @@ public enum status_Update_Type {
     case cursorSet
     case deleteSquareSet
     case moveNote_Cursor_Set
+    case passiveCursorSet
     case prohibitedSet
     case potentialSet
     case potentialEdgeSet

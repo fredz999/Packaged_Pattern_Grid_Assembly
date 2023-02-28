@@ -12,8 +12,6 @@ class Potential_Helper {
     
     let dimensions = ComponentDimensions.StaticDimensions
 
-    //var potential_Helper_currentData : Underlying_Data_Cell
-    
     var potential_Helper_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = potential_Helper_Cursor_Set.symmetricDifference(newValue)
@@ -45,10 +43,6 @@ class Potential_Helper {
             }
         }
     }
-    
-//    init(initialDataParam : Underlying_Data_Cell){
-//        potential_Helper_currentData = initialDataParam
-//    }
 
     var helperFuncs_PotentialNote_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -120,12 +114,10 @@ class Potential_Helper {
 
     func establish_Cursor_Set(){
         if dimensions.patternTimingConfiguration == .fourFour {
-            //potential_Helper_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == potential_Helper_currentData.four_Four_Half_Cell_Index})
             potential_Helper_Cursor_Set = Central_State.Static_Central_State.currLineSet
                 .filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
-            //potential_Helper_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == potential_Helper_currentData.six_Eight_Half_Cell_Index})
             potential_Helper_Cursor_Set = Central_State.Static_Central_State.currLineSet
                 .filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
         }
@@ -133,8 +125,7 @@ class Potential_Helper {
     
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
-            
-            //if lclInitialCell.dataCell_X_Number < potential_Helper_currentData.dataCell_X_Number {
+
             if lclInitialCell.dataCell_X_Number < Central_State.Static_Central_State.currentData.dataCell_X_Number {
             if dimensions.patternTimingConfiguration == .fourFour {
             let lowerHalfCellSet = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
@@ -144,17 +135,10 @@ class Potential_Helper {
             let rightSideHasNotesSet = Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
             let lowestRightNoteCell = rightSideHasNotesSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
 
-//            if lclInitialCell.dataCell_X_Number == potential_Helper_currentData.dataCell_X_Number {
-//                combinedSet = lowerHalfCellSet
-//            }
-                
             if lclInitialCell.dataCell_X_Number == Central_State.Static_Central_State.currentData.dataCell_X_Number {
                 combinedSet = lowerHalfCellSet
             }
 
-//            else if potential_Helper_currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
-//                combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
-//            }
             else if Central_State.Static_Central_State.currentData.dataCell_X_Number > lclInitialCell.dataCell_X_Number {
                 combinedSet = lowerHalfCellSet.union(upperHalfCellSet)
             }
@@ -178,8 +162,6 @@ class Potential_Helper {
                 let lowerHalfCellSet = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
                 let upperHalfCellSet = Central_State.Static_Central_State.currLineSet
                     .filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index-1})
-                //Central_State.Static_Central_State
-                //.filter({$0.six_Eight_Half_Cell_Index == potential_Helper_currentData.six_Eight_Half_Cell_Index-1})
                 var combinedSet = Set<Underlying_Data_Cell>()
 
                 let rightSideHasNotesSet = Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
@@ -244,11 +226,14 @@ class Potential_Helper {
                 }
             }
             else if dimensions.patternTimingConfiguration == .sixEight {
-                let upperHalfCellSet = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index-1})
-                let lowerHalfCellSet = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
+                let upperHalfCellSet = Central_State.Static_Central_State.currLineSet
+                .filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index-1})
+                let lowerHalfCellSet = Central_State.Static_Central_State.currLineSet
+                .filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
                 var combinedSet = Set<Underlying_Data_Cell>()
 
-                let leftSideHasNotesSet = Central_State.Static_Central_State.currLineSet.filter({$0.dataCell_X_Number < lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
+                let leftSideHasNotesSet = Central_State.Static_Central_State.currLineSet
+                .filter({$0.dataCell_X_Number < lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
                 let highestLeftNoteCell = leftSideHasNotesSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
 
 

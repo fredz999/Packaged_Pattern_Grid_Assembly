@@ -181,10 +181,28 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Delete_Trail_Set : Bool = false
     
     var in_MoveNote_Cursor_Set : Bool = false
+    
+    var in_Passive_Cursor_Set : Bool = false
 
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
+        if type == .activate_Passive_Cursor_Set {
+            if in_Passive_Cursor_Set == false {
+                in_Passive_Cursor_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .passiveCursorSet, value: in_Passive_Cursor_Set)
+                }
+            }
+        }
+        else if type == .deActivate_Passive_Cursor_Set{
+            if in_Passive_Cursor_Set == true {
+                in_Passive_Cursor_Set = false
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .passiveCursorSet, value: in_Passive_Cursor_Set)
+                }
+            }
+        }
         
-        if type == .activate_MoveNote_Cursor_Set{
+        else if type == .activate_MoveNote_Cursor_Set{
             if in_MoveNote_Cursor_Set == false {
                 in_MoveNote_Cursor_Set = true
                 if let lclDataVals = currentConnectedDataVals {
@@ -200,8 +218,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
-        if type == .activate_Delete_Square_Set {
+        else if type == .activate_Delete_Square_Set {
             if in_Delete_Square_Set == false {
                 in_Delete_Square_Set = true
                 if let lclDataVals = currentConnectedDataVals {
@@ -218,7 +235,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         
-        if type == .activate_Cursor_Set {
+        else if type == .activate_Cursor_Set {
             if in_Cursor_Set == false {
                 in_Cursor_Set = true
                 if let lclDataVals = currentConnectedDataVals {
@@ -419,4 +436,7 @@ enum E_VisibleStateChangeType {
     
     case activate_MoveNote_Cursor_Set
     case deActivate_MoveNote_Cursor_Set
+    
+    case activate_Passive_Cursor_Set
+    case deActivate_Passive_Cursor_Set
 }
