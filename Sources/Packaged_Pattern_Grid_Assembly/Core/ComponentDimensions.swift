@@ -160,9 +160,9 @@ public class ComponentColors {
     
     
     
-    public var cursor_Set_Cell_Color : Color = .pink
-    public var delete_Square_Set_Cell_Color : Color = Color(red:1,green:0.5,blue:0)
-    public var delete_MoveCursor_Color : Color = Color(red:1,green:1,blue:1)
+    public var passiveMode_Cursor_Color : Color = .pink
+    public var deleteNoteMode_Cursor_Color : Color = Color(red:1,green:0.5,blue:0)
+    public var moveNoteMode_Cursor_Color : Color = Color(red:1,green:1,blue:1)
     
     
     

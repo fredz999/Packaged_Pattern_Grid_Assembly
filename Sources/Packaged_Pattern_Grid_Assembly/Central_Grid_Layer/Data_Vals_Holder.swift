@@ -179,7 +179,7 @@ public class Data_Vals_Holder : ObservableObject {
         var retVal = false
         if referenced_in_Cursor_Set == true {
             retVal = true
-            if statusColor != colors.cursor_Set_Cell_Color{statusColor = colors.cursor_Set_Cell_Color}
+            if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
         }
         return retVal
     }
@@ -188,7 +188,7 @@ public class Data_Vals_Holder : ObservableObject {
         var retVal = false
         if referenced_in_Delete_Square_Set == true {
             retVal = true
-            if statusColor != colors.delete_Square_Set_Cell_Color{statusColor = colors.delete_Square_Set_Cell_Color}
+            if statusColor != colors.deleteNoteMode_Cursor_Color{statusColor = colors.deleteNoteMode_Cursor_Color}
         }
         return retVal
     }
@@ -197,7 +197,7 @@ public class Data_Vals_Holder : ObservableObject {
         var retVal = false
         if referenced_in_MoveCursor_Set == true {
             retVal = true
-            if statusColor != colors.delete_MoveCursor_Color{statusColor = colors.delete_MoveCursor_Color}
+            if statusColor != colors.moveNoteMode_Cursor_Color{statusColor = colors.moveNoteMode_Cursor_Color}
         }
         return retVal
     }
