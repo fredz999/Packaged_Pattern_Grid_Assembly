@@ -192,11 +192,6 @@ public class Central_State : ObservableObject {
                 lclPassiveHelper.nil_passive_Cursor_Set()
                 lclPassiveHelper.process_Passive_Cursor_Position()
             }
-//            if potential_Helper.potential_Helper_Cursor_Set.count == 0{
-//                potential_Helper.establish_Cursor_Set()
-//            }
-            
-            
         }
         else if patternModeParam == .moving {
             if potential_Helper.potential_Helper_Cursor_Set.count>0{potential_Helper.nil_Cursor_Set()}
@@ -225,8 +220,7 @@ public class Central_State : ObservableObject {
         else if currentPatternMode == .moving,let lclMoveHelper = move_Helper{
             lclMoveHelper.process_MoveNote_Cursor_Position()
         }
-        else if currentPatternMode == .passive,let lclPassiveHelper = passive_Helper{
-            //potential_Helper.establish_Cursor_Set()
+        else if currentPatternMode == .passive,let lclPassiveHelper = passive_Helper {
             lclPassiveHelper.process_Passive_Cursor_Position()
         }
     }
@@ -234,29 +228,15 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
 
         if let currViable = potential_Helper.initial_WriteOnCell {
-
             if currViable.dataCell_Y_Number != curr_Data_Pos_Y {
-
                 potential_Helper.nilPotentialSet()
-
                 if dimensions.patternTimingConfiguration == .fourFour {
                     potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-                    //potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
                 }
                 else if dimensions.patternTimingConfiguration == .sixEight {
                     potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-                    //potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
                 }
             }
-//            else if currViable.dataCell_Y_Number == curr_Data_Pos_Y {
-//                if dimensions.patternTimingConfiguration == .fourFour {
-//                    //potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-//                }
-//                else if dimensions.patternTimingConfiguration == .sixEight {
-//                    //potential_Helper.potential_Helper_currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-//                }
-//            }
-
         }
     
         if dimensions.patternTimingConfiguration == .fourFour {
@@ -272,15 +252,14 @@ public class Central_State : ObservableObject {
     
     var currentData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]{
         willSet{
-            
             if currentPatternMode == .deleting{
                 delete_Helper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
             }
         }
         didSet{
-            if currentPatternMode == .moving,let lclMoveHelper = move_Helper {
-                lclMoveHelper.process_MoveNote_Cursor_Position()
-            }
+//            if currentPatternMode == .moving,let lclMoveHelper = move_Helper {
+//                lclMoveHelper.process_MoveNote_Cursor_Position()
+//            }
         }
     }
     
