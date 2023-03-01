@@ -52,7 +52,7 @@ public class Note_Collection {
         
         
         if noteParam == nil {
-            print("lclNoteParam = noteParam type: ",highlightType.rawValue)
+            print("noteParam == nil type: ",highlightType.rawValue)
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlight_Type = highlightType
                 currentHighlightedNote = nil
