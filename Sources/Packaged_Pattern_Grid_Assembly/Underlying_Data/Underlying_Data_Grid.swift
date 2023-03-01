@@ -260,10 +260,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //            if in_Highlighted_Set == true{in_Highlighted_Set=false}
 //        }
         else if type == .activate_UnSelected{if highlight_Type != .UnSelected{highlight_Type = .UnSelected}}
-        else if type == .activate_Selected{
-            
+        else if type == .activate_Selected {
             if highlight_Type != .Selected_Highlight{
-                print("type == .activate_Selected...... X:",dataCell_X_Number)
                 highlight_Type = .Selected_Highlight
             }
         }
