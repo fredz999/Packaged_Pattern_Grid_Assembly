@@ -261,8 +261,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //        }
         else if type == .activate_UnSelected{if highlight_Type != .UnSelected{highlight_Type = .UnSelected}}
         else if type == .activate_Selected{
-            print("type == .activate_Selected")
-            if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}
+            
+            if highlight_Type != .Selected_Highlight{
+                print("type == .activate_Selected")
+                highlight_Type = .Selected_Highlight
+            }
         }
         else if type == .activate_Selected_For_Move{if highlight_Type != .Selected_For_Moving_Highlight {highlight_Type = .Selected_For_Moving_Highlight}}
         else if type == .activate_Selected_For_Resize{if highlight_Type != .Selected_For_Resizing_Highlight {highlight_Type = .Selected_For_Resizing_Highlight}}
