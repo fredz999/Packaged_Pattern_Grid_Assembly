@@ -151,7 +151,7 @@ public class Data_Vals_Holder : ObservableObject {
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
                         //check_Highlighted()
-                        //check_Highlight_Type()
+                        check_Highlight_Type()
                     }
                     else if check_Cell_Not_In_Note() == true {
                         if check_In_Potential_Set() == true {
@@ -186,6 +186,7 @@ public class Data_Vals_Holder : ObservableObject {
 //        }
 //    }
     func check_Highlight_Type(){
+        print("check highlight called: type is:",referenced_Highlight_Type.rawValue)
         if referenced_Highlight_Type == .UnSelected{
             if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
         }
