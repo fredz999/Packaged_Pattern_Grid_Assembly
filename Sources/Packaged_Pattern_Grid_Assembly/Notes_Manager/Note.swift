@@ -56,6 +56,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
     
     var note_Highlight_Type : E_HighlightType = .UnSelected{
         didSet{
+            print("note_Highlight_Type set to: ",note_Highlight_Type.rawValue)
             if note_Highlight_Type == .Selected_Highlight{
 
                 for dataCell in dataCellArray {

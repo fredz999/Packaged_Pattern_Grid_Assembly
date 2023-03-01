@@ -97,11 +97,11 @@ public class Note_Collection {
     
 }
 
-public enum E_HighlightType {
-    case UnSelected
-    case Selected_Highlight
-    case Selected_For_Moving_Highlight
-    case Selected_For_Resizing_Highlight
+public enum E_HighlightType : String {
+    case UnSelected = "UnSelected"
+    case Selected_Highlight = "Selected_Highlight"
+    case Selected_For_Moving_Highlight = "Selected_For_Moving_Highlight"
+    case Selected_For_Resizing_Highlight = "Selected_For_Resizing_Highlight"
 }
 
 public protocol P_ExternalNote_Responder {
