@@ -72,6 +72,7 @@ public class Note_Collection {
     }
     
     func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
+        print("write_Note_Data( triggered")
         let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: note_Y_Num)
         noteArray.append(note)
         for cell in cellArrayParam {

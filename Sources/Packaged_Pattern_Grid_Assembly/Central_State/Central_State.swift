@@ -129,10 +129,7 @@ public class Central_State : ObservableObject {
     
     
     
-    
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        
-        
         if patternModeParam == .writing {
             if currentPatternMode != .writing {currentPatternMode = .writing}
             delete_Helper.nil_Delete_Square_Set()
@@ -204,7 +201,6 @@ public class Central_State : ObservableObject {
             
             if currentPatternMode != .moving{currentPatternMode = .moving}
             if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
-                // thon note now moveSelected
                 selectedNote.note_Highlight_Type = .Selected_For_Moving_Highlight
             }
         }
