@@ -263,7 +263,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .activate_Selected{
             
             if highlight_Type != .Selected_Highlight{
-                print("type == .activate_Selected")
+                print("type == .activate_Selected......")
                 highlight_Type = .Selected_Highlight
             }
         }
