@@ -49,6 +49,7 @@ public class Note_Collection {
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?,highlightType:E_HighlightType){
+        print("note_Collection_Highlight_Handler( type: ",highlightType.rawValue)
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlight_Type = highlightType
