@@ -42,26 +42,32 @@ public class Note_Collection {
         willSet{
             if let lclCurr = currentHighlightedNote,let lclNewVal = newValue{
                 if lclNewVal.id != lclCurr.id {
-                    lclCurr.note_Highlighted = false
+                    lclCurr.note_Highlighted = .UnSelected
                 }
             }
         }
     }
     
-    func note_Collection_Highlight_Handler(noteParam:Note?){
+    func note_Collection_Highlight_Handler(noteParam:Note?,highlightType:E_HighlightType){
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote {
-                lclCurrHighlighted.note_Highlighted = false
+                lclCurrHighlighted.note_Highlighted = highlightType
                 currentHighlightedNote = nil
                 if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
             }
         }
-        else if let lclNoteParam = noteParam {
-            if lclNoteParam.note_Highlighted == false {
+        
+        else if let lclNoteParam = noteParam{
+            
+            //if lclNoteParam.note_Highlighted == .UnSelected {
                 currentHighlightedNote = lclNoteParam
-                lclNoteParam.note_Highlighted = true
+                lclNoteParam.note_Highlighted = highlightType
                 if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
-            }
+            //}
+            
+            
+            
+            
         }
     }
     
@@ -89,6 +95,13 @@ public class Note_Collection {
     
     public static let Static_Note_Collection = Note_Collection()
     
+}
+
+enum E_HighlightType {
+    case UnSelected
+    case Selected_Highlight
+    case Selected_For_Moving_Highlight
+    case Selected_For_Resizing_Highlight
 }
 
 public protocol P_ExternalNote_Responder {

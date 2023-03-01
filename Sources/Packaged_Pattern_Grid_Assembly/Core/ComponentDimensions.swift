@@ -162,7 +162,9 @@ public class ComponentColors {
     
     public var passiveMode_Cursor_Color : Color = .pink
     public var deleteNoteMode_Cursor_Color : Color = Color(red:1,green:0.5,blue:0)
+    
     public var moveNoteMode_Cursor_Color : Color = Color(red:1,green:1,blue:1)
+    public var moveNote_Note_Color : Color = Color(red:1,green:1,blue:1)
 
     public var grid_Note_Color : Color = Color(red:0.4,green:0.8,blue:0)
     public var grid_Note_Highlighted_Color : Color = Color(red:0.5,green:1,blue:0)

@@ -21,44 +21,43 @@ public class Note : ObservableObject, Identifiable, Equatable {
     var central_State = Central_State.Static_Central_State
     var note_Y_Number : Int
     
-    var note_Highlighted : Bool = false {
-        didSet {
-            if note_Highlighted == true {
-                for dataCell in dataCellArray {
-                    if dataCell.in_Highlighted_Set == false{
-                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                                       
-                        if let lcl_VisGrid = central_State.central_Grid_Store {
-                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0{
-                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
-                            }
-                        }
-                        dataCell.change_Highlight(highlightStatusParam: true)
-                    }
-                    //if central_State.a_Note_Is_Highlighted == false{central_State.a_Note_Is_Highlighted = true}
-                }
-            }
-            else if note_Highlighted == false {
-                for dataCell in dataCellArray {
-                    
-                    if dataCell.in_Highlighted_Set == true{
-                        dataCell.change_Highlight(highlightStatusParam: false)
-                                     
-                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-     
-                        if let lcl_VisGrid = central_State.central_Grid_Store {
-                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
-                            }
-                        }
-                    }
-                    //if central_State.a_Note_Is_Highlighted == true{central_State.a_Note_Is_Highlighted = false}
-                }
-            }
-        }
-    }
+//    var note_Highlighted : Bool = false {
+//        didSet {
+//            if note_Highlighted == true {
+//                for dataCell in dataCellArray {
+//                    if dataCell.in_Highlighted_Set == false {
+//                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+//                        if let lcl_VisGrid = central_State.central_Grid_Store {
+//                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+//                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+//                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+//                            }
+//                        }
+//                        dataCell.change_Highlight(highlightStatusParam: true)
+//                    }
+//                }
+//            }
+//            else if note_Highlighted == false {
+//                for dataCell in dataCellArray {
+//                    if dataCell.in_Highlighted_Set == true{
+//                        dataCell.change_Highlight(highlightStatusParam: false)
+//                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+//                        if let lcl_VisGrid = central_State.central_Grid_Store {
+//                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+//                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+//                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    var note_Highlighted : E_HighlightType = .UnSelected
+    
+    
+    
     
     public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
         self.note_Y_Number = yParam
