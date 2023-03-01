@@ -13,11 +13,7 @@ public class Central_State : ObservableObject {
     
     @Published var edit_Layer_Visible : Bool = true
     
-    @Published public var a_Note_Is_Highlighted : Bool = false{
-        didSet{
-            print("a_Note_Is_Highlighted: ",a_Note_Is_Highlighted.description)
-        }
-    }
+    @Published public var a_Note_Is_Highlighted : Bool = false
     
     @Published public var note_Write_Locked : Bool = false
     
