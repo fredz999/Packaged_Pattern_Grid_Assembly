@@ -52,7 +52,6 @@ public class Note_Collection {
         
         
         if noteParam == nil {
-            print("noteParam == nil type: ",highlightType.rawValue)
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlight_Type = highlightType
                 currentHighlightedNote = nil
@@ -61,7 +60,6 @@ public class Note_Collection {
         }
         
         else if let lclNoteParam = noteParam {
-            print("lclNoteParam = noteParam type: ",highlightType.rawValue)
             currentHighlightedNote = lclNoteParam
             lclNoteParam.note_Highlight_Type = highlightType
             if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}

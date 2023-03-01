@@ -150,7 +150,6 @@ public class Data_Vals_Holder : ObservableObject {
                 
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
-                        //check_Highlighted()
                         check_Highlight_Type()
                     }
                     else if check_Cell_Not_In_Note() == true {
@@ -191,6 +190,7 @@ public class Data_Vals_Holder : ObservableObject {
 //            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
 //        }
         if referenced_Highlight_Type == .Selected_Highlight{
+            print("referenced_Highlight_Type == .Selected_Highlight....xNumber:",referenced_dataCell_X_Number.description)
             if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
         }
         else if referenced_Highlight_Type == .Selected_For_Moving_Highlight{
