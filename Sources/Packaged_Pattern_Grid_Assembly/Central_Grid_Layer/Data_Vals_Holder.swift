@@ -17,7 +17,8 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var sub_Cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
 
-    private var referenced_in_Highlighted_Set : Bool = false
+    //private var referenced_in_Highlighted_Set : Bool = false
+    private var referenced_Highlight_Type : E_HighlightType = .UnSelected
     
     private var referenced_in_Prohibited_Set : Bool = false
     
@@ -62,6 +63,10 @@ public class Data_Vals_Holder : ObservableObject {
                 
             }
         }
+    }
+    
+    public func update_Highlight_Type(highlight_Type_Param : E_HighlightType){
+       referenced_Highlight_Type = highlight_Type_Param
     }
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
@@ -126,15 +131,6 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         
-        else if status_Update_TypeParam == .highlighted {
-            if value == true {
-                if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
-            }
-            else if value == false {
-                if referenced_in_Highlighted_Set == true{referenced_in_Highlighted_Set=false}
-            }
-        }
-        
         else if status_Update_TypeParam == .prohibitedSet {
             if value == true {
                 if referenced_in_Prohibited_Set == false{referenced_in_Prohibited_Set=true}
@@ -154,7 +150,8 @@ public class Data_Vals_Holder : ObservableObject {
                 
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
-                        check_Highlighted()
+                        //check_Highlighted()
+                        check_Highlight_Type()
                     }
                     else if check_Cell_Not_In_Note() == true {
                         if check_In_Potential_Set() == true {
@@ -183,20 +180,25 @@ public class Data_Vals_Holder : ObservableObject {
         return retval
     }
     
-    func check_Highlighted(){
-        if referenced_in_Highlighted_Set == true {
+//    func check_Highlighted(){
+//        if referenced_in_Highlighted_Set == true {
+//            if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
+//        }
+//    }
+    func check_Highlight_Type(){
+        if referenced_Highlight_Type == .UnSelected{
+            if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
+        }
+        else if referenced_Highlight_Type == .Selected_Highlight{
             if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
         }
+        else if referenced_Highlight_Type == .Selected_For_Moving_Highlight{
+            if statusColor != colors.grid_Note_Highlighted_Move_Color{statusColor = colors.grid_Note_Highlighted_Move_Color}
+        }
+        else if referenced_Highlight_Type == .Selected_For_Resizing_Highlight{
+            if statusColor != colors.grid_Note_Highlighted_Resize_Color{statusColor = colors.grid_Note_Highlighted_Resize_Color}
+        }
     }
-    
-//    func check_In_Cursor_Set()->Bool{
-//        var retVal = false
-//        if referenced_in_Cursor_Set == true {
-//            retVal = true
-//            if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
-//        }
-//        return retVal
-//    }
     
     func check_In_Passive_Cursor_Set()->Bool{
         var retVal = false
@@ -258,7 +260,7 @@ public class Data_Vals_Holder : ObservableObject {
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus,newNoteImIn:Note?){
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
-        
+
     if referenced_currentStatus != newCellNoteStatus{referenced_currentStatus = newCellNoteStatus}
         // have a seperate func for color change
 
@@ -281,7 +283,6 @@ public class Data_Vals_Holder : ObservableObject {
 }
 
 public enum status_Update_Type {
-    case highlighted
     case cursorSet
     case deleteSquareSet
     case moveNote_Cursor_Set

@@ -170,7 +170,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var in_Prohibited_Set : Bool = false
 
-    var in_Highlighted_Set : Bool = false
+    var highlight_Type : E_HighlightType = .UnSelected
 
     var in_Potential_Set : Bool = false
     
@@ -252,12 +252,16 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         
-        else if type == .activate_Highlighted {
-            if in_Highlighted_Set == false{in_Highlighted_Set=true}
-        }
-        else if type == .deActivate_Highlighted {
-            if in_Highlighted_Set == true{in_Highlighted_Set=false}
-        }
+//        else if type == .activate_Highlighted {
+//            if in_Highlighted_Set == false{in_Highlighted_Set=true}
+//        }
+//        else if type == .deActivate_Highlighted {
+//            if in_Highlighted_Set == true{in_Highlighted_Set=false}
+//        }
+        else if type == .activate_UnSelected{if highlight_Type != .UnSelected{highlight_Type = .UnSelected}}
+        else if type == .activate_Selected{ if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}}
+        else if type == .activate_Selected_For_Move{if highlight_Type != .Selected_For_Moving_Highlight {highlight_Type = .Selected_For_Moving_Highlight}}
+        else if type == .activate_Selected_For_Resize{if highlight_Type != .Selected_For_Resizing_Highlight {highlight_Type = .Selected_For_Resizing_Highlight}}
         
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
@@ -275,7 +279,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .activate_Prohibited {
             if in_Prohibited_Set == false{in_Prohibited_Set=true}
         }
@@ -355,14 +358,14 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-    public func change_Highlight(highlightStatusParam:Bool){
-        if in_Highlighted_Set != highlightStatusParam {
-            in_Highlighted_Set = highlightStatusParam
-            if let lcl_Data_Vals = currentConnectedDataVals {
-                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: highlightStatusParam)
-            }
-        }
-    }
+//    public func change_Highlight(highlightStatusParam:Bool){
+//        if in_Highlighted_Set != highlightStatusParam {
+//            in_Highlighted_Set = highlightStatusParam
+//            if let lcl_Data_Vals = currentConnectedDataVals {
+//                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: highlightStatusParam)
+//            }
+//        }
+//    }
     
 //    public func change_Prohibition_Status(newProhibitionStatus:Bool){
 //        if in_Prohibited_Set != newProhibitionStatus {
@@ -419,8 +422,15 @@ enum E_VisibleStateChangeType {
     case activate_Prohibited
     case deActivate_Prohibited
     
-    case activate_Highlighted
-    case deActivate_Highlighted
+//    case activate_Highlighted
+//    case deActivate_Highlighted
+    
+    case activate_UnSelected
+    case activate_Selected
+    case activate_Selected_For_Move
+    case activate_Selected_For_Resize
+    
+    
     
     case activate_Viable_Set_Combined
     case deActivate_Viable_Set_Combined

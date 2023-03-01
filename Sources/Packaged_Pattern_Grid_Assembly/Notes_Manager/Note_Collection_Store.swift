@@ -97,7 +97,7 @@ public class Note_Collection {
     
 }
 
-enum E_HighlightType {
+public enum E_HighlightType {
     case UnSelected
     case Selected_Highlight
     case Selected_For_Moving_Highlight

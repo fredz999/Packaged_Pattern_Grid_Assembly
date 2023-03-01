@@ -192,7 +192,6 @@ public class Central_State : ObservableObject {
                 lclPassiveHelper.process_Passive_Cursor_Position()
             }
         }
-        
         else if patternModeParam == .moving {
             
             if potential_Helper.potential_Helper_Cursor_Set.count>0{potential_Helper.nil_Cursor_Set()}

@@ -54,7 +54,63 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //        }
 //    }
     
-    var note_Highlighted : E_HighlightType = .UnSelected
+    var note_Highlighted : E_HighlightType = .UnSelected{
+        didSet{
+            if note_Highlighted == .Selected_Highlight{
+
+                for dataCell in dataCellArray {
+                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+                if let lcl_VisGrid = central_State.central_Grid_Store {
+                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+                    }
+                }
+                dataCell.handleVisibleStateChange(type: .activate_Selected)
+                }
+
+            }
+            else if note_Highlighted == .UnSelected{
+                
+                for dataCell in dataCellArray {
+                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+                if let lcl_VisGrid = central_State.central_Grid_Store {
+                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+                    }
+                }
+                dataCell.handleVisibleStateChange(type: .activate_UnSelected)
+                }
+                
+            }
+            else if note_Highlighted == .Selected_For_Moving_Highlight{
+                for dataCell in dataCellArray {
+                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+                if let lcl_VisGrid = central_State.central_Grid_Store {
+                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+                    }
+                }
+                    dataCell.handleVisibleStateChange(type: .activate_Selected_For_Move )
+                }
+            }
+            else if note_Highlighted == .Selected_For_Resizing_Highlight{
+                for dataCell in dataCellArray {
+                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+                if let lcl_VisGrid = central_State.central_Grid_Store {
+                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+                    }
+                }
+                    dataCell.handleVisibleStateChange(type: .activate_Selected_For_Resize)
+                }
+            }
+            
+        }
+    }
     
     
     
@@ -78,7 +134,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
     func resetCells(){
         for cell in dataCellArray {
             cell.note_Im_In = nil
-            cell.change_Highlight(highlightStatusParam: false)
+            cell.handleVisibleStateChange(type: .activate_UnSelected)
+                //.change_Highlight(highlightStatusParam: false)
             cell.reset_To_Original()
         }
     }
