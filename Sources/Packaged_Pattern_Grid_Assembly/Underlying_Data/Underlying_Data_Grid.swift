@@ -260,7 +260,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //            if in_Highlighted_Set == true{in_Highlighted_Set=false}
 //        }
         else if type == .activate_UnSelected{if highlight_Type != .UnSelected{highlight_Type = .UnSelected}}
-        else if type == .activate_Selected{ if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}}
+        else if type == .activate_Selected{
+            print("type == .activate_Selected")
+            if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}
+        }
         else if type == .activate_Selected_For_Move{if highlight_Type != .Selected_For_Moving_Highlight {highlight_Type = .Selected_For_Moving_Highlight}}
         else if type == .activate_Selected_For_Resize{if highlight_Type != .Selected_For_Resizing_Highlight {highlight_Type = .Selected_For_Resizing_Highlight}}
         
