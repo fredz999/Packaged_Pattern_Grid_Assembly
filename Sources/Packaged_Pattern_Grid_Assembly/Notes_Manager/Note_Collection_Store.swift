@@ -49,8 +49,10 @@ public class Note_Collection {
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?,highlightType:E_HighlightType){
-        print("note_Collection_Highlight_Handler( type: ",highlightType.rawValue)
+        
+        
         if noteParam == nil {
+            print("lclNoteParam = noteParam type: ",highlightType.rawValue)
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlight_Type = highlightType
                 currentHighlightedNote = nil
@@ -58,17 +60,11 @@ public class Note_Collection {
             }
         }
         
-        else if let lclNoteParam = noteParam{
-            
-            //if lclNoteParam.note_Highlighted == .UnSelected {
-                currentHighlightedNote = lclNoteParam
-                lclNoteParam.note_Highlight_Type = highlightType
-                if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
-            //}
-            
-            
-            
-            
+        else if let lclNoteParam = noteParam {
+            print("lclNoteParam = noteParam type: ",highlightType.rawValue)
+            currentHighlightedNote = lclNoteParam
+            lclNoteParam.note_Highlight_Type = highlightType
+            if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
         }
     }
     
