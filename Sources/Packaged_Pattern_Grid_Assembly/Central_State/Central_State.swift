@@ -205,7 +205,7 @@ public class Central_State : ObservableObject {
             if currentPatternMode != .moving{currentPatternMode = .moving}
             if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
                 // thon note now moveSelected
-                
+                selectedNote.note_Highlight_Type = .Selected_For_Moving_Highlight
             }
         }
         

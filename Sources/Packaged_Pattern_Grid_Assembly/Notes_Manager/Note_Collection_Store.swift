@@ -42,7 +42,7 @@ public class Note_Collection {
         willSet{
             if let lclCurr = currentHighlightedNote,let lclNewVal = newValue{
                 if lclNewVal.id != lclCurr.id {
-                    lclCurr.note_Highlighted = .UnSelected
+                    lclCurr.note_Highlight_Type = .UnSelected
                 }
             }
         }
@@ -51,7 +51,7 @@ public class Note_Collection {
     func note_Collection_Highlight_Handler(noteParam:Note?,highlightType:E_HighlightType){
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote {
-                lclCurrHighlighted.note_Highlighted = highlightType
+                lclCurrHighlighted.note_Highlight_Type = highlightType
                 currentHighlightedNote = nil
                 if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
             }
@@ -61,7 +61,7 @@ public class Note_Collection {
             
             //if lclNoteParam.note_Highlighted == .UnSelected {
                 currentHighlightedNote = lclNoteParam
-                lclNoteParam.note_Highlighted = highlightType
+                lclNoteParam.note_Highlight_Type = highlightType
                 if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
             //}
             

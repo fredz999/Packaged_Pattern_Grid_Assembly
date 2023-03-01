@@ -54,9 +54,9 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //        }
 //    }
     
-    var note_Highlighted : E_HighlightType = .UnSelected{
+    var note_Highlight_Type : E_HighlightType = .UnSelected{
         didSet{
-            if note_Highlighted == .Selected_Highlight{
+            if note_Highlight_Type == .Selected_Highlight{
 
                 for dataCell in dataCellArray {
                 let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
@@ -70,7 +70,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                 }
 
             }
-            else if note_Highlighted == .UnSelected{
+            else if note_Highlight_Type == .UnSelected{
                 
                 for dataCell in dataCellArray {
                 let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
@@ -84,7 +84,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                 }
                 
             }
-            else if note_Highlighted == .Selected_For_Moving_Highlight{
+            else if note_Highlight_Type == .Selected_For_Moving_Highlight{
                 for dataCell in dataCellArray {
                 let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                 if let lcl_VisGrid = central_State.central_Grid_Store {
@@ -96,7 +96,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
                     dataCell.handleVisibleStateChange(type: .activate_Selected_For_Move )
                 }
             }
-            else if note_Highlighted == .Selected_For_Resizing_Highlight{
+            else if note_Highlight_Type == .Selected_For_Resizing_Highlight{
                 for dataCell in dataCellArray {
                 let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                 if let lcl_VisGrid = central_State.central_Grid_Store {
