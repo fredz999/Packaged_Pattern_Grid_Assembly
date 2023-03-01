@@ -188,7 +188,7 @@ public class Data_Vals_Holder : ObservableObject {
     func check_Highlight_Type(){
         print("check highlight called: type is:",referenced_Highlight_Type.rawValue)
         if referenced_Highlight_Type == .UnSelected{
-            if statusColor != colors.grid_Blank_Color{statusColor = colors.grid_Blank_Color}
+            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
         }
         else if referenced_Highlight_Type == .Selected_Highlight{
             if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
