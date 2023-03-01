@@ -25,6 +25,19 @@ class Move_Helper {
             for cell in move_Note_Cursor_Set {
                 cell.handleVisibleStateChange(type : .activate_MoveNote_Cursor_Set)
             }
+            
+            // select here then activate something or other in the central state
+//            if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+//                if let lclNillableNote = nillableNote {
+//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+//                }
+//                else if nillableNote == nil {
+//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+//                }
+//            }
+            
+            
+            
         }
     }
 

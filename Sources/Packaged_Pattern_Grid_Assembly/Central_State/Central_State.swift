@@ -127,13 +127,14 @@ public class Central_State : ObservableObject {
 
     var currentYCursor_Slider_Position : Int = 0
     
+    
+    
+    
     public func setPatternMode(patternModeParam : E_PatternModeType){
         
         
         if patternModeParam == .writing {
             if currentPatternMode != .writing {currentPatternMode = .writing}
-            
-            //potential_Helper.nil_Cursor_Set()
             delete_Helper.nil_Delete_Square_Set()
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
@@ -251,15 +252,11 @@ public class Central_State : ObservableObject {
     }
     
     var currentData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]{
+        // thus far this only happens for delete because its an unusual process
         willSet{
             if currentPatternMode == .deleting{
                 delete_Helper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
             }
-        }
-        didSet{
-//            if currentPatternMode == .moving,let lclMoveHelper = move_Helper {
-//                lclMoveHelper.process_MoveNote_Cursor_Position()
-//            }
         }
     }
     
