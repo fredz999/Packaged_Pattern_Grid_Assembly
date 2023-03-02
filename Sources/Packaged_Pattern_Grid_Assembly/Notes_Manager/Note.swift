@@ -135,8 +135,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
     func resetCells(){
         for cell in dataCellArray {
             cell.note_Im_In = nil
-            cell.handleVisibleStateChange(type: .activate_UnSelected)
-                //.change_Highlight(highlightStatusParam: false)
+            //cell.handleVisibleStateChange(type: .activate_UnSelected)
+            cell.change_Highlight(highlightStatusParam: false)
             cell.reset_To_Original()
         }
     }

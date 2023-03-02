@@ -288,9 +288,14 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .deActivate_Prohibited {
             if in_Prohibited_Set == true{in_Prohibited_Set=false}
         }
-        if let lclDataVals = currentConnectedDataVals {
-            lclDataVals.process_Visual_Status()
-        }
+        
+//        if type == .activate_Highlighted{
+//            if in_Highlighted_Set == false{in_Highlighted_Set=true}
+//        }
+//        else if type == .deActivate_Highlighted{
+//            if in_Highlighted_Set == true{in_Highlighted_Set=false}
+//        }
+        
     }
 
     var note_Im_In : Note?
@@ -431,10 +436,10 @@ enum E_VisibleStateChangeType {
 //    case activate_Highlighted
 //    case deActivate_Highlighted
     
-    case activate_UnSelected
-    case activate_Selected
-    case activate_Selected_For_Move
-    case activate_Selected_For_Resize
+//    case activate_UnSelected
+//    case activate_Selected
+//    case activate_Selected_For_Move
+//    case activate_Selected_For_Resize
     
     
     
