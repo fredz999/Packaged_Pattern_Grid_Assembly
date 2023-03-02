@@ -50,7 +50,7 @@ public class Note_Collection {
             }
         }
         didSet{
-            if let lclCurr = currentHighlightedNote{
+            if let lclCurr = currentHighlightedNote {
                 lclCurr.note_Highlighted = true
             }
         }

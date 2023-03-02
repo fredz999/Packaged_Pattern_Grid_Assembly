@@ -127,8 +127,6 @@ public class Central_State : ObservableObject {
 
     var currentYCursor_Slider_Position : Int = 0
     
-    
-    
     public func setPatternMode(patternModeParam : E_PatternModeType){
         if patternModeParam == .writing {
             if currentPatternMode != .writing {currentPatternMode = .writing}
@@ -147,7 +145,7 @@ public class Central_State : ObservableObject {
         }
         else if patternModeParam == .deleting {
             
-            if note_Write_Locked == true{note_Write_Locked = false}
+            if note_Write_Locked == false{note_Write_Locked = true}
             
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
             
