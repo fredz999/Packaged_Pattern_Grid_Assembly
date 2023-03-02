@@ -10,7 +10,7 @@ import SwiftUI
 
 public class Data_Vals_Holder : ObservableObject {
     let dimensions = ComponentDimensions.StaticDimensions
-    let centralState = Central_State.Static_Central_State   
+    let centralState = Central_State.Static_Central_State
     let colors = ComponentColors.StaticColors
     @Published public var referenced_dataCell_X_Number : Int
     @Published public var referenced_dataCell_Y_Number : Int
@@ -186,13 +186,31 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func check_Highlighted(){
-
-        if referenced_in_Highlighted_Set == true {
-            if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
+        if centralState.currentPatternMode == .passive{
+            if referenced_in_Highlighted_Set == true {
+                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .red}
+            }
+            else if referenced_in_Highlighted_Set == false {
+                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
+            }
         }
-        else if referenced_in_Highlighted_Set == false {
-            if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
+        else if centralState.currentPatternMode == .writing{
+            if referenced_in_Highlighted_Set == true {
+                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .blue}
+            }
+            else if referenced_in_Highlighted_Set == false {
+                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
+            }
         }
+        else if centralState.currentPatternMode == .moving {
+            if referenced_in_Highlighted_Set == true {
+                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .white}
+            }
+            else if referenced_in_Highlighted_Set == false {
+                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
+            }
+        }
+        
     }
     
 //    func check_Highlight_Type(){
