@@ -286,7 +286,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .deActivate_Prohibited {
             if in_Prohibited_Set == true{in_Prohibited_Set=false}
         }
-
+        if let lclDataVals = currentConnectedDataVals {
+            lclDataVals.process_Visual_Status()
+        }
     }
 
     var note_Im_In : Note?

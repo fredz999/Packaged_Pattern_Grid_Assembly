@@ -67,7 +67,7 @@ public class Data_Vals_Holder : ObservableObject {
     
     public func update_Highlight_Type(highlight_Type_Param : E_HighlightType){
        referenced_Highlight_Type = highlight_Type_Param
-        process_Visual_Status()
+        //process_Visual_Status()
     }
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
@@ -141,7 +141,7 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         
-        process_Visual_Status()
+        //process_Visual_Status()
     }
     
     func process_Visual_Status(){
