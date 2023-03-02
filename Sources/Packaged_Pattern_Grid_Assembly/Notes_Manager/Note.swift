@@ -22,37 +22,55 @@ public class Note : ObservableObject, Identifiable, Equatable {
     var note_Y_Number : Int
     
     var note_Highlighted : Bool = false {
-        didSet {
+        didSet{
             if note_Highlighted == true {
                 for dataCell in dataCellArray {
-                    if dataCell.in_Highlighted_Set == false {
-                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                        if let lcl_VisGrid = central_State.central_Grid_Store {
-                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
-                            }
-                        }
-                        dataCell.change_Highlight(highlightStatusParam: true)
-                    }
+                    //if dataCell.in_Highlighted_Set == false {dataCell.in_Highlighted_Set = true}
+                    dataCell.change_Highlight(highlightStatusParam: true)
                 }
             }
             else if note_Highlighted == false {
                 for dataCell in dataCellArray {
-                    if dataCell.in_Highlighted_Set == true{
-                        dataCell.change_Highlight(highlightStatusParam: false)
-                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                        if let lcl_VisGrid = central_State.central_Grid_Store {
-                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
-                            }
-                        }
-                    }
+                    //if dataCell.in_Highlighted_Set == true {dataCell.in_Highlighted_Set = false}
+                    dataCell.change_Highlight(highlightStatusParam: false)
                 }
             }
         }
     }
+    
+    
+//    var note_Highlighted : Bool = false {
+//        didSet {
+//            if note_Highlighted == true {
+//                for dataCell in dataCellArray {
+//                    if dataCell.in_Highlighted_Set == false {
+//                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+//                        if let lcl_VisGrid = central_State.central_Grid_Store {
+//                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+//                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+//                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+//                            }
+//                        }
+//                        dataCell.change_Highlight(highlightStatusParam: true)
+//                    }
+//                }
+//            }
+//            else if note_Highlighted == false {
+//                for dataCell in dataCellArray {
+//                    if dataCell.in_Highlighted_Set == true{
+//                        dataCell.change_Highlight(highlightStatusParam: false)
+//                        let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+//                        if let lcl_VisGrid = central_State.central_Grid_Store {
+//                            if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+//                                let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+//                                visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
     
 //    var note_Highlight_Type : E_HighlightType = .UnSelected{
 //        didSet{

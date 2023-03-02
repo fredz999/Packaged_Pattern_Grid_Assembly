@@ -117,9 +117,9 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         , newCellNoteStatus: new_Data_Cell.currentType
         , newNoteImIn: new_Data_Cell.note_Im_In)
         
-        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .highlightedSet , value: new_Data_Cell.in_Highlighted_Set)
-        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .potentialSet , value: new_Data_Cell.in_Potential_Set)
-        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet , value: new_Data_Cell.in_Prohibited_Set)
+        //data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .highlightedSet , value: new_Data_Cell.in_Highlighted_Set)
+//        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .potentialSet , value: new_Data_Cell.in_Potential_Set)
+//        data_Vals_Holder.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet , value: new_Data_Cell.in_Prohibited_Set)
 
     }
     

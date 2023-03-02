@@ -373,7 +373,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             in_Highlighted_Set = highlightStatusParam
             if let lcl_Data_Vals = currentConnectedDataVals {
                 lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .highlightedSet, value: highlightStatusParam)
-                //(status_Update_TypeParam: .highlighted , value: highlightStatusParam)
             }
         }
     }

@@ -189,22 +189,21 @@ public class Central_State : ObservableObject {
                 lclPassiveHelper.process_Passive_Cursor_Position()
             }
         }
-        else if patternModeParam == .moving {
-            
-            if potential_Helper.potential_Helper_Cursor_Set.count>0{potential_Helper.nil_Cursor_Set()}
-            if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
-            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
-            
-            if let lclMoveHelper = move_Helper {
-                lclMoveHelper.process_MoveNote_Cursor_Position()
-            }
-            
-            if currentPatternMode != .moving{currentPatternMode = .moving}
-            if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
-                //selectedNote.note_Highlight_Type = .Selected_For_Moving_Highlight
-                selectedNote.note_Highlighted = true
-            }
-        }
+//        else if patternModeParam == .moving {
+//
+//            if potential_Helper.potential_Helper_Cursor_Set.count>0{potential_Helper.nil_Cursor_Set()}
+//            if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
+//            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+//
+//            if let lclMoveHelper = move_Helper {
+//                lclMoveHelper.process_MoveNote_Cursor_Position()
+//            }
+//
+//            if currentPatternMode != .moving{currentPatternMode = .moving}
+//            if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
+//                selectedNote.note_Highlighted = true
+//            }
+//        }
         
     }
 

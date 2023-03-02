@@ -42,7 +42,6 @@ public class Note_Collection {
         willSet{
             if let lclCurr = currentHighlightedNote,let lclNewVal = newValue{
                 if lclNewVal.id != lclCurr.id {
-                    //lclCurr.note_Highlight_Type = .UnSelected
                     lclCurr.note_Highlighted = false
                 }
             }
@@ -50,7 +49,7 @@ public class Note_Collection {
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
-
+        print("highlight handler")
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote {
                 //lclCurrHighlighted.note_Highlight_Type = highlightType
