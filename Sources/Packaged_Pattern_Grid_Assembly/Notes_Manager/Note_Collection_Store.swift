@@ -81,6 +81,7 @@ public class Note_Collection {
         noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
         currentHighlightedNote = nil
         }
+        print("noteArray count: ",noteArray.count.description)
     }
     
     public func reset_Note_Data_Cells(noteParam:Note){
