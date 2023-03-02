@@ -172,7 +172,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var highlight_Type : E_HighlightType = .UnSelected {
         didSet {
-            print("highlight_Type set tae: ",highlight_Type.rawValue)
+            print("highlight_Type set tae: ",highlight_Type.rawValue,", xNum: ",+dataCell_X_Number)
         }
     }
 
