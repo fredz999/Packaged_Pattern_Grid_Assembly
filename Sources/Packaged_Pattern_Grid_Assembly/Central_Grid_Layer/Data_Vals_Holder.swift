@@ -186,7 +186,7 @@ public class Data_Vals_Holder : ObservableObject {
 //    }
     func check_Highlight_Type(){
         
-        print("check_Highlight_Type() called for: ",referenced_Highlight_Type.rawValue)
+//        print("check_Highlight_Type() called for: ",referenced_Highlight_Type.rawValue)
 //        if referenced_Highlight_Type == .UnSelected{
 //            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
 //        }

@@ -21,11 +21,6 @@ class Passive_Helper {
             }
         }
         didSet {
-//            for cell in passive_Cursor_Set {
-//                cell.handleVisibleStateChange(type : .activate_Passive_Cursor_Set)
-//            }
-            
-            //if Central_State.Static_Central_State.currentPatternMode != .writing{
             if Central_State.Static_Central_State.currentPatternMode == .passive {
                 var nillableNote : Note? = nil
                 for cell in passive_Cursor_Set {
@@ -39,6 +34,7 @@ class Passive_Helper {
                 
                 if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
                     if let lclNillableNote = nillableNote {
+                        print("lclNoteCollection.note_Collection_Highlight_Handler")
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote, highlightType: .Selected_Highlight)
                     }
                     else if nillableNote == nil {
