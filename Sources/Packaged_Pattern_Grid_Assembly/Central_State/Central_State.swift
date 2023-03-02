@@ -181,14 +181,17 @@ public class Central_State : ObservableObject {
             lclMoveHelper.process_MoveNote_Cursor_Position()
         }
 
-        if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
+        //if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
+            Note_Collection.Static_Note_Collection.react_To_Mode_Change()
+            
 //            selectedNote.note_Highlighted = false
 //            selectedNote.note_Highlighted = true
-            for dataCell in selectedNote.dataCellArray {
-                dataCell.change_Highlight(highlightStatusParam: true)
-            }
+//            for dataCell in selectedNote.dataCellArray {
+//                dataCell.change_Highlight(highlightStatusParam: true)
+//            }
+            //send something down the tubes to change the mode of the  highlight....
             
-        }
+        //}
             
         }
         

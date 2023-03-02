@@ -21,14 +21,14 @@ public class Note : ObservableObject, Identifiable, Equatable {
     var central_State = Central_State.Static_Central_State
     var note_Y_Number : Int
     
-    var note_Highlighted : Bool = false {
+    var highlighted : Bool = false {
         didSet{
-            if note_Highlighted == true {
+            if highlighted == true {
                 for dataCell in dataCellArray {
                     dataCell.change_Highlight(highlightStatusParam: true)
                 }
             }
-            else if note_Highlighted == false {
+            else if highlighted == false {
                 for dataCell in dataCellArray {
                     dataCell.change_Highlight(highlightStatusParam: false)
                 }
