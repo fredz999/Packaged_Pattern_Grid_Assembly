@@ -170,13 +170,13 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var in_Prohibited_Set : Bool = false
 
-    var highlight_Type : E_HighlightType = .UnSelected
-    {
-        didSet {
-            print("highlight_Type set tae: ",highlight_Type.rawValue,", xNum: ",+dataCell_X_Number)
-        }
-    }
-
+//    var highlight_Type : E_HighlightType = .UnSelected
+//    {
+//        didSet {
+//            print("highlight_Type set tae: ",highlight_Type.rawValue,", xNum: ",+dataCell_X_Number)
+//        }
+//    }
+    var in_Highlighted_Set : Bool = false
     var in_Potential_Set : Bool = false
     
     var in_Potential_Edge_Set : Bool = false
@@ -257,14 +257,14 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
         
 
-        else if type == .activate_UnSelected{if highlight_Type != .UnSelected{highlight_Type = .UnSelected}}
-        
-        else if type == .activate_Selected {
-            if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}
-        }
-        
-        else if type == .activate_Selected_For_Move{if highlight_Type != .Selected_For_Moving_Highlight {highlight_Type = .Selected_For_Moving_Highlight}}
-        else if type == .activate_Selected_For_Resize{if highlight_Type != .Selected_For_Resizing_Highlight {highlight_Type = .Selected_For_Resizing_Highlight}}
+//        else if type == .activate_UnSelected{if highlight_Type != .UnSelected{highlight_Type = .UnSelected}}
+//        
+//        else if type == .activate_Selected {
+//            if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}
+//        }
+//        
+//        else if type == .activate_Selected_For_Move{if highlight_Type != .Selected_For_Moving_Highlight {highlight_Type = .Selected_For_Moving_Highlight}}
+//        else if type == .activate_Selected_For_Resize{if highlight_Type != .Selected_For_Resizing_Highlight {highlight_Type = .Selected_For_Resizing_Highlight}}
         
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
@@ -363,14 +363,15 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-//    public func change_Highlight(highlightStatusParam:Bool){
-//        if in_Highlighted_Set != highlightStatusParam {
-//            in_Highlighted_Set = highlightStatusParam
-//            if let lcl_Data_Vals = currentConnectedDataVals {
-//                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted , value: highlightStatusParam)
-//            }
-//        }
-//    }
+    public func change_Highlight(highlightStatusParam:Bool){
+        if in_Highlighted_Set != highlightStatusParam {
+            in_Highlighted_Set = highlightStatusParam
+            if let lcl_Data_Vals = currentConnectedDataVals {
+                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .highlighted, value: highlightStatusParam)
+                //(status_Update_TypeParam: .highlighted , value: highlightStatusParam)
+            }
+        }
+    }
     
 //    public func change_Prohibition_Status(newProhibitionStatus:Bool){
 //        if in_Prohibited_Set != newProhibitionStatus {

@@ -17,8 +17,8 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var sub_Cell_Height : CGFloat
     @Published public var cell_X_Offset : CGFloat = 0
 
-    //private var referenced_in_Highlighted_Set : Bool = false
-    private var referenced_Highlight_Type : E_HighlightType = .UnSelected
+    private var referenced_in_Highlighted_Set : Bool = false
+    //private var referenced_Highlight_Type : E_HighlightType = .UnSelected
     
     private var referenced_in_Prohibited_Set : Bool = false
     
@@ -65,10 +65,10 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-    public func update_Highlight_Type(highlight_Type_Param : E_HighlightType){
-       referenced_Highlight_Type = highlight_Type_Param
-        //process_Visual_Status()
-    }
+//    public func update_Highlight_Type(highlight_Type_Param : E_HighlightType){
+//       referenced_Highlight_Type = highlight_Type_Param
+//        //process_Visual_Status()
+//    }
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
 
@@ -151,7 +151,8 @@ public class Data_Vals_Holder : ObservableObject {
                 
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
-                        check_Highlight_Type()
+                        //check_Highlight_Type()
+                        check_Highlighted()
                     }
                     else if check_Cell_Not_In_Note() == true {
                         if check_In_Potential_Set() == true {
@@ -180,30 +181,31 @@ public class Data_Vals_Holder : ObservableObject {
         return retval
     }
     
-//    func check_Highlighted(){
-//        if referenced_in_Highlighted_Set == true {
-//            if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
-//        }
-//    }
-    func check_Highlight_Type(){
-
-        print("check_Highlight_Type() called for xNum: ",referenced_dataCell_X_Number,", ",referenced_Highlight_Type.rawValue)
-        if referenced_Highlight_Type == .UnSelected{
-            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
+    func check_Highlighted(){
+        if referenced_in_Highlighted_Set == true {
+            if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
         }
-        
-        if referenced_Highlight_Type == .Selected_Highlight{
-            //if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
-            if statusColor != .pink{statusColor = .pink}
-        }
-        else if referenced_Highlight_Type == .Selected_For_Moving_Highlight{
-            if statusColor != colors.grid_Note_Highlighted_Move_Color{statusColor = colors.grid_Note_Highlighted_Move_Color}
-        }
-        else if referenced_Highlight_Type == .Selected_For_Resizing_Highlight{
-            if statusColor != colors.grid_Note_Highlighted_Resize_Color{statusColor = colors.grid_Note_Highlighted_Resize_Color}
-        }
-        
     }
+    
+//    func check_Highlight_Type(){
+//
+//        print("check_Highlight_Type() called for xNum: ",referenced_dataCell_X_Number,", ",referenced_Highlight_Type.rawValue)
+//        if referenced_Highlight_Type == .UnSelected{
+//            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
+//        }
+//
+//        if referenced_Highlight_Type == .Selected_Highlight{
+//            //if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
+//            if statusColor != .pink{statusColor = .pink}
+//        }
+//        else if referenced_Highlight_Type == .Selected_For_Moving_Highlight{
+//            if statusColor != colors.grid_Note_Highlighted_Move_Color{statusColor = colors.grid_Note_Highlighted_Move_Color}
+//        }
+//        else if referenced_Highlight_Type == .Selected_For_Resizing_Highlight{
+//            if statusColor != colors.grid_Note_Highlighted_Resize_Color{statusColor = colors.grid_Note_Highlighted_Resize_Color}
+//        }
+//
+//    }
     
     func check_In_Passive_Cursor_Set()->Bool{
         var retVal = false
@@ -288,6 +290,7 @@ public class Data_Vals_Holder : ObservableObject {
 }
 
 public enum status_Update_Type {
+    case highlighted
     case cursorSet
     case deleteSquareSet
     case moveNote_Cursor_Set
