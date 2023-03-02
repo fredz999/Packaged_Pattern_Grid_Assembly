@@ -170,11 +170,12 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var in_Prohibited_Set : Bool = false
 
-    var highlight_Type : E_HighlightType = .UnSelected {
-        didSet {
-            print("highlight_Type set tae: ",highlight_Type.rawValue,", xNum: ",+dataCell_X_Number)
-        }
-    }
+    var highlight_Type : E_HighlightType = .UnSelected
+//    {
+//        didSet {
+//            print("highlight_Type set tae: ",highlight_Type.rawValue,", xNum: ",+dataCell_X_Number)
+//        }
+//    }
 
     var in_Potential_Set : Bool = false
     
@@ -206,7 +207,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .activate_MoveNote_Cursor_Set{
             if in_MoveNote_Cursor_Set == false {
                 in_MoveNote_Cursor_Set = true
@@ -239,7 +239,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .activate_Cursor_Set {
             if in_Cursor_Set == false {
                 in_Cursor_Set = true

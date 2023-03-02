@@ -185,21 +185,22 @@ public class Data_Vals_Holder : ObservableObject {
 //        }
 //    }
     func check_Highlight_Type(){
-        
+        if statusColor != .pink{statusColor = .pink}
 //        print("check_Highlight_Type() called for: ",referenced_Highlight_Type.rawValue)
 //        if referenced_Highlight_Type == .UnSelected{
 //            if statusColor != colors.grid_Note_Color{statusColor = colors.grid_Note_Color}
 //        }
-        if referenced_Highlight_Type == .Selected_Highlight{
-            //print("referenced_Highlight_Type == .Selected_Highlight....xNumber:",referenced_dataCell_X_Number.description)
-            if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
-        }
-        else if referenced_Highlight_Type == .Selected_For_Moving_Highlight{
-            if statusColor != colors.grid_Note_Highlighted_Move_Color{statusColor = colors.grid_Note_Highlighted_Move_Color}
-        }
-        else if referenced_Highlight_Type == .Selected_For_Resizing_Highlight{
-            if statusColor != colors.grid_Note_Highlighted_Resize_Color{statusColor = colors.grid_Note_Highlighted_Resize_Color}
-        }
+        
+//        if referenced_Highlight_Type == .Selected_Highlight{
+//            if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
+//        }
+//        else if referenced_Highlight_Type == .Selected_For_Moving_Highlight{
+//            if statusColor != colors.grid_Note_Highlighted_Move_Color{statusColor = colors.grid_Note_Highlighted_Move_Color}
+//        }
+//        else if referenced_Highlight_Type == .Selected_For_Resizing_Highlight{
+//            if statusColor != colors.grid_Note_Highlighted_Resize_Color{statusColor = colors.grid_Note_Highlighted_Resize_Color}
+//        }
+        
     }
     
     func check_In_Passive_Cursor_Set()->Bool{
