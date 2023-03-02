@@ -184,6 +184,7 @@ public class Data_Vals_Holder : ObservableObject {
     func check_Highlighted(){
         if referenced_in_Highlighted_Set == true {
             if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
+            print("highlight check done")
         }
     }
     
