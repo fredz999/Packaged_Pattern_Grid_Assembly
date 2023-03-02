@@ -10,6 +10,7 @@ import SwiftUI
 
 public class Data_Vals_Holder : ObservableObject {
     let dimensions = ComponentDimensions.StaticDimensions
+    let centralState = Central_State.Static_Central_State   
     let colors = ComponentColors.StaticColors
     @Published public var referenced_dataCell_X_Number : Int
     @Published public var referenced_dataCell_Y_Number : Int
@@ -18,7 +19,6 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var cell_X_Offset : CGFloat = 0
 
     private var referenced_in_Highlighted_Set : Bool = false
-    //private var referenced_Highlight_Type : E_HighlightType = .UnSelected
     
     private var referenced_in_Prohibited_Set : Bool = false
     
@@ -64,11 +64,6 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
     }
-    
-//    public func update_Highlight_Type(highlight_Type_Param : E_HighlightType){
-//       referenced_Highlight_Type = highlight_Type_Param
-//        //process_Visual_Status()
-//    }
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
 
@@ -161,7 +156,6 @@ public class Data_Vals_Holder : ObservableObject {
                 
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
-                        //check_Highlight_Type()
                         check_Highlighted()
                     }
                     else if check_Cell_Not_In_Note() == true {
@@ -192,6 +186,7 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func check_Highlighted(){
+
         if referenced_in_Highlighted_Set == true {
             if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.grid_Note_Highlighted_Color}
         }

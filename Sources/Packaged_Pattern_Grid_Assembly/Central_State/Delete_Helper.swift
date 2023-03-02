@@ -53,23 +53,7 @@ class Delete_Helper {
     }
     
     var multiple_Line_Corners_Set = Set<Underlying_Data_Cell>()
-
-//    init(initialDataParam : Underlying_Data_Cell){
-//        delete_Cursor_CurrentData = initialDataParam
-//    }
     
-    
-    
-//    var delete_Cursor_CurrentData : Underlying_Data_Cell {
-//        willSet{
-//            process_Current_Line(previousDataCell:delete_Cursor_CurrentData,nextDataCell:newValue)
-//        }
-//    }
-    
-    
-    
-    
-
     var current_Direction : E_DeleteLineDirection = .stationary
     
     var current_Trail_Corner : Underlying_Data_Cell?{
@@ -146,7 +130,6 @@ class Delete_Helper {
             for cell in new_Horz_Set{
                 if cell.in_Delete_Trail_Set == false{
                     multiple_Line_Corners_Set.insert(cell)
-                    //if let cellNote = cell.note_Im_In{note_Collection_Ref?.reset_Note_Data_Cells(noteParam: cellNote)}
                     if let lclNoteCollectionRef = note_Collection_Ref{
                         if let cellNote = cell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
                     }
@@ -163,7 +146,6 @@ class Delete_Helper {
             for cell in new_Horz_Set{
                 if cell.in_Delete_Trail_Set == false {
                     multiple_Line_Corners_Set.insert(cell)
-                    //if let cellNote = cell.note_Im_In{note_Collection_Ref?.reset_Note_Data_Cells(noteParam: cellNote)}
                     if let lclNoteCollectionRef = note_Collection_Ref{
                         if let cellNote = cell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
                     }
