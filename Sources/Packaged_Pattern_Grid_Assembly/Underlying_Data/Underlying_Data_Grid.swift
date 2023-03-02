@@ -170,7 +170,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var in_Prohibited_Set : Bool = false
 
-    var highlight_Type : E_HighlightType = .UnSelected
+    var highlight_Type : E_HighlightType = .UnSelected {
+        didSet {
+            print("highlight_Type set tae: ",highlight_Type.rawValue)
+        }
+    }
 
     var in_Potential_Set : Bool = false
     
@@ -258,9 +262,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         
         else if type == .activate_Selected {
             
-            print("note_Highlight_Type set to: ",highlight_Type.rawValue)
+            //print("note_Highlight_Type set to: ",highlight_Type.rawValue)
             
-            if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}
+            if highlight_Type != .Selected_Highlight{
+                highlight_Type = .Selected_Highlight
+            }
             
         }
         
