@@ -194,14 +194,14 @@ public class Data_Vals_Holder : ObservableObject {
                 if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
             }
         }
-        else if centralState.currentPatternMode == .writing{
-            if referenced_in_Highlighted_Set == true {
-                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .blue}
-            }
-            else if referenced_in_Highlighted_Set == false {
-                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
-            }
-        }
+//        else if centralState.currentPatternMode == .writing{
+//            if referenced_in_Highlighted_Set == true {
+//                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .blue}
+//            }
+//            else if referenced_in_Highlighted_Set == false {
+//                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
+//            }
+//        }
         else if centralState.currentPatternMode == .moving {
             if referenced_in_Highlighted_Set == true {
                 if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .white}

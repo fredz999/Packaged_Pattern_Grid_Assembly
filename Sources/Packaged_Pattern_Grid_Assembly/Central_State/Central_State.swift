@@ -54,18 +54,12 @@ public class Central_State : ObservableObject {
     }
     
     public func post_init_Setup(){
-        //potential_Helper.establish_Cursor_Set()
-        
-        passive_Helper = Passive_Helper()
-        if let lclPassiveHelper = passive_Helper{
-            lclPassiveHelper.process_Passive_Cursor_Position()
-        }
-        move_Helper = Move_Helper()
+    passive_Helper = Passive_Helper()
+    if let lclPassiveHelper = passive_Helper {
+        lclPassiveHelper.process_Passive_Cursor_Position()
     }
-    
-//    public func accessTestWriteLock(){
-//        potential_Helper.test_For_Write_Lock()
-//    }
+    move_Helper = Move_Helper()
+    }
     
     public func change_Write_Needs_Held_Down(){
         if write_Needs_Held_Down == true {
@@ -112,7 +106,6 @@ public class Central_State : ObservableObject {
             timing_Change_Compensation_Index = nil
         }
         }
-        //potential_Helper.establish_Cursor_Set()
         if let lclPassiveHelper = passive_Helper{
             lclPassiveHelper.process_Passive_Cursor_Position()
         }
@@ -134,7 +127,6 @@ public class Central_State : ObservableObject {
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
             
-
             if dimensions.patternTimingConfiguration == .fourFour {
                 potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             }
@@ -169,7 +161,18 @@ public class Central_State : ObservableObject {
             delete_Helper.process_Delete_Cursor_Position()
        
         }
+        
+        
+        
+        
+        
+        
+        
+        
         else if patternModeParam == .passive {
+            
+            if currentPatternMode != .passive{currentPatternMode = .passive}
+            
             if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
                 potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 potential_Helper.nilPotentialSet()
@@ -177,10 +180,7 @@ public class Central_State : ObservableObject {
             }
 
             if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
-            
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
-            
-            if currentPatternMode != .passive{currentPatternMode = .passive}
             
             if let lclPassiveHelper = passive_Helper{
                 lclPassiveHelper.nil_passive_Cursor_Set()
@@ -190,13 +190,18 @@ public class Central_State : ObservableObject {
         else if patternModeParam == .moving {
             print("patternModeParam == .moving........")
             if currentPatternMode != .moving{currentPatternMode = .moving}
-//            if potential_Helper.potential_Helper_Cursor_Set.count>0{potential_Helper.nil_Cursor_Set()}
-//            if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
-//            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+            
+            if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
+                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
+                potential_Helper.nilPotentialSet()
+                potential_Helper.initial_WriteOnCell = nil
+            }
+            if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
+            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
 //
-//            if let lclMoveHelper = move_Helper {
-//                lclMoveHelper.process_MoveNote_Cursor_Position()
-//            }
+            if let lclMoveHelper = move_Helper {
+                lclMoveHelper.process_MoveNote_Cursor_Position()
+            }
 //
 //            if currentPatternMode != .moving{currentPatternMode = .moving}
 //            if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
