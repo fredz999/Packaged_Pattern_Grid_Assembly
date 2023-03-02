@@ -50,7 +50,8 @@ public class Note_Collection {
     
     func note_Collection_Highlight_Handler(noteParam:Note?,highlightType:E_HighlightType){
         
-        print("highlightType: ",highlightType.rawValue)
+        //print("highlightType: ",highlightType.rawValue)
+        
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote {
                 lclCurrHighlighted.note_Highlight_Type = highlightType
@@ -64,6 +65,7 @@ public class Note_Collection {
             lclNoteParam.note_Highlight_Type = highlightType
             if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
         }
+        
     }
     
     func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
