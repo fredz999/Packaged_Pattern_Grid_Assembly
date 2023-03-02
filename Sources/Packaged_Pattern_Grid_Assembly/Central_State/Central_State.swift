@@ -182,6 +182,7 @@ public class Central_State : ObservableObject {
         }
 
         if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
+            selectedNote.note_Highlighted = false
             selectedNote.note_Highlighted = true
         }
         }
