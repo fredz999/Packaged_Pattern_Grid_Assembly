@@ -121,6 +121,7 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Potential_Set == true{referenced_in_Potential_Set=false}
             }
         }
+        
         else if status_Update_TypeParam == .cursorSet {
             if value == true {
                 if referenced_in_Cursor_Set == false {
@@ -141,7 +142,16 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         
-        //process_Visual_Status()
+        else if status_Update_TypeParam == .highlightedSet {
+            if value == true {
+                if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
+            }
+            else if value == false {
+                if referenced_in_Highlighted_Set == true{referenced_in_Highlighted_Set=false}
+            }
+        }
+        
+        process_Visual_Status()
     }
     
     func process_Visual_Status(){
@@ -291,7 +301,7 @@ public class Data_Vals_Holder : ObservableObject {
 }
 
 public enum status_Update_Type {
-    case highlighted
+    case highlightedSet
     case cursorSet
     case deleteSquareSet
     case moveNote_Cursor_Set
