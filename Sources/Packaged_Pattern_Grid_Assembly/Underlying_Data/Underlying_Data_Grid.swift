@@ -171,11 +171,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Prohibited_Set : Bool = false
 
     var highlight_Type : E_HighlightType = .UnSelected
-//    {
-//        didSet {
-//            print("highlight_Type set tae: ",highlight_Type.rawValue,", xNum: ",+dataCell_X_Number)
-//        }
-//    }
+    {
+        didSet {
+            print("highlight_Type set tae: ",highlight_Type.rawValue,", xNum: ",+dataCell_X_Number)
+        }
+    }
 
     var in_Potential_Set : Bool = false
     
@@ -259,7 +259,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
         else if type == .activate_UnSelected{if highlight_Type != .UnSelected{highlight_Type = .UnSelected}}
         
-        else if type == .activate_Selected {if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}}
+        else if type == .activate_Selected {
+            if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}
+        }
         
         else if type == .activate_Selected_For_Move{if highlight_Type != .Selected_For_Moving_Highlight {highlight_Type = .Selected_For_Moving_Highlight}}
         else if type == .activate_Selected_For_Resize{if highlight_Type != .Selected_For_Resizing_Highlight {highlight_Type = .Selected_For_Resizing_Highlight}}
