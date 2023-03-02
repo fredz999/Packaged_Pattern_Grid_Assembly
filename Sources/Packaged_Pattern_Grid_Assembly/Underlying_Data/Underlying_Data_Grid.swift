@@ -253,18 +253,17 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         
-//        else if type == .activate_Highlighted {
-//            if in_Highlighted_Set == false{in_Highlighted_Set=true}
-//        }
-//        else if type == .deActivate_Highlighted {
-//            if in_Highlighted_Set == true{in_Highlighted_Set=false}
-//        }
+
         else if type == .activate_UnSelected{if highlight_Type != .UnSelected{highlight_Type = .UnSelected}}
+        
         else if type == .activate_Selected {
-            if highlight_Type != .Selected_Highlight{
-                highlight_Type = .Selected_Highlight
-            }
+            
+            print("note_Highlight_Type set to: ",highlight_Type.rawValue)
+            
+            if highlight_Type != .Selected_Highlight{highlight_Type = .Selected_Highlight}
+            
         }
+        
         else if type == .activate_Selected_For_Move{if highlight_Type != .Selected_For_Moving_Highlight {highlight_Type = .Selected_For_Moving_Highlight}}
         else if type == .activate_Selected_For_Resize{if highlight_Type != .Selected_For_Resizing_Highlight {highlight_Type = .Selected_For_Resizing_Highlight}}
         

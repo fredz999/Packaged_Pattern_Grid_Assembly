@@ -60,7 +60,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             
             
             if note_Highlight_Type == .Selected_Highlight{
-                print("note_Highlight_Type set to: ",note_Highlight_Type.rawValue)
+                //print("note_Highlight_Type set to: ",note_Highlight_Type.rawValue)
                 for dataCell in dataCellArray {
                 let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
                 if let lcl_VisGrid = central_State.central_Grid_Store {
