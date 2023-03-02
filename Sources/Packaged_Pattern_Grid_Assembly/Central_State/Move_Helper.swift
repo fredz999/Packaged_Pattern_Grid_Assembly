@@ -14,19 +14,19 @@ class Move_Helper {
     
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
     
-    var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
-            }
-        }
-        didSet {
-            for cell in move_Note_Cursor_Set {
-                cell.handleVisibleStateChange(type : .activate_MoveNote_Cursor_Set)
-            }
-        }
-    }
+//    var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
+//        willSet {
+//            let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
+//            for cell in delta {
+//                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
+//            }
+//        }
+//        didSet {
+//            for cell in move_Note_Cursor_Set {
+//                cell.handleVisibleStateChange(type : .activate_MoveNote_Cursor_Set)
+//            }
+//        }
+//    }
 
     func process_MoveNote_Cursor_Position() {
         if dimensions.patternTimingConfiguration == .fourFour {
@@ -36,6 +36,39 @@ class Move_Helper {
         move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
         }
     }
+    
+    
+    var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
+            }
+        }
+        didSet {
+            if Central_State.Static_Central_State.currentPatternMode == .moving {
+                var nillableNote : Note? = nil
+                for cell in move_Note_Cursor_Set {
+                    cell.handleVisibleStateChange(type: .activate_MoveNote_Cursor_Set)
+                    if let lclNote = cell.note_Im_In {
+                        nillableNote = lclNote
+                    }
+                }
+
+                
+                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+                    if let lclNillableNote = nillableNote {
+                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+                    }
+                    else if nillableNote == nil {
+                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                    }
+                }
+                
+            }
+        }
+    }
+    
     
     func check_Neighbours(proposedMoveType:E_Note_Movement_Type){
         if let lclCurrNote = note_Collection_Ref.currentHighlightedNote {
