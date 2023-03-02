@@ -40,8 +40,11 @@ public class Note_Collection {
     
     var currentHighlightedNote : Note?{
         willSet{
-            if let lclCurr = currentHighlightedNote,let lclNewVal = newValue{
-                if lclNewVal.id != lclCurr.id {
+            if let lclCurr = currentHighlightedNote{
+                if let lclNewVal = newValue{
+                    if lclNewVal.id != lclCurr.id {lclCurr.note_Highlighted = false}
+                }
+                else if newValue == nil{
                     lclCurr.note_Highlighted = false
                 }
             }
@@ -49,7 +52,6 @@ public class Note_Collection {
         didSet{
             if let lclCurr = currentHighlightedNote{
                 lclCurr.note_Highlighted = true
-                print("lclCurr.note_Highlighted = true")
             }
         }
     }
