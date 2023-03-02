@@ -162,7 +162,7 @@ public class Central_State : ObservableObject {
             }
             
             delete_Helper.process_Delete_Cursor_Position()
-            Note_Collection.Static_Note_Collection.react_To_Mode_Change()
+            
        
         }
         
@@ -185,10 +185,7 @@ public class Central_State : ObservableObject {
         Note_Collection.Static_Note_Collection.react_To_Mode_Change()
             
         }
-        
-        
-        
-        
+
         else if patternModeParam == .passive {
             
             if currentPatternMode != .passive{currentPatternMode = .passive}
@@ -206,6 +203,7 @@ public class Central_State : ObservableObject {
                 lclPassiveHelper.nil_passive_Cursor_Set()
                 lclPassiveHelper.process_Passive_Cursor_Position()
             }
+            Note_Collection.Static_Note_Collection.react_To_Mode_Change()
         }
         
         

@@ -187,6 +187,7 @@ public class Data_Vals_Holder : ObservableObject {
     
     func check_Highlighted(){
         if centralState.currentPatternMode == .passive{
+            
             if referenced_in_Highlighted_Set == true {
                 if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .red}
             }
