@@ -154,8 +154,6 @@ public class Central_State : ObservableObject {
             
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
-
-            //if currLineSet.count > 0{potential_Helper.nil_Potential_Cursor_Set()}
             if let lclNoteCollectionRef = note_Collection_Ref{
                 if lclNoteCollectionRef.currentHighlightedNote != nil{
                     lclNoteCollectionRef.delete_Current_Highlighted_Note()
@@ -189,8 +187,8 @@ public class Central_State : ObservableObject {
                 lclPassiveHelper.process_Passive_Cursor_Position()
             }
         }
-//        else if patternModeParam == .moving {
-//
+        else if patternModeParam == .moving {
+            print("patternModeParam == .moving........")
 //            if potential_Helper.potential_Helper_Cursor_Set.count>0{potential_Helper.nil_Cursor_Set()}
 //            if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
 //            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
@@ -203,7 +201,7 @@ public class Central_State : ObservableObject {
 //            if let selectedNote = Note_Collection.Static_Note_Collection.currentHighlightedNote {
 //                selectedNote.note_Highlighted = true
 //            }
-//        }
+        }
         
     }
 

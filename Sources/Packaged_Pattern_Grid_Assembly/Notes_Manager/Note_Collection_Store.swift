@@ -81,14 +81,12 @@ public class Note_Collection {
         noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
         currentHighlightedNote = nil
         }
-        print("delete_Current_Highlighted_Note noteArray count: ",noteArray.count.description)
     }
     
     public func reset_Note_Data_Cells(noteParam:Note){
         noteParam.resetCells()
         noteArray.removeAll(where: {$0.id == noteParam.id})
         currentHighlightedNote = nil
-        print("delete specified note, noteArray count: ",noteArray.count.description)
     }
     
     public static let Static_Note_Collection = Note_Collection()
