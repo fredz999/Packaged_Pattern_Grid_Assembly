@@ -314,14 +314,14 @@ class Potential_Helper {
         }
     }
     
-    func nil_Cursor_Set(){
-        if potential_Helper_Cursor_Set.count > 0 {
-            for cell in potential_Helper_Cursor_Set {
-                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
-            }
-            potential_Helper_Cursor_Set.removeAll()
-        }
-    }
+//    func nil_Potential_Cursor_Set(){
+//        if potential_Helper_Cursor_Set.count > 0 {
+//            for cell in potential_Helper_Cursor_Set {
+//                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
+//            }
+//            potential_Helper_Cursor_Set.removeAll()
+//        }
+//    }
 
 }
 

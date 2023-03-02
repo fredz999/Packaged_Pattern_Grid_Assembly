@@ -120,7 +120,7 @@ public class Central_State : ObservableObject {
 
     public func deleteANote(){
         if let lclNoteCollection = note_Collection_Ref {
-            lclNoteCollection.reset_Note_Data_Cells()
+            lclNoteCollection.delete_Current_Highlighted_Note()
             a_Note_Is_Highlighted = false
         }
     }
@@ -145,20 +145,22 @@ public class Central_State : ObservableObject {
         }
         else if patternModeParam == .deleting {
             
-            if note_Write_Locked == false{note_Write_Locked = true}
-            
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
-            
-            if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
-            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
-            
             if potential_Helper.initial_WriteOnCell != nil {
                 potential_Helper.initial_WriteOnCell = nil
                 potential_Helper.nilPotentialSet()
             }
+            if note_Write_Locked == false{note_Write_Locked = true}
             
-            if currLineSet.count > 0{potential_Helper.nil_Cursor_Set()}
+            if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
+            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
 
+            //if currLineSet.count > 0{potential_Helper.nil_Potential_Cursor_Set()}
+            if let lclNoteCollectionRef = note_Collection_Ref{
+                if lclNoteCollectionRef.currentHighlightedNote != nil{
+                    lclNoteCollectionRef.delete_Current_Highlighted_Note()
+                }
+            }
             if dimensions.patternTimingConfiguration == .fourFour {
                 delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             }

@@ -75,7 +75,7 @@ public class Note_Collection {
         }
     }
     
-    public func reset_Note_Data_Cells(){
+    public func delete_Current_Highlighted_Note(){
         if let lclCurrHighlighted = currentHighlightedNote {
         lclCurrHighlighted.resetCells()
         noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
