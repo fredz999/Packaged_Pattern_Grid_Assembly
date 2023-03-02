@@ -62,50 +62,50 @@ public class Note : ObservableObject, Identifiable, Equatable {
             if note_Highlight_Type == .Selected_Highlight{
                 //print("note_Highlight_Type set to: ",note_Highlight_Type.rawValue)
                 for dataCell in dataCellArray {
-                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                if let lcl_VisGrid = central_State.central_Grid_Store {
-                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
-                    }
-                }
+//                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+//                if let lcl_VisGrid = central_State.central_Grid_Store {
+//                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+//                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+//                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+//                    }
+//                }
                 dataCell.handleVisibleStateChange(type: .activate_Selected)
                 }
             }
             else if note_Highlight_Type == .UnSelected{
                 
                 for dataCell in dataCellArray {
-                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                if let lcl_VisGrid = central_State.central_Grid_Store {
-                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
-                    }
-                }
+//                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+//                if let lcl_VisGrid = central_State.central_Grid_Store {
+//                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+//                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+//                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+//                    }
+//                }
                 dataCell.handleVisibleStateChange(type: .activate_UnSelected)
                 }
             }
             else if note_Highlight_Type == .Selected_For_Moving_Highlight{
                 for dataCell in dataCellArray {
-                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                if let lcl_VisGrid = central_State.central_Grid_Store {
-                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
-                    }
-                }
+//                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+//                if let lcl_VisGrid = central_State.central_Grid_Store {
+//                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+//                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+//                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+//                    }
+//                }
                     dataCell.handleVisibleStateChange(type: .activate_Selected_For_Move )
                 }
             }
             else if note_Highlight_Type == .Selected_For_Resizing_Highlight{
                 for dataCell in dataCellArray {
-                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
-                if let lcl_VisGrid = central_State.central_Grid_Store {
-                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
-                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
-                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
-                    }
-                }
+//                let vis_Y_Number = note_Y_Number - central_State.lower_Bracket_Number
+//                if let lcl_VisGrid = central_State.central_Grid_Store {
+//                    if vis_Y_Number < lcl_VisGrid.vis_Line_Store_Array.count,vis_Y_Number >= 0 {
+//                        let visCell = lcl_VisGrid.vis_Line_Store_Array[vis_Y_Number].visual_Cell_Store_Array[dataCell.dataCell_X_Number]
+//                        visCell.cell_Swap_Underlying_Data(new_Data_Cell: dataCell)
+//                    }
+//                }
                     dataCell.handleVisibleStateChange(type: .activate_Selected_For_Resize)
                 }
             }
