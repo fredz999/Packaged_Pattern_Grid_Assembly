@@ -49,23 +49,18 @@ public class Note_Collection {
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
-        print("highlight handler")
+        print("note_Collection_Highlight_Handler called")
         if noteParam == nil {
             if let lclCurrHighlighted = currentHighlightedNote {
-                //lclCurrHighlighted.note_Highlight_Type = highlightType
                 lclCurrHighlighted.note_Highlighted = false
                 currentHighlightedNote = nil
                 if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
             }
         }
-
         else if let lclNoteParam = noteParam {
-            //currentHighlightedNote = lclNoteParam
             lclNoteParam.note_Highlighted = true
-                //.note_Highlight_Type = highlightType
             if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
         }
-
     }
     
     func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
