@@ -25,13 +25,11 @@ public class Note : ObservableObject, Identifiable, Equatable {
         didSet{
             if note_Highlighted == true {
                 for dataCell in dataCellArray {
-                    //if dataCell.in_Highlighted_Set == false {dataCell.in_Highlighted_Set = true}
                     dataCell.change_Highlight(highlightStatusParam: true)
                 }
             }
             else if note_Highlighted == false {
                 for dataCell in dataCellArray {
-                    //if dataCell.in_Highlighted_Set == true {dataCell.in_Highlighted_Set = false}
                     dataCell.change_Highlight(highlightStatusParam: false)
                 }
             }

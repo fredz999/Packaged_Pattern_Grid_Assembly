@@ -46,22 +46,35 @@ public class Note_Collection {
                 }
             }
         }
+        didSet{
+            if let lclCurr = currentHighlightedNote{
+                lclCurr.note_Highlighted = true
+            }
+        }
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
-        print("note_Collection_Highlight_Handler arg: ",noteParam == nil ? "nil" : "not nil")
-        
+        //print("note_Collection_Highlight_Handler arg: ",noteParam == nil ? "nil" : "not nil")
         if noteParam == nil {
-            if let lclCurrHighlighted = currentHighlightedNote {
-                lclCurrHighlighted.note_Highlighted = false
-                currentHighlightedNote = nil
-                if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
-            }
+            currentHighlightedNote = nil
+            if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {
-            lclNoteParam.note_Highlighted = true
+            currentHighlightedNote = lclNoteParam
             if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
         }
+        
+//        if noteParam == nil {
+//            if let lclCurrHighlighted = currentHighlightedNote {
+//                lclCurrHighlighted.note_Highlighted = false
+//                currentHighlightedNote = nil
+//                if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
+//            }
+//        }
+//        else if let lclNoteParam = noteParam {
+//            lclNoteParam.note_Highlighted = true
+//            if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
+//        }
     }
     
     func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
