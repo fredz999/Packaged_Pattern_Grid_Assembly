@@ -10,6 +10,40 @@ import SwiftUI
 
 public class Note_Collection {
     
+    var currentHighlightedNote : Note?{
+        willSet{
+            if let lclCurr = currentHighlightedNote{
+                if let lclNewVal = newValue{
+                    if lclNewVal.id != lclCurr.id {
+                        lclCurr.highlighted = false
+                        centralStateRef.a_Note_Is_Highlighted = false
+                    }
+                }
+                else if newValue == nil{
+                    lclCurr.highlighted = false
+                    centralStateRef.a_Note_Is_Highlighted = false
+                }
+            }
+        }
+        didSet{
+            if let lclCurr = currentHighlightedNote {
+                lclCurr.highlighted = true
+                centralStateRef.a_Note_Is_Highlighted = true
+            }
+        }
+    }
+    
+    func note_Collection_Highlight_Handler(noteParam:Note?){
+        if noteParam == nil {
+            currentHighlightedNote = nil
+            if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
+        }
+        else if let lclNoteParam = noteParam {
+            currentHighlightedNote = lclNoteParam
+            if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
+        }
+    }
+    
     let dimensions = ComponentDimensions.StaticDimensions
     
     var data = Underlying_Data_Grid.Static_Underlying_Data_Grid
@@ -44,40 +78,6 @@ public class Note_Collection {
     }
     
     let centralStateRef = Central_State.Static_Central_State
-    
-    var currentHighlightedNote : Note?{
-        willSet{
-            if let lclCurr = currentHighlightedNote{
-                if let lclNewVal = newValue{
-                    if lclNewVal.id != lclCurr.id {
-                        lclCurr.highlighted = false
-                        centralStateRef.a_Note_Is_Highlighted = false
-                    }
-                }
-                else if newValue == nil{
-                    lclCurr.highlighted = false
-                    centralStateRef.a_Note_Is_Highlighted = false
-                }
-            }
-        }
-        didSet{
-            if let lclCurr = currentHighlightedNote {
-                lclCurr.highlighted = true
-                centralStateRef.a_Note_Is_Highlighted = true
-            }
-        }
-    }
-    
-    func note_Collection_Highlight_Handler(noteParam:Note?){
-        if noteParam == nil {
-            currentHighlightedNote = nil
-            if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
-        }
-        else if let lclNoteParam = noteParam {
-            currentHighlightedNote = lclNoteParam
-            if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
-        }
-    }
     
     func react_To_Mode_Change(){
         if let currHighlightedNote = currentHighlightedNote{

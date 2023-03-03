@@ -14,20 +14,13 @@ class Move_Helper {
     
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
     
-//    var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
-//        willSet {
-//            let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
-//            for cell in delta {
-//                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
-//            }
-//        }
-//        didSet {
-//            for cell in move_Note_Cursor_Set {
-//                cell.handleVisibleStateChange(type : .activate_MoveNote_Cursor_Set)
-//            }
-//        }
-//    }
-
+    var captured_Initial_Data_X : Int?
+    var captured_Initial_Data_Y : Int?
+    
+    func movement_Handle(slider_X_Pos:Int,slider_Y_Pos:Int){
+        //get these vals from the sliders when the mode is move
+    }
+    
     func process_MoveNote_Cursor_Position() {
         if dimensions.patternTimingConfiguration == .fourFour {
         move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
@@ -36,7 +29,6 @@ class Move_Helper {
         move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
         }
     }
-    
     
     var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -68,7 +60,6 @@ class Move_Helper {
         }
     }
     
-    
     func check_Neighbours(proposedMoveType:E_Note_Movement_Type){
         if let lclCurrNote = note_Collection_Ref.currentHighlightedNote {
             if proposedMoveType == .rightWard{
@@ -99,10 +90,19 @@ class Move_Helper {
 
 
 
-
-
-
-
+//    var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
+//        willSet {
+//            let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
+//            for cell in delta {
+//                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
+//            }
+//        }
+//        didSet {
+//            for cell in move_Note_Cursor_Set {
+//                cell.handleVisibleStateChange(type : .activate_MoveNote_Cursor_Set)
+//            }
+//        }
+//    }
 
 //public func changeNotePosition(movementTyoeParam:E_Note_Movement_Type) {
 //

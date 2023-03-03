@@ -25,7 +25,6 @@ public class Central_State : ObservableObject {
     
     @Published public var currentPatternMode : E_PatternModeType = .passive
     
-
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -121,8 +120,64 @@ public class Central_State : ObservableObject {
 
     var currentYCursor_Slider_Position : Int = 0
     
+    var curr_Data_Pos_X : Int
+    
+    var curr_Data_Pos_Y : Int {
+        didSet {
+            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+            currLineSet.removeAll()
+            var newSet = Set<Underlying_Data_Cell>()
+            for cell in currLine.dataCellArray{
+                newSet.insert(cell)
+            }
+            currLineSet = newSet
+        }
+    }
+    
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        if patternModeParam == .writing {
+        
+        
+        if patternModeParam == .moving {
+        if let lclNoteCollection = note_Collection_Ref {
+            if lclNoteCollection.currentHighlightedNote != nil{
+                
+                // ok there is now a moveable
+                // so any move from the slideys ought to now move the note
+                
+                if currentPatternMode != .moving{currentPatternMode = .moving}
+                if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
+                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
+                potential_Helper.nilPotentialSet()
+                potential_Helper.initial_WriteOnCell = nil
+                }
+                if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
+                if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+                if let lclMoveHelper = move_Helper {
+                    lclMoveHelper.captured_Initial_Data_X = curr_Data_Pos_X
+                    lclMoveHelper.captured_Initial_Data_Y = curr_Data_Pos_Y
+                    
+                    if let lclMoveHelperX = lclMoveHelper.captured_Initial_Data_X,let lclMoveHelperY = lclMoveHelper.captured_Initial_Data_Y{
+                        print("mh set,  X: ",lclMoveHelperX,", Y: ",lclMoveHelperY)
+                    }
+                    
+                    
+                    lclMoveHelper.process_MoveNote_Cursor_Position()
+                }
+                lclNoteCollection.react_To_Mode_Change()
+            }
+        }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        else if patternModeParam == .writing {
             if currentPatternMode != .writing {currentPatternMode = .writing}
             delete_Helper.nil_Delete_Square_Set()
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
@@ -135,25 +190,6 @@ public class Central_State : ObservableObject {
                 potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             }
             potential_Helper.establish_Potential_Cells_Set()
-        }
-        
-        else if patternModeParam == .moving {
-        if let lclNoteCollection = note_Collection_Ref {
-            if lclNoteCollection.currentHighlightedNote != nil{
-                if currentPatternMode != .moving{currentPatternMode = .moving}
-                if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
-                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
-                potential_Helper.nilPotentialSet()
-                potential_Helper.initial_WriteOnCell = nil
-                }
-                if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
-                if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
-                if let lclMoveHelper = move_Helper {
-                    lclMoveHelper.process_MoveNote_Cursor_Position()
-                }
-                lclNoteCollection.react_To_Mode_Change()
-            }
-        }
         }
         else if patternModeParam == .deleting {
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
@@ -202,7 +238,6 @@ public class Central_State : ObservableObject {
             Note_Collection.Static_Note_Collection.react_To_Mode_Change()
         }
         
-        
     }
 
     func cursor_Slider_Update(){
@@ -250,7 +285,6 @@ public class Central_State : ObservableObject {
     }
     
     var currentData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]{
-        // thus far this only happens for delete because its an unusual process
         willSet{
             if currentPatternMode == .deleting{
                 delete_Helper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
@@ -260,20 +294,6 @@ public class Central_State : ObservableObject {
     
     var currLineSet = Set<Underlying_Data_Cell>()
     
-    var curr_Data_Pos_X : Int
-    
-    var curr_Data_Pos_Y : Int {
-        didSet {
-            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-            currLineSet.removeAll()
-            var newSet = Set<Underlying_Data_Cell>()
-            for cell in currLine.dataCellArray{
-                newSet.insert(cell)
-            }
-            currLineSet = newSet
-        }
-    }
-
     func data_Slider_LowBracket_Update(newLower:Int){
     
     lower_Bracket_Number = newLower
