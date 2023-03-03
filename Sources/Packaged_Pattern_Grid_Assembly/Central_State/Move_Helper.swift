@@ -13,9 +13,26 @@ class Move_Helper {
     let dimensions = ComponentDimensions.StaticDimensions
     
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
+    let dataGrid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     
     var captured_Initial_Data_X : Int?
     var captured_Initial_Data_Y : Int?
+    var captured_Original_Note_Cells : [Underlying_Data_Cell]?
+    
+    var potential_Moved_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = potential_Moved_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+        }
+        didSet {
+            for cell in potential_Moved_Set {
+                cell.handleVisibleStateChange(type : .activate_Potential_Set)
+            }
+        }
+    }
+    
     
     func movement_Handle(slider_X_Pos:Int,slider_Y_Pos:Int){
         //get these vals from the sliders when the mode is move
@@ -30,11 +47,26 @@ class Move_Helper {
             move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
             }
         //}
-        if let lcl_CapturedX = captured_Initial_Data_X,let lcl_CapturedY = captured_Initial_Data_Y{
+        if let lcl_CapturedX = captured_Initial_Data_X,let lcl_CapturedY = captured_Initial_Data_Y
+        ,let lcl_Captured_Cells = captured_Original_Note_Cells {
+            
             if let minCell = move_Note_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                 let deltaX = minCell.dataCell_X_Number - lcl_CapturedX
                 let deltaY = minCell.dataCell_Y_Number - lcl_CapturedY
-                print("deltaX: ",deltaX,", deltaY: ",deltaY)
+//                print("deltaX: ",deltaX,", deltaY: ",deltaY,", captured_Original count: ",lcl_Captured_Cells.count)
+                //1: start and stop of original note
+                if lcl_Captured_Cells.count > 0 {
+                    let newStartX = lcl_Captured_Cells[0].dataCell_X_Number + deltaX
+                    let newStartY = lcl_Captured_Cells[0].dataCell_Y_Number + deltaY
+                    var tempCellSet = Set<Underlying_Data_Cell>()
+                    //TODO: safe border limits
+                    for x in newStartX..<(newStartX+move_Note_Cursor_Set.count){
+                        tempCellSet.insert(dataGrid.dataLineArray[newStartY].dataCellArray[x] )
+                    }
+                    
+                    potential_Moved_Set = tempCellSet
+                }
+                
             }
         }
         

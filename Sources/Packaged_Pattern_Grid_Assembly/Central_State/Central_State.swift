@@ -139,7 +139,7 @@ public class Central_State : ObservableObject {
         
         if patternModeParam == .moving {
         if let lclNoteCollection = note_Collection_Ref {
-            if lclNoteCollection.currentHighlightedNote != nil{
+            if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote{
                 
                 // ok there is now a moveable
                 // so any move from the slideys ought to now move the note
@@ -156,6 +156,7 @@ public class Central_State : ObservableObject {
                 if let lclMoveHelper = move_Helper {
                     lclMoveHelper.captured_Initial_Data_X = curr_Data_Pos_X
                     lclMoveHelper.captured_Initial_Data_Y = curr_Data_Pos_Y
+                    lclMoveHelper.captured_Original_Note_Cells = lclCurrentHighlightedNote.dataCellArray //lclCurrentHighlightedNote
                     
                     if let lclMoveHelperX = lclMoveHelper.captured_Initial_Data_X,let lclMoveHelperY = lclMoveHelper.captured_Initial_Data_Y{
                         print("mh set,  X: ",lclMoveHelperX,", Y: ",lclMoveHelperY)
@@ -163,9 +164,9 @@ public class Central_State : ObservableObject {
                     
                     lclMoveHelper.process_MoveNote_Cursor_Position()
                 }
-                else if move_Helper == nil {
-                    print("move_Helper == nil")
-                }
+//                else if move_Helper == nil {
+//                    print("move_Helper == nil")
+//                }
                 lclNoteCollection.react_To_Mode_Change()
             }
         }
