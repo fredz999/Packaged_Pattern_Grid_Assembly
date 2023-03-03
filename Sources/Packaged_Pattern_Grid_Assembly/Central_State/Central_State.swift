@@ -152,6 +152,7 @@ public class Central_State : ObservableObject {
                 }
                 if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
                 if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+                
                 if let lclMoveHelper = move_Helper {
                     lclMoveHelper.captured_Initial_Data_X = curr_Data_Pos_X
                     lclMoveHelper.captured_Initial_Data_Y = curr_Data_Pos_Y
@@ -159,9 +160,10 @@ public class Central_State : ObservableObject {
                     if let lclMoveHelperX = lclMoveHelper.captured_Initial_Data_X,let lclMoveHelperY = lclMoveHelper.captured_Initial_Data_Y{
                         print("mh set,  X: ",lclMoveHelperX,", Y: ",lclMoveHelperY)
                     }
-                    
-                    
                     lclMoveHelper.process_MoveNote_Cursor_Position()
+                }
+                else if move_Helper == nil {
+                    print("move_Helper == nil")
                 }
                 lclNoteCollection.react_To_Mode_Change()
             }
