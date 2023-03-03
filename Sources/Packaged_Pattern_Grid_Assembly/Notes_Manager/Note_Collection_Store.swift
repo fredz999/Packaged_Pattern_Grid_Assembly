@@ -42,16 +42,21 @@ public class Note_Collection {
         willSet{
             if let lclCurr = currentHighlightedNote{
                 if let lclNewVal = newValue{
-                    if lclNewVal.id != lclCurr.id {lclCurr.highlighted = false}
+                    if lclNewVal.id != lclCurr.id {
+                        lclCurr.highlighted = false
+                        centralStateRef.a_Note_Is_Highlighted = false
+                    }
                 }
                 else if newValue == nil{
                     lclCurr.highlighted = false
+                    centralStateRef.a_Note_Is_Highlighted = false
                 }
             }
         }
         didSet{
             if let lclCurr = currentHighlightedNote {
                 lclCurr.highlighted = true
+                centralStateRef.a_Note_Is_Highlighted = true
             }
         }
     }
@@ -69,16 +74,10 @@ public class Note_Collection {
     
     func react_To_Mode_Change(){
         if let currHighlightedNote = currentHighlightedNote{
-            //have to trigger color changes for each cell
             for dataCell in currHighlightedNote.dataCellArray {
-                //dataCell.change_Highlight(highlightStatusParam: true)
                 if let lcl_Data_Vals = dataCell.currentConnectedDataVals {
                     lcl_Data_Vals.check_Highlighted()
                 }
-//                if let lcl_Data_Vals = currentConnectedDataVals {
-//                    lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .highlightedSet, value: highlightStatusParam)
-//                }
-                
             }
         }
     }
