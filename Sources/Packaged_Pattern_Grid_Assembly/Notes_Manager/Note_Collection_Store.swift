@@ -23,7 +23,7 @@ public class Note_Collection {
                     p_ExternalNote_Responder_Array[i].react_To_NoteArrayChange(noteArrayParam: noteArray)
                 }
             }
-            if noteArray.count == 0{centralStateRef.setPatternMode(patternModeParam: .writing)}
+            if noteArray.count == 0{centralStateRef.setPatternMode(patternModeParam: .passive)}
         }
     }
     
