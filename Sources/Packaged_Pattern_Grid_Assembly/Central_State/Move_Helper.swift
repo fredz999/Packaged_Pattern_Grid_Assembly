@@ -62,7 +62,8 @@ class Move_Helper {
                     var tempCellSet = Set<Underlying_Data_Cell>()
                     //TODO: safe border limits
                     // ok, safe....deltaX
-                    if newStartX >= 0,(newStartX+lcl_Captured_Cells.count) <= dimensions.dataGrid_X_Unit_Count {
+                    //dimensions.dataGrid_X_Unit_Count
+                    if newStartX >= 0,(newStartX+lcl_Captured_Cells.count) <= 97 {
                         for x in newStartX..<(newStartX+lcl_Captured_Cells.count){
                             tempCellSet.insert(dataGrid.dataLineArray[newStartY].dataCellArray[x])
                         }
