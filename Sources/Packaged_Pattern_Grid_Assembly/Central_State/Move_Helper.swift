@@ -22,12 +22,22 @@ class Move_Helper {
     }
     
     func process_MoveNote_Cursor_Position() {
-        if dimensions.patternTimingConfiguration == .fourFour {
-        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
+        if captured_Initial_Data_X == nil && captured_Initial_Data_Y == nil {
+            if dimensions.patternTimingConfiguration == .fourFour {
+            move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
+            }
+            else if dimensions.patternTimingConfiguration == .sixEight {
+            move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
+            }
         }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
+        else if let lcl_CapturedX = captured_Initial_Data_X,let lcl_CapturedY = captured_Initial_Data_Y{
+            if let minCell = move_Note_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                let deltaX = minCell.dataCell_X_Number - lcl_CapturedX
+                let deltaY = minCell.dataCell_Y_Number - lcl_CapturedY
+                print("deltaX: ",deltaX,", deltaY: ",deltaY)
+            }
         }
+        
     }
     
     var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
