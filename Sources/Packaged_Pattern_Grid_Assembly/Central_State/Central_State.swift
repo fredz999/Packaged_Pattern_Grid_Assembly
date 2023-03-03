@@ -205,7 +205,7 @@ public class Central_State : ObservableObject {
                 potential_Helper.nilPotentialSet()
                 potential_Helper.initial_WriteOnCell = nil
             }
-
+ 
             if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             

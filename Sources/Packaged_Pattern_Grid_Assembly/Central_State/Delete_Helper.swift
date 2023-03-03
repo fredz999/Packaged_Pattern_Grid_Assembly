@@ -189,6 +189,7 @@ class Delete_Helper {
     }
 
     func nil_Delete_Square_Set(){
+        print("nil_Delete_Square_Set() called")
         if current_Direction != .stationary{current_Direction = .stationary}
         if current_Trail_Corner != nil{current_Trail_Corner = nil}
         
