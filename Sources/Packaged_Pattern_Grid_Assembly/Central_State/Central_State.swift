@@ -15,6 +15,8 @@ public class Central_State : ObservableObject {
     
     @Published public var a_Note_Is_Highlighted : Bool = false
     
+    @Published public var pattern_Has_A_Note : Bool = false
+    
     @Published public var note_Write_Locked : Bool = false
     
     @Published public var write_Needs_Held_Down : Bool = false
@@ -191,13 +193,8 @@ public class Central_State : ObservableObject {
             }
  
             if delete_Helper.delete_Cursor_Set.count > 0 {
-                print(".delete_Cursor_Set.count > 0")
                 delete_Helper.nil_Delete_Square_Set()
             }
-            else if delete_Helper.delete_Cursor_Set.count == 0 {
-                print("delete_Helper.delete_Cursor_Set.count == 0 ")
-            }
-            
             
             if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             
