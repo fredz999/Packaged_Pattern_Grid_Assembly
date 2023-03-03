@@ -50,7 +50,6 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
-        
     }
     
     public func post_init_Setup(){
@@ -119,9 +118,6 @@ public class Central_State : ObservableObject {
     }
 
     var currentYCursor_Slider_Position : Int = 0
-    
-    
-    
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
         if patternModeParam == .writing {
@@ -225,11 +221,9 @@ public class Central_State : ObservableObject {
 
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+
         centralState_Data_Evaluation()
-        
-        // redo this, the nil does not need to be called over and over again
-        // the helpers themselves should be looking to the central state for info about the current cursor position
-        
+
         if currentPatternMode == .writing {
             potential_Helper.establish_Potential_Cells_Set()
         }

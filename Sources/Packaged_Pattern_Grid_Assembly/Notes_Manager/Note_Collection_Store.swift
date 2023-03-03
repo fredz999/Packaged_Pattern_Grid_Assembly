@@ -23,6 +23,7 @@ public class Note_Collection {
                     p_ExternalNote_Responder_Array[i].react_To_NoteArrayChange(noteArrayParam: noteArray)
                 }
             }
+            if noteArray.count == 0{centralStateRef.setPatternMode(patternModeParam: .writing)}
         }
     }
     
@@ -95,6 +96,7 @@ public class Note_Collection {
         lclCurrHighlighted.resetCells()
         noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
         currentHighlightedNote = nil
+        if centralStateRef.a_Note_Is_Highlighted != false{centralStateRef.a_Note_Is_Highlighted = false}
         }
     }
     
