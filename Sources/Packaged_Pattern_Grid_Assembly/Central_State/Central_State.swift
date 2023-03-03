@@ -160,6 +160,7 @@ public class Central_State : ObservableObject {
                     if let lclMoveHelperX = lclMoveHelper.captured_Initial_Data_X,let lclMoveHelperY = lclMoveHelper.captured_Initial_Data_Y{
                         print("mh set,  X: ",lclMoveHelperX,", Y: ",lclMoveHelperY)
                     }
+                    
                     lclMoveHelper.process_MoveNote_Cursor_Position()
                 }
                 else if move_Helper == nil {
