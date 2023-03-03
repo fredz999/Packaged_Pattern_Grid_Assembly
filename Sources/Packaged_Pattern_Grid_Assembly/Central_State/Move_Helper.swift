@@ -60,7 +60,7 @@ class Move_Helper {
                     let newStartY = lcl_Captured_Cells[0].dataCell_Y_Number + deltaY
                     var tempCellSet = Set<Underlying_Data_Cell>()
                     //TODO: safe border limits
-                    for x in newStartX..<(newStartX+move_Note_Cursor_Set.count){
+                    for x in newStartX..<(newStartX+lcl_Captured_Cells.count){
                         tempCellSet.insert(dataGrid.dataLineArray[newStartY].dataCellArray[x] )
                     }
                     
