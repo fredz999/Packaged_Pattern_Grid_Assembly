@@ -197,7 +197,7 @@ public class Central_State : ObservableObject {
         }
 
         else if patternModeParam == .passive {
-            
+            print("setting to passive")
             if currentPatternMode != .passive{currentPatternMode = .passive}
             
             if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
