@@ -56,15 +56,19 @@ class Move_Helper {
 //                print("deltaX: ",deltaX,", deltaY: ",deltaY,", captured_Original count: ",lcl_Captured_Cells.count)
                 //1: start and stop of original note
                 if lcl_Captured_Cells.count > 0 {
+                    
                     let newStartX = lcl_Captured_Cells[0].dataCell_X_Number + deltaX
                     let newStartY = lcl_Captured_Cells[0].dataCell_Y_Number + deltaY
                     var tempCellSet = Set<Underlying_Data_Cell>()
                     //TODO: safe border limits
-                    for x in newStartX..<(newStartX+lcl_Captured_Cells.count){
-                        tempCellSet.insert(dataGrid.dataLineArray[newStartY].dataCellArray[x] )
+                    // ok, safe....deltaX
+                    if newStartX >= 0 {
+                        for x in newStartX..<(newStartX+lcl_Captured_Cells.count){
+                            tempCellSet.insert(dataGrid.dataLineArray[newStartY].dataCellArray[x])
+                        }
+                        potential_Moved_Set = tempCellSet
                     }
                     
-                    potential_Moved_Set = tempCellSet
                 }
                 
             }
