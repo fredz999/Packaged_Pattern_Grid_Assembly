@@ -63,7 +63,7 @@ class Move_Helper {
                     //TODO: safe border limits
                     // ok, safe....deltaX
                     //dimensions.dataGrid_X_Unit_Count
-                    if newStartX >= 0,(newStartX+lcl_Captured_Cells.count) <= 98 {
+                    if newStartX >= 0,(newStartX+lcl_Captured_Cells.count) <= 100 {
                         for x in newStartX..<(newStartX+lcl_Captured_Cells.count){
                             tempCellSet.insert(dataGrid.dataLineArray[newStartY].dataCellArray[x])
                         }
