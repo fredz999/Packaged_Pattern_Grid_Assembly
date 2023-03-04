@@ -139,6 +139,7 @@ class Move_Helper {
         willSet {
             let delta = potential_Moved_Set.symmetricDifference(newValue)
             for cell in delta {
+                print("deActivate_Prohibited")
                 cell.handleVisibleStateChange(type: .deActivate_Prohibited)
             }
         }
