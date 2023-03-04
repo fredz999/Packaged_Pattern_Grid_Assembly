@@ -49,10 +49,20 @@ class Move_Helper {
             let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
             let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
             
-            if proposedNewMinIndex >= 0 && proposedNewMaxIndex <= dimensions.dataGrid_X_Unit_Count-1{}
+            if proposedNewMinIndex >= 0 && proposedNewMaxIndex <= (dimensions.dataGrid_X_Unit_Count-1){
+                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+                .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
+            }
+            else if proposedNewMinIndex < 0{
+                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+                .filter{$0.dataCell_X_Number >= 0 && $0.dataCell_X_Number <= proposedNewMaxIndex}
+            }
+            else if proposedNewMaxIndex > (dimensions.dataGrid_X_Unit_Count-1){
+                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+                .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= 0}
+            }
             
-            potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-            .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
+            
             
             
         }
