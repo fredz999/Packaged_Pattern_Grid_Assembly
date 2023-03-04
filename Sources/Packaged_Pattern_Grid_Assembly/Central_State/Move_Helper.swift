@@ -77,7 +77,9 @@ class Move_Helper {
             
             // check for note boundaries
             potential_Moved_Set = proposedSet
-            noteCells_In_Proposed_Set = proposedSet.filter({$0.note_Im_In != nil})
+            prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
+            print("prohib_Red_Set count: ",prohib_Red_Set.count)
+            
                 
 //            if noteCells_In_Proposed_Set.count == 0{
 //                potential_Moved_Set = proposedSet
@@ -135,7 +137,7 @@ class Move_Helper {
     
     var proposedSet = Set<Underlying_Data_Cell>()
     
-    var noteCells_In_Proposed_Set = Set<Underlying_Data_Cell>(){
+    var prohib_Red_Set = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = potential_Moved_Set.symmetricDifference(newValue)
             for cell in delta {
@@ -172,8 +174,8 @@ class Move_Helper {
         if proposedSet.count > 0 {
             proposedSet.removeAll()
         }
-        if noteCells_In_Proposed_Set.count > 0 {
-            noteCells_In_Proposed_Set.removeAll()
+        if prohib_Red_Set.count > 0 {
+            prohib_Red_Set.removeAll()
         }
     }
     
