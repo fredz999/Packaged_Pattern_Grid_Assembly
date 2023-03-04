@@ -141,6 +141,7 @@ class Move_Helper {
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Prohibited)
             }
+            print("noteCells_In_Proposed_Set set")
         }
         didSet {
             for cell in potential_Moved_Set {
