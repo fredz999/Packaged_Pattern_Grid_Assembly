@@ -11,16 +11,9 @@ import SwiftUI
 class Move_Helper {
     
     let dimensions = ComponentDimensions.StaticDimensions
-    
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
     let dataGrid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let centralStateRef = Central_State.Static_Central_State
-    
-    var note_Low_Index : Int?
-    var note_High_Index : Int?
-    var note_Y_Val : Int?
-    var snapshot_Cursor_X : Int?
-    var snapshot_Cursor_Y : Int?
     
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -36,6 +29,19 @@ class Move_Helper {
         }
     }
     
+    var note_Low_Index : Int?
+    var note_High_Index : Int?
+    var note_Y_Val : Int?
+    var snapshot_Cursor_X : Int?
+    var snapshot_Cursor_Y : Int?
+    var currLeftLimit : Int
+    var currRightLimit : Int
+    
+    init(){
+        currLeftLimit = 0
+        currRightLimit = dimensions.dataGrid_X_Unit_Count-1
+    }
+    
     func movement_With_Note_Selected(){
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index, let lclNote_Y_Val = note_Y_Val
         ,let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y{
@@ -49,20 +55,21 @@ class Move_Helper {
             let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
             let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
             
-            if proposedNewMinIndex >= 0 && proposedNewMaxIndex <= (dimensions.dataGrid_X_Unit_Count-1){
+            if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit{
                 potential_Moved_Set = Central_State.Static_Central_State.currLineSet
                 .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
             }
-            else if proposedNewMinIndex < 0{
+            else if proposedNewMinIndex < currLeftLimit{
                 potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-                .filter{$0.dataCell_X_Number >= 0 && $0.dataCell_X_Number <= (lclNote_High_Index - lclNote_Low_Index)}
+                .filter{$0.dataCell_X_Number >= currLeftLimit && $0.dataCell_X_Number <= (lclNote_High_Index - lclNote_Low_Index)}
             }
-            else if proposedNewMaxIndex > (dimensions.dataGrid_X_Unit_Count-1){
+            else if proposedNewMaxIndex > currRightLimit{
                 potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-                .filter{$0.dataCell_X_Number >=  (dimensions.dataGrid_X_Unit_Count-1)-(lclNote_High_Index - lclNote_Low_Index)
-                    && $0.dataCell_X_Number <= (dimensions.dataGrid_X_Unit_Count-1)
+                .filter{$0.dataCell_X_Number >=  currRightLimit-(lclNote_High_Index - lclNote_Low_Index)
+                    && $0.dataCell_X_Number <= currRightLimit
                 }
             }
+            
         }
 
     }
