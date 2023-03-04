@@ -63,14 +63,8 @@ class Move_Helper {
                     && $0.dataCell_X_Number <= (dimensions.dataGrid_X_Unit_Count-1)
                 }
             }
-            
-            
-            
-            
         }
-        else{
-            print("else hit")
-        }
+
     }
     
     func process_MoveNote_Cursor_Position() {
