@@ -77,11 +77,12 @@ class Move_Helper {
             }
             
             // check for note boundaries
+            potential_Moved_Set = proposedSet
             noteCells_In_Proposed_Set = proposedSet.filter({$0.note_Im_In != nil})
                 
-            if noteCells_In_Proposed_Set.count == 0{
-                potential_Moved_Set = proposedSet
-            }
+//            if noteCells_In_Proposed_Set.count == 0{
+//                potential_Moved_Set = proposedSet
+//            }
             
             
         }

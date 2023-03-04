@@ -179,7 +179,6 @@ public class Central_State : ObservableObject {
             lclMoveHelper.snapshot_Cursor_Y = nil
             }
             
-
             if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
             
             if dimensions.patternTimingConfiguration == .fourFour {
