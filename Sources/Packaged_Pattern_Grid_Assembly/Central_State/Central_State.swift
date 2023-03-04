@@ -154,13 +154,12 @@ public class Central_State : ObservableObject {
                 if let lclMoveHelper = move_Helper {
 
                     if let lclNoteCollectionRef = note_Collection_Ref {
-                       // if let lclCurrNote = lclNoteCollectionRef.currentHighlightedNote {
-                            //print("lowest_Index: ",lclCurrNote.lowest_Index,", Highest: ",lclCurrNote.highest_Index)
                             lclMoveHelper.note_Low_Index = lclCurrentHighlightedNote.lowest_Index
                             lclMoveHelper.note_High_Index = lclCurrentHighlightedNote.highest_Index
                             lclMoveHelper.note_Y_Val = lclCurrentHighlightedNote.note_Y_Number
                             
-                            print("curr_Data_Pos_X: ",curr_Data_Pos_X,",dataY: ",curr_Data_Pos_Y)
+                            lclMoveHelper.snapshot_Cursor_X = curr_Data_Pos_X
+                            lclMoveHelper.snapshot_Cursor_Y = curr_Data_Pos_Y
                         //}
                         
                     }
@@ -257,6 +256,7 @@ public class Central_State : ObservableObject {
         }
         else if currentPatternMode == .moving,let lclMoveHelper = move_Helper{
             lclMoveHelper.process_MoveNote_Cursor_Position()
+            lclMoveHelper.movement_With_Note_Selected()
         }
         else if currentPatternMode == .passive,let lclPassiveHelper = passive_Helper {
             lclPassiveHelper.process_Passive_Cursor_Position()

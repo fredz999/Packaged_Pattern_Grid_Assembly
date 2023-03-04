@@ -14,6 +14,7 @@ class Move_Helper {
     
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
     let dataGrid = Underlying_Data_Grid.Static_Underlying_Data_Grid
+    let centralStateRef = Central_State.Static_Central_State
     
     var note_Low_Index : Int?
     var note_High_Index : Int?
@@ -36,26 +37,21 @@ class Move_Helper {
     }
     
     func movement_With_Note_Selected(){
-        if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index, let lclNote_Y_Val = note_Y_Val{
-                    
+        if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index, let lclNote_Y_Val = note_Y_Val
+        ,let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y{
+            print("lclSnapshot_X: ",lclSnapshot_X,", currX: ",centralStateRef.curr_Data_Pos_X)
         }
     }
     
     func process_MoveNote_Cursor_Position() {
-        
-        
-            
         if dimensions.patternTimingConfiguration == .fourFour {
         move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
         move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
         }
-
-
     }
-    
-    
+
     var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
