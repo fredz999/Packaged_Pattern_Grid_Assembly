@@ -43,8 +43,14 @@ class Move_Helper {
             
             let delta_X_Grid_Units = centralStateRef.curr_Data_Pos_X - lclSnapshot_X
             let delta_Y_Grid_Units = centralStateRef.curr_Data_Pos_Y - lclSnapshot_Y
-            print("delta_X_Grid_Units: ",delta_X_Grid_Units,", delta_Y_Grid_Units: ",delta_Y_Grid_Units)
+            //print("delta_X_Grid_Units: ",delta_X_Grid_Units,", delta_Y_Grid_Units: ",delta_Y_Grid_Units)
+            //ok.... get a proposed set of datacell x and a y out of this
+            let proposedNewMinIndex = lclNote_Low_Index + delta_X_Grid_Units
+            let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
+            let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
             
+            potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+            .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
             
         }
         else{
