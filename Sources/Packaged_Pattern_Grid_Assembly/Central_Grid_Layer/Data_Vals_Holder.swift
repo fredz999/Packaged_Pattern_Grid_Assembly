@@ -160,13 +160,15 @@ public class Data_Vals_Holder : ObservableObject {
                 
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
-                        check_Highlighted()
-                        check_In_Prohib_Set()
+                        if check_Highlighted() == true {
+                            check_In_Prohib_Set()
+                        }
                     }
                     else if check_Cell_Not_In_Note() == true {
-                        if check_In_Potential_Set() == true {
-                            //check_In_Prohib_Set()
-                        }
+                        check_In_Potential_Set()
+//                        if check_In_Potential_Set() == true {
+//                            //check_In_Prohib_Set()
+//                        }
                     }
                 }
                 
@@ -190,11 +192,13 @@ public class Data_Vals_Holder : ObservableObject {
         return retval
     }
     
-    func check_Highlighted(){
+    func check_Highlighted()->Bool{
+        var retVal = false
         if centralState.currentPatternMode == .passive{
             
             if referenced_in_Highlighted_Set == true {
                 if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .red}
+                retVal = true
             }
             else if referenced_in_Highlighted_Set == false {
                 if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
@@ -204,12 +208,13 @@ public class Data_Vals_Holder : ObservableObject {
         else if centralState.currentPatternMode == .moving {
             if referenced_in_Highlighted_Set == true {
                 if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .white}
+                retVal = true
             }
             else if referenced_in_Highlighted_Set == false {
                 if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
             }
         }
-        
+        return retVal
     }
     
     func check_In_Passive_Cursor_Set()->Bool{
@@ -245,14 +250,20 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-    func check_In_Potential_Set() -> Bool {
-        var retVal = false
-        if referenced_in_Potential_Set == true{
-            retVal = true
+    func check_In_Potential_Set() {
+        if referenced_in_Potential_Set == true {
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
         }
-        return retVal
     }
+    
+//    func check_In_Potential_Set() -> Bool {
+//        var retVal = false
+//        if referenced_in_Potential_Set == true{
+//            retVal = true
+//            if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
+//        }
+//        return retVal
+//    }
  
     @Published public var statusColor : Color
 

@@ -147,7 +147,6 @@ class Move_Helper {
         }
         didSet {
             for cell in prohib_Red_Set {
-                print("activate_Prohibited")
                 cell.handleVisibleStateChange(type : .activate_Prohibited)
             }
         }
