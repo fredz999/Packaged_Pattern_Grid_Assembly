@@ -135,8 +135,6 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        
-        
         if patternModeParam == .moving {
         if let lclNoteCollection = note_Collection_Ref {
             if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote{
@@ -155,7 +153,14 @@ public class Central_State : ObservableObject {
                 
                 if let lclMoveHelper = move_Helper {
                     //find loewst 44 index
-                    print("move helper here")
+                    if let lclNoteCollectionRef = note_Collection_Ref {
+                        if let lclCurrNote = lclNoteCollectionRef.currentHighlightedNote{
+                            print("lowest_Index: ",lclCurrNote.lowest_Index,", Highest: ",lclCurrNote.highest_Index)
+                        }
+                        
+                    }
+                        //note_Collection_Ref?.currentHighlightedNote
+                    
                     
                     
                     //lclMoveHelper.captured_Lowest_44_Index
@@ -308,18 +313,18 @@ public class Central_State : ObservableObject {
     centralState_Data_Evaluation()
     }
     
-    public func changeNoteLength(isIncrement:Bool) {
-        if let noteCollection = note_Collection_Ref {
-            if let lclCurrNote = noteCollection.currentHighlightedNote {
-                if isIncrement == true {
-                    lclCurrNote.rightSide_Expansion()
-                }
-                else if isIncrement == false {
-                    lclCurrNote.leftSide_Expansion()
-                }
-            }
-        }
-    }
+//    public func changeNoteLength(isIncrement:Bool) {
+//        if let noteCollection = note_Collection_Ref {
+//            if let lclCurrNote = noteCollection.currentHighlightedNote {
+//                if isIncrement == true {
+//                    lclCurrNote.rightSide_Expansion()
+//                }
+//                else if isIncrement == false {
+//                    lclCurrNote.leftSide_Expansion()
+//                }
+//            }
+//        }
+//    }
 
     public static let Static_Central_State = Central_State()
 

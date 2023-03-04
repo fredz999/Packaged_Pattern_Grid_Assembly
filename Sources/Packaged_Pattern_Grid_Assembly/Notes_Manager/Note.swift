@@ -17,6 +17,13 @@ public class Note : ObservableObject, Identifiable, Equatable {
     public var id : UUID
     var parentRef : Note_Collection
     var dataCellArray : [Underlying_Data_Cell] = []
+    
+    var lowest_Index : Int
+    var highest_Index : Int
+    
+  
+    
+    
     var dimensions = ComponentDimensions.StaticDimensions
     var central_State = Central_State.Static_Central_State
     var note_Y_Number : Int
@@ -35,8 +42,161 @@ public class Note : ObservableObject, Identifiable, Equatable {
             }
         }
     }
+
+    public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
+        self.lowest_Index = cellArray[0].dataCell_X_Number
+        self.highest_Index = cellArray[cellArray.count-1].dataCell_X_Number
+        self.note_Y_Number = yParam
+        self.parentRef = parentParam
+        self.id = id
+        self.dataCellArray = cellArray
+    }
     
+    public func yieldNoteData()->(Int,Int,Int){
+        let lastElement = dataCellArray.count-1
+        let startCellNum = dataCellArray[0].dataCell_X_Number
+        let length = dataCellArray.count
+        let endCellNum = dataCellArray[lastElement].dataCell_X_Number
+        return (startCellNum,length,endCellNum)
+    }
     
+    // the visible cells also need to update in data vals holder
+    func resetCells(){
+        for cell in dataCellArray {
+            cell.note_Im_In = nil
+            cell.change_Highlight(highlightStatusParam: false)
+            cell.reset_To_Original()
+        }
+    }
+
+    func cell_Is_Beside_Border_Or_Note(connectionType:CellConnectionType)->Bool{
+        var retval = false
+        if connectionType == .below {
+            if self.note_Y_Number+1 < central_State.higher_Bracket_Number {
+                for cell in dataCellArray {
+                    let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
+                    if cellBelow.note_Im_In != nil {
+                        retval = true
+                    }
+                }
+            }
+            else if self.note_Y_Number+1 == central_State.higher_Bracket_Number {
+                retval = true
+            }
+        }
+        //========================================================================================
+        //========================================================================================
+        else if connectionType == .above {
+            if self.note_Y_Number > 0 {
+                for cell in dataCellArray {
+                    let cellAbove = central_State.data_Grid.dataLineArray[self.note_Y_Number-1].dataCellArray[cell.dataCell_X_Number]
+                    if cellAbove.note_Im_In != nil {
+                        retval = true
+                    }
+                }
+            }
+            else if self.note_Y_Number == 0 {
+                retval = true
+            }
+        }
+        
+        
+        else if connectionType == .toLeft {
+            if dataCellArray[0].dataCell_X_Number > 0 {
+                let cell_To_Left = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[dataCellArray[0].dataCell_X_Number - 1]
+                if cell_To_Left.note_Im_In != nil{
+                    retval = true
+                }
+            }
+            else if dataCellArray[0].dataCell_X_Number == 0 {
+                if dataCellArray[0].note_Im_In != nil{
+                    retval = true
+                }
+            }
+        }
+        
+        
+        else if connectionType == .toRight {
+            if dataCellArray[dataCellArray.count-1].dataCell_X_Number < central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
+                let cell_To_Right = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[dataCellArray[dataCellArray.count-1].dataCell_X_Number + 1]
+                if cell_To_Right.note_Im_In != nil{
+                    retval = true
+                }
+            }
+            else if dataCellArray[dataCellArray.count-1].dataCell_X_Number == central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
+                retval = true
+            }
+        }
+        return retval
+    }
+    
+}
+
+enum CellConnectionType {
+    case below
+    case above
+    case toRight
+    case toLeft
+}
+
+
+
+
+
+//func rightSide_Expansion(){
+//
+//    if let lastCell = dataCellArray.last {
+//
+//        let lastIndex = lastCell.dataCell_X_Number
+//
+//        if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
+//            if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
+//                dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
+//                redrawCellArray()
+//                check_For_Highlight()
+//            }
+//        }
+//
+//        if let c_Layer = central_State.cursor_Layer_Ref {
+//            if c_Layer.currDataX == lastIndex {
+//                if dataCellArray.count > 1 {
+//                    if let lclHslider = central_State.h_Slider_Ref {
+//                        lclHslider.artificially_H_Increment()
+//                    }
+//                }
+//            }
+//        }
+//
+//    }
+//}
+
+//func leftSide_Expansion(){
+//    if let firstCell = dataCellArray.first,let lastCell = dataCellArray.last {
+//
+//        let firstIndex = firstCell.dataCell_X_Number
+//        let lastIndex = lastCell.dataCell_X_Number
+//
+//        if let c_Layer = central_State.cursor_Layer_Ref {
+//            if c_Layer.currDataX == lastIndex {
+//                if dataCellArray.count > 1 {
+//                    if let lclHslider = central_State.h_Slider_Ref {
+//                        lclHslider.artificially_H_Decrement()
+//                    }
+//                }
+//            }
+//        }
+//
+//        if lastIndex > firstIndex {
+//            lastCell.note_Im_In = nil
+//            dataCellArray.removeLast()
+//            redrawCellArray()
+//            check_For_Highlight()
+//        }
+//    }
+//}
+
+
+
 //    var note_Highlighted : Bool = false {
 //        didSet {
 //            if note_Highlighted == true {
@@ -128,87 +288,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //
 //        }
 //    }
-    
-    
-    
-    
-    public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
-        self.note_Y_Number = yParam
-        self.parentRef = parentParam
-        self.id = id
-        self.dataCellArray = cellArray
-    }
-    
-    public func yieldNoteData()->(Int,Int,Int){
-        let lastElement = dataCellArray.count-1
-        let startCellNum = dataCellArray[0].dataCell_X_Number
-        let length = dataCellArray.count
-        let endCellNum = dataCellArray[lastElement].dataCell_X_Number
-        return (startCellNum,length,endCellNum)
-    }
-    
-    // the visible cells also need to update in data vals holder
-    func resetCells(){
-        for cell in dataCellArray {
-            cell.note_Im_In = nil
-            cell.change_Highlight(highlightStatusParam: false)
-            cell.reset_To_Original()
-        }
-    }
-    
-    func rightSide_Expansion(){
 
-//        if let lastCell = dataCellArray.last {
-//
-//            let lastIndex = lastCell.dataCell_X_Number
-//
-//            if lastIndex < (dimensions.dataGrid_X_Unit_Count-1){
-//                if central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[lastIndex+1].note_Im_In == nil {
-//                    dataCellArray.append(parentRef.data.dataLineArray[lastCell.dataCell_Y_Number].dataCellArray[lastIndex+1])
-//                    redrawCellArray()
-//                    check_For_Highlight()
-//                }
-//            }
-//
-//            if let c_Layer = central_State.cursor_Layer_Ref {
-//                if c_Layer.currDataX == lastIndex {
-//                    if dataCellArray.count > 1 {
-//                        if let lclHslider = central_State.h_Slider_Ref {
-//                            lclHslider.artificially_H_Increment()
-//                        }
-//                    }
-//                }
-//            }
-//
-//        }
-    }
-    
-    func leftSide_Expansion(){
-//        if let firstCell = dataCellArray.first,let lastCell = dataCellArray.last {
-//
-//            let firstIndex = firstCell.dataCell_X_Number
-//            let lastIndex = lastCell.dataCell_X_Number
-//
-//            if let c_Layer = central_State.cursor_Layer_Ref {
-//                if c_Layer.currDataX == lastIndex {
-//                    if dataCellArray.count > 1 {
-//                        if let lclHslider = central_State.h_Slider_Ref {
-//                            lclHslider.artificially_H_Decrement()
-//                        }
-//                    }
-//                }
-//            }
-//
-//            if lastIndex > firstIndex {
-//                lastCell.note_Im_In = nil
-//                dataCellArray.removeLast()
-//                redrawCellArray()
-//                check_For_Highlight()
-//            }
-//        }
-    }
-    
-    
 //    func moveRightOne(){
 //        // this is now going to be a set op
 //        //1 number of cells in a jump, 4:4 = 3, 6:8 = 2
@@ -318,73 +398,5 @@ public class Note : ObservableObject, Identifiable, Equatable {
 //            parentRef.currentHighlightedNote = nil
 //        }
 //    }
-    
-    func cell_Is_Beside_Border_Or_Note(connectionType:CellConnectionType)->Bool{
-        var retval = false
-        if connectionType == .below {
-            if self.note_Y_Number+1 < central_State.higher_Bracket_Number {
-                for cell in dataCellArray {
-                    let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
-                    if cellBelow.note_Im_In != nil {
-                        retval = true
-                    }
-                }
-            }
-            else if self.note_Y_Number+1 == central_State.higher_Bracket_Number {
-                retval = true
-            }
-        }
-        //========================================================================================
-        //========================================================================================
-        else if connectionType == .above {
-            if self.note_Y_Number > 0 {
-                for cell in dataCellArray {
-                    let cellAbove = central_State.data_Grid.dataLineArray[self.note_Y_Number-1].dataCellArray[cell.dataCell_X_Number]
-                    if cellAbove.note_Im_In != nil {
-                        retval = true
-                    }
-                }
-            }
-            else if self.note_Y_Number == 0 {
-                retval = true
-            }
-        }
-        
-        
-        else if connectionType == .toLeft {
-            if dataCellArray[0].dataCell_X_Number > 0 {
-                let cell_To_Left = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[dataCellArray[0].dataCell_X_Number - 1]
-                if cell_To_Left.note_Im_In != nil{
-                    retval = true
-                }
-            }
-            else if dataCellArray[0].dataCell_X_Number == 0 {
-                if dataCellArray[0].note_Im_In != nil{
-                    retval = true
-                }
-            }
-        }
-        
-        
-        else if connectionType == .toRight {
-            if dataCellArray[dataCellArray.count-1].dataCell_X_Number < central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
-                let cell_To_Right = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[dataCellArray[dataCellArray.count-1].dataCell_X_Number + 1]
-                if cell_To_Right.note_Im_In != nil{
-                    retval = true
-                }
-            }
-            else if dataCellArray[dataCellArray.count-1].dataCell_X_Number == central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
-                retval = true
-            }
-        }
-        return retval
-    }
-    
-}
 
-enum CellConnectionType {
-    case below
-    case above
-    case toRight
-    case toLeft
-}
+
