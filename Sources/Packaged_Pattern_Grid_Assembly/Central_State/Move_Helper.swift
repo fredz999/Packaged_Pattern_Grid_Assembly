@@ -140,13 +140,13 @@ class Move_Helper {
     
     var prohib_Red_Set = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = potential_Moved_Set.symmetricDifference(newValue)
+            let delta = prohib_Red_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Prohibited)
             }
         }
         didSet {
-            for cell in potential_Moved_Set {
+            for cell in prohib_Red_Set {
                 print("activate_Prohibited")
                 cell.handleVisibleStateChange(type : .activate_Prohibited)
             }
