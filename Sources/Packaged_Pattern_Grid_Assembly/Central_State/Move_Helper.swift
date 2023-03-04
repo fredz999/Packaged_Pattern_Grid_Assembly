@@ -39,7 +39,13 @@ class Move_Helper {
     func movement_With_Note_Selected(){
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index, let lclNote_Y_Val = note_Y_Val
         ,let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y{
-            print("lclSnapshot_X: ",lclSnapshot_X,", currX: ",centralStateRef.curr_Data_Pos_X)
+            
+            
+            let delta_X_Grid_Units = centralStateRef.curr_Data_Pos_X - lclSnapshot_X
+            let delta_Y_Grid_Units = centralStateRef.curr_Data_Pos_Y - lclSnapshot_Y
+            print("delta_X_Grid_Units: ",delta_X_Grid_Units,", delta_Y_Grid_Units: ",delta_Y_Grid_Units)
+            
+            
         }
     }
     
