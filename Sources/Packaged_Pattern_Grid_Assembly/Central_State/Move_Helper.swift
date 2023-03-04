@@ -15,13 +15,11 @@ class Move_Helper {
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
     let dataGrid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     
-//    var captured_Initial_Data_X : Int?
-//    var captured_Initial_Data_Y : Int?
-//    var captured_Original_Note_Cells : [Underlying_Data_Cell]?
-    
-    var captured_Lowest_44_Index : Int?
-    var captured_Final_44_Index : Int?
-    
+    var note_Low_Index : Int?
+    var note_High_Index : Int?
+    var note_Y_Val : Int?
+    var snapshot_Cursor_X : Int?
+    var snapshot_Cursor_Y : Int?
     
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -37,13 +35,16 @@ class Move_Helper {
         }
     }
     
-    
-    func movement_Handle(slider_X_Pos:Int,slider_Y_Pos:Int){
-        //get these vals from the sliders when the mode is move
+    func movement_With_Note_Selected(){
+        if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index, let lclNote_Y_Val = note_Y_Val{
+                    
+        }
     }
     
     func process_MoveNote_Cursor_Position() {
-
+        
+        
+            
         if dimensions.patternTimingConfiguration == .fourFour {
         move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
         }
@@ -53,10 +54,6 @@ class Move_Helper {
 
 
     }
-    
-    
-    
-    
     
     
     var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){

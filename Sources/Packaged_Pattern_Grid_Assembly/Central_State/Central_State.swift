@@ -152,25 +152,21 @@ public class Central_State : ObservableObject {
                 if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
                 
                 if let lclMoveHelper = move_Helper {
-                    //find loewst 44 index
+
                     if let lclNoteCollectionRef = note_Collection_Ref {
-                        if let lclCurrNote = lclNoteCollectionRef.currentHighlightedNote{
-                            print("lowest_Index: ",lclCurrNote.lowest_Index,", Highest: ",lclCurrNote.highest_Index)
-                        }
+                       // if let lclCurrNote = lclNoteCollectionRef.currentHighlightedNote {
+                            //print("lowest_Index: ",lclCurrNote.lowest_Index,", Highest: ",lclCurrNote.highest_Index)
+                            lclMoveHelper.note_Low_Index = lclCurrentHighlightedNote.lowest_Index
+                            lclMoveHelper.note_High_Index = lclCurrentHighlightedNote.highest_Index
+                            lclMoveHelper.note_Y_Val = lclCurrentHighlightedNote.note_Y_Number
+                            
+                            print("curr_Data_Pos_X: ",curr_Data_Pos_X,",dataY: ",curr_Data_Pos_Y)
+                        //}
                         
                     }
-                        //note_Collection_Ref?.currentHighlightedNote
-                    
-                    
-                    
-                    //lclMoveHelper.captured_Lowest_44_Index
-                    //lclMoveHelper.captured_Final_44_Index
                     
                     lclMoveHelper.process_MoveNote_Cursor_Position()
                 }
-//                else if move_Helper == nil {
-//                    print("move_Helper == nil")
-//                }
                 lclNoteCollection.react_To_Mode_Change()
             }
         }
