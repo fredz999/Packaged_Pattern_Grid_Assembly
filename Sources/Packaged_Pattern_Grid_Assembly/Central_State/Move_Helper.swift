@@ -55,11 +55,13 @@ class Move_Helper {
             }
             else if proposedNewMinIndex < 0{
                 potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-                .filter{$0.dataCell_X_Number >= 0 && $0.dataCell_X_Number <= proposedNewMaxIndex}
+                .filter{$0.dataCell_X_Number >= 0 && $0.dataCell_X_Number <= (lclNote_High_Index - lclNote_Low_Index)}
             }
             else if proposedNewMaxIndex > (dimensions.dataGrid_X_Unit_Count-1){
                 potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-                .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= 0}
+                .filter{$0.dataCell_X_Number >=  (dimensions.dataGrid_X_Unit_Count-1)-(lclNote_High_Index - lclNote_Low_Index)
+                    && $0.dataCell_X_Number <= (dimensions.dataGrid_X_Unit_Count-1)
+                }
             }
             
             
