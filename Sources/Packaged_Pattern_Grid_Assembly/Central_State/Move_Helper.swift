@@ -47,6 +47,9 @@ class Move_Helper {
             
             
         }
+        else{
+            print("else hit")
+        }
     }
     
     func process_MoveNote_Cursor_Position() {
