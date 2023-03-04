@@ -15,9 +15,13 @@ class Move_Helper {
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
     let dataGrid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     
-    var captured_Initial_Data_X : Int?
-    var captured_Initial_Data_Y : Int?
-    var captured_Original_Note_Cells : [Underlying_Data_Cell]?
+//    var captured_Initial_Data_X : Int?
+//    var captured_Initial_Data_Y : Int?
+//    var captured_Original_Note_Cells : [Underlying_Data_Cell]?
+    
+    var captured_Lowest_44_Index : Int?
+    var captured_Final_44_Index : Int?
+    
     
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -39,36 +43,21 @@ class Move_Helper {
     }
     
     func process_MoveNote_Cursor_Position() {
-        //if captured_Initial_Data_X == nil && captured_Initial_Data_Y == nil {
-            if dimensions.patternTimingConfiguration == .fourFour {
-            move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
-            }
-            else if dimensions.patternTimingConfiguration == .sixEight {
-            move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
-            }
 
-        if let lcl_CapturedX = captured_Initial_Data_X
-        ,let lcl_Captured_Cells = captured_Original_Note_Cells {
-            
-            let minCell = Central_State.Static_Central_State.currentData
-            let deltaX = minCell.dataCell_X_Number - lcl_CapturedX
-            if lcl_Captured_Cells.count > 0 {
-                
-                let newStartX = lcl_Captured_Cells[0].dataCell_X_Number + deltaX
-                
-                if newStartX >= 0,(newStartX+lcl_Captured_Cells.count) <= 96 {
-                    potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-                    .filter{$0.dataCell_X_Number >= newStartX && $0.dataCell_X_Number <= (newStartX+lcl_Captured_Cells.count)}
-                }
-                else if newStartX < 0 {
-                    print("newStartX < 0")
-                }
-                
-                
-                
-            }
+        if dimensions.patternTimingConfiguration == .fourFour {
+        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
         }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
+        }
+
+
     }
+    
+    
+    
+    
+    
     
     var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -126,7 +115,24 @@ class Move_Helper {
     
 }
 
-
+//        if let lcl_CapturedX = captured_Initial_Data_X
+//        ,let lcl_Captured_Cells = captured_Original_Note_Cells {
+//
+//            let minCell = Central_State.Static_Central_State.currentData
+//            let deltaX = minCell.dataCell_X_Number - lcl_CapturedX
+//            if lcl_Captured_Cells.count > 0 {
+//
+//                let newStartX = lcl_Captured_Cells[0].dataCell_X_Number + deltaX
+//
+//                if newStartX >= 0,(newStartX+lcl_Captured_Cells.count) <= 96 {
+//                    potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+//                    .filter{$0.dataCell_X_Number >= newStartX && $0.dataCell_X_Number <= (newStartX+lcl_Captured_Cells.count)}
+//                }
+//                else if newStartX < 0 {
+//                    print("newStartX < 0")
+//                }
+//            }
+//        }
 
 
 

@@ -154,13 +154,12 @@ public class Central_State : ObservableObject {
                 if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
                 
                 if let lclMoveHelper = move_Helper {
-                    lclMoveHelper.captured_Initial_Data_X = curr_Data_Pos_X
-                    lclMoveHelper.captured_Initial_Data_Y = curr_Data_Pos_Y
-                    lclMoveHelper.captured_Original_Note_Cells = lclCurrentHighlightedNote.dataCellArray //lclCurrentHighlightedNote
+                    //find loewst 44 index
+                    print("move helper here")
                     
-                    if let lclMoveHelperX = lclMoveHelper.captured_Initial_Data_X,let lclMoveHelperY = lclMoveHelper.captured_Initial_Data_Y{
-                        print("mh set,  X: ",lclMoveHelperX,", Y: ",lclMoveHelperY)
-                    }
+                    
+                    //lclMoveHelper.captured_Lowest_44_Index
+                    //lclMoveHelper.captured_Final_44_Index
                     
                     lclMoveHelper.process_MoveNote_Cursor_Position()
                 }
