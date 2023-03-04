@@ -80,7 +80,7 @@ class Move_Helper {
             //prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
             let filtered_With_Note = proposedSet.filter({$0.note_Im_In != nil})
             print("filtered_With_Note count: ",filtered_With_Note.count)
-            potential_Moved_Set = filtered_With_Note
+            prohib_Red_Set = filtered_With_Note
                 
 //            if noteCells_In_Proposed_Set.count == 0{
 //                potential_Moved_Set = proposedSet
