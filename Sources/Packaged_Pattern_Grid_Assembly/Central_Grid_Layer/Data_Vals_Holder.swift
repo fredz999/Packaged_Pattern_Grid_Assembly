@@ -130,10 +130,16 @@ public class Data_Vals_Holder : ObservableObject {
         
         else if status_Update_TypeParam == .prohibitedSet {
             if value == true {
-                if referenced_in_Prohibited_Set == false{referenced_in_Prohibited_Set=true}
+                if referenced_in_Prohibited_Set == false{
+                    referenced_in_Prohibited_Set=true
+                    print("referenced_in_Prohibited_Set=true")
+                }
             }
             else if value == false {
-                if referenced_in_Prohibited_Set == true{referenced_in_Prohibited_Set=false}
+                if referenced_in_Prohibited_Set == true{
+                    referenced_in_Prohibited_Set=false
+                    print("referenced_in_Prohibited_Set=false")
+                }
             }
         }
         
@@ -236,12 +242,13 @@ public class Data_Vals_Holder : ObservableObject {
     }
 
     func check_In_Prohib_Set() {
+        print("check_In_Prohib_Set()")
         if referenced_in_Prohibited_Set == true {
-            print("check_In_Prohib_Set() or something?")
+
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
         else if referenced_in_Prohibited_Set == false {
-            print("referenced_in_Prohibited_Set == false: ",referenced_dataCell_X_Number.description)
+
         }
     }
     
