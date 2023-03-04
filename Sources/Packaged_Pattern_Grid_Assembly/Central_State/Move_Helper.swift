@@ -53,39 +53,22 @@ class Move_Helper {
             //1: check for grid boundaries
             
             if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit{
-//                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-//                .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
                 proposedSet = Central_State.Static_Central_State.currLineSet
                 .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
             }
             else if proposedNewMinIndex < currLeftLimit{
-//                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-//                .filter{$0.dataCell_X_Number >= currLeftLimit && $0.dataCell_X_Number <= (lclNote_High_Index - lclNote_Low_Index)}
                 proposedSet = Central_State.Static_Central_State.currLineSet
                 .filter{$0.dataCell_X_Number >= currLeftLimit && $0.dataCell_X_Number <= (lclNote_High_Index - lclNote_Low_Index)}
             }
             else if proposedNewMaxIndex > currRightLimit{
-//                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
-//                .filter{$0.dataCell_X_Number >=  currRightLimit-(lclNote_High_Index - lclNote_Low_Index)
-//                    && $0.dataCell_X_Number <= currRightLimit
-//                }
                 proposedSet = Central_State.Static_Central_State.currLineSet
                 .filter{$0.dataCell_X_Number >=  currRightLimit-(lclNote_High_Index - lclNote_Low_Index)
                     && $0.dataCell_X_Number <= currRightLimit
                 }
             }
-            
-            // check for note boundaries
+
             potential_Moved_Set = proposedSet
-            //prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
-            let filtered_With_Note = proposedSet.filter({$0.note_Im_In != nil})
-            print("filtered_With_Note count: ",filtered_With_Note.count)
-            prohib_Red_Set = filtered_With_Note
-                
-//            if noteCells_In_Proposed_Set.count == 0{
-//                potential_Moved_Set = proposedSet
-//            }
-            
+            prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
             
         }
 
