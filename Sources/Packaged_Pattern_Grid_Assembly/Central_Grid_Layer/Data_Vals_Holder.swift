@@ -160,7 +160,6 @@ public class Data_Vals_Holder : ObservableObject {
                     }
                     else if check_Cell_Not_In_Note() == true {
                         if check_In_Potential_Set() == true {
-                            print("check_In_Prohib_Set() or something?")
                             check_In_Prohib_Set()
                         }
                     }
@@ -237,6 +236,7 @@ public class Data_Vals_Holder : ObservableObject {
 
     func check_In_Prohib_Set() {
         if referenced_in_Prohibited_Set == true {
+            print("check_In_Prohib_Set() or something?")
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
     }
