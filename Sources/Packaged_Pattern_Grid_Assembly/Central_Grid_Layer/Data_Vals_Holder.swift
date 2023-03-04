@@ -236,10 +236,12 @@ public class Data_Vals_Holder : ObservableObject {
     }
 
     func check_In_Prohib_Set() {
-        print("prohib check")
         if referenced_in_Prohibited_Set == true {
             print("check_In_Prohib_Set() or something?")
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
+        }
+        else if referenced_in_Prohibited_Set == false {
+            print("referenced_in_Prohibited_Set == false: ",referenced_dataCell_X_Number.description)
         }
     }
     
