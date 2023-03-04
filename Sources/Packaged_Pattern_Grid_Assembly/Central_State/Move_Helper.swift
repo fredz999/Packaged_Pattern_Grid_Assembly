@@ -77,8 +77,9 @@ class Move_Helper {
             
             // check for note boundaries
             potential_Moved_Set = proposedSet
-            prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
-            print("prohib_Red_Set count: ",prohib_Red_Set.count)
+            //prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
+            let filtered_With_Note = proposedSet.filter({$0.note_Im_In != nil})
+            print("filtered_With_Note count: ",filtered_With_Note.count)
             
                 
 //            if noteCells_In_Proposed_Set.count == 0{
