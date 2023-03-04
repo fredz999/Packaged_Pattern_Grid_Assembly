@@ -15,31 +15,25 @@ class Move_Helper {
     let dataGrid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let centralStateRef = Central_State.Static_Central_State
     
-    var potential_Moved_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = potential_Moved_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-            }
-        }
-        didSet {
-            for cell in potential_Moved_Set {
-                cell.handleVisibleStateChange(type : .activate_Potential_Set)
-            }
-        }
-    }
+    
     
     var note_Low_Index : Int?
     var note_High_Index : Int?
     var note_Y_Val : Int?
     var snapshot_Cursor_X : Int?
     var snapshot_Cursor_Y : Int?
+    
     var currLeftLimit : Int
     var currRightLimit : Int
+    var lineBelowOpen : Bool
+    var lineAboveOpen : Bool
+    
     
     init(){
         currLeftLimit = 0
         currRightLimit = dimensions.dataGrid_X_Unit_Count-1
+        lineBelowOpen = true
+        lineAboveOpen = true
     }
     
     func movement_With_Note_Selected(){
@@ -55,34 +49,46 @@ class Move_Helper {
             let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
             let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
             
+            
+            
+            //1: check for grid boundaries
+            
             if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit{
-                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+//                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+//                .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
+                proposedSet = Central_State.Static_Central_State.currLineSet
                 .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
             }
             else if proposedNewMinIndex < currLeftLimit{
-                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+//                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+//                .filter{$0.dataCell_X_Number >= currLeftLimit && $0.dataCell_X_Number <= (lclNote_High_Index - lclNote_Low_Index)}
+                proposedSet = Central_State.Static_Central_State.currLineSet
                 .filter{$0.dataCell_X_Number >= currLeftLimit && $0.dataCell_X_Number <= (lclNote_High_Index - lclNote_Low_Index)}
             }
             else if proposedNewMaxIndex > currRightLimit{
-                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+//                potential_Moved_Set = Central_State.Static_Central_State.currLineSet
+//                .filter{$0.dataCell_X_Number >=  currRightLimit-(lclNote_High_Index - lclNote_Low_Index)
+//                    && $0.dataCell_X_Number <= currRightLimit
+//                }
+                proposedSet = Central_State.Static_Central_State.currLineSet
                 .filter{$0.dataCell_X_Number >=  currRightLimit-(lclNote_High_Index - lclNote_Low_Index)
                     && $0.dataCell_X_Number <= currRightLimit
                 }
             }
             
+            // check for note boundaries
+            noteCells_In_Proposed_Set = proposedSet.filter({$0.note_Im_In != nil})
+                
+            if noteCells_In_Proposed_Set.count == 0{
+                potential_Moved_Set = proposedSet
+            }
+            
+            
         }
 
     }
     
-    func process_MoveNote_Cursor_Position() {
-        if dimensions.patternTimingConfiguration == .fourFour {
-        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
-        }
-    }
-
+    
     var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
@@ -113,6 +119,35 @@ class Move_Helper {
         }
     }
     
+    var potential_Moved_Set = Set<Underlying_Data_Cell>(){
+            willSet {
+                let delta = potential_Moved_Set.symmetricDifference(newValue)
+                for cell in delta {
+                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                }
+            }
+            didSet {
+                for cell in potential_Moved_Set {
+                    cell.handleVisibleStateChange(type : .activate_Potential_Set)
+                }
+            }
+        }
+    
+    var proposedSet = Set<Underlying_Data_Cell>()
+    
+    var noteCells_In_Proposed_Set = Set<Underlying_Data_Cell>()
+    
+    
+    
+    func process_MoveNote_Cursor_Position() {
+        if dimensions.patternTimingConfiguration == .fourFour {
+        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
+        }
+    }
+    
     func check_Neighbours(proposedMoveType:E_Note_Movement_Type){
         if let lclCurrNote = note_Collection_Ref.currentHighlightedNote {
             if proposedMoveType == .rightWard{
@@ -126,12 +161,21 @@ class Move_Helper {
         }
     }
     
-    func nil_Move_Note_Cursor_Set(){
+    func nil_Cell_Sets(){
         if move_Note_Cursor_Set.count > 0 {
             for cell in move_Note_Cursor_Set {
                 cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
             }
             move_Note_Cursor_Set.removeAll()
+        }
+        if potential_Moved_Set.count > 0 {
+            move_Note_Cursor_Set.removeAll()
+        }
+        if proposedSet.count > 0 {
+            proposedSet.removeAll()
+        }
+        if noteCells_In_Proposed_Set.count > 0 {
+            noteCells_In_Proposed_Set.removeAll()
         }
     }
     

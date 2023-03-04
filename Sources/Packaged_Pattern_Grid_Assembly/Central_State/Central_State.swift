@@ -171,13 +171,14 @@ public class Central_State : ObservableObject {
             delete_Helper.nil_Delete_Square_Set()
             
             if let lclMoveHelper = move_Helper {
-            lclMoveHelper.nil_Move_Note_Cursor_Set()
+            lclMoveHelper.nil_Cell_Sets()
             lclMoveHelper.note_Low_Index = nil
             lclMoveHelper.note_High_Index = nil
             lclMoveHelper.note_Y_Val = nil
             lclMoveHelper.snapshot_Cursor_X = nil
             lclMoveHelper.snapshot_Cursor_Y = nil
             }
+            
 
             if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
             
@@ -200,7 +201,7 @@ public class Central_State : ObservableObject {
             
             //if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             if let lclMoveHelper = move_Helper {
-            lclMoveHelper.nil_Move_Note_Cursor_Set()
+            lclMoveHelper.nil_Cell_Sets()
             lclMoveHelper.note_Low_Index = nil
             lclMoveHelper.note_High_Index = nil
             lclMoveHelper.note_Y_Val = nil
@@ -240,7 +241,7 @@ public class Central_State : ObservableObject {
             
             //if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             if let lclMoveHelper = move_Helper {
-            lclMoveHelper.nil_Move_Note_Cursor_Set()
+            lclMoveHelper.nil_Cell_Sets()
             lclMoveHelper.note_Low_Index = nil
             lclMoveHelper.note_High_Index = nil
             lclMoveHelper.note_Y_Val = nil
