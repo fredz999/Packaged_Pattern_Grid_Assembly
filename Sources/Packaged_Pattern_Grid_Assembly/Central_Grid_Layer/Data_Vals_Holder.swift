@@ -154,33 +154,54 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func process_Visual_Status(){
-        if check_In_Delete_Square_Set() == false {
+       // if check_In_Delete_Square_Set() == false {
             
-            if check_In_MoveCursor_Set() == false {
+            //if check_In_MoveCursor_Set() == false {
                 
                 if check_In_Passive_Cursor_Set() == false {
+                    
                     if check_Cell_Not_In_Note() == false {
-//                        if check_In_Prohib_Set() == false{
-//                            check_Highlighted()
-//                        }
                         check_Highlighted()
                         check_In_Prohib_Set()
-                        
-//                        if check_Highlighted() == false {
-//                            check_In_Prohib_Set()
-//                        }
                     }
                     else if check_Cell_Not_In_Note() == true {
                         check_In_Potential_Set()
-//                        if check_In_Potential_Set() == true {
-//                            check_In_Prohib_Set()
-//                        }
                     }
                 }
                 
-            }
-        }
+            //}
+        //}
     }
+    
+//    func process_Visual_Status(){
+//        if check_In_Delete_Square_Set() == false {
+//
+//            if check_In_MoveCursor_Set() == false {
+//
+//                if check_In_Passive_Cursor_Set() == false {
+//
+//                    if check_Cell_Not_In_Note() == false {
+////                        if check_In_Prohib_Set() == false{
+////                            check_Highlighted()
+////                        }
+//                        check_Highlighted()
+//                        check_In_Prohib_Set()
+//
+////                        if check_Highlighted() == false {
+////                            check_In_Prohib_Set()
+////                        }
+//                    }
+//                    else if check_Cell_Not_In_Note() == true {
+//                        check_In_Potential_Set()
+////                        if check_In_Potential_Set() == true {
+////                            check_In_Prohib_Set()
+////                        }
+//                    }
+//                }
+//
+//            }
+//        }
+//    }
     
     func check_Cell_Not_In_Note()->Bool{
         var retval = true
