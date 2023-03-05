@@ -15,8 +15,6 @@ class Move_Helper {
     let dataGrid = Underlying_Data_Grid.Static_Underlying_Data_Grid
     let centralStateRef = Central_State.Static_Central_State
     
-    
-    
     var note_Low_Index : Int?
     var note_High_Index : Int?
     var note_Y_Val : Int?
@@ -27,7 +25,6 @@ class Move_Helper {
     var currRightLimit : Int
     var lineBelowOpen : Bool
     var lineAboveOpen : Bool
-    
     
     init(){
         currLeftLimit = 0
@@ -40,16 +37,12 @@ class Move_Helper {
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index, let lclNote_Y_Val = note_Y_Val
         ,let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y{
             
-            
             let delta_X_Grid_Units = centralStateRef.curr_Data_Pos_X - lclSnapshot_X
             let delta_Y_Grid_Units = centralStateRef.curr_Data_Pos_Y - lclSnapshot_Y
 
             let proposedNewMinIndex = lclNote_Low_Index + delta_X_Grid_Units
             let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
             let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
-            
-            
-            
             
             if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
                 proposedSet = Central_State.Static_Central_State.currLineSet
@@ -65,14 +58,11 @@ class Move_Helper {
                     && $0.dataCell_X_Number <= currRightLimit
                 }
             }
-
             potential_Moved_Set = proposedSet
             prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
-            print("prohib_Red_Set count: ",prohib_Red_Set.count.description)
         }
 
     }
-    
     
     var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {

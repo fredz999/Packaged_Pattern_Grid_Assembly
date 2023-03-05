@@ -340,12 +340,12 @@ public class Central_State : ObservableObject {
 
 }
 
-public enum E_PatternModeType{
-    case writing
-    case deleting
-    case moving
-    case resizing
-    case passive
+public enum E_PatternModeType : String{
+    case writing = "writing"
+    case deleting = "deleting"
+    case moving = "moving"
+    case resizing = "resizing"
+    case passive = "passive"
 }
 
 public enum E_Note_Movement_Type {
