@@ -154,12 +154,9 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func process_Visual_Status(){
-       // if check_In_Delete_Square_Set() == false {
-            
-            //if check_In_MoveCursor_Set() == false {
-                
+       if check_In_Delete_Square_Set() == false {
+            if check_In_MoveCursor_Set() == false {
                 if check_In_Passive_Cursor_Set() == false {
-                    
                     if check_Cell_Not_In_Note() == false {
                         check_Highlighted()
                         check_In_Prohib_Set()
@@ -168,9 +165,8 @@ public class Data_Vals_Holder : ObservableObject {
                         check_In_Potential_Set()
                     }
                 }
-                
-            //}
-        //}
+            }
+        }
     }
     
 //    func process_Visual_Status(){
