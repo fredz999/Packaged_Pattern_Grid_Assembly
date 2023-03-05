@@ -160,7 +160,7 @@ public class Data_Vals_Holder : ObservableObject {
                 
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
-                        if check_Highlighted() == false {
+                        if check_Highlighted() == true {
                             check_In_Prohib_Set()
                         }
                     }
