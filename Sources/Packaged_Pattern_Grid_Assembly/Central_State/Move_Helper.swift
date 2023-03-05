@@ -68,7 +68,7 @@ class Move_Helper {
 
             potential_Moved_Set = proposedSet
             prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
-            print("prohib_Red_Set count: ",prohib_Red_Set.description)
+            print("prohib_Red_Set count: ",prohib_Red_Set.count.description)
         }
 
     }
