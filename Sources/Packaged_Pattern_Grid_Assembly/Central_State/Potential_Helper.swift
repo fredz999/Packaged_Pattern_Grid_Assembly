@@ -259,6 +259,12 @@ class Potential_Helper {
             }
             helperFuncs_PotentialNote_Set.removeAll()
         }
+        if potential_Helper_Cursor_Set.count > 0 {
+            for cell in potential_Helper_Cursor_Set {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+            potential_Helper_Cursor_Set.removeAll()
+        }
     }
     
 //    func nil_Potential_Cursor_Set(){

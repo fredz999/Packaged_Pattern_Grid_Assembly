@@ -14,6 +14,9 @@ public class Central_State : ObservableObject {
     @Published var edit_Layer_Visible : Bool = true
     
     @Published public var a_Note_Is_Highlighted : Bool = false
+    // need to have a note is highlighted for the initial grab
+    // but i need to be able to see the button to drop the note someplace
+    
     
     @Published public var pattern_Has_A_Note : Bool = false
     
@@ -70,18 +73,18 @@ public class Central_State : ObservableObject {
         }
     }
 
-    public var delete_Note_Tap_Gesture : some Gesture {
-        TapGesture(count: 1).onEnded({
-            self.deleteANote()
-            if self.currentPatternMode == .writing{
-                if let lclInitial = self.potential_Helper.initial_WriteOnCell{
-                    let variableDelta = (self.currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
-                    if variableDelta > self.potential_Helper.helperFuncs_PotentialNote_Set.count
-                    || variableDelta < self.potential_Helper.helperFuncs_PotentialNote_Set.count{self.potential_Helper.establish_Potential_Cells_Set()}
-                }
-            }
-        })
-    }
+//    public var delete_Note_Tap_Gesture : some Gesture {
+//        TapGesture(count: 1).onEnded({
+//            self.deleteANote()
+//            if self.currentPatternMode == .writing{
+//                if let lclInitial = self.potential_Helper.initial_WriteOnCell{
+//                    let variableDelta = (self.currentData.dataCell_X_Number - lclInitial.dataCell_X_Number)
+//                    if variableDelta > self.potential_Helper.helperFuncs_PotentialNote_Set.count
+//                    || variableDelta < self.potential_Helper.helperFuncs_PotentialNote_Set.count{self.potential_Helper.establish_Potential_Cells_Set()}
+//                }
+//            }
+//        })
+//    }
 
     var timing_Change_Compensation_Index : Int? = nil
     
@@ -137,21 +140,20 @@ public class Central_State : ObservableObject {
     public func setPatternMode(patternModeParam : E_PatternModeType){
         if patternModeParam == .moving {
         if let lclNoteCollection = note_Collection_Ref {
-            if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote{
-                
-                // ok there is now a moveable
-                // so any move from the slideys ought to now move the note
-                
+            if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote {
                 if currentPatternMode != .moving{currentPatternMode = .moving}
+                
                 if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
                 potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
                 potential_Helper.nilPotentialSet()
                 potential_Helper.initial_WriteOnCell = nil
                 }
+                
                 if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
                 if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
                 
                 if let lclMoveHelper = move_Helper {
+                lclMoveHelper.snapShot_Note_Id_Param = lclCurrentHighlightedNote.id
                 lclMoveHelper.note_Low_Index = lclCurrentHighlightedNote.lowest_Index
                 lclMoveHelper.note_High_Index = lclCurrentHighlightedNote.highest_Index
                 lclMoveHelper.note_Y_Val = lclCurrentHighlightedNote.note_Y_Number
@@ -165,7 +167,6 @@ public class Central_State : ObservableObject {
             }
         }
         }
-
         else if patternModeParam == .writing {
             if currentPatternMode != .writing {currentPatternMode = .writing}
             delete_Helper.nil_Delete_Square_Set()
@@ -238,8 +239,8 @@ public class Central_State : ObservableObject {
                 delete_Helper.nil_Delete_Square_Set()
             }
             
-            //if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
             if let lclMoveHelper = move_Helper {
+            lclMoveHelper.writeMovedNote_DeleteOldNote()
             lclMoveHelper.nil_Cell_Sets()
             lclMoveHelper.note_Low_Index = nil
             lclMoveHelper.note_High_Index = nil
@@ -249,8 +250,8 @@ public class Central_State : ObservableObject {
             }
             
             if let lclPassiveHelper = passive_Helper{
-                lclPassiveHelper.nil_passive_Cursor_Set()
-                lclPassiveHelper.process_Passive_Cursor_Position()
+            lclPassiveHelper.nil_passive_Cursor_Set()
+            lclPassiveHelper.process_Passive_Cursor_Position()
             }
             Note_Collection.Static_Note_Collection.react_To_Mode_Change()
         }

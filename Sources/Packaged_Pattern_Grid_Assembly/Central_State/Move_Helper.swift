@@ -20,6 +20,7 @@ class Move_Helper {
     var note_Y_Val : Int?
     var snapshot_Cursor_X : Int?
     var snapshot_Cursor_Y : Int?
+    var snapShot_Note_Id_Param : UUID?
     
     var currLeftLimit : Int
     var currRightLimit : Int
@@ -58,6 +59,7 @@ class Move_Helper {
                     && $0.dataCell_X_Number <= currRightLimit
                 }
             }
+            
             potential_Moved_Set = proposedSet
             prohib_Red_Set = proposedSet.filter({$0.note_Im_In != nil})
         }
@@ -95,18 +97,18 @@ class Move_Helper {
     }
     
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
-            willSet {
-                let delta = potential_Moved_Set.symmetricDifference(newValue)
-                for cell in delta {
-                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                }
-            }
-            didSet {
-                for cell in potential_Moved_Set {
-                    cell.handleVisibleStateChange(type : .activate_Potential_Set)
-                }
+        willSet {
+            let delta = potential_Moved_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
             }
         }
+        didSet {
+            for cell in potential_Moved_Set {
+                cell.handleVisibleStateChange(type : .activate_Potential_Set)
+            }
+        }
+    }
     
     var proposedSet = Set<Underlying_Data_Cell>()
     
@@ -148,6 +150,17 @@ class Move_Helper {
         }
         if prohib_Red_Set.count > 0 {
             prohib_Red_Set.removeAll()
+        }
+        if snapShot_Note_Id_Param != nil {
+            snapShot_Note_Id_Param = nil
+        }
+    }
+    
+    func writeMovedNote_DeleteOldNote(){
+        if potential_Moved_Set.count > 0, let lclSnapshotNote = snapShot_Note_Id_Param {
+        note_Collection_Ref.write_Note_Data(cellSetParam: potential_Moved_Set)
+        nil_Cell_Sets()
+        note_Collection_Ref.delete_Current_Highlighted_Note(note_Id_Param:lclSnapshotNote)
         }
     }
     
