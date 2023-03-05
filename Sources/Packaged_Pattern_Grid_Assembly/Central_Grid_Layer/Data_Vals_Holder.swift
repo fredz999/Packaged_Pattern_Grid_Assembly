@@ -163,8 +163,9 @@ public class Data_Vals_Holder : ObservableObject {
 //                        if check_In_Prohib_Set() == false{
 //                            check_Highlighted()
 //                        }
-                        check_Highlighted()
+                        
                         check_In_Prohib_Set()
+                        check_Highlighted()
 //                        if check_Highlighted() == false {
 //                            check_In_Prohib_Set()
 //                        }
