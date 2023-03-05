@@ -160,16 +160,20 @@ public class Data_Vals_Holder : ObservableObject {
                 
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
+//                        if check_In_Prohib_Set() == false{
+//                            check_Highlighted()
+//                        }
                         check_Highlighted()
+                        check_In_Prohib_Set()
 //                        if check_Highlighted() == false {
 //                            check_In_Prohib_Set()
 //                        }
                     }
                     else if check_Cell_Not_In_Note() == true {
-                        //check_In_Potential_Set()
-                        if check_In_Potential_Set() == true {
-                            check_In_Prohib_Set()
-                        }
+                        check_In_Potential_Set()
+//                        if check_In_Potential_Set() == true {
+//                            check_In_Prohib_Set()
+//                        }
                     }
                 }
                 
@@ -271,20 +275,29 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-//    func check_In_Potential_Set() {
-//        if referenced_in_Potential_Set == true {
-//            if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
+//    func check_In_Prohib_Set() -> Bool {
+//        var retVal = false
+//        if referenced_in_Prohibited_Set == true{
+//            retVal = true
+//            if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
 //        }
+//        return retVal
 //    }
     
-    func check_In_Potential_Set() -> Bool {
-        var retVal = false
-        if referenced_in_Potential_Set == true{
-            retVal = true
+    func check_In_Potential_Set() {
+        if referenced_in_Potential_Set == true {
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
         }
-        return retVal
     }
+    
+//    func check_In_Potential_Set() -> Bool {
+//        var retVal = false
+//        if referenced_in_Potential_Set == true{
+//            retVal = true
+//            if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
+//        }
+//        return retVal
+//    }
  
     @Published public var statusColor : Color
 
