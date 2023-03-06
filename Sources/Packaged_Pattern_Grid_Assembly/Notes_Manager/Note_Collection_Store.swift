@@ -141,6 +141,7 @@ public class Note_Collection {
     }
     
     public func delete_Current_Highlighted_Note(){
+        print("delete_Current_Highlighted_Note()")
         if let lclCurrHighlighted = currentHighlightedNote {
         lclCurrHighlighted.resetCells()
         noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
@@ -150,6 +151,7 @@ public class Note_Collection {
     }
     
     public func delete_Current_Highlighted_Note(note_Id_Param:UUID){
+        print("delete_Current_Highlighted_Note(note_Id_Param:UUID)")
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
             note.resetCells()
             noteArray.removeAll(where: {$0.id == note_Id_Param})
