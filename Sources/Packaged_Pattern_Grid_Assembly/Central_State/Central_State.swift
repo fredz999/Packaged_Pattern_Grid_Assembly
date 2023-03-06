@@ -171,8 +171,37 @@ public class Central_State : ObservableObject {
             }
             delete_Helper.process_Delete_Cursor_Position()
         }
+        else if patternModeParam == .passive {
+            print("patternModeParam == .passive")
+            if currentPatternMode != .passive{currentPatternMode = .passive}
+            
+            if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
+            potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
+            potential_Helper.nilPotentialSet()
+            potential_Helper.initial_WriteOnCell = nil
+            }
+ 
+            if delete_Helper.delete_Cursor_Set.count > 0 {
+            delete_Helper.nil_Delete_Square_Set()
+            }
+            
+            if let lclMoveHelper = move_Helper {
+            lclMoveHelper.writeMovedNote_DeleteOldNote()
+            lclMoveHelper.nil_Cell_Sets()
+            lclMoveHelper.note_Low_Index = nil
+            lclMoveHelper.note_High_Index = nil
+            lclMoveHelper.note_Y_Val = nil
+            lclMoveHelper.snapshot_Cursor_X = nil
+            lclMoveHelper.snapshot_Cursor_Y = nil
+            }
+            
+            if let lclPassiveHelper = passive_Helper{
+            lclPassiveHelper.nil_passive_Cursor_Set()
+            lclPassiveHelper.process_Passive_Cursor_Position()
+            }
+            Note_Collection.Static_Note_Collection.react_To_Mode_Change()
+        }
         else if patternModeParam == .moving {
-        print("patternModeParam == .moving")
         if let lclNoteCollection = note_Collection_Ref {
             if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote {
                 if currentPatternMode != .moving{currentPatternMode = .moving}
@@ -224,35 +253,7 @@ public class Central_State : ObservableObject {
             }
             potential_Helper.establish_Potential_Cells_Set()
         }
-        else if patternModeParam == .passive {
-            if currentPatternMode != .passive{currentPatternMode = .passive}
-            
-            if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
-                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
-                potential_Helper.nilPotentialSet()
-                potential_Helper.initial_WriteOnCell = nil
-            }
- 
-            if delete_Helper.delete_Cursor_Set.count > 0 {
-                delete_Helper.nil_Delete_Square_Set()
-            }
-            
-            if let lclMoveHelper = move_Helper {
-            lclMoveHelper.writeMovedNote_DeleteOldNote()
-            lclMoveHelper.nil_Cell_Sets()
-            lclMoveHelper.note_Low_Index = nil
-            lclMoveHelper.note_High_Index = nil
-            lclMoveHelper.note_Y_Val = nil
-            lclMoveHelper.snapshot_Cursor_X = nil
-            lclMoveHelper.snapshot_Cursor_Y = nil
-            }
-            
-            if let lclPassiveHelper = passive_Helper{
-            lclPassiveHelper.nil_passive_Cursor_Set()
-            lclPassiveHelper.process_Passive_Cursor_Position()
-            }
-            Note_Collection.Static_Note_Collection.react_To_Mode_Change()
-        }
+        
         
     }
 
