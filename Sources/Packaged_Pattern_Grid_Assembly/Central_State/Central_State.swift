@@ -142,131 +142,148 @@ public class Central_State : ObservableObject {
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
         if patternModeParam == .deleting {
-
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
-            
-            delete_Helper.process_Delete_Cursor_Position()
-            
-            if potential_Helper.initial_WriteOnCell != nil {
-                potential_Helper.initial_WriteOnCell = nil
-                potential_Helper.nilPotentialSet()
-            }
-            if note_Write_Locked == false{note_Write_Locked = true}
-            
-            if let lclMoveHelper = move_Helper {
-            lclMoveHelper.nil_Cell_Sets()
-            lclMoveHelper.note_Low_Index = nil
-            lclMoveHelper.note_High_Index = nil
-            lclMoveHelper.note_Y_Val = nil
-            lclMoveHelper.snapshot_Cursor_X = nil
-            lclMoveHelper.snapshot_Cursor_Y = nil
-            }
-
-            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
-            
-            if dimensions.patternTimingConfiguration == .fourFour {
-                delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            }
-            else if dimensions.patternTimingConfiguration == .sixEight {
-                delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-            }
-            
-            if let lclNoteCollectionRef = note_Collection_Ref{
-                if let lclCurrHighlighted = lclNoteCollectionRef.currentHighlightedNote{
-                    for cell in lclCurrHighlighted.dataCellArray{
-                        if cell.in_Potential_Set == true{
-                            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                        }
-                    }
-                    print("from 2")
-                    lclNoteCollectionRef.delete_Current_Highlighted_Note(note_Id_Param: lclCurrHighlighted.id)
-                }
-            }
-            
+        }
+        else if patternModeParam == .moving {
+            if currentPatternMode != .moving{currentPatternMode = .moving}
         }
         else if patternModeParam == .passive {
             if currentPatternMode != .passive{currentPatternMode = .passive}
-            if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
-            potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
-            potential_Helper.nilPotentialSet()
-            potential_Helper.initial_WriteOnCell = nil
-            }
- 
-            if delete_Helper.delete_Cursor_Set.count > 0 {
-            delete_Helper.nil_Delete_Square_Set()
-            }
-
-            if let lclMoveHelper = move_Helper {
-            lclMoveHelper.note_Low_Index = nil
-            lclMoveHelper.note_High_Index = nil
-            lclMoveHelper.note_Y_Val = nil
-            lclMoveHelper.snapshot_Cursor_X = nil
-            lclMoveHelper.snapshot_Cursor_Y = nil
-            print("calling delete note")
-            lclMoveHelper.writeMovedNote_DeleteOldNote()
-            }
-            
-            if let lclPassiveHelper = passive_Helper{
-            lclPassiveHelper.nil_passive_Cursor_Set()
-            lclPassiveHelper.process_Passive_Cursor_Position()
-            }
-            Note_Collection.Static_Note_Collection.react_To_Mode_Change()
-        }
-        else if patternModeParam == .moving {
-        if let lclNoteCollection = note_Collection_Ref {
-            if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote {
-                if currentPatternMode != .moving{currentPatternMode = .moving}
-                
-                if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
-                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
-                potential_Helper.nilPotentialSet()
-                potential_Helper.initial_WriteOnCell = nil
-                }
-                
-                if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
-                if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
-                
-                if let lclMoveHelper = move_Helper {
-                lclMoveHelper.snapShot_Note_Id_Param = lclCurrentHighlightedNote.id
-                lclMoveHelper.note_Low_Index = lclCurrentHighlightedNote.lowest_Index
-                lclMoveHelper.note_High_Index = lclCurrentHighlightedNote.highest_Index
-                lclMoveHelper.note_Y_Val = lclCurrentHighlightedNote.note_Y_Number
-                lclMoveHelper.snapshot_Cursor_X = curr_Data_Pos_X
-                lclMoveHelper.snapshot_Cursor_Y = curr_Data_Pos_Y
-                lclMoveHelper.process_MoveNote_Cursor_Position()
-                }
-                
-                lclNoteCollection.react_To_Mode_Change()
-                
-            }
-        }
         }
         else if patternModeParam == .writing {
-            if currentPatternMode != .writing {currentPatternMode = .writing}
-            delete_Helper.nil_Delete_Square_Set()
-            
-            if let lclMoveHelper = move_Helper {
-            lclMoveHelper.nil_Cell_Sets()
-            lclMoveHelper.note_Low_Index = nil
-            lclMoveHelper.note_High_Index = nil
-            lclMoveHelper.note_Y_Val = nil
-            lclMoveHelper.snapshot_Cursor_X = nil
-            lclMoveHelper.snapshot_Cursor_Y = nil
-            }
-            
-            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
-            
-            if dimensions.patternTimingConfiguration == .fourFour {
-                potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            }
-            else if dimensions.patternTimingConfiguration == .sixEight {
-                potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-            }
-            potential_Helper.establish_Potential_Cells_Set()
+            if currentPatternMode != .writing{currentPatternMode = .writing}
         }
-        
-        
+        else if patternModeParam == .resizing {
+            if currentPatternMode != .resizing{currentPatternMode = .resizing}
+        }
     }
+//    public func setPatternMode(patternModeParam : E_PatternModeType){
+//        if patternModeParam == .deleting {
+//
+//            if currentPatternMode != .deleting{currentPatternMode = .deleting}
+//
+//            delete_Helper.process_Delete_Cursor_Position()
+//
+//            if potential_Helper.initial_WriteOnCell != nil {
+//                potential_Helper.initial_WriteOnCell = nil
+//                potential_Helper.nilPotentialSet()
+//            }
+//            if note_Write_Locked == false{note_Write_Locked = true}
+//
+//            if let lclMoveHelper = move_Helper {
+//            lclMoveHelper.nil_Cell_Sets()
+//            lclMoveHelper.note_Low_Index = nil
+//            lclMoveHelper.note_High_Index = nil
+//            lclMoveHelper.note_Y_Val = nil
+//            lclMoveHelper.snapshot_Cursor_X = nil
+//            lclMoveHelper.snapshot_Cursor_Y = nil
+//            }
+//
+//            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+//
+//            if dimensions.patternTimingConfiguration == .fourFour {
+//                delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+//            }
+//            else if dimensions.patternTimingConfiguration == .sixEight {
+//                delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+//            }
+//
+//            if let lclNoteCollectionRef = note_Collection_Ref{
+//                if let lclCurrHighlighted = lclNoteCollectionRef.currentHighlightedNote{
+//                    for cell in lclCurrHighlighted.dataCellArray{
+//                        if cell.in_Potential_Set == true{
+//                            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//                        }
+//                    }
+//                    print("from 2")
+//                    lclNoteCollectionRef.delete_Current_Highlighted_Note(note_Id_Param: lclCurrHighlighted.id)
+//                }
+//            }
+//
+//        }
+//        else if patternModeParam == .passive {
+//            if currentPatternMode != .passive{currentPatternMode = .passive}
+//            if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
+//            potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
+//            potential_Helper.nilPotentialSet()
+//            potential_Helper.initial_WriteOnCell = nil
+//            }
+//
+//            if delete_Helper.delete_Cursor_Set.count > 0 {
+//            delete_Helper.nil_Delete_Square_Set()
+//            }
+//
+//            if let lclMoveHelper = move_Helper {
+//            lclMoveHelper.note_Low_Index = nil
+//            lclMoveHelper.note_High_Index = nil
+//            lclMoveHelper.note_Y_Val = nil
+//            lclMoveHelper.snapshot_Cursor_X = nil
+//            lclMoveHelper.snapshot_Cursor_Y = nil
+//            print("calling delete note")
+//            lclMoveHelper.writeMovedNote_DeleteOldNote()
+//            }
+//
+//            if let lclPassiveHelper = passive_Helper{
+//            lclPassiveHelper.nil_passive_Cursor_Set()
+//            lclPassiveHelper.process_Passive_Cursor_Position()
+//            }
+//            Note_Collection.Static_Note_Collection.react_To_Mode_Change()
+//        }
+//        else if patternModeParam == .moving {
+//        if let lclNoteCollection = note_Collection_Ref {
+//            if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote {
+//                if currentPatternMode != .moving{currentPatternMode = .moving}
+//
+//                if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
+//                potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
+//                potential_Helper.nilPotentialSet()
+//                potential_Helper.initial_WriteOnCell = nil
+//                }
+//
+//                if delete_Helper.delete_Cursor_Set.count > 0 {delete_Helper.nil_Delete_Square_Set()}
+//                if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+//
+//                if let lclMoveHelper = move_Helper {
+//                lclMoveHelper.snapShot_Note_Id_Param = lclCurrentHighlightedNote.id
+//                lclMoveHelper.note_Low_Index = lclCurrentHighlightedNote.lowest_Index
+//                lclMoveHelper.note_High_Index = lclCurrentHighlightedNote.highest_Index
+//                lclMoveHelper.note_Y_Val = lclCurrentHighlightedNote.note_Y_Number
+//                lclMoveHelper.snapshot_Cursor_X = curr_Data_Pos_X
+//                lclMoveHelper.snapshot_Cursor_Y = curr_Data_Pos_Y
+//                lclMoveHelper.process_MoveNote_Cursor_Position()
+//                }
+//
+//                lclNoteCollection.react_To_Mode_Change()
+//
+//            }
+//        }
+//        }
+//        else if patternModeParam == .writing {
+//            if currentPatternMode != .writing {currentPatternMode = .writing}
+//            delete_Helper.nil_Delete_Square_Set()
+//
+//            if let lclMoveHelper = move_Helper {
+//            lclMoveHelper.nil_Cell_Sets()
+//            lclMoveHelper.note_Low_Index = nil
+//            lclMoveHelper.note_High_Index = nil
+//            lclMoveHelper.note_Y_Val = nil
+//            lclMoveHelper.snapshot_Cursor_X = nil
+//            lclMoveHelper.snapshot_Cursor_Y = nil
+//            }
+//
+//            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+//
+//            if dimensions.patternTimingConfiguration == .fourFour {
+//                potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+//            }
+//            else if dimensions.patternTimingConfiguration == .sixEight {
+//                potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+//            }
+//            potential_Helper.establish_Potential_Cells_Set()
+//        }
+//
+//
+//    }
 
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
