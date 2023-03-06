@@ -148,7 +148,36 @@ public class Central_State : ObservableObject {
             if currentPatternMode != .moving{currentPatternMode = .moving}
         }
         else if patternModeParam == .passive {
-            if currentPatternMode != .passive{currentPatternMode = .passive}
+            
+            
+        if currentPatternMode != .passive{
+            if let lclPassiveHelper = passive_Helper{
+            lclPassiveHelper.nil_passive_Cursor_Set()
+            lclPassiveHelper.process_Passive_Cursor_Position()
+            }
+            Note_Collection.Static_Note_Collection.react_To_Mode_Change()
+            currentPatternMode = .passive
+        }
+ 
+
+//            if delete_Helper.delete_Cursor_Set.count > 0 {
+//            delete_Helper.nil_Delete_Square_Set()
+//            }
+
+//        if let lclMoveHelper = move_Helper {
+//        lclMoveHelper.note_Low_Index = nil
+//        lclMoveHelper.note_High_Index = nil
+//        lclMoveHelper.note_Y_Val = nil
+//        lclMoveHelper.snapshot_Cursor_X = nil
+//        lclMoveHelper.snapshot_Cursor_Y = nil
+//        print("calling delete note")
+//        lclMoveHelper.writeMovedNote_DeleteOldNote()
+//        }
+
+        
+            
+            
+            
         }
         
         
@@ -182,6 +211,7 @@ public class Central_State : ObservableObject {
                     Note_Collection.Static_Note_Collection.write_Note_Data(cellSetParam: potential_Helper.helperFuncs_PotentialNote_Set)
                 }
                 potential_Helper.nilPotentialSet()
+                setPatternMode(patternModeParam: .passive)
             }
         }
         
@@ -342,7 +372,6 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-
         if let currViable = potential_Helper.initial_WriteOnCell {
             if currViable.dataCell_Y_Number != curr_Data_Pos_Y {
                 potential_Helper.nilPotentialSet()
