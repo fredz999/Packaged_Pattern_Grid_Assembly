@@ -192,15 +192,14 @@ public class Central_State : ObservableObject {
             delete_Helper.nil_Delete_Square_Set()
             }
 
-            
             if let lclMoveHelper = move_Helper {
-            lclMoveHelper.writeMovedNote_DeleteOldNote()
-            lclMoveHelper.nil_Cell_Sets()
             lclMoveHelper.note_Low_Index = nil
             lclMoveHelper.note_High_Index = nil
             lclMoveHelper.note_Y_Val = nil
             lclMoveHelper.snapshot_Cursor_X = nil
             lclMoveHelper.snapshot_Cursor_Y = nil
+            lclMoveHelper.nil_Cell_Sets()
+            lclMoveHelper.writeMovedNote_DeleteOldNote()
             }
             
             if let lclPassiveHelper = passive_Helper{
