@@ -270,6 +270,7 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func check_In_Delete_Square_Set()->Bool{
+        print("check_In_Delete_Square_Set triggered")
         var retVal = false
         if referenced_in_Delete_Square_Set == true {
             retVal = true

@@ -138,7 +138,41 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        if patternModeParam == .moving {
+        if patternModeParam == .deleting {
+            
+            if currentPatternMode != .deleting{currentPatternMode = .deleting}
+            if potential_Helper.initial_WriteOnCell != nil {
+                potential_Helper.initial_WriteOnCell = nil
+                potential_Helper.nilPotentialSet()
+            }
+            if note_Write_Locked == false{note_Write_Locked = true}
+            //if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
+            if let lclMoveHelper = move_Helper {
+            lclMoveHelper.nil_Cell_Sets()
+            lclMoveHelper.note_Low_Index = nil
+            lclMoveHelper.note_High_Index = nil
+            lclMoveHelper.note_Y_Val = nil
+            lclMoveHelper.snapshot_Cursor_X = nil
+            lclMoveHelper.snapshot_Cursor_Y = nil
+            }
+            
+            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
+            
+            if dimensions.patternTimingConfiguration == .fourFour {
+                delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            }
+            else if dimensions.patternTimingConfiguration == .sixEight {
+                delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            }
+            
+            if let lclNoteCollectionRef = note_Collection_Ref{
+                if lclNoteCollectionRef.currentHighlightedNote != nil{
+                    lclNoteCollectionRef.delete_Current_Highlighted_Note()
+                }
+            }
+            delete_Helper.process_Delete_Cursor_Position()
+        }
+        else if patternModeParam == .moving {
         if let lclNoteCollection = note_Collection_Ref {
             if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote {
                 if currentPatternMode != .moving{currentPatternMode = .moving}
@@ -189,42 +223,6 @@ public class Central_State : ObservableObject {
                 potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             }
             potential_Helper.establish_Potential_Cells_Set()
-        }
-        else if patternModeParam == .deleting {
-            
-            if currentPatternMode != .deleting{currentPatternMode = .deleting}
-            if potential_Helper.initial_WriteOnCell != nil {
-                potential_Helper.initial_WriteOnCell = nil
-                potential_Helper.nilPotentialSet()
-            }
-            if note_Write_Locked == false{note_Write_Locked = true}
-            
-            //if let lclMoveHelper = move_Helper{lclMoveHelper.nil_Move_Note_Cursor_Set()}
-            if let lclMoveHelper = move_Helper {
-            lclMoveHelper.nil_Cell_Sets()
-            lclMoveHelper.note_Low_Index = nil
-            lclMoveHelper.note_High_Index = nil
-            lclMoveHelper.note_Y_Val = nil
-            lclMoveHelper.snapshot_Cursor_X = nil
-            lclMoveHelper.snapshot_Cursor_Y = nil
-            }
-            
-            if let lclPassiveHelper = passive_Helper{lclPassiveHelper.nil_passive_Cursor_Set()}
-            
-            if dimensions.patternTimingConfiguration == .fourFour {
-                delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            }
-            else if dimensions.patternTimingConfiguration == .sixEight {
-                delete_Helper.current_Trail_Corner = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-            }
-            
-            delete_Helper.process_Delete_Cursor_Position()
-            
-            if let lclNoteCollectionRef = note_Collection_Ref{
-                if lclNoteCollectionRef.currentHighlightedNote != nil{
-                    lclNoteCollectionRef.delete_Current_Highlighted_Note()
-                }
-            }
         }
         else if patternModeParam == .passive {
             if currentPatternMode != .passive{currentPatternMode = .passive}
