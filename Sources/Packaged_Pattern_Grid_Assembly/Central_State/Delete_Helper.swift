@@ -189,7 +189,6 @@ class Delete_Helper {
     }
 
     func nil_Delete_Square_Set(){
-        print("nil_Delete_Square_Set()")
         if current_Direction != .stationary{current_Direction = .stationary}
         if current_Trail_Corner != nil{current_Trail_Corner = nil}
         
@@ -201,7 +200,6 @@ class Delete_Helper {
         if delete_Cursor_Set.count > 0 {
             for cell in delete_Cursor_Set {
                 cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
-                print("cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)")
             }
             delete_Cursor_Set.removeAll()
         }

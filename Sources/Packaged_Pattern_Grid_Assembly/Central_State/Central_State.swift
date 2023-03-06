@@ -185,9 +185,9 @@ public class Central_State : ObservableObject {
             if delete_Helper.delete_Cursor_Set.count > 0 {
             delete_Helper.nil_Delete_Square_Set()
             }
-            else{
-               print("delete_Helper.delete_Cursor_Set.count nat > 0 ")
-            }
+//            else{
+//               print("delete_Helper.delete_Cursor_Set.count nat > 0 ")
+//            }
             
             if let lclMoveHelper = move_Helper {
             lclMoveHelper.writeMovedNote_DeleteOldNote()
