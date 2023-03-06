@@ -173,6 +173,7 @@ public class Central_State : ObservableObject {
             }
             potential_Helper.establish_Potential_Cells_Set()
             if currentPatternMode != .writing {currentPatternMode = .writing}
+            else if currentPatternMode == .writing {print("the thing wuz already in writing")}
         }
         else if patternModeParam == .resizing {
             if currentPatternMode != .resizing{currentPatternMode = .resizing}
