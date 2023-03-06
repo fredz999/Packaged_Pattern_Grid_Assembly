@@ -143,6 +143,7 @@ public class Central_State : ObservableObject {
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
             
             delete_Helper.process_Delete_Cursor_Position()
+            
             if potential_Helper.initial_WriteOnCell != nil {
                 potential_Helper.initial_WriteOnCell = nil
                 potential_Helper.nilPotentialSet()

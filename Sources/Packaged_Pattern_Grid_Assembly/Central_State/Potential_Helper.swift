@@ -216,7 +216,7 @@ class Potential_Helper {
     }
     
     func writeNote(note_Y_Param:Int){
-
+        print("writeNote(note_Y_Param:")
         var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = helperFuncs_PotentialNote_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             startCellSet.insert(minX)
