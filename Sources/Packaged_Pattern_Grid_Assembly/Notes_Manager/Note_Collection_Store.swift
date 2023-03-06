@@ -141,14 +141,14 @@ public class Note_Collection {
     }
     
     public func delete_Current_Highlighted_Note(){
-        print("delete_Current_Highlighted_Note()")
+        
         if let lclCurrHighlighted = currentHighlightedNote {
         lclCurrHighlighted.resetCells()
         noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
         currentHighlightedNote = nil
         if centralStateRef.a_Note_Is_Highlighted != false{centralStateRef.a_Note_Is_Highlighted = false}
         }
-        
+        print("delete_Current_Highlighted_Note(), note count: ",noteArray.count.description)
     }
     
     public func delete_Current_Highlighted_Note(note_Id_Param:UUID){
