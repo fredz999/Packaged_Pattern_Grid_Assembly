@@ -117,6 +117,7 @@ public class Central_State : ObservableObject {
     public func deleteANote(){
         if let lclNoteCollection = note_Collection_Ref {
             if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote{
+                print("from 1")
                 lclNoteCollection.delete_Current_Highlighted_Note(note_Id_Param: lclCurrentHighlightedNote.id)
                 a_Note_Is_Highlighted = false
             }
@@ -177,6 +178,7 @@ public class Central_State : ObservableObject {
                             cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                         }
                     }
+                    print("from 2")
                     lclNoteCollectionRef.delete_Current_Highlighted_Note(note_Id_Param: lclCurrHighlighted.id)
                 }
             }
