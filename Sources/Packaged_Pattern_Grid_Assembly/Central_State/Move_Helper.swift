@@ -159,7 +159,7 @@ class Move_Helper {
     func writeMovedNote_DeleteOldNote(){
         
         if potential_Moved_Set.count > 0, let lclSnapshotNote = snapShot_Note_Id_Param {
-            print("from 3")
+        //print("from 3")
         note_Collection_Ref.delete_Current_Highlighted_Note(note_Id_Param:lclSnapshotNote)
             
         for cell in potential_Moved_Set{
