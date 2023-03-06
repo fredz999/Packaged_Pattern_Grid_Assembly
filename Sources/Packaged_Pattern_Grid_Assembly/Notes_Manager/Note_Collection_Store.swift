@@ -90,7 +90,7 @@ public class Note_Collection {
     }
     
     func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
-        print("write_Note_Data(cellArrayParam count: ",cellArrayParam.count)
+        print("write_Note_Data( ARRAY : ")
         let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: note_Y_Num)
         noteArray.append(note)
         for cell in cellArrayParam {
@@ -101,7 +101,8 @@ public class Note_Collection {
     // write a note writing func taking a single cell set as an arg
     
     func write_Note_Data(cellSetParam : Set<Underlying_Data_Cell>){
-        
+        //print("write_Note_Data(cellArrayParam count: ",cellArrayParam.count)
+        print("write_Note_Data( cellSetParam : ")
         var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = cellSetParam.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             startCellSet.insert(minX)
