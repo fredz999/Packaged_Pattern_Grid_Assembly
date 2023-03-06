@@ -144,6 +144,7 @@ public class Note_Collection {
         
         if let lclCurrHighlighted = currentHighlightedNote {
         print("delete_Current_Highlighted_Note() lclCurrHighlighted = currentHighlightedNote")
+            
         lclCurrHighlighted.resetCells()
         noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
         currentHighlightedNote = nil

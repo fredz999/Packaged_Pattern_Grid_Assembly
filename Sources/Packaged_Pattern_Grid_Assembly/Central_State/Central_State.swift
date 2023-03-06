@@ -168,10 +168,14 @@ public class Central_State : ObservableObject {
             }
             
             if let lclNoteCollectionRef = note_Collection_Ref{
-                if lclNoteCollectionRef.currentHighlightedNote != nil{
+                if let lclCurrHighlighted = lclNoteCollectionRef.currentHighlightedNote{
+                    for cell in lclCurrHighlighted.dataCellArray{
+                        if cell.in_Potential_Set == true{
+                            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                        }
+                    }
                     lclNoteCollectionRef.delete_Current_Highlighted_Note()
                 }
-                
             }
             
         }
