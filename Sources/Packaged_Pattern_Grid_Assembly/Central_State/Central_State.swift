@@ -180,7 +180,6 @@ public class Central_State : ObservableObject {
             
         }
         else if patternModeParam == .passive {
-            print("patternModeParam == .passive")
             if currentPatternMode != .passive{currentPatternMode = .passive}
             if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
             potential_Helper.writeNote(note_Y_Param: curr_Data_Pos_Y)
@@ -191,9 +190,7 @@ public class Central_State : ObservableObject {
             if delete_Helper.delete_Cursor_Set.count > 0 {
             delete_Helper.nil_Delete_Square_Set()
             }
-//            else{
-//               print("delete_Helper.delete_Cursor_Set.count nat > 0 ")
-//            }
+
             
             if let lclMoveHelper = move_Helper {
             lclMoveHelper.writeMovedNote_DeleteOldNote()
