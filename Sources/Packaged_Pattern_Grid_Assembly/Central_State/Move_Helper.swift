@@ -160,7 +160,7 @@ class Move_Helper {
         
         if potential_Moved_Set.count > 0, let lclSnapshotNote = snapShot_Note_Id_Param {
             
-        print("from 3,potential_Moved_Set.count ",potential_Moved_Set.count)
+        //print("from 3,potential_Moved_Set.count ",potential_Moved_Set.count)
             
         note_Collection_Ref.delete_Current_Highlighted_Note(note_Id_Param:lclSnapshotNote)
             

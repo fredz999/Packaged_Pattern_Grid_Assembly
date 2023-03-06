@@ -150,7 +150,7 @@ public class Note_Collection {
 //    }
     
     public func delete_Current_Highlighted_Note(note_Id_Param:UUID){
-        print("notecount at start: ",noteArray.count)
+        //print("notecount at start: ",noteArray.count)
         
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
             note.resetCells()
@@ -159,7 +159,7 @@ public class Note_Collection {
             if centralStateRef.a_Note_Is_Highlighted != false{centralStateRef.a_Note_Is_Highlighted = false}
         }
         
-        print("notecount at end: ",noteArray.count)
+        //print("notecount at end: ",noteArray.count)
     }
     
     public func reset_Note_Data_Cells(noteParam:Note){
