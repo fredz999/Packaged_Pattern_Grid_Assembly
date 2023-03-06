@@ -139,8 +139,7 @@ public class Central_State : ObservableObject {
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
         if patternModeParam == .deleting {
-            print("patternModeParam == .deleting")
-            
+
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
             
             delete_Helper.process_Delete_Cursor_Position()
@@ -151,7 +150,6 @@ public class Central_State : ObservableObject {
             if note_Write_Locked == false{note_Write_Locked = true}
             
             if let lclMoveHelper = move_Helper {
-            print("lclMoveHelper = move_Helper {, check sets")
             lclMoveHelper.nil_Cell_Sets()
             lclMoveHelper.note_Low_Index = nil
             lclMoveHelper.note_High_Index = nil
