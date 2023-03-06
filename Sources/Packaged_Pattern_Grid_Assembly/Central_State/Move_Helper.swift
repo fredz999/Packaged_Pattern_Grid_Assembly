@@ -157,16 +157,24 @@ class Move_Helper {
     }
     
     func writeMovedNote_DeleteOldNote(){
-        print("writeMovedNote_DeleteOldNote() pn count: ",note_Collection_Ref.noteArray.count)
+        
         if potential_Moved_Set.count > 0, let lclSnapshotNote = snapShot_Note_Id_Param {
+        //these two might be different
+        print("lclSnapshotNote: ",lclSnapshotNote)
         note_Collection_Ref.delete_Current_Highlighted_Note(note_Id_Param:lclSnapshotNote)
+            
         for cell in potential_Moved_Set{
+            
+            if let lclNoteImIn = cell.note_Im_In {
+                print("cell noteimin id: ",lclNoteImIn.id)
+            }
+            
             cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
         }
+            
         note_Collection_Ref.write_Note_Data(cellSetParam: potential_Moved_Set)
         nil_Cell_Sets()
         }
-        
     }
     
 }
