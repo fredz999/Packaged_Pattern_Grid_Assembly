@@ -173,6 +173,9 @@ class Move_Helper {
         nil_Cell_Sets()
             
         }
+        else if potential_Moved_Set.count == 0{
+            print("writeMovedNote_DeleteOldNote() called potential_Moved_Set.count == 0")
+        }
     }
     
 }
