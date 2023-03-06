@@ -58,7 +58,7 @@ public class Note_Collection {
                 }
             }
             if noteArray.count == 0{
-                centralStateRef.setPatternMode(patternModeParam: .passive)
+                //centralStateRef.setPatternMode(patternModeParam: .passive)
                 centralStateRef.pattern_Has_A_Note = false
             }
             else if noteArray.count > 0{
@@ -89,13 +89,13 @@ public class Note_Collection {
         }
     }
     
-    func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
-        let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: note_Y_Num)
-        noteArray.append(note)
-        for cell in cellArrayParam {
-            cell.note_Im_In = note
-        }
-    }
+//    func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
+//        let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: note_Y_Num)
+//        noteArray.append(note)
+//        for cell in cellArrayParam {
+//            cell.note_Im_In = note
+//        }
+//    }
     
     // write a note writing func taking a single cell set as an arg
     

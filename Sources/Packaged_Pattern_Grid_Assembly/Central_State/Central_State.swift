@@ -150,8 +150,11 @@ public class Central_State : ObservableObject {
         else if patternModeParam == .passive {
             if currentPatternMode != .passive{currentPatternMode = .passive}
         }
+        
+        
+        
         else if patternModeParam == .writing {
-            if currentPatternMode != .writing {currentPatternMode = .writing}
+            if currentPatternMode != .writing {
             delete_Helper.nil_Delete_Square_Set()
 
             if let lclMoveHelper = move_Helper {
@@ -172,9 +175,20 @@ public class Central_State : ObservableObject {
                 potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             }
             potential_Helper.establish_Potential_Cells_Set()
-            if currentPatternMode != .writing {currentPatternMode = .writing}
-            else if currentPatternMode == .writing {print("the thing wuz already in writing")}
+            currentPatternMode = .writing
+            }
+            else if currentPatternMode == .writing {
+                if potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
+                    Note_Collection.Static_Note_Collection.write_Note_Data(cellSetParam: potential_Helper.helperFuncs_PotentialNote_Set)
+                }
+                potential_Helper.nilPotentialSet()
+            }
         }
+        
+        
+        
+        
+        
         else if patternModeParam == .resizing {
             if currentPatternMode != .resizing{currentPatternMode = .resizing}
         }

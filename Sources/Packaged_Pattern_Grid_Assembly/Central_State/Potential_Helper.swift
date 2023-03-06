@@ -215,41 +215,41 @@ class Potential_Helper {
         }
     }
     
-    func writeNote(note_Y_Param:Int){
-        var startCellSet = Set<Underlying_Data_Cell>()
-        if let minX = helperFuncs_PotentialNote_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            startCellSet.insert(minX)
-        }
-
-        var endCellSet = Set<Underlying_Data_Cell>()
-        if let maxX = helperFuncs_PotentialNote_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            endCellSet.insert(maxX)
-        }
-
-        let midCellSet = helperFuncs_PotentialNote_Set.subtracting(startCellSet.union(endCellSet))
-        
-        for cell in startCellSet{cell.change_Type(newType: .start_Note)}
-        for cell in midCellSet{cell.change_Type(newType: .mid_Note)}
-        for cell in endCellSet{cell.change_Type(newType: .end_Note)}
-        
-        let startCells = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        let endCells = endCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        
-        for index in 0..<startCellSet.count {
-        var noteArr = [Underlying_Data_Cell]()
-        let currStartCell = startCells[index]
-        let currEndCell = endCells[index]
-        noteArr.append(currStartCell)
-        let midSet = midCellSet.filter({$0.dataCell_X_Number > currStartCell.dataCell_X_Number && $0.dataCell_X_Number < currEndCell.dataCell_X_Number})
-        let midArr = midSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-        for midCell in midArr {
-        noteArr.append(midCell)
-        }
-        noteArr.append(currEndCell)
-        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArr, note_Y_Num: note_Y_Param)
-        }
-
-    }
+//    func writeNote(note_Y_Param:Int){
+//        var startCellSet = Set<Underlying_Data_Cell>()
+//        if let minX = helperFuncs_PotentialNote_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//            startCellSet.insert(minX)
+//        }
+//
+//        var endCellSet = Set<Underlying_Data_Cell>()
+//        if let maxX = helperFuncs_PotentialNote_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//            endCellSet.insert(maxX)
+//        }
+//
+//        let midCellSet = helperFuncs_PotentialNote_Set.subtracting(startCellSet.union(endCellSet))
+//
+//        for cell in startCellSet{cell.change_Type(newType: .start_Note)}
+//        for cell in midCellSet{cell.change_Type(newType: .mid_Note)}
+//        for cell in endCellSet{cell.change_Type(newType: .end_Note)}
+//
+//        let startCells = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//        let endCells = endCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//
+//        for index in 0..<startCellSet.count {
+//        var noteArr = [Underlying_Data_Cell]()
+//        let currStartCell = startCells[index]
+//        let currEndCell = endCells[index]
+//        noteArr.append(currStartCell)
+//        let midSet = midCellSet.filter({$0.dataCell_X_Number > currStartCell.dataCell_X_Number && $0.dataCell_X_Number < currEndCell.dataCell_X_Number})
+//        let midArr = midSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//        for midCell in midArr {
+//        noteArr.append(midCell)
+//        }
+//        noteArr.append(currEndCell)
+//        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArr, note_Y_Num: note_Y_Param)
+//        }
+//
+//    }
     
     func nilPotentialSet(){
         if helperFuncs_PotentialNote_Set.count > 0 {
@@ -264,6 +264,7 @@ class Potential_Helper {
             }
             potential_Helper_Cursor_Set.removeAll()
         }
+        initial_WriteOnCell = nil
     }
     
 //    func nil_Potential_Cursor_Set(){
