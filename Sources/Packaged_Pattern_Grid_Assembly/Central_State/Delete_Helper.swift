@@ -200,9 +200,12 @@ class Delete_Helper {
         if delete_Cursor_Set.count > 0 {
             for cell in delete_Cursor_Set {
                 cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
+                print("cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)")
             }
             delete_Cursor_Set.removeAll()
         }
+        
+    
 
         if multiple_Line_Corners_Set.count > 0 {
             multiple_Line_Corners_Set.removeAll()

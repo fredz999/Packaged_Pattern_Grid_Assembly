@@ -139,7 +139,7 @@ public class Central_State : ObservableObject {
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
         if patternModeParam == .deleting {
-            print("patternModeParam == .deleting")
+
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
             if potential_Helper.initial_WriteOnCell != nil {
                 potential_Helper.initial_WriteOnCell = nil
@@ -172,7 +172,7 @@ public class Central_State : ObservableObject {
             delete_Helper.process_Delete_Cursor_Position()
         }
         else if patternModeParam == .passive {
-            print("patternModeParam == .passive")
+
             if currentPatternMode != .passive{currentPatternMode = .passive}
             
             if potential_Helper.initial_WriteOnCell != nil, potential_Helper.helperFuncs_PotentialNote_Set.count > 0 {
