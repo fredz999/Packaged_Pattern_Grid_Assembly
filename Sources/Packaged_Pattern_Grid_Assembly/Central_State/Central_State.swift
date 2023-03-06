@@ -203,7 +203,7 @@ public class Central_State : ObservableObject {
             lclMoveHelper.snapshot_Cursor_X = nil
             lclMoveHelper.snapshot_Cursor_Y = nil
             //print("calling delete note")
-            //lclMoveHelper.writeMovedNote_DeleteOldNote()
+            lclMoveHelper.writeMovedNote_DeleteOldNote()
             }
             
             if let lclPassiveHelper = passive_Helper{
