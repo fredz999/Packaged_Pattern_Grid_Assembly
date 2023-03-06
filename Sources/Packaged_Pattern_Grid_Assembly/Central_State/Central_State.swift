@@ -167,7 +167,11 @@ public class Central_State : ObservableObject {
             if let lclNoteCollectionRef = note_Collection_Ref{
                 if lclNoteCollectionRef.currentHighlightedNote != nil{
                     lclNoteCollectionRef.delete_Current_Highlighted_Note()
+                    if lclNoteCollectionRef.noteArray.count == 0{
+                        delete_Helper.nil_Delete_Square_Set()
+                    }
                 }
+                
             }
             delete_Helper.process_Delete_Cursor_Position()
         }
@@ -185,7 +189,7 @@ public class Central_State : ObservableObject {
             delete_Helper.nil_Delete_Square_Set()
             }
             else{
-               print("delete_Helper.delete_Cursor_Set.count nat > 0 ") 
+               print("delete_Helper.delete_Cursor_Set.count nat > 0 ")
             }
             
             if let lclMoveHelper = move_Helper {
