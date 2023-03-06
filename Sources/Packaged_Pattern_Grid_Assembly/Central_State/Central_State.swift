@@ -141,6 +141,7 @@ public class Central_State : ObservableObject {
         if patternModeParam == .deleting {
 
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
+            delete_Helper.process_Delete_Cursor_Position()
             if potential_Helper.initial_WriteOnCell != nil {
                 potential_Helper.initial_WriteOnCell = nil
                 potential_Helper.nilPotentialSet()
@@ -167,15 +168,10 @@ public class Central_State : ObservableObject {
             if let lclNoteCollectionRef = note_Collection_Ref{
                 if lclNoteCollectionRef.currentHighlightedNote != nil{
                     lclNoteCollectionRef.delete_Current_Highlighted_Note()
-                 print("delete_Helper.delete_Cursor_Set.count: ",delete_Helper.delete_Cursor_Set.count)
-//                    if lclNoteCollectionRef.noteArray.count == 0{
-//                        print()
-//                        delete_Helper.nil_Delete_Square_Set()
-//                    }
                 }
                 
             }
-            delete_Helper.process_Delete_Cursor_Position()
+            
         }
         else if patternModeParam == .passive {
             if currentPatternMode != .passive{currentPatternMode = .passive}
