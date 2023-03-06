@@ -205,8 +205,6 @@ class Delete_Helper {
             delete_Cursor_Set.removeAll()
         }
         
-    
-
         if multiple_Line_Corners_Set.count > 0 {
             multiple_Line_Corners_Set.removeAll()
         }
