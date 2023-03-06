@@ -152,6 +152,13 @@ public class Central_State : ObservableObject {
         }
         else if patternModeParam == .writing {
             if currentPatternMode != .writing{currentPatternMode = .writing}
+            if dimensions.patternTimingConfiguration == .fourFour {
+                potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            }
+            else if dimensions.patternTimingConfiguration == .sixEight {
+                potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            }
+            potential_Helper.establish_Potential_Cells_Set()
         }
         else if patternModeParam == .resizing {
             if currentPatternMode != .resizing{currentPatternMode = .resizing}
