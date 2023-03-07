@@ -50,12 +50,10 @@ public class Central_State : ObservableObject {
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
         
-        
         delete_Helper = Delete_Helper()
         move_Helper = Move_Helper()
         writeNote_Helper = WriteNote_Helper()
         passive_Helper = Passive_Helper()
-        
         
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         for cell in currLine.dataCellArray {
