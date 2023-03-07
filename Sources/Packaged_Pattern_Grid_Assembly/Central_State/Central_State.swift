@@ -36,7 +36,7 @@ public class Central_State : ObservableObject {
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
     public var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
     
-    public let cState_note_Collection_Ref = Note_Collection.Static_Note_Collection
+    //public let cState_note_Collection_Ref = Note_Collection.Static_Note_Collection
     //public var note_Collection_Ref : Note_Collection?
     public var central_Grid_Store : Central_Grid_Store?
     //==================================================
@@ -150,11 +150,11 @@ public class Central_State : ObservableObject {
 
     public func deleteANote(){
         //if let lclNoteCollection = note_Collection_Ref {
-            if let lclCurrentHighlightedNote = cState_note_Collection_Ref.currentHighlightedNote{
-                print("from 1")
-                cState_note_Collection_Ref.delete_Current_Highlighted_Note(note_Id_Param: lclCurrentHighlightedNote.id)
-                a_Note_Is_Highlighted = false
-            }
+//            if let lclCurrentHighlightedNote = cState_note_Collection_Ref.currentHighlightedNote{
+//                print("from 1")
+//                cState_note_Collection_Ref.delete_Current_Highlighted_Note(note_Id_Param: lclCurrentHighlightedNote.id)
+//                a_Note_Is_Highlighted = false
+//            }
         //}
     }
 
