@@ -66,18 +66,17 @@ public class Central_State : ObservableObject {
         
         if patternModeParam == .passive_Mode {
             
-//            delete_Helper.deactivate_Mode()
-//            move_Helper.deactivate_Mode()
-            //writeNote_Helper.deactivate_Mode()
-            //passive_Helper.activate_Mode()
+            delete_Helper.deactivate_Mode()
+            move_Helper.deactivate_Mode()
+            writeNote_Helper.deactivate_Mode()
+            passive_Helper.activate_Mode()
             currentPatternMode = .passive_Mode
         }
         else if patternModeParam == .write_Mode {
-//            delete_Helper.deactivate_Mode()
-//            move_Helper.deactivate_Mode()
-            
-            //writeNote_Helper.activate_Mode()
-            //passive_Helper.deactivate_Mode()
+            delete_Helper.deactivate_Mode()
+            move_Helper.deactivate_Mode()
+            writeNote_Helper.activate_Mode()
+            passive_Helper.deactivate_Mode()
             currentPatternMode = .write_Mode
         }
         
