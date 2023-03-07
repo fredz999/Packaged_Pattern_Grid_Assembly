@@ -35,7 +35,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
     //=============================================================================================================
     
-    var noteCollection = Note_Collection.Static_Note_Collection
+    //var gAndSnoteCollection = Note_Collection.Static_Note_Collection
     
     public var wrapped_Vertical_Slider : Wrapped_Vertical_Slider<Injected_Data_Y_Slider_Cell_Type>
     
