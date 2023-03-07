@@ -41,22 +41,19 @@ public class Central_State : ObservableObject {
     var higher_Bracket_Number : Int = 0
     //==================================================
     
-//    var delete_Helper : Delete_Helper
-//    var move_Helper : Move_Helper
-    
+    var delete_Helper : Delete_Helper
+    var move_Helper : Move_Helper
     var passive_Helper : Passive_Helper
-    //var writeNote_Helper : WriteNote_Helper
+    var writeNote_Helper : WriteNote_Helper
 
     public init(){
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
         
         
-//        delete_Helper = Delete_Helper()
-//        move_Helper = Move_Helper()
-        
-        
-        //writeNote_Helper = WriteNote_Helper()
+        delete_Helper = Delete_Helper()
+        move_Helper = Move_Helper()
+        writeNote_Helper = WriteNote_Helper()
         passive_Helper = Passive_Helper()
         
         
