@@ -41,16 +41,17 @@ class WriteNote_Helper: P_Selectable_Mode {
                 
                 //test_For_Write_Lock()
                 
-                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
+                //if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
                     if let lclNillableNote = nillableNote {
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
-                                                                            //, highlightType: .Selected_Highlight)
+                        //lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
+                              Note_Collection.Static_Note_Collection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)                                            //, highlightType: .Selected_Highlight)
                     }
                     else if nillableNote == nil {
-                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
+                        //lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
                                                                             //, highlightType: .UnSelected)
+                        Note_Collection.Static_Note_Collection.note_Collection_Highlight_Handler(noteParam: nil)
                     }
-                }
+                //}
                 
             }
         }

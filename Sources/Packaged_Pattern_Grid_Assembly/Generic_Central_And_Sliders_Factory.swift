@@ -64,11 +64,12 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         //centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
         
-        centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
+        //centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
         //centralState.delete_Helper.note_Collection_Ref = Note_Collection.Static_Note_Collection
         
         //centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
-        centralState.note_Collection_Ref = noteCollection
+        //centralState.note_Collection_Ref = noteCollection
+        
         centralState.central_Grid_Store = visible_Grid_Store
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
         centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store

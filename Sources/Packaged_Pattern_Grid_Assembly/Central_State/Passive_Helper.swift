@@ -11,7 +11,7 @@ class Passive_Helper: P_Selectable_Mode {
     
     let dimensions = ComponentDimensions.StaticDimensions
         
-    //let note_Collection_Ref = Note_Collection.Static_Note_Collection
+    let note_Collection_Ref = Note_Collection.Static_Note_Collection
     
     var mode_Active: Bool = false
     

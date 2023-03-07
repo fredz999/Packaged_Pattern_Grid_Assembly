@@ -18,6 +18,7 @@ public class Central_State : ObservableObject {
     // but i need to be able to see the button to drop the note someplace
     
     
+    
     @Published public var pattern_Has_A_Note : Bool = false
     
     @Published public var note_Write_Locked : Bool = false
@@ -34,7 +35,9 @@ public class Central_State : ObservableObject {
     //==================================================
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
     public var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
-    public var note_Collection_Ref : Note_Collection?
+    
+    let note_Collection_Ref = Note_Collection.Static_Note_Collection
+    //public var note_Collection_Ref : Note_Collection?
     public var central_Grid_Store : Central_Grid_Store?
     //==================================================
     var lower_Bracket_Number : Int = 0
@@ -146,13 +149,13 @@ public class Central_State : ObservableObject {
     }
 
     public func deleteANote(){
-        if let lclNoteCollection = note_Collection_Ref {
-            if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote{
+        //if let lclNoteCollection = note_Collection_Ref {
+            if let lclCurrentHighlightedNote = note_Collection_Ref.currentHighlightedNote{
                 print("from 1")
-                lclNoteCollection.delete_Current_Highlighted_Note(note_Id_Param: lclCurrentHighlightedNote.id)
+                note_Collection_Ref.delete_Current_Highlighted_Note(note_Id_Param: lclCurrentHighlightedNote.id)
                 a_Note_Is_Highlighted = false
             }
-        }
+        //}
     }
 
     var currentYCursor_Slider_Position : Int = 0
