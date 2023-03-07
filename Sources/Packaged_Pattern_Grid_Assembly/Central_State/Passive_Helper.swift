@@ -14,10 +14,6 @@ class Passive_Helper: P_Selectable_Mode {
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
     
     var mode_Active: Bool = false
-    
-    init(){
-        
-    }
 
     func test_For_Write_Lock(){
     //        if let cursorZero = passive_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -79,6 +75,7 @@ class Passive_Helper: P_Selectable_Mode {
         if mode_Active == true{mode_Active=false}
     }
 
+    public init(){}
     
 //    var passive_Cursor_Set = Set<Underlying_Data_Cell>(){
 //        willSet {
