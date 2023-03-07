@@ -13,13 +13,10 @@ public class Central_State : ObservableObject {
     
     @Published var edit_Layer_Visible : Bool = true
     
-    @Published public var a_Note_Is_Highlighted : Bool = false
+    //@Published public var a_Note_Is_Highlighted : Bool = false
     // need to have a note is highlighted for the initial grab
     // but i need to be able to see the button to drop the note someplace
-    
-    
-    
-    @Published public var pattern_Has_A_Note : Bool = false
+    //@Published public var pattern_Has_A_Note : Bool = false
     
     @Published public var note_Write_Locked : Bool = false
     
