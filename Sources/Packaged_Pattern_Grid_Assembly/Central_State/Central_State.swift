@@ -44,7 +44,7 @@ public class Central_State : ObservableObject {
 //    var delete_Helper : Delete_Helper
 //    var move_Helper : Move_Helper
     
-    var passive_Helper : Passive_Helper
+    //var passive_Helper : Passive_Helper
     //var writeNote_Helper : WriteNote_Helper
 
     public init(){
@@ -57,7 +57,7 @@ public class Central_State : ObservableObject {
         
         
         //writeNote_Helper = WriteNote_Helper()
-        passive_Helper = Passive_Helper()
+        //passive_Helper = Passive_Helper()
         
         
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -74,15 +74,15 @@ public class Central_State : ObservableObject {
 //            delete_Helper.deactivate_Mode()
 //            move_Helper.deactivate_Mode()
             //writeNote_Helper.deactivate_Mode()
-            passive_Helper.activate_Mode()
-            currentPatternMode = .passive_Mode
+            //passive_Helper.activate_Mode()
+            //currentPatternMode = .passive_Mode
         }
         else if patternModeParam == .write_Mode {
 //            delete_Helper.deactivate_Mode()
 //            move_Helper.deactivate_Mode()
             
             //writeNote_Helper.activate_Mode()
-            passive_Helper.deactivate_Mode()
+            //passive_Helper.deactivate_Mode()
             currentPatternMode = .write_Mode
         }
         
