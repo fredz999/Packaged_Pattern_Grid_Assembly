@@ -20,7 +20,7 @@ class Potential_Helper {
             }
         }
         didSet {
-            if Central_State.Static_Central_State.currentPatternMode != .writing{
+            if Central_State.Static_Central_State.currentPatternMode != .write_Mode{
                 var nillableNote : Note? = nil
                 for cell in potential_Helper_Cursor_Set {
                     cell.handleVisibleStateChange(type: .activate_Cursor_Set)

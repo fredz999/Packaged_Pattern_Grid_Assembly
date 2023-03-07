@@ -21,7 +21,7 @@ class Passive_Helper {
             }
         }
         didSet {
-            if Central_State.Static_Central_State.currentPatternMode == .passive {
+            if Central_State.Static_Central_State.currentPatternMode == .passive_Mode {
                 var nillableNote : Note? = nil
                 for cell in passive_Cursor_Set {
                     cell.handleVisibleStateChange(type: .activate_Passive_Cursor_Set)

@@ -241,7 +241,7 @@ public class Data_Vals_Holder : ObservableObject {
 //    }
     
     func check_Highlighted(){
-        if centralState.currentPatternMode == .passive{
+        if centralState.currentPatternMode == .passive_Mode{
             if referenced_in_Highlighted_Set == true {
                 if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .red}
             }
@@ -250,7 +250,7 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
 
-        else if centralState.currentPatternMode == .moving {
+        else if centralState.currentPatternMode == .move_Mode {
             if referenced_in_Highlighted_Set == true {
                 if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .white}
             }

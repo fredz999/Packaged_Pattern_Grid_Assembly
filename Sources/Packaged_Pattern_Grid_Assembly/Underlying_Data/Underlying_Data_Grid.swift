@@ -415,17 +415,7 @@ enum E_VisibleStateChangeType {
     
     case activate_Prohibited
     case deActivate_Prohibited
-    
-//    case activate_Highlighted
-//    case deActivate_Highlighted
-    
-//    case activate_UnSelected
-//    case activate_Selected
-//    case activate_Selected_For_Move
-//    case activate_Selected_For_Resize
-    
-    
-    
+
     case activate_Viable_Set_Combined
     case deActivate_Viable_Set_Combined
     

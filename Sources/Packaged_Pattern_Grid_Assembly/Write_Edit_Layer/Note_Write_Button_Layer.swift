@@ -32,14 +32,14 @@ class Note_Write_Layer_Store : ObservableObject {
     }
     
     @ViewBuilder func currView() -> (some View) {
-        if centralState.currentPatternMode == .writing {
+        if centralState.currentPatternMode == .write_Mode {
         //if centralState.writingIsOn == true {
             ZStack {
                 Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0))
                 Text("Turn Write Off").foregroundColor(.white)
             }
         }
-        else if centralState.currentPatternMode != .writing {
+        else if centralState.currentPatternMode != .write_Mode {
         //else if centralState.writingIsOn == false {
             ZStack {
                 Rectangle().frame(width:120,height: 30).foregroundColor(Color(red: 0, green: 0.6, blue: 0))
