@@ -42,7 +42,7 @@ public class Central_State : ObservableObject {
     //==================================================
     
 //    var delete_Helper : Delete_Helper
-    var move_Helper : Move_Helper
+    //var move_Helper : Move_Helper
     var passive_Helper : Passive_Helper
     var writeNote_Helper : WriteNote_Helper
 
@@ -52,7 +52,7 @@ public class Central_State : ObservableObject {
         
         
 //        delete_Helper = Delete_Helper()
-        move_Helper = Move_Helper()
+        //move_Helper = Move_Helper()
         writeNote_Helper = WriteNote_Helper()
         passive_Helper = Passive_Helper()
         
