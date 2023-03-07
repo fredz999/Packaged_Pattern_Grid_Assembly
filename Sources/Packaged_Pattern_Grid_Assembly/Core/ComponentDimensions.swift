@@ -107,6 +107,7 @@ public class ComponentDimensions : ObservableObject {
                 Central_State.Static_Central_State.cursor_Slider_Update()
             }
         }
+        
         else if patternTimingConfiguration == .sixEight {
             if computedLineParam != currentSixEightPosition{
                 computedLineParam = currentSixEightPosition

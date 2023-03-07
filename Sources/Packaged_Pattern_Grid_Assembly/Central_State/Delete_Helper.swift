@@ -8,7 +8,17 @@
 import Foundation
 import SwiftUI
 
-class Delete_Helper {
+class Delete_Helper : P_Selectable_Mode{
+    
+    var mode_Active: Bool = false
+    
+    func activate_Mode() {
+        if mode_Active == false{mode_Active=true}
+    }
+    
+    func deactivate_Mode() {
+        if mode_Active == true{mode_Active=false}
+    }
     
     let dimensions = ComponentDimensions.StaticDimensions
     

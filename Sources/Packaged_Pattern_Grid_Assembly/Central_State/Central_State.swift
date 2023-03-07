@@ -40,21 +40,56 @@ public class Central_State : ObservableObject {
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
-//    var potential_Helper : Potential_Helper
-//    var delete_Helper : Delete_Helper
-//    var move_Helper : Move_Helper?
-    //var passive_Helper : Passive_Helper?
+    var writeNote_Helper : WriteNote_Helper
+    var delete_Helper : Delete_Helper
+    var move_Helper : Move_Helper
+    var passive_Helper : Passive_Helper
+
 
     public init(){
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
-//        potential_Helper = Potential_Helper()
-//        delete_Helper = Delete_Helper()
+        
+        writeNote_Helper = WriteNote_Helper()
+        delete_Helper = Delete_Helper()
+        move_Helper = Move_Helper()
+        passive_Helper = Passive_Helper()
+        
+        
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
         
+    }
+    
+    public func setPatternMode(patternModeParam : E_PatternModeType){
+        
+        if patternModeParam == .passive_Mode {
+            writeNote_Helper.deactivate_Mode()
+            delete_Helper.deactivate_Mode()
+            move_Helper.deactivate_Mode()
+            passive_Helper.activate_Mode()
+            currentPatternMode = .passive_Mode
+        }
+        else if patternModeParam == .write_Mode {
+            delete_Helper.deactivate_Mode()
+            move_Helper.deactivate_Mode()
+            passive_Helper.deactivate_Mode()
+            writeNote_Helper.activate_Mode()
+            currentPatternMode = .write_Mode
+        }
+        
+        
+        
+        
+        
+//        if patternModeParam != .passive_Mode {
+//
+//        }
+//                if patternModeParam == .delete_Mode {
+//                    if currentPatternMode != .delete_Mode{currentPatternMode = .delete_Mode}
+//                }
     }
     
     public func post_init_Setup(){
@@ -155,9 +190,7 @@ public class Central_State : ObservableObject {
     
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-        
         centralState_Data_Evaluation()
-        
     }
 
     func centralState_Data_Evaluation(){
@@ -205,6 +238,7 @@ public class Central_State : ObservableObject {
     func data_Slider_LowBracket_Update(newLower:Int){
     
     lower_Bracket_Number = newLower
+        
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
     if let lcl_Central_Grid_Ref = central_Grid_Store {

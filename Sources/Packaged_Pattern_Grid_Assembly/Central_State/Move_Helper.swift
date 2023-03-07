@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class Move_Helper {
+class Move_Helper: P_Selectable_Mode {
     
     let dimensions = ComponentDimensions.StaticDimensions
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
@@ -87,7 +87,7 @@ class Move_Helper {
     
     var proposedSet = Set<Underlying_Data_Cell>()
     
-    var move_Mode_Active : Bool = false
+ 
     
     init(){
         currLeftLimit = 0
@@ -97,10 +97,14 @@ class Move_Helper {
     }
     // all funcs belo the init
     // a move mode activate func and a move mode isActive bool
-    func activateMoveMode(){
-        // this is now on, processing central variables and making potential notes
-        if move_Mode_Active == true{move_Mode_Active=false}
-        else if move_Mode_Active == false{move_Mode_Active=true}
+    var mode_Active: Bool = false
+    
+    func activate_Mode() {
+        if mode_Active == false{mode_Active=true}
+    }
+    
+    func deactivate_Mode() {
+        if mode_Active == true{mode_Active=false}
     }
     
     func movement_With_Note_Selected(){
@@ -185,4 +189,10 @@ class Move_Helper {
         }
     }
     
+}
+
+protocol P_Selectable_Mode {
+    var mode_Active : Bool{get set}
+    func activate_Mode()
+    func deactivate_Mode()
 }
