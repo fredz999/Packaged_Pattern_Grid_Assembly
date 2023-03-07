@@ -225,6 +225,22 @@ class WriteNote_Helper: P_Selectable_Mode {
         }
     }
     
+    func nilPotentialSet(){
+        if helperFuncs_PotentialNote_Set.count > 0 {
+            for cell in helperFuncs_PotentialNote_Set {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+            helperFuncs_PotentialNote_Set.removeAll()
+        }
+        if potential_Helper_Cursor_Set.count > 0 {
+            for cell in potential_Helper_Cursor_Set {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+            potential_Helper_Cursor_Set.removeAll()
+        }
+        initial_WriteOnCell = nil
+    }
+    
 //    func writeNote(note_Y_Param:Int){
 //        var startCellSet = Set<Underlying_Data_Cell>()
 //        if let minX = helperFuncs_PotentialNote_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -261,21 +277,7 @@ class WriteNote_Helper: P_Selectable_Mode {
 //
 //    }
     
-    func nilPotentialSet(){
-        if helperFuncs_PotentialNote_Set.count > 0 {
-            for cell in helperFuncs_PotentialNote_Set {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-            }
-            helperFuncs_PotentialNote_Set.removeAll()
-        }
-        if potential_Helper_Cursor_Set.count > 0 {
-            for cell in potential_Helper_Cursor_Set {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-            }
-            potential_Helper_Cursor_Set.removeAll()
-        }
-        initial_WriteOnCell = nil
-    }
+    
     
 //    func nil_Potential_Cursor_Set(){
 //        if potential_Helper_Cursor_Set.count > 0 {
