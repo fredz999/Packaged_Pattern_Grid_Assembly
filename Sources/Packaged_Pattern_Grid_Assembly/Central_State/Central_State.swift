@@ -104,7 +104,8 @@ public class Central_State : ObservableObject {
 //        lclPassiveHelper.process_Passive_Cursor_Position()
 //    }
     //move_Helper = Move_Helper()
-        centralState_Data_Evaluation()
+        
+        //centralState_Data_Evaluation()
     }
     
     public func change_Write_Needs_Held_Down(){
