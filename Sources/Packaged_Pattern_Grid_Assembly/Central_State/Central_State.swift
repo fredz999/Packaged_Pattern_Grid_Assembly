@@ -147,9 +147,27 @@ public class Central_State : ObservableObject {
         else if patternModeParam == .moving {
             if currentPatternMode != .moving{
                 currentPatternMode = .moving
-                if let lclMoveHelper = move_Helper {
-                    lclMoveHelper.process_MoveNote_Cursor_Position()
+//                if let lclMoveHelper = move_Helper {
+//                    lclMoveHelper.process_MoveNote_Cursor_Position()
+//                }
+                
+                if let lclNoteCollection = note_Collection_Ref {
+                    if let lclCurrentHighlightedNote = lclNoteCollection.currentHighlightedNote {
+                        
+                        if let lclMoveHelper = move_Helper {
+                        lclMoveHelper.snapShot_Note_Id_Param = lclCurrentHighlightedNote.id
+                        lclMoveHelper.note_Low_Index = lclCurrentHighlightedNote.lowest_Index
+                        lclMoveHelper.note_High_Index = lclCurrentHighlightedNote.highest_Index
+                        lclMoveHelper.note_Y_Val = lclCurrentHighlightedNote.note_Y_Number
+                        lclMoveHelper.snapshot_Cursor_X = curr_Data_Pos_X
+                        lclMoveHelper.snapshot_Cursor_Y = curr_Data_Pos_Y
+                        lclMoveHelper.process_MoveNote_Cursor_Position()
+                        }
+                        
+                    }
                 }
+                
+                
                 
             }
             else if currentPatternMode == .moving {
