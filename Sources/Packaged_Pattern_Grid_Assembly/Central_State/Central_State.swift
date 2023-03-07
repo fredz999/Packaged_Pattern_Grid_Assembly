@@ -36,7 +36,7 @@ public class Central_State : ObservableObject {
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
     public var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
     
-    let note_Collection_Ref = Note_Collection.Static_Note_Collection
+    public let note_Collection_Ref = Note_Collection.Static_Note_Collection
     //public var note_Collection_Ref : Note_Collection?
     public var central_Grid_Store : Central_Grid_Store?
     //==================================================
