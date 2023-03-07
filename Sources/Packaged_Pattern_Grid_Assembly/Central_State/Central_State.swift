@@ -54,6 +54,7 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
+        centralState_Data_Evaluation()
     }
     
     public func post_init_Setup(){
