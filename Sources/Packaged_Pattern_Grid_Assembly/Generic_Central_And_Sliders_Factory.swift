@@ -25,6 +25,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     var injected_h_Slider : Injected_H_SliderType?
     var injected_v_Slider : Injected_V_SliderType?
+    
     //var injected_cursor : Injected_Cursor_Type?
     //var injected_potential_Note_View : Injected_Potential_Note_Type?
     
