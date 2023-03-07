@@ -145,10 +145,27 @@ public class Central_State : ObservableObject {
             if currentPatternMode != .deleting{currentPatternMode = .deleting}
         }
         else if patternModeParam == .moving {
-            if currentPatternMode != .moving{currentPatternMode = .moving}
+            if currentPatternMode != .moving{
+                currentPatternMode = .moving
+                if let lclMoveHelper = move_Helper {
+                    lclMoveHelper.process_MoveNote_Cursor_Position()
+                }
+                
+            }
+            else if currentPatternMode == .moving {
+                if let lclMoveHelper = move_Helper {
+                    lclMoveHelper.writeMovedNote_DeleteOldNote()
+                    lclMoveHelper.note_Low_Index = nil
+                    lclMoveHelper.note_High_Index = nil
+                    lclMoveHelper.note_Y_Val = nil
+                    lclMoveHelper.snapshot_Cursor_X = nil
+                    lclMoveHelper.snapshot_Cursor_Y = nil
+                    lclMoveHelper.nil_Cell_Sets()
+                }
+                
+            }
         }
         else if patternModeParam == .passive {
-            
             
         if currentPatternMode != .passive{
             if let lclPassiveHelper = passive_Helper{
@@ -158,30 +175,8 @@ public class Central_State : ObservableObject {
             Note_Collection.Static_Note_Collection.react_To_Mode_Change()
             currentPatternMode = .passive
         }
- 
-
-//            if delete_Helper.delete_Cursor_Set.count > 0 {
-//            delete_Helper.nil_Delete_Square_Set()
-//            }
-
-//        if let lclMoveHelper = move_Helper {
-//        lclMoveHelper.note_Low_Index = nil
-//        lclMoveHelper.note_High_Index = nil
-//        lclMoveHelper.note_Y_Val = nil
-//        lclMoveHelper.snapshot_Cursor_X = nil
-//        lclMoveHelper.snapshot_Cursor_Y = nil
-//        print("calling delete note")
-//        lclMoveHelper.writeMovedNote_DeleteOldNote()
-//        }
-
-        
-            
-            
             
         }
-        
-        
-        
         else if patternModeParam == .writing {
             if currentPatternMode != .writing {
             delete_Helper.nil_Delete_Square_Set()
