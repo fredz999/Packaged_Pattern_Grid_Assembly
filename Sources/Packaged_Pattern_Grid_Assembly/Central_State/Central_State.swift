@@ -47,7 +47,7 @@ public class Central_State : ObservableObject {
 //    var delete_Helper : Delete_Helper
 //    var move_Helper : Move_Helper
     
-    //var passive_Helper : Passive_Helper
+    var passive_Helper : Passive_Helper
     //var writeNote_Helper : WriteNote_Helper
 
     public init(){
@@ -60,7 +60,7 @@ public class Central_State : ObservableObject {
         
         
         //writeNote_Helper = WriteNote_Helper()
-        //passive_Helper = Passive_Helper()
+        passive_Helper = Passive_Helper()
         
         
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
