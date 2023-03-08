@@ -79,7 +79,6 @@ public class Central_State : ObservableObject {
         }
     }
     
-
     
     public func change_Write_Needs_Held_Down(){
         if write_Needs_Held_Down == true {
