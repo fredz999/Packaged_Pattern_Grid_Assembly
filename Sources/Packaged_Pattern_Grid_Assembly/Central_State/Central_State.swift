@@ -60,14 +60,13 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
-        
-        post_init_Setup()
     }
         
     public func post_init_Setup(){
         //print("cstate lineset count: ",currLineSet.count)
-        print("central state set up............................")
+        
         centralState_Data_Evaluation()
+        print("central state set up............................")
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
@@ -204,18 +203,19 @@ public class Central_State : ObservableObject {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
 
-//            current_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
+            current_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
             
-            current_Cursor_Set = currLineSet
 
         }
         
-//        else if dimensions.patternTimingConfiguration == .sixEight {
-//            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-//            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
-//
-//            current_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
-//        }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+
+            current_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
+        }
+        
+        
 
     }
     
