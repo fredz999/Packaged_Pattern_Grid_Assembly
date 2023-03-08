@@ -65,8 +65,8 @@ public class Central_State : ObservableObject {
     }
         
     public func post_init_Setup(){
-        print("cstate lineset count: ",currLineSet.count)
-        //centralState_Data_Evaluation()
+        //print("cstate lineset count: ",currLineSet.count)
+        centralState_Data_Evaluation()
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
