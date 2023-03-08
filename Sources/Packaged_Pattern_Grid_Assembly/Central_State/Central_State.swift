@@ -255,7 +255,7 @@ public class Central_State : ObservableObject {
 
 }
 
-public enum E_PatternModeType : String{
+public enum E_PatternModeType : String {
     case write_Mode = "write_Mode"
     case delete_Mode = "delete_Mode"
     case move_Mode = "move_Mode"
