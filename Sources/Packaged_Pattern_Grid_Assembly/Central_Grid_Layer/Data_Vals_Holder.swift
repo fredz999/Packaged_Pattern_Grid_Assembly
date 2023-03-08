@@ -10,7 +10,6 @@ import SwiftUI
 
 public class Data_Vals_Holder : ObservableObject {
     let dimensions = ComponentDimensions.StaticDimensions
-    //let centralState = Central_State.Static_Central_State
     let colors = ComponentColors.StaticColors
     @Published public var referenced_dataCell_X_Number : Int
     @Published public var referenced_dataCell_Y_Number : Int

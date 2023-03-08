@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 public class Central_Grid_Store : ObservableObject {
-    //let central_State_Ref = Central_State.Static_Central_State
+
     let dimensions = ComponentDimensions.StaticDimensions
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
 
