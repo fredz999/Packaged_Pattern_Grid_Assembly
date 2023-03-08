@@ -140,9 +140,9 @@ public class Note_Collection {
         currentHighlightedNote = nil
     }
     
-    init(){
-        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Note_Collection)
-    }
+//    init(){
+//        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Note_Collection)
+//    }
     
     public static let Static_Note_Collection = Note_Collection()
     

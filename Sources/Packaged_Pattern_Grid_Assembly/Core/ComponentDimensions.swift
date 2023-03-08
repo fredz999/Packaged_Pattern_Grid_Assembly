@@ -109,7 +109,7 @@ public class ComponentDimensions : ObservableObject {
         }
         
         else if patternTimingConfiguration == .sixEight {
-            if computedLineParam != currentSixEightPosition{
+            if computedLineParam != currentSixEightPosition {
                 computedLineParam = currentSixEightPosition
                 Central_State.Static_Central_State.cursor_Slider_Update()
             }
@@ -138,9 +138,9 @@ public class ComponentDimensions : ObservableObject {
         }
     }
     
-    init(){
-        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .ComponentDimensions)
-    }
+//    init(){
+//        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .ComponentDimensions)
+//    }
     
     public static let StaticDimensions = ComponentDimensions()
     

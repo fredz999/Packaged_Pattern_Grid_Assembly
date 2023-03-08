@@ -15,7 +15,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     
     public init(){
         set_Data_Grid()
-        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Underlying_Data_Grid)
     }
     
     private var fourFour_Sub_Count : Int = 0
@@ -35,8 +34,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     var currSixStatus : E_CellStatus = .start_Blank
     
     var grid_Of_Cells_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    //var line_Of_Cells_Set : Set<Set<Underlying_Data_Cell>> = Set<Set<Underlying_Data_Cell>>()
-    //var grid_Set : Set<Set<Underlying_Data_Line>> = Set<Set<Underlying_Data_Line>>()
     
     func set_Data_Grid(){
         for line_Y_Number in 0..<dimensions.DATA_final_Line_Y_Index {

@@ -39,8 +39,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
     //=============================================================================================================
     
-    //var gAndSnoteCollection = Note_Collection.Static_Note_Collection
-    
     public var wrapped_Vertical_Slider : Wrapped_Vertical_Slider<Injected_Data_Y_Slider_Cell_Type>
     
     public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
@@ -61,23 +59,12 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
         
-        //cursor_Layer_Store = Cursor_Layer_Store()
-                
-        //potential_Note_Layer_Store = Potential_Note_Layer_Store()
-
-        //centralState.cursor_Layer_Ref = cursor_Layer_Store
-        
-        //centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
-        
-        //centralState.note_Collection_Ref = Note_Collection.Static_Note_Collection
-        //centralState.delete_Helper.note_Collection_Ref = Note_Collection.Static_Note_Collection
-        
-        //centralState.potential_Note_Layer_Ref = potential_Note_Layer_Store
-        //centralState.note_Collection_Ref = noteCollection
-        
         centralState.central_Grid_Store = visible_Grid_Store
+        
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
+        
         centralState.h_Slider_Ref = cursor_Horizontal_Slider_Store
+        
         centralState.higher_Bracket_Number = dimensions.visualGrid_Y_Unit_Count
     }
     

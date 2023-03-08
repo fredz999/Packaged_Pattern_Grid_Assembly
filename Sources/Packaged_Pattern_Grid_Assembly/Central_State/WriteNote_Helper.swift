@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class WriteNote_Helper: P_Selectable_Mode {
-    
+//
     var mode_Active: Bool = false
     
     func activate_Mode() {
@@ -19,7 +19,7 @@ class WriteNote_Helper: P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true{mode_Active=false}
     }
-    
+
     let dimensions = ComponentDimensions.StaticDimensions
 
     var potential_Helper_Cursor_Set = Set<Underlying_Data_Cell>(){
@@ -38,9 +38,9 @@ class WriteNote_Helper: P_Selectable_Mode {
                         nillableNote = lclNote
                     }
                 }
-                
+
                 //test_For_Write_Lock()
-                
+
                 //if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
                     if let lclNillableNote = nillableNote {
                         //lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
@@ -52,7 +52,7 @@ class WriteNote_Helper: P_Selectable_Mode {
                         Note_Collection.Static_Note_Collection.note_Collection_Highlight_Handler(noteParam: nil)
                     }
                 //}
-                
+
             }
         }
     }
@@ -70,7 +70,7 @@ class WriteNote_Helper: P_Selectable_Mode {
             }
         }
     }
-    
+
     var initial_WriteOnCell : Underlying_Data_Cell?
 
     func establish_Cursor_Set(){
@@ -83,7 +83,7 @@ class WriteNote_Helper: P_Selectable_Mode {
                 .filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.six_Eight_Half_Cell_Index})
         }
     }
-    
+
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
 
@@ -225,7 +225,7 @@ class WriteNote_Helper: P_Selectable_Mode {
 
         }
     }
-    
+
     func nilPotentialSet(){
         if helperFuncs_PotentialNote_Set.count > 0 {
             for cell in helperFuncs_PotentialNote_Set {
@@ -241,54 +241,6 @@ class WriteNote_Helper: P_Selectable_Mode {
         }
         initial_WriteOnCell = nil
     }
-    
-//    func writeNote(note_Y_Param:Int){
-//        var startCellSet = Set<Underlying_Data_Cell>()
-//        if let minX = helperFuncs_PotentialNote_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//            startCellSet.insert(minX)
-//        }
-//
-//        var endCellSet = Set<Underlying_Data_Cell>()
-//        if let maxX = helperFuncs_PotentialNote_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//            endCellSet.insert(maxX)
-//        }
-//
-//        let midCellSet = helperFuncs_PotentialNote_Set.subtracting(startCellSet.union(endCellSet))
-//
-//        for cell in startCellSet{cell.change_Type(newType: .start_Note)}
-//        for cell in midCellSet{cell.change_Type(newType: .mid_Note)}
-//        for cell in endCellSet{cell.change_Type(newType: .end_Note)}
-//
-//        let startCells = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        let endCells = endCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//
-//        for index in 0..<startCellSet.count {
-//        var noteArr = [Underlying_Data_Cell]()
-//        let currStartCell = startCells[index]
-//        let currEndCell = endCells[index]
-//        noteArr.append(currStartCell)
-//        let midSet = midCellSet.filter({$0.dataCell_X_Number > currStartCell.dataCell_X_Number && $0.dataCell_X_Number < currEndCell.dataCell_X_Number})
-//        let midArr = midSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        for midCell in midArr {
-//        noteArr.append(midCell)
-//        }
-//        noteArr.append(currEndCell)
-//        Note_Collection.Static_Note_Collection.write_Note_Data(cellArrayParam: noteArr, note_Y_Num: note_Y_Param)
-//        }
-//
-//    }
-    
-    
-    
-//    func nil_Potential_Cursor_Set(){
-//        if potential_Helper_Cursor_Set.count > 0 {
-//            for cell in potential_Helper_Cursor_Set {
-//                cell.handleVisibleStateChange(type: .deActivate_Cursor_Set)
-//            }
-//            potential_Helper_Cursor_Set.removeAll()
-//        }
-//    }
-
 }
 
 enum E_SwipeDirections{

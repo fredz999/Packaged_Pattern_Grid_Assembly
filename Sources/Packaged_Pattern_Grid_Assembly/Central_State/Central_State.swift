@@ -27,30 +27,29 @@ public class Central_State : ObservableObject {
     @Published public var currentPatternMode : E_PatternModeType = .passive_Mode
     
     public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
+    //var data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
     //==================================================
     var v_Slider_Ref : Cursor_Vertical_Slider_Store?
     public var h_Slider_Ref : Cursor_Horizontal_Slider_Store?
-    
-    //public let cState_note_Collection_Ref = Note_Collection.Static_Note_Collection
-    //public var note_Collection_Ref : Note_Collection?
     public var central_Grid_Store : Central_Grid_Store?
     //==================================================
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
     
-    var delete_Helper : Delete_Helper
+    //var delete_Helper : Delete_Helper
     var move_Helper : Move_Helper
     var passive_Helper : Passive_Helper
     var writeNote_Helper : WriteNote_Helper
 
     public init(){
+
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
         
-        delete_Helper = Delete_Helper()
+        //delete_Helper = Delete_Helper()
         move_Helper = Move_Helper()
         writeNote_Helper = WriteNote_Helper()
         passive_Helper = Passive_Helper()
@@ -63,7 +62,7 @@ public class Central_State : ObservableObject {
 //        let thing1 = Note_Collection.Static_Note_Collection.noteArray.count
 //        let thing2 = ComponentDimensions.StaticDimensions.dataGrid_X_Unit_Count
 //        let thing3 = Underlying_Data_Grid.Static_Underlying_Data_Grid.currFourStatus
-        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Central_State)
+        //Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Central_State)
     }
         
     public func post_init_Setup(){
@@ -72,20 +71,20 @@ public class Central_State : ObservableObject {
         centralState_Data_Evaluation()
         print("central state set up............................")
         
-        Init_Tracker.Static_Init_Tracker.yieldData()
+        //Init_Tracker.Static_Init_Tracker.yieldData()
         
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
         if patternModeParam == .passive_Mode {
-            delete_Helper.deactivate_Mode()
+            //delete_Helper.deactivate_Mode()
             move_Helper.deactivate_Mode()
             writeNote_Helper.deactivate_Mode()
             passive_Helper.activate_Mode()
             currentPatternMode = .passive_Mode
         }
         else if patternModeParam == .write_Mode {
-            delete_Helper.deactivate_Mode()
+            //delete_Helper.deactivate_Mode()
             move_Helper.deactivate_Mode()
             writeNote_Helper.activate_Mode()
             passive_Helper.deactivate_Mode()

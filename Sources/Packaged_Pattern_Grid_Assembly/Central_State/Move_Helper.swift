@@ -12,8 +12,6 @@ class Move_Helper: P_Selectable_Mode {
     
     let dimensions = ComponentDimensions.StaticDimensions
     let note_Collection_Ref = Note_Collection.Static_Note_Collection
-    let dataGrid = Underlying_Data_Grid.Static_Underlying_Data_Grid
-    //let centralStateRef = Central_State.Static_Central_State
     
     var note_Low_Index : Int?
     var note_High_Index : Int?
@@ -26,8 +24,6 @@ class Move_Helper: P_Selectable_Mode {
     var currRightLimit : Int
     var lineBelowOpen : Bool
     var lineAboveOpen : Bool
-    
-
     
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -59,16 +55,13 @@ class Move_Helper: P_Selectable_Mode {
     
     var proposedSet = Set<Underlying_Data_Cell>()
     
- 
-    
     init(){
         currLeftLimit = 0
         currRightLimit = dimensions.dataGrid_X_Unit_Count-1
         lineBelowOpen = true
         lineAboveOpen = true
     }
-    // all funcs belo the init
-    // a move mode activate func and a move mode isActive bool
+    
     var mode_Active: Bool = false
     
     func activate_Mode() {
@@ -80,16 +73,17 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Note_Selected(){
+        
 //        if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index, let lclNote_Y_Val = note_Y_Val
 //        ,let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y{
-//            
+//
 //            let delta_X_Grid_Units = centralStateRef.curr_Data_Pos_X - lclSnapshot_X
 //            let delta_Y_Grid_Units = centralStateRef.curr_Data_Pos_Y - lclSnapshot_Y
 //
 //            let proposedNewMinIndex = lclNote_Low_Index + delta_X_Grid_Units
 //            let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
 //            let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
-//            
+//
 //            if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
 //                proposedSet = Central_State.Static_Central_State.currLineSet
 //                .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
@@ -104,7 +98,7 @@ class Move_Helper: P_Selectable_Mode {
 //                    && $0.dataCell_X_Number <= currRightLimit
 //                }
 //            }
-//            
+//
 //            potential_Moved_Set = proposedSet
 //            prohibition_Indicator_Set = proposedSet.filter({$0.note_Im_In != nil})
 //        }
