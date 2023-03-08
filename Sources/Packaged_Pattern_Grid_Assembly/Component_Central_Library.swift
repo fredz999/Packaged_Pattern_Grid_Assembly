@@ -27,13 +27,13 @@ public class Init_Tracker{
             centralStateOT.injectTitle(classNameArray: &classStringArray)
         }
         else if classParam == .ComponentDimensions{
-            centralStateOT.injectTitle(classNameArray: &classStringArray)
+            componentDimensionsOT.injectTitle(classNameArray: &classStringArray)
         }
         else if classParam == .Underlying_Data_Grid{
-            centralStateOT.injectTitle(classNameArray: &classStringArray)
+            underlying_Data_GridOT.injectTitle(classNameArray: &classStringArray)
         }
         else if classParam == .Note_Collection{
-            centralStateOT.injectTitle(classNameArray: &classStringArray)
+            note_CollectionOT.injectTitle(classNameArray: &classStringArray)
         }
     }
     
