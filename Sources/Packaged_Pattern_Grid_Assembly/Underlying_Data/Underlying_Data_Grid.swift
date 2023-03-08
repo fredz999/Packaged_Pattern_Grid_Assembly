@@ -190,6 +190,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Passive_Cursor_Set == false {
                 in_Passive_Cursor_Set = true
                 if let lclDataVals = currentConnectedDataVals {
+                    print("update cell membership, in_Passive_Cursor_Set: ",in_Passive_Cursor_Set.description)
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .passiveCursorSet, value: in_Passive_Cursor_Set)
                 }
             }
