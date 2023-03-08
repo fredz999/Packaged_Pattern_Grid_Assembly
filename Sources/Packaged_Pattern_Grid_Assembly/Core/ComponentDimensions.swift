@@ -85,47 +85,47 @@ public class ComponentDimensions : ObservableObject {
     var nearestLeftSixEightCellStartIndex : Int = 0
     
     
-    func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
-        
-        let lesserSetFourFour = four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
-        
-        if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
-            if lclMaxLesserFour.x_Position_Float != currentFourFourPosition{currentFourFourPosition = lclMaxLesserFour.x_Position_Float}
-            if lclMaxLesserFour.x_Position_Int != currentFourFourDataIndex{currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int}
-        }
-        
-        let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
-        
-        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
-            if lclMaxLesserSix.x_Position_Float != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
-            if lclMaxLesserSix.x_Position_Int != currentSixEightDataIndex{currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
-        }
-        
-        if patternTimingConfiguration == .fourFour {
-            if computedLineParam != currentFourFourPosition{
-                computedLineParam = currentFourFourPosition
-                Central_State.Static_Central_State.cursor_Slider_Update()
-            }
-        }
-        
-        else if patternTimingConfiguration == .sixEight {
-            if computedLineParam != currentSixEightPosition {
-                computedLineParam = currentSixEightPosition
-                Central_State.Static_Central_State.cursor_Slider_Update()
-            }
-        }
-        
-    }
+//    func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
+//        
+//        let lesserSetFourFour = four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
+//        
+//        if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
+//            if lclMaxLesserFour.x_Position_Float != currentFourFourPosition{currentFourFourPosition = lclMaxLesserFour.x_Position_Float}
+//            if lclMaxLesserFour.x_Position_Int != currentFourFourDataIndex{currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int}
+//        }
+//        
+//        let lesserSetSixEight = six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
+//        
+//        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
+//            if lclMaxLesserSix.x_Position_Float != currentSixEightPosition{currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
+//            if lclMaxLesserSix.x_Position_Int != currentSixEightDataIndex{currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
+//        }
+//        
+//        if patternTimingConfiguration == .fourFour {
+//            if computedLineParam != currentFourFourPosition{
+//                computedLineParam = currentFourFourPosition
+//                Central_State.Static_Central_State.cursor_Slider_Update()
+//            }
+//        }
+//        
+//        else if patternTimingConfiguration == .sixEight {
+//            if computedLineParam != currentSixEightPosition {
+//                computedLineParam = currentSixEightPosition
+//                Central_State.Static_Central_State.cursor_Slider_Update()
+//            }
+//        }
+//        
+//    }
     
-    func test_Y_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
-        let divided = currValParam/pattern_Grid_Unit_Height
-        let intDivided = Int(divided)
-        if intDivided != Central_State.Static_Central_State.currentYCursor_Slider_Position {
-            Central_State.Static_Central_State.currentYCursor_Slider_Position = intDivided
-            Central_State.Static_Central_State.cursor_Slider_Update()
-            computedLineParam = CGFloat(intDivided) * pattern_Grid_Unit_Height
-        }
-    }
+//    func test_Y_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
+//        let divided = currValParam/pattern_Grid_Unit_Height
+//        let intDivided = Int(divided)
+//        if intDivided != Central_State.Static_Central_State.currentYCursor_Slider_Position {
+//            Central_State.Static_Central_State.currentYCursor_Slider_Position = intDivided
+//            Central_State.Static_Central_State.cursor_Slider_Update()
+//            computedLineParam = CGFloat(intDivided) * pattern_Grid_Unit_Height
+//        }
+//    }
 
     public func flip_Timing_Signature_Dimensions(){
         if patternTimingConfiguration == .fourFour {

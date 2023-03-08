@@ -159,19 +159,19 @@ public class Wrapped_Vertical_Slider<T:View> {
     let dimensions = ComponentDimensions.StaticDimensions
     var generic_Slider_Responder_Store : Generic_Slider_Responder_Store
     var generic_Slider_coordinator : Generic_Slider_Coordinator<T>
-    
-    
-    public init(coordParam : Generic_Slider_Coordinator<T>) {
-        self.generic_Slider_Responder_Store = Generic_Slider_Responder_Store()
+
+
+    public init(coordParam : Generic_Slider_Coordinator<T>,centralStateParam:Central_State) {
+        self.generic_Slider_Responder_Store = Generic_Slider_Responder_Store(centralStateParam: centralStateParam)
         self.generic_Slider_coordinator = coordParam
         self.generic_Slider_coordinator.addResponder(responderParam: self.generic_Slider_Responder_Store)
         setupCoordinator()
     }
-    
+
     func setupCoordinator(){
         self.generic_Slider_coordinator.parentWrapper = self
     }
-    
+
     @ViewBuilder func yield_A_Cell() -> some View {
 
         if injectedCellFactoryMethod == nil{
@@ -180,15 +180,15 @@ public class Wrapped_Vertical_Slider<T:View> {
         else if let lclInjectedMethod = injectedCellFactoryMethod{
             lclInjectedMethod()
         }
-        
+
     }
-    
+
     public func inject_Cell_Factory_Method(cell_Factory_Method:@escaping (()->T)){
         injectedCellFactoryMethod = cell_Factory_Method
     }
-    
+
     var injectedCellFactoryMethod : (()->T)?
-    
+
     deinit{
         if injectedCellFactoryMethod != nil{injectedCellFactoryMethod=nil}
     }
@@ -207,7 +207,7 @@ struct Default_UICollection_Cell_Overlay : View {
 
 
 class Generic_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
-    let centralState = Central_State.Static_Central_State
+    let centralState : Central_State
     let dimensions = ComponentDimensions.StaticDimensions
 
     var trackedInt : Int {
@@ -216,7 +216,8 @@ class Generic_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
         }
     }
 
-    init(){
+    init(centralStateParam:Central_State){
+        centralState = centralStateParam
         trackedInt = 0
     }
 

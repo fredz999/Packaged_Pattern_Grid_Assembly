@@ -15,7 +15,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    public var centralState : Central_State // = Central_State.Static_Central_State
+    public var centralState : Central_State
     
     public var visible_Grid_Store : Central_Grid_Store
     
@@ -45,11 +45,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
         
-        wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord)
+        wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord, centralStateParam: centralStateParam)
 
-        cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store()
+        cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store(central_State_Param: centralStateParam)
         
-        cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store()
+        cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store(central_State_Param: centralStateParam)
         
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
         

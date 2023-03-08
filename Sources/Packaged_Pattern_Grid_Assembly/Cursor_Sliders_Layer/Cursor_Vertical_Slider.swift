@@ -11,7 +11,7 @@ import SwiftUI
 
 public class Cursor_Vertical_Slider_Store:ObservableObject{
     
-    let centralState = Central_State.Static_Central_State
+    public let central_State_Ref : Central_State
     
     let dimensions = ComponentDimensions.StaticDimensions
     
@@ -25,7 +25,9 @@ public class Cursor_Vertical_Slider_Store:ObservableObject{
         }
     }
     
-    public init(){}
+    public init(central_State_Param : Central_State){
+        central_State_Ref = central_State_Param
+    }
     
     public var slideDragGesture : some Gesture {
       DragGesture(minimumDistance: 0, coordinateSpace: .local)
@@ -86,8 +88,19 @@ public class Cursor_Vertical_Slider_Store:ObservableObject{
 //        computedLineDisplacement = CGFloat(intDivided) * dimensions.pattern_Grid_Unit_Height
 //    }
     public func calculateCursorCellYPos(){
-        dimensions.test_Y_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
+        //dimensions.test_Y_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
         //central_State_Ref.cursor_Slider_Update(new_X: nil , new_Y: nil)
+        test_Y_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
+    }
+    
+    func test_Y_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
+        let divided = currValParam/dimensions.pattern_Grid_Unit_Height
+        let intDivided = Int(divided)
+        if intDivided != central_State_Ref.currentYCursor_Slider_Position {
+            central_State_Ref.currentYCursor_Slider_Position = intDivided
+            central_State_Ref.cursor_Slider_Update()
+            computedLineParam = CGFloat(intDivided) * dimensions.pattern_Grid_Unit_Height
+        }
     }
     
 }

@@ -21,11 +21,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
     var lowest_Index : Int
     var highest_Index : Int
     
-  
-    
-    
     var dimensions = ComponentDimensions.StaticDimensions
-    var central_State = Central_State.Static_Central_State
+    var central_State : Central_State
     var note_Y_Number : Int
     
     var highlighted : Bool = false {
@@ -43,7 +40,8 @@ public class Note : ObservableObject, Identifiable, Equatable {
         }
     }
 
-    public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
+    public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int,central_State_Param:Central_State) {
+        central_State = central_State_Param
         self.lowest_Index = cellArray[0].dataCell_X_Number
         self.highest_Index = cellArray[cellArray.count-1].dataCell_X_Number
         self.note_Y_Number = yParam

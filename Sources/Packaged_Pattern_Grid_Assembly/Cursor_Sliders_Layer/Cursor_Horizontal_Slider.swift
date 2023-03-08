@@ -11,8 +11,8 @@ import SwiftUI
 // I think I can take these generics oot and use the default ones
 // then in the generic assembly decide at runtime whether or not to use the injected factory methods
 public class Cursor_Horizontal_Slider_Store : ObservableObject {
-    //let centralState = Central_State.Static_Central_State
-    public let central_State_Ref = Central_State.Static_Central_State
+
+    public let central_State_Ref : Central_State
     
     public let dimensions = ComponentDimensions.StaticDimensions
     
@@ -36,7 +36,9 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
       }
     }
     
-    public init(){}
+    public init(central_State_Param: Central_State){
+        central_State_Ref = central_State_Param
+    }
     
     public func handleDrag(inputParam:CGFloat){
         
@@ -91,9 +93,47 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
     
     public func calculateCursorCellXPos(){
-        dimensions.test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
+        test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
+        //dimensions.test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
         //central_State_Ref.cursor_Slider_Update()
             //.cursor_Slider_Update(new_X: nil , new_Y: nil)
+    }
+    
+    
+    func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
+        
+        let lesserSetFourFour = dimensions.four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
+        
+        if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
+            if lclMaxLesserFour.x_Position_Float !=
+                dimensions.currentFourFourPosition{dimensions.currentFourFourPosition = lclMaxLesserFour.x_Position_Float}
+            if lclMaxLesserFour.x_Position_Int !=
+                dimensions.currentFourFourDataIndex{dimensions.currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int}
+        }
+        
+        let lesserSetSixEight = dimensions.six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
+        
+        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
+            if lclMaxLesserSix.x_Position_Float !=
+                dimensions.currentSixEightPosition{dimensions.currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
+            if lclMaxLesserSix.x_Position_Int !=
+                dimensions.currentSixEightDataIndex{dimensions.currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
+        }
+        
+        if dimensions.patternTimingConfiguration == .fourFour {
+            if computedLineParam != dimensions.currentFourFourPosition{
+                computedLineParam = dimensions.currentFourFourPosition
+                central_State_Ref.cursor_Slider_Update()
+            }
+        }
+        
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            if computedLineParam != dimensions.currentSixEightPosition {
+                computedLineParam = dimensions.currentSixEightPosition
+                central_State_Ref.cursor_Slider_Update()
+            }
+        }
+        
     }
     
 }
