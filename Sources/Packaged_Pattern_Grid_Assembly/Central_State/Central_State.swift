@@ -59,13 +59,11 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
-
+        centralState_Data_Evaluation()
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        
         if patternModeParam == .passive_Mode {
-            
             delete_Helper.deactivate_Mode()
             move_Helper.deactivate_Mode()
             writeNote_Helper.deactivate_Mode()
@@ -79,28 +77,9 @@ public class Central_State : ObservableObject {
             passive_Helper.deactivate_Mode()
             currentPatternMode = .write_Mode
         }
-        
-        
-        
-        
-        
-//        if patternModeParam != .passive_Mode {
-//
-//        }
-//                if patternModeParam == .delete_Mode {
-//                    if currentPatternMode != .delete_Mode{currentPatternMode = .delete_Mode}
-//                }
     }
     
-    public func post_init_Setup(){
-//    passive_Helper = Passive_Helper()
-//    if let lclPassiveHelper = passive_Helper {
-//        lclPassiveHelper.process_Passive_Cursor_Position()
-//    }
-    //move_Helper = Move_Helper()
-        
-        //centralState_Data_Evaluation()
-    }
+
     
     public func change_Write_Needs_Held_Down(){
         if write_Needs_Held_Down == true {
@@ -111,8 +90,6 @@ public class Central_State : ObservableObject {
         }
     }
 
-    var timing_Change_Compensation_Index : Int? = nil
-    
     public func change_Timing_Signature_Central() {
         if timing_Sig_Change_Possible == true {
         if dimensions.patternTimingConfiguration == .sixEight {
@@ -148,6 +125,10 @@ public class Central_State : ObservableObject {
 //            }
         //}
     }
+    
+    
+    
+    var timing_Change_Compensation_Index : Int? = nil
 
     var currentYCursor_Slider_Position : Int = 0
     
@@ -183,9 +164,10 @@ public class Central_State : ObservableObject {
     
     func cursor_Visible_Change_Type(isActivation:Bool)->E_VisibleStateChangeType {
         var retVal : E_VisibleStateChangeType = .activate_Passive_Cursor_Set
-        if isActivation == false{
+        if isActivation == false {
             retVal = .deActivate_Passive_Cursor_Set
         }
+        
         return retVal
     }
     
@@ -292,7 +274,15 @@ class Cell_X_Descriptor : Equatable,Hashable {
 
 
 
-
+//    public func post_init_Setup(){
+//    passive_Helper = Passive_Helper()
+//    if let lclPassiveHelper = passive_Helper {
+//        lclPassiveHelper.process_Passive_Cursor_Position()
+//    }
+//    move_Helper = Move_Helper()
+//
+//        centralState_Data_Evaluation()
+//    }
 
 
 
