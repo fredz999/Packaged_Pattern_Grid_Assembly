@@ -191,6 +191,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .passiveCursorSet, value: in_Passive_Cursor_Set)
                 }
+                else if currentConnectedDataVals == nil{
+                    print("hoznt bun bult yat....................")
+                }
             }
         }
         else if type == .deActivate_Passive_Cursor_Set{

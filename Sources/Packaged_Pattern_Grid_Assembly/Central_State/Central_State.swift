@@ -66,6 +66,7 @@ public class Central_State : ObservableObject {
         
     public func post_init_Setup(){
         //print("cstate lineset count: ",currLineSet.count)
+        print("central state set up............................")
         centralState_Data_Evaluation()
     }
     
