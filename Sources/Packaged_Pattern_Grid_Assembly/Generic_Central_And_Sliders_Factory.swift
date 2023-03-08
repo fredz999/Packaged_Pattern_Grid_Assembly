@@ -11,29 +11,23 @@ import SwiftUI
 public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     ,Injected_H_SliderType:View
     ,Injected_V_SliderType:View
-    //,Injected_Note_Write_Button_Type:View
     ,Injected_Data_Y_Slider_Cell_Type:View> {
-    
-    //let statCentral = Component_Central_Library.Static_Component_Central_Library
     
     let dimensions = ComponentDimensions.StaticDimensions
     
     public var centralState = Central_State.Static_Central_State
+    
     public var visible_Grid_Store : Central_Grid_Store
     
     public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
     
     var cursor_Horizontal_Slider_Store : Cursor_Horizontal_Slider_Store
+    
     var cursor_Vertical_Slider_Store : Cursor_Vertical_Slider_Store
-    //var cursor_Layer_Store : Cursor_Layer_Store
     
     var injected_h_Slider : Injected_H_SliderType?
+    
     var injected_v_Slider : Injected_V_SliderType?
-    
-    //var injected_cursor : Injected_Cursor_Type?
-    //var injected_potential_Note_View : Injected_Potential_Note_Type?
-    
-    //var potential_Note_Layer_Store : Potential_Note_Layer_Store
     
     //=============================================================================================================
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
@@ -43,9 +37,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
     
-    public init(){
+    public init(inputtedCentralGrid : Central_Grid_Store){
         
-        visible_Grid_Store = Central_Grid_Store()
+        visible_Grid_Store = inputtedCentralGrid//Central_Grid_Store()
         
         generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
         

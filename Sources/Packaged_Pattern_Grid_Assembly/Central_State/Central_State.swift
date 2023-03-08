@@ -63,13 +63,14 @@ public class Central_State : ObservableObject {
 //        let thing2 = ComponentDimensions.StaticDimensions.dataGrid_X_Unit_Count
 //        let thing3 = Underlying_Data_Grid.Static_Underlying_Data_Grid.currFourStatus
         //Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Central_State)
+        print("Central_State just end of init...........")
     }
         
     public func post_init_Setup(){
         //print("cstate lineset count: ",currLineSet.count)
         
         centralState_Data_Evaluation()
-        print("central state set up............................")
+        //print("central state set up............................")
         
         //Init_Tracker.Static_Init_Tracker.yieldData()
         

@@ -19,6 +19,7 @@ public class Central_Grid_Store : ObservableObject {
             let newLine = Central_Line_Store(y_Index: y, gridParam: self)
             vis_Line_Store_Array.append(newLine)
         }
+        print("Central_Grid_Store inited .................")
     }
     
 //    public func populateLineArray(){
@@ -56,10 +57,10 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
     
     public func change_Data_Y(lowerBracket_Param:Int){
-        if (lowerBracket_Param + y_Index) < dimensions.DATA_final_Line_Y_Index  {
+        if (lowerBracket_Param + y_Index) < dimensions.DATA_final_Line_Y_Index {
             let new_Y_Index = lowerBracket_Param + y_Index
             for visualCell in visual_Cell_Store_Array {
-                    visualCell.cell_Swap_Underlying_Data(new_Data_Cell: data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index])
+                visualCell.cell_Swap_Underlying_Data(new_Data_Cell: data.dataLineArray[new_Y_Index].dataCellArray[visualCell.x_Index])
             }
         }
     }
