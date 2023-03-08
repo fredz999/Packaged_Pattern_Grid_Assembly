@@ -14,9 +14,11 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     //,Injected_Note_Write_Button_Type:View
     ,Injected_Data_Y_Slider_Cell_Type:View> {
     
+    //let statCentral = Component_Central_Library.Static_Component_Central_Library
+    
     let dimensions = ComponentDimensions.StaticDimensions
     
-    public var centralState : Central_State  //= Central_State.Static_Central_State
+    public var centralState = Central_State.Static_Central_State
     public var visible_Grid_Store : Central_Grid_Store
     
     public var visible_Line_View_Array : [Visible_Injected_Generic_View_Line<InjectedCentralCellType>] = []
@@ -43,10 +45,8 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
     
-    public init(){
-        visible_Grid_Store = Central_Grid_Store()
-        
-        centralState = Central_State.Static_Central_State
+    public init(central_Grid_Store_Param : Central_Grid_Store){
+        visible_Grid_Store = central_Grid_Store_Param  //Central_Grid_Store()
         
         generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
         
