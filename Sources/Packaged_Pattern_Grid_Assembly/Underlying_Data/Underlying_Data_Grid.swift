@@ -185,7 +185,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Passive_Cursor_Set : Bool = false
 
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
-        
+        print("handleVisibleStateChange: ",type.rawValue  )
         if type == .activate_Passive_Cursor_Set {
             if in_Passive_Cursor_Set == false {
                 in_Passive_Cursor_Set = true
@@ -412,26 +412,26 @@ public enum E_CellStatus : String {
     
 }
 
-enum E_VisibleStateChangeType {
+enum E_VisibleStateChangeType: String {
     
-    case activate_Prohibited
-    case deActivate_Prohibited
+    case activate_Prohibited = "activate_Prohibited"
+    case deActivate_Prohibited = "deActivate_Prohibited"
 
-    case activate_Viable_Set_Combined
-    case deActivate_Viable_Set_Combined
+    case activate_Viable_Set_Combined = "activate_Viable_Set_Combined"
+    case deActivate_Viable_Set_Combined = "deActivate_Viable_Set_Combined"
     
-    case activate_Potential_Set
-    case deActivate_Potential_Set
+    case activate_Potential_Set = "activate_Potential_Set"
+    case deActivate_Potential_Set = "deActivate_Potential_Set"
     
-    case activate_Cursor_Set
-    case deActivate_Cursor_Set
+    case activate_Cursor_Set = "activate_Cursor_Set"
+    case deActivate_Cursor_Set = "deActivate_Cursor_Set"
     
-    case activate_Delete_Square_Set
-    case deActivate_Delete_Square_Set
+    case activate_Delete_Square_Set = "activate_Delete_Square_Set"
+    case deActivate_Delete_Square_Set = "deActivate_Delete_Square_Set"
     
-    case activate_MoveNote_Cursor_Set
-    case deActivate_MoveNote_Cursor_Set
+    case activate_MoveNote_Cursor_Set = "activate_MoveNote_Cursor_Set"
+    case deActivate_MoveNote_Cursor_Set = "deActivate_MoveNote_Cursor_Set"
     
-    case activate_Passive_Cursor_Set
-    case deActivate_Passive_Cursor_Set
+    case activate_Passive_Cursor_Set = "activate_Passive_Cursor_Set"
+    case deActivate_Passive_Cursor_Set = "deActivate_Passive_Cursor_Set"
 }
