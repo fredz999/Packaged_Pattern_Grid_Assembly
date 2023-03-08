@@ -14,7 +14,11 @@ public class Central_Grid_Store : ObservableObject {
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
 
     public init(){
-        populateLineArray()
+        //populateLineArray()
+        for y in 0..<dimensions.visualGrid_Y_Unit_Count {
+            let newLine = Central_Line_Store(y_Index: y, gridParam: self)
+            vis_Line_Store_Array.append(newLine)
+        }
     }
     
     public func populateLineArray(){
