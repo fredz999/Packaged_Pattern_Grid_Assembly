@@ -60,6 +60,8 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
+        
+        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Central_State)
     }
         
     public func post_init_Setup(){
@@ -67,6 +69,9 @@ public class Central_State : ObservableObject {
         
         centralState_Data_Evaluation()
         print("central state set up............................")
+        
+        Init_Tracker.Static_Init_Tracker.yieldData()
+        
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){

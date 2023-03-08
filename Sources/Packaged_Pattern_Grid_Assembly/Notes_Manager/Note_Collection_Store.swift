@@ -32,11 +32,8 @@ public class Note_Collection {
             }
         }
     }
-    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
-    //var data = Underlying_Data_Grid.Static_Underlying_Data_Grid
-    //var visual_Grid_Ref : Central_Grid_Store?
-    //let centralStateRef = Central_State.Static_Central_State
     
+    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
@@ -141,6 +138,10 @@ public class Note_Collection {
         noteParam.resetCells()
         noteArray.removeAll(where: {$0.id == noteParam.id})
         currentHighlightedNote = nil
+    }
+    
+    init(){
+        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Note_Collection)
     }
     
     public static let Static_Note_Collection = Note_Collection()

@@ -138,6 +138,10 @@ public class ComponentDimensions : ObservableObject {
         }
     }
     
+    init(){
+        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .ComponentDimensions)
+    }
+    
     public static let StaticDimensions = ComponentDimensions()
     
 }

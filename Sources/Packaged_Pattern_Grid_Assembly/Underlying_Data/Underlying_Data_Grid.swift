@@ -12,7 +12,11 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     public let dimensions = ComponentDimensions.StaticDimensions
     public var id = UUID()
     public var dataLineArray : [Underlying_Data_Line] = []
-    public init(){ set_Data_Grid() }
+    
+    public init(){
+        set_Data_Grid()
+        Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Underlying_Data_Grid)
+    }
     
     private var fourFour_Sub_Count : Int = 0
     private var fourFour_Cell_Count : Int = 0
