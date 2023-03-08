@@ -46,6 +46,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
     
     public init(central_Grid_Store_Param : Central_Grid_Store){
+        
         visible_Grid_Store = central_Grid_Store_Param  //Central_Grid_Store()
         
         generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
