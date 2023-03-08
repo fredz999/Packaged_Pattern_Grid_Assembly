@@ -60,9 +60,9 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
-        let thing1 = Note_Collection.Static_Note_Collection.noteArray.count
-        let thing2 = ComponentDimensions.StaticDimensions.dataGrid_X_Unit_Count
-        let thing3 = Underlying_Data_Grid.Static_Underlying_Data_Grid.currFourStatus
+//        let thing1 = Note_Collection.Static_Note_Collection.noteArray.count
+//        let thing2 = ComponentDimensions.StaticDimensions.dataGrid_X_Unit_Count
+//        let thing3 = Underlying_Data_Grid.Static_Underlying_Data_Grid.currFourStatus
         Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Central_State)
     }
         
