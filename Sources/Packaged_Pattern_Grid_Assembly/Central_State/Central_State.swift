@@ -56,10 +56,16 @@ public class Central_State : ObservableObject {
         passive_Helper = Passive_Helper()
         
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+        
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
-        //centralState_Data_Evaluation()
+        
+        post_init_Setup()
+    }
+        
+    public func post_init_Setup(){
+        centralState_Data_Evaluation()
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
