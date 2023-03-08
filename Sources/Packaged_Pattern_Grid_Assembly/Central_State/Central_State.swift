@@ -206,7 +206,7 @@ public class Central_State : ObservableObject {
 //            current_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == Central_State.Static_Central_State.currentData.four_Four_Half_Cell_Index})
             
             current_Cursor_Set = currLineSet
-            
+            print("currset count: ",current_Cursor_Set.count)
         }
         
 //        else if dimensions.patternTimingConfiguration == .sixEight {
