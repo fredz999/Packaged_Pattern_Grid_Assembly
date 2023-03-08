@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 public class Central_Grid_Store : ObservableObject {
-    let central_State_Ref = Central_State.Static_Central_State
+    //let central_State_Ref = Central_State.Static_Central_State
     let dimensions = ComponentDimensions.StaticDimensions
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
 
@@ -122,6 +122,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         if new_Data_Cell.dataCell_Y_Number == 0,new_Data_Cell.dataCell_X_Number == 0{
             print("currentConnectedDataVals was just set")
         }
+        
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
