@@ -251,7 +251,7 @@ public class Central_State : ObservableObject {
     centralState_Data_Evaluation()
     }
 
-    public static let Static_Central_State = Central_State()
+    //public static let Static_Central_State = Central_State()
 
 }
 
