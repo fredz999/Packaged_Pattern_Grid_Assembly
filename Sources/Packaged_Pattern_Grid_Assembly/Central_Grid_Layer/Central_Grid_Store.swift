@@ -21,12 +21,12 @@ public class Central_Grid_Store : ObservableObject {
         }
     }
     
-    public func populateLineArray(){
-        for y in 0..<dimensions.visualGrid_Y_Unit_Count {
-            let newLine = Central_Line_Store(y_Index: y, gridParam: self)
-            vis_Line_Store_Array.append(newLine)
-        }
-    }
+//    public func populateLineArray(){
+//        for y in 0..<dimensions.visualGrid_Y_Unit_Count {
+//            let newLine = Central_Line_Store(y_Index: y, gridParam: self)
+//            vis_Line_Store_Array.append(newLine)
+//        }
+//    }
     
     public func changeDataBracket(newLower:Int){
         for line in vis_Line_Store_Array {
@@ -49,15 +49,19 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     public init(y_Index: Int,gridParam:Central_Grid_Store){
         self.y_Index = y_Index
         parentGrid = gridParam
-        fillLine()
-    }
- 
-    public func fillLine(){
+        //fillLine()
         for x in 0..<dimensions.dataGrid_X_Unit_Count {
             let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
             visual_Cell_Store_Array.append(new_Central_Cell_Store)
         }
     }
+ 
+//    public func fillLine(){
+//        for x in 0..<dimensions.dataGrid_X_Unit_Count {
+//            let new_Central_Cell_Store = Central_Cell_Store(x_Index_Param: x, lineParam: self, underlying_Data_Cell_Param: data.dataLineArray[y_Index].dataCellArray[x])
+//            visual_Cell_Store_Array.append(new_Central_Cell_Store)
+//        }
+//    }
     
     public func change_Data_Y(lowerBracket_Param:Int){
         if (lowerBracket_Param + y_Index) < dimensions.DATA_final_Line_Y_Index  {
@@ -114,7 +118,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
         
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
-        
+        print("currentConnectedDataVals was just set")
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
