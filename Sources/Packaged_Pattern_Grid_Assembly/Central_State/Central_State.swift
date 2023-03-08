@@ -59,7 +59,7 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
-        centralState_Data_Evaluation()
+        //centralState_Data_Evaluation()
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
