@@ -118,7 +118,11 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
         
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
-        print("currentConnectedDataVals was just set")
+        
+        if new_Data_Cell.dataCell_Y_Number == 0{
+            print("currentConnectedDataVals was just set")
+        }
+        
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.dataCell_Y_Number
