@@ -193,6 +193,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                     print("update cell membership, in_Passive_Cursor_Set: ",in_Passive_Cursor_Set.description)
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .passiveCursorSet, value: in_Passive_Cursor_Set)
                 }
+                else if currentConnectedDataVals == nil{
+                    print("currentConnectedDataVals == nil")
+                }
             }
         }
         else if type == .deActivate_Passive_Cursor_Set{
