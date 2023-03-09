@@ -35,11 +35,9 @@ public class Note_Collection {
     
     var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
     
-    public var central_State_Ref : Central_State?
     
-    public init(central_State_Param:Central_State){
-        central_State_Ref = central_State_Param
-    }
+    
+    public init(){}
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
@@ -117,18 +115,12 @@ public class Note_Collection {
             noteArr.append(currEndCell)
         }
 
-        if noteArr.count > 0{
-            if let lclCentralRef = central_State_Ref{
-                let note = Note(cellArray: noteArr, parentParam: self, yParam: noteArr[0].dataCell_Y_Number, central_State_Param: lclCentralRef)
-                noteArray.append(note)
-                for cell in noteArr {
-                    cell.note_Im_In = note
-                }
+        if noteArr.count > 0 {
+            let note = Note(cellArray: noteArr, parentParam: self, yParam: noteArr[0].dataCell_Y_Number)
+            noteArray.append(note)
+            for cell in noteArr {
+                cell.note_Im_In = note
             }
-            else if central_State_Ref == nil{
-                print("central_State_Ref needed in Note_Collection")
-            }
-            
         }
         
     }
