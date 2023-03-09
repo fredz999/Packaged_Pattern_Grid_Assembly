@@ -57,7 +57,7 @@ public class Central_State : ObservableObject {
         currLineSet.insert(cell)
         }
         centralState_Data_Evaluation()
-        print("Central_State just end of init...........")
+        print("End of initalisation CENTRAL STATE")
     }
 
     
