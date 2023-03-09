@@ -55,13 +55,6 @@ public class ComponentDimensions : ObservableObject {
         return retval
     }
     
-    public func return_V_Slider_Offset() -> CGSize {
-        let width = pattern_Grid_Sub_Cell_Width*CGFloat(dataGrid_X_Unit_Count)
-        let height = ui_Unit_Height
-        let returnSize = CGSize(width: width, height: height)
-        return returnSize
-    }
-    
     public var patternTimingConfiguration : E_CentralGridTiming = .fourFour
     @Published public var pattern_Grid_Unit_Height : CGFloat = 16
     @Published public var pattern_Grid_Sub_Cell_Height : CGFloat = 15

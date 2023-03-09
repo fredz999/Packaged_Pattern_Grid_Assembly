@@ -18,15 +18,15 @@ public class Central_State : ObservableObject {
     // but i need to be able to see the button to drop the note someplace
     //@Published public var pattern_Has_A_Note : Bool = false
     
-    @Published public var note_Write_Locked : Bool = false
+    //@Published public var note_Write_Locked : Bool = false
     
     @Published public var write_Needs_Held_Down : Bool = false
     
     @Published public var timing_Sig_Change_Possible : Bool = true
     
-    @Published public var currentPatternMode : E_PatternModeType = .passive_Mode
+    @Published public var currentPatternMode : E_PatternModeType = .no_Note_Collection
     
-    public let data_Grid = Underlying_Data_Grid.Static_Underlying_Data_Grid
+    public let data_Grid : Underlying_Data_Grid
     //var data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -39,59 +39,53 @@ public class Central_State : ObservableObject {
     var higher_Bracket_Number : Int = 0
     //==================================================
     
+    var currentNoteCollection : Note_Collection?
+    
     //var delete_Helper : Delete_Helper
-    //var move_Helper : Move_Helper
-    var passive_Helper : Passive_Helper
-    //var writeNote_Helper : WriteNote_Helper
+    //var move_Helper : Move_Helper?
+    var passive_Helper : Passive_Helper?
+    var writeNote_Helper : WriteNote_Helper?
 
-    public init(){
-
+    public init(dataGridParam:Underlying_Data_Grid){
+        data_Grid = dataGridParam
+        currentData = data_Grid.dataLineArray[0].dataCellArray[0]
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
-        
-        //delete_Helper = Delete_Helper()
-//        move_Helper = Move_Helper()
-//        writeNote_Helper = WriteNote_Helper()
-        passive_Helper = Passive_Helper()
-        
         let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
-//        let thing1 = Note_Collection.Static_Note_Collection.noteArray.count
-//        let thing2 = ComponentDimensions.StaticDimensions.dataGrid_X_Unit_Count
-//        let thing3 = Underlying_Data_Grid.Static_Underlying_Data_Grid.currFourStatus
-        //Init_Tracker.Static_Init_Tracker.registerClass(classParam: .Central_State)
         centralState_Data_Evaluation()
         print("Central_State just end of init...........")
     }
-        
-    public func post_init_Setup(){
-        //print("cstate lineset count: ",currLineSet.count)
-        
-        
-        //print("central state set up............................")
-        
-        //Init_Tracker.Static_Init_Tracker.yieldData()
-        
+
+    
+    public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
+        currentNoteCollection = noteCollectionParam
+        passive_Helper = Passive_Helper(note_CollectionParam: noteCollectionParam)
+        writeNote_Helper = WriteNote_Helper(note_CollectionParam: noteCollectionParam)
+        currentPatternMode = .passive_Mode
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        if patternModeParam == .passive_Mode {
-            //delete_Helper.deactivate_Mode()
-//            move_Helper.deactivate_Mode()
-//            writeNote_Helper.deactivate_Mode()
-            passive_Helper.activate_Mode()
-            currentPatternMode = .passive_Mode
+        if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper{
+            if patternModeParam == .passive_Mode {
+                // delete_Helper.deactivate_Mode()
+                // move_Helper.deactivate_Mode()
+                lclWriteNote_Helper.deactivate_Mode()
+                lclPassiveHelper.activate_Mode()
+                currentPatternMode = .passive_Mode
+            }
+            else if patternModeParam == .write_Mode {
+                // delete_Helper.deactivate_Mode()
+                // move_Helper.deactivate_Mode()
+                lclWriteNote_Helper.activate_Mode()
+                lclPassiveHelper.deactivate_Mode()
+                currentPatternMode = .write_Mode
+            }
         }
-        else if patternModeParam == .write_Mode {
-            //delete_Helper.deactivate_Mode()
-//            move_Helper.deactivate_Mode()
-//            writeNote_Helper.activate_Mode()
-            passive_Helper.deactivate_Mode()
-            currentPatternMode = .write_Mode
-        }
+
     }
     
     
@@ -228,7 +222,7 @@ public class Central_State : ObservableObject {
 
     }
     
-    var currentData : Underlying_Data_Cell = Underlying_Data_Grid.Static_Underlying_Data_Grid.dataLineArray[0].dataCellArray[0]
+    var currentData : Underlying_Data_Cell
 //    {
 //        willSet {
 //            if currentPatternMode == .delete_Mode {
@@ -250,9 +244,7 @@ public class Central_State : ObservableObject {
     }
     centralState_Data_Evaluation()
     }
-
-    //public static let Static_Central_State = Central_State()
-
+    
 }
 
 public enum E_PatternModeType : String {
@@ -261,6 +253,7 @@ public enum E_PatternModeType : String {
     case move_Mode = "move_Mode"
     case resize_Mode = "resize_Mode"
     case passive_Mode = "passive_Mode"
+    case no_Note_Collection = "no_Note_Collection"
 }
 
 public enum E_Note_Movement_Type {

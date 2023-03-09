@@ -12,22 +12,13 @@ public class Central_Grid_Store : ObservableObject {
 
     let dimensions = ComponentDimensions.StaticDimensions
     @Published public var vis_Line_Store_Array : [Central_Line_Store] = []
-
-    public init(){
-        //populateLineArray()
+    public init(dataGridParam:Underlying_Data_Grid){
         for y in 0..<dimensions.visualGrid_Y_Unit_Count {
-            let newLine = Central_Line_Store(y_Index: y, gridParam: self)
+            let newLine = Central_Line_Store(y_Index: y, gridParam: self, dataParam: dataGridParam)
             vis_Line_Store_Array.append(newLine)
         }
         print("Central_Grid_Store inited .................")
     }
-    
-//    public func populateLineArray(){
-//        for y in 0..<dimensions.visualGrid_Y_Unit_Count {
-//            let newLine = Central_Line_Store(y_Index: y, gridParam: self)
-//            vis_Line_Store_Array.append(newLine)
-//        }
-//    }
     
     public func changeDataBracket(newLower:Int){
         for line in vis_Line_Store_Array {
@@ -40,14 +31,15 @@ public class Central_Grid_Store : ObservableObject {
 
 public class Central_Line_Store : ObservableObject,Identifiable {
     
-    public var data = Underlying_Data_Grid.Static_Underlying_Data_Grid
+    var data : Underlying_Data_Grid
     var dimensions = ComponentDimensions.StaticDimensions
     public var id = UUID()
     public var parentGrid : Central_Grid_Store
     @Published public var y_Index : Int
     @Published public var visual_Cell_Store_Array : [Central_Cell_Store] = []
 
-    public init(y_Index: Int,gridParam:Central_Grid_Store){
+    public init(y_Index: Int,gridParam:Central_Grid_Store,dataParam:Underlying_Data_Grid){
+        data = dataParam
         self.y_Index = y_Index
         parentGrid = gridParam
         for x in 0..<dimensions.dataGrid_X_Unit_Count {

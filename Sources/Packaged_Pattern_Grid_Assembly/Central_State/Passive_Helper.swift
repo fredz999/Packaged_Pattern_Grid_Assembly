@@ -11,9 +11,13 @@ class Passive_Helper: P_Selectable_Mode {
     
     let dimensions = ComponentDimensions.StaticDimensions
         
-    let note_Collection_Ref = Note_Collection.Static_Note_Collection
-    
     var mode_Active: Bool = false
+    
+    let note_Collection_Ref : Note_Collection
+    
+    init(note_CollectionParam : Note_Collection){
+        note_Collection_Ref = note_CollectionParam
+    }
 
     func test_For_Write_Lock(){
     //        if let cursorZero = passive_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){

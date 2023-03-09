@@ -133,9 +133,20 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         }
     }
     
-    public static let Static_Underlying_Data_Grid = Underlying_Data_Grid()
+    //public static let Static_Underlying_Data_Grid = Underlying_Data_Grid()
     
 }
+
+
+
+
+
+
+
+
+
+
+
 
 public class Underlying_Data_Line:ObservableObject,Identifiable,Equatable,Hashable {
     

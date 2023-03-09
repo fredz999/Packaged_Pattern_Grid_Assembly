@@ -8,6 +8,30 @@
 import Foundation
 import SwiftUI
 
+
+class WriteNote_Helper: P_Selectable_Mode {
+    
+    let note_Collection_Ref : Note_Collection
+    
+    init(note_CollectionParam : Note_Collection){
+        note_Collection_Ref = note_CollectionParam
+    }
+    
+    var mode_Active: Bool = false
+
+    func activate_Mode() {
+        if mode_Active == false{mode_Active=true}
+    }
+
+    func deactivate_Mode() {
+        if mode_Active == true{mode_Active=false}
+    }
+    
+}
+
+
+
+
 //class WriteNote_Helper: P_Selectable_Mode {
 ////
 //    var mode_Active: Bool = false

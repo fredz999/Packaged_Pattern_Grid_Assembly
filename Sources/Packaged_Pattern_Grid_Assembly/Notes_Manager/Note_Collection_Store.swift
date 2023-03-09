@@ -37,9 +37,9 @@ public class Note_Collection {
     
     public var central_State_Ref : Central_State?
     
-//    init(central_State_Param:Central_State){
-//        central_State_Ref = central_State_Param
-//    }
+    public init(central_State_Param:Central_State){
+        central_State_Ref = central_State_Param
+    }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
@@ -152,7 +152,7 @@ public class Note_Collection {
         currentHighlightedNote = nil
     }
     
-    public static let Static_Note_Collection = Note_Collection()
+    //public static let Static_Note_Collection = Note_Collection()
     
 }
 
