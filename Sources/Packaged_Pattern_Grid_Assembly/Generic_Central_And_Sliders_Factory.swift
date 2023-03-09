@@ -37,9 +37,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
     
-    public init(dataGridParam:Underlying_Data_Grid, central_Grid_Param : Central_Grid_Store){
+    public init(dataGridParam:Underlying_Data_Grid){
         
-        visible_Grid_Store = central_Grid_Param
+        visible_Grid_Store = Central_Grid_Store(dataGridParam: dataGridParam)
         
         centralState = Central_State(dataGridParam: dataGridParam)
         
