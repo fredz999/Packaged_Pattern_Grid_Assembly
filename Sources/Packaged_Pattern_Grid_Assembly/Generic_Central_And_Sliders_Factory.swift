@@ -37,19 +37,21 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
     
-    public init(centralStateParam:Central_State, dataGridParam:Underlying_Data_Grid){
+    public init(dataGridParam:Underlying_Data_Grid, central_Grid_Param : Central_Grid_Store){
         
-        centralState = centralStateParam
+        visible_Grid_Store = central_Grid_Param
         
-        visible_Grid_Store = Central_Grid_Store(dataGridParam: dataGridParam)
+        centralState = Central_State(dataGridParam: dataGridParam)
+        
+        //Central_Grid_Store(dataGridParam: dataGridParam)
         
         generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
         
-        wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord, centralStateParam: centralStateParam)
+        wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord, centralStateParam: centralState)
 
-        cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store(central_State_Param: centralStateParam)
+        cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store(central_State_Param: centralState)
         
-        cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store(central_State_Param: centralStateParam)
+        cursor_Vertical_Slider_Store = Cursor_Vertical_Slider_Store(central_State_Param: centralState)
         
         centralState.v_Slider_Ref = cursor_Vertical_Slider_Store
         
