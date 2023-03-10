@@ -21,7 +21,8 @@ class WriteNote_Helper: P_Selectable_Mode {
             }
         }
         else if mode_Active == true{
-            print("mode_Active ======= true")
+            note_Collection_Ref.write_Note_Data(cellSetParam: potential_Note_Set)
+            print("after write potential length: ",potential_Note_Set.count)
         }
     }
     
@@ -50,15 +51,15 @@ class WriteNote_Helper: P_Selectable_Mode {
     }
     
     
-    var helperFuncs_PotentialNote_Set = Set<Underlying_Data_Cell>(){
+    var potential_Note_Set = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = helperFuncs_PotentialNote_Set.symmetricDifference(newValue)
+            let delta = potential_Note_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
             }
         }
         didSet {
-            for cell in helperFuncs_PotentialNote_Set {
+            for cell in potential_Note_Set {
                 cell.handleVisibleStateChange(type: .activate_Potential_Set)
             }
         }
@@ -91,10 +92,10 @@ class WriteNote_Helper: P_Selectable_Mode {
                 parentCentralState.currLineSet.filter({$0.dataCell_X_Number >= min_Cell.dataCell_X_Number
                 && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
             if let lclLowestRightNoteCell = lowestRightNoteCell {
-                helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
+                potential_Note_Set = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
             }
             else if lowestRightNoteCell == nil {
-                helperFuncs_PotentialNote_Set = swipeSet
+                potential_Note_Set = swipeSet
             }
 
             }
@@ -125,10 +126,10 @@ class WriteNote_Helper: P_Selectable_Mode {
                     && $0.dataCell_X_Number <= max_Cell.dataCell_X_Number})
 
                     if let lclLowestRightNoteCell = lowestRightNoteCell {
-                        helperFuncs_PotentialNote_Set = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
+                        potential_Note_Set = swipeSet.filter({$0.dataCell_X_Number < lclLowestRightNoteCell.dataCell_X_Number})
                     }
                     else if lowestRightNoteCell == nil {
-                        helperFuncs_PotentialNote_Set = swipeSet
+                        potential_Note_Set = swipeSet
                     }
                 }
             }
