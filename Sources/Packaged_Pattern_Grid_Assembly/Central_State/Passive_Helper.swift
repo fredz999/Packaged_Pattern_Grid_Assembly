@@ -9,9 +9,19 @@ import Foundation
 
 class Passive_Helper: P_Selectable_Mode {
     
+    
+    
     let dimensions = ComponentDimensions.StaticDimensions
         
     var mode_Active: Bool = false
+    
+    func activate_Mode(activationCell: Underlying_Data_Cell?) {
+        if mode_Active == false{mode_Active=true}
+    }
+    
+    func deactivate_Mode() {
+        if mode_Active == true{mode_Active=false}
+    }
     
     let note_Collection_Ref : Note_Collection
     
@@ -78,13 +88,7 @@ class Passive_Helper: P_Selectable_Mode {
     //        }
         }
     
-    func activate_Mode() {
-        if mode_Active == false{mode_Active=true}
-    }
     
-    func deactivate_Mode() {
-        if mode_Active == true{mode_Active=false}
-    }
 
     
     

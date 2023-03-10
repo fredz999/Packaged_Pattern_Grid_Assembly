@@ -57,13 +57,12 @@ public class Central_State : ObservableObject {
         currLineSet.insert(cell)
         }
         
+        
+        
         centralState_Data_Evaluation()
         
     }
-    
-//    func post_InitSetup(){
-//
-//    }
+
 
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
@@ -78,18 +77,45 @@ public class Central_State : ObservableObject {
                 // delete_Helper.deactivate_Mode()
                 // move_Helper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
-                lclPassiveHelper.activate_Mode()
+                lclPassiveHelper.activate_Mode(activationCell: nil)
                 currentPatternMode = .passive_Mode
             }
             else if patternModeParam == .write_Mode {
                 // delete_Helper.deactivate_Mode()
                 // move_Helper.deactivate_Mode()
-                lclWriteNote_Helper.activate_Mode()
+                lclWriteNote_Helper.activate_Mode(activationCell: currentData)
                 lclPassiveHelper.deactivate_Mode()
                 currentPatternMode = .write_Mode
             }
         }
+    }
+    
+    func centralState_Data_Evaluation(){
 
+        
+        if dimensions.patternTimingConfiguration == .fourFour {
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
+            
+            if currentPatternMode == .passive_Mode {
+                if let lclPassiveHelper = passive_Helper{
+                    lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
+                }
+            }
+            else if currentPatternMode == .write_Mode {
+                if let lclWriteHelper = writeNote_Helper{
+                    lclWriteHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
+                }
+            }
+            
+        }
+        
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+            current_Cursor_Set = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
+        }
     }
     
     public func change_Write_Needs_Held_Down(){
@@ -183,35 +209,7 @@ public class Central_State : ObservableObject {
         centralState_Data_Evaluation()
     }
 
-    func centralState_Data_Evaluation(){
-
-        
-        if dimensions.patternTimingConfiguration == .fourFour {
-            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
-            
-            if currentPatternMode == .passive_Mode {
-                //passive_Helper.
-                if let lclPassiveHelper = passive_Helper{
-                    lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
-                }
-            }
-            else if currentPatternMode == .write_Mode {
-                if let lclWriteHelper = writeNote_Helper{
-                    lclWriteHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
-                }
-            }
-            
-        }
-        
-        else if dimensions.patternTimingConfiguration == .sixEight {
-            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
-            current_Cursor_Set = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
-            
-        }
-    }
+    
     
     var currentData : Underlying_Data_Cell
 //    {

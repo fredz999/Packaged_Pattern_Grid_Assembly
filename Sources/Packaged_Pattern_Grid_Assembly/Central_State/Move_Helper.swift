@@ -159,7 +159,7 @@ import SwiftUI
 
 protocol P_Selectable_Mode {
     var mode_Active : Bool{get set}
-    func activate_Mode()
+    func activate_Mode(activationCell : Underlying_Data_Cell?)
     func deactivate_Mode()
 }
 
