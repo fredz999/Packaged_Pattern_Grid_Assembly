@@ -21,16 +21,19 @@ class WriteNote_Helper: P_Selectable_Mode {
             }
         }
         else if mode_Active == true{
-            note_Collection_Ref.write_Note_Data(cellSetParam: potential_Note_Set)
-            potential_Note_Set.removeAll()
-            print("after write potential length: ",potential_Note_Set.count)
+            deactivate_Mode()
         }
     }
     
     func deactivate_Mode() {
-        if mode_Active == true{
-            mode_Active=false
+        if mode_Active == true {
+            if potential_Note_Set.count > 0 {
+                note_Collection_Ref.write_Note_Data(cellSetParam: potential_Note_Set)
+                potential_Note_Set.removeAll()
+            }
             if initial_WriteOnCell != nil{initial_WriteOnCell=nil}
+            parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
+            print("after write potential length: ",potential_Note_Set.count)
         }
     }
     
