@@ -56,8 +56,9 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
+        
         centralState_Data_Evaluation()
-        print("End of initalisation CENTRAL STATE")
+        
     }
 
     
@@ -66,6 +67,7 @@ public class Central_State : ObservableObject {
         passive_Helper = Passive_Helper(note_CollectionParam: noteCollectionParam)
         writeNote_Helper = WriteNote_Helper(note_CollectionParam: noteCollectionParam)
         currentPatternMode = .passive_Mode
+        print("setCurrentNoteCollection( : ",currentNoteCollection == nil ? "nilll" : "nat nilllll")
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
@@ -158,13 +160,11 @@ public class Central_State : ObservableObject {
         willSet {
             let delta = current_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
-                //cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
             }
         }
         didSet {
             for cell in current_Cursor_Set {
-                //cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: true))
             }
         }

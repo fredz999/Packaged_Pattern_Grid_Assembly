@@ -43,8 +43,6 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         centralState = Central_State(dataGridParam: dataGridParam)
         
-        //Central_Grid_Store(dataGridParam: dataGridParam)
-        
         generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
         
         wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord, centralStateParam: centralState)
