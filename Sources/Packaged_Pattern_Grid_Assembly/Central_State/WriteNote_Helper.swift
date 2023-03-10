@@ -20,6 +20,9 @@ class WriteNote_Helper: P_Selectable_Mode {
                 initial_WriteOnCell = lclActivationCell
             }
         }
+        else if mode_Active == true{
+            print("mode_Active == true")
+        }
     }
     
     func deactivate_Mode() {
