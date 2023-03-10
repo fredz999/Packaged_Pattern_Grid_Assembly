@@ -13,8 +13,16 @@ class WriteNote_Helper: P_Selectable_Mode {
     
     let note_Collection_Ref : Note_Collection
     
-    init(note_CollectionParam : Note_Collection){
+    var parentCentralState : Central_State
+    
+    init(note_CollectionParam : Note_Collection,parentCentral_State_Param:Central_State){
         note_Collection_Ref = note_CollectionParam
+        parentCentralState = parentCentral_State_Param
+    }
+    
+    func respond_To_Cursor_Movement(cell_Data_X:Int,cell_Data_Y:Int){
+        print("writeNote cell_Data_X: ",cell_Data_X,", cell_Data_Y: ",cell_Data_Y,", parentX: ",parentCentralState.curr_Data_Pos_X,", parentY: ",parentCentralState.curr_Data_Pos_Y)
+        
     }
     
     var mode_Active: Bool = false

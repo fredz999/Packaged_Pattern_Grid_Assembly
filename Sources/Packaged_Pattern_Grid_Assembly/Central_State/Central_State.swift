@@ -60,14 +60,16 @@ public class Central_State : ObservableObject {
         centralState_Data_Evaluation()
         
     }
-
     
+//    func post_InitSetup(){
+//
+//    }
+
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
-        passive_Helper = Passive_Helper(note_CollectionParam: noteCollectionParam)
-        writeNote_Helper = WriteNote_Helper(note_CollectionParam: noteCollectionParam)
+        passive_Helper = Passive_Helper(note_CollectionParam: noteCollectionParam, parentCentral_State_Param: self)
+        writeNote_Helper = WriteNote_Helper(note_CollectionParam: noteCollectionParam, parentCentral_State_Param: self)
         currentPatternMode = .passive_Mode
-        print("setCurrentNoteCollection( : ",currentNoteCollection == nil ? "nilll" : "nat nilllll")
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
@@ -89,7 +91,6 @@ public class Central_State : ObservableObject {
         }
 
     }
-    
     
     public func change_Write_Needs_Held_Down(){
         if write_Needs_Held_Down == true {
@@ -135,8 +136,6 @@ public class Central_State : ObservableObject {
 //            }
         //}
     }
-    
-    
     
     var timing_Change_Compensation_Index : Int? = nil
 
@@ -185,41 +184,33 @@ public class Central_State : ObservableObject {
     }
 
     func centralState_Data_Evaluation(){
-        
-//        if let currViable = potential_Helper.initial_WriteOnCell {
-//            // Y JUMP HANDLER
-//            if currViable.dataCell_Y_Number != curr_Data_Pos_Y {
-//                potential_Helper.nilPotentialSet()
-//                if dimensions.patternTimingConfiguration == .fourFour {
-//                    potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-//                }
-//                else if dimensions.patternTimingConfiguration == .sixEight {
-//                    potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-//                }
-//            }
-//        }
-    
-        // best place for cursor prolly here
+
         
         if dimensions.patternTimingConfiguration == .fourFour {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-            
             current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
             
-
+            if currentPatternMode == .passive_Mode {
+                //passive_Helper.
+                if let lclPassiveHelper = passive_Helper{
+                    lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
+                }
+            }
+            else if currentPatternMode == .write_Mode {
+                if let lclWriteHelper = writeNote_Helper{
+                    lclWriteHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
+                }
+            }
+            
         }
         
         else if dimensions.patternTimingConfiguration == .sixEight {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             curr_Data_Pos_X = dimensions.currentSixEightDataIndex
-            
             current_Cursor_Set = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
             
         }
-        
-        
-
     }
     
     var currentData : Underlying_Data_Cell
@@ -284,9 +275,19 @@ class Cell_X_Descriptor : Equatable,Hashable {
 
 
 
-
-
-
+//        if let currViable = potential_Helper.initial_WriteOnCell {
+//            // Y JUMP HANDLER
+//            if currViable.dataCell_Y_Number != curr_Data_Pos_Y {
+//                potential_Helper.nilPotentialSet()
+//                if dimensions.patternTimingConfiguration == .fourFour {
+//                    potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+//                }
+//                else if dimensions.patternTimingConfiguration == .sixEight {
+//                    potential_Helper.initial_WriteOnCell = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+//                }
+//            }
+//        }
+// best place for cursor prolly here
 
 //    public func post_init_Setup(){
 //    passive_Helper = Passive_Helper()
