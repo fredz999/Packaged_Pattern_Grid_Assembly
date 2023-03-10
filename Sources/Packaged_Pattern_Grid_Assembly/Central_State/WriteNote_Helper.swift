@@ -22,6 +22,7 @@ class WriteNote_Helper: P_Selectable_Mode {
         }
         else if mode_Active == true{
             note_Collection_Ref.write_Note_Data(cellSetParam: potential_Note_Set)
+            potential_Note_Set.removeAll()
             print("after write potential length: ",potential_Note_Set.count)
         }
     }
