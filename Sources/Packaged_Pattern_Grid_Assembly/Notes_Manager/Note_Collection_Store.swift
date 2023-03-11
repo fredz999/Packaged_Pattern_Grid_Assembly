@@ -10,34 +10,32 @@ import SwiftUI
 
 public class Note_Collection {
     
+    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
+    
+    public init(){}
+    
+    
+    
+    
     var currentHighlightedNote : Note?{
         willSet{
             if let lclCurr = currentHighlightedNote{
                 if let lclNewVal = newValue{
                     if lclNewVal.id != lclCurr.id {
                         lclCurr.highlighted = false
-                        //centralStateRef.a_Note_Is_Highlighted = false
                     }
                 }
                 else if newValue == nil{
                     lclCurr.highlighted = false
-                    //centralStateRef.a_Note_Is_Highlighted = false
                 }
             }
         }
         didSet{
             if let lclCurr = currentHighlightedNote {
                 lclCurr.highlighted = true
-                //centralStateRef.a_Note_Is_Highlighted = true
             }
         }
     }
-    
-    var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
-    
-    
-    
-    public init(){}
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {

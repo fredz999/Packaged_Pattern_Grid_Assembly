@@ -29,14 +29,12 @@ class WriteNote_Helper: P_Selectable_Mode {
         if mode_Active == true {
             mode_Active = false
             if potential_Note_Set.count > 0 {
-                //note_Collection_Ref.write_Note_Data(cellSetParam: potential_Note_Set)
                 if let currentNoteCollection = parentCentralState.currentNoteCollection{
                     currentNoteCollection.write_Note_Data(cellSetParam: potential_Note_Set)
                 }
                 potential_Note_Set.removeAll()
             }
             if initial_WriteOnCell != nil{initial_WriteOnCell=nil}
-            print("after write potential length: ",potential_Note_Set.count)
         }
     }
     
@@ -56,7 +54,6 @@ class WriteNote_Helper: P_Selectable_Mode {
         print("writeNote cell_Data_X: ",cell_Data_X,", cell_Data_Y: ",cell_Data_Y,", parentX: ",parentCentralState.curr_Data_Pos_X,", parentY: ",parentCentralState.curr_Data_Pos_Y,", potential length: ",potential_Note_Set.count)
         establish_Potential_Cells_Set()
     }
-    
     
     var potential_Note_Set = Set<Underlying_Data_Cell>(){
         willSet {
