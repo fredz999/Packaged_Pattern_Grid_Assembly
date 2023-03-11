@@ -23,12 +23,12 @@ class Passive_Helper: P_Selectable_Mode {
         if mode_Active == true{mode_Active=false}
     }
     
-    let note_Collection_Ref : Note_Collection
+    //let note_Collection_Ref : Note_Collection
     
     var parentCentralState : Central_State
     
-    init(note_CollectionParam : Note_Collection,parentCentral_State_Param:Central_State){
-        note_Collection_Ref = note_CollectionParam
+    init(parentCentral_State_Param:Central_State){
+        //note_Collection_Ref = note_CollectionParam
         parentCentralState = parentCentral_State_Param
     }
     

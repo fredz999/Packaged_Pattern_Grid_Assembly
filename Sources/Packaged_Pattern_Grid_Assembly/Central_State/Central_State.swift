@@ -56,16 +56,19 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
+        
+        passive_Helper = Passive_Helper(parentCentral_State_Param: self)
+        writeNote_Helper = WriteNote_Helper(parentCentral_State_Param: self)
 
         centralState_Data_Evaluation()
+        
     }
 
 
 
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
-        passive_Helper = Passive_Helper(note_CollectionParam: noteCollectionParam, parentCentral_State_Param: self)
-        writeNote_Helper = WriteNote_Helper(note_CollectionParam: noteCollectionParam, parentCentral_State_Param: self)
+        
         currentPatternMode = .passive_Mode
     }
     
