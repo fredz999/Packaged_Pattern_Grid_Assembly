@@ -60,7 +60,7 @@ public class Central_State : ObservableObject {
         centralState_Data_Evaluation()
     }
 
-    var note_Collection_Ref : Note_Collection?
+
 
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
