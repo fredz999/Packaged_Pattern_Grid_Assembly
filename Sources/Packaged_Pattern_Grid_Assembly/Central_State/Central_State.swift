@@ -32,7 +32,6 @@ public class Central_State : ObservableObject {
     @Published public var a_Note_Is_Highlighted : Bool = false
     
     public let data_Grid : Underlying_Data_Grid
-    //var data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
     //==================================================
@@ -43,9 +42,6 @@ public class Central_State : ObservableObject {
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
-    
-    
-    
     //var delete_Helper : Delete_Helper
     //var move_Helper : Move_Helper?
     var passive_Helper : Passive_Helper?
