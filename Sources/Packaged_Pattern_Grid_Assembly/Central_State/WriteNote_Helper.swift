@@ -20,9 +20,9 @@ class WriteNote_Helper: P_Selectable_Mode {
                 initial_WriteOnCell = lclActivationCell
             }
         }
-        else if mode_Active == true{
-            deactivate_Mode()
-        }
+//        else if mode_Active == true{
+//            deactivate_Mode()
+//        }
     }
     
     func deactivate_Mode() {
@@ -32,7 +32,6 @@ class WriteNote_Helper: P_Selectable_Mode {
                 potential_Note_Set.removeAll()
             }
             if initial_WriteOnCell != nil{initial_WriteOnCell=nil}
-            parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
             print("after write potential length: ",potential_Note_Set.count)
         }
     }
