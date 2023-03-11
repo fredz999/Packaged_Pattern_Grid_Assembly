@@ -83,8 +83,8 @@ public class Central_State : ObservableObject {
             else if patternModeParam == .write_Mode {
                 // delete_Helper.deactivate_Mode()
                 // move_Helper.deactivate_Mode()
-                lclWriteNote_Helper.activate_Mode(activationCell: currentData)
                 lclPassiveHelper.deactivate_Mode()
+                lclWriteNote_Helper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .write_Mode
             }
         }

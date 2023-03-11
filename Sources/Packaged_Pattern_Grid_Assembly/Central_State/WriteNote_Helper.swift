@@ -27,6 +27,7 @@ class WriteNote_Helper: P_Selectable_Mode {
     
     func deactivate_Mode() {
         if mode_Active == true {
+            mode_Active = false
             if potential_Note_Set.count > 0 {
                 note_Collection_Ref.write_Note_Data(cellSetParam: potential_Note_Set)
                 potential_Note_Set.removeAll()
