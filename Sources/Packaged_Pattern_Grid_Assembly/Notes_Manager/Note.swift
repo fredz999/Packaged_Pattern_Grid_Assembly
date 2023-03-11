@@ -61,15 +61,15 @@ public class Note : ObservableObject, Identifiable, Equatable {
         for cell in dataCellArray {
             cell.note_Im_In = nil
             cell.change_Highlight(highlightStatusParam: false)
-            
-            if cell.in_Passive_Cursor_Set == false{
-                cell.reset_To_Original()
-            }
-            
-            else if cell.in_Passive_Cursor_Set == true{
-                cell.reset_To_Original()
+            cell.reset_To_Original()
+            if cell.in_Passive_Cursor_Set == true{
                 cell.handleVisibleStateChange(type: .activate_Passive_Cursor_Set)
             }
+            
+//            else if cell.in_Passive_Cursor_Set == true{
+//                cell.reset_To_Original()
+//                cell.handleVisibleStateChange(type: .activate_Passive_Cursor_Set)
+//            }
             
         }
     }
