@@ -12,25 +12,26 @@ public class Note_Collection {
     
     var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
     
-    public init(){}
-    
-    
-    
+    public init(parentCentral_State_Param:Central_State){
+        parentCentralState = parentCentral_State_Param
+    }
+
+    var parentCentralState : Central_State
     
     var currentHighlightedNote : Note?{
         willSet{
-            if let lclCurr = currentHighlightedNote{
-                if let lclNewVal = newValue{
+            if let lclCurr = currentHighlightedNote {
+                if let lclNewVal = newValue {
                     if lclNewVal.id != lclCurr.id {
                         lclCurr.highlighted = false
                     }
                 }
-                else if newValue == nil{
+                else if newValue == nil {
                     lclCurr.highlighted = false
                 }
             }
         }
-        didSet{
+        didSet {
             if let lclCurr = currentHighlightedNote {
                 lclCurr.highlighted = true
             }
@@ -40,11 +41,11 @@ public class Note_Collection {
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
             currentHighlightedNote = nil
-            //if centralStateRef.a_Note_Is_Highlighted == true{centralStateRef.a_Note_Is_Highlighted = false}
+            if parentCentralState.a_Note_Is_Highlighted == true{parentCentralState.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {
             currentHighlightedNote = lclNoteParam
-            //if centralStateRef.a_Note_Is_Highlighted == false{centralStateRef.a_Note_Is_Highlighted = true}
+            if parentCentralState.a_Note_Is_Highlighted == false{parentCentralState.a_Note_Is_Highlighted = true}
         }
     }
 
@@ -130,7 +131,7 @@ public class Note_Collection {
             note.resetCells()
             noteArray.removeAll(where: {$0.id == note_Id_Param})
             currentHighlightedNote = nil
-            //if centralStateRef.a_Note_Is_Highlighted != false{centralStateRef.a_Note_Is_Highlighted = false}
+            if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
         }
         
         //print("notecount at end: ",noteArray.count)
@@ -145,10 +146,6 @@ public class Note_Collection {
     //public static let Static_Note_Collection = Note_Collection()
     
 }
-
-
-
-
 
 public enum E_HighlightType : String {
     case UnSelected = "UnSelected"

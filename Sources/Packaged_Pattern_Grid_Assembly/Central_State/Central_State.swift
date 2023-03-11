@@ -29,6 +29,8 @@ public class Central_State : ObservableObject {
     
     @Published public var currentNoteCollection : Note_Collection?
     
+    @Published public var a_Note_Is_Highlighted : Bool = false
+    
     public let data_Grid : Underlying_Data_Grid
     //var data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
