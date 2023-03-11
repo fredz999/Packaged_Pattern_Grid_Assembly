@@ -27,6 +27,8 @@ public class Central_State : ObservableObject {
     
     @Published public var currentPatternMode : E_PatternModeType = .no_Note_Collection
     
+    @Published public var currentNoteCollection : Note_Collection?
+    
     public let data_Grid : Underlying_Data_Grid
     //var data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
@@ -40,7 +42,7 @@ public class Central_State : ObservableObject {
     var higher_Bracket_Number : Int = 0
     //==================================================
     
-    var currentNoteCollection : Note_Collection?
+    
     
     //var delete_Helper : Delete_Helper
     //var move_Helper : Move_Helper?
