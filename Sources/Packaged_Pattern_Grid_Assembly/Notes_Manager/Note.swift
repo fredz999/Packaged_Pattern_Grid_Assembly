@@ -65,9 +65,10 @@ public class Note : ObservableObject, Identifiable, Equatable {
             if cell.in_Passive_Cursor_Set == false{
                 cell.reset_To_Original()
             }
-//            else if cell.in_Passive_Cursor_Set == true{
-//                cell.handleVisibleStateChange(type: .activate_Passive_Cursor_Set)
-//            }
+            
+            else if cell.in_Passive_Cursor_Set == true{
+                cell.handleVisibleStateChange(type: .activate_Passive_Cursor_Set)
+            }
             
         }
     }
