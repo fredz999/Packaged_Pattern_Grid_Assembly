@@ -409,7 +409,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             )
             
             if in_Passive_Cursor_Set == true{
-                lcl_Data_Vals.check_Highlighted()
+                //lcl_Data_Vals.check_In_Passive_Cursor_Set()
+                if lcl_Data_Vals.statusColor != lcl_Data_Vals.colors.passiveMode_Cursor_Color{lcl_Data_Vals.statusColor = lcl_Data_Vals.colors.passiveMode_Cursor_Color}
             }
             
         }
