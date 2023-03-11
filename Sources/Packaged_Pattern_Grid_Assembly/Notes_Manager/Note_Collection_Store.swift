@@ -138,7 +138,6 @@ public class Note_Collection {
             noteArray.removeAll(where: {$0.id == note_Id_Param})
             currentHighlightedNote = nil
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
-            parentCentralState.centralState_Data_Evaluation()
         }
         
         //print("notecount at end: ",noteArray.count)

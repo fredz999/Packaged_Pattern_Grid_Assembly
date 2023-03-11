@@ -62,6 +62,7 @@ public class Note : ObservableObject, Identifiable, Equatable {
             cell.note_Im_In = nil
             cell.change_Highlight(highlightStatusParam: false)
             cell.reset_To_Original()
+            print("cell in passive cursor?:",cell.in_Passive_Cursor_Set ? "yup" : "nope" )
         }
     }
 
