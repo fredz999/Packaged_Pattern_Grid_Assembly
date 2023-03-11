@@ -29,7 +29,10 @@ class WriteNote_Helper: P_Selectable_Mode {
         if mode_Active == true {
             mode_Active = false
             if potential_Note_Set.count > 0 {
-                note_Collection_Ref.write_Note_Data(cellSetParam: potential_Note_Set)
+                //note_Collection_Ref.write_Note_Data(cellSetParam: potential_Note_Set)
+                if let currentNoteCollection = parentCentralState.note_Collection_Ref{
+                    currentNoteCollection.write_Note_Data(cellSetParam: potential_Note_Set)
+                }
                 potential_Note_Set.removeAll()
             }
             if initial_WriteOnCell != nil{initial_WriteOnCell=nil}
@@ -37,13 +40,13 @@ class WriteNote_Helper: P_Selectable_Mode {
         }
     }
     
-    let note_Collection_Ref : Note_Collection
+    //var note_Collection_Ref : Note_Collection
     
     var parentCentralState : Central_State
     
     init(note_CollectionParam : Note_Collection,parentCentral_State_Param:Central_State){
         mode_Active = false
-        note_Collection_Ref = note_CollectionParam
+        //note_Collection_Ref = note_CollectionParam
         parentCentralState = parentCentral_State_Param
     }
     

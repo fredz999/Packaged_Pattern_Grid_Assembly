@@ -56,13 +56,11 @@ public class Central_State : ObservableObject {
         for cell in currLine.dataCellArray {
         currLineSet.insert(cell)
         }
-        
-        
-        
+
         centralState_Data_Evaluation()
-        
     }
 
+    var note_Collection_Ref : Note_Collection?
 
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
@@ -92,7 +90,6 @@ public class Central_State : ObservableObject {
     
     func centralState_Data_Evaluation(){
 
-        
         if dimensions.patternTimingConfiguration == .fourFour {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
