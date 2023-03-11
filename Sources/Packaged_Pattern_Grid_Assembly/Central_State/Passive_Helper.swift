@@ -33,7 +33,7 @@ class Passive_Helper: P_Selectable_Mode {
     }
     
     func respond_To_Cursor_Movement(cell_Data_X:Int,cell_Data_Y:Int){
-        print("passive cell_Data_X: ",cell_Data_X,", cell_Data_Y: ",cell_Data_Y,", parentX: ",parentCentralState.curr_Data_Pos_X,", parentY: ",parentCentralState.curr_Data_Pos_Y)
+        print("passive cell_Data_X: ",cell_Data_X,", cell_Data_Y: ",cell_Data_Y,", parentX: ",parentCentralState.curr_Data_Pos_X,", parentY: ",parentCentralState.curr_Data_Pos_Y,", currCell in a note: ",parentCentralState.currentData.note_Im_In == nil ? "not in note" : "in a note" )
     }
 
     func test_For_Write_Lock(){
