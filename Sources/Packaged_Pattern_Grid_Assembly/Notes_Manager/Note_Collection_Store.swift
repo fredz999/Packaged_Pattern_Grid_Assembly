@@ -124,6 +124,12 @@ public class Note_Collection {
         
     }
     
+    public func delete_CurrentHighlighted(){
+        if let lclCurrHigh = currentHighlightedNote {
+            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
+        }
+    }
+    
     public func delete_Note_By_Id(note_Id_Param:UUID){
         //print("notecount at start: ",noteArray.count)
         
