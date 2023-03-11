@@ -33,7 +33,7 @@ public class Note_Collection {
         didSet{
             if let lclCurr = currentHighlightedNote {
                 lclCurr.highlighted = true
-                print("currentHighlightedNote id: ",lclCurr.note_Y_Number)
+                print("currentHighlightedNote note_Y_Number: ",lclCurr.note_Y_Number)
             }
         }
     }
