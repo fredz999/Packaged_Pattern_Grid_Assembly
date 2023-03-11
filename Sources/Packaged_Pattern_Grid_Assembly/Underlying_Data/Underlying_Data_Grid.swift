@@ -407,7 +407,16 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             , newCellNoteStatus: note_Reset_Status
             , newNoteImIn: nil
             )
+            
+            if in_Passive_Cursor_Set == true{
+                lcl_Data_Vals.check_Highlighted()
+            }
+            
         }
+        
+       
+        
+        
     }
     
 }
