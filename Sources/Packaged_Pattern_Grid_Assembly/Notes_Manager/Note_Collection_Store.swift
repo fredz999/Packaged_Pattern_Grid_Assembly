@@ -124,7 +124,7 @@ public class Note_Collection {
         
     }
     
-    public func delete_Current_Highlighted_Note(note_Id_Param:UUID){
+    public func delete_Note_By_Id(note_Id_Param:UUID){
         //print("notecount at start: ",noteArray.count)
         
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){

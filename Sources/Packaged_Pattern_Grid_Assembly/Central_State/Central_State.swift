@@ -154,15 +154,7 @@ public class Central_State : ObservableObject {
 //        }
     }
 
-    public func deleteANote(){
-        //if let lclNoteCollection = note_Collection_Ref {
-//            if let lclCurrentHighlightedNote = cState_note_Collection_Ref.currentHighlightedNote{
-//                print("from 1")
-//                cState_note_Collection_Ref.delete_Current_Highlighted_Note(note_Id_Param: lclCurrentHighlightedNote.id)
-//                a_Note_Is_Highlighted = false
-//            }
-        //}
-    }
+
     
     var timing_Change_Compensation_Index : Int? = nil
 
