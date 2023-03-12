@@ -146,6 +146,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     private func incorporate_Row_Into_DeleteSet(curr_Y:Int,initialX:Int,finalX:Int){
+        print("incorporate_Row_Into_DeleteSet(")
         if finalX > initialX {
             let new_Horz_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
@@ -181,6 +182,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     private func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
+        print("incorporate_Column_Into_DeleteSet(")
         if finalY > initialY {
             let new_Vert_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
@@ -215,6 +217,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     func nil_Delete_Square_Set(){
+        print("nil_Delete_Square_Set()")
         if current_Direction != .stationary{current_Direction = .stationary}
         if current_Trail_Corner != nil{current_Trail_Corner = nil}
 
