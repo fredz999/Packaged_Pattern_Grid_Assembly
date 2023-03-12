@@ -22,7 +22,7 @@ class Delete_Helper : P_Selectable_Mode{
     func deactivate_Mode() {
         if mode_Active == true{
             mode_Active=false
-            if current_Trail_Corner != nil{current_Trail_Corner = nil}
+            nil_Delete_Square_Set()
         }
     }
     
@@ -30,7 +30,7 @@ class Delete_Helper : P_Selectable_Mode{
 
     let dimensions = ComponentDimensions.StaticDimensions
 
-    public var note_Collection_Ref : Note_Collection?
+    //public var note_Collection_Ref : Note_Collection?
 
     var min_X : Int?
     var max_X : Int?
@@ -153,7 +153,7 @@ class Delete_Helper : P_Selectable_Mode{
             for cell in new_Horz_Set{
                 if cell.in_Delete_Trail_Set == false{
                     multiple_Line_Corners_Set.insert(cell)
-                    if let lclNoteCollectionRef = note_Collection_Ref{
+                    if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{   //note_Collection_Ref{
                         if let cellNote = cell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
                     }
                 }
@@ -169,7 +169,7 @@ class Delete_Helper : P_Selectable_Mode{
             for cell in new_Horz_Set{
                 if cell.in_Delete_Trail_Set == false {
                     multiple_Line_Corners_Set.insert(cell)
-                    if let lclNoteCollectionRef = note_Collection_Ref{
+                    if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{
                         if let cellNote = cell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
                     }
                 }
@@ -188,7 +188,7 @@ class Delete_Helper : P_Selectable_Mode{
                 let cell_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
                 for subCell in cell_Set{
                     multiple_Line_Corners_Set.insert(subCell)
-                    if let lclNoteCollectionRef = note_Collection_Ref{
+                    if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{
                         if let cellNote = subCell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
                     }
                 }
@@ -203,7 +203,7 @@ class Delete_Helper : P_Selectable_Mode{
                 let cell_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
                 for subCell in cell_Set{
                     multiple_Line_Corners_Set.insert(subCell)
-                    if let lclNoteCollectionRef = note_Collection_Ref{
+                    if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{
                         if let cellNote = subCell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
                     }
                 }
