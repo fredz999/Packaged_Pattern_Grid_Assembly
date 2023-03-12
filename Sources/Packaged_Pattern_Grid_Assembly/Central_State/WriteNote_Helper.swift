@@ -208,12 +208,6 @@ class WriteNote_Helper: P_Selectable_Mode {
                 }
             }
             }
-
-            
-            
-            
-            
-            
             
         }
     }
