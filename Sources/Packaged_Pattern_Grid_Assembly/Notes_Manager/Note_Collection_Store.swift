@@ -121,7 +121,6 @@ public class Note_Collection {
                 cell.note_Im_In = note
             }
         }
-        
     }
     
     public func delete_CurrentHighlighted(){
@@ -131,16 +130,12 @@ public class Note_Collection {
     }
     
     public func delete_Note_By_Id(note_Id_Param:UUID){
-        //print("notecount at start: ",noteArray.count)
-        
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
             note.resetCells()
             noteArray.removeAll(where: {$0.id == note_Id_Param})
             currentHighlightedNote = nil
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
         }
-        
-        //print("notecount at end: ",noteArray.count)
     }
     
     public func reset_Note_Data_Cells(noteParam:Note){
@@ -148,9 +143,7 @@ public class Note_Collection {
         noteArray.removeAll(where: {$0.id == noteParam.id})
         currentHighlightedNote = nil
     }
-    
-    //public static let Static_Note_Collection = Note_Collection()
-    
+
 }
 
 public enum E_HighlightType : String {
