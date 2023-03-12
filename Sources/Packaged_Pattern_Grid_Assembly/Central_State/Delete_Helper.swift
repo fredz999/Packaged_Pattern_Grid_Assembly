@@ -23,11 +23,17 @@ class Delete_Helper : P_Selectable_Mode{
     var mode_Active: Bool = false
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
-        if mode_Active == false{mode_Active=true}
+        if mode_Active == false{
+            mode_Active=true
+            if current_Trail_Corner == nil {current_Trail_Corner = activationCell}
+        }
     }
     
     func deactivate_Mode() {
-        if mode_Active == true{mode_Active=false}
+        if mode_Active == true{
+            mode_Active=false
+            if current_Trail_Corner != nil{current_Trail_Corner = nil}
+        }
     }
     
     var parentCentralState : Central_State
