@@ -106,7 +106,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
-
+        print("process_Current_Line(")
         if let lclCurrent_Initial_Cell = current_Trail_Corner {
 
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
