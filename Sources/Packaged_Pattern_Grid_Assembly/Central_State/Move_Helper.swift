@@ -17,13 +17,20 @@ class Move_Helper: P_Selectable_Mode {
             mode_Active = true
             if let lclCell = activationCell {
                 snapshot_Cursor_X = lclCell.dataCell_X_Number
-                snapshot_Cursor_Y = lclCell.dataCell_Y_Number
+                //snapshot_Cursor_Y = lclCell.dataCell_Y_Number
                 note_Y_Val = lclCell.dataCell_Y_Number
+                
+//                if let lclActivationNote = activationCell{
+//                    if let noteItsIn = lclActivationNote.note_Im_In {
+//                        snapShot_Note_Id_Param = noteItsIn.id
+//                    }
+//                }
                 
                 if let lclNoteCOllection = parentCentralState.currentNoteCollection {
                     if let currentHighlightedNote = lclNoteCOllection.currentHighlightedNote {
                         note_High_Index = currentHighlightedNote.highest_Index
                         note_Low_Index = currentHighlightedNote.lowest_Index
+                        snapShot_Note_Id_Param = currentHighlightedNote.id
                     }
                 }
                 
@@ -48,7 +55,7 @@ class Move_Helper: P_Selectable_Mode {
     var note_High_Index : Int?
     var note_Y_Val : Int?
     var snapshot_Cursor_X : Int?
-    var snapshot_Cursor_Y : Int?
+    //var snapshot_Cursor_Y : Int?
     var snapShot_Note_Id_Param : UUID?
     
     var currLeftLimit : Int
@@ -97,17 +104,17 @@ class Move_Helper: P_Selectable_Mode {
     func movement_With_Note_Selected(){
         
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index
-        ,let lclNote_Y_Val = note_Y_Val
+        //,let lclNote_Y_Val = note_Y_Val
         ,let lclSnapshot_X = snapshot_Cursor_X
         //,let lclSnapshot_Y = snapshot_Cursor_Y
         {
 
         let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
-        let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclNote_Y_Val //lclSnapshot_Y
+        //let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclNote_Y_Val //lclSnapshot_Y
 
         let proposedNewMinIndex = lclNote_Low_Index + delta_X_Grid_Units
         let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
-        let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
+        //let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
 
         if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
             proposedSet = parentCentralState.currLineSet

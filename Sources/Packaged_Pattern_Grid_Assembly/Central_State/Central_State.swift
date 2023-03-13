@@ -104,7 +104,7 @@ public class Central_State : ObservableObject {
                 lclWriteNote_Helper.deactivate_Mode()
 
                 // this has to be a note
-                lclMoveHelper.activate_Mode(activationCell: currentData)
+                lclMoveHelper.activate_Mode(activationCell: nil)
                 
                 currentPatternMode = .move_Mode
             }
