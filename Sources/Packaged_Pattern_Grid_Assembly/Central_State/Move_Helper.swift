@@ -162,8 +162,6 @@ class Move_Helper: P_Selectable_Mode {
         if snapshot_Cursor_X != nil{snapshot_Cursor_X = nil}
         if snapShot_Note_Id_Param != nil{snapShot_Note_Id_Param = nil}
         
-        
-        
         if proposedSet.count > 0 {
             proposedSet.removeAll()
         }

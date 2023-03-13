@@ -76,7 +76,6 @@ public class Central_State : ObservableObject {
     public func setPatternMode(patternModeParam : E_PatternModeType){
         if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
             ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper {
-            
             if patternModeParam == .passive_Mode {
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
@@ -99,15 +98,14 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .delete_Mode
             }
             else if patternModeParam == .move_Mode {
-                
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
                 lclMoveHelper.activate_Mode(activationCell: currentData)
-                
                 currentPatternMode = .move_Mode
             }
         }
+        centralState_Data_Evaluation()
     }
     
     func centralState_Data_Evaluation(){
@@ -129,18 +127,10 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .move_Mode {
                 if let lclMoveHelper = move_Helper {
-                    //lclMoveHelper.process_MoveNote_Cursor_Position()
+
                     lclMoveHelper.movement_With_Note_Selected()
                 }
             }
-            
-            
-//            else if currentPatternMode == .delete_Mode {
-//                if let lclDeleteHelper = delete_Helper{
-//                    //lclDeleteHelper.process_Current_Line(
-//                }
-//            }
-            
         }
         
         else if dimensions.patternTimingConfiguration == .sixEight {
