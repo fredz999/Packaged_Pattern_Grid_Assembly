@@ -32,7 +32,10 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func deactivate_Mode() {
-        if mode_Active == true{mode_Active=false}
+        if mode_Active == true{
+            mode_Active=false
+            writeMovedNote_DeleteOldNote()
+        }
     }
     
     var parentCentralState : Central_State
@@ -92,7 +95,7 @@ class Move_Helper: P_Selectable_Mode {
     func movement_With_Note_Selected(){
         
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index
-        , let lclNote_Y_Val = note_Y_Val
+        ,let lclNote_Y_Val = note_Y_Val
         ,let lclSnapshot_X = snapshot_Cursor_X
         //,let lclSnapshot_Y = snapshot_Cursor_Y
         {
@@ -132,7 +135,7 @@ class Move_Helper: P_Selectable_Mode {
 //        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
             
             parentCentralState.current_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-            print("parentCentralState.current_Cursor_Set count ",parentCentralState.current_Cursor_Set.count.description)
+            //print("parentCentralState.current_Cursor_Set count ",parentCentralState.current_Cursor_Set.count.description)
             
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
@@ -150,6 +153,7 @@ class Move_Helper: P_Selectable_Mode {
 //        if potential_Moved_Set.count > 0 {
 //            move_Note_Cursor_Set.removeAll()
 //        }
+        
         if proposedSet.count > 0 {
             proposedSet.removeAll()
         }
