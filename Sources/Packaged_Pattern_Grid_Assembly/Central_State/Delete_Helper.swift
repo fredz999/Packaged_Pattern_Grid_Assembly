@@ -20,7 +20,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
     
     func deactivate_Mode() {
-        if mode_Active == true{
+        if mode_Active == true {
             mode_Active=false
             nil_Delete_Square_Set()
         }
