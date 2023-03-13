@@ -133,6 +133,7 @@ public class Central_State : ObservableObject {
             else if currentPatternMode == .write_Mode {
                 if let lclWriteHelper = writeNote_Helper {
                     if currentData.note_Im_In == nil {
+                        print("hit this point")
                         lclWriteHelper.establish_Potential_Cells_Set()
                     }
                 }
