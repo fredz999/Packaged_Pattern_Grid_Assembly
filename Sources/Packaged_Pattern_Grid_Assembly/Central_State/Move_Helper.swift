@@ -124,6 +124,7 @@ class Move_Helper: P_Selectable_Mode {
 //        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
             
             parentCentralState.current_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+            print("parentCentralState.current_Cursor_Set count ",parentCentralState.current_Cursor_Set.description)
             
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
