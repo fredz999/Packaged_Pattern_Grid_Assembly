@@ -128,6 +128,13 @@ public class Central_State : ObservableObject {
                     lclWriteHelper.establish_Potential_Cells_Set()
                 }
             }
+            else if currentPatternMode == .move_Mode {
+                if let lclMoveHelper = move_Helper{
+                    lclMoveHelper.process_MoveNote_Cursor_Position()
+                }
+            }
+            
+            
 //            else if currentPatternMode == .delete_Mode {
 //                if let lclDeleteHelper = delete_Helper{
 //                    //lclDeleteHelper.process_Current_Line(

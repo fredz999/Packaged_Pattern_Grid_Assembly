@@ -30,8 +30,6 @@ class Delete_Helper : P_Selectable_Mode{
 
     let dimensions = ComponentDimensions.StaticDimensions
 
-    //public var note_Collection_Ref : Note_Collection?
-
     var min_X : Int?
     var max_X : Int?
     var min_Y : Int?
