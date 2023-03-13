@@ -131,6 +131,7 @@ public class Central_State : ObservableObject {
             else if currentPatternMode == .move_Mode {
                 if let lclMoveHelper = move_Helper {
                     lclMoveHelper.process_MoveNote_Cursor_Position()
+                    lclMoveHelper.movement_With_Note_Selected()
                 }
             }
             
