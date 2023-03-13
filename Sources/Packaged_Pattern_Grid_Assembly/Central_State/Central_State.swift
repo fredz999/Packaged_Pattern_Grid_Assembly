@@ -133,10 +133,10 @@ public class Central_State : ObservableObject {
             else if currentPatternMode == .write_Mode {
                 if let lclWriteHelper = writeNote_Helper {
                     if currentData.note_Im_In == nil {
-                        print("hit this point")
+                        print("hit this point currentData X: ",currentData.dataCell_X_Number)
                         lclWriteHelper.establish_Potential_Cells_Set()
                     }
-                    else if let lclNoteImIn = currentData.note_Im_In{
+                    else if let lclNoteImIn = currentData.note_Im_In {
                         print("lclNoteImIn id: ",lclNoteImIn.id)
                     }
                 }
