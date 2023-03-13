@@ -32,9 +32,11 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func deactivate_Mode() {
-        if mode_Active == true{
+        if mode_Active == true {
             mode_Active=false
-            writeMovedNote_DeleteOldNote()
+            if potential_Moved_Set.count > 0{
+                writeMovedNote_DeleteOldNote()
+            }
         }
     }
     
