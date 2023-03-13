@@ -100,7 +100,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
-        print("process_Current_Line(",current_Trail_Corner != nil ? " current_Trail_Corner not nil" : " current_Trail_Corner nil")
+         
         if let lclCurrent_Initial_Cell = current_Trail_Corner {
 
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
@@ -140,7 +140,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     private func incorporate_Row_Into_DeleteSet(curr_Y:Int,initialX:Int,finalX:Int){
-        print("incorporate_Row_Into_DeleteSet(")
+ 
         if finalX > initialX {
             let new_Horz_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
@@ -176,7 +176,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     private func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
-        print("incorporate_Column_Into_DeleteSet(")
+ 
         if finalY > initialY {
             let new_Vert_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
@@ -211,7 +211,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     func nil_Delete_Square_Set(){
-        print("nil_Delete_Square_Set()")
+ 
         if current_Direction != .stationary{current_Direction = .stationary}
         if current_Trail_Corner != nil{current_Trail_Corner = nil}
 
