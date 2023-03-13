@@ -96,6 +96,13 @@ public class Central_State : ObservableObject {
                 lclWriteNote_Helper.deactivate_Mode()
                 lclDelete_Helper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .delete_Mode
+                
+                if let lclNote = currentData.note_Im_In {
+                    if let lclNoteCollection = currentNoteCollection{
+                        lclNoteCollection.delete_Note_By_Id(note_Id_Param: lclNote.id )
+                    }
+                }
+                // gotta check delete in here? see_if_Thing_Needs_Deleted()
             }
             else if patternModeParam == .move_Mode {
                 lclDelete_Helper.deactivate_Mode()
@@ -111,6 +118,7 @@ public class Central_State : ObservableObject {
     func centralState_Data_Evaluation(){
 
         if dimensions.patternTimingConfiguration == .fourFour {
+            
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
             current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
@@ -127,7 +135,6 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .move_Mode {
                 if let lclMoveHelper = move_Helper {
-
                     lclMoveHelper.movement_With_Note_Selected()
                 }
             }
