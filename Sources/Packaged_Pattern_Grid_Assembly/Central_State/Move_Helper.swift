@@ -168,9 +168,12 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func writeMovedNote_DeleteOldNote(){
-        print("writeMovedNote_DeleteOldNote()")
+        
+        print("potential_Moved_Set.count: ",potential_Moved_Set.count.description,"snapShot_Note_Id_Param: "
+              ,snapShot_Note_Id_Param == nil ? "nil" : "not nil")
+        
         if potential_Moved_Set.count > 0, let lclSnapshotNote = snapShot_Note_Id_Param {
-            
+  print("otential_Moved_Set.count > 0, let lclSnapshotNote = snapShot_Note_Id_Param")
             if let currNoteCollection = parentCentralState.currentNoteCollection {
                 
                 currNoteCollection.delete_Note_By_Id(note_Id_Param: lclSnapshotNote)
