@@ -17,15 +17,9 @@ class Move_Helper: P_Selectable_Mode {
             mode_Active = true
             if let lclCell = activationCell {
                 snapshot_Cursor_X = lclCell.dataCell_X_Number
-                //snapshot_Cursor_Y = lclCell.dataCell_Y_Number
+
                 note_Y_Val = lclCell.dataCell_Y_Number
-                
-//                if let lclActivationNote = activationCell{
-//                    if let noteItsIn = lclActivationNote.note_Im_In {
-//                        snapShot_Note_Id_Param = noteItsIn.id
-//                    }
-//                }
-                
+
                 if let lclNoteCOllection = parentCentralState.currentNoteCollection {
                     if let currentHighlightedNote = lclNoteCOllection.currentHighlightedNote {
                         note_High_Index = currentHighlightedNote.highest_Index
@@ -41,9 +35,7 @@ class Move_Helper: P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active=false
-            if potential_Moved_Set.count > 0{
-                writeMovedNote_DeleteOldNote()
-            }
+            writeMovedNote_DeleteOldNote()
         }
     }
     

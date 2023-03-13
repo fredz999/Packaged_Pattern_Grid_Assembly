@@ -99,11 +99,10 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .delete_Mode
             }
             else if patternModeParam == .move_Mode {
+                
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
-
-                // this has to be a note
                 lclMoveHelper.activate_Mode(activationCell: currentData)
                 
                 currentPatternMode = .move_Mode
