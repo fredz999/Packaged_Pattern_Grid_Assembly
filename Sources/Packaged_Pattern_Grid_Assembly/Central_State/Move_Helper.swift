@@ -155,15 +155,25 @@ class Move_Helper: P_Selectable_Mode {
 //            move_Note_Cursor_Set.removeAll()
 //        }
         
+        if note_Low_Index != nil{note_Low_Index = nil}
+        if note_High_Index != nil{note_High_Index = nil}
+        
+        if note_Y_Val != nil{note_Y_Val = nil}
+        if snapshot_Cursor_X != nil{snapshot_Cursor_X = nil}
+        if snapShot_Note_Id_Param != nil{snapShot_Note_Id_Param = nil}
+        
+        
+        
         if proposedSet.count > 0 {
             proposedSet.removeAll()
         }
         if prohibition_Indicator_Set.count > 0 {
             prohibition_Indicator_Set.removeAll()
         }
-        if snapShot_Note_Id_Param != nil {
-            snapShot_Note_Id_Param = nil
+        if potential_Moved_Set.count > 0 {
+            potential_Moved_Set.removeAll()
         }
+
     }
     
     func writeMovedNote_DeleteOldNote(){
