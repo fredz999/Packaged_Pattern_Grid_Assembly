@@ -56,13 +56,12 @@ public class Note_Collection {
                     p_ExternalNote_Responder_Array[i].react_To_NoteArrayChange(noteArrayParam: noteArray)
                 }
             }
-//            if noteArray.count == 0{
-//                //centralStateRef.setPatternMode(patternModeParam: .passive)
-//                centralStateRef.pattern_Has_A_Note = false
-//            }
-//            else if noteArray.count > 0{
-//                centralStateRef.pattern_Has_A_Note = true
-//            }
+            if noteArray.count == 0{
+                if parentCentralState.there_Is_A_Note_In_The_First_Place == true{parentCentralState.there_Is_A_Note_In_The_First_Place = false}
+            }
+            else if noteArray.count > 0{
+                if parentCentralState.there_Is_A_Note_In_The_First_Place == false{parentCentralState.there_Is_A_Note_In_The_First_Place = true}
+            }
         }
     }
     

@@ -31,6 +31,9 @@ public class Central_State : ObservableObject {
     
     @Published public var a_Note_Is_Highlighted : Bool = false
     
+    @Published public var there_Is_A_Note_In_The_First_Place : Bool = false
+    
+    
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -99,13 +102,11 @@ public class Central_State : ObservableObject {
                 lclWriteNote_Helper.deactivate_Mode()
                 lclDelete_Helper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .delete_Mode
-                
                 if let lclNote = currentData.note_Im_In {
-                    if let lclNoteCollection = currentNoteCollection{
-                        lclNoteCollection.delete_Note_By_Id(note_Id_Param: lclNote.id )
+                    if let lclNoteCollection = currentNoteCollection {
+                        lclNoteCollection.delete_Note_By_Id(note_Id_Param: lclNote.id)
                     }
                 }
-                // gotta check delete in here? see_if_Thing_Needs_Deleted()
             }
             else if patternModeParam == .move_Mode {
                 lclDelete_Helper.deactivate_Mode()
@@ -115,7 +116,6 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .move_Mode
             }
         }
-        
         centralState_Data_Evaluation()
     }
     
@@ -128,21 +128,14 @@ public class Central_State : ObservableObject {
             current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
             
             if currentPatternMode == .passive_Mode {
-                if let lclPassiveHelper = passive_Helper{
+                if let lclPassiveHelper = passive_Helper {
                     lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
-                    if let lclNoteImIn = currentData.note_Im_In {
-                        print(".passive_Mode lclNoteImIn id: ",lclNoteImIn.id)
-                    }
                 }
             }
             else if currentPatternMode == .write_Mode {
                 if let lclWriteHelper = writeNote_Helper {
                     if currentData.note_Im_In == nil {
-                        print("hit this point currentData X: ",currentData.dataCell_X_Number)
                         lclWriteHelper.establish_Potential_Cells_Set()
-                    }
-                    else if let lclNoteImIn = currentData.note_Im_In {
-                        print("lclNoteImIn id: ",lclNoteImIn.id)
                     }
                 }
             }
@@ -152,7 +145,6 @@ public class Central_State : ObservableObject {
                 }
             }
         }
-        
         else if dimensions.patternTimingConfiguration == .sixEight {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             curr_Data_Pos_X = dimensions.currentSixEightDataIndex
