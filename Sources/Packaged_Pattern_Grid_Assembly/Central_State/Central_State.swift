@@ -136,6 +136,9 @@ public class Central_State : ObservableObject {
                         print("hit this point")
                         lclWriteHelper.establish_Potential_Cells_Set()
                     }
+                    else if let lclNoteImIn = currentData.note_Im_In{
+                        print("lclNoteImIn id: ",lclNoteImIn.id)
+                    }
                 }
             }
             else if currentPatternMode == .move_Mode {
