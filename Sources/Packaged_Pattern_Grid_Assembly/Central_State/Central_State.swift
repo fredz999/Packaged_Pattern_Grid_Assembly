@@ -74,6 +74,7 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
+        
         if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
             ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper {
             if patternModeParam == .passive_Mode {
@@ -112,6 +113,7 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .move_Mode
             }
         }
+        
         centralState_Data_Evaluation()
     }
     
@@ -130,7 +132,9 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .write_Mode {
                 if let lclWriteHelper = writeNote_Helper {
-                    lclWriteHelper.establish_Potential_Cells_Set()
+                    if currentData.note_Im_In == nil {
+                        lclWriteHelper.establish_Potential_Cells_Set()
+                    }
                 }
             }
             else if currentPatternMode == .move_Mode {
