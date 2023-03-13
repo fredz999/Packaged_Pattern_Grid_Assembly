@@ -99,7 +99,6 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
             //.cursor_Slider_Update(new_X: nil , new_Y: nil)
     }
     
-    
     func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
         
         let lesserSetFourFour = dimensions.four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
