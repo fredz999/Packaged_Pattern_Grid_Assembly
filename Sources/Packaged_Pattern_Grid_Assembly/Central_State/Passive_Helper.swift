@@ -38,14 +38,13 @@ class Passive_Helper: P_Selectable_Mode {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 
                 if let currentHighlightedNote = lclNoteCollection.currentHighlightedNote {
-                    if currentHighlightedNote.id != lclNoteImIn.id{
+                    if currentHighlightedNote.id != lclNoteImIn.id {
                         lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
                     }
                 }
                 else if lclNoteCollection.currentHighlightedNote == nil {
                     lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
                 }
-                
 
             }
             

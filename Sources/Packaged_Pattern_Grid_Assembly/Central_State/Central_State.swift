@@ -43,7 +43,7 @@ public class Central_State : ObservableObject {
     var higher_Bracket_Number : Int = 0
     //==================================================
     
-    //var move_Helper : Move_Helper?
+    var move_Helper : Move_Helper?
     var delete_Helper : Delete_Helper?
     var passive_Helper : Passive_Helper?
     var writeNote_Helper : WriteNote_Helper?
@@ -59,9 +59,11 @@ public class Central_State : ObservableObject {
         currLineSet.insert(cell)
         }
         
+        move_Helper = Move_Helper(parentCentral_State_Param: self)
         delete_Helper = Delete_Helper(parentCentral_State_Param: self)
         passive_Helper = Passive_Helper(parentCentral_State_Param: self)
         writeNote_Helper = WriteNote_Helper(parentCentral_State_Param: self)
+        
         centralState_Data_Evaluation()
         
     }
@@ -72,30 +74,39 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper,let lclDelete_Helper = delete_Helper{
+        if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
+            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper {
+            
             if patternModeParam == .passive_Mode {
-                
-                // move_Helper.deactivate_Mode()
+                lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
                 lclPassiveHelper.activate_Mode(activationCell: nil)
                 currentPatternMode = .passive_Mode
             }
             else if patternModeParam == .write_Mode {
-                
-                // move_Helper.deactivate_Mode()
+                lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .write_Mode
             }
             else if patternModeParam == .delete_Mode {
-                
+                lclMoveHelper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
-                //.activate_Mode(activationCell: currentData)
                 lclDelete_Helper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .delete_Mode
+            }
+            else if patternModeParam == .move_Mode {
+                lclDelete_Helper.deactivate_Mode()
+                lclPassiveHelper.deactivate_Mode()
+                lclWriteNote_Helper.deactivate_Mode()
+
+                // this has to be a note
+                lclMoveHelper.activate_Mode(activationCell: currentData)
+                
+                currentPatternMode = .move_Mode
             }
         }
     }
@@ -167,8 +178,6 @@ public class Central_State : ObservableObject {
 //        }
     }
 
-
-    
     var timing_Change_Compensation_Index : Int? = nil
 
     var currentYCursor_Slider_Position : Int = 0
