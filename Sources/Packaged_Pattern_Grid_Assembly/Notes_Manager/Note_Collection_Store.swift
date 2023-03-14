@@ -47,14 +47,19 @@ public class Note_Collection {
     
     //write an accessor function to this array and then limit the bunber of members it can have to one
     var maxSelectedNotes : Int = 1
-    var selected_Notes_Set : Set<Note> = Set<Note>()
+    //var selected_Notes_Set : Set<Note> = Set<Note>()
+    var selected_Notes_Array : [Note] = []
     
     func accessSelected_Notes_Array(currentHighlightedNote : Note?){
         
         if let lclCurrentHighlightedNote = currentHighlightedNote {
             
             lclCurrentHighlightedNote.highlighted = true
-            selected_Notes_Set.insert(lclCurrentHighlightedNote)
+            //selected_Notes_Set.insert(lclCurrentHighlightedNote)
+            
+            if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false{
+                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+            }
             
 //            if selected_Notes_Array.count == 2{
 //                selected_Notes_Array.remove(at: 0)
@@ -98,8 +103,8 @@ public class Note_Collection {
 //            }
 //        }
         var streeng = ""
-        for note in selected_Notes_Set{
-            streeng.append(note.id.description)
+        for note in selected_Notes_Array{
+            streeng.append(note.id.description + ", ")
         }
         print("streeng........: ",streeng)
 
@@ -143,8 +148,8 @@ public class Note_Collection {
     }
     
     func react_To_Mode_Change(){
-        if selected_Notes_Set.count > 0{
-            for nute in selected_Notes_Set {
+        if selected_Notes_Array.count > 0{
+            for nute in selected_Notes_Array {
                 for dataCell in nute.dataCellArray {
                     if let lcl_Data_Vals = dataCell.currentConnectedDataVals {
                         lcl_Data_Vals.check_Highlighted()
@@ -198,8 +203,8 @@ public class Note_Collection {
 //        if let lclCurrHigh = currentHighlightedNote {
 //            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
 //        }
-        if selected_Notes_Set.count > 0{
-            for nute in selected_Notes_Set{
+        if selected_Notes_Array.count > 0{
+            for nute in selected_Notes_Array{
                 delete_Note_By_Id(note_Id_Param: nute.id)
             }
         }

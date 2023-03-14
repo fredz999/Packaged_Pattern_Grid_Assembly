@@ -27,10 +27,10 @@ class Multi_Select_Helper : P_Selectable_Mode {
         if mode_Active == true {
             mode_Active = false
             if let lclNoteCollection = parentCentralState.currentNoteCollection{
-                for note in lclNoteCollection.selected_Notes_Set{
+                for note in lclNoteCollection.selected_Notes_Array{
                    note.resetCells()
                 }
-                lclNoteCollection.selected_Notes_Set.removeAll()
+                lclNoteCollection.selected_Notes_Array.removeAll()
             }
             
         }
@@ -40,8 +40,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let note = lclNoteCollection.noteArray.first(where: {$0.id == note_Id_Param}){
                 lclNoteCollection.note_Collection_Highlight_Handler(noteParam: note)
-                lclNoteCollection.selected_Notes_Set.insert(note)
-                    //.append(note)
+                lclNoteCollection.selected_Notes_Array.append(note)
             }
         }
     }
