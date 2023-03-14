@@ -13,23 +13,23 @@ class Move_Helper: P_Selectable_Mode {
     var mode_Active: Bool = false
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
-        if mode_Active == false {
-            mode_Active = true
-            if let lclCell = activationCell {
-                snapshot_Cursor_X = lclCell.dataCell_X_Number
-
-                note_Y_Val = lclCell.dataCell_Y_Number
-
-                if let lclNoteCOllection = parentCentralState.currentNoteCollection {
-                    if let currentHighlightedNote = lclNoteCOllection.currentHighlightedNote {
-                        note_High_Index = currentHighlightedNote.highest_Index
-                        note_Low_Index = currentHighlightedNote.lowest_Index
-                        snapShot_Note_Id_Param = currentHighlightedNote.id
-                    }
-                }
-                
-            }
-        }
+//        if mode_Active == false {
+//            mode_Active = true
+//            if let lclCell = activationCell {
+//                snapshot_Cursor_X = lclCell.dataCell_X_Number
+//
+//                note_Y_Val = lclCell.dataCell_Y_Number
+//
+//                if let lclNoteCOllection = parentCentralState.currentNoteCollection {
+//                    if let currentHighlightedNote = lclNoteCOllection.currentHighlightedNote {
+//                        note_High_Index = currentHighlightedNote.highest_Index
+//                        note_Low_Index = currentHighlightedNote.lowest_Index
+//                        snapShot_Note_Id_Param = currentHighlightedNote.id
+//                    }
+//                }
+//                
+//            }
+//        }
     }
     
     func deactivate_Mode() {

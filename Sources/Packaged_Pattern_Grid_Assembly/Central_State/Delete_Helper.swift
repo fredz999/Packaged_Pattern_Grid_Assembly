@@ -151,8 +151,8 @@ class Delete_Helper : P_Selectable_Mode{
             for cell in new_Horz_Set{
                 if cell.in_Delete_Trail_Set == false{
                     multiple_Line_Corners_Set.insert(cell)
-                    if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{   //note_Collection_Ref{
-                        if let cellNote = cell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
+                    if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{
+                        if let cellNote = cell.note_Im_In{lclNoteCollectionRef.delete_Note_By_Id(note_Id_Param: cellNote.id)}
                     }
                 }
             }
@@ -168,7 +168,7 @@ class Delete_Helper : P_Selectable_Mode{
                 if cell.in_Delete_Trail_Set == false {
                     multiple_Line_Corners_Set.insert(cell)
                     if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{
-                        if let cellNote = cell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
+                        if let cellNote = cell.note_Im_In{lclNoteCollectionRef.delete_Note_By_Id(note_Id_Param: cellNote.id)}
                     }
                 }
             }
@@ -187,7 +187,7 @@ class Delete_Helper : P_Selectable_Mode{
                 for subCell in cell_Set{
                     multiple_Line_Corners_Set.insert(subCell)
                     if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{
-                        if let cellNote = subCell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
+                        if let cellNote = subCell.note_Im_In{lclNoteCollectionRef.delete_Note_By_Id(note_Id_Param: cellNote.id)}
                     }
                 }
             }
@@ -202,11 +202,10 @@ class Delete_Helper : P_Selectable_Mode{
                 for subCell in cell_Set{
                     multiple_Line_Corners_Set.insert(subCell)
                     if let lclNoteCollectionRef = parentCentralState.currentNoteCollection{
-                        if let cellNote = subCell.note_Im_In{lclNoteCollectionRef.reset_Note_Data_Cells(noteParam: cellNote)}
+                        if let cellNote = subCell.note_Im_In{lclNoteCollectionRef.delete_Note_By_Id(note_Id_Param: cellNote.id)}
                     }
                 }
             }
-
         }
     }
 

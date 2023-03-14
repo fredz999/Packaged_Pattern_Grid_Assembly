@@ -412,7 +412,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 if lcl_Data_Vals.statusColor != lcl_Data_Vals.colors.passiveMode_Cursor_Color{lcl_Data_Vals.statusColor = lcl_Data_Vals.colors.passiveMode_Cursor_Color
                 }
             }
-            
         }
     }
     

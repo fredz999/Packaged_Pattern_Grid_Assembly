@@ -34,6 +34,8 @@ public class Central_State : ObservableObject {
     @Published public var there_Is_A_Note_In_The_First_Place : Bool = false
     
     
+    
+    
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors

@@ -18,39 +18,81 @@ public class Note_Collection {
 
     var parentCentralState : Central_State
     
-    var currentHighlightedNote : Note?{
-        willSet{
-            if let lclCurr = currentHighlightedNote {
-                if let lclNewVal = newValue {
-                    if lclNewVal.id != lclCurr.id {
-                        lclCurr.highlighted = false
-                    }
+    
+    
+    
+    
+    
+    // this needs replaced?.... current highlighted notes?
+    // use accessor function
+//    var currentHighlightedNote : Note?{
+//        willSet {
+//            if let lclCurr = currentHighlightedNote {
+//                if let lclNewVal = newValue {
+//                    if lclNewVal.id != lclCurr.id {
+//                        lclCurr.highlighted = false
+//                    }
+//                }
+//                else if newValue == nil {
+//                    lclCurr.highlighted = false
+//                }
+//            }
+//        }
+//        didSet {
+//            if let lclCurr = currentHighlightedNote {
+//                lclCurr.highlighted = true
+//            }
+//        }
+//    }
+    
+    //write an accessor function to this array and then limit the bunber of members it can have to one
+    var maxSelectedNotes : Int = 1
+    var selected_Notes_Array : [Note] = []
+    
+    func accessSelected_Notes_Array(currentHighlightedNote : Note?){
+        // a nil one is now going to empy the array
+        
+        if let lclCurrentHighlightedNote = currentHighlightedNote {
+            lclCurrentHighlightedNote.highlighted = true
+            let lastAvailableElement = maxSelectedNotes-1
+            
+            if selected_Notes_Array.count == lastAvailableElement {
+                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+                selected_Notes_Array.removeLast()
+            }
+            else if selected_Notes_Array.count < lastAvailableElement {
+                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+            }
+            
+            selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+          
+        }
+        else if currentHighlightedNote == nil {
+            if selected_Notes_Array.count > 0 {
+                for note in selected_Notes_Array {
+                    note.highlighted = false
                 }
-                else if newValue == nil {
-                    lclCurr.highlighted = false
-                }
+                selected_Notes_Array.removeAll()
             }
         }
-        didSet {
-            if let lclCurr = currentHighlightedNote {
-                lclCurr.highlighted = true
-            }
-        }
+
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
-            currentHighlightedNote = nil
+            //currentHighlightedNote = nil
+            selected_Notes_Array.removeAll()
             if parentCentralState.a_Note_Is_Highlighted == true{parentCentralState.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {
-            currentHighlightedNote = lclNoteParam
+            //currentHighlightedNote = lclNoteParam
+            accessSelected_Notes_Array(currentHighlightedNote: lclNoteParam)
             if parentCentralState.a_Note_Is_Highlighted == false{parentCentralState.a_Note_Is_Highlighted = true}
         }
     }
 
     public var noteArray : [Note] = []{
-        didSet{
+        didSet {
             if p_ExternalNote_Responder_Array.count > 0 {
                 for i in 0..<p_ExternalNote_Responder_Array.count {
                     p_ExternalNote_Responder_Array[i].react_To_NoteArrayChange(noteArrayParam: noteArray)
@@ -74,13 +116,19 @@ public class Note_Collection {
     }
     
     func react_To_Mode_Change(){
-        if let currHighlightedNote = currentHighlightedNote{
-            for dataCell in currHighlightedNote.dataCellArray {
-                if let lcl_Data_Vals = dataCell.currentConnectedDataVals {
-                    lcl_Data_Vals.check_Highlighted()
+
+        if selected_Notes_Array.count > 0{
+            
+            for nute in selected_Notes_Array {
+                for dataCell in nute.dataCellArray {
+                    if let lcl_Data_Vals = dataCell.currentConnectedDataVals {
+                        lcl_Data_Vals.check_Highlighted()
+                    }
                 }
             }
+
         }
+ 
     }
     
     func write_Note_Data(cellSetParam : Set<Underlying_Data_Cell>){
@@ -123,8 +171,13 @@ public class Note_Collection {
     }
     
     public func delete_CurrentHighlighted(){
-        if let lclCurrHigh = currentHighlightedNote {
-            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
+//        if let lclCurrHigh = currentHighlightedNote {
+//            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
+//        }
+        if selected_Notes_Array.count > 0{
+            for nute in selected_Notes_Array{
+                delete_Note_By_Id(note_Id_Param: nute.id)
+            }
         }
     }
     
@@ -132,16 +185,17 @@ public class Note_Collection {
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
             note.resetCells()
             noteArray.removeAll(where: {$0.id == note_Id_Param})
-            currentHighlightedNote = nil
+            //currentHighlightedNote = nil
+            accessSelected_Notes_Array(currentHighlightedNote: nil)
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
         }
     }
     
-    public func reset_Note_Data_Cells(noteParam:Note){
-        noteParam.resetCells()
-        noteArray.removeAll(where: {$0.id == noteParam.id})
-        currentHighlightedNote = nil
-    }
+//    public func reset_Note_Data_Cells(noteParam:Note){
+//        noteParam.resetCells()
+//        noteArray.removeAll(where: {$0.id == noteParam.id})
+//        currentHighlightedNote = nil
+//    }
 
 }
 
