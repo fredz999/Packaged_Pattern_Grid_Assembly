@@ -50,12 +50,15 @@ public class Note_Collection {
     //var selected_Notes_Set : Set<Note> = Set<Note>()
     var selected_Notes_Array : [Note] = []
     
+    
+    
+    
+    
     func accessSelected_Notes_Array(currentHighlightedNote : Note?){
         
         if let lclCurrentHighlightedNote = currentHighlightedNote {
             
             lclCurrentHighlightedNote.highlighted = true
-            //selected_Notes_Set.insert(lclCurrentHighlightedNote)
             
             if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false{
                 if selected_Notes_Array.count < 2{
@@ -67,48 +70,14 @@ public class Note_Collection {
                     selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
                 }
             }
+            // you have to break this up with the cursor going over silent areas
+
             
-//            if selected_Notes_Array.count == 2{
-//                selected_Notes_Array.remove(at: 0)
-//            }
-            //selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-            
-            
-//            if selected_Notes_Array.count == 1 {
-//                selected_Notes_Array[0].highlighted = true
-//            }
-//            else if selected_Notes_Array.count == 2 {
-//                selected_Notes_Array[0].highlighted = true
-//                selected_Notes_Array[1].highlighted = false
-//                selected_Notes_Array.remove(at: 1)
-//            }
         }
-        
-        
-//        if let lclCurrentHighlightedNote = currentHighlightedNote {
-//            lclCurrentHighlightedNote.highlighted = true
-//            let lastAvailableElement = maxSelectedNotes-1
-//
-//            if selected_Notes_Array.count == lastAvailableElement {
-//                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-//                selected_Notes_Array[lastAvailableElement].highlighted = false
-//                selected_Notes_Array.remove(at: lastAvailableElement)
-//            }
-//            else if selected_Notes_Array.count < lastAvailableElement {
-//                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-//            }
-//
-//            selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-//
-//        }
-//        else if currentHighlightedNote == nil {
-//            if selected_Notes_Array.count > 0 {
-//                for note in selected_Notes_Array {
-//                    note.highlighted = false
-//                }
-//                selected_Notes_Array.removeAll()
-//            }
-//        }
+        else if currentHighlightedNote == nil{
+            print("currentHighlightedNote == nil")
+        }
+
         var streeng = ""
         for note in selected_Notes_Array{
             streeng.append(note.id.description + ", ")
@@ -117,10 +86,21 @@ public class Note_Collection {
 
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
             //currentHighlightedNote = nil
             //selected_Notes_Set.removeAll()
+            accessSelected_Notes_Array(currentHighlightedNote: nil)
             if parentCentralState.a_Note_Is_Highlighted == true{parentCentralState.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {
