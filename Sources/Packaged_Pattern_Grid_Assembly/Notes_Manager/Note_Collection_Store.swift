@@ -50,33 +50,40 @@ public class Note_Collection {
     var selected_Notes_Array : [Note] = []
     
     func accessSelected_Notes_Array(currentHighlightedNote : Note?){
-        // a nil one is now going to empy the array
-        //print("accessSelected_Notes_Array( note: ",currentHighlightedNote == nil ? "nil " : "not nil")
         
         if let lclCurrentHighlightedNote = currentHighlightedNote {
-            lclCurrentHighlightedNote.highlighted = true
-            let lastAvailableElement = maxSelectedNotes-1
-            
-            if selected_Notes_Array.count == lastAvailableElement {
-                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-                selected_Notes_Array[lastAvailableElement].highlighted = false
-                selected_Notes_Array.remove(at: lastAvailableElement)
-            }
-            else if selected_Notes_Array.count < lastAvailableElement {
-                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-            }
-            
             selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-          
-        }
-        else if currentHighlightedNote == nil {
-            if selected_Notes_Array.count > 0 {
-                for note in selected_Notes_Array {
-                    note.highlighted = false
-                }
-                selected_Notes_Array.removeAll()
+            if selected_Notes_Array.count == 2 {
+                selected_Notes_Array[1].highlighted = false
+                selected_Notes_Array.remove(at: 1)
             }
         }
+        
+        
+//        if let lclCurrentHighlightedNote = currentHighlightedNote {
+//            lclCurrentHighlightedNote.highlighted = true
+//            let lastAvailableElement = maxSelectedNotes-1
+//
+//            if selected_Notes_Array.count == lastAvailableElement {
+//                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+//                selected_Notes_Array[lastAvailableElement].highlighted = false
+//                selected_Notes_Array.remove(at: lastAvailableElement)
+//            }
+//            else if selected_Notes_Array.count < lastAvailableElement {
+//                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+//            }
+//
+//            selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+//
+//        }
+//        else if currentHighlightedNote == nil {
+//            if selected_Notes_Array.count > 0 {
+//                for note in selected_Notes_Array {
+//                    note.highlighted = false
+//                }
+//                selected_Notes_Array.removeAll()
+//            }
+//        }
         
         print("selected_Notes_Array count: ",selected_Notes_Array.count.description)
 
