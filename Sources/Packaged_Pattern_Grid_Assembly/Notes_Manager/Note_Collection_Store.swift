@@ -108,7 +108,7 @@ public class Note_Collection {
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
             //currentHighlightedNote = nil
-            selected_Notes_Set.removeAll()
+            //selected_Notes_Set.removeAll()
             if parentCentralState.a_Note_Is_Highlighted == true{parentCentralState.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {
