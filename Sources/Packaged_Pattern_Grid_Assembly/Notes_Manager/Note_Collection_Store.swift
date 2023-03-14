@@ -51,6 +51,7 @@ public class Note_Collection {
     
     func accessSelected_Notes_Array(currentHighlightedNote : Note?){
         // a nil one is now going to empy the array
+        print("accessSelected_Notes_Array( note: ",currentHighlightedNote == nil ? "nil " : "not nil")
         
         if let lclCurrentHighlightedNote = currentHighlightedNote {
             lclCurrentHighlightedNote.highlighted = true
