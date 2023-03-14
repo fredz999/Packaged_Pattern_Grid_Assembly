@@ -54,6 +54,7 @@ public class Note_Collection {
         if let lclCurrentHighlightedNote = currentHighlightedNote {
             selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
             if selected_Notes_Array.count == 2 {
+                selected_Notes_Array[0].highlighted = true
                 selected_Notes_Array[1].highlighted = false
                 selected_Notes_Array.remove(at: 1)
             }
