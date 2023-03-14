@@ -31,10 +31,10 @@ class Passive_Helper: P_Selectable_Mode {
     
     func respond_To_Cursor_Movement(cell_Data_X:Int,cell_Data_Y:Int){
 
-//        if let lclNoteImIn = parentCentralState.currentData.note_Im_In {
-//            
-//            if let lclNoteCollection = parentCentralState.currentNoteCollection {
-//                
+        if let lclNoteImIn = parentCentralState.currentData.note_Im_In {
+
+            if let lclNoteCollection = parentCentralState.currentNoteCollection {
+
 //                if let currentHighlightedNote = lclNoteCollection.currentHighlightedNote {
 //                    if currentHighlightedNote.id != lclNoteImIn.id {
 //                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
@@ -43,13 +43,23 @@ class Passive_Helper: P_Selectable_Mode {
 //                else if lclNoteCollection.currentHighlightedNote == nil {
 //                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
 //                }
-//
-//            }
-//
-//        }
-//        else if parentCentralState.currentData.note_Im_In == nil {
-//            parentCentralState.currentNoteCollection?.note_Collection_Highlight_Handler(noteParam: nil)
-//        }
+                
+//                if lclNoteCollection.selected_Notes_Array.count > 0 {
+//                    for note in lclNoteCollection.selected_Notes_Array {
+//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: note)
+//                    }
+//                }
+//                else if lclNoteCollection.selected_Notes_Array.count == 0 {
+//                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
+//                }
+                
+                lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
+            }
+
+        }
+        else if parentCentralState.currentData.note_Im_In == nil {
+            parentCentralState.currentNoteCollection?.note_Collection_Highlight_Handler(noteParam: nil)
+        }
         
     }
 
