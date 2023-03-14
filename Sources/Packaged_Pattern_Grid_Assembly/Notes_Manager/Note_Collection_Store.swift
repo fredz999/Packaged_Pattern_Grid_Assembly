@@ -49,18 +49,14 @@ public class Note_Collection {
     var maxSelectedNotes : Int = 1
     //var selected_Notes_Set : Set<Note> = Set<Note>()
     var selected_Notes_Array : [Note] = []
-    
-    
-    
-    
-    
+    var lastOneWasNil : Bool = false
     func accessSelected_Notes_Array(currentHighlightedNote : Note?){
         
         if let lclCurrentHighlightedNote = currentHighlightedNote {
             
             lclCurrentHighlightedNote.highlighted = true
             
-            if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false{
+            if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false,lastOneWasNil==true{
                 if selected_Notes_Array.count < 2{
                     selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
                 }
@@ -69,20 +65,22 @@ public class Note_Collection {
                     selected_Notes_Array.remove(at: 1)
                     selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
                 }
+                lastOneWasNil = false
             }
             // you have to break this up with the cursor going over silent areas
 
             
         }
-        else if currentHighlightedNote == nil{
+        else if currentHighlightedNote == nil {
+            lastOneWasNil = true
             print("currentHighlightedNote == nil")
         }
 
-        var streeng = ""
-        for note in selected_Notes_Array{
-            streeng.append(note.id.description + ", ")
-        }
-        print("streeng........: ",streeng)
+//        var streeng = ""
+//        for note in selected_Notes_Array{
+//            streeng.append(note.id.description + ", ")
+//        }
+//        print("streeng........: ",streeng)
 
     }
     
