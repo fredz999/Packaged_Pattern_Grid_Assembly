@@ -52,8 +52,10 @@ public class Note_Collection {
     func accessSelected_Notes_Array(currentHighlightedNote : Note?){
         
         if let lclCurrentHighlightedNote = currentHighlightedNote {
+            
             lclCurrentHighlightedNote.highlighted = true
             selected_Notes_Array.append(lclCurrentHighlightedNote)
+            
 //            if selected_Notes_Array.count == 2{
 //                selected_Notes_Array.remove(at: 0)
 //            }
