@@ -97,8 +97,11 @@ public class Note_Collection {
 //                selected_Notes_Array.removeAll()
 //            }
 //        }
-        
-        print("selected_Notes_Array count: ",selected_Notes_Set.count.description)
+        var streeng = ""
+        for note in selected_Notes_Set{
+            streeng.append(note.id.description)
+        }
+        print("streeng........: ",streeng)
 
     }
     
