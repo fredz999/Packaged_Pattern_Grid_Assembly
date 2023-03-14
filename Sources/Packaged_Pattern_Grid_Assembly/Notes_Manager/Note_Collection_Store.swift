@@ -58,7 +58,15 @@ public class Note_Collection {
             //selected_Notes_Set.insert(lclCurrentHighlightedNote)
             
             if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false{
-                selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+                if selected_Notes_Array.count < 2{
+                    selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+                }
+                else if selected_Notes_Array.count == 2{
+                    selected_Notes_Array[1].highlighted = false
+                    selected_Notes_Array.remove(at: 1)
+                    selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+                }
+                
             }
             
 //            if selected_Notes_Array.count == 2{
