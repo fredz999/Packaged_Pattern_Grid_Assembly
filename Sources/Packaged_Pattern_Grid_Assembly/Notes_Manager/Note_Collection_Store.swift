@@ -47,14 +47,14 @@ public class Note_Collection {
     
     //write an accessor function to this array and then limit the bunber of members it can have to one
     var maxSelectedNotes : Int = 1
-    var selected_Notes_Array : [Note] = []
+    var selected_Notes_Set : Set<Note> = Set<Note>()
     
     func accessSelected_Notes_Array(currentHighlightedNote : Note?){
         
         if let lclCurrentHighlightedNote = currentHighlightedNote {
             
             lclCurrentHighlightedNote.highlighted = true
-            selected_Notes_Array.append(lclCurrentHighlightedNote)
+            selected_Notes_Set.insert(lclCurrentHighlightedNote)
             
 //            if selected_Notes_Array.count == 2{
 //                selected_Notes_Array.remove(at: 0)
@@ -98,14 +98,14 @@ public class Note_Collection {
 //            }
 //        }
         
-        print("selected_Notes_Array count: ",selected_Notes_Array.count.description)
+        print("selected_Notes_Array count: ",selected_Notes_Set.count.description)
 
     }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
             //currentHighlightedNote = nil
-            selected_Notes_Array.removeAll()
+            selected_Notes_Set.removeAll()
             if parentCentralState.a_Note_Is_Highlighted == true{parentCentralState.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {
@@ -140,17 +140,14 @@ public class Note_Collection {
     }
     
     func react_To_Mode_Change(){
-
-        if selected_Notes_Array.count > 0{
-            
-            for nute in selected_Notes_Array {
+        if selected_Notes_Set.count > 0{
+            for nute in selected_Notes_Set {
                 for dataCell in nute.dataCellArray {
                     if let lcl_Data_Vals = dataCell.currentConnectedDataVals {
                         lcl_Data_Vals.check_Highlighted()
                     }
                 }
             }
-
         }
  
     }
@@ -198,8 +195,8 @@ public class Note_Collection {
 //        if let lclCurrHigh = currentHighlightedNote {
 //            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
 //        }
-        if selected_Notes_Array.count > 0{
-            for nute in selected_Notes_Array{
+        if selected_Notes_Set.count > 0{
+            for nute in selected_Notes_Set{
                 delete_Note_By_Id(note_Id_Param: nute.id)
             }
         }

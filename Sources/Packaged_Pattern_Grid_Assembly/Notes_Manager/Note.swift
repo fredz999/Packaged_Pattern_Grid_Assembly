@@ -8,11 +8,21 @@
 import Foundation
 import SwiftUI
 
-public class Note : ObservableObject, Identifiable, Equatable {
+public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     
     public static func == (lhs: Note, rhs: Note) -> Bool {
         return lhs.id == rhs.id
     }
+    
+//    static func == (lhs: Cell_X_Descriptor, rhs: Cell_X_Descriptor) -> Bool {
+//        lhs.x_Position_Int == rhs.x_Position_Int
+//    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    
     
     public var id : UUID
     var parentRef : Note_Collection
