@@ -52,12 +52,18 @@ public class Note_Collection {
     func accessSelected_Notes_Array(currentHighlightedNote : Note?){
         
         if let lclCurrentHighlightedNote = currentHighlightedNote {
-            selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-            if selected_Notes_Array.count == 2 {
-                selected_Notes_Array[0].highlighted = true
-                selected_Notes_Array[1].highlighted = false
-                selected_Notes_Array.remove(at: 1)
-            }
+            lclCurrentHighlightedNote.highlighted = true
+            //selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+            
+            
+//            if selected_Notes_Array.count == 1 {
+//                selected_Notes_Array[0].highlighted = true
+//            }
+//            else if selected_Notes_Array.count == 2 {
+//                selected_Notes_Array[0].highlighted = true
+//                selected_Notes_Array[1].highlighted = false
+//                selected_Notes_Array.remove(at: 1)
+//            }
         }
         
         
