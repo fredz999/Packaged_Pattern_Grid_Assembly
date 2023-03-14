@@ -59,7 +59,8 @@ public class Note_Collection {
             
             if selected_Notes_Array.count == lastAvailableElement {
                 selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-                selected_Notes_Array.removeLast()
+                selected_Notes_Array[lastAvailableElement].highlighted = false
+                selected_Notes_Array.remove(at: lastAvailableElement)
             }
             else if selected_Notes_Array.count < lastAvailableElement {
                 selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
