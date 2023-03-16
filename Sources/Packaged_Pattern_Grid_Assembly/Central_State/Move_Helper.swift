@@ -94,7 +94,7 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Note_Selected(){
-        print("movement_With_Note_Selected().....?")
+        print("note_Low_Index: ",note_Low_Index,", note_High_Index: ",note_High_Index)
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index
         //,let lclNote_Y_Val = note_Y_Val
         ,let lclSnapshot_X = snapshot_Cursor_X
@@ -128,9 +128,9 @@ class Move_Helper: P_Selectable_Mode {
         prohibition_Indicator_Set = proposedSet.filter({$0.note_Im_In != nil})
             
         }
-        else if note_Low_Index == nil || note_High_Index == nil {
-            print("movement_With_Note_Selected().....?")
-        }
+//        else if note_Low_Index == nil || note_High_Index == nil {
+//            print("movement_With_Note_Selected().....?")
+//        }
 
     }
     
