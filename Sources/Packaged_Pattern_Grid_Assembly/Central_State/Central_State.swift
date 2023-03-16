@@ -80,7 +80,7 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        print("setPatternMode(: ",patternModeParam.rawValue)
+        
         if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
             ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper {
             
@@ -93,7 +93,7 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .passive_Mode
             }
             else if patternModeParam == .write_Mode {
-                //lclMulti_Select_Helper.deactivate_Mode()
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
@@ -103,6 +103,7 @@ public class Central_State : ObservableObject {
                 }
                 
                 currentPatternMode = .write_Mode
+                print("currentPatternMode: ",currentPatternMode.rawValue)
             }
             else if patternModeParam == .delete_Mode {
                 lclMulti_Select_Helper.deactivate_Mode()
