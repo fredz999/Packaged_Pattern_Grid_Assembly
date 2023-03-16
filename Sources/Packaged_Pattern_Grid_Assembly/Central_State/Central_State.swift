@@ -285,6 +285,7 @@ public enum E_PatternModeType : String {
     case no_Note_Collection = "no_Note_Collection"
     case multi_Select_Mode = "multi_Select_Mode"
 }
+// hih?
 
 public enum E_Note_Movement_Type {
     case leftWard
