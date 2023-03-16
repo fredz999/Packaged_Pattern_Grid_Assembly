@@ -86,7 +86,7 @@ public class Central_State : ObservableObject {
             ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper{
             
             if patternModeParam == .passive_Mode {
-                //lclMulti_Select_Helper.deactivate_Mode()
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
@@ -95,7 +95,7 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .passive_Mode
             }
             else if patternModeParam == .write_Mode {
-                //lclMulti_Select_Helper.deactivate_Mode()
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
@@ -107,7 +107,7 @@ public class Central_State : ObservableObject {
                 print("currentPatternMode: ",currentPatternMode.rawValue)
             }
             else if patternModeParam == .delete_Mode {
-                //lclMulti_Select_Helper.deactivate_Mode()
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
@@ -120,21 +120,21 @@ public class Central_State : ObservableObject {
                 }
             }
             else if patternModeParam == .move_Mode {
-                //lclMulti_Select_Helper.deactivate_Mode()
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
                 lclMoveHelper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .move_Mode
             }
-//            else if patternModeParam == .multi_Select_Mode {
-//                lclDelete_Helper.deactivate_Mode()
-//                lclPassiveHelper.deactivate_Mode()
-//                lclWriteNote_Helper.deactivate_Mode()
-//                lclMoveHelper.deactivate_Mode()
-//                lclMulti_Select_Helper.activate_Mode(activationCell: currentData)
-//                currentPatternMode = .multi_Select_Mode
-//            }
+            else if patternModeParam == .multi_Select_Mode {
+                lclDelete_Helper.deactivate_Mode()
+                lclPassiveHelper.deactivate_Mode()
+                lclWriteNote_Helper.deactivate_Mode()
+                lclMoveHelper.deactivate_Mode()
+                lclMulti_Select_Helper.activate_Mode(activationCell: currentData)
+                currentPatternMode = .multi_Select_Mode
+            }
         }
         centralState_Data_Evaluation()
     }
