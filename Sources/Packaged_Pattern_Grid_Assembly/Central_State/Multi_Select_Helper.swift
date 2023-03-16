@@ -47,12 +47,12 @@ class Multi_Select_Helper : P_Selectable_Mode {
         willSet {
             let delta = potential_MultiSelect_Set.symmetricDifference(newValue)
             for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                cell.handleVisibleStateChange(type: .deActivate_Multiselect_Set)
             }
         }
         didSet {
             for cell in potential_MultiSelect_Set {
-                cell.handleVisibleStateChange(type : .activate_Potential_Set)
+                cell.handleVisibleStateChange(type : .activate_Multiselect_Set)
             }
         }
     }
