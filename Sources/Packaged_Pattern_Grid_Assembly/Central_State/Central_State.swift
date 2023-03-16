@@ -164,7 +164,7 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .multi_Select_Mode {
                 if let lclMulti_Select_Helper = multi_Select_Helper{
-                    
+                    lclMulti_Select_Helper.multi_Select_Move()
                 }
             }
         }
