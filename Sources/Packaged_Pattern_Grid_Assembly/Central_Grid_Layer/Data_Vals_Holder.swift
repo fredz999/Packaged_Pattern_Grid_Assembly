@@ -224,7 +224,7 @@ public class Data_Vals_Holder : ObservableObject {
         var retVal = false
         if referenced_in_MultiSelect_Set == true {
             retVal = true
-            if statusColor != colors.potentialColor{statusColor = colors.multiSelectColor}
+            if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectColor}
         }
         return retVal
     }
