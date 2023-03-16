@@ -18,40 +18,15 @@ class Multi_Select_Helper : P_Selectable_Mode {
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false{mode_Active = true}
     }
-    
-    
-    //currentHighlightedNote in note collection has to be re-worked
-    // to support multiple selection
-    
+
     func deactivate_Mode() {
-        if mode_Active == true {
-            mode_Active = false
-            if let lclNoteCollection = parentCentralState.currentNoteCollection{
-//                for note in lclNoteCollection.selected_Notes_Array{
-//                   note.resetCells()
-//                }
-//                lclNoteCollection.selected_Notes_Array.removeAll()
-            }
-            
-        }
+        if mode_Active == true { mode_Active = false }
     }
-    
-    func multiSelect(note_Id_Param:UUID){
-        if let lclNoteCollection = parentCentralState.currentNoteCollection {
-            if let note = lclNoteCollection.noteArray.first(where: {$0.id == note_Id_Param}){
-//                lclNoteCollection.note_Collection_Highlight_Handler(noteParam: note)
-//                lclNoteCollection.selected_Notes_Array.append(note)
-            }
-        }
-    }
-    //func multiSelect(note_Id_Param:UUID){
-    
-    func multiDelete(){
-        //collection  delete_Note_By_Id(note_Id_Param:UUID)
-    }
-    
     
     init(parentCentral_State_Param:Central_State){
         parentCentralState = parentCentral_State_Param
     }
 }
+
+// just going to use a seperate multi select mode for now ....
+// the single select can just be a hover over one note type thing
