@@ -30,7 +30,9 @@ public class Data_Vals_Holder : ObservableObject {
     private var referenced_in_MoveCursor_Set : Bool = false
     
     private var referenced_in_PassiveCursor_Set : Bool = false
-
+    
+    private var referenced_in_MultiSelect_Set : Bool = false
+    
     @Published public var referenced_currentStatus : E_CellStatus
     {
         didSet{
@@ -148,12 +150,11 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Highlighted_Set == true{referenced_in_Highlighted_Set=false}
             }
         }
-        
         process_Visual_Status()
     }
     
     func process_Visual_Status(){
-       if check_In_Delete_Square_Set() == false {
+       if check_In_MultiSelect_Set() == false {
             if check_In_MoveCursor_Set() == false {
                 if check_In_Passive_Cursor_Set() == false {
                     if check_Cell_Not_In_Note() == false {
@@ -167,37 +168,6 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
     }
-    
-//    func process_Visual_Status(){
-//        if check_In_Delete_Square_Set() == false {
-//
-//            if check_In_MoveCursor_Set() == false {
-//
-//                if check_In_Passive_Cursor_Set() == false {
-//
-//                    if check_Cell_Not_In_Note() == false {
-////                        if check_In_Prohib_Set() == false{
-////                            check_Highlighted()
-////                        }
-//                        check_Highlighted()
-//                        check_In_Prohib_Set()
-//
-////                        if check_Highlighted() == false {
-////                            check_In_Prohib_Set()
-////                        }
-//                    }
-//                    else if check_Cell_Not_In_Note() == true {
-//                        check_In_Potential_Set()
-////                        if check_In_Potential_Set() == true {
-////                            check_In_Prohib_Set()
-////                        }
-//                    }
-//                }
-//
-//            }
-//        }
-//    }
-    
     func check_Cell_Not_In_Note()->Bool{
         var retval = true
         if referenced_currentStatus == .start_Blank
@@ -213,54 +183,14 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retval
     }
-    
-//    func check_Highlighted()->Bool{
-//        var retVal = false
-//        if centralState.currentPatternMode == .passive{
-//
-//            if referenced_in_Highlighted_Set == true {
-//                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .red}
-//                retVal = true
-//            }
-//            else if referenced_in_Highlighted_Set == false {
-//                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
-//            }
-//        }
-//
-//        else if centralState.currentPatternMode == .moving {
-//            if referenced_in_Highlighted_Set == true {
-//                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .white}
-//                retVal = true
-//            }
-//            else if referenced_in_Highlighted_Set == false {
-//                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
-//            }
-//        }
-//        return retVal
-//    }
-    
     func check_Highlighted(){
-        
-        //if centralState.currentPatternMode == .passive_Mode{
-            if referenced_in_Highlighted_Set == true {
-                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .red}
-            }
-            else if referenced_in_Highlighted_Set == false {
-                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
-            }
-        //}
-
-//        else if centralState.currentPatternMode == .move_Mode {
-//            if referenced_in_Highlighted_Set == true {
-//                if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .white}
-//            }
-//            else if referenced_in_Highlighted_Set == false {
-//                if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
-//            }
-//        }
-        
+        if referenced_in_Highlighted_Set == true {
+            if statusColor != colors.grid_Note_Highlighted_Color{statusColor = .red}
+        }
+        else if referenced_in_Highlighted_Set == false {
+            if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
+        }
     }
-    
     func check_In_Passive_Cursor_Set()->Bool{
         var retVal = false
         if referenced_in_PassiveCursor_Set == true {
@@ -269,16 +199,14 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retVal
     }
-    
-    func check_In_Delete_Square_Set()->Bool{
-        var retVal = false
-        if referenced_in_Delete_Square_Set == true {
-            retVal = true
-            if statusColor != colors.deleteNoteMode_Cursor_Color{statusColor = colors.deleteNoteMode_Cursor_Color}
-        }
-        return retVal
-    }
-    
+//    func check_In_Delete_Square_Set()->Bool{
+//        var retVal = false
+//        if referenced_in_Delete_Square_Set == true {
+//            retVal = true
+//            if statusColor != colors.deleteNoteMode_Cursor_Color{statusColor = colors.deleteNoteMode_Cursor_Color}
+//        }
+//        return retVal
+//    }
     func check_In_MoveCursor_Set()->Bool{
         var retVal = false
         if referenced_in_MoveCursor_Set == true {
@@ -287,39 +215,26 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retVal
     }
-
     func check_In_Prohib_Set() {
         if referenced_in_Prohibited_Set == true {
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
     }
-    
-//    func check_In_Prohib_Set() -> Bool {
-//        var retVal = false
-//        if referenced_in_Prohibited_Set == true{
-//            retVal = true
-//            if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
-//        }
-//        return retVal
-//    }
-    
+    func check_In_MultiSelect_Set() ->Bool {
+        var retVal = false
+        if referenced_in_MultiSelect_Set == true {
+            retVal = true
+            if statusColor != colors.potentialColor{statusColor = colors.multiSelectColor}
+        }
+        return retVal
+    }
     func check_In_Potential_Set() {
         if referenced_in_Potential_Set == true {
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
         }
     }
-    
-//    func check_In_Potential_Set() -> Bool {
-//        var retVal = false
-//        if referenced_in_Potential_Set == true{
-//            retVal = true
-//            if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
-//        }
-//        return retVal
-//    }
- 
-    @Published public var statusColor : Color
 
+    @Published public var statusColor : Color
 
    public var referenced_note_Im_In : Note?
    
@@ -367,4 +282,5 @@ public enum status_Update_Type {
     case prohibitedSet
     case potentialSet
     case potentialEdgeSet
+    case multiSelectSet
 }

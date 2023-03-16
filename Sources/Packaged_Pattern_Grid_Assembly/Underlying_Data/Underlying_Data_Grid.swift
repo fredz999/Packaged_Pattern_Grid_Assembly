@@ -195,6 +195,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_MoveNote_Cursor_Set : Bool = false
     
     var in_Passive_Cursor_Set : Bool = false
+    
+    
+    var in_MultiSelect_Set : Bool = false
+    
 
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
         if type == .activate_Passive_Cursor_Set {
@@ -203,9 +207,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .passiveCursorSet, value: in_Passive_Cursor_Set)
                 }
-//                else if currentConnectedDataVals == nil{
-//                    print("hoznt bun bult yat....................")
-//                }
             }
         }
         else if type == .deActivate_Passive_Cursor_Set{
@@ -216,6 +217,26 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
+        else if type == .deActivate_Multiselect_Set{
+            if in_MultiSelect_Set == true {
+                in_MultiSelect_Set = false
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectSet, value: in_MultiSelect_Set)
+                }
+            }
+        }
+        else if type == .activate_Multiselect_Set{
+            if in_MultiSelect_Set == false {
+                in_MultiSelect_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectSet, value: in_MultiSelect_Set)
+                }
+            }
+        }
+        
+        
+        
         else if type == .activate_MoveNote_Cursor_Set{
             if in_MoveNote_Cursor_Set == false {
                 in_MoveNote_Cursor_Set = true
@@ -440,6 +461,9 @@ enum E_VisibleStateChangeType: String {
     
     case activate_Potential_Set = "activate_Potential_Set"
     case deActivate_Potential_Set = "deActivate_Potential_Set"
+    
+    case activate_Multiselect_Set = "activate_Multiselect_Set"
+    case deActivate_Multiselect_Set = "deActivate_Multiselect_Set"
     
     case activate_Cursor_Set = "activate_Cursor_Set"
     case deActivate_Cursor_Set = "deActivate_Cursor_Set"
