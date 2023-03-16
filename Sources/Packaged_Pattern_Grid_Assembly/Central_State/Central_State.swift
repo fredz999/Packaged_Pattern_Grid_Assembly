@@ -80,7 +80,7 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        
+        print("setPatternMode(: ",patternModeParam.rawValue)
         if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
             ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper {
             
