@@ -52,6 +52,7 @@ public class Central_State : ObservableObject {
     var delete_Helper : Delete_Helper?
     var passive_Helper : Passive_Helper?
     var writeNote_Helper : WriteNote_Helper?
+    var multi_Select_Helper : Multi_Select_Helper?
 
     public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam
@@ -81,8 +82,10 @@ public class Central_State : ObservableObject {
     public func setPatternMode(patternModeParam : E_PatternModeType){
         
         if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
-            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper {
+            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper {
+            
             if patternModeParam == .passive_Mode {
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
@@ -90,6 +93,7 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .passive_Mode
             }
             else if patternModeParam == .write_Mode {
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
@@ -99,6 +103,7 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .write_Mode
             }
             else if patternModeParam == .delete_Mode {
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
@@ -111,11 +116,20 @@ public class Central_State : ObservableObject {
                 }
             }
             else if patternModeParam == .move_Mode {
+                lclMulti_Select_Helper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
                 lclMoveHelper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .move_Mode
+            }
+            else if patternModeParam == .multi_Select_Mode {
+                lclDelete_Helper.deactivate_Mode()
+                lclPassiveHelper.deactivate_Mode()
+                lclWriteNote_Helper.deactivate_Mode()
+                lclMoveHelper.deactivate_Mode()
+                lclMulti_Select_Helper.activate_Mode(activationCell: currentData)
+                currentPatternMode = .multi_Select_Mode
             }
         }
         centralState_Data_Evaluation()
@@ -269,6 +283,7 @@ public enum E_PatternModeType : String {
     case resize_Mode = "resize_Mode"
     case passive_Mode = "passive_Mode"
     case no_Note_Collection = "no_Note_Collection"
+    case multi_Select_Mode = "multi_Select_Mode"
 }
 
 public enum E_Note_Movement_Type {
