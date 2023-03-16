@@ -150,6 +150,16 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Highlighted_Set == true{referenced_in_Highlighted_Set=false}
             }
         }
+        else if status_Update_TypeParam == .multiSelectSet {
+            if value == true {
+                if referenced_in_MultiSelect_Set == false{referenced_in_MultiSelect_Set=true}
+            }
+            else if value == false {
+                if referenced_in_MultiSelect_Set == true{referenced_in_MultiSelect_Set=false}
+            }
+        }
+        
+        
         process_Visual_Status()
     }
     
