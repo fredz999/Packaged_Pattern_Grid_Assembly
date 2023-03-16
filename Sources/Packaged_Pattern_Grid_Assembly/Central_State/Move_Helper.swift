@@ -128,6 +128,9 @@ class Move_Helper: P_Selectable_Mode {
         prohibition_Indicator_Set = proposedSet.filter({$0.note_Im_In != nil})
             
         }
+        else if note_Low_Index == nil || note_High_Index == nil {
+            print("movement_With_Note_Selected().....?")
+        }
 
     }
     
