@@ -80,20 +80,21 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        
+        //,let lclMulti_Select_Helper = multi_Select_Helper
         if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
-            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper {
+            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper{
             
             if patternModeParam == .passive_Mode {
-                lclMulti_Select_Helper.deactivate_Mode()
+                //lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
+                
                 lclPassiveHelper.activate_Mode(activationCell: nil)
                 currentPatternMode = .passive_Mode
             }
             else if patternModeParam == .write_Mode {
-                lclMulti_Select_Helper.deactivate_Mode()
+                //lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
@@ -101,12 +102,11 @@ public class Central_State : ObservableObject {
                 if currentData.note_Im_In == nil {
                     lclWriteNote_Helper.activate_Mode(activationCell: currentData)
                 }
-                
                 currentPatternMode = .write_Mode
                 print("currentPatternMode: ",currentPatternMode.rawValue)
             }
             else if patternModeParam == .delete_Mode {
-                lclMulti_Select_Helper.deactivate_Mode()
+                //lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
@@ -119,21 +119,21 @@ public class Central_State : ObservableObject {
                 }
             }
             else if patternModeParam == .move_Mode {
-                lclMulti_Select_Helper.deactivate_Mode()
+                //lclMulti_Select_Helper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
                 lclMoveHelper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .move_Mode
             }
-            else if patternModeParam == .multi_Select_Mode {
-                lclDelete_Helper.deactivate_Mode()
-                lclPassiveHelper.deactivate_Mode()
-                lclWriteNote_Helper.deactivate_Mode()
-                lclMoveHelper.deactivate_Mode()
-                lclMulti_Select_Helper.activate_Mode(activationCell: currentData)
-                currentPatternMode = .multi_Select_Mode
-            }
+//            else if patternModeParam == .multi_Select_Mode {
+//                lclDelete_Helper.deactivate_Mode()
+//                lclPassiveHelper.deactivate_Mode()
+//                lclWriteNote_Helper.deactivate_Mode()
+//                lclMoveHelper.deactivate_Mode()
+//                lclMulti_Select_Helper.activate_Mode(activationCell: currentData)
+//                currentPatternMode = .multi_Select_Mode
+//            }
         }
         centralState_Data_Evaluation()
     }
