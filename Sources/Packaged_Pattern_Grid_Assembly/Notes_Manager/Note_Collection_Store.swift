@@ -25,85 +25,73 @@ public class Note_Collection {
     
     // this needs replaced?.... current highlighted notes?
     // use accessor function
-//    var currentHighlightedNote : Note?{
-//        willSet {
-//            if let lclCurr = currentHighlightedNote {
-//                if let lclNewVal = newValue {
-//                    if lclNewVal.id != lclCurr.id {
-//                        lclCurr.highlighted = false
-//                    }
-//                }
-//                else if newValue == nil {
-//                    lclCurr.highlighted = false
-//                }
-//            }
-//        }
-//        didSet {
-//            if let lclCurr = currentHighlightedNote {
-//                lclCurr.highlighted = true
-//            }
-//        }
-//    }
-    
-    //write an accessor function to this array and then limit the bunber of members it can have to one
-    var maxSelectedNotes : Int = 1
-    //var selected_Notes_Set : Set<Note> = Set<Note>()
-    var selected_Notes_Array : [Note] = []
-    var lastOneWasNil : Bool = false
-    func accessSelected_Notes_Array(currentHighlightedNote : Note?){
-        
-        if let lclCurrentHighlightedNote = currentHighlightedNote {
-            
-            lclCurrentHighlightedNote.highlighted = true
-            
-            if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false,lastOneWasNil==true{
-                if selected_Notes_Array.count < 2{
-                    selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+    var currentHighlightedNote : Note?{
+        willSet {
+            if let lclCurr = currentHighlightedNote {
+                if let lclNewVal = newValue {
+                    if lclNewVal.id != lclCurr.id {
+                        lclCurr.highlighted = false
+                    }
                 }
-                else if selected_Notes_Array.count == 2{
-                    selected_Notes_Array[1].highlighted = false
-                    selected_Notes_Array.remove(at: 1)
-                    selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+                else if newValue == nil {
+                    lclCurr.highlighted = false
                 }
-                lastOneWasNil = false
             }
-            // you have to break this up with the cursor going over silent areas
-
-            
         }
-        else if currentHighlightedNote == nil {
-            lastOneWasNil = true
-            print("currentHighlightedNote == nil")
+        didSet {
+            if let lclCurr = currentHighlightedNote {
+                lclCurr.highlighted = true
+            }
         }
-
-//        var streeng = ""
-//        for note in selected_Notes_Array{
-//            streeng.append(note.id.description + ", ")
-//        }
-//        print("streeng........: ",streeng)
-
     }
     
+    //write an accessor function to this array and then limit the bunber of members it can have to one
+    //var maxSelectedNotes : Int = 1
+    //var selected_Notes_Set : Set<Note> = Set<Note>()
+    //var selected_Notes_Array : [Note] = []
+    //var lastOneWasNil : Bool = false
     
-    
-    
-    
-    
-    
-    
-    
-    
+//    func accessSelected_Notes_Array(currentHighlightedNote : Note?){
+//
+//        if let lclCurrentHighlightedNote = currentHighlightedNote {
+//
+////            lclCurrentHighlightedNote.highlighted = true
+////
+////            if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false, lastOneWasNil == true {
+////                if selected_Notes_Array.count < 2{
+////                    selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+////                }
+////                else if selected_Notes_Array.count == 2{
+////                    selected_Notes_Array[1].highlighted = false
+////                    selected_Notes_Array.remove(at: 1)
+////                    selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+////                }
+////                lastOneWasNil = false
+////            }
+//
+//        }
+//        else if currentHighlightedNote == nil {
+//            //lastOneWasNil = true
+//        }
+//
+//        //        var streeng = ""
+//        //        for note in selected_Notes_Array{
+//        //            streeng.append(note.id.description + ", ")
+//        //        }
+//        //        print("streeng........: ",streeng)
+//
+//    }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
-            //currentHighlightedNote = nil
+            currentHighlightedNote = nil
             //selected_Notes_Set.removeAll()
-            accessSelected_Notes_Array(currentHighlightedNote: nil)
+            //accessSelected_Notes_Array(currentHighlightedNote: nil)
             if parentCentralState.a_Note_Is_Highlighted == true{parentCentralState.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {
-            //currentHighlightedNote = lclNoteParam
-            accessSelected_Notes_Array(currentHighlightedNote: lclNoteParam)
+            currentHighlightedNote = lclNoteParam
+            //accessSelected_Notes_Array(currentHighlightedNote: lclNoteParam)
             if parentCentralState.a_Note_Is_Highlighted == false{parentCentralState.a_Note_Is_Highlighted = true}
         }
     }
@@ -133,15 +121,22 @@ public class Note_Collection {
     }
     
     func react_To_Mode_Change(){
-        if selected_Notes_Array.count > 0{
-            for nute in selected_Notes_Array {
-                for dataCell in nute.dataCellArray {
-                    if let lcl_Data_Vals = dataCell.currentConnectedDataVals {
-                        lcl_Data_Vals.check_Highlighted()
-                    }
+        if let lclCurrHighlighted = currentHighlightedNote {
+            for cell in lclCurrHighlighted.dataCellArray {
+                if let lcl_Data_Vals = cell.currentConnectedDataVals {
+                    lcl_Data_Vals.check_Highlighted()
                 }
             }
         }
+//        if selected_Notes_Array.count > 0{
+//            for nute in selected_Notes_Array {
+//                for dataCell in nute.dataCellArray {
+//                    if let lcl_Data_Vals = dataCell.currentConnectedDataVals {
+//                        lcl_Data_Vals.check_Highlighted()
+//                    }
+//                }
+//            }
+//        }
  
     }
     
@@ -185,22 +180,22 @@ public class Note_Collection {
     }
     
     public func delete_CurrentHighlighted(){
-//        if let lclCurrHigh = currentHighlightedNote {
-//            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
-//        }
-        if selected_Notes_Array.count > 0{
-            for nute in selected_Notes_Array{
-                delete_Note_By_Id(note_Id_Param: nute.id)
-            }
+        if let lclCurrHigh = currentHighlightedNote {
+            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
         }
+//        if selected_Notes_Array.count > 0{
+//            for nute in selected_Notes_Array{
+//                delete_Note_By_Id(note_Id_Param: nute.id)
+//            }
+//        }
     }
     
     public func delete_Note_By_Id(note_Id_Param:UUID){
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
             note.resetCells()
             noteArray.removeAll(where: {$0.id == note_Id_Param})
-            //currentHighlightedNote = nil
-            accessSelected_Notes_Array(currentHighlightedNote: nil)
+            currentHighlightedNote = nil
+            //accessSelected_Notes_Array(currentHighlightedNote: nil)
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
         }
     }
@@ -224,7 +219,32 @@ public protocol P_ExternalNote_Responder {
     func react_To_NoteArrayChange(noteArrayParam: [Note])
 }
 
+// from original accessSelected_Notes_Array
+//if let lclCurrentHighlightedNote = currentHighlightedNote {
+//
+//    lclCurrentHighlightedNote.highlighted = true
+//
+//    if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false, lastOneWasNil == true {
+//        if selected_Notes_Array.count < 2{
+//            selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+//        }
+//        else if selected_Notes_Array.count == 2{
+//            selected_Notes_Array[1].highlighted = false
+//            selected_Notes_Array.remove(at: 1)
+//            selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
+//        }
+//        lastOneWasNil = false
+//    }
+//}
+//else if currentHighlightedNote == nil {
+//    lastOneWasNil = true
+//}
 
+//        var streeng = ""
+//        for note in selected_Notes_Array{
+//            streeng.append(note.id.description + ", ")
+//        }
+//        print("streeng........: ",streeng)
 
 
 
