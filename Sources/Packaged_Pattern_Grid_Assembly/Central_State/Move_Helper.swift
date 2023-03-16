@@ -131,18 +131,18 @@ class Move_Helper: P_Selectable_Mode {
 
     }
     
-    func process_MoveNote_Cursor_Position() {
-        if dimensions.patternTimingConfiguration == .fourFour {
-//        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-            
-            parentCentralState.current_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-            //print("parentCentralState.current_Cursor_Set count ",parentCentralState.current_Cursor_Set.count.description)
-            
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-//        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
-        }
-    }
+//    func process_MoveNote_Cursor_Position() {
+//        if dimensions.patternTimingConfiguration == .fourFour {
+////        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+//
+//            parentCentralState.current_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+//            //print("parentCentralState.current_Cursor_Set count ",parentCentralState.current_Cursor_Set.count.description)
+//
+//        }
+//        else if dimensions.patternTimingConfiguration == .sixEight {
+////        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
+//        }
+//    }
     
     func nil_Cell_Sets(){
 //        if move_Note_Cursor_Set.count > 0 {

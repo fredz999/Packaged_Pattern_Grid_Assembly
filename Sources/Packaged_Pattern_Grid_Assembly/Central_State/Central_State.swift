@@ -83,7 +83,7 @@ public class Central_State : ObservableObject {
     public func setPatternMode(patternModeParam : E_PatternModeType){
         //,let lclMulti_Select_Helper = multi_Select_Helper
         if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
-            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper{
+            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper {
             
             if patternModeParam == .passive_Mode {
                 lclMulti_Select_Helper.deactivate_Mode()
@@ -99,12 +99,10 @@ public class Central_State : ObservableObject {
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
-                
                 if currentData.note_Im_In == nil {
                     lclWriteNote_Helper.activate_Mode(activationCell: currentData)
                 }
                 currentPatternMode = .write_Mode
-                print("currentPatternMode: ",currentPatternMode.rawValue)
             }
             else if patternModeParam == .delete_Mode {
                 lclMulti_Select_Helper.deactivate_Mode()
@@ -162,6 +160,11 @@ public class Central_State : ObservableObject {
             else if currentPatternMode == .move_Mode {
                 if let lclMoveHelper = move_Helper {
                     lclMoveHelper.movement_With_Note_Selected()
+                }
+            }
+            else if currentPatternMode == .multi_Select_Mode {
+                if let lclMulti_Select_Helper = multi_Select_Helper{
+                    
                 }
             }
         }
