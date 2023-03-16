@@ -69,6 +69,7 @@ public class Central_State : ObservableObject {
         delete_Helper = Delete_Helper(parentCentral_State_Param: self)
         passive_Helper = Passive_Helper(parentCentral_State_Param: self)
         writeNote_Helper = WriteNote_Helper(parentCentral_State_Param: self)
+        multi_Select_Helper = Multi_Select_Helper(parentCentral_State_Param: self)
         
         centralState_Data_Evaluation()
         
@@ -82,7 +83,7 @@ public class Central_State : ObservableObject {
     public func setPatternMode(patternModeParam : E_PatternModeType){
         //,let lclMulti_Select_Helper = multi_Select_Helper
         if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
-            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper{
+            ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper{
             
             if patternModeParam == .passive_Mode {
                 //lclMulti_Select_Helper.deactivate_Mode()
