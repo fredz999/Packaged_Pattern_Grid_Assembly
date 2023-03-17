@@ -63,21 +63,41 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 nuutez.insert(lclNote)
             }
         }
-        print("nuutez count: ",nuutez.count)
-
-        for note in nuutez {
-            let cellSet = Set(note.dataCellArray)
+        
+        // print("nuutez count: ",nuutez.count)
+        // nahhhhhhhh just check that theyre present in the overall collection
+        
+        if let noteCollection = parentCentralState.currentNoteCollection {
             
-            if cellSet.intersection(potential_MultiSelect_Background_Set).count != 0 {
-                //note.note_Is_MultiSelected = true
-                print("note.note_Is_MultiSelected = true, count: ",cellSet.intersection(potential_MultiSelect_Background_Set).count.description)
+            let fullNoteSet = Set(noteCollection.noteArray)
+            // need set thats in the select
+            for note in nuutez {
+                if note.note_Is_MultiSelected == false{note.note_Is_MultiSelected = true}
             }
-            else if cellSet.intersection(potential_MultiSelect_Background_Set).count == 0 {
-                //note.note_Is_MultiSelected = false
-                print("note.note_Is_MultiSelected = false")
+            // need set thats not in the select
+            let notSelectedSet = fullNoteSet.subtracting(nuutez)
+            for note in notSelectedSet{
+                if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
             }
             
         }
+        //let full_Note_Collection_Set = ?.noteArray
+        
+        
+
+//        for note in nuutez {
+//            let cellSet = Set(note.dataCellArray)
+//
+//            if cellSet.intersection(potential_MultiSelect_Background_Set).count != 0 {
+//                //note.note_Is_MultiSelected = true
+//                print("note.note_Is_MultiSelected = true, count: ",cellSet.intersection(potential_MultiSelect_Background_Set).count.description)
+//            }
+//            else if cellSet.intersection(potential_MultiSelect_Background_Set).count == 0 {
+//                //note.note_Is_MultiSelected = false
+//                print("note.note_Is_MultiSelected = false")
+//            }
+//
+//        }
         
         //for note in nuutez {
             //check that every cell is either a subset of the multiselect background or isnt
