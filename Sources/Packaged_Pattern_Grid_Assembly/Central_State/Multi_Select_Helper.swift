@@ -56,14 +56,15 @@ class Multi_Select_Helper : P_Selectable_Mode {
         let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
         
         var nuutez = Set<Note>()
-        print("nuutez count: ",nuutez.count)
+        
         
         for cell in noteCells {
             if let lclNote = cell.note_Im_In {
                 nuutez.insert(lclNote)
             }
         }
-        
+        print("nuutez count: ",nuutez.count)
+
         for note in nuutez {
             let cellSet = Set(note.dataCellArray)
             
