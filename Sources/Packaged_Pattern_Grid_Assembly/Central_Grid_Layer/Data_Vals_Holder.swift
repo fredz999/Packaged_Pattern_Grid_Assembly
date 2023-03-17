@@ -164,20 +164,26 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func process_Visual_Status(){
-       if check_In_MultiSelect_Set() == false {
+       //if check_In_MultiSelect_Set() == false {
             if check_In_MoveCursor_Set() == false {
                 if check_In_Passive_Cursor_Set() == false {
+                    
                     if check_Cell_Not_In_Note() == false {
                         check_Highlighted()
-                        check_In_Prohib_Set()
+                        check_In_MultiSelect_Set(inNote:true)
+                        //check_In_Prohib_Set()
                     }
                     else if check_Cell_Not_In_Note() == true {
+                        check_In_MultiSelect_Set(inNote:false)
                         check_In_Potential_Set()
+                        
                     }
+                    
                 }
             }
-        }
+        //}
     }
+    
     func check_Cell_Not_In_Note()->Bool{
         var retval = true
         if referenced_currentStatus == .start_Blank
@@ -209,14 +215,6 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retVal
     }
-//    func check_In_Delete_Square_Set()->Bool{
-//        var retVal = false
-//        if referenced_in_Delete_Square_Set == true {
-//            retVal = true
-//            if statusColor != colors.deleteNoteMode_Cursor_Color{statusColor = colors.deleteNoteMode_Cursor_Color}
-//        }
-//        return retVal
-//    }
     func check_In_MoveCursor_Set()->Bool{
         var retVal = false
         if referenced_in_MoveCursor_Set == true {
@@ -230,14 +228,49 @@ public class Data_Vals_Holder : ObservableObject {
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
     }
-    func check_In_MultiSelect_Set() ->Bool {
-        var retVal = false
-        if referenced_in_MultiSelect_Set == true {
-            retVal = true
-            if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectColor}
+    
+//    func check_In_MultiSelect_Set() ->Bool {
+//        var retVal = false
+//        if referenced_in_MultiSelect_Set == true {
+//            retVal = true
+//            if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectColor}
+//        }
+//        return retVal
+//    }
+    
+    func check_In_MultiSelect_Set(inNote:Bool){
+        if inNote == true {
+            if referenced_in_MultiSelect_Set == true {
+                if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectedNoteColor}
+            }
         }
-        return retVal
+        else if inNote == false {
+            if referenced_in_MultiSelect_Set == true {
+                if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectColor}
+            }
+        }
+        
+//        if referenced_currentStatus == .single_Note
+//            || referenced_currentStatus == .start_Note
+//            || referenced_currentStatus == .mid_Note
+//            || referenced_currentStatus == .end_Note {
+//
+//            if referenced_in_MultiSelect_Set == true {
+//                if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectedNoteColor}
+//            }
+//
+//        }
+//        else if referenced_currentStatus == .start_Blank
+//            || referenced_currentStatus == .mid_Blank
+//            || referenced_currentStatus == .end_Blank {
+//
+//            if referenced_in_MultiSelect_Set == true {
+//                if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectColor}
+//            }
+//
+//        }
     }
+    
     func check_In_Potential_Set() {
         if referenced_in_Potential_Set == true {
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}

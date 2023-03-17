@@ -107,7 +107,6 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 }
                 
             }
-
         }
     }
     

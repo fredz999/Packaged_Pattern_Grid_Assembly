@@ -196,10 +196,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var in_Passive_Cursor_Set : Bool = false
     
-    
     var in_MultiSelect_Set : Bool = false
     
-
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
         if type == .activate_Passive_Cursor_Set {
             if in_Passive_Cursor_Set == false {
@@ -217,7 +215,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .deActivate_Multiselect_Set{
             if in_MultiSelect_Set == true {
                 in_MultiSelect_Set = false
@@ -234,9 +231,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
-        
-        
         else if type == .activate_MoveNote_Cursor_Set{
             if in_MoveNote_Cursor_Set == false {
                 in_MoveNote_Cursor_Set = true
