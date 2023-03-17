@@ -126,6 +126,16 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .move_Mode
             }
             else if patternModeParam == .multi_Select_Mode {
+                // I have to figure out how to get rid of a single selected note
+                if currentPatternMode == .passive_Mode {
+                    // if theres a selected note
+                    if let lclCurrNoteCollection = currentNoteCollection {
+                        if lclCurrNoteCollection.currentHighlightedNote != nil {
+                            lclCurrNoteCollection.currentHighlightedNote = nil
+                        }
+                    }
+                }
+
                 lclDelete_Helper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
