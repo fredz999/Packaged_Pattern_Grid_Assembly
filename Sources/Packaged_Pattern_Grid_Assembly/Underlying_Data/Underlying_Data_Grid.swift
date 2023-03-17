@@ -133,20 +133,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         }
     }
     
-    //public static let Static_Underlying_Data_Grid = Underlying_Data_Grid()
-    
 }
-
-
-
-
-
-
-
-
-
-
-
 
 public class Underlying_Data_Line:ObservableObject,Identifiable,Equatable,Hashable {
     
@@ -196,7 +183,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var in_Passive_Cursor_Set : Bool = false
     
-    var in_MultiSelect_Set : Bool = false
+    var in_MultiSelectBackground_Set : Bool = false
+    
+    var in_MultiSelectNote_Set : Bool = false
     
     func handleVisibleStateChange(type : E_VisibleStateChangeType){
         if type == .activate_Passive_Cursor_Set {
@@ -215,22 +204,49 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        else if type == .deActivate_Multiselect_Set{
-            if in_MultiSelect_Set == true {
-                in_MultiSelect_Set = false
+        else if type == .deActivate_Multiselect_Background_Set{
+            if in_MultiSelectBackground_Set == true {
+                in_MultiSelectBackground_Set = false
                 if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectSet, value: in_MultiSelect_Set)
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectBackGroundSet, value: in_MultiSelectBackground_Set)
+                }
+//                if let lcNoteImIn = note_Im_In {
+//                    //reason does this by getting ANY of the note into the selected area, so I'll go with that
+//                    lcNoteImIn.note_Is_MultiSelected = true
+//                }
+            }
+        }
+        else if type == .activate_Multiselect_Background_Set {
+            if in_MultiSelectBackground_Set == false {
+                in_MultiSelectBackground_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectBackGroundSet, value: in_MultiSelectBackground_Set)
+                }
+                if let lcNoteImIn = note_Im_In {
+                    //reason does this by getting ANY of the note into the selected area, so I'll go with that
+                    if lcNoteImIn.note_Is_MultiSelected == false {lcNoteImIn.note_Is_MultiSelected = true}
                 }
             }
         }
-        else if type == .activate_Multiselect_Set{
-            if in_MultiSelect_Set == false {
-                in_MultiSelect_Set = true
+        
+        else if type == .activate_Multiselect_Note_Set {
+            if in_MultiSelectNote_Set == false{
+                in_MultiSelectNote_Set = true
                 if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectSet, value: in_MultiSelect_Set)
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectNoteSet, value: in_MultiSelectNote_Set)
                 }
             }
         }
+        else if type == .deActivate_Multiselect_Note_Set {
+            if in_MultiSelectNote_Set == true {
+                in_MultiSelectNote_Set = false
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectNoteSet, value: in_MultiSelectNote_Set)
+                }
+            }
+        }
+        
+        
         else if type == .activate_MoveNote_Cursor_Set{
             if in_MoveNote_Cursor_Set == false {
                 in_MoveNote_Cursor_Set = true
@@ -279,7 +295,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
                 in_Potential_Set = true
@@ -456,8 +471,11 @@ enum E_VisibleStateChangeType: String {
     case activate_Potential_Set = "activate_Potential_Set"
     case deActivate_Potential_Set = "deActivate_Potential_Set"
     
-    case activate_Multiselect_Set = "activate_Multiselect_Set"
-    case deActivate_Multiselect_Set = "deActivate_Multiselect_Set"
+    case activate_Multiselect_Background_Set = "activate_Multiselect_Background_Set"
+    case deActivate_Multiselect_Background_Set = "deActivate_Multiselect_Background_Set"
+    
+    case activate_Multiselect_Note_Set = "activate_Multiselect_Note_Set"
+    case deActivate_Multiselect_Note_Set = "deActivate_Multiselect_Note_Set"
     
     case activate_Cursor_Set = "activate_Cursor_Set"
     case deActivate_Cursor_Set = "deActivate_Cursor_Set"

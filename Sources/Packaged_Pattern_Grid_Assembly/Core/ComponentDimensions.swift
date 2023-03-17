@@ -100,7 +100,7 @@ public class ComponentColors {
     
     public var potentialColor : Color = Color(red: 0, green: 1, blue: 1)
     
-    public var multiSelectColor : Color = Color(red:0.3,green:0.5,blue:0.1)
+    public var multiSelectBackGroundColor : Color = Color(red:0.3,green:0.5,blue:0.1)
     
     public var multiSelectedNoteColor : Color = Color(red:1,green:1,blue:0)
     

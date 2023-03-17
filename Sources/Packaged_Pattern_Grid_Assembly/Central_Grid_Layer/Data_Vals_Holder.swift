@@ -31,7 +31,9 @@ public class Data_Vals_Holder : ObservableObject {
     
     private var referenced_in_PassiveCursor_Set : Bool = false
     
-    private var referenced_in_MultiSelect_Set : Bool = false
+    private var referenced_in_MultiSelect_BackGround_Set : Bool = false
+    
+    private var referenced_in_MultiSelect_Note_Set : Bool = false
     
     @Published public var referenced_currentStatus : E_CellStatus
     {
@@ -94,18 +96,18 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         
-        else if status_Update_TypeParam == .deleteSquareSet {
-            if value == true {
-                if referenced_in_Delete_Square_Set == false {
-                    referenced_in_Delete_Square_Set = true
-                }
-            }
-            else if value == false {
-                if referenced_in_Delete_Square_Set == true {
-                    referenced_in_Delete_Square_Set = false
-                }
-            }
-        }
+//        else if status_Update_TypeParam == .deleteSquareSet {
+//            if value == true {
+//                if referenced_in_Delete_Square_Set == false {
+//                    referenced_in_Delete_Square_Set = true
+//                }
+//            }
+//            else if value == false {
+//                if referenced_in_Delete_Square_Set == true {
+//                    referenced_in_Delete_Square_Set = false
+//                }
+//            }
+//        }
                                    
         else if status_Update_TypeParam == .potentialSet {
             if value == true {
@@ -150,12 +152,22 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_Highlighted_Set == true{referenced_in_Highlighted_Set=false}
             }
         }
-        else if status_Update_TypeParam == .multiSelectSet {
+        
+        else if status_Update_TypeParam == .multiSelectBackGroundSet {
             if value == true {
-                if referenced_in_MultiSelect_Set == false{referenced_in_MultiSelect_Set=true}
+                if referenced_in_MultiSelect_BackGround_Set == false{referenced_in_MultiSelect_BackGround_Set=true}
             }
             else if value == false {
-                if referenced_in_MultiSelect_Set == true{referenced_in_MultiSelect_Set=false}
+                if referenced_in_MultiSelect_BackGround_Set == true{referenced_in_MultiSelect_BackGround_Set=false}
+            }
+        }
+        
+        else if status_Update_TypeParam == .multiSelectNoteSet {
+            if value == true {
+                if referenced_in_MultiSelect_Note_Set == false{referenced_in_MultiSelect_Note_Set=true}
+            }
+            else if value == false {
+                if referenced_in_MultiSelect_Note_Set == true{referenced_in_MultiSelect_Note_Set=false}
             }
         }
         
@@ -170,11 +182,12 @@ public class Data_Vals_Holder : ObservableObject {
                     
                     if check_Cell_Not_In_Note() == false {
                         check_Highlighted()
-                        check_In_MultiSelect_Set(inNote:true)
+                        check_In_MultiSelect_Note_Set()
+                        //check_In_MultiSelect_Set(inNote:true)
                         //check_In_Prohib_Set()
                     }
                     else if check_Cell_Not_In_Note() == true {
-                        check_In_MultiSelect_Set(inNote:false)
+                        check_In_MultiSelect_BackGround_Set()
                         check_In_Potential_Set()
                         
                     }
@@ -238,39 +251,18 @@ public class Data_Vals_Holder : ObservableObject {
 //        return retVal
 //    }
     
-    func check_In_MultiSelect_Set(inNote:Bool){
-        if inNote == true {
-            if referenced_in_MultiSelect_Set == true {
-                if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectedNoteColor}
-            }
+    func check_In_MultiSelect_BackGround_Set(){
+        if referenced_in_MultiSelect_BackGround_Set == true {
+            if statusColor != colors.multiSelectBackGroundColor{statusColor = colors.multiSelectBackGroundColor}
         }
-        else if inNote == false {
-            if referenced_in_MultiSelect_Set == true {
-                if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectColor}
-            }
-        }
-        
-//        if referenced_currentStatus == .single_Note
-//            || referenced_currentStatus == .start_Note
-//            || referenced_currentStatus == .mid_Note
-//            || referenced_currentStatus == .end_Note {
-//
-//            if referenced_in_MultiSelect_Set == true {
-//                if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectedNoteColor}
-//            }
-//
-//        }
-//        else if referenced_currentStatus == .start_Blank
-//            || referenced_currentStatus == .mid_Blank
-//            || referenced_currentStatus == .end_Blank {
-//
-//            if referenced_in_MultiSelect_Set == true {
-//                if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectColor}
-//            }
-//
-//        }
     }
     
+    func check_In_MultiSelect_Note_Set(){
+        if referenced_in_MultiSelect_Note_Set == true {
+            if statusColor != colors.multiSelectedNoteColor{statusColor = colors.multiSelectedNoteColor}
+        }
+    }
+
     func check_In_Potential_Set() {
         if referenced_in_Potential_Set == true {
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
@@ -325,5 +317,6 @@ public enum status_Update_Type {
     case prohibitedSet
     case potentialSet
     case potentialEdgeSet
-    case multiSelectSet
+    case multiSelectBackGroundSet
+    case multiSelectNoteSet
 }

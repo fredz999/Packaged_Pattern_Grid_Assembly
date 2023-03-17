@@ -14,15 +14,9 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         return lhs.id == rhs.id
     }
     
-//    static func == (lhs: Cell_X_Descriptor, rhs: Cell_X_Descriptor) -> Bool {
-//        lhs.x_Position_Int == rhs.x_Position_Int
-//    }
-    
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
-    
-    
     
     public var id : UUID
     var parentRef : Note_Collection
@@ -74,6 +68,29 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
             cell.reset_To_Original()
         }
     }
+    
+    var note_Is_MultiSelected : Bool = false{
+        didSet{
+            if note_Is_MultiSelected == false{
+                for cell in dataCellArray{
+                    //if cell.in_MultiSelectNote_Set == true{cell.in_MultiSelectNote_Set = false}
+                    cell.handleVisibleStateChange(type: .deActivate_Multiselect_Note_Set)
+                }
+            }
+            else if note_Is_MultiSelected == true{
+                for cell in dataCellArray{
+                    //if cell.in_MultiSelectNote_Set == false{cell.in_MultiSelectNote_Set = true}
+                    cell.handleVisibleStateChange(type: .activate_Multiselect_Note_Set)
+                }
+            }
+        }
+    }
+    
+    
+    
+    // I now need a function for this to be determined
+    // I also need to figure out criteria to determine where to make this assessment
+
 
 //    func cell_Is_Beside_Border_Or_Note(connectionType:CellConnectionType)->Bool{
 //        var retval = false
