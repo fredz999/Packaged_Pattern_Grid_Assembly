@@ -65,7 +65,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
         
         for note in nuutez {
             let cellSet = Set(note.dataCellArray)
-            if cellSet.intersection(potential_MultiSelect_Background_Set).count != 0{
+            if cellSet.intersection(potential_MultiSelect_Background_Set).count != 0 {
                 print("cellSet.intersection(potential_MultiSelect_Background_Set).count != 0")
             }
 //            if cellSet.isSubset(of: potential_MultiSelect_Background_Set){
