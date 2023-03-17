@@ -84,15 +84,30 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 
             }
 
-            else if lclSnapshot_X > parentCentralState.curr_Data_Pos_X
-            && lclSnapshot_Y < parentCentralState.curr_Data_Pos_Y{}
+            else if lclSnapshot_X >= parentCentralState.curr_Data_Pos_X
+            && lclSnapshot_Y <= parentCentralState.curr_Data_Pos_Y{
+                
+                potential_MultiSelect_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                    $0.dataCell_X_Number >= parentCentralState.curr_Data_Pos_X
+                    && $0.dataCell_Y_Number <= parentCentralState.curr_Data_Pos_Y
+                    && $0.dataCell_X_Number <= lclSnapshot_X
+                    && $0.dataCell_Y_Number >= lclSnapshot_Y
+                }
+                
+            }
 
-            else if lclSnapshot_X > parentCentralState.curr_Data_Pos_X
-            && lclSnapshot_Y > parentCentralState.curr_Data_Pos_Y{}
-            
-            
-            
-            
+            else if lclSnapshot_X >= parentCentralState.curr_Data_Pos_X
+            && lclSnapshot_Y >= parentCentralState.curr_Data_Pos_Y{
+                
+                potential_MultiSelect_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                    $0.dataCell_X_Number >= parentCentralState.curr_Data_Pos_X
+                    && $0.dataCell_Y_Number >= parentCentralState.curr_Data_Pos_Y
+                    && $0.dataCell_X_Number <= lclSnapshot_X
+                    && $0.dataCell_Y_Number <= lclSnapshot_Y
+                }
+                
+            }
+
         }
     }
     
