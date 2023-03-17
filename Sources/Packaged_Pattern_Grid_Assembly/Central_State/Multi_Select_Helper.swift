@@ -30,11 +30,9 @@ class Multi_Select_Helper : P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active = false
-//            for cell in potential_MultiSelect_Set{
-//                if cell.in_MultiSelect_Set == true{cell.in_MultiSelect_Set = false}
-//            }
             potential_MultiSelect_Set.removeAll()
-            print("potential_MultiSelect_Set.removeAll()")
+            snapshot_Cursor_X = nil
+            snapshot_Cursor_Y = nil
         }
     }
     
