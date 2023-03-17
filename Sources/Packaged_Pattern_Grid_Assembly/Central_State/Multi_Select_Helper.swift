@@ -68,7 +68,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             
             if cellSet.intersection(potential_MultiSelect_Background_Set).count != 0 {
                 //note.note_Is_MultiSelected = true
-                print("note.note_Is_MultiSelected = true")
+                print("note.note_Is_MultiSelected = true, count: ",cellSet.intersection(potential_MultiSelect_Background_Set).count.description)
             }
             else if cellSet.intersection(potential_MultiSelect_Background_Set).count == 0 {
                 //note.note_Is_MultiSelected = false
