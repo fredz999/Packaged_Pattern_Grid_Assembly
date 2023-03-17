@@ -69,17 +69,15 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         }
     }
     
-    var note_Is_MultiSelected : Bool = false{
+    var note_Is_MultiSelected : Bool = false {
         didSet{
-            if note_Is_MultiSelected == false{
+            if note_Is_MultiSelected == false {
                 for cell in dataCellArray{
-                    //if cell.in_MultiSelectNote_Set == true{cell.in_MultiSelectNote_Set = false}
                     cell.handleVisibleStateChange(type: .deActivate_Multiselect_Note_Set)
                 }
             }
-            else if note_Is_MultiSelected == true{
+            else if note_Is_MultiSelected == true {
                 for cell in dataCellArray{
-                    //if cell.in_MultiSelectNote_Set == false{cell.in_MultiSelectNote_Set = true}
                     cell.handleVisibleStateChange(type: .activate_Multiselect_Note_Set)
                 }
             }

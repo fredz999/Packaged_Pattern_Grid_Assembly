@@ -133,8 +133,8 @@ public class Central_State : ObservableObject {
                 if currentPatternMode == .passive_Mode {
                     // if theres a selected note
                     if let lclCurrNoteCollection = currentNoteCollection {
-                        if lclCurrNoteCollection.currentHighlightedNote != nil {
-                            lclCurrNoteCollection.currentHighlightedNote = nil
+                        if lclCurrNoteCollection.currentHighlighted_Single_Note != nil {
+                            lclCurrNoteCollection.currentHighlighted_Single_Note = nil
                         }
                     }
                 }

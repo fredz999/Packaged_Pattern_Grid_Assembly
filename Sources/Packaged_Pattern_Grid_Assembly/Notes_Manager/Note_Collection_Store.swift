@@ -17,17 +17,10 @@ public class Note_Collection {
     }
 
     var parentCentralState : Central_State
-    
-    
-    
-    
-    
-    
-    // this needs replaced?.... current highlighted notes?
-    // use accessor function
-    var currentHighlightedNote : Note?{
+
+    var currentHighlighted_Single_Note : Note?{
         willSet {
-            if let lclCurr = currentHighlightedNote {
+            if let lclCurr = currentHighlighted_Single_Note {
                 if let lclNewVal = newValue {
                     if lclNewVal.id != lclCurr.id {
                         lclCurr.highlighted = false
@@ -39,7 +32,7 @@ public class Note_Collection {
             }
         }
         didSet {
-            if let lclCurr = currentHighlightedNote {
+            if let lclCurr = currentHighlighted_Single_Note {
                 lclCurr.highlighted = true
             }
         }
@@ -84,13 +77,13 @@ public class Note_Collection {
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
-            currentHighlightedNote = nil
+            currentHighlighted_Single_Note = nil
             //selected_Notes_Set.removeAll()
             //accessSelected_Notes_Array(currentHighlightedNote: nil)
             if parentCentralState.a_Note_Is_Highlighted == true{parentCentralState.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {
-            currentHighlightedNote = lclNoteParam
+            currentHighlighted_Single_Note = lclNoteParam
             //accessSelected_Notes_Array(currentHighlightedNote: lclNoteParam)
             if parentCentralState.a_Note_Is_Highlighted == false{parentCentralState.a_Note_Is_Highlighted = true}
         }
@@ -121,7 +114,7 @@ public class Note_Collection {
     }
     
     func react_To_Mode_Change(){
-        if let lclCurrHighlighted = currentHighlightedNote {
+        if let lclCurrHighlighted = currentHighlighted_Single_Note {
             for cell in lclCurrHighlighted.dataCellArray {
                 if let lcl_Data_Vals = cell.currentConnectedDataVals {
                     lcl_Data_Vals.check_Highlighted()
@@ -180,7 +173,7 @@ public class Note_Collection {
     }
     
     public func delete_CurrentHighlighted(){
-        if let lclCurrHigh = currentHighlightedNote {
+        if let lclCurrHigh = currentHighlighted_Single_Note {
             delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
         }
 //        if selected_Notes_Array.count > 0{
@@ -194,7 +187,7 @@ public class Note_Collection {
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
             note.resetCells()
             noteArray.removeAll(where: {$0.id == note_Id_Param})
-            currentHighlightedNote = nil
+            currentHighlighted_Single_Note = nil
             //accessSelected_Notes_Array(currentHighlightedNote: nil)
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
         }

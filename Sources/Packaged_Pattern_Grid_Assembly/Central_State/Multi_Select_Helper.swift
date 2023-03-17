@@ -40,9 +40,40 @@ class Multi_Select_Helper : P_Selectable_Mode {
         parentCentralState = parentCentral_State_Param
     }
 
-    var snapshot_Cursor_X : Int?
-    var snapshot_Cursor_Y : Int?
+    
 
+    // check if each note is a subset of this set
+    // so i need a set of multiselected notes
+    
+    var multi_Selected_Notes = Set<Note>()
+    // need a func to talk to this array....or set to make sure you dont double add
+    func analyzeMultiSelectSet(){
+        // 1: right! see if any of the cells are in a note
+        // 2: if they are add them to the multi selected notes set which will not put up with them adding in twice
+        // 3: after step 2 check that at least one cell in each of the notes is in the potential_MultiSelect_Background_Set
+        // like that they share at least one, so there must be a func for that somewhere in the Set methods
+        // or isAsubset of
+        let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
+        
+        var nuutez = Set<Note>()
+        
+        for cell in noteCells {
+            if let lclNote = cell.note_Im_In {
+                nuutez.insert(lclNote)
+            }
+        }
+        
+        for note in nuutez {
+            note.note_Is_MultiSelected = true
+        }
+        
+        //for note in nuutez {
+            //check that every cell is either a subset of the multiselect background or isnt
+            // if it isnt its out of the notes
+        //}
+        
+        //let notez = noteCells.filter{}
+    }
     var potential_MultiSelect_Background_Set = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = potential_MultiSelect_Background_Set.symmetricDifference(newValue)
@@ -54,8 +85,12 @@ class Multi_Select_Helper : P_Selectable_Mode {
             for cell in potential_MultiSelect_Background_Set {
                 cell.handleVisibleStateChange(type : .activate_Multiselect_Background_Set)
             }
+            analyzeMultiSelectSet()
         }
     }
+    
+    var snapshot_Cursor_X : Int?
+    var snapshot_Cursor_Y : Int?
     
     func multi_Select_Move(){
         if let lclSnapshot_X = snapshot_Cursor_X, let lclSnapshot_Y = snapshot_Cursor_Y
