@@ -64,7 +64,11 @@ class Multi_Select_Helper : P_Selectable_Mode {
         }
         
         for note in nuutez {
-            note.note_Is_MultiSelected = true
+            let cellSet = Set(note.dataCellArray)
+            if cellSet.isSubset(of: potential_MultiSelect_Background_Set){
+                print("cellSet.isSubset(of:")
+            }
+            //note.note_Is_MultiSelected = true
         }
         
         //for note in nuutez {
