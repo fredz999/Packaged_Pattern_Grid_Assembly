@@ -58,6 +58,7 @@ public class Note_Collection {
                 }
                 else if newValue == nil {
                     lclCurr.highlighted = false
+                    access_Additional_Selected_Notes(inputSet: nil)
                 }
             }
         }
