@@ -34,8 +34,6 @@ public class Central_State : ObservableObject {
     @Published public var there_Is_A_Note_In_The_First_Place : Bool = false
     
     
-    
-    
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -86,14 +84,10 @@ public class Central_State : ObservableObject {
             ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper,let lclMulti_Select_Helper = multi_Select_Helper {
             
             if patternModeParam == .passive_Mode {
-                
-                // if theres a multselect note or notes, they have to be released
-                
                 lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclDelete_Helper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
-                
                 lclPassiveHelper.activate_Mode(activationCell: nil)
                 currentPatternMode = .passive_Mode
             }

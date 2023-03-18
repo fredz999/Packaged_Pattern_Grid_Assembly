@@ -155,7 +155,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     func semi_To_Full_Select(){
-        print("semi_To_Full_Select, multi_Selected_Notes count: ",multi_Selected_Notes.count)
+ 
         for note in multi_Selected_Notes{
             note.note_Is_MultiSelected = false
             note.highlighted = true
