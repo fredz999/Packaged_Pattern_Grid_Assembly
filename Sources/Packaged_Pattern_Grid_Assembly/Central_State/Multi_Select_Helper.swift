@@ -33,13 +33,12 @@ class Multi_Select_Helper : P_Selectable_Mode {
         if mode_Active == true {
             mode_Active = false
 
+            // no..... its if they arent fully selected
             if multi_Selected_Notes.count > 0 {
                 semi_To_Full_Select()
-                print("multi_Selected_Notes.count > 0")
             }
-            else if multi_Selected_Notes.count == 0 {
-                print("multi_Selected_Notes.count == 0")
-            }
+            
+            // if the select area contains NO note squares it removes all multi selected
             
             potential_MultiSelect_Background_Set.removeAll()
             snapshot_Cursor_X = nil
@@ -47,14 +46,13 @@ class Multi_Select_Helper : P_Selectable_Mode {
         }
         //print("multi_Selected_Notes count: ",multi_Selected_Notes.count)
     }
-    //1: deactivate mode and keep multi select
-    //2: move the multiselect
+    var multi_Selected_Notes = Set<Note>()
     
     init(parentCentral_State_Param:Central_State){
         parentCentralState = parentCentral_State_Param
     }
 
-    var multi_Selected_Notes = Set<Note>()
+    
 
     var potential_MultiSelect_Background_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -72,11 +70,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     func analyzeMultiSelectSet(){
-        // 1: right! see if any of the cells are in a note
-        // 2: if they are add them to the multi selected notes set which will not put up with them adding in twice
-        // 3: after step 2 check that at least one cell in each of the notes is in the potential_MultiSelect_Background_Set
-        // like that they share at least one, so there must be a func for that somewhere in the Set methods
-        // or isAsubset of
+
         let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
         
         var nuutez = Set<Note>()
@@ -160,10 +154,13 @@ class Multi_Select_Helper : P_Selectable_Mode {
     
     func semi_To_Full_Select(){
  
-        for note in multi_Selected_Notes{
-            note.note_Is_MultiSelected = false
-            note.highlighted = true
+        for note in multi_Selected_Notes {
+            if note.note_Is_MultiSelected == true {
+                note.note_Is_MultiSelected = false
+                note.highlighted = true
+            }
         }
+        
     }
     
     
