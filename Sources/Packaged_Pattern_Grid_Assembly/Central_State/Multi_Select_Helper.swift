@@ -95,6 +95,8 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
             }
             
+            multi_Selected_Notes = nuutez
+            
         }
 
     }
