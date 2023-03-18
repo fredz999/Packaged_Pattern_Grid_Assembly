@@ -406,27 +406,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-//    public func change_Prohibition_Status(newProhibitionStatus:Bool){
-//        if in_Prohibited_Set != newProhibitionStatus {
-//            in_Prohibited_Set = newProhibitionStatus
-//            if let lcl_Data_Vals = currentConnectedDataVals {
-//                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet, value: newProhibitionStatus)
-//            }
-//        }
-//    }
-    
-    //activate_Delete_Square_Combined
-    //deActivate_Delete_Square_Combined
-    
-//    public func change_DeleteSquare_Status(newProhibitionStatus:Bool){
-//        if in_Prohibited_Set != newProhibitionStatus {
-//            in_Prohibited_Set = newProhibitionStatus
-//            if let lcl_Data_Vals = currentConnectedDataVals {
-//                lcl_Data_Vals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedSet, value: newProhibitionStatus)
-//            }
-//        }
-//    }
-    
     var in_Cursor_Set : Bool = false
     
     public func reset_To_Original(){

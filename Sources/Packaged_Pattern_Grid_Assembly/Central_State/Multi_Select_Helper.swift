@@ -13,40 +13,60 @@ class Multi_Select_Helper : P_Selectable_Mode {
     
     var parentCentralState : Central_State
     
+    var snapshot_Cursor_X : Int?
+    
+    var snapshot_Cursor_Y : Int?
+    
     var mode_Active: Bool = false
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
-            
             if let lclActivationCell = activationCell{
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
             }
-
         }
     }
 
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active = false
+
+            if multi_Selected_Notes.count > 0 {
+                semi_To_Full_Select()
+            }
+            
             potential_MultiSelect_Background_Set.removeAll()
             snapshot_Cursor_X = nil
             snapshot_Cursor_X = nil
         }
+        print("multi_Selected_Notes count: ",multi_Selected_Notes.count)
     }
+    //1: deactivate mode and keep multi select
+    //2: move the multiselect
     
     init(parentCentral_State_Param:Central_State){
         parentCentralState = parentCentral_State_Param
     }
 
-    
-
-    // check if each note is a subset of this set
-    // so i need a set of multiselected notes
-    
     var multi_Selected_Notes = Set<Note>()
 
+    var potential_MultiSelect_Background_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = potential_MultiSelect_Background_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Multiselect_Background_Set)
+            }
+        }
+        didSet {
+            for cell in potential_MultiSelect_Background_Set {
+                cell.handleVisibleStateChange(type : .activate_Multiselect_Background_Set)
+            }
+            analyzeMultiSelectSet()
+        }
+    }
+    
     func analyzeMultiSelectSet(){
         // 1: right! see if any of the cells are in a note
         // 2: if they are add them to the multi selected notes set which will not put up with them adding in twice
@@ -56,7 +76,6 @@ class Multi_Select_Helper : P_Selectable_Mode {
         let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
         
         var nuutez = Set<Note>()
-        
         
         for cell in noteCells {
             if let lclNote = cell.note_Im_In {
@@ -79,25 +98,8 @@ class Multi_Select_Helper : P_Selectable_Mode {
         }
 
     }
-    var potential_MultiSelect_Background_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = potential_MultiSelect_Background_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Multiselect_Background_Set)
-            }
-        }
-        didSet {
-            for cell in potential_MultiSelect_Background_Set {
-                cell.handleVisibleStateChange(type : .activate_Multiselect_Background_Set)
-            }
-            analyzeMultiSelectSet()
-        }
-    }
     
-    var snapshot_Cursor_X : Int?
-    var snapshot_Cursor_Y : Int?
-    
-    func multi_Select_Move(){
+    func area_Select_Handler(){
         if let lclSnapshot_X = snapshot_Cursor_X, let lclSnapshot_Y = snapshot_Cursor_Y
         {
             if lclSnapshot_X <= parentCentralState.curr_Data_Pos_X
@@ -150,9 +152,13 @@ class Multi_Select_Helper : P_Selectable_Mode {
         }
     }
     
+    func semi_To_Full_Select(){
+        for note in multi_Selected_Notes{
+            note.note_Is_MultiSelected = false
+            note.highlighted = true
+        }
+    }
+    
     
     
 }
-
-// just going to use a seperate multi select mode for now ....
-// the single select can just be a hover over one note type thing

@@ -172,12 +172,12 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .move_Mode {
                 if let lclMoveHelper = move_Helper {
-                    lclMoveHelper.movement_With_Note_Selected()
+                    lclMoveHelper.movement_With_Single_Note_Selected()
                 }
             }
             else if currentPatternMode == .multi_Select_Mode {
                 if let lclMulti_Select_Helper = multi_Select_Helper{
-                    lclMulti_Select_Helper.multi_Select_Move()
+                    lclMulti_Select_Helper.area_Select_Handler()
                 }
             }
         }

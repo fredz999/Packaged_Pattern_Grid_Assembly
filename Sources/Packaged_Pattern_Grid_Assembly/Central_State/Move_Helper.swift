@@ -93,7 +93,7 @@ class Move_Helper: P_Selectable_Mode {
         lineAboveOpen = true
     }
     
-    func movement_With_Note_Selected(){
+    func movement_With_Single_Note_Selected(){
         // print("note_Low_Index: ",note_Low_Index,", note_High_Index: ",note_High_Index)
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index
         //,let lclNote_Y_Val = note_Y_Val
@@ -130,31 +130,43 @@ class Move_Helper: P_Selectable_Mode {
         }
 
     }
+
     
-//    func process_MoveNote_Cursor_Position() {
-//        if dimensions.patternTimingConfiguration == .fourFour {
-////        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-//
-//            parentCentralState.current_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-//            //print("parentCentralState.current_Cursor_Set count ",parentCentralState.current_Cursor_Set.count.description)
-//
-//        }
-//        else if dimensions.patternTimingConfiguration == .sixEight {
-////        move_Note_Cursor_Set = Central_State.Static_Central_State.currLineSet.filter({$0.six_Eight_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
-//        }
-//    }
+    func movement_With_Multi_Note_Selected(){
+
+        if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index,let lclSnapshot_X = snapshot_Cursor_X {
+
+        let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
+        let proposedNewMinIndex = lclNote_Low_Index + delta_X_Grid_Units
+        let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
+
+        if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
+            proposedSet = parentCentralState.currLineSet
+            .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
+        }
+        else if proposedNewMinIndex < currLeftLimit {
+            proposedSet = parentCentralState.currLineSet
+            .filter{$0.dataCell_X_Number >= currLeftLimit && $0.dataCell_X_Number <= (lclNote_High_Index - lclNote_Low_Index)}
+        }
+        else if proposedNewMaxIndex > currRightLimit {
+            proposedSet = parentCentralState.currLineSet
+            .filter{$0.dataCell_X_Number >=  currRightLimit-(lclNote_High_Index - lclNote_Low_Index)
+                && $0.dataCell_X_Number <= currRightLimit
+            }
+        }
+            
+        potential_Moved_Set = proposedSet
+            
+        prohibition_Indicator_Set = proposedSet.filter({$0.note_Im_In != nil})
+            
+        }
+
+    }
+    
+    
     
     func nil_Cell_Sets(){
-//        if move_Note_Cursor_Set.count > 0 {
-//            for cell in move_Note_Cursor_Set {
-//                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
-//            }
-//            move_Note_Cursor_Set.removeAll()
-//        }
-//        if potential_Moved_Set.count > 0 {
-//            move_Note_Cursor_Set.removeAll()
-//        }
-        
+
         if note_Low_Index != nil{note_Low_Index = nil}
         if note_High_Index != nil{note_High_Index = nil}
         
@@ -176,11 +188,8 @@ class Move_Helper: P_Selectable_Mode {
     
     func writeMovedNote_DeleteOldNote(){
         
-        print("potential_Moved_Set.count: ",potential_Moved_Set.count.description,"snapShot_Note_Id_Param: "
-              ,snapShot_Note_Id_Param == nil ? "nil" : "not nil")
-        
         if potential_Moved_Set.count > 0, let lclSnapshotNote = snapShot_Note_Id_Param {
-  print("otential_Moved_Set.count > 0, let lclSnapshotNote = snapShot_Note_Id_Param")
+
             if let currNoteCollection = parentCentralState.currentNoteCollection {
                 
                 currNoteCollection.delete_Note_By_Id(note_Id_Param: lclSnapshotNote)
@@ -202,36 +211,3 @@ protocol P_Selectable_Mode {
     func activate_Mode(activationCell : Underlying_Data_Cell?)
     func deactivate_Mode()
 }
-
-
-
-
-//    var move_Note_Cursor_Set = Set<Underlying_Data_Cell>(){
-//        willSet {
-//            let delta = move_Note_Cursor_Set.symmetricDifference(newValue)
-//            for cell in delta {
-//                cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
-//            }
-//        }
-//        didSet {
-//            if Central_State.Static_Central_State.currentPatternMode == .move_Mode {
-//                var nillableNote : Note? = nil
-//                for cell in move_Note_Cursor_Set {
-//                    cell.handleVisibleStateChange(type: .activate_MoveNote_Cursor_Set)
-//                    if let lclNote = cell.note_Im_In {
-//                        nillableNote = lclNote
-//                    }
-//                }
-//
-//                if let lclNoteCollection = Central_State.Static_Central_State.note_Collection_Ref {
-//                    if let lclNillableNote = nillableNote {
-//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNillableNote)
-//                    }
-//                    else if nillableNote == nil {
-//                        lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
-//                    }
-//                }
-//
-//            }
-//        }
-//    }
