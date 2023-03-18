@@ -52,13 +52,17 @@ class Multi_Select_Helper : P_Selectable_Mode {
         for note in multi_Selected_Notes {
             if note.note_Is_MultiSelected == true {
                 note.note_Is_MultiSelected = false
-                note.highlighted = true // should set them in here?.....
+                note.highlighted = true // add em in hea to the additional?
             }
         }
         
     }
     
-    var multi_Selected_Notes = Set<Note>(){
+    var multi_Selected_Notes = Set<Note>()
+    {
+        willSet{
+            print("multi_Selected_Notes new will be count: ",newValue.count)
+        }
         didSet {
             print("multi_Selected_Notes count: ",multi_Selected_Notes.count)
         }
@@ -67,8 +71,6 @@ class Multi_Select_Helper : P_Selectable_Mode {
     init(parentCentral_State_Param:Central_State){
         parentCentralState = parentCentral_State_Param
     }
-
-    
 
     var potential_MultiSelect_Background_Set = Set<Underlying_Data_Cell>(){
         willSet {
