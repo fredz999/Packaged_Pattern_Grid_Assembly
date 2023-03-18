@@ -35,6 +35,10 @@ class Multi_Select_Helper : P_Selectable_Mode {
 
             if multi_Selected_Notes.count > 0 {
                 semi_To_Full_Select()
+                print("multi_Selected_Notes.count > 0")
+            }
+            else if multi_Selected_Notes.count == 0 {
+                print("multi_Selected_Notes.count == 0")
             }
             
             potential_MultiSelect_Background_Set.removeAll()
