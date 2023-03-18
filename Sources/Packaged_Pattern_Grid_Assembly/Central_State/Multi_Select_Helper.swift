@@ -22,7 +22,9 @@ class Multi_Select_Helper : P_Selectable_Mode {
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
-            if multi_Selected_Notes.count > 0{multi_Selected_Notes.removeAll()}
+            if let lclNoteCollection = parentCentralState.currentNoteCollection {
+                lclNoteCollection.access_Additional_Selected_Notes(inputSet: nil)
+            }
             if let lclActivationCell = activationCell{
                 snapshot_Multi_Select_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Multi_Select_Cursor_Y = lclActivationCell.dataCell_Y_Number
@@ -53,12 +55,12 @@ class Multi_Select_Helper : P_Selectable_Mode {
         for note in multi_Selected_Notes {
             if note.note_Is_MultiSelected == true {
                 note.note_Is_MultiSelected = false
-                //note.highlighted = true // add em in hea to the additional?
-                // add em into the currentNoteCollection.additional_Selected_Notes then highlight them
-                // parentCentralState.currentNoteCollection.additional_Selected_Notes
             }
         }
-        
+        if let lclNoteCollection = parentCentralState.currentNoteCollection {
+            lclNoteCollection.access_Additional_Selected_Notes(inputSet: multi_Selected_Notes)
+        }
+        if multi_Selected_Notes.count > 0{multi_Selected_Notes.removeAll()}
     }
     
     var multi_Selected_Notes = Set<Note>()

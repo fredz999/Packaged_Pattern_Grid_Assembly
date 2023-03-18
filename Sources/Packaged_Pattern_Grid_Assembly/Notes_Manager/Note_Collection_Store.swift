@@ -19,8 +19,26 @@ public class Note_Collection {
     var parentCentralState : Central_State
     
     //var highlighted_Notes_Array : [Note] = [Note]()
-    var additional_Selected_Notes : [Note] = []
+    //var additional_Selected_Notes : [Note] = []
+               //note.highlighted = true
+    var additional_Selected_Notes = Set<Note>()
     
+    func access_Additional_Selected_Notes(inputSet:Set<Note>?){
+        if inputSet == nil {
+            if additional_Selected_Notes.count > 0 {
+                for note in additional_Selected_Notes {
+                    note.highlighted = false
+                }
+                additional_Selected_Notes.removeAll()
+            }
+        }
+        else if let lclInputSet = inputSet {
+            for note in lclInputSet {
+                note.highlighted = true
+                additional_Selected_Notes.insert(note)
+            }
+        }
+    }
     
     // 1: func to add a nil note with an additional arg stating if its single or part of a multi
     // 2: the single selected might have to become note_Currently_Under_Cursor and the multis - additional_Selected_Notes
