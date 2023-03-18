@@ -21,7 +21,11 @@ public class Note_Collection {
     //var highlighted_Notes_Array : [Note] = [Note]()
     //var additional_Selected_Notes : [Note] = []
                //note.highlighted = true
-    var additional_Selected_Notes = Set<Note>()
+    var additional_Selected_Notes = Set<Note>(){
+        didSet {
+            print("additional_Selected_Notes count: ",additional_Selected_Notes.count)
+        }
+    }
     
     func access_Additional_Selected_Notes(inputSet:Set<Note>?){
         if inputSet == nil {
@@ -35,8 +39,9 @@ public class Note_Collection {
         else if let lclInputSet = inputSet {
             for note in lclInputSet {
                 note.highlighted = true
-                additional_Selected_Notes.insert(note)
+                //additional_Selected_Notes.insert(note)
             }
+            additional_Selected_Notes = lclInputSet
         }
     }
     
