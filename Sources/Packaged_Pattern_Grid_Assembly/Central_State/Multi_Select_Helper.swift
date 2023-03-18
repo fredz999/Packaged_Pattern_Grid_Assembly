@@ -44,9 +44,25 @@ class Multi_Select_Helper : P_Selectable_Mode {
             snapshot_Cursor_X = nil
             snapshot_Cursor_X = nil
         }
-        //print("multi_Selected_Notes count: ",multi_Selected_Notes.count)
+
     }
-    var multi_Selected_Notes = Set<Note>()
+    
+    func semi_To_Full_Select(){
+ 
+        for note in multi_Selected_Notes {
+            if note.note_Is_MultiSelected == true {
+                note.note_Is_MultiSelected = false
+                note.highlighted = true // should set them in here?.....
+            }
+        }
+        
+    }
+    
+    var multi_Selected_Notes = Set<Note>(){
+        didSet {
+            print("multi_Selected_Notes count: ",multi_Selected_Notes.count)
+        }
+    }
     
     init(parentCentral_State_Param:Central_State){
         parentCentralState = parentCentral_State_Param
@@ -151,18 +167,5 @@ class Multi_Select_Helper : P_Selectable_Mode {
             }
         }
     }
-    
-    func semi_To_Full_Select(){
- 
-        for note in multi_Selected_Notes {
-            if note.note_Is_MultiSelected == true {
-                note.note_Is_MultiSelected = false
-                note.highlighted = true
-            }
-        }
-        
-    }
-    
-    
     
 }
