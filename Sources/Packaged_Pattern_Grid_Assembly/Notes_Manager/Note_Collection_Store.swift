@@ -18,7 +18,17 @@ public class Note_Collection {
 
     var parentCentralState : Central_State
     
-    var highlighted_Notes_Array : [Note] = [Note]()
+    //var highlighted_Notes_Array : [Note] = [Note]()
+    var additional_Selected_Notes : [Note] = []
+    
+    
+    // 1: func to add a nil note with an additional arg stating if its single or part of a multi
+    // 2: the single selected might have to become note_Currently_Under_Cursor and the multis - additional_Selected_Notes
+    // 3: movement only becomes available when there is a note under the cursor
+    // 4: movement out of an already multiselected note .....shouuuuuuuldnt deselect it
+    // 5: multi select in a blank area should desselect all notes
+    
+
 
     var currentHighlighted_Single_Note : Note?{
         willSet {
