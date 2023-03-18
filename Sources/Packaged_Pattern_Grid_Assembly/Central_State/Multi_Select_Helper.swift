@@ -41,7 +41,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             snapshot_Cursor_X = nil
             snapshot_Cursor_X = nil
         }
-        print("multi_Selected_Notes count: ",multi_Selected_Notes.count)
+        //print("multi_Selected_Notes count: ",multi_Selected_Notes.count)
     }
     //1: deactivate mode and keep multi select
     //2: move the multiselect
@@ -153,6 +153,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     func semi_To_Full_Select(){
+        print("semi_To_Full_Select, multi_Selected_Notes count: ",multi_Selected_Notes.count)
         for note in multi_Selected_Notes{
             note.note_Is_MultiSelected = false
             note.highlighted = true
