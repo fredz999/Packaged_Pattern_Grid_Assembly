@@ -40,6 +40,20 @@ public class Note_Collection {
         }
     }
     
+    func deleteMultipleNotes(){
+        if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
+            delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
+        }
+        if additional_Selected_Notes.count > 0{
+            for note in additional_Selected_Notes{
+                delete_Note_By_Id(note_Id_Param: note.id)
+            }
+        }
+//        if let lclNoteCollection = currentNoteCollection {
+//            lclNoteCollection.delete_Note_By_Id(note_Id_Param: lclNote.id)
+//        }
+    }
+    
     // 1: func to add a nil note with an additional arg stating if its single or part of a multi
     // 2: the single selected might have to become note_Currently_Under_Cursor and the multis - additional_Selected_Notes
     // 3: movement only becomes available when there is a note under the cursor

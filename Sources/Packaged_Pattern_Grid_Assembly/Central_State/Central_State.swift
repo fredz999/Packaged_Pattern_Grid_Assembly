@@ -108,11 +108,13 @@ public class Central_State : ObservableObject {
                 lclWriteNote_Helper.deactivate_Mode()
                 lclDelete_Helper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .delete_Mode
-                if let lclNote = currentData.note_Im_In {
+                
+                if currentData.note_Im_In != nil {
                     if let lclNoteCollection = currentNoteCollection {
-                        lclNoteCollection.delete_Note_By_Id(note_Id_Param: lclNote.id)
+                        lclNoteCollection.deleteMultipleNotes()
                     }
                 }
+                
             }
             else if patternModeParam == .move_Mode {
                 lclMulti_Select_Helper.deactivate_Mode()
