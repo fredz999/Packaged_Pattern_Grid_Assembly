@@ -37,10 +37,7 @@ public class Note_Collection {
             }
         }
         else if let lclInputSet = inputSet {
-            for note in lclInputSet {
-                note.highlighted = true
-                //additional_Selected_Notes.insert(note)
-            }
+            for note in lclInputSet {note.highlighted = true}
             additional_Selected_Notes = lclInputSet
         }
     }
@@ -82,6 +79,7 @@ public class Note_Collection {
         didSet {
             if let lclCurr = currentHighlighted_Single_Note {
                 lclCurr.highlighted = true
+                print("cursor over note.......")
             }
         }
     }

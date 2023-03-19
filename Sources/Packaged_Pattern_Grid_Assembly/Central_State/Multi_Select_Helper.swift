@@ -95,7 +95,8 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     func analyzeMultiSelectSet(){
-
+        // if cursor over note do all dis
+        
         let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
         
         var nuutez = Set<Note>()
