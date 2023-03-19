@@ -96,36 +96,70 @@ class Multi_Select_Helper : P_Selectable_Mode {
     
     func analyzeMultiSelectSet(){
         // if cursor over note do all dis
-        print("currData in note? : ",parentCentralState.currentData.note_Im_In == nil ? ", yup" : ", nope")
+        print("currData in note? : ",parentCentralState.currentData.note_Im_In == nil ? ", nope" : ", yup")
 
-        
-        let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
-        
-        var nuutez = Set<Note>()
-        
-        for cell in noteCells {
-            if let lclNote = cell.note_Im_In {
-                nuutez.insert(lclNote)
+        if parentCentralState.currentData.note_Im_In != nil {
+            let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
+            
+            var nuutez = Set<Note>()
+            
+            for cell in noteCells {
+                if let lclNote = cell.note_Im_In {
+                    nuutez.insert(lclNote)
+                }
+            }
+
+            if let noteCollection = parentCentralState.currentNoteCollection {
+                
+                let fullNoteSet = Set(noteCollection.noteArray)
+                for note in nuutez {
+                    if note.note_Is_MultiSelected == false{note.note_Is_MultiSelected = true}
+                }
+
+                let notSelectedSet = fullNoteSet.subtracting(nuutez)
+                for note in notSelectedSet{
+                    if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
+                }
+                
+                multi_Selected_Notes = nuutez
+                
             }
         }
-
-        if let noteCollection = parentCentralState.currentNoteCollection {
+        else if parentCentralState.currentData.note_Im_In != nil {
+            let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
             
-            let fullNoteSet = Set(noteCollection.noteArray)
-            for note in nuutez {
-                if note.note_Is_MultiSelected == false{note.note_Is_MultiSelected = true}
+            var nuutez = Set<Note>()
+            
+            for cell in noteCells {
+                if let lclNote = cell.note_Im_In {
+                    nuutez.insert(lclNote)
+                }
             }
 
-            let notSelectedSet = fullNoteSet.subtracting(nuutez)
-            for note in notSelectedSet{
-                if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
+            if let noteCollection = parentCentralState.currentNoteCollection {
+                
+                let fullNoteSet = Set(noteCollection.noteArray)
+                
+                for note in nuutez {
+                    if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
+                }
+
+                let notSelectedSet = fullNoteSet.subtracting(nuutez)
+                
+                for note in notSelectedSet{
+                    if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
+                }
+                
+                multi_Selected_Notes = nuutez
+                
             }
-            
-            multi_Selected_Notes = nuutez
-            
         }
+        
+        
 
     }
+    
+    
     
     func area_Select_Handler(){
         if let lclSnapshot_X = snapshot_Multi_Select_Cursor_X, let lclSnapshot_Y = snapshot_Multi_Select_Cursor_Y
