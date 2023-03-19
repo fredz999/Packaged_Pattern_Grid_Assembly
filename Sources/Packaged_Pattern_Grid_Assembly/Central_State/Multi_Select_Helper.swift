@@ -96,6 +96,8 @@ class Multi_Select_Helper : P_Selectable_Mode {
     
     func analyzeMultiSelectSet(){
         // if cursor over note do all dis
+        print("currData in note? : ",parentCentralState.currentData.note_Im_In == nil ? ", yup" : ", nope")
+
         
         let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
         

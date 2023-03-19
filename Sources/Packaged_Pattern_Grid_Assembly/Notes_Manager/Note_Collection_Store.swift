@@ -46,7 +46,6 @@ public class Note_Collection {
         if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
             delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
         }
-        print("additional_Selected_Notes.count: ",additional_Selected_Notes.count.description)
         if additional_Selected_Notes.count > 0{
             for note in additional_Selected_Notes{
                 delete_Note_By_Id(note_Id_Param: note.id)
