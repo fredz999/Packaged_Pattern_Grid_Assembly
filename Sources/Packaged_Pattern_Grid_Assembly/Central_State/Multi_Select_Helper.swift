@@ -37,7 +37,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             mode_Active = false
 
             // no..... its if they arent fully selected
-             
+        
                 semi_To_Full_Select()
             
             snapshot_Multi_Select_Cursor_X = nil
@@ -47,12 +47,11 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     func semi_To_Full_Select(){
-        print("semi_To_Full_Select()")
         if let lclNoteCollection = parentCentralState.currentNoteCollection{
             for note in lclNoteCollection.noteArray{
                 if note.note_Is_MultiSelected == true{
                     note.note_Is_MultiSelected = false
-                    note.highlighted = true
+                    note.highlighted == true
                 }
             }
         }
@@ -113,7 +112,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
                     if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
                 }
                 
-               //multi_Selected_Notes = nuutez
+                
                 
             }
         }
@@ -142,7 +141,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
                     if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
                 }
                 
-                //multi_Selected_Notes = nuutez
+             
                 
             }
         }
