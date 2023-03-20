@@ -167,6 +167,7 @@ public class Note_Collection {
             if additional_Selected_Notes.contains(lclCurrHigh){
                 additional_Selected_Notes.remove(lclCurrHigh)
             }
+            print("additional_Selected_Notes.count",additional_Selected_Notes.count)
             delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
             currentHighlighted_Single_Note = nil
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
@@ -174,11 +175,11 @@ public class Note_Collection {
     }
     
     func deleteMultipleNotes(){
-        print("start: additional_Selected_Notes.count",additional_Selected_Notes.count)
+        //print("start: additional_Selected_Notes.count",additional_Selected_Notes.count)
         if currentHighlighted_Single_Note != nil {
             delete_CurrentHighlighted()
         }
-        print("in between: additional_Selected_Notes.count",additional_Selected_Notes.count)
+        //print("in between: additional_Selected_Notes.count",additional_Selected_Notes.count)
         if additional_Selected_Notes.count > 0 {
             for note in additional_Selected_Notes {
                 delete_Note_By_Id(note_Id_Param: note.id)
