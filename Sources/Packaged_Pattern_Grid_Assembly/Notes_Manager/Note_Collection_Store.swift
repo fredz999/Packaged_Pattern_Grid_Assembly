@@ -173,7 +173,7 @@ public class Note_Collection {
                     //.removeAll(where: {$0.id == lclCurrHigh.id})
             }
             print("1: additional_Selected_Notes.count",additional_Selected_Notes.count)
-            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
+            //delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
             currentHighlighted_Single_Note = nil
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
             print("2: additional_Selected_Notes.count",additional_Selected_Notes.count)
