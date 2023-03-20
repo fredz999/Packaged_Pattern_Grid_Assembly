@@ -173,11 +173,16 @@ public class Note_Collection {
     }
     
     func deleteMultipleNotes(){
-        print("start del multi, additional count: ",additional_Selected_Notes.count.description)
+        //print("start del multi, additional count: ",additional_Selected_Notes.count.description)
+        var idStr = ""
+        for note in additional_Selected_Notes{
+            idStr.append(note.id.description+", ")
+        }
+        print("idStr: ",idStr)
         if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
             delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
         }
-        print("in between: additional_Selected_Notes.count",additional_Selected_Notes.count)
+        //print("in between: additional_Selected_Notes.count",additional_Selected_Notes.count)
         if additional_Selected_Notes.count > 0 {
             for note in additional_Selected_Notes {
                 delete_Note_By_Id(note_Id_Param: note.id)
@@ -191,9 +196,9 @@ public class Note_Collection {
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
             note.resetCells()
             noteArray.removeAll(where: {$0.id == note_Id_Param})
-            currentHighlighted_Single_Note = nil
+            //currentHighlighted_Single_Note = nil
             //accessSelected_Notes_Array(currentHighlightedNote: nil)
-            if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
+            //if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
         }
     }
     
