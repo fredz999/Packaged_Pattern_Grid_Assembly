@@ -166,19 +166,22 @@ public class Note_Collection {
     public func delete_CurrentHighlighted(){
         if let lclCurrHigh = currentHighlighted_Single_Note {
             print("1: additional_Selected_Notes.count",additional_Selected_Notes.count)
-//            if additional_Selected_Notes.contains(lclCurrHigh){
-//                additional_Selected_Notes.remove(lclCurrHigh)
-//            }
-            if let note = additional_Selected_Notes.first(where: {$0.id == lclCurrHigh.id}){
-                note.resetCells()
+            if additional_Selected_Notes.contains(lclCurrHigh){
                 additional_Selected_Notes.remove(lclCurrHigh)
-                    //.removeAll(where: {$0.id == lclCurrHigh.id})
             }
-            print("2: additional_Selected_Notes.count",additional_Selected_Notes.count)
-            //delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
+            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
             currentHighlighted_Single_Note = nil
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
-            print("3: additional_Selected_Notes.count",additional_Selected_Notes.count)
+            
+//            if let note = additional_Selected_Notes.first(where: {$0.id == lclCurrHigh.id}){
+//                note.resetCells()
+//                additional_Selected_Notes.remove(lclCurrHigh)
+//                    //.removeAll(where: {$0.id == lclCurrHigh.id})
+//            }
+            print("2: additional_Selected_Notes.count",additional_Selected_Notes.count)
+            //delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
+            
+            //print("3: additional_Selected_Notes.count",additional_Selected_Notes.count)
         }
     }
     
@@ -187,12 +190,13 @@ public class Note_Collection {
         if currentHighlighted_Single_Note != nil {
             delete_CurrentHighlighted()
         }
+        access_Additional_Selected_Notes(inputSet: nil)
         //print("3: additional_Selected_Notes.count",additional_Selected_Notes.count)
-        if additional_Selected_Notes.count > 0 {
-            for note in additional_Selected_Notes {
-                delete_Note_By_Id(note_Id_Param: note.id)
-            }
-        }
+//        if additional_Selected_Notes.count > 0 {
+//            for note in additional_Selected_Notes {
+//                delete_Note_By_Id(note_Id_Param: note.id)
+//            }
+//        }
     }
     
     public func delete_Note_By_Id(note_Id_Param:UUID){
