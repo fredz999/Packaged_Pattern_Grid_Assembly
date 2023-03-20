@@ -35,13 +35,17 @@ class Multi_Select_Helper : P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active = false
-
             // no..... its if they arent fully selected
-        
-                semi_To_Full_Select()
             
+            semi_To_Full_Select()
             snapshot_Multi_Select_Cursor_X = nil
             snapshot_Multi_Select_Cursor_X = nil
+            if potential_MultiSelect_Background_Cells_Set.count > 0{
+                for cell in potential_MultiSelect_Background_Cells_Set{
+                    cell.handleVisibleStateChange(type: .deActivate_Multiselect_Background_Set)
+                }
+                potential_MultiSelect_Background_Cells_Set.removeAll()
+            }
         }
 
     }
@@ -73,15 +77,15 @@ class Multi_Select_Helper : P_Selectable_Mode {
         parentCentralState = parentCentral_State_Param
     }
 
-    var potential_MultiSelect_Background_Set = Set<Underlying_Data_Cell>(){
+    var potential_MultiSelect_Background_Cells_Set = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = potential_MultiSelect_Background_Set.symmetricDifference(newValue)
+            let delta = potential_MultiSelect_Background_Cells_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Multiselect_Background_Set)
             }
         }
         didSet {
-            for cell in potential_MultiSelect_Background_Set {
+            for cell in potential_MultiSelect_Background_Cells_Set {
                 cell.handleVisibleStateChange(type : .activate_Multiselect_Background_Set)
             }
             analyzeMultiSelectSet()
@@ -90,7 +94,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
     
     func analyzeMultiSelectSet(){
         if parentCentralState.currentData.note_Im_In != nil {
-            let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
+            let noteCells = potential_MultiSelect_Background_Cells_Set.filter{$0.note_Im_In != nil}
             
             var nuutez = Set<Note>()
             
@@ -111,13 +115,11 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 for note in notSelectedSet{
                     if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
                 }
-                
-                
-                
+
             }
         }
         else if parentCentralState.currentData.note_Im_In == nil {
-            let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
+            let noteCells = potential_MultiSelect_Background_Cells_Set.filter{$0.note_Im_In != nil}
             
             var nuutez = Set<Note>()
             
@@ -140,9 +142,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 for note in notSelectedSet{
                     if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
                 }
-                
-             
-                
+
             }
         }
         
@@ -158,7 +158,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             if lclSnapshot_X <= parentCentralState.curr_Data_Pos_X
             && lclSnapshot_Y <= parentCentralState.curr_Data_Pos_Y {
                 
-                potential_MultiSelect_Background_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                potential_MultiSelect_Background_Cells_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                     $0.dataCell_X_Number <= parentCentralState.curr_Data_Pos_X
                     && $0.dataCell_Y_Number <= parentCentralState.curr_Data_Pos_Y
                     && $0.dataCell_X_Number >= lclSnapshot_X
@@ -170,7 +170,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             else if lclSnapshot_X <= parentCentralState.curr_Data_Pos_X
             && lclSnapshot_Y >= parentCentralState.curr_Data_Pos_Y{
                 
-                potential_MultiSelect_Background_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                potential_MultiSelect_Background_Cells_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                     $0.dataCell_X_Number <= parentCentralState.curr_Data_Pos_X
                     && $0.dataCell_Y_Number >= parentCentralState.curr_Data_Pos_Y
                     && $0.dataCell_X_Number >= lclSnapshot_X
@@ -182,7 +182,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             else if lclSnapshot_X >= parentCentralState.curr_Data_Pos_X
             && lclSnapshot_Y <= parentCentralState.curr_Data_Pos_Y{
                 
-                potential_MultiSelect_Background_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                potential_MultiSelect_Background_Cells_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                     $0.dataCell_X_Number >= parentCentralState.curr_Data_Pos_X
                     && $0.dataCell_Y_Number <= parentCentralState.curr_Data_Pos_Y
                     && $0.dataCell_X_Number <= lclSnapshot_X
@@ -194,7 +194,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             else if lclSnapshot_X >= parentCentralState.curr_Data_Pos_X
             && lclSnapshot_Y >= parentCentralState.curr_Data_Pos_Y{
                 
-                potential_MultiSelect_Background_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                potential_MultiSelect_Background_Cells_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                     $0.dataCell_X_Number >= parentCentralState.curr_Data_Pos_X
                     && $0.dataCell_Y_Number >= parentCentralState.curr_Data_Pos_Y
                     && $0.dataCell_X_Number <= lclSnapshot_X
