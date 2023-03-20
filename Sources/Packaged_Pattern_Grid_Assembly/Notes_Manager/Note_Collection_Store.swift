@@ -18,23 +18,7 @@ public class Note_Collection {
 
     var parentCentralState : Central_State
 
-    var additional_Selected_Notes = Set<Note>()
-
     
-    func access_Additional_Selected_Notes(inputSet:Set<Note>?){
-        if inputSet == nil {
-            if additional_Selected_Notes.count > 0 {
-                for note in additional_Selected_Notes {
-                    note.highlighted = false
-                }
-                additional_Selected_Notes.removeAll()
-            }
-        }
-        else if let lclInputSet = inputSet {
-            for note in lclInputSet {note.highlighted = true}
-            additional_Selected_Notes = lclInputSet
-        }
-    }
     
     
     
@@ -46,26 +30,27 @@ public class Note_Collection {
     
 
 
-    var currentHighlighted_Single_Note : Note?{
-        willSet {
-            if let lclCurr = currentHighlighted_Single_Note {
-                if let lclNewVal = newValue {
-                    if lclNewVal.id != lclCurr.id {
-                        lclCurr.highlighted = false
-                    }
-                }
-                else if newValue == nil {
-                    lclCurr.highlighted = false
-                    access_Additional_Selected_Notes(inputSet: nil)
-                }
-            }
-        }
-        didSet {
-            if let lclCurr = currentHighlighted_Single_Note {
-                lclCurr.highlighted = true
-            }
-        }
-    }
+    var currentHighlighted_Single_Note : Note?
+//    {
+//        willSet {
+//            if let lclCurr = currentHighlighted_Single_Note {
+//                if let lclNewVal = newValue {
+//                    if lclNewVal.id != lclCurr.id {
+//                        lclCurr.highlighted = false
+//                    }
+//                }
+//                else if newValue == nil {
+//                    lclCurr.highlighted = false
+//                    access_Additional_Selected_Notes(inputSet: nil)
+//                }
+//            }
+//        }
+//        didSet {
+//            if let lclCurr = currentHighlighted_Single_Note {
+//                lclCurr.highlighted = true
+//            }
+//        }
+//    }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
@@ -161,9 +146,26 @@ public class Note_Collection {
         }
     }
     
+    var additional_Selected_Notes = Set<Note>()
+
+    func access_Additional_Selected_Notes(inputSet:Set<Note>?){
+        if inputSet == nil {
+            if additional_Selected_Notes.count > 0 {
+                for note in additional_Selected_Notes {
+                    note.highlighted = false
+                }
+                additional_Selected_Notes.removeAll()
+            }
+        }
+        else if let lclInputSet = inputSet {
+            for note in lclInputSet {note.highlighted = true}
+            additional_Selected_Notes = lclInputSet
+        }
+    }
+    
     public func delete_CurrentHighlighted(){
         if let lclCurrHigh = currentHighlighted_Single_Note {
-            
+            print("1: additional_Selected_Notes.count",additional_Selected_Notes.count)
 //            if additional_Selected_Notes.contains(lclCurrHigh){
 //                additional_Selected_Notes.remove(lclCurrHigh)
 //            }
@@ -172,11 +174,11 @@ public class Note_Collection {
                 additional_Selected_Notes.remove(lclCurrHigh)
                     //.removeAll(where: {$0.id == lclCurrHigh.id})
             }
-            print("1: additional_Selected_Notes.count",additional_Selected_Notes.count)
+            print("2: additional_Selected_Notes.count",additional_Selected_Notes.count)
             //delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
             currentHighlighted_Single_Note = nil
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
-            print("2: additional_Selected_Notes.count",additional_Selected_Notes.count)
+            print("3: additional_Selected_Notes.count",additional_Selected_Notes.count)
         }
     }
     
