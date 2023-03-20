@@ -113,7 +113,8 @@ public class Central_State : ObservableObject {
 //                }
                 
                 if let lclNoteCollection = currentNoteCollection {
-                    print("delete mode start: additional_Selected_Notes.count: ",lclNoteCollection.additional_Selected_Notes.count)
+                    print("delete mode start: additional_Selected_Notes.count: ",lclNoteCollection.additional_Selected_Notes.count
+                          ,", curr in note: ",currentData.note_Im_In != nil ? "in note" : "put of note")
                 }
                 
                 lclMulti_Select_Helper.deactivate_Mode()
