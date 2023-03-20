@@ -51,7 +51,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             for note in lclNoteCollection.noteArray{
                 if note.note_Is_MultiSelected == true{
                     note.note_Is_MultiSelected = false
-                    note.highlighted == true
+                    note.highlighted = true
                 }
             }
         }
