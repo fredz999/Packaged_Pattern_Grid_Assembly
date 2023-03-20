@@ -95,17 +95,13 @@ class Move_Helper: P_Selectable_Mode {
     
     func movement_With_Single_Note_Selected(){
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index
-        //,let lclNote_Y_Val = note_Y_Val
         ,let lclSnapshot_X = snapshot_Cursor_X
-        //,let lclSnapshot_Y = snapshot_Cursor_Y
         {
 
         let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
-        //let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclNote_Y_Val //lclSnapshot_Y
 
         let proposedNewMinIndex = lclNote_Low_Index + delta_X_Grid_Units
         let proposedNewMaxIndex = lclNote_High_Index + delta_X_Grid_Units
-        //let proposedNewYIndex = lclNote_Y_Val + delta_Y_Grid_Units
 
         if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
             proposedSet = parentCentralState.currLineSet
@@ -132,11 +128,6 @@ class Move_Helper: P_Selectable_Mode {
 
     
     func movement_With_Multi_Note_Selected(){
-        print("movement_With_Multi_Note_Selected()")
-        //0: get this firing in the same way as the single version
-        //1: get all the notes into a collection
-        //2:
-        
         if let lclNote_Low_Index = note_Low_Index, let lclNote_High_Index = note_High_Index,let lclSnapshot_X = snapshot_Cursor_X {
 
         let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X

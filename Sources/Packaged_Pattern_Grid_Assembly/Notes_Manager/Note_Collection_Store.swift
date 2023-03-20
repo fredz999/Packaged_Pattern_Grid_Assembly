@@ -18,40 +18,7 @@ public class Note_Collection {
 
     var parentCentralState : Central_State
 
-    
-    
-    
-    
-    // 1: func to add a nil note with an additional arg stating if its single or part of a multi
-    // 2: the single selected might have to become note_Currently_Under_Cursor and the multis - additional_Selected_Notes
-    // 3: movement only becomes available when there is a note under the cursor
-    // 4: movement out of an already multiselected note .....shouuuuuuuldnt deselect it
-    // 5: multi select in a blank area should desselect all notes
-    
-
-
     var note_Currently_Under_Cursor : Note?
-    
-//    {
-//        willSet {
-//            if let lclCurr = currentHighlighted_Single_Note {
-//                if let lclNewVal = newValue {
-//                    if lclNewVal.id != lclCurr.id {
-//                        lclCurr.highlighted = false
-//                    }
-//                }
-//                else if newValue == nil {
-//                    lclCurr.highlighted = false
-//                    access_Additional_Selected_Notes(inputSet: nil)
-//                }
-//            }
-//        }
-//        didSet {
-//            if let lclCurr = currentHighlighted_Single_Note {
-//                lclCurr.highlighted = true
-//            }
-//        }
-//    }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
@@ -96,16 +63,6 @@ public class Note_Collection {
                 }
             }
         }
-//        if selected_Notes_Array.count > 0{
-//            for nute in selected_Notes_Array {
-//                for dataCell in nute.dataCellArray {
-//                    if let lcl_Data_Vals = dataCell.currentConnectedDataVals {
-//                        lcl_Data_Vals.check_Highlighted()
-//                    }
-//                }
-//            }
-//        }
- 
     }
     
     func write_Note_Data(cellSetParam : Set<Underlying_Data_Cell>){
@@ -150,66 +107,10 @@ public class Note_Collection {
     func deleteSelectedNotes(){
         for note in noteArray{
             if note.highlighted == true{
-                //note.resetCells()
                 delete_Note_By_Id(note_Id_Param: note.id)
             }
         }
     }
-    
-    //var additional_Selected_Notes = Set<Note>()
-
-//    func access_Additional_Selected_Notes(inputSet:Set<Note>?){
-//        if inputSet == nil {
-//            print("3: access_Additional_Selected_Notes count: ",additional_Selected_Notes.count.description)
-//            if additional_Selected_Notes.count > 0 {
-//                for note in additional_Selected_Notes {
-//                    note.resetCells()
-//                    note.highlighted = false
-//                }
-//                additional_Selected_Notes.removeAll()
-//            }
-//        }
-//        else if let lclInputSet = inputSet {
-//            for note in lclInputSet {note.highlighted = true}
-//            additional_Selected_Notes = lclInputSet
-//        }
-//    }
-    
-//    public func delete_CurrentHighlighted(){
-//        if let lclCurrHigh = currentHighlighted_Single_Note {
-//            print("1: additional_Selected_Notes.count",additional_Selected_Notes.count)
-//            if additional_Selected_Notes.contains(lclCurrHigh){
-//                additional_Selected_Notes.remove(lclCurrHigh)
-//            }
-//            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
-//            currentHighlighted_Single_Note = nil
-//            if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
-//            
-////            if let note = additional_Selected_Notes.first(where: {$0.id == lclCurrHigh.id}){
-////                note.resetCells()
-////                additional_Selected_Notes.remove(lclCurrHigh)
-////                    //.removeAll(where: {$0.id == lclCurrHigh.id})
-////            }
-//            print("2: additional_Selected_Notes.count",additional_Selected_Notes.count)
-//            //delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
-//            
-//            //print("3: additional_Selected_Notes.count",additional_Selected_Notes.count)
-//        }
-//    }
-    
-//    func deleteMultipleNotes(){
-//        //print("start: additional_Selected_Notes.count",additional_Selected_Notes.count)
-//        if currentHighlighted_Single_Note != nil {
-//            delete_CurrentHighlighted()
-//        }
-//        access_Additional_Selected_Notes(inputSet: nil)
-//        //print("3: additional_Selected_Notes.count",additional_Selected_Notes.count)
-////        if additional_Selected_Notes.count > 0 {
-////            for note in additional_Selected_Notes {
-////                delete_Note_By_Id(note_Id_Param: note.id)
-////            }
-////        }
-//    }
     
     public func delete_Note_By_Id(note_Id_Param:UUID){
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
