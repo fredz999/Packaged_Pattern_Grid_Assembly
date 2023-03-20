@@ -21,7 +21,7 @@ class Move_Helper: P_Selectable_Mode {
                 note_Y_Val = lclCell.dataCell_Y_Number
 
                 if let lclNoteCOllection = parentCentralState.currentNoteCollection {
-                    if let currentHighlightedNote = lclNoteCOllection.currentHighlighted_Single_Note {
+                    if let currentHighlightedNote = lclNoteCOllection.note_Currently_Under_Cursor {
                         note_High_Index = currentHighlightedNote.highest_Index
                         note_Low_Index = currentHighlightedNote.lowest_Index
                         snapShot_Note_Id_Param = currentHighlightedNote.id

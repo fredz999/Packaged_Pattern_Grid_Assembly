@@ -22,9 +22,9 @@ class Multi_Select_Helper : P_Selectable_Mode {
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
-            if let lclNoteCollection = parentCentralState.currentNoteCollection {
-                lclNoteCollection.access_Additional_Selected_Notes(inputSet: nil)
-            }
+//            if let lclNoteCollection = parentCentralState.currentNoteCollection {
+//                lclNoteCollection.access_Additional_Selected_Notes(inputSet: nil)
+//            }
             if let lclActivationCell = activationCell{
                 snapshot_Multi_Select_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Multi_Select_Cursor_Y = lclActivationCell.dataCell_Y_Number
@@ -37,9 +37,9 @@ class Multi_Select_Helper : P_Selectable_Mode {
             mode_Active = false
 
             // no..... its if they arent fully selected
-            if multi_Selected_Notes.count > 0 {
+             
                 semi_To_Full_Select()
-            }
+            
             snapshot_Multi_Select_Cursor_X = nil
             snapshot_Multi_Select_Cursor_X = nil
         }
@@ -47,19 +47,27 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     func semi_To_Full_Select(){
- 
-        for note in multi_Selected_Notes {
-            if note.note_Is_MultiSelected == true {
-                note.note_Is_MultiSelected = false
+        if let lclNoteCollection = parentCentralState.currentNoteCollection{
+            for note in lclNoteCollection.noteArray{
+                if note.note_Is_MultiSelected == true{
+                    note.note_Is_MultiSelected = false
+                    note.highlighted == true
+                }
             }
         }
-        if let lclNoteCollection = parentCentralState.currentNoteCollection {
-            lclNoteCollection.access_Additional_Selected_Notes(inputSet: multi_Selected_Notes)
-        }
-        if multi_Selected_Notes.count > 0{multi_Selected_Notes.removeAll()}
+ 
+//        for note in multi_Selected_Notes {
+//            if note.note_Is_MultiSelected == true {
+//                note.note_Is_MultiSelected = false
+//            }
+//        }
+//        if let lclNoteCollection = parentCentralState.currentNoteCollection {
+//            lclNoteCollection.access_Additional_Selected_Notes(inputSet: multi_Selected_Notes)
+//        }
+        //if multi_Selected_Notes.count > 0{multi_Selected_Notes.removeAll()}
     }
     
-    var multi_Selected_Notes = Set<Note>()
+    //var multi_Selected_Notes = Set<Note>()
     
     init(parentCentral_State_Param:Central_State){
         parentCentralState = parentCentral_State_Param
@@ -104,7 +112,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
                     if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
                 }
                 
-                multi_Selected_Notes = nuutez
+               //multi_Selected_Notes = nuutez
                 
             }
         }
@@ -133,7 +141,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
                     if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
                 }
                 
-                multi_Selected_Notes = nuutez
+                //multi_Selected_Notes = nuutez
                 
             }
         }

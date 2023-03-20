@@ -90,9 +90,6 @@ public class Central_State : ObservableObject {
                 lclWriteNote_Helper.deactivate_Mode()
                 lclPassiveHelper.activate_Mode(activationCell: nil)
                 currentPatternMode = .passive_Mode
-                if let lclNoteCollection = currentNoteCollection {
-                    print("passive mode end : additional_Selected_Notes.count: ",lclNoteCollection.additional_Selected_Notes.count)
-                }
             }
             else if patternModeParam == .write_Mode {
                 lclMulti_Select_Helper.deactivate_Mode()
@@ -108,7 +105,7 @@ public class Central_State : ObservableObject {
                 
                 if currentData.note_Im_In != nil {
                     if let lclNoteCollection = currentNoteCollection {
-                        lclNoteCollection.deleteMultipleNotes()
+                        lclNoteCollection.deleteSelectedNotes()
                     }
                 }
                 
@@ -139,8 +136,8 @@ public class Central_State : ObservableObject {
                 if currentPatternMode == .passive_Mode {
                     // if theres a selected note
                     if let lclCurrNoteCollection = currentNoteCollection {
-                        if lclCurrNoteCollection.currentHighlighted_Single_Note != nil {
-                            lclCurrNoteCollection.currentHighlighted_Single_Note = nil
+                        if lclCurrNoteCollection.note_Currently_Under_Cursor != nil {
+                            lclCurrNoteCollection.note_Currently_Under_Cursor = nil
                         }
                     }
                 }
