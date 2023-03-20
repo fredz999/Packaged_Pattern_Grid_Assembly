@@ -47,11 +47,12 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     func semi_To_Full_Select(){
+        print("semi_To_Full_Select()")
         if let lclNoteCollection = parentCentralState.currentNoteCollection{
             for note in lclNoteCollection.noteArray{
                 if note.note_Is_MultiSelected == true{
                     note.note_Is_MultiSelected = false
-                    note.highlighted == true
+                    note.highlighted = true
                 }
             }
         }

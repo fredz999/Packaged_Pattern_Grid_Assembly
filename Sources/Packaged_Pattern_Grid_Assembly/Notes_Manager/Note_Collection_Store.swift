@@ -31,6 +31,7 @@ public class Note_Collection {
 
 
     var note_Currently_Under_Cursor : Note?
+    
 //    {
 //        willSet {
 //            if let lclCurr = currentHighlighted_Single_Note {
