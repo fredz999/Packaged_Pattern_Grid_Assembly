@@ -163,30 +163,20 @@ public class Note_Collection {
     
     public func delete_CurrentHighlighted(){
         if let lclCurrHigh = currentHighlighted_Single_Note {
+            
+            if additional_Selected_Notes.contains(lclCurrHigh){
+                additional_Selected_Notes.remove(lclCurrHigh)
+            }
             delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
+            currentHighlighted_Single_Note = nil
+            if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
         }
-//        if selected_Notes_Array.count > 0{
-//            for nute in selected_Notes_Array{
-//                delete_Note_By_Id(note_Id_Param: nute.id)
-//            }
-//        }
     }
     
     func deleteMultipleNotes(){
-        //print("start del multi, additional count: ",additional_Selected_Notes.count.description)
-        
-//        var idStr = ""
-//        if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
-//            idStr.append("currHigh: "+lclCurrentHighlighted_Single_Note.id.description+", ")
-//        }
-//        for note in additional_Selected_Notes {
-//            idStr.append(note.id.description+", ")
-//
-//        }
-//        print("idStr: ",idStr)
-        
-        if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
-            delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
+        print("start: additional_Selected_Notes.count",additional_Selected_Notes.count)
+        if currentHighlighted_Single_Note != nil {
+            delete_CurrentHighlighted()
         }
         print("in between: additional_Selected_Notes.count",additional_Selected_Notes.count)
         if additional_Selected_Notes.count > 0 {
@@ -194,25 +184,14 @@ public class Note_Collection {
                 delete_Note_By_Id(note_Id_Param: note.id)
             }
         }
-//        else if additional_Selected_Notes.count == 0 {
-//        }
     }
     
     public func delete_Note_By_Id(note_Id_Param:UUID){
         if let note = noteArray.first(where: {$0.id == note_Id_Param}){
             note.resetCells()
             noteArray.removeAll(where: {$0.id == note_Id_Param})
-            //currentHighlighted_Single_Note = nil
-            //accessSelected_Notes_Array(currentHighlightedNote: nil)
-            //if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
         }
     }
-    
-//    public func reset_Note_Data_Cells(noteParam:Note){
-//        noteParam.resetCells()
-//        noteArray.removeAll(where: {$0.id == noteParam.id})
-//        currentHighlightedNote = nil
-//    }
 
 }
 
