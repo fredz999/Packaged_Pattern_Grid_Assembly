@@ -150,6 +150,7 @@ public class Note_Collection {
 
     func access_Additional_Selected_Notes(inputSet:Set<Note>?){
         if inputSet == nil {
+            print("3: access_Additional_Selected_Notes count: ",additional_Selected_Notes.count.description)
             if additional_Selected_Notes.count > 0 {
                 for note in additional_Selected_Notes {
                     note.highlighted = false
