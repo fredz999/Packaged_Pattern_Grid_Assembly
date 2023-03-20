@@ -102,6 +102,11 @@ public class Central_State : ObservableObject {
                 currentPatternMode = .write_Mode
             }
             else if patternModeParam == .delete_Mode {
+                
+                if let lclNoteCollection = currentNoteCollection {
+                    print("del mode, additional_Selected_Notes.count: ",lclNoteCollection.additional_Selected_Notes.count)
+                }
+                
                 lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
@@ -126,6 +131,7 @@ public class Central_State : ObservableObject {
             }
             else if patternModeParam == .multi_Select_Mode {
                 // I have to figure out how to get rid of a single selected note
+                
                 if currentPatternMode == .passive_Mode {
                     // if theres a selected note
                     if let lclCurrNoteCollection = currentNoteCollection {
@@ -167,12 +173,14 @@ public class Central_State : ObservableObject {
                 }
             }
             else if currentPatternMode == .move_Mode {
+                // if thers a multi select then go with it
+                
                 if let lclMoveHelper = move_Helper {
                     lclMoveHelper.movement_With_Single_Note_Selected()
                 }
             }
             else if currentPatternMode == .multi_Select_Mode {
-                if let lclMulti_Select_Helper = multi_Select_Helper{
+                if let lclMulti_Select_Helper = multi_Select_Helper {
                     lclMulti_Select_Helper.area_Select_Handler()
                 }
             }

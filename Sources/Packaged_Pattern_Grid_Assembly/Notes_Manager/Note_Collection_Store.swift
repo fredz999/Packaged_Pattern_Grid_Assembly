@@ -42,16 +42,7 @@ public class Note_Collection {
         }
     }
     
-    func deleteMultipleNotes(){
-        if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
-            delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
-        }
-        if additional_Selected_Notes.count > 0{
-            for note in additional_Selected_Notes{
-                delete_Note_By_Id(note_Id_Param: note.id)
-            }
-        }
-    }
+    
     
     // 1: func to add a nil note with an additional arg stating if its single or part of a multi
     // 2: the single selected might have to become note_Currently_Under_Cursor and the multis - additional_Selected_Notes
@@ -186,6 +177,20 @@ public class Note_Collection {
 //                delete_Note_By_Id(note_Id_Param: nute.id)
 //            }
 //        }
+    }
+    
+    func deleteMultipleNotes(){
+        if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
+            delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
+        }
+        if additional_Selected_Notes.count > 0 {
+            for note in additional_Selected_Notes {
+                delete_Note_By_Id(note_Id_Param: note.id)
+            }
+        }
+        else if additional_Selected_Notes.count == 0 {
+            print("")
+        }
     }
     
     public func delete_Note_By_Id(note_Id_Param:UUID){
