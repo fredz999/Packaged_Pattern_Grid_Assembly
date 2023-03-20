@@ -153,6 +153,7 @@ public class Note_Collection {
             print("3: access_Additional_Selected_Notes count: ",additional_Selected_Notes.count.description)
             if additional_Selected_Notes.count > 0 {
                 for note in additional_Selected_Notes {
+                    note.resetCells()
                     note.highlighted = false
                 }
                 additional_Selected_Notes.removeAll()
