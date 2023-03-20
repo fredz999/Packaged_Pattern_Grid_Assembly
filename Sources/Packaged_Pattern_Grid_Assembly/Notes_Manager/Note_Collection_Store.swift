@@ -175,15 +175,15 @@ public class Note_Collection {
     func deleteMultipleNotes(){
         //print("start del multi, additional count: ",additional_Selected_Notes.count.description)
         
-        var idStr = ""
-        if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
-            idStr.append("currHigh: "+lclCurrentHighlighted_Single_Note.id.description+", ")
-        }
-        for note in additional_Selected_Notes {
-            idStr.append(note.id.description+", ")
-            
-        }
-        print("idStr: ",idStr)
+//        var idStr = ""
+//        if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
+//            idStr.append("currHigh: "+lclCurrentHighlighted_Single_Note.id.description+", ")
+//        }
+//        for note in additional_Selected_Notes {
+//            idStr.append(note.id.description+", ")
+//            
+//        }
+//        print("idStr: ",idStr)
         
         if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
             delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
