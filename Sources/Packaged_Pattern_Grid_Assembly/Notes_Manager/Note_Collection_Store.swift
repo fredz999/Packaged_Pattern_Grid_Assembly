@@ -17,15 +17,9 @@ public class Note_Collection {
     }
 
     var parentCentralState : Central_State
-    
-    //var highlighted_Notes_Array : [Note] = [Note]()
-    //var additional_Selected_Notes : [Note] = []
-               //note.highlighted = true
-    var additional_Selected_Notes = Set<Note>(){
-        didSet {
-            print("additional_Selected_Notes count: ",additional_Selected_Notes.count)
-        }
-    }
+
+    var additional_Selected_Notes = Set<Note>()
+
     
     func access_Additional_Selected_Notes(inputSet:Set<Note>?){
         if inputSet == nil {
@@ -69,7 +63,6 @@ public class Note_Collection {
         didSet {
             if let lclCurr = currentHighlighted_Single_Note {
                 lclCurr.highlighted = true
-                print("cursor over note.......")
             }
         }
     }
@@ -188,9 +181,8 @@ public class Note_Collection {
                 delete_Note_By_Id(note_Id_Param: note.id)
             }
         }
-        else if additional_Selected_Notes.count == 0 {
-            print("")
-        }
+//        else if additional_Selected_Notes.count == 0 {
+//        }
     }
     
     public func delete_Note_By_Id(note_Id_Param:UUID){
@@ -221,55 +213,3 @@ public enum E_HighlightType : String {
 public protocol P_ExternalNote_Responder {
     func react_To_NoteArrayChange(noteArrayParam: [Note])
 }
-
-// from original accessSelected_Notes_Array
-//if let lclCurrentHighlightedNote = currentHighlightedNote {
-//
-//    lclCurrentHighlightedNote.highlighted = true
-//
-//    if selected_Notes_Array.contains(lclCurrentHighlightedNote) == false, lastOneWasNil == true {
-//        if selected_Notes_Array.count < 2{
-//            selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-//        }
-//        else if selected_Notes_Array.count == 2{
-//            selected_Notes_Array[1].highlighted = false
-//            selected_Notes_Array.remove(at: 1)
-//            selected_Notes_Array.insert(lclCurrentHighlightedNote, at: 0)
-//        }
-//        lastOneWasNil = false
-//    }
-//}
-//else if currentHighlightedNote == nil {
-//    lastOneWasNil = true
-//}
-
-//        var streeng = ""
-//        for note in selected_Notes_Array{
-//            streeng.append(note.id.description + ", ")
-//        }
-//        print("streeng........: ",streeng)
-
-
-
-
-
-//    func write_Note_Data(cellArrayParam : [Underlying_Data_Cell],note_Y_Num:Int){
-//        let note = Note(cellArray: cellArrayParam, parentParam: self, yParam: note_Y_Num)
-//        noteArray.append(note)
-//        for cell in cellArrayParam {
-//            cell.note_Im_In = note
-//        }
-//    }
-    
-    // write a note writing func taking a single cell set as an arg
-
-
-//    public func delete_Current_Highlighted_Note(){
-//
-//        if let lclCurrHighlighted = currentHighlightedNote {
-//        lclCurrHighlighted.resetCells()
-//        noteArray.removeAll(where: {$0.id == lclCurrHighlighted.id})
-//        currentHighlightedNote = nil
-//        if centralStateRef.a_Note_Is_Highlighted != false{centralStateRef.a_Note_Is_Highlighted = false}
-//        }
-//    }

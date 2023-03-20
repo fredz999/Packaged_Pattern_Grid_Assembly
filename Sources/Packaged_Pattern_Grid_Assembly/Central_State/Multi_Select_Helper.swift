@@ -60,16 +60,6 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     var multi_Selected_Notes = Set<Note>()
-//    {
-//        willSet {
-//            // de highlight the notes in the array
-//            // empty parentCentralState.currentNoteCollection.additional_Selected_Notes
-//            print("multi_Selected_Notes new will be count: ",newValue.count)
-//        }
-//        didSet {
-//            print("multi_Selected_Notes count: ",multi_Selected_Notes.count)
-//        }
-//    }
     
     init(parentCentral_State_Param:Central_State){
         parentCentralState = parentCentral_State_Param
@@ -91,9 +81,6 @@ class Multi_Select_Helper : P_Selectable_Mode {
     }
     
     func analyzeMultiSelectSet(){
-        // if cursor over note do all dis
-        print("currData in note? : ",parentCentralState.currentData.note_Im_In == nil ? ", nope" : ", yup")
-
         if parentCentralState.currentData.note_Im_In != nil {
             let noteCells = potential_MultiSelect_Background_Set.filter{$0.note_Im_In != nil}
             

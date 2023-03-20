@@ -17,7 +17,6 @@ public class Central_Grid_Store : ObservableObject {
             let newLine = Central_Line_Store(y_Index: y, gridParam: self, dataParam: dataGridParam)
             vis_Line_Store_Array.append(newLine)
         }
-        print("Central_Grid_Store inited .................")
     }
     
     public func changeDataBracket(newLower:Int){
@@ -104,9 +103,6 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
         
-        if new_Data_Cell.dataCell_Y_Number == 0,new_Data_Cell.dataCell_X_Number == 0{
-            print("currentConnectedDataVals set in 0,0")
-        }
         
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
