@@ -40,12 +40,12 @@ class Multi_Select_Helper : P_Selectable_Mode {
             semi_To_Full_Select()
             snapshot_Multi_Select_Cursor_X = nil
             snapshot_Multi_Select_Cursor_X = nil
-            if potential_MultiSelect_Background_Cells_Set.count > 0{
-                for cell in potential_MultiSelect_Background_Cells_Set{
-                    cell.handleVisibleStateChange(type: .deActivate_Multiselect_Background_Set)
-                }
-                potential_MultiSelect_Background_Cells_Set.removeAll()
-            }
+//            if potential_MultiSelect_Background_Cells_Set.count > 0{
+//                for cell in potential_MultiSelect_Background_Cells_Set{
+//                    cell.handleVisibleStateChange(type: .deActivate_Multiselect_Background_Set)
+//                }
+//                potential_MultiSelect_Background_Cells_Set.removeAll()
+//            }
         }
 
     }
