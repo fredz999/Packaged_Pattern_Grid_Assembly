@@ -107,7 +107,11 @@ public class Central_State : ObservableObject {
 //                    print("del mode, additional_Selected_Notes.count: ",lclNoteCollection.additional_Selected_Notes.count)
 //                }
                 
-                
+                if currentData.note_Im_In != nil {
+                    if let lclNoteCollection = currentNoteCollection {
+                        lclNoteCollection.deleteMultipleNotes()
+                    }
+                }
                 
                 lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
@@ -116,11 +120,7 @@ public class Central_State : ObservableObject {
                 lclDelete_Helper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .delete_Mode
                 
-                if currentData.note_Im_In != nil {
-                                    if let lclNoteCollection = currentNoteCollection {
-                                        lclNoteCollection.deleteMultipleNotes()
-                                    }
-                                }
+                
 
                 
             }
