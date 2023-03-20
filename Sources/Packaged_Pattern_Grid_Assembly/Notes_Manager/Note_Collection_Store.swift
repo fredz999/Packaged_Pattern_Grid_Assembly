@@ -164,11 +164,16 @@ public class Note_Collection {
     public func delete_CurrentHighlighted(){
         if let lclCurrHigh = currentHighlighted_Single_Note {
             
-            if additional_Selected_Notes.contains(lclCurrHigh){
+//            if additional_Selected_Notes.contains(lclCurrHigh){
+//                additional_Selected_Notes.remove(lclCurrHigh)
+//            }
+            if let note = additional_Selected_Notes.first(where: {$0.id == lclCurrHigh.id}){
+                note.resetCells()
                 additional_Selected_Notes.remove(lclCurrHigh)
+                    //.removeAll(where: {$0.id == lclCurrHigh.id})
             }
             print("1: additional_Selected_Notes.count",additional_Selected_Notes.count)
-            //delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
+            delete_Note_By_Id(note_Id_Param: lclCurrHigh.id)
             currentHighlighted_Single_Note = nil
             if parentCentralState.a_Note_Is_Highlighted != false{parentCentralState.a_Note_Is_Highlighted = false}
             print("2: additional_Selected_Notes.count",additional_Selected_Notes.count)
