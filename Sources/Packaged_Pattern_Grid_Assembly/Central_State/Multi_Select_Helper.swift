@@ -40,10 +40,6 @@ class Multi_Select_Helper : P_Selectable_Mode {
             if multi_Selected_Notes.count > 0 {
                 semi_To_Full_Select()
             }
-            
-            // if the select area contains NO note squares it removes all multi selected
-            
-            potential_MultiSelect_Background_Set.removeAll()
             snapshot_Multi_Select_Cursor_X = nil
             snapshot_Multi_Select_Cursor_X = nil
         }
