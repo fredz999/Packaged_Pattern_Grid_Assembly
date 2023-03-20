@@ -181,14 +181,14 @@ public class Note_Collection {
 //        }
 //        for note in additional_Selected_Notes {
 //            idStr.append(note.id.description+", ")
-//            
+//
 //        }
 //        print("idStr: ",idStr)
         
         if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
             delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
         }
-        //print("in between: additional_Selected_Notes.count",additional_Selected_Notes.count)
+        print("in between: additional_Selected_Notes.count",additional_Selected_Notes.count)
         if additional_Selected_Notes.count > 0 {
             for note in additional_Selected_Notes {
                 delete_Note_By_Id(note_Id_Param: note.id)
