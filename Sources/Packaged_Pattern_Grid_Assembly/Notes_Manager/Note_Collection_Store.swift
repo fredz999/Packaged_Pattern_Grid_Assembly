@@ -173,6 +173,7 @@ public class Note_Collection {
     }
     
     func deleteMultipleNotes(){
+        print("start del multi, additional count: ",additional_Selected_Notes.count.description)
         if let lclCurrentHighlighted_Single_Note = currentHighlighted_Single_Note {
             delete_Note_By_Id(note_Id_Param: lclCurrentHighlighted_Single_Note.id)
         }

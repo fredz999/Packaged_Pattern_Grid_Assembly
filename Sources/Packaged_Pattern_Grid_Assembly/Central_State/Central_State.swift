@@ -106,16 +106,13 @@ public class Central_State : ObservableObject {
             }
             else if patternModeParam == .delete_Mode {
                 
-//                if currentData.note_Im_In != nil {
-//                    if let lclNoteCollection = currentNoteCollection {
-//                        lclNoteCollection.deleteMultipleNotes()
-//                    }
-//                }
-                
-                if let lclNoteCollection = currentNoteCollection {
-                    print("delete mode start: additional_Selected_Notes.count: ",lclNoteCollection.additional_Selected_Notes.count
-                          ,", curr in note: ",currentData.note_Im_In != nil ? "in note" : "put of note")
+                if currentData.note_Im_In != nil {
+                    if let lclNoteCollection = currentNoteCollection {
+                        lclNoteCollection.deleteMultipleNotes()
+                    }
                 }
+                
+
                 
                 lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
