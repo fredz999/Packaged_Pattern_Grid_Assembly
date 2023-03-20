@@ -177,7 +177,8 @@ public class Central_State : ObservableObject {
                 // if thers a multi select then go with it
                 
                 if let lclMoveHelper = move_Helper {
-                    lclMoveHelper.movement_With_Single_Note_Selected()
+                    lclMoveHelper.movement_With_Multi_Note_Selected()
+                        //.movement_With_Single_Note_Selected()
                 }
                 
             }
