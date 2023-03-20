@@ -180,7 +180,7 @@ public class Note_Collection {
         if currentHighlighted_Single_Note != nil {
             delete_CurrentHighlighted()
         }
-        //print("in between: additional_Selected_Notes.count",additional_Selected_Notes.count)
+        print("3: additional_Selected_Notes.count",additional_Selected_Notes.count)
         if additional_Selected_Notes.count > 0 {
             for note in additional_Selected_Notes {
                 delete_Note_By_Id(note_Id_Param: note.id)
