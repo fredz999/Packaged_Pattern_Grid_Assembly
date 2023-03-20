@@ -18,7 +18,7 @@ class Move_Helper: P_Selectable_Mode {
             if let lclCell = activationCell {
                 snapshot_Cursor_X = lclCell.dataCell_X_Number
 
-                note_Y_Val = lclCell.dataCell_Y_Number
+                //note_Y_Val = lclCell.dataCell_Y_Number
 
                 if let lclNoteCOllection = parentCentralState.currentNoteCollection {
                     if let currentHighlightedNote = lclNoteCOllection.note_Currently_Under_Cursor {
@@ -45,7 +45,7 @@ class Move_Helper: P_Selectable_Mode {
 
     var note_Low_Index : Int?
     var note_High_Index : Int?
-    var note_Y_Val : Int?
+    //var note_Y_Val : Int?
     var snapshot_Cursor_X : Int?
     //var snapshot_Cursor_Y : Int?
     var snapShot_Note_Id_Param : UUID?
@@ -164,7 +164,7 @@ class Move_Helper: P_Selectable_Mode {
         if note_Low_Index != nil{note_Low_Index = nil}
         if note_High_Index != nil{note_High_Index = nil}
         
-        if note_Y_Val != nil{note_Y_Val = nil}
+        //if note_Y_Val != nil{note_Y_Val = nil}
         if snapshot_Cursor_X != nil{snapshot_Cursor_X = nil}
         if snapShot_Note_Id_Param != nil{snapShot_Note_Id_Param = nil}
         

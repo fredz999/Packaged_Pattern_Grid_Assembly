@@ -179,6 +179,7 @@ public class Central_State : ObservableObject {
                 if let lclMoveHelper = move_Helper {
                     lclMoveHelper.movement_With_Single_Note_Selected()
                 }
+                
             }
             else if currentPatternMode == .multi_Select_Mode {
                 if let lclMulti_Select_Helper = multi_Select_Helper {
