@@ -143,41 +143,39 @@ class Move_Helper: P_Selectable_Mode {
 
     
     func movement_With_Multi_Note_Selected(){
-        
-        //moving_Cell_Set_Holder_Array
-        
-        for moving_Cell_Set in moving_Cell_Set_Holder_Array{
+
+        //for moving_Cell_Set in moving_Cell_Set_Holder_Array{
+        for m in 0..<moving_Cell_Set_Holder_Array.count{
             var proposedSet = Set<Underlying_Data_Cell>()
             if let lclSnapshot_X = snapshot_Cursor_X {
                 let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
-                let proposedNewMinIndex = moving_Cell_Set.initial_Snapshot.note_Low_Index + delta_X_Grid_Units
-                //= moving_Note.note_Low_Index + delta_X_Grid_Units
-                let proposedNewMaxIndex = moving_Cell_Set.initial_Snapshot.note_High_Index + delta_X_Grid_Units
-                //= moving_Note.note_High_Index + delta_X_Grid_Units
+                //let proposedNewMinIndex = moving_Cell_Set.initial_Snapshot.note_Low_Index + delta_X_Grid_Units
+                let proposedNewMinIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index + delta_X_Grid_Units
+                //let proposedNewMaxIndex = moving_Cell_Set.initial_Snapshot.note_High_Index + delta_X_Grid_Units
+                let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
 
+                let newLineSet : Set<Underlying_Data_Cell>
+                = Set(parentCentralState.data_Grid.dataLineArray[(parentCentralState.curr_Data_Pos_Y+m)].dataCellArray)
+                //parentCentralState.currLineSet
                 if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
-                    proposedSet = parentCentralState.currLineSet
+                    proposedSet = newLineSet
                     .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
                 }
                 else if proposedNewMinIndex < currLeftLimit {
                     proposedSet = parentCentralState.currLineSet
                     .filter{$0.dataCell_X_Number >= currLeftLimit
-                    && $0.dataCell_X_Number <= (moving_Cell_Set.initial_Snapshot.note_High_Index - moving_Cell_Set.initial_Snapshot.note_Low_Index)}
+                    && $0.dataCell_X_Number <= (moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)}
                 }
                 else if proposedNewMaxIndex > currRightLimit {
                     proposedSet = parentCentralState.currLineSet
-                    .filter{$0.dataCell_X_Number >=  currRightLimit-(moving_Cell_Set.initial_Snapshot.note_High_Index - moving_Cell_Set.initial_Snapshot.note_Low_Index)
+                    .filter{$0.dataCell_X_Number >=  currRightLimit-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
                     && $0.dataCell_X_Number <= currRightLimit
                     }
                 }
-                moving_Cell_Set.potential_Moved_Set = proposedSet
-                moving_Cell_Set.prohibition_Indicator_Set = moving_Cell_Set.potential_Moved_Set.filter({$0.note_Im_In != nil})
-                //potential_Moved_Set = proposedSet
+                moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
+                moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m].potential_Moved_Set.filter({$0.note_Im_In != nil})
             }
         }
-        //prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
-        
-
     }
     
     
