@@ -102,7 +102,9 @@ class Move_Helper: P_Selectable_Mode {
     }
 
     func writeMovedNote_DeleteOldNote(){
+        
         for moving_Cell_Set in moving_Cell_Set_Holder_Array{
+            
             if moving_Cell_Set.potential_Moved_Set.count > 0 {
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
                     

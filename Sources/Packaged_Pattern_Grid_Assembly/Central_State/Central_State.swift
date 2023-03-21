@@ -109,18 +109,13 @@ public class Central_State : ObservableObject {
                     }
                 }
                 
-
-                
                 lclMulti_Select_Helper.deactivate_Mode()
                 lclMoveHelper.deactivate_Mode()
                 lclPassiveHelper.deactivate_Mode()
                 lclWriteNote_Helper.deactivate_Mode()
                 lclDelete_Helper.activate_Mode(activationCell: currentData)
                 currentPatternMode = .delete_Mode
-                
-                
 
-                
             }
             else if patternModeParam == .move_Mode {
                 lclMulti_Select_Helper.deactivate_Mode()
