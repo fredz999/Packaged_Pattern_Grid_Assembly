@@ -23,6 +23,9 @@ public class Note_Collection {
             if let lclCurrSelecNote = note_Currently_Under_Cursor{
                 lclCurrSelecNote.highlighted = false
             }
+            else if note_Currently_Under_Cursor == nil{
+                print("nil it here?....")
+            }
         }
         didSet{
             if let lclCurrSelecNote = note_Currently_Under_Cursor{
