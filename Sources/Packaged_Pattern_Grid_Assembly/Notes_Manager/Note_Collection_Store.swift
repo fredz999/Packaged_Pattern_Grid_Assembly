@@ -18,7 +18,11 @@ public class Note_Collection {
 
     var parentCentralState : Central_State
 
-    var note_Currently_Under_Cursor : Note?
+    var note_Currently_Under_Cursor : Note?{
+        didSet{
+            print("note_Currently_Under_Cursor got set")
+        }
+    }
     
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
