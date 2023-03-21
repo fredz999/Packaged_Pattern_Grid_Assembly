@@ -76,7 +76,7 @@ public class Note_Collection {
         }
     }
     
-    func write_Note_Data(cellSetParam : Set<Underlying_Data_Cell>){
+    func write_Note_Data(cellSetParam : Set<Underlying_Data_Cell>,fromMultiMove:Bool){
         var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = cellSetParam.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             startCellSet.insert(minX)
@@ -111,7 +111,7 @@ public class Note_Collection {
             
             let note = Note(cellArray: local_Cell_Array, parentParam: self, yParam: local_Cell_Array[0].dataCell_Y_Number)
             noteArray.append(note)
-            note.highlighted = true
+            if fromMultiMove == true{note.highlighted = true}
             for cell in local_Cell_Array {
                 cell.note_Im_In = note
             }

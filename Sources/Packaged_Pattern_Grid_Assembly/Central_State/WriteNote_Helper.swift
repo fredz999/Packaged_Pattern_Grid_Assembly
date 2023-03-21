@@ -30,7 +30,7 @@ class WriteNote_Helper: P_Selectable_Mode {
             mode_Active = false
             if potential_Note_Set.count > 0 {
                 if let currentNoteCollection = parentCentralState.currentNoteCollection{
-                    currentNoteCollection.write_Note_Data(cellSetParam: potential_Note_Set)
+                    currentNoteCollection.write_Note_Data(cellSetParam: potential_Note_Set, fromMultiMove: false)
                 }
                 potential_Note_Set.removeAll()
             }
