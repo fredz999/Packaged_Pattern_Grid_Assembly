@@ -21,7 +21,7 @@ public class Note_Collection {
     var note_Currently_Under_Cursor : Note?{
         willSet{
             if let lclCurrSelecNote = note_Currently_Under_Cursor{
-                lclCurrSelecNote.highlighted = false
+                //lclCurrSelecNote.highlighted = false
             }
         }
         didSet{
