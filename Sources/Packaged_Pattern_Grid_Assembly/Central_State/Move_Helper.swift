@@ -136,18 +136,10 @@ class Move_Helper: P_Selectable_Mode {
         
         for moving_Note in noteSnapShotArray{
             
-            
-            
-//            if let lclNote_Low_Index = moving_Note.note_Low_Index
-//                , let lclNote_High_Index = note_High_Index
-//                ,let lclSnapshot_X = snapshot_Cursor_X {
-            
             if let lclSnapshot_X = snapshot_Cursor_X {
                 let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
                 let proposedNewMinIndex = moving_Note.note_Low_Index + delta_X_Grid_Units
-                //lclNote_Low_Index + delta_X_Grid_Units
                 let proposedNewMaxIndex = moving_Note.note_High_Index + delta_X_Grid_Units
-                //= lclNote_High_Index + delta_X_Grid_Units
 
                 if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
                     proposedSet = parentCentralState.currLineSet
@@ -164,19 +156,13 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
                     
-                potential_Moved_Set = proposedSet
-                    
-                prohibition_Indicator_Set = proposedSet.filter({$0.note_Im_In != nil})
+                let newSet = potential_Moved_Set.union(proposedSet)
+                potential_Moved_Set = newSet
+                //= proposedSet
+                //prohibition_Indicator_Set = proposedSet.filter({$0.note_Im_In != nil})
             }
-
-                    
-                        
-                    //}
-            
-            
-            
         }
-        
+        prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
         
 
     }
