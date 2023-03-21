@@ -28,20 +28,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     var dimensions = ComponentDimensions.StaticDimensions
     var note_Y_Number : Int
     
-    var highlighted : Bool = false {
-        didSet{
-            if highlighted == true {
-                for dataCell in dataCellArray {
-                    dataCell.change_Highlight(highlightStatusParam: true)
-                }
-            }
-            else if highlighted == false {
-                for dataCell in dataCellArray {
-                    dataCell.change_Highlight(highlightStatusParam: false)
-                }
-            }
-        }
-    }
+    
 
     public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
         self.lowest_Index = cellArray[0].dataCell_X_Number
@@ -69,14 +56,14 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         }
     }
     
-    var note_Is_MultiSelected : Bool = false {
+    var note_Is_Pre_MultiSelected : Bool = false {
         didSet{
-            if note_Is_MultiSelected == false {
+            if note_Is_Pre_MultiSelected == false {
                 for cell in dataCellArray{
                     cell.handleVisibleStateChange(type: .deActivate_Multiselect_Note_Set)
                 }
             }
-            else if note_Is_MultiSelected == true {
+            else if note_Is_Pre_MultiSelected == true {
                 for cell in dataCellArray{
                     cell.handleVisibleStateChange(type: .activate_Multiselect_Note_Set)
                 }
@@ -84,73 +71,24 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         }
     }
     
+    var highlighted : Bool = false {
+        didSet{
+            if highlighted == true {
+                for dataCell in dataCellArray {
+                    dataCell.change_Highlight(highlightStatusParam: true)
+                }
+            }
+            else if highlighted == false {
+                for dataCell in dataCellArray {
+                    dataCell.change_Highlight(highlightStatusParam: false)
+                }
+            }
+        }
+    }
     
-    
-    // I now need a function for this to be determined
-    // I also need to figure out criteria to determine where to make this assessment
-
-
-//    func cell_Is_Beside_Border_Or_Note(connectionType:CellConnectionType)->Bool{
-//        var retval = false
-//        if connectionType == .below {
-//            if self.note_Y_Number+1 < central_State.higher_Bracket_Number {
-//                for cell in dataCellArray {
-//                    let cellBelow = central_State.data_Grid.dataLineArray[self.note_Y_Number+1].dataCellArray[cell.dataCell_X_Number]
-//                    if cellBelow.note_Im_In != nil {
-//                        retval = true
-//                    }
-//                }
-//            }
-//            else if self.note_Y_Number+1 == central_State.higher_Bracket_Number {
-//                retval = true
-//            }
-//        }
-//        //========================================================================================
-//        //========================================================================================
-//        else if connectionType == .above {
-//            if self.note_Y_Number > 0 {
-//                for cell in dataCellArray {
-//                    let cellAbove = central_State.data_Grid.dataLineArray[self.note_Y_Number-1].dataCellArray[cell.dataCell_X_Number]
-//                    if cellAbove.note_Im_In != nil {
-//                        retval = true
-//                    }
-//                }
-//            }
-//            else if self.note_Y_Number == 0 {
-//                retval = true
-//            }
-//        }
-//
-//
-//        else if connectionType == .toLeft {
-//            if dataCellArray[0].dataCell_X_Number > 0 {
-//                let cell_To_Left = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[dataCellArray[0].dataCell_X_Number - 1]
-//                if cell_To_Left.note_Im_In != nil{
-//                    retval = true
-//                }
-//            }
-//            else if dataCellArray[0].dataCell_X_Number == 0 {
-//                if dataCellArray[0].note_Im_In != nil{
-//                    retval = true
-//                }
-//            }
-//        }
-//
-//
-//        else if connectionType == .toRight {
-//            if dataCellArray[dataCellArray.count-1].dataCell_X_Number < central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
-//                let cell_To_Right = central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray[dataCellArray[dataCellArray.count-1].dataCell_X_Number + 1]
-//                if cell_To_Right.note_Im_In != nil{
-//                    retval = true
-//                }
-//            }
-//            else if dataCellArray[dataCellArray.count-1].dataCell_X_Number == central_State.data_Grid.dataLineArray[self.note_Y_Number].dataCellArray.count-1 {
-//                retval = true
-//            }
-//        }
-//        return retval
-//    }
-    
+    // think I need to really just have statuses and use them to make for highlighting outcomes
+    //1: currently_Under_Cursor - NOPE this is owned by the note colection
+    //2: selected - this can be single or multi
 }
 
 enum CellConnectionType {

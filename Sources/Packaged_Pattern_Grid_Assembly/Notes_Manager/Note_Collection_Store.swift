@@ -34,6 +34,9 @@ public class Note_Collection {
     func note_Collection_Highlight_Handler(noteParam:Note?){
         if noteParam == nil {
             note_Currently_Under_Cursor = nil
+            for note in noteArray{
+                if note.highlighted == true{note.highlighted = false}
+            }
             if parentCentralState.a_Note_Is_Highlighted == true{parentCentralState.a_Note_Is_Highlighted = false}
         }
         else if let lclNoteParam = noteParam {

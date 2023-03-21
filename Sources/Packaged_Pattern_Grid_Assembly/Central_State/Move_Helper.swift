@@ -126,8 +126,8 @@ class Move_Helper: P_Selectable_Mode {
     func nil_Cell_Sets(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection{
             for note in lclNoteCollection.noteArray{
-                if note.note_Is_MultiSelected == true{print("note: ",note.id," is in a multiselect")}
-                else if note.note_Is_MultiSelected != true{print("note: ",note.id," is not in a multiselect")}
+                if note.note_Is_Pre_MultiSelected == true{print("note: ",note.id," is in a multiselect")}
+                else if note.note_Is_Pre_MultiSelected != true{print("note: ",note.id," is not in a multiselect")}
             }
         }
         moving_Cell_Set_Holder_Array.removeAll()

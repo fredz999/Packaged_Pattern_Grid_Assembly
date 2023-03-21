@@ -48,8 +48,8 @@ class Multi_Select_Helper : P_Selectable_Mode {
     func semi_To_Full_Select(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection{
             for note in lclNoteCollection.noteArray{
-                if note.note_Is_MultiSelected == true{
-                    note.note_Is_MultiSelected = false
+                if note.note_Is_Pre_MultiSelected == true{
+                    note.note_Is_Pre_MultiSelected = false
                     note.highlighted = true
                 }
             }
@@ -91,12 +91,12 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 
                 let fullNoteSet = Set(noteCollection.noteArray)
                 for note in nuutez {
-                    if note.note_Is_MultiSelected == false{note.note_Is_MultiSelected = true}
+                    if note.note_Is_Pre_MultiSelected == false{note.note_Is_Pre_MultiSelected = true}
                 }
 
                 let notSelectedSet = fullNoteSet.subtracting(nuutez)
                 for note in notSelectedSet{
-                    if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
+                    if note.note_Is_Pre_MultiSelected == true{note.note_Is_Pre_MultiSelected = false}
                 }
 
             }
@@ -117,13 +117,13 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 let fullNoteSet = Set(noteCollection.noteArray)
                 
                 for note in nuutez {
-                    if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
+                    if note.note_Is_Pre_MultiSelected == true{note.note_Is_Pre_MultiSelected = false}
                 }
 
                 let notSelectedSet = fullNoteSet.subtracting(nuutez)
                 
                 for note in notSelectedSet{
-                    if note.note_Is_MultiSelected == true{note.note_Is_MultiSelected = false}
+                    if note.note_Is_Pre_MultiSelected == true{note.note_Is_Pre_MultiSelected = false}
                 }
 
             }
