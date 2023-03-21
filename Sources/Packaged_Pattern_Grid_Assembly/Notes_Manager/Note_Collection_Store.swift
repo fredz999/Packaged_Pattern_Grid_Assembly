@@ -93,26 +93,29 @@ public class Note_Collection {
         let startCells = startCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         let endCells = endCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
-        var noteArr = [Underlying_Data_Cell]()
+        var local_Cell_Array = [Underlying_Data_Cell]()
+        
         for index in 0..<startCellSet.count {
             let currStartCell = startCells[index]
             let currEndCell = endCells[index]
-            noteArr.append(currStartCell)
+            local_Cell_Array.append(currStartCell)
             let midSet = midCellSet.filter({$0.dataCell_X_Number > currStartCell.dataCell_X_Number && $0.dataCell_X_Number < currEndCell.dataCell_X_Number})
             let midArr = midSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
             for midCell in midArr {
-                noteArr.append(midCell)
+                local_Cell_Array.append(midCell)
             }
-            noteArr.append(currEndCell)
+            local_Cell_Array.append(currEndCell)
         }
 
-        if noteArr.count > 0 {
-            let note = Note(cellArray: noteArr, parentParam: self, yParam: noteArr[0].dataCell_Y_Number)
+        if local_Cell_Array.count > 0 {
+            
+            let note = Note(cellArray: local_Cell_Array, parentParam: self, yParam: local_Cell_Array[0].dataCell_Y_Number)
             noteArray.append(note)
-            for cell in noteArr {
+            for cell in local_Cell_Array {
                 cell.note_Im_In = note
             }
         }
+
     }
     
     func deleteSelectedNotes(){
