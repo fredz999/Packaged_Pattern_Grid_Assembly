@@ -19,8 +19,15 @@ public class Note_Collection {
     var parentCentralState : Central_State
 
     var note_Currently_Under_Cursor : Note?{
+        willSet{
+            if let lclCurrSelecNote = note_Currently_Under_Cursor{
+                lclCurrSelecNote.highlighted = false
+            }
+        }
         didSet{
-            print("note_Currently_Under_Cursor got set")
+            if let lclCurrSelecNote = note_Currently_Under_Cursor{
+                lclCurrSelecNote.highlighted = true
+            }
         }
     }
     
