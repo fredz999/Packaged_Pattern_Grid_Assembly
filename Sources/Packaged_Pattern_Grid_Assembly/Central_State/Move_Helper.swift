@@ -156,10 +156,11 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
                     
-                let newSet = potential_Moved_Set.union(proposedSet)
-                potential_Moved_Set = newSet
+//                let newSet = potential_Moved_Set.union(proposedSet)
+//                potential_Moved_Set = newSet
                 //= proposedSet
                 //prohibition_Indicator_Set = proposedSet.filter({$0.note_Im_In != nil})
+                potential_Moved_Set = proposedSet
             }
         }
         prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
