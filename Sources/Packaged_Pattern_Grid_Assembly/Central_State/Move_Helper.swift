@@ -12,6 +12,10 @@ class Move_Helper: P_Selectable_Mode {
     
     var mode_Active: Bool = false
     
+    //var noteSnapShotArray : [Note_Movement_SnapShot] = []
+    
+    var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []
+    
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
@@ -24,7 +28,9 @@ class Move_Helper: P_Selectable_Mode {
                         let note_Movement_SnapShot = Note_Movement_SnapShot(note_Low_Index: selectedNote.lowest_Index
                         , note_High_Index: selectedNote.highest_Index
                         , snapshotNoteIdParam: selectedNote.id)
-                        noteSnapShotArray.append(note_Movement_SnapShot)
+                        //noteSnapShotArray.append(note_Movement_SnapShot)
+                        let movingCellSetHolder = Moving_Cell_Set_Holder(initial_Snapshot_Param: note_Movement_SnapShot)
+                        moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
                     }
                 }
             }
@@ -44,8 +50,12 @@ class Move_Helper: P_Selectable_Mode {
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    var noteSnapShotArray : [Note_Movement_SnapShot] = []
-
+    
+    
+    
+    
+    
+    
 //    var note_Low_Index : Int?
 //    var note_High_Index : Int?
     var snapshot_Cursor_X : Int?
@@ -60,35 +70,35 @@ class Move_Helper: P_Selectable_Mode {
     var lineBelowOpen : Bool
     var lineAboveOpen : Bool
     
-    var potential_Moved_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = potential_Moved_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-            }
-        }
-        didSet {
-            for cell in potential_Moved_Set {
-                cell.handleVisibleStateChange(type : .activate_Potential_Set)
-            }
-        }
-    }
+//    var potential_Moved_Set = Set<Underlying_Data_Cell>(){
+//        willSet {
+//            let delta = potential_Moved_Set.symmetricDifference(newValue)
+//            for cell in delta {
+//                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//            }
+//        }
+//        didSet {
+//            for cell in potential_Moved_Set {
+//                cell.handleVisibleStateChange(type : .activate_Potential_Set)
+//            }
+//        }
+//    }
+//
+//    var prohibition_Indicator_Set = Set<Underlying_Data_Cell>(){
+//        willSet {
+//            let delta = prohibition_Indicator_Set.symmetricDifference(newValue)
+//            for cell in delta {
+//                cell.handleVisibleStateChange(type: .deActivate_Prohibited)
+//            }
+//        }
+//        didSet {
+//            for cell in prohibition_Indicator_Set {
+//                cell.handleVisibleStateChange(type : .activate_Prohibited)
+//            }
+//        }
+//    }
     
-    var prohibition_Indicator_Set = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = prohibition_Indicator_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Prohibited)
-            }
-        }
-        didSet {
-            for cell in prohibition_Indicator_Set {
-                cell.handleVisibleStateChange(type : .activate_Prohibited)
-            }
-        }
-    }
-    
-    var proposedSet = Set<Underlying_Data_Cell>()
+    //var proposedSet = Set<Underlying_Data_Cell>()
     
     init(parentCentral_State_Param:Central_State){
         parentCentralState = parentCentral_State_Param
@@ -134,12 +144,16 @@ class Move_Helper: P_Selectable_Mode {
     
     func movement_With_Multi_Note_Selected(){
         
-        for moving_Note in noteSnapShotArray{
-            
+        //moving_Cell_Set_Holder_Array
+        
+        for moving_Cell_Set in moving_Cell_Set_Holder_Array{
+            var proposedSet = Set<Underlying_Data_Cell>()
             if let lclSnapshot_X = snapshot_Cursor_X {
                 let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
-                let proposedNewMinIndex = moving_Note.note_Low_Index + delta_X_Grid_Units
-                let proposedNewMaxIndex = moving_Note.note_High_Index + delta_X_Grid_Units
+                let proposedNewMinIndex = moving_Cell_Set.initial_Snapshot.note_Low_Index + delta_X_Grid_Units
+                //= moving_Note.note_Low_Index + delta_X_Grid_Units
+                let proposedNewMaxIndex = moving_Cell_Set.initial_Snapshot.note_High_Index + delta_X_Grid_Units
+                //= moving_Note.note_High_Index + delta_X_Grid_Units
 
                 if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
                     proposedSet = parentCentralState.currLineSet
@@ -147,23 +161,21 @@ class Move_Helper: P_Selectable_Mode {
                 }
                 else if proposedNewMinIndex < currLeftLimit {
                     proposedSet = parentCentralState.currLineSet
-                    .filter{$0.dataCell_X_Number >= currLeftLimit && $0.dataCell_X_Number <= (moving_Note.note_High_Index - moving_Note.note_Low_Index)}
+                    .filter{$0.dataCell_X_Number >= currLeftLimit
+                    && $0.dataCell_X_Number <= (moving_Cell_Set.initial_Snapshot.note_High_Index - moving_Cell_Set.initial_Snapshot.note_Low_Index)}
                 }
                 else if proposedNewMaxIndex > currRightLimit {
                     proposedSet = parentCentralState.currLineSet
-                    .filter{$0.dataCell_X_Number >=  currRightLimit-(moving_Note.note_High_Index - moving_Note.note_Low_Index)
-                        && $0.dataCell_X_Number <= currRightLimit
+                    .filter{$0.dataCell_X_Number >=  currRightLimit-(moving_Cell_Set.initial_Snapshot.note_High_Index - moving_Cell_Set.initial_Snapshot.note_Low_Index)
+                    && $0.dataCell_X_Number <= currRightLimit
                     }
                 }
-                    
-//                let newSet = potential_Moved_Set.union(proposedSet)
-//                potential_Moved_Set = newSet
-                //= proposedSet
-                //prohibition_Indicator_Set = proposedSet.filter({$0.note_Im_In != nil})
-                potential_Moved_Set = proposedSet
+                moving_Cell_Set.potential_Moved_Set = proposedSet
+                moving_Cell_Set.prohibition_Indicator_Set = moving_Cell_Set.potential_Moved_Set.filter({$0.note_Im_In != nil})
+                //potential_Moved_Set = proposedSet
             }
         }
-        prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
+        //prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
         
 
     }
@@ -180,39 +192,46 @@ class Move_Helper: P_Selectable_Mode {
 //
 //        if snapShot_Note_Id_Param != nil{snapShot_Note_Id_Param = nil}
         
-        noteSnapShotArray.removeAll()
+        // come back to this laters
+        moving_Cell_Set_Holder_Array.removeAll()
 
-        if proposedSet.count > 0 {
-            proposedSet.removeAll()
-        }
-        if prohibition_Indicator_Set.count > 0 {
-            prohibition_Indicator_Set.removeAll()
-        }
-        if potential_Moved_Set.count > 0 {
-            potential_Moved_Set.removeAll()
-        }
+//        if proposedSet.count > 0 {
+//            proposedSet.removeAll()
+//        }
+//        if prohibition_Indicator_Set.count > 0 {
+//            prohibition_Indicator_Set.removeAll()
+//        }
+//        if potential_Moved_Set.count > 0 {
+//            potential_Moved_Set.removeAll()
+//        }
 
     }
     
     func writeMovedNote_DeleteOldNote(){
-        for note_Snapshot in noteSnapShotArray {
-            if potential_Moved_Set.count > 0{
-                //, let lclSnapshotNote = note_Snapshot.snapShot_Note_Id_Param {
-
+        //for note_Snapshot in noteSnapShotArray {
+        
+        for moving_Cell_Set in moving_Cell_Set_Holder_Array{
+            if moving_Cell_Set.potential_Moved_Set.count > 0{
+                            
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
                     
-                    currNoteCollection.delete_Note_By_Id(note_Id_Param: note_Snapshot.snapShot_Note_Id_Param)
+                    currNoteCollection.delete_Note_By_Id(note_Id_Param: moving_Cell_Set.initial_Snapshot.snapShot_Note_Id_Param)
+                                                            //note_Snapshot.snapShot_Note_Id_Param)
                     
-                    for cell in potential_Moved_Set {
+                    //for cell in potential_Moved_Set {
+                    for cell in moving_Cell_Set.potential_Moved_Set{
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                     }
                     
-                    currNoteCollection.write_Note_Data(cellSetParam: potential_Moved_Set)
+                    //currNoteCollection.write_Note_Data(cellSetParam: potential_Moved_Set)
+                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set)
                 }
                 nil_Cell_Sets()
             }
         }
         
+            
+        //}
     }
     
 }
@@ -232,4 +251,47 @@ class Note_Movement_SnapShot{
         self.note_High_Index = note_High_Index
         snapShot_Note_Id_Param = snapshotNoteIdParam
     }
+}
+
+class Moving_Cell_Set_Holder {
+    
+    var initial_Snapshot : Note_Movement_SnapShot
+    
+    var potential_Moved_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = potential_Moved_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+            }
+        }
+        didSet {
+            for cell in potential_Moved_Set {
+                cell.handleVisibleStateChange(type : .activate_Potential_Set)
+            }
+        }
+    }
+    
+    var prohibition_Indicator_Set = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = prohibition_Indicator_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Prohibited)
+            }
+        }
+        didSet {
+            for cell in prohibition_Indicator_Set {
+                cell.handleVisibleStateChange(type : .activate_Prohibited)
+            }
+        }
+    }
+    
+    init(initial_Snapshot_Param:Note_Movement_SnapShot){
+        initial_Snapshot = initial_Snapshot_Param
+    }
+    
+    func updateSet(newSet:Set<Underlying_Data_Cell>){
+            potential_Moved_Set = newSet
+            prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
+        }
+
 }
