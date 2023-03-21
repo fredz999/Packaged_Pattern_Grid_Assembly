@@ -22,10 +22,6 @@ public class Note_Collection {
         willSet{
             if let lclCurrSelecNote = note_Currently_Under_Cursor{
                 lclCurrSelecNote.highlighted = false
-                print("1:nil it here?....")
-            }
-            else if note_Currently_Under_Cursor == nil{
-                print("2:nil it here?....")
             }
         }
         didSet{
