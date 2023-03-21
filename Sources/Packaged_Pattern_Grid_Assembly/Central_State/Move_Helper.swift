@@ -114,7 +114,7 @@ class Move_Helper: P_Selectable_Mode {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                     }
                     
-                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set)
+                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, fromMultiMove: true)
                     // add it to the moving stuff thing in here - until move mode goes aff
                     
                 }
