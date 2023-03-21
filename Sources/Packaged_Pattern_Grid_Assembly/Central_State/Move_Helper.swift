@@ -113,6 +113,7 @@ class Move_Helper: P_Selectable_Mode {
         if let lclNoteCollection = parentCentralState.currentNoteCollection{
             for note in lclNoteCollection.noteArray{
                 if note.note_Is_MultiSelected == true{print("note: ",note.id," is in a multiselect")}
+                else if note.note_Is_MultiSelected != true{print("note: ",note.id," is not in a multiselect")}
             }
         }
         moving_Cell_Set_Holder_Array.removeAll()
@@ -128,9 +129,7 @@ class Move_Helper: P_Selectable_Mode {
                     }
                     currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set)
                     // highlight the sucker in here?
-                    
                 }
-                
             }
         }
         nil_Cell_Sets()
