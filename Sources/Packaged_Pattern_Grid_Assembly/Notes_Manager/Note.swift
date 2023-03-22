@@ -57,7 +57,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     }
     
     var note_Is_Pre_MultiSelected : Bool = false {
-        didSet{
+        didSet {
             if note_Is_Pre_MultiSelected == false {
                 for cell in dataCellArray{
                     cell.handleVisibleStateChange(type: .deActivate_Multiselect_Note_Set)
