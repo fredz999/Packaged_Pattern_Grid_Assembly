@@ -47,6 +47,14 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         return (startCellNum,length,endCellNum)
     }
     
+    // hit when resize mode active and x slider moved over highlighted cell
+    func shortenToNearestViableUnit(){
+        //1: est minimum length, check if removing cells will go below
+        // ach just start with the subtraction of one current grid unit
+        print("dimensions.pattern_Grid_Cell_Sub_Unit_Count: ",dimensions.pattern_Grid_Cell_Sub_Unit_Count)
+        print("dataCellArray.count: ",dataCellArray.count)
+    }
+    
     // the visible cells also need to update in data vals holder
     func resetCells(){
         for cell in dataCellArray {
@@ -86,9 +94,6 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         }
     }
     
-    // think I need to really just have statuses and use them to make for highlighting outcomes
-    //1: currently_Under_Cursor - NOPE this is owned by the note colection
-    //2: selected - this can be single or multi
 }
 
 enum CellConnectionType {

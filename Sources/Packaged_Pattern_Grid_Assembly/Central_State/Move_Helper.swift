@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 class Move_Helper: P_Selectable_Mode {
+    var selectableModeId: Int
+    
     
     let dimensions = ComponentDimensions.StaticDimensions
     
@@ -47,7 +49,6 @@ class Move_Helper: P_Selectable_Mode {
         }
     }
     
-    
     public var deleteActive : Bool = true
     
     var parentCentralState : Central_State
@@ -60,7 +61,8 @@ class Move_Helper: P_Selectable_Mode {
     var lineBelowOpen : Bool
     var lineAboveOpen : Bool
 
-    init(parentCentral_State_Param:Central_State){
+    init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
+        selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
         currLeftLimit = 0
         currRightLimit = dimensions.dataGrid_X_Unit_Count-1
@@ -133,6 +135,7 @@ class Move_Helper: P_Selectable_Mode {
 }
 
 protocol P_Selectable_Mode {
+    var selectableModeId : Int{get set}
     var mode_Active : Bool{get set}
     func activate_Mode(activationCell : Underlying_Data_Cell?)
     func deactivate_Mode()

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class Delete_Helper : P_Selectable_Mode{
-    
+    var selectableModeId : Int
     var mode_Active: Bool = false
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
@@ -86,7 +86,8 @@ class Delete_Helper : P_Selectable_Mode{
         }
     }
     
-    init(parentCentral_State_Param:Central_State){
+    init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
+        selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
     }
 

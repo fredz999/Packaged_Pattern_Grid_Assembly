@@ -8,6 +8,8 @@
 import Foundation
 
 class Passive_Helper: P_Selectable_Mode {
+    var selectableModeId: Int
+    
     
     
     
@@ -25,7 +27,8 @@ class Passive_Helper: P_Selectable_Mode {
 
     var parentCentralState : Central_State
     
-    init(parentCentral_State_Param:Central_State){
+    init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
+        selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
     }
     

@@ -10,6 +10,8 @@ import SwiftUI
 
 //P_Selectable_Mode
 class Multi_Select_Helper : P_Selectable_Mode {
+    var selectableModeId: Int
+    
     
     var parentCentralState : Central_State
     
@@ -56,7 +58,8 @@ class Multi_Select_Helper : P_Selectable_Mode {
         }
     }
     
-    init(parentCentral_State_Param:Central_State){
+    init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
+        selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
     }
 

@@ -10,6 +10,8 @@ import SwiftUI
 
 
 class WriteNote_Helper: P_Selectable_Mode {
+    var selectableModeId: Int
+    
     
     var mode_Active: Bool
     
@@ -42,7 +44,8 @@ class WriteNote_Helper: P_Selectable_Mode {
     
     var parentCentralState : Central_State
     
-    init(parentCentral_State_Param:Central_State){
+    init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
+        selectableModeId = selectableModeIdParam
         mode_Active = false
         //note_Collection_Ref = note_CollectionParam
         parentCentralState = parentCentral_State_Param
