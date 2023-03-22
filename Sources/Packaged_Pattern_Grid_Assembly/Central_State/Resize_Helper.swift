@@ -31,13 +31,29 @@ class Resize_Helper: P_Selectable_Mode {
         }
     }
     
+    func move_Slider_To_Last_Cell_In_Note(){
+        // got to get the last cell in the note
+    if let lclNoteCollection = parentCentralState.currentNoteCollection {
+        if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
+            if let hSliderRef = parentCentralState.h_Slider_Ref{
+                print("dimensions.pattern_Grid_Cell_Sub_Unit_Count: ",dimensions.pattern_Grid_Cell_Sub_Unit_Count
+                                  ," currentNoteLength: ",lcl_Note_At_Cursor.dataCellArray.count
+                                  ," hSliderRef.currentVal: ",hSliderRef.currentVal)
+            }
+            
+            
+        }
+    }
+    
+    }
+    
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active=false
         }
     }
     
-    public var deleteActive : Bool = true
+    //public var deleteActive : Bool = true
     
     var parentCentralState : Central_State
 
@@ -54,16 +70,7 @@ class Resize_Helper: P_Selectable_Mode {
         currRightLimit = dimensions.dataGrid_X_Unit_Count-1
     }
     
-    func move_Slider_To_Last_Cell_In_Note(){
-        // got to get the last cell in the note
-    if let lclNoteCollection = parentCentralState.currentNoteCollection {
-        if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-            print("dimensions.pattern_Grid_Cell_Sub_Unit_Count: ",dimensions.pattern_Grid_Cell_Sub_Unit_Count
-                  ," currentNoteLength: ",lcl_Note_At_Cursor.dataCellArray.count)
-        }
-    }
     
-    }
 
     //this happens with x slider
     func resize(){
