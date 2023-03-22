@@ -19,7 +19,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     }
     
     public var id : UUID
-    var parentRef : Note_Collection
+    var parent_Note_Collection : Note_Collection
     var dataCellArray : [Underlying_Data_Cell] = []
     
     var lowest_Index : Int
@@ -34,7 +34,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         self.lowest_Index = cellArray[0].dataCell_X_Number
         self.highest_Index = cellArray[cellArray.count-1].dataCell_X_Number
         self.note_Y_Number = yParam
-        self.parentRef = parentParam
+        self.parent_Note_Collection = parentParam
         self.id = id
         self.dataCellArray = cellArray
     }
@@ -49,6 +49,34 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     
     func resizeLength(cellDelta:Int){
         print("resizeLength(cellDelta: ",cellDelta)
+        //1 for elongate
+        //1: the final cell is no longer an end cell its a mid
+        //2: the next two after the final are now midz and the last one is and end
+        if cellDelta > 0{
+            let lastElement = dataCellArray.count-1
+            dataCellArray[lastElement].change_Type(newType: .mid_Note)
+
+            
+            let next_1 = dataCellArray[lastElement].dataCell_X_Number+1
+            let new_Cell_1 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_1]
+            new_Cell_1.change_Type(newType: .mid_Note)
+            new_Cell_1.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
+            dataCellArray.append(new_Cell_1)
+            
+            let next_2 = dataCellArray[lastElement].dataCell_X_Number+2
+            let new_Cell_2 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_2]
+            new_Cell_2.change_Type(newType: .mid_Note)
+            new_Cell_2.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
+            dataCellArray.append(new_Cell_2)
+            
+            
+            let next_3 = dataCellArray[lastElement].dataCell_X_Number+3
+            let new_Cell_3 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_3]
+            new_Cell_3.change_Type(newType: .end_Note)
+            new_Cell_3.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
+            dataCellArray.append(new_Cell_3)
+
+        }
     }
     
     // hit when resize mode active and x slider moved over highlighted cell
