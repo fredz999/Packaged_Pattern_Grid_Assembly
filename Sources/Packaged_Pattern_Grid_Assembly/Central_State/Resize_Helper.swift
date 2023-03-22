@@ -40,10 +40,12 @@ class Resize_Helper: P_Selectable_Mode {
 //                                  ," currentNoteLength: ",lcl_Note_At_Cursor.dataCellArray.count
 //                                  ," hSliderRef.currentVal: ",hSliderRef.currentVal)
                 //let newHSliderPlace = lcl_Note_At_Cursor.lowest_Index+dimensions.pattern_Grid_Cell_Sub_Unit_Count
+                
                 let proposedNewHSliderPlace = lcl_Note_At_Cursor.highest_Index-dimensions.pattern_Grid_Cell_Sub_Unit_Count
                
                 let lowCellPos = CGFloat(lcl_Note_At_Cursor.lowest_Index)*dimensions.pattern_Grid_Sub_Cell_Width
-                let oneCellB4End = CGFloat(lcl_Note_At_Cursor.highest_Index-dimensions.pattern_Grid_Cell_Sub_Unit_Count)*dimensions.pattern_Grid_Sub_Cell_Width
+                let oneCellB4End = CGFloat(proposedNewHSliderPlace)*dimensions.pattern_Grid_Sub_Cell_Width
+                
                 print("lowCellPos: ",lowCellPos.description,", oneCellB4End: ",oneCellB4End.description)
                 
                 hSliderRef.jumpToACell(cellNum: proposedNewHSliderPlace)
