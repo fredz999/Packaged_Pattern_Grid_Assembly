@@ -39,7 +39,9 @@ class Resize_Helper: P_Selectable_Mode {
                 print("dimensions.pattern_Grid_Cell_Sub_Unit_Count: ",dimensions.pattern_Grid_Cell_Sub_Unit_Count
                                   ," currentNoteLength: ",lcl_Note_At_Cursor.dataCellArray.count
                                   ," hSliderRef.currentVal: ",hSliderRef.currentVal)
-                let newHSliderPlace = lcl_Note_At_Cursor.lowest_Index+dimensions.pattern_Grid_Cell_Sub_Unit_Count
+                //let newHSliderPlace = lcl_Note_At_Cursor.lowest_Index+dimensions.pattern_Grid_Cell_Sub_Unit_Count
+                let newHSliderPlace = lcl_Note_At_Cursor.highest_Index-dimensions.pattern_Grid_Cell_Sub_Unit_Count
+                
                 hSliderRef.jumpToACell(cellNum: newHSliderPlace)
             }
             
