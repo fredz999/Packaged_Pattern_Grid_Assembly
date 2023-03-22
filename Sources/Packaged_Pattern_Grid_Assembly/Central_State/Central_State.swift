@@ -73,10 +73,10 @@ public class Central_State : ObservableObject {
         
     }
     
-    public func move_Delete_Status_Set(moveDeleteOn:Bool){
-        if moveDeleteOn == true{
-            if let lclDeleteHelper = move_Helper{
-                lclDeleteHelper.deleteActive = moveDeleteOn
+    public func move_Delete_Status_Set(moveDeleteOn:Bool) {
+        if moveDeleteOn == true {
+            if let lclDeleteHelper = move_Helper {
+                if lclDeleteHelper.deleteActive != moveDeleteOn{lclDeleteHelper.deleteActive = moveDeleteOn}
             }
         }
     }
