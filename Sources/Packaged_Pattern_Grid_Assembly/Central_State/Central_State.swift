@@ -104,7 +104,7 @@ public class Central_State : ObservableObject {
         }
         else if patternModeParam == .resize_Mode {
             print("hit 1")
-            modeActivator(mode_Param: resize_Helper, activationCellParam: nil)
+            modeActivator(mode_Param: resize_Helper, activationCellParam: currentData)
             currentPatternMode = .resize_Mode
         }
         else if patternModeParam == .write_Mode {
