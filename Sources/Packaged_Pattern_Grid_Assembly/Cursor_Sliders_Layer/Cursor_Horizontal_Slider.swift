@@ -86,8 +86,12 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 //    }
     
     public func jumpToACell(cellNum:Int){
-        accumulatedDrag = CGFloat(cellNum)*dimensions.pattern_Grid_Sub_Cell_Width
-        currentVal = accumulatedDrag
+        let proposedNewVal = CGFloat(cellNum)*dimensions.pattern_Grid_Sub_Cell_Width
+        if accumulatedDrag != proposedNewVal{
+            accumulatedDrag = proposedNewVal
+            currentVal = accumulatedDrag
+        }
+        
     }
     
     public func handleDragEnd(inputParam:CGFloat){
