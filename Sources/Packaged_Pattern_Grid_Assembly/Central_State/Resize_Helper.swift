@@ -42,10 +42,24 @@ class Resize_Helper: P_Selectable_Mode {
                 }
             }
         }
+        // MAKE TEMP ARRAY OF SELECTED NOTES WHICH YOU THEN ALTER
     }
     
     func reactToHsliderMove(){
-        print("reactToHsliderMove()")
+        //parentCentralState.currentData.dataCell_X_Number
+        //print("reactToHsliderMove(), XNUm: ",parentCentralState.currentData.dataCell_X_Number.description)
+        // right lets de-longate dis
+        //start of the note:
+//        if let lclNoteCollection = parentCentralState.currentNoteCollection {
+//            if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
+//                print("snap X:",snapshot_Cursor_X,", lcl_Note_At_Cursor X: ",lcl_Note_At_Cursor.)
+//            }
+//        }
+        print("snap X:",snapshot_Cursor_X,", lcl_Note_At_Cursor X: ",parentCentralState.currentData.dataCell_X_Number )
+        //1: est delta
+        //2:
+        //2: apply delta to noteArray notes where they
+        
     }
     
     func deactivate_Mode() {

@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 class Move_Helper: P_Selectable_Mode {
-    var selectableModeId: Int
     
+    var selectableModeId: Int
     
     let dimensions = ComponentDimensions.StaticDimensions
     
