@@ -178,6 +178,13 @@ public class Central_State : ObservableObject {
                     lclMulti_Select_Helper.area_Select_Handler()
                 }
             }
+            else if currentPatternMode == .resize_Mode {
+                if let lclResize_Helper = resize_Helper {
+                    lclResize_Helper.reactToHsliderMove()
+                }
+            }
+            
+            
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]

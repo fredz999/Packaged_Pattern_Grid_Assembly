@@ -32,34 +32,20 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func move_Slider_To_Last_Cell_In_Note(){
-        // got to get the last cell in the note
-    if let lclNoteCollection = parentCentralState.currentNoteCollection {
-        if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-            if let hSliderRef = parentCentralState.h_Slider_Ref{
-//                print("dimensions.pattern_Grid_Cell_Sub_Unit_Count: ",dimensions.pattern_Grid_Cell_Sub_Unit_Count
-//                                  ," currentNoteLength: ",lcl_Note_At_Cursor.dataCellArray.count
-//                                  ," hSliderRef.currentVal: ",hSliderRef.currentVal)
-                //let newHSliderPlace = lcl_Note_At_Cursor.lowest_Index+dimensions.pattern_Grid_Cell_Sub_Unit_Count
-                
-                //let proposedNewHSliderPlace = lcl_Note_At_Cursor.highest_Index-dimensions.pattern_Grid_Cell_Sub_Unit_Count
-               
-                
-                
-                //print("lowCellPos: ",lowCellPos.description,", oneCellB4End: ",oneCellB4End.description)
-                let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
-                
-                let lowCellPos = CGFloat(lcl_Note_At_Cursor.lowest_Index)*dimensions.pattern_Grid_Sub_Cell_Width
-                let destinationCellPos = CGFloat(destinationCellIndex)*dimensions.pattern_Grid_Sub_Cell_Width
-                
-                print("lowCellPos: ",lowCellPos,", destinationCellPos: ",destinationCellPos)
-                
-                hSliderRef.jumpToACell(cellNum: destinationCellIndex)
+        if let lclNoteCollection = parentCentralState.currentNoteCollection {
+            if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
+                if let hSliderRef = parentCentralState.h_Slider_Ref {
+                    let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
+                    let lowCellPos = CGFloat(lcl_Note_At_Cursor.lowest_Index)*dimensions.pattern_Grid_Sub_Cell_Width
+                    let destinationCellPos = CGFloat(destinationCellIndex)*dimensions.pattern_Grid_Sub_Cell_Width
+                    hSliderRef.jumpToACell(cellNum: destinationCellIndex)
+                }
             }
-            
-            
         }
     }
     
+    func reactToHsliderMove(){
+        print("reactToHsliderMove()")
     }
     
     func deactivate_Mode() {
