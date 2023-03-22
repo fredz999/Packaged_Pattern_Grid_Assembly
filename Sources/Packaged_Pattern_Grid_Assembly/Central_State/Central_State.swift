@@ -72,6 +72,14 @@ public class Central_State : ObservableObject {
         centralState_Data_Evaluation()
         
     }
+    
+    public func move_Delete_Status_Set(moveDeleteOn:Bool){
+        if moveDeleteOn == true{
+            if let lclDeleteHelper = move_Helper{
+                lclDeleteHelper.deleteActive = moveDeleteOn
+            }
+        }
+    }
 
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam

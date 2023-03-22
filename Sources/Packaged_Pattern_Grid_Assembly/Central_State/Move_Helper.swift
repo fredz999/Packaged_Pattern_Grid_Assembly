@@ -43,7 +43,7 @@ class Move_Helper: P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active=false
-            writeMovedNote_DeleteOldNote(delete_Active: deleteActive)
+            writeMovedNote_DeleteOldNote()
         }
     }
     
@@ -102,14 +102,14 @@ class Move_Helper: P_Selectable_Mode {
         }
     }
 
-    func writeMovedNote_DeleteOldNote(delete_Active:Bool){
+    func writeMovedNote_DeleteOldNote(){
         
         for moving_Cell_Set in moving_Cell_Set_Holder_Array{
             
             if moving_Cell_Set.potential_Moved_Set.count > 0 {
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
                     
-                    if delete_Active == true {
+                    if deleteActive == true {
                         currNoteCollection.delete_Note_By_Id(note_Id_Param: moving_Cell_Set.initial_Snapshot.snapShot_Note_Id_Param)
                     }
                     
