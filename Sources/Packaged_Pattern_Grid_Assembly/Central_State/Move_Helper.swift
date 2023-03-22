@@ -43,11 +43,12 @@ class Move_Helper: P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active=false
-            writeMovedNote_DeleteOldNote()
+            writeMovedNote_DeleteOldNote(delete_Active: deleteActive)
         }
     }
     
-    func enptyNoteSnapshots(){}
+    
+    public var deleteActive : Bool = true
     
     var parentCentralState : Central_State
 
@@ -101,14 +102,16 @@ class Move_Helper: P_Selectable_Mode {
         }
     }
 
-    func writeMovedNote_DeleteOldNote(){
+    func writeMovedNote_DeleteOldNote(delete_Active:Bool){
         
         for moving_Cell_Set in moving_Cell_Set_Holder_Array{
             
             if moving_Cell_Set.potential_Moved_Set.count > 0 {
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
                     
-                    currNoteCollection.delete_Note_By_Id(note_Id_Param: moving_Cell_Set.initial_Snapshot.snapShot_Note_Id_Param)
+                    if delete_Active == true {
+                        currNoteCollection.delete_Note_By_Id(note_Id_Param: moving_Cell_Set.initial_Snapshot.snapShot_Note_Id_Param)
+                    }
                     
                     for cell in moving_Cell_Set.potential_Moved_Set{
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
@@ -124,12 +127,6 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func nil_Cell_Sets(){
-        if let lclNoteCollection = parentCentralState.currentNoteCollection{
-            for note in lclNoteCollection.noteArray{
-                if note.note_Is_Pre_MultiSelected == true{print("note: ",note.id," is in a multiselect")}
-                else if note.note_Is_Pre_MultiSelected != true{print("note: ",note.id," is not in a multiselect")}
-            }
-        }
         moving_Cell_Set_Holder_Array.removeAll()
     }
     
@@ -191,8 +188,8 @@ class Moving_Cell_Set_Holder {
     }
     
     func updateSet(newSet:Set<Underlying_Data_Cell>){
-            potential_Moved_Set = newSet
-            prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
-        }
+        potential_Moved_Set = newSet
+        prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
+    }
 
 }
