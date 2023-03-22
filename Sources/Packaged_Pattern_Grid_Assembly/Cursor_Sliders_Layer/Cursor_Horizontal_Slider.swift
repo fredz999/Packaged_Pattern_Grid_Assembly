@@ -53,20 +53,22 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         }
     }
         
-//    public func artificially_H_Increment(){
-//
-//        accumulatedDrag += dimensions.cursor_X_Jump
-//
-//        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
-//            currentVal = accumulatedDrag
-//        }
-//
-//        else if (accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
-//            accumulatedDrag = (dimensions.potential_Note_Rightward_Boundary)
-//            currentVal = (dimensions.potential_Note_Rightward_Boundary)
-//        }
-//
-//    }
+    public func artificially_H_Increment(){
+
+        let jump = CGFloat(dimensions.pattern_Grid_Cell_Sub_Unit_Count) * dimensions.pattern_Grid_Sub_Cell_Width
+        accumulatedDrag += 23
+        //dimensions.cursor_X_Jump
+
+        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
+            currentVal = accumulatedDrag
+        }
+
+        else if (accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
+            accumulatedDrag = (dimensions.potential_Note_Rightward_Boundary)
+            currentVal = (dimensions.potential_Note_Rightward_Boundary)
+        }
+
+    }
 
 //    public func artificially_H_Decrement(){
 //
