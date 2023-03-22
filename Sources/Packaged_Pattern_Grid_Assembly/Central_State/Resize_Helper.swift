@@ -41,16 +41,19 @@ class Resize_Helper: P_Selectable_Mode {
 //                                  ," hSliderRef.currentVal: ",hSliderRef.currentVal)
                 //let newHSliderPlace = lcl_Note_At_Cursor.lowest_Index+dimensions.pattern_Grid_Cell_Sub_Unit_Count
                 
-                let proposedNewHSliderPlace = lcl_Note_At_Cursor.highest_Index-dimensions.pattern_Grid_Cell_Sub_Unit_Count
+                //let proposedNewHSliderPlace = lcl_Note_At_Cursor.highest_Index-dimensions.pattern_Grid_Cell_Sub_Unit_Count
                
-                let lowCellPos = CGFloat(lcl_Note_At_Cursor.lowest_Index)*dimensions.pattern_Grid_Sub_Cell_Width
-                let oneCellB4End = CGFloat(proposedNewHSliderPlace)*dimensions.pattern_Grid_Sub_Cell_Width
+                
                 
                 //print("lowCellPos: ",lowCellPos.description,", oneCellB4End: ",oneCellB4End.description)
+                let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
                 
-                print("note lowCell: ",lcl_Note_At_Cursor.lowest_Index,", highest: ",lcl_Note_At_Cursor.highest_Index)
+                let lowCellPos = CGFloat(lcl_Note_At_Cursor.lowest_Index)*dimensions.pattern_Grid_Sub_Cell_Width
+                let destinationCellPos = CGFloat(destinationCellIndex)*dimensions.pattern_Grid_Sub_Cell_Width
                 
-                hSliderRef.jumpToACell(cellNum: proposedNewHSliderPlace)
+                print("lowCellPos: ",lowCellPos,", destinationCellPos: ",destinationCellPos)
+                
+                hSliderRef.jumpToACell(cellNum: destinationCellIndex)
             }
             
             
