@@ -26,7 +26,7 @@ class Resize_Helper: P_Selectable_Mode {
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
                 
- 
+                move_Slider_To_Last_Cell_In_Note()
             }
         }
     }
@@ -52,7 +52,6 @@ class Resize_Helper: P_Selectable_Mode {
         parentCentralState = parentCentral_State_Param
         currLeftLimit = 0
         currRightLimit = dimensions.dataGrid_X_Unit_Count-1
-        move_Slider_To_Last_Cell_In_Note()
     }
     
     func move_Slider_To_Last_Cell_In_Note(){
