@@ -55,7 +55,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         if cellDelta > 0 {
             let lastElement = dataCellArray.count-1
             dataCellArray[lastElement].change_Type(newType: .mid_Note)
-
+            dataCellArray[lastElement].change_Highlight(highlightStatusParam: true)
             
             let next_1 = dataCellArray[lastElement].dataCell_X_Number+1
             let new_Cell_1 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_1]
