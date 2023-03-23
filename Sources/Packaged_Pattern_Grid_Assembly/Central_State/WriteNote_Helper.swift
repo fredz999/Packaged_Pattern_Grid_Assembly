@@ -109,7 +109,7 @@ class WriteNote_Helper: P_Selectable_Mode {
             else if parentCentralState.dimensions.patternTimingConfiguration == .sixEight {
                 let lowerHalfCellSet = parentCentralState.currLineSet.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
                 let upperHalfCellSet = parentCentralState.currLineSet
-                    .filter({$0.six_Eight_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index-1})
+                    .filter({$0.six_Eight_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
                 var combinedSet = Set<Underlying_Data_Cell>()
 
                 let rightSideHasNotesSet = parentCentralState.currLineSet.filter({$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
@@ -143,7 +143,7 @@ class WriteNote_Helper: P_Selectable_Mode {
 
             else if lclInitialCell.dataCell_X_Number > parentCentralState.currentData.dataCell_X_Number {
                 if parentCentralState.dimensions.patternTimingConfiguration == .fourFour {
-                let upperHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index-1})
+                let upperHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
                 let lowerHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                 var combinedSet = Set<Underlying_Data_Cell>()
 
@@ -176,7 +176,7 @@ class WriteNote_Helper: P_Selectable_Mode {
             }
                 else if parentCentralState.dimensions.patternTimingConfiguration == .sixEight {
                 let upperHalfCellSet = parentCentralState.currLineSet
-                .filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index-1})
+                .filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
                 let lowerHalfCellSet = parentCentralState.currLineSet
                 .filter({$0.six_Eight_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
                 var combinedSet = Set<Underlying_Data_Cell>()
