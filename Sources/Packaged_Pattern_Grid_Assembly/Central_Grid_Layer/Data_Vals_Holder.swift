@@ -256,7 +256,9 @@ public class Data_Vals_Holder : ObservableObject {
     func check_In_Resize_Set() {
         if referenced_in_Resize_Set == true {
             if statusColor != .purple{statusColor = .purple}
-                //colors.potentialColor{statusColor = colors.potentialColor}
+        }
+        else if referenced_in_Resize_Set == false {
+            if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
         }
     }
 
