@@ -68,14 +68,14 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
             if dimensions.patternTimingConfiguration == .fourFour {
                 // the cursor is 3 cells
                 //let lowerHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == dataCellArray[0].four_Four_Half_Cell_Index})
-                let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == centralState.currentData.four_Four_Half_Cell_Index-1})
+                let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == centralState.currentData.four_Four_Half_Cell_Index})
                 
                 if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                 
                 let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
                 
                 let rest = currLineSet.subtracting(proposedNoteSet)
-                print("proposedNoteSet count: ",proposedNoteSet.count,", rest count: ",rest.count,", yNumber: ",parent_Note_Collection.parentCentralState.curr_Data_Pos_Y)
+
                 for cell in proposedNoteSet{
                     cell.change_Type(newType: .mid_Note)
                 }

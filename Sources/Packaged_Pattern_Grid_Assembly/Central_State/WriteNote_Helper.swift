@@ -74,7 +74,7 @@ class WriteNote_Helper: P_Selectable_Mode {
             if parentCentralState.dimensions.patternTimingConfiguration == .fourFour {
                 
             let lowerHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
-            let upperHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index-1})
+            let upperHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
             var combinedSet = Set<Underlying_Data_Cell>()
 
             let rightSideHasNotesSet = parentCentralState.currLineSet.filter({$0.dataCell_X_Number > lclInitialCell.dataCell_X_Number && $0.note_Im_In != nil})
