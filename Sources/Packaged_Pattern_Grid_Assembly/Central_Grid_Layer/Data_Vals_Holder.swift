@@ -247,8 +247,6 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
-    
-    
     func check_In_Potential_Set() {
         if referenced_in_Potential_Set == true {
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
@@ -257,7 +255,8 @@ public class Data_Vals_Holder : ObservableObject {
     
     func check_In_Resize_Set() {
         if referenced_in_Resize_Set == true {
-            if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
+            if statusColor != .purple{statusColor = .purple}
+                //colors.potentialColor{statusColor = colors.potentialColor}
         }
     }
 
