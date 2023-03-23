@@ -77,7 +77,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 let rest = currLineSet.subtracting(proposedNoteSet)
                 print("proposedNoteSet count: ",proposedNoteSet.count,", rest count: ",rest.count,", yNumber: ",parent_Note_Collection.parentCentralState.curr_Data_Pos_Y)
                 for cell in proposedNoteSet{
-                    cell.change_Highlight(highlightStatusParam: true)
+                    cell.change_Type(newType: .mid_Note)
                 }
                 for cell in rest{
                     cell.change_Highlight(highlightStatusParam: false)
