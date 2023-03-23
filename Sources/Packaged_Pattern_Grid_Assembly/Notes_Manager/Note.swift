@@ -66,8 +66,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         if cellDelta > 0 {
             // hmm the new note has to be up tp the end of the cursor
             if dimensions.patternTimingConfiguration == .fourFour {
-                // the cursor is 3 cells
-                //let lowerHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == dataCellArray[0].four_Four_Half_Cell_Index})
+                
                 let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == centralState.currentData.four_Four_Half_Cell_Index})
                 
                 if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -76,19 +75,20 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 
                 let rest = currLineSet.subtracting(proposedNoteSet)
 
-                for cell in proposedNoteSet{
-                    cell.change_Type(newType: .mid_Note)
-                }
-                for cell in rest{
-                    if cell.note_Reset_Status != cell.currentType{
-                        cell.reset_To_Original()
+                    for cell in proposedNoteSet{
+                        if cell.in_Passive_Cursor_Set == false{
+                            cell.change_Type(newType: .mid_Note)
+                        }
+                    }
+                    for cell in rest{
+                        if cell.in_Passive_Cursor_Set == false{
+                            if cell.note_Reset_Status != cell.currentType{
+                                cell.reset_To_Original()
+                            }
+                        }
+                        
                     }
                 }
-                    
-                    
-                }
-                
-                
             }
         }
 //        dataCellArray[lastElement].change_Type(newType: .mid_Note)

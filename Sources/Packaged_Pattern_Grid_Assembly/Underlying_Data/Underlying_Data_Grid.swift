@@ -280,22 +280,24 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        else if type == .activate_Cursor_Set {
-            if in_Cursor_Set == false {
-                in_Cursor_Set = true
-                if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
-                }
-            }
-        }
-        else if type == .deActivate_Cursor_Set {
-            if in_Cursor_Set == true {
-                in_Cursor_Set = false
-                if let lclDataVals = currentConnectedDataVals {
-                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
-                }
-            }
-        }
+        
+//        else if type == .activate_Cursor_Set {
+//            if in_Cursor_Set == false {
+//                in_Cursor_Set = true
+//                if let lclDataVals = currentConnectedDataVals {
+//                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
+//                }
+//            }
+//        }
+//        else if type == .deActivate_Cursor_Set {
+//            if in_Cursor_Set == true {
+//                in_Cursor_Set = false
+//                if let lclDataVals = currentConnectedDataVals {
+//                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
+//                }
+//            }
+//        }
+        
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
                 in_Potential_Set = true
@@ -406,7 +408,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-    var in_Cursor_Set : Bool = false
+    //var in_Cursor_Set : Bool = false
     
     public func reset_To_Original(){
         currentType = note_Reset_Status

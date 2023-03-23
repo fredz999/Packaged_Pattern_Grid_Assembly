@@ -155,7 +155,7 @@ public class Central_State : ObservableObject {
             
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-            //current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
+            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
             
             if currentPatternMode == .passive_Mode {
                 if let lclPassiveHelper = passive_Helper {
@@ -185,8 +185,8 @@ public class Central_State : ObservableObject {
                 }
             }
             
-            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
-            print("current_Cursor_Set length: ",current_Cursor_Set.count)
+            
+            //print("current_Cursor_Set length: ",current_Cursor_Set.count)
             
             
         }
