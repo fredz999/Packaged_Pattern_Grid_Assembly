@@ -184,8 +184,9 @@ public class Central_State : ObservableObject {
                     lclResize_Helper.resizeReactToHsliderMove()
                 }
             }
-            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
             
+            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
+            print("current_Cursor_Set length: ",current_Cursor_Set.count)
             
             
         }
