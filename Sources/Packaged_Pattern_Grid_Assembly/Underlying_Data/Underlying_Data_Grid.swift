@@ -173,6 +173,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var in_Potential_Set : Bool = false
     
+    var in_Resize_Set : Bool = false
+    
     var in_Potential_Edge_Set : Bool = false
 
     var in_Delete_Square_Set : Bool = false
@@ -281,23 +283,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         
-//        else if type == .activate_Cursor_Set {
-//            if in_Cursor_Set == false {
-//                in_Cursor_Set = true
-//                if let lclDataVals = currentConnectedDataVals {
-//                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
-//                }
-//            }
-//        }
-//        else if type == .deActivate_Cursor_Set {
-//            if in_Cursor_Set == true {
-//                in_Cursor_Set = false
-//                if let lclDataVals = currentConnectedDataVals {
-//                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .cursorSet, value: in_Cursor_Set)
-//                }
-//            }
-//        }
-        
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
                 in_Potential_Set = true
@@ -314,6 +299,25 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
+        else if type == .activate_Resize_Set {
+            if in_Resize_Set == false {
+                in_Resize_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .resizeSet , value: in_Resize_Set)
+                }
+            }
+        }
+        else if type == .deActivate_Resize_Set {
+            if in_Potential_Set == true {
+                in_Potential_Set = false
+                if let lclDataVals = currentConnectedDataVals{
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .resizeSet , value: in_Resize_Set)
+                }
+            }
+        }
+        
+        
         else if type == .activate_Prohibited {
             if in_Prohibited_Set == false{in_Prohibited_Set=true}
             if let lclDataVals = currentConnectedDataVals{
@@ -452,6 +456,9 @@ enum E_VisibleStateChangeType: String {
     
     case activate_Potential_Set = "activate_Potential_Set"
     case deActivate_Potential_Set = "deActivate_Potential_Set"
+    
+    case activate_Resize_Set = "activate_Resize_Set"
+    case deActivate_Resize_Set = "deActivate_Resize_Set"
     
     case activate_Multiselect_Background_Set = "activate_Multiselect_Background_Set"
     case deActivate_Multiselect_Background_Set = "deActivate_Multiselect_Background_Set"

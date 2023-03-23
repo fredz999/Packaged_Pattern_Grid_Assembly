@@ -76,16 +76,16 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 let rest = currLineSet.subtracting(proposedNoteSet)
 
                     for cell in proposedNoteSet{
-                        if cell.in_Passive_Cursor_Set == false{
-                            cell.change_Type(newType: .mid_Note)
-                        }
+                  
+                        cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                       
                     }
                     for cell in rest{
-                        if cell.in_Passive_Cursor_Set == false{
-                            if cell.note_Reset_Status != cell.currentType{
-                                cell.reset_To_Original()
-                            }
-                        }
+                       
+//                            if cell.note_Reset_Status != cell.currentType{
+//                                cell.reset_To_Original()
+//                            }
+                        cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
                         
                     }
                 }

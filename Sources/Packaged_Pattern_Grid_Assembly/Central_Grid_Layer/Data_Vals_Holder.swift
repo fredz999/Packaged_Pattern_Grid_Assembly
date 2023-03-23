@@ -25,6 +25,8 @@ public class Data_Vals_Holder : ObservableObject {
     
     private var referenced_in_Potential_Set : Bool = false
     
+    private var referenced_in_Resize_Set : Bool = false
+    
     private var referenced_in_Delete_Square_Set : Bool = false
     
     private var referenced_in_MoveCursor_Set : Bool = false
@@ -95,19 +97,6 @@ public class Data_Vals_Holder : ObservableObject {
                 }
             }
         }
-        
-//        else if status_Update_TypeParam == .deleteSquareSet {
-//            if value == true {
-//                if referenced_in_Delete_Square_Set == false {
-//                    referenced_in_Delete_Square_Set = true
-//                }
-//            }
-//            else if value == false {
-//                if referenced_in_Delete_Square_Set == true {
-//                    referenced_in_Delete_Square_Set = false
-//                }
-//            }
-//        }
                                    
         else if status_Update_TypeParam == .potentialSet {
             if value == true {
@@ -117,6 +106,17 @@ public class Data_Vals_Holder : ObservableObject {
             }
             else if value == false {
                 if referenced_in_Potential_Set == true{referenced_in_Potential_Set=false}
+            }
+        }
+        
+        else if status_Update_TypeParam == .resizeSet {
+            if value == true {
+                if referenced_in_Resize_Set == false {
+                    referenced_in_Resize_Set=true
+                }
+            }
+            else if value == false {
+                if referenced_in_Resize_Set == true{referenced_in_Resize_Set=false}
             }
         }
         
@@ -176,25 +176,21 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func process_Visual_Status(){
-       //if check_In_MultiSelect_Set() == false {
             if check_In_MoveCursor_Set() == false {
                 if check_In_Passive_Cursor_Set() == false {
                     
                     if check_Cell_Not_In_Note() == false {
                         check_Highlighted()
                         check_In_MultiSelect_Note_Set()
-                        //check_In_MultiSelect_Set(inNote:true)
-                        //check_In_Prohib_Set()
                     }
                     else if check_Cell_Not_In_Note() == true {
                         check_In_MultiSelect_BackGround_Set()
                         check_In_Potential_Set()
-                        
+                        check_In_Resize_Set()
                     }
-                    
+            
                 }
             }
-        //}
     }
     
     func check_Cell_Not_In_Note()->Bool{
@@ -241,30 +237,27 @@ public class Data_Vals_Holder : ObservableObject {
             if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
         }
     }
-    
-//    func check_In_MultiSelect_Set() ->Bool {
-//        var retVal = false
-//        if referenced_in_MultiSelect_Set == true {
-//            retVal = true
-//            if statusColor != colors.multiSelectColor{statusColor = colors.multiSelectColor}
-//        }
-//        return retVal
-//    }
-    
     func check_In_MultiSelect_BackGround_Set(){
         if referenced_in_MultiSelect_BackGround_Set == true {
             if statusColor != colors.multiSelectBackGroundColor{statusColor = colors.multiSelectBackGroundColor}
         }
     }
-    
     func check_In_MultiSelect_Note_Set(){
         if referenced_in_MultiSelect_Note_Set == true {
             if statusColor != colors.multiSelectedNoteColor{statusColor = colors.multiSelectedNoteColor}
         }
     }
-
+    
+    
+    
     func check_In_Potential_Set() {
         if referenced_in_Potential_Set == true {
+            if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
+        }
+    }
+    
+    func check_In_Resize_Set() {
+        if referenced_in_Resize_Set == true {
             if statusColor != colors.potentialColor{statusColor = colors.potentialColor}
         }
     }
@@ -316,6 +309,7 @@ public enum status_Update_Type {
     case passiveCursorSet
     case prohibitedSet
     case potentialSet
+    case resizeSet
     case potentialEdgeSet
     case multiSelectBackGroundSet
     case multiSelectNoteSet
