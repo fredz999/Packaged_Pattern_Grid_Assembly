@@ -77,9 +77,9 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 for cell in proposedNoteSet{
                     cell.change_Highlight(highlightStatusParam: true)
                 }
-                for cell in rest{
-                    cell.change_Highlight(highlightStatusParam: false)
-                }
+//                for cell in rest{
+//                    cell.change_Highlight(highlightStatusParam: false)
+//                }
                     
                     
                 }
