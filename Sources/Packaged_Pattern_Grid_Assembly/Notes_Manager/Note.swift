@@ -85,7 +85,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 
                 if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                 
-                new_Note_Cell_Set = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
+                new_Note_Cell_Set = currLineSet.filter{$0.dataCell_X_Number >= highest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
 //                let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
 //
 //                let rest = currLineSet.subtracting(proposedNoteSet)
