@@ -70,15 +70,16 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == centralState.currentData.four_Four_Half_Cell_Index-1})
                 
                 if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                print("maxUpper dataX: ",maxUpper.dataCell_X_Number)
-//                    let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number > lowest_Index && $0.dataCell_X_Number < maxUpper.dataCell_X_Number}
-//                    let rest = currLineSet.subtracting(proposedNoteSet)
-//                    for cell in proposedNoteSet{
-//                        cell.change_Highlight(highlightStatusParam: true)
-//                    }
-//                    for cell in rest{
-//                        cell.change_Highlight(highlightStatusParam: false)
-//                    }
+                
+                let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
+                print("proposedNoteSet count: ",proposedNoteSet.count)
+                let rest = currLineSet.subtracting(proposedNoteSet)
+                for cell in proposedNoteSet{
+                    cell.change_Highlight(highlightStatusParam: true)
+                }
+                for cell in rest{
+                    cell.change_Highlight(highlightStatusParam: false)
+                }
                     
                     
                 }
