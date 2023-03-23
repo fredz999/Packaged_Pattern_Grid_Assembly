@@ -56,7 +56,8 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         //1: the final cell is no longer an end cell its a mid
         //2: the next two after the final are now midz and the last one is and end
         
-        let gridLine = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number]
+        let gridLine = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[parent_Note_Collection.parentCentralState.curr_Data_Pos_Y]
+        //parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number]
         let currLineSet : Set<Underlying_Data_Cell> = Set(gridLine.dataCellArray)
 //        let cell_Addition = cellDelta*3
 //        let newEndCellIndex = highest_Index + cell_Addition
@@ -74,7 +75,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
                 
                 let rest = currLineSet.subtracting(proposedNoteSet)
-                print("proposedNoteSet count: ",proposedNoteSet.count,", rest count: ",rest.count)
+                print("proposedNoteSet count: ",proposedNoteSet.count,", rest count: ",rest.count,", yNumber: ",parent_Note_Collection.parentCentralState.curr_Data_Pos_Y)
                 for cell in proposedNoteSet{
                     cell.change_Highlight(highlightStatusParam: true)
                 }

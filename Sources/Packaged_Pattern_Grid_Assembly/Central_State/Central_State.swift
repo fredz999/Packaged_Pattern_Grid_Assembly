@@ -52,6 +52,7 @@ public class Central_State : ObservableObject {
     var writeNote_Helper : WriteNote_Helper?
     var multi_Select_Helper : Multi_Select_Helper?
     var resize_Helper : Resize_Helper?
+    
     var helperArray : [P_Selectable_Mode?] = []
     public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam
