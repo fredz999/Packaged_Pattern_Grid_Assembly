@@ -45,32 +45,15 @@ class Resize_Helper: P_Selectable_Mode {
         // MAKE TEMP ARRAY OF SELECTED NOTES WHICH YOU THEN ALTER
     }
     
-    func reactToHsliderMove(){
-        //parentCentralState.currentData.dataCell_X_Number
-        //print("reactToHsliderMove(), XNUm: ",parentCentralState.currentData.dataCell_X_Number.description)
-        // right lets de-longate dis
-        //start of the note:
-//        if let lclNoteCollection = parentCentralState.currentNoteCollection {
-//            if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-//                print("snap X:",snapshot_Cursor_X,", lcl_Note_At_Cursor X: ",lcl_Note_At_Cursor.)
-//            }
-//        }
+    func resizeReactToHsliderMove(){
         if let lclSnapShotX = snapshot_Cursor_X {
             let delta_X = parentCentralState.currentData.dataCell_X_Number - lclSnapShotX
-            // hit the functions in the notes themselves with the delta
-            //print("delta_X: ",delta_X)
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                     lcl_Note_At_Cursor.resizeLength(cellDelta: delta_X)
                 }
             }
         }
-        
-        
-        //1: est delta
-        //2:
-        //2: apply delta to noteArray notes via their resize function
-        
     }
     
     func deactivate_Mode() {
@@ -78,8 +61,6 @@ class Resize_Helper: P_Selectable_Mode {
             mode_Active=false
         }
     }
-    
-    //public var deleteActive : Bool = true
     
     var parentCentralState : Central_State
 
