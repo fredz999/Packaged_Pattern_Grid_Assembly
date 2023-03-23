@@ -36,8 +36,8 @@ class Resize_Helper: P_Selectable_Mode {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 if let hSliderRef = parentCentralState.h_Slider_Ref {
                     let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
-                    let lowCellPos = CGFloat(lcl_Note_At_Cursor.lowest_Index)*dimensions.pattern_Grid_Sub_Cell_Width
-                    let destinationCellPos = CGFloat(destinationCellIndex)*dimensions.pattern_Grid_Sub_Cell_Width
+//                    let lowCellPos = CGFloat(lcl_Note_At_Cursor.lowest_Index)*dimensions.pattern_Grid_Sub_Cell_Width
+//                    let destinationCellPos = CGFloat(destinationCellIndex)*dimensions.pattern_Grid_Sub_Cell_Width
                     hSliderRef.jumpToACell(cellNum: destinationCellIndex)
                 }
             }

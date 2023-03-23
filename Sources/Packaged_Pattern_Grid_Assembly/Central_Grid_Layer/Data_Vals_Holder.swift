@@ -188,7 +188,6 @@ public class Data_Vals_Holder : ObservableObject {
                         check_In_Potential_Set()
                         check_In_Resize_Set()
                     }
-            
                 }
             }
     }

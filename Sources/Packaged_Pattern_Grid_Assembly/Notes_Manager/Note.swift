@@ -48,7 +48,19 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     }
     
     
-    var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = new_Note_Cell_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+            }
+        }
+        didSet {
+            for cell in new_Note_Cell_Set {
+                cell.handleVisibleStateChange(type: .activate_Resize_Set)
+            }
+        }
+    }
     
     func resizeLength(cellDelta:Int){
         print("resizeLength(cellDelta: ",cellDelta)
@@ -71,23 +83,18 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 
                 if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                 
-                let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
-                
-                let rest = currLineSet.subtracting(proposedNoteSet)
+                new_Note_Cell_Set = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
+//                let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
+//
+//                let rest = currLineSet.subtracting(proposedNoteSet)
 
-                    for cell in proposedNoteSet{
-                  
-                        cell.handleVisibleStateChange(type: .activate_Resize_Set)
-                       
-                    }
-                    for cell in rest{
-                       
-//                            if cell.note_Reset_Status != cell.currentType{
-//                                cell.reset_To_Original()
-//                            }
-                        cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-                        
-                    }
+//                    for cell in proposedNoteSet{
+//                        cell.handleVisibleStateChange(type: .activate_Resize_Set)
+//                    }
+//                    for cell in rest{
+//                        cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+//                    }
+                    
                 }
             }
         }
