@@ -68,8 +68,9 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 // the cursor is 3 cells
                 //let lowerHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == dataCellArray[0].four_Four_Half_Cell_Index})
                 let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == centralState.currentData.four_Four_Half_Cell_Index-1})
-                print("upperHalfCellSet count: ",upperHalfCellSet.count)
-//                if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                
+                if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                print("maxUpper dataX: ",maxUpper.dataCell_X_Number)
 //                    let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number > lowest_Index && $0.dataCell_X_Number < maxUpper.dataCell_X_Number}
 //                    let rest = currLineSet.subtracting(proposedNoteSet)
 //                    for cell in proposedNoteSet{
@@ -78,7 +79,9 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
 //                    for cell in rest{
 //                        cell.change_Highlight(highlightStatusParam: false)
 //                    }
-//                }
+                    
+                    
+                }
                 
                 
             }
