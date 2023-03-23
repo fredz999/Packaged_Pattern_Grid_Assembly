@@ -53,17 +53,19 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
             let delta = new_Note_Cell_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                print("deActivate_Resize_Set")
             }
         }
         didSet {
             for cell in new_Note_Cell_Set {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                print("activate_Resize_Set")
             }
         }
     }
     
     func resizeLength(cellDelta:Int){
-        print("resizeLength(cellDelta: ",cellDelta)
+        //print("resizeLength(cellDelta: ",cellDelta)
         //1 for elongate
         //1: the final cell is no longer an end cell its a mid
         //2: the next two after the final are now midz and the last one is and end
