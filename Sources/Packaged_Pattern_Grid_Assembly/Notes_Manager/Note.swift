@@ -80,7 +80,9 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                     cell.change_Type(newType: .mid_Note)
                 }
                 for cell in rest{
-                    cell.change_Highlight(highlightStatusParam: false)
+                    if cell.note_Reset_Status != cell.currentType{
+                        cell.reset_To_Original()
+                    }
                 }
                     
                     
