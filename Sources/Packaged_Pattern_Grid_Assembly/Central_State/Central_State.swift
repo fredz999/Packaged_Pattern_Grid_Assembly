@@ -181,7 +181,7 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .resize_Mode {
                 if let lclResize_Helper = resize_Helper {
-                    lclResize_Helper.resizeReactToHsliderMove()
+                    lclResize_Helper.right_Side_Handler()
                 }
             }
             
@@ -239,11 +239,17 @@ public class Central_State : ObservableObject {
         didSet {
             let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             currLineSet.removeAll()
-            var newSet = Set<Underlying_Data_Cell>()
-            for cell in currLine.dataCellArray{
-                newSet.insert(cell)
-            }
-            currLineSet = newSet
+            //var newSet = Set<Underlying_Data_Cell>()
+//            for cell in currLine.dataCellArray{
+//                newSet.insert(cell)
+//            }
+            //= newSet
+            currLineSet = Set(currLine.dataCellArray)
+            
+            //let gridLine = parentCentralState.data_Grid.dataLineArray[parentCentralState.curr_Data_Pos_Y]
+            //                currLineSet = Set(gridLine.dataCellArray)
+            
+            
         }
     }
     
