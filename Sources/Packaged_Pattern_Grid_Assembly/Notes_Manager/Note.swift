@@ -74,14 +74,10 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         //2: the next two after the final are now midz and the last one is and end
         
         let gridLine = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[parent_Note_Collection.parentCentralState.curr_Data_Pos_Y]
-        //parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number]
         let currLineSet : Set<Underlying_Data_Cell> = Set(gridLine.dataCellArray)
-//        let cell_Addition = cellDelta*3
-//        let newEndCellIndex = highest_Index + cell_Addition
-        //let originalEndCell = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[highest_Index]
-        
+
         if cellDelta > 0 {
-            // hmm the new note has to be up tp the end of the cursor
+
             if dimensions.patternTimingConfiguration == .fourFour {
                 
                 let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == centralState.currentData.four_Four_Half_Cell_Index})
@@ -91,14 +87,15 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 new_Note_Cell_Set = currLineSet.filter{$0.dataCell_X_Number >= highest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
                 the_Rest = currLineSet.subtracting(new_Note_Cell_Set)
                     
-//                let proposedNoteSet = currLineSet.filter{$0.dataCell_X_Number >= lowest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
-//
-//                let rest = currLineSet.subtracting(proposedNoteSet)
                     for cell in new_Note_Cell_Set{
-                        cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                        if cell.in_Resize_Set == false{
+                            cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                        }
                     }
-                    for cell in the_Rest{
-                        cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                    for cell in the_Rest {
+                        if cell.in_Resize_Set == true{
+                            cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                        }
                     }
                     
                 }
