@@ -106,7 +106,8 @@ class Resize_Helper: P_Selectable_Mode {
                     
                     let combinedAdditionSet = Set<Underlying_Data_Cell>(cellArray).union(new_Note_Cell_Set)
                     let newArray = combinedAdditionSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                    
+                    lcl_Note_At_Cursor.lowest_Index = newArray[0].dataCell_X_Number
+                    lcl_Note_At_Cursor.highest_Index = newArray[newArray.count-1].dataCell_X_Number
                     for cell in newArray{
                         if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                         if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}

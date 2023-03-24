@@ -47,52 +47,6 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         return (startCellNum,length,endCellNum)
     }
     
-    
-//    var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-//    var the_Rest : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-//    func provisional_Note_Cell_Count_Alteration(cellDelta:Int){
-//        let gridLine = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[parent_Note_Collection.parentCentralState.curr_Data_Pos_Y]
-//        let currLineSet : Set<Underlying_Data_Cell> = Set(gridLine.dataCellArray)
-//
-//        if cellDelta > 0 {
-//
-//            if dimensions.patternTimingConfiguration == .fourFour {
-//                
-//                let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == centralState.currentData.four_Four_Half_Cell_Index})
-//                
-//                if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//                
-//                new_Note_Cell_Set = currLineSet.filter{$0.dataCell_X_Number >= highest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
-//                the_Rest = currLineSet.subtracting(new_Note_Cell_Set)
-//                    
-//                    for cell in new_Note_Cell_Set{
-//                        if cell.in_Resize_Set == false{
-//                            cell.handleVisibleStateChange(type: .activate_Resize_Set)
-//                        }
-//                    }
-//                    for cell in the_Rest {
-//                        if cell.in_Resize_Set == true{
-//                            cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-//                        }
-//                    }
-//                    
-//                }
-//            }
-//        }
-////        dataCellArray[lastElement].change_Type(newType: .mid_Note)
-////        dataCellArray[lastElement].change_Highlight(highlightStatusParam: true)
-////
-////        let next_1 = dataCellArray[lastElement].dataCell_X_Number+1
-////        let new_Cell_1 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_1]
-////        new_Cell_1.change_Type(newType: .mid_Note)
-////        new_Cell_1.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
-////        new_Cell_1.change_Highlight(highlightStatusParam: true)
-////        dataCellArray.append(new_Cell_1)
-//        
-//
-//    }
-    
-    // the visible cells also need to update in data vals holder
     func resetCells(){
         for cell in dataCellArray {
             cell.note_Im_In = nil
@@ -139,32 +93,3 @@ enum CellConnectionType {
     case toRight
     case toLeft
 }
-
-
-//        if cellDelta > 0 {
-//            let lastElement = dataCellArray.count-1
-//            dataCellArray[lastElement].change_Type(newType: .mid_Note)
-//            dataCellArray[lastElement].change_Highlight(highlightStatusParam: true)
-//
-//            let next_1 = dataCellArray[lastElement].dataCell_X_Number+1
-//            let new_Cell_1 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_1]
-//            new_Cell_1.change_Type(newType: .mid_Note)
-//            new_Cell_1.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
-//            new_Cell_1.change_Highlight(highlightStatusParam: true)
-//            dataCellArray.append(new_Cell_1)
-//
-//            let next_2 = dataCellArray[lastElement].dataCell_X_Number+2
-//            let new_Cell_2 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_2]
-//            new_Cell_2.change_Type(newType: .mid_Note)
-//            new_Cell_2.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
-//            new_Cell_2.change_Highlight(highlightStatusParam: true)
-//            dataCellArray.append(new_Cell_2)
-//
-//            let next_3 = dataCellArray[lastElement].dataCell_X_Number+3
-//            let new_Cell_3 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_3]
-//            new_Cell_3.change_Type(newType: .end_Note)
-//            new_Cell_3.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
-//            new_Cell_3.change_Highlight(highlightStatusParam: true)
-//            dataCellArray.append(new_Cell_3)
-//
-//        }
