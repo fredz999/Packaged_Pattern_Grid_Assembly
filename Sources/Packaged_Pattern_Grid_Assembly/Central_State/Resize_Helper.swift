@@ -126,7 +126,7 @@ class Resize_Helper: P_Selectable_Mode {
 //                        print("n: ",n.dataCell_X_Number)
 //                    }
                     lcl_Note_At_Cursor.dataCellArray = newArray
-                    lcl_Note_At_Cursor.highlighted = true
+                    //lcl_Note_At_Cursor.highlighted = true
                 }
                 else{
                     print("cursor outside of note.....")
