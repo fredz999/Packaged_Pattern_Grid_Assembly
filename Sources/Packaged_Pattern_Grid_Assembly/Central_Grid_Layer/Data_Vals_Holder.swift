@@ -111,11 +111,13 @@ public class Data_Vals_Holder : ObservableObject {
         
         else if status_Update_TypeParam == .resizeSet {
             if value == true {
+                print("resize true")
                 if referenced_in_Resize_Set == false {
                     referenced_in_Resize_Set=true
                 }
             }
             else if value == false {
+                print("resize false")
                 if referenced_in_Resize_Set == true{referenced_in_Resize_Set=false}
             }
         }
@@ -176,20 +178,20 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     func process_Visual_Status(){
-            if check_In_MoveCursor_Set() == false {
-                if check_In_Passive_Cursor_Set() == false {
-                    
-                    if check_Cell_Not_In_Note() == false {
-                        check_Highlighted()
-                        check_In_MultiSelect_Note_Set()
-                    }
-                    else if check_Cell_Not_In_Note() == true {
-                        check_In_MultiSelect_BackGround_Set()
-                        check_In_Potential_Set()
-                        check_In_Resize_Set()
-                    }
+        if check_In_MoveCursor_Set() == false {
+            if check_In_Passive_Cursor_Set() == false {
+                
+                if check_Cell_Not_In_Note() == false {
+                    check_Highlighted()
+                    check_In_MultiSelect_Note_Set()
+                }
+                else if check_Cell_Not_In_Note() == true {
+                    check_In_MultiSelect_BackGround_Set()
+                    check_In_Potential_Set()
+                    check_In_Resize_Set()
                 }
             }
+        }
     }
     
     func check_Cell_Not_In_Note()->Bool{
@@ -256,9 +258,6 @@ public class Data_Vals_Holder : ObservableObject {
     func check_In_Resize_Set() {
         if referenced_in_Resize_Set == true {
             if statusColor != .purple{statusColor = .purple}
-        }
-        else if referenced_in_Resize_Set == false {
-            if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
         }
     }
 

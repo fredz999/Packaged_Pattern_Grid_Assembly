@@ -212,10 +212,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectBackGroundSet, value: in_MultiSelectBackground_Set)
                 }
-//                if let lcNoteImIn = note_Im_In {
-//                    //reason does this by getting ANY of the note into the selected area, so I'll go with that
-//                    lcNoteImIn.note_Is_MultiSelected = true
-//                }
             }
         }
         else if type == .activate_Multiselect_Background_Set {
@@ -224,11 +220,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 if let lclDataVals = currentConnectedDataVals {
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .multiSelectBackGroundSet, value: in_MultiSelectBackground_Set)
                 }
-//                if let lcNoteImIn = note_Im_In {
-//                    reason does this by getting ANY of the note into the selected area, so I'll go with that
-//                    if lcNoteImIn.note_Is_MultiSelected == false {lcNoteImIn.note_Is_MultiSelected = true}
-//                    this might be best carried oot in the noot collection
-//                }
             }
         }
         
