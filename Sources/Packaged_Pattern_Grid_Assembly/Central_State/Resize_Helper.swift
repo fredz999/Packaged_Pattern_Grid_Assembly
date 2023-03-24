@@ -116,7 +116,9 @@ class Resize_Helper: P_Selectable_Mode {
                     the_Rest.removeAll()
                     currLineSet.removeAll()
                     
+                    lcl_Note_At_Cursor.dataCellArray.removeAll()
                     lcl_Note_At_Cursor.dataCellArray = newArray
+                    
                 }
             }
             mode_Active=false
