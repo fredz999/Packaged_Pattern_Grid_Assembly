@@ -107,6 +107,16 @@ class Resize_Helper: P_Selectable_Mode {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                     print("commit all outstanding changes")
+                    let cellArray = lcl_Note_At_Cursor.dataCellArray
+                    cellArray[lcl_Note_At_Cursor.highest_Index].change_Type(newType: .mid_Note)
+                    //dataCellArray[lastElement].change_Highlight(highlightStatusParam: true)
+                    //new_Note_Cell_Set
+                    let newMax = new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                    let midSet = new_Note_Cell_Set.filter{$0 != newMax}
+                    for cell in midSet{
+                        cell.change_Type(newType: .mid_Note)
+                    }
+                    newMax?.change_Type(newType: .end_Note)
                 }
                 else{
                     print("cursor outside of note.....")
