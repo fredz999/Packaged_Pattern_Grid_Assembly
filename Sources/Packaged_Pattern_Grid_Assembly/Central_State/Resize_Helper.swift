@@ -66,6 +66,9 @@ class Resize_Helper: P_Selectable_Mode {
                             
                             the_Rest = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
                             
+                            print("rightMostCellX",rightMostCell.dataCell_X_Number,",leftMostX",leftMostCell.dataCell_X_Number
+                                  ,", the_Rest count: ",the_Rest.count,",new_Note_Cell_Set count",new_Note_Cell_Set.count)
+                            
                             for cell in new_Note_Cell_Set {
                                 cell.reset_To_Original()
                                 if cell.in_Resize_Set == false {
