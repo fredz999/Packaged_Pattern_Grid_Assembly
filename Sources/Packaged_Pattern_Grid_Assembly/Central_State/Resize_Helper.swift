@@ -121,8 +121,8 @@ class Resize_Helper: P_Selectable_Mode {
                     }
                     newMax?.change_Type(newType: .end_Note)
                     let combinedAdditionSet = Set<Underlying_Data_Cell>(cellArray).union(new_Note_Cell_Set)
-                    let newArray = Array(combinedAdditionSet)
-                    for n in newArray{
+                    let newArray = combinedAdditionSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}) //Array(combinedAdditionSet)
+                    for n in newArray {
                         print("n: ",n.dataCell_X_Number)
                     }
                 }
