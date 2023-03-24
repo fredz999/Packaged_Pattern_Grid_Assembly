@@ -111,7 +111,7 @@ public class Data_Vals_Holder : ObservableObject {
         
         else if status_Update_TypeParam == .resizeSet {
             if value == true {
-                print("resize true")
+                //print("resize true")
                 if referenced_in_Resize_Set == false {
                     referenced_in_Resize_Set=true
                 }

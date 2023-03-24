@@ -300,8 +300,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         else if type == .deActivate_Resize_Set {
-            if in_Potential_Set == true {
-                in_Potential_Set = false
+            if in_Resize_Set == true {
+                in_Resize_Set = false
                 if let lclDataVals = currentConnectedDataVals{
                     lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .resizeSet , value: in_Resize_Set)
                 }
