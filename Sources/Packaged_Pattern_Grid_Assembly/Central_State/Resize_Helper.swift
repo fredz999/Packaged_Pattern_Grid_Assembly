@@ -81,7 +81,7 @@ class Resize_Helper: P_Selectable_Mode {
                         }
                     }
                     else if delta_X < 0 {
-                        let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index-1})
+                        let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                         let upperCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
 
                             if let leftMostCell = cursorSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -100,7 +100,6 @@ class Resize_Helper: P_Selectable_Mode {
                                 }
                             }
                             for cell in the_Rest {
-                                cell.reset_To_Original()
                                 if cell.in_Resize_Set == true {
                                     cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
                                 }
