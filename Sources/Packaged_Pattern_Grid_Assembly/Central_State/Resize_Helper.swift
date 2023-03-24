@@ -118,6 +118,7 @@ class Resize_Helper: P_Selectable_Mode {
                     
                     lcl_Note_At_Cursor.dataCellArray.removeAll()
                     lcl_Note_At_Cursor.dataCellArray = newArray
+                    print("lcl_Note_At_Cursor count: ",lcl_Note_At_Cursor.dataCellArray.count)
                     
                 }
             }
