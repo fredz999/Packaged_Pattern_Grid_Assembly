@@ -41,7 +41,7 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     //
-    
+    //var activation_Cell : Underlying_Data_Cell?
     
     func right_Side_Handler(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
@@ -52,13 +52,17 @@ class Resize_Helper: P_Selectable_Mode {
                 // currLineSet = Set(gridLine.dataCellArray)
                 // needs to be the lineset minus existing notes - stops at existing notes
                 
-                if dimensions.patternTimingConfiguration == .fourFour {
+                if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
                     if delta_X > 0 {
                         let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-                        if let cursorSetRightMost = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        let lowCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
+                        //lcl_Note_At_Cursor
+                        if let rightMostCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                            ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                             
-                            new_Note_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= lcl_Note_At_Cursor.lowest_Index
-                            && $0.dataCell_X_Number <= cursorSetRightMost.dataCell_X_Number}
+                            new_Note_Cell_Set = parentCentralState.currLineSet
+                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
                             the_Rest = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
                             
@@ -69,6 +73,7 @@ class Resize_Helper: P_Selectable_Mode {
                                 }
                             }
                             for cell in the_Rest {
+                                cell.reset_To_Original()
                                 if cell.in_Resize_Set == true {
                                     cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
                                 }
@@ -79,6 +84,9 @@ class Resize_Helper: P_Selectable_Mode {
                         }
                     }
                 }
+                
+                
+                
             }
         }
     }
