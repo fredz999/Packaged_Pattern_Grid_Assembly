@@ -49,7 +49,7 @@ class Resize_Helper: P_Selectable_Mode {
                     
                     
                         let gridLine = parentCentralState.data_Grid.dataLineArray[parentCentralState.curr_Data_Pos_Y]
-                        let currLineSet : Set<Underlying_Data_Cell> = Set(gridLine.dataCellArray)
+                        currLineSet = Set(gridLine.dataCellArray)
 
                         if delta_X > 0 {
 
@@ -96,6 +96,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var the_Rest : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var currLineSet : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
 
     func commitOutStandingChanges(){
         
@@ -108,7 +109,9 @@ class Resize_Helper: P_Selectable_Mode {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                     print("commit all outstanding changes")
                     let cellArray = lcl_Note_At_Cursor.dataCellArray
-                    cellArray[lcl_Note_At_Cursor.highest_Index].change_Type(newType: .mid_Note)
+                    
+                    cellArray[cellArray.count-1].change_Type(newType: .mid_Note)
+                    
                     //dataCellArray[lastElement].change_Highlight(highlightStatusParam: true)
                     //new_Note_Cell_Set
                     let newMax = new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -117,6 +120,11 @@ class Resize_Helper: P_Selectable_Mode {
                         cell.change_Type(newType: .mid_Note)
                     }
                     newMax?.change_Type(newType: .end_Note)
+                    let combinedAdditionSet = Set<Underlying_Data_Cell>(cellArray).union(new_Note_Cell_Set)
+                    let newArray = Array(combinedAdditionSet)
+                    for n in newArray{
+                        print("n: ",n.dataCell_X_Number)
+                    }
                 }
                 else{
                     print("cursor outside of note.....")
