@@ -76,19 +76,6 @@ class Resize_Helper: P_Selectable_Mode {
                                 }
                             }
                         }
-                //        dataCellArray[lastElement].change_Type(newType: .mid_Note)
-                //        dataCellArray[lastElement].change_Highlight(highlightStatusParam: true)
-                //
-                //        let next_1 = dataCellArray[lastElement].dataCell_X_Number+1
-                //        let new_Cell_1 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_1]
-                //        new_Cell_1.change_Type(newType: .mid_Note)
-                //        new_Cell_1.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
-                //        new_Cell_1.change_Highlight(highlightStatusParam: true)
-                //        dataCellArray.append(new_Cell_1)
-                        
-
-                    
-                    
                 }
             }
         }
@@ -107,13 +94,8 @@ class Resize_Helper: P_Selectable_Mode {
             
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-                    print("commit all outstanding changes")
                     let cellArray = lcl_Note_At_Cursor.dataCellArray
-                    
                     cellArray[cellArray.count-1].change_Type(newType: .mid_Note)
-                    
-                    //dataCellArray[lastElement].change_Highlight(highlightStatusParam: true)
-                    //new_Note_Cell_Set
                     let newMax = new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                     let midSet = new_Note_Cell_Set.filter{$0 != newMax}
                     for cell in midSet{
@@ -121,19 +103,13 @@ class Resize_Helper: P_Selectable_Mode {
                     }
                     newMax?.change_Type(newType: .end_Note)
                     let combinedAdditionSet = Set<Underlying_Data_Cell>(cellArray).union(new_Note_Cell_Set)
-                    let newArray = combinedAdditionSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}) //Array(combinedAdditionSet)
-//                    for n in newArray {
-//                        print("n: ",n.dataCell_X_Number)
-//                    }
+                    let newArray = combinedAdditionSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                    for note in newArray{
+                        if note.note_Im_In != lcl_Note_At_Cursor{note.note_Im_In = lcl_Note_At_Cursor}
+                    }
                     lcl_Note_At_Cursor.dataCellArray = newArray
-                    //lcl_Note_At_Cursor.highlighted = true
-                }
-                else{
-                    print("cursor outside of note.....")
                 }
             }
-            
-            //dataCellArray[lastElement].change_Type(newType: .mid_Note)
             mode_Active=false
         }
     }

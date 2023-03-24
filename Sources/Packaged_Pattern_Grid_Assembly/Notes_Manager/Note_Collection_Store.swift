@@ -111,7 +111,6 @@ public class Note_Collection {
         }
 
         if local_Cell_Array.count > 0 {
-            
             let note = Note(cellArray: local_Cell_Array, parentParam: self, yParam: local_Cell_Array[0].dataCell_Y_Number)
             noteArray.append(note)
             if fromMultiMove == true{note.highlighted = true}
@@ -119,7 +118,6 @@ public class Note_Collection {
                 cell.note_Im_In = note
             }
         }
-
     }
     
     func deleteSelectedNotes(){
