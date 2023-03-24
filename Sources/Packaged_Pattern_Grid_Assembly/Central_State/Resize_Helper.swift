@@ -45,8 +45,6 @@ class Resize_Helper: P_Selectable_Mode {
             let delta_X = parentCentralState.currentData.dataCell_X_Number - lclSnapShotX
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-                    //lcl_Note_At_Cursor.resizeLength(cellDelta: delta_X)
-                    
                     
                         let gridLine = parentCentralState.data_Grid.dataLineArray[parentCentralState.curr_Data_Pos_Y]
                         currLineSet = Set(gridLine.dataCellArray)
@@ -106,6 +104,7 @@ class Resize_Helper: P_Selectable_Mode {
                     let newArray = combinedAdditionSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                     for note in newArray{
                         if note.note_Im_In != lcl_Note_At_Cursor{note.note_Im_In = lcl_Note_At_Cursor}
+                        if note.in_Resize_Set == true{note.in_Resize_Set = false}
                     }
                     lcl_Note_At_Cursor.dataCellArray = newArray
                 }
