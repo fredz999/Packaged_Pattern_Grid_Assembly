@@ -91,6 +91,8 @@ class Resize_Helper: P_Selectable_Mode {
                                     for cell in the_Rest {
                                         if cell.in_Resize_Set == true {
                                             cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                                            cell.change_Type(newType: .mid_Blank)
+                                            cell.change_Highlight(highlightStatusParam: false)
                                         }
                                     }
                                     
