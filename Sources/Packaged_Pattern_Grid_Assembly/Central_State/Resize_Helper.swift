@@ -93,19 +93,29 @@ class Resize_Helper: P_Selectable_Mode {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                     let cellArray = lcl_Note_At_Cursor.dataCellArray
+                    
                     cellArray[cellArray.count-1].change_Type(newType: .mid_Note)
-                    let newMax = new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                    let midSet = new_Note_Cell_Set.filter{$0 != newMax}
-                    for cell in midSet{
-                        cell.change_Type(newType: .mid_Note)
+                    
+                    if let newMax = new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        newMax.change_Type(newType: .end_Note)
+                        let midSet = new_Note_Cell_Set.filter{$0 != newMax}
+                        for cell in midSet{
+                            cell.change_Type(newType: .mid_Note)
+                        }
                     }
-                    newMax?.change_Type(newType: .end_Note)
+                    
                     let combinedAdditionSet = Set<Underlying_Data_Cell>(cellArray).union(new_Note_Cell_Set)
                     let newArray = combinedAdditionSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                    for note in newArray{
-                        if note.note_Im_In != lcl_Note_At_Cursor{note.note_Im_In = lcl_Note_At_Cursor}
-                        if note.in_Resize_Set == true{note.in_Resize_Set = false}
+                    
+                    for cell in newArray{
+                        if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                        if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
                     }
+
+                    new_Note_Cell_Set.removeAll()
+                    the_Rest.removeAll()
+                    currLineSet.removeAll()
+                    
                     lcl_Note_At_Cursor.dataCellArray = newArray
                 }
             }
