@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 class Resize_Helper: P_Selectable_Mode {
-    var selectableModeId: Int
     
+    var selectableModeId: Int
     
     let dimensions = ComponentDimensions.StaticDimensions
     
@@ -22,10 +22,8 @@ class Resize_Helper: P_Selectable_Mode {
         if mode_Active == false {
             mode_Active = true
             if let lclActivationCell = activationCell{
-                
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
-                
                 move_Slider_To_Last_Cell_In_Note()
             }
         }
@@ -36,13 +34,10 @@ class Resize_Helper: P_Selectable_Mode {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 if let hSliderRef = parentCentralState.h_Slider_Ref {
                     let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
-//                    let lowCellPos = CGFloat(lcl_Note_At_Cursor.lowest_Index)*dimensions.pattern_Grid_Sub_Cell_Width
-//                    let destinationCellPos = CGFloat(destinationCellIndex)*dimensions.pattern_Grid_Sub_Cell_Width
                     hSliderRef.jumpToACell(cellNum: destinationCellIndex)
                 }
             }
         }
-        // MAKE TEMP ARRAY OF SELECTED NOTES WHICH YOU THEN ALTER
     }
     
     func resizeReactToHsliderMove(){
@@ -58,6 +53,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     func deactivate_Mode() {
         if mode_Active == true {
+            print("commit all outstanding changes")
             mode_Active=false
         }
     }

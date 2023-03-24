@@ -39,20 +39,6 @@ class Delete_Helper : P_Selectable_Mode{
     var curr_Max_X_Left : Int?
     var curr_Max_Y_Up : Int?
     var curr_Max_Y_Down : Int?
-    
-//    var delete_Area_Set = Set<Underlying_Data_Cell>(){
-//            willSet {
-//                let delta = delete_Area_Set.symmetricDifference(newValue)
-//                for cell in delta {
-//                    cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
-//                }
-//            }
-//            didSet {
-//                for cell in delete_Area_Set {
-//                    cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
-//                }
-//            }
-//        }
 
     var delete_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
