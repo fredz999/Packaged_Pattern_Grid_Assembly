@@ -63,6 +63,7 @@ class Resize_Helper: P_Selectable_Mode {
                             the_Rest = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
                             
                             for cell in new_Note_Cell_Set {
+                                cell.reset_To_Original()
                                 if cell.in_Resize_Set == false {
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
                                 }
