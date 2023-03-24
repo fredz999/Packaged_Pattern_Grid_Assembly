@@ -50,16 +50,39 @@ class Resize_Helper: P_Selectable_Mode {
                         currLineSet = Set(gridLine.dataCellArray)
 
                         if delta_X > 0 {
-
                             if dimensions.patternTimingConfiguration == .fourFour {
                                 
                                 let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                                 
                                 if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                                
                                     new_Note_Cell_Set = currLineSet.filter{$0.dataCell_X_Number >= lcl_Note_At_Cursor.highest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
                                     the_Rest = currLineSet.subtracting(new_Note_Cell_Set)
+                                    for cell in new_Note_Cell_Set {
+                                        if cell.in_Resize_Set == false {
+                                            cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                                        }
+                                    }
+                                    for cell in the_Rest {
+                                        if cell.in_Resize_Set == true {
+                                            cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                                        }
+                                    }
+                                }
+                                
+                                
+                            }
+                        }
+                    else if delta_X < 0 && parentCentralState.currentData.dataCell_X_Number > lcl_Note_At_Cursor.lowest_Index {
+                            if dimensions.patternTimingConfiguration == .fourFour {
+                                
+                                let lowerHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+                                
+                                
+                                if let maxUpper = lowerHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                                    new_Note_Cell_Set = currLineSet.filter{$0.dataCell_X_Number >= lcl_Note_At_Cursor.lowest_Index
+                                        && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
                                     
+                                    the_Rest = currLineSet.subtracting(new_Note_Cell_Set)
                                     for cell in new_Note_Cell_Set {
                                         if cell.in_Resize_Set == false {
                                             cell.handleVisibleStateChange(type: .activate_Resize_Set)
@@ -71,7 +94,10 @@ class Resize_Helper: P_Selectable_Mode {
                                         }
                                     }
                                     
+                                    
                                 }
+                                
+                                
                             }
                         }
                 }
