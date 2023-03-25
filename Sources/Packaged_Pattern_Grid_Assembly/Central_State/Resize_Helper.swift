@@ -47,12 +47,13 @@ class Resize_Helper: P_Selectable_Mode {
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 let delta_X = parentCentralState.currentData.dataCell_X_Number - lcl_Note_At_Cursor.lowest_Index
-                
+                print("currentData.dataCell_X_Number: ",parentCentralState.currentData.dataCell_X_Number,", lcl_Note_At_Cursor.lowest_Index: ",lcl_Note_At_Cursor.lowest_Index)
                 // let gridLine = parentCentralState.data_Grid.dataLineArray[parentCentralState.curr_Data_Pos_Y]
                 // currLineSet = Set(gridLine.dataCellArray)
                 // needs to be the lineset minus existing notes - stops at existing notes
                 
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
+                    
                     if delta_X > 0 {
                         let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                         let lowCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
