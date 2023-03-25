@@ -45,7 +45,7 @@ public class Note_Collection : ObservableObject {
         }
     }
 
-    public var noteArray : [Note] = []{
+    @Published public var noteArray : [Note] = []{
         didSet {
             if p_ExternalNote_Responder_Array.count > 0 {
                 for i in 0..<p_ExternalNote_Responder_Array.count {
