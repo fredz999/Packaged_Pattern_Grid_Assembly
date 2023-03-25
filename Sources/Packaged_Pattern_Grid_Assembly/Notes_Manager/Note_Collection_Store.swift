@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public class Note_Collection {
+public class Note_Collection : ObservableObject {
     
     var p_ExternalNote_Responder_Array : [P_ExternalNote_Responder] = []
     
