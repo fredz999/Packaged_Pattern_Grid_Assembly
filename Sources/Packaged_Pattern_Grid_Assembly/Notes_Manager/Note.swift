@@ -87,9 +87,9 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     
 }
 
-enum CellConnectionType {
-    case below
-    case above
-    case toRight
-    case toLeft
-}
+//enum CellConnectionType {
+//    case below
+//    case above
+//    case toRight
+//    case toLeft
+//}
