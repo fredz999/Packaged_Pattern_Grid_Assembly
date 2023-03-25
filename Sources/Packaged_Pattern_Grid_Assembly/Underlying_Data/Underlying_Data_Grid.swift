@@ -408,6 +408,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public func reset_To_Original(){
         if currentType == .single_Note || currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
             currentType = note_Reset_Status
+            if note_Im_In != nil {note_Im_In = nil}
             if let lcl_Data_Vals = currentConnectedDataVals {
                 
                 lcl_Data_Vals.updateValsFromNewData(
