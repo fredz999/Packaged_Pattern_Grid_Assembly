@@ -43,7 +43,7 @@ class Resize_Helper: P_Selectable_Mode {
     //
     //var activation_Cell : Underlying_Data_Cell?
     
-    func right_Side_Handler(){
+    func resize_Right_Side_Handler(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 let delta_X = parentCentralState.currentData.dataCell_X_Number - lcl_Note_At_Cursor.lowest_Index
@@ -78,34 +78,35 @@ class Resize_Helper: P_Selectable_Mode {
                                     cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
                                 }
                             }
+                                
                         }
                     }
-                    else if delta_X < 0 {
-                        let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-                        let upperCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
-
-                            if let leftMostCell = cursorSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                            , let rightMostCell = upperCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                            
-                            new_Note_Cell_Set = parentCentralState.currLineSet
-                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
-                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
-                            
-                            the_Rest = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
-                            
-                            for cell in new_Note_Cell_Set {
-                                cell.reset_To_Original()
-                                if cell.in_Resize_Set == false {
-                                    cell.handleVisibleStateChange(type: .activate_Resize_Set)
-                                }
-                            }
-                            for cell in the_Rest {
-                                if cell.in_Resize_Set == true {
-                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-                                }
-                            }
-                        }
-                    }
+//                    else if delta_X < 0 {
+//                        let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+//                        let upperCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
+//
+//                            if let leftMostCell = cursorSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//                            , let rightMostCell = upperCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//
+//                            new_Note_Cell_Set = parentCentralState.currLineSet
+//                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+//                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+//
+//                            the_Rest = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
+//
+//                            for cell in new_Note_Cell_Set {
+//                                cell.reset_To_Original()
+//                                if cell.in_Resize_Set == false {
+//                                    cell.handleVisibleStateChange(type: .activate_Resize_Set)
+//                                }
+//                            }
+//                            for cell in the_Rest {
+//                                if cell.in_Resize_Set == true {
+//                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+//                                }
+//                            }
+//                        }
+//                    }
                     
                     
                     

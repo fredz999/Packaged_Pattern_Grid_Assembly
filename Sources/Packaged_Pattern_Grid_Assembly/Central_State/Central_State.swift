@@ -181,7 +181,7 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .resize_Mode {
                 if let lclResize_Helper = resize_Helper {
-                    lclResize_Helper.right_Side_Handler()
+                    lclResize_Helper.resize_Right_Side_Handler()
                 }
             }
             
