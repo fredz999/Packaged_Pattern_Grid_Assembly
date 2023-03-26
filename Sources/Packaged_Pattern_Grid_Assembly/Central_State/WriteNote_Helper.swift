@@ -10,21 +10,23 @@ import SwiftUI
 
 
 class WriteNote_Helper: P_Selectable_Mode {
-    var selectableModeId: Int
     
+    var selectableModeId: Int
     
     var mode_Active: Bool
     
-    func activate_Mode(activationCell: Underlying_Data_Cell?) {
-        if mode_Active == false{
-            mode_Active=true
+    func activate_Mode(activationCell: Underlying_Data_Cell?)->String{
+        if mode_Active == false {
+            mode_Active = true
             if let lclActivationCell = activationCell{
                 initial_WriteOnCell = lclActivationCell
             }
         }
-//        else if mode_Active == true{
-//            deactivate_Mode()
-//        }
+        return generateModeDescriptorString()
+    }
+    
+    func generateModeDescriptorString()->String{
+        return "Write Mode"
     }
     
     func deactivate_Mode() {

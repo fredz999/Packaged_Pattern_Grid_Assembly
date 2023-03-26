@@ -18,7 +18,7 @@ class Resize_Helper: P_Selectable_Mode {
 
     var select_Highlighted_Notes : [Note] = []
     
-    func activate_Mode(activationCell: Underlying_Data_Cell?) {
+    func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
         if mode_Active == false {
             mode_Active = true
             if let lclActivationCell = activationCell{
@@ -27,6 +27,11 @@ class Resize_Helper: P_Selectable_Mode {
                 move_Slider_To_Last_Cell_In_Note()
             }
         }
+        return generateModeDescriptorString()
+    }
+    
+    func generateModeDescriptorString()->String{
+        return "Resize Mode"
     }
     
     func move_Slider_To_Last_Cell_In_Note(){

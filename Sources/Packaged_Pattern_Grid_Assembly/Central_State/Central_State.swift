@@ -33,6 +33,8 @@ public class Central_State : ObservableObject {
     
     @Published public var there_Is_A_Note_In_The_First_Place : Bool = false
     
+    @Published var modeString : String?
+    
     
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
@@ -103,9 +105,9 @@ public class Central_State : ObservableObject {
             modeActivator(mode_Param: passive_Helper, activationCellParam: nil)
             currentPatternMode = .passive_Mode
         }
-        else if patternModeParam == .resize_Mode_R {
+        else if patternModeParam == .resize_Mode {
             modeActivator(mode_Param: resize_Helper, activationCellParam: currentData)
-            currentPatternMode = .resize_Mode_R
+            currentPatternMode = .resize_Mode
         }
         else if patternModeParam == .write_Mode {
             if currentData.note_Im_In == nil {
@@ -179,7 +181,7 @@ public class Central_State : ObservableObject {
                     lclMulti_Select_Helper.area_Select_Handler()
                 }
             }
-            else if currentPatternMode == .resize_Mode_R {
+            else if currentPatternMode == .resize_Mode {
                 if let lclResize_Helper = resize_Helper {
                     lclResize_Helper.resize_Right_Side_Handler()
                 }
@@ -272,7 +274,6 @@ public class Central_State : ObservableObject {
         if isActivation == false {
             retVal = .deActivate_Passive_Cursor_Set
         }
-        
         return retVal
     }
     
@@ -308,16 +309,26 @@ public class Central_State : ObservableObject {
     
 }
 
-public enum E_PatternModeType : String {
-    case write_Mode = "write_Mode"
-    case delete_Mode = "delete_Mode"
-    case move_Mode = "move_Mode"
-    case resize_Mode_R = "resize_Mode_R"
-    case passive_Mode = "passive_Mode"
-    case no_Note_Collection = "no_Note_Collection"
-    case multi_Select_Mode = "multi_Select_Mode"
+public enum E_PatternModeType {
+    case write_Mode
+    case delete_Mode
+    case move_Mode
+    case resize_Mode
+    case passive_Mode
+    case no_Note_Collection
+    case multi_Select_Mode
 }
-// hih?
+
+//public enum E_PatternModeType : String {
+//    case write_Mode = "write_Mode"
+//    case delete_Mode = "delete_Mode"
+//    case move_Mode = "move_Mode"
+//    case resize_Mode_R = "resize_Mode_R"
+//    case passive_Mode = "passive_Mode"
+//    case no_Note_Collection = "no_Note_Collection"
+//    case multi_Select_Mode = "multi_Select_Mode"
+//}
+ 
 
 public enum E_Note_Movement_Type {
     case leftWard

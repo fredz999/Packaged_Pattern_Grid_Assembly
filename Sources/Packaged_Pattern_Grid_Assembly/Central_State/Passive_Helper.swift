@@ -10,15 +10,17 @@ import Foundation
 class Passive_Helper: P_Selectable_Mode {
     var selectableModeId: Int
     
-    
-    
-    
     let dimensions = ComponentDimensions.StaticDimensions
         
     var mode_Active: Bool = false
     
-    func activate_Mode(activationCell: Underlying_Data_Cell?) {
+    func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
         if mode_Active == false{mode_Active=true}
+        return generateModeDescriptorString() 
+    }
+    
+    func generateModeDescriptorString()->String{
+        return "Passive Mode"
     }
     
     func deactivate_Mode() {
