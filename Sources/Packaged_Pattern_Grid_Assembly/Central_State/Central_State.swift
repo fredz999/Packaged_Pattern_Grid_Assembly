@@ -33,7 +33,9 @@ public class Central_State : ObservableObject {
     
     @Published public var there_Is_A_Note_In_The_First_Place : Bool = false
     
-    @Published var modeString : String?
+    //@Published var modeString : String?
+    
+    @Published public var mode_String = ""
     
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
@@ -90,7 +92,6 @@ public class Central_State : ObservableObject {
     public func set_Copy_Move_Delete_Status(moveDeleteOn:Bool) {
         if let lclMoveHelper = move_Helper {
             if lclMoveHelper.deleteActive != moveDeleteOn{lclMoveHelper.deleteActive = moveDeleteOn}
-            //modeString = lclMoveHelper.generateModeDescriptorString()
         }
     }
 
@@ -126,6 +127,8 @@ public class Central_State : ObservableObject {
         else if patternModeParam == .move_Mode {
             modeActivator(mode_Param: move_Helper, activationCellParam: currentData)
             currentPatternMode = .move_Mode
+//            if let lclMoveHelper = move_Helper { }
+            
         }
         else if patternModeParam == .multi_Select_Mode {
             if currentPatternMode == .passive_Mode {
@@ -141,12 +144,12 @@ public class Central_State : ObservableObject {
         centralState_Data_Evaluation()
     }
     
-    @Published public var mode_String = ""
+    
     
     func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
         for helper in helperArray {
             if let lclHelper = helper,let lclModeParam = mode_Param {
-                if lclModeParam.selectableModeId == lclHelper.selectableModeId{
+                if lclModeParam.selectableModeId == lclHelper.selectableModeId {
                     mode_String = lclHelper.activate_Mode(activationCell: activationCellParam)
                 }
                 else if lclModeParam.selectableModeId != lclHelper.selectableModeId{lclHelper.deactivate_Mode()}
