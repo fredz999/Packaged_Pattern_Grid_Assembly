@@ -46,7 +46,6 @@ public class Central_State : ObservableObject {
     var lower_Bracket_Number : Int = 0
     var higher_Bracket_Number : Int = 0
     //==================================================
-    
     var move_Helper : Move_Helper?
     var delete_Helper : Delete_Helper?
     var passive_Helper : Passive_Helper?
@@ -140,7 +139,9 @@ public class Central_State : ObservableObject {
         }
         centralState_Data_Evaluation()
     }
-    @Published var mode_String = ""
+    
+    @Published public var mode_String = ""
+    
     func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
         for helper in helperArray {
             if let lclHelper = helper,let lclModeParam = mode_Param {
