@@ -103,9 +103,9 @@ public class Central_State : ObservableObject {
             modeActivator(mode_Param: passive_Helper, activationCellParam: nil)
             currentPatternMode = .passive_Mode
         }
-        else if patternModeParam == .resize_Mode {
+        else if patternModeParam == .resize_Mode_R {
             modeActivator(mode_Param: resize_Helper, activationCellParam: currentData)
-            currentPatternMode = .resize_Mode
+            currentPatternMode = .resize_Mode_R
         }
         else if patternModeParam == .write_Mode {
             if currentData.note_Im_In == nil {
@@ -179,7 +179,7 @@ public class Central_State : ObservableObject {
                     lclMulti_Select_Helper.area_Select_Handler()
                 }
             }
-            else if currentPatternMode == .resize_Mode {
+            else if currentPatternMode == .resize_Mode_R {
                 if let lclResize_Helper = resize_Helper {
                     lclResize_Helper.resize_Right_Side_Handler()
                 }
@@ -312,7 +312,7 @@ public enum E_PatternModeType : String {
     case write_Mode = "write_Mode"
     case delete_Mode = "delete_Mode"
     case move_Mode = "move_Mode"
-    case resize_Mode = "resize_Mode"
+    case resize_Mode_R = "resize_Mode_R"
     case passive_Mode = "passive_Mode"
     case no_Note_Collection = "no_Note_Collection"
     case multi_Select_Mode = "multi_Select_Mode"
@@ -343,96 +343,3 @@ class Cell_X_Descriptor : Equatable,Hashable {
     self.x_Position_Float = x_Position_Float
     }
 }
-
-
-
-
-
-//public func setPatternMode(patternModeParam : E_PatternModeType){
-//    //,let lclMulti_Select_Helper = multi_Select_Helper
-//    if let lclPassiveHelper = passive_Helper,let lclWriteNote_Helper = writeNote_Helper
-//        ,let lclDelete_Helper = delete_Helper,let lclMoveHelper = move_Helper
-//        ,let lclMulti_Select_Helper = multi_Select_Helper,let lclResizeHelper = resize_Helper {
-//
-//        if patternModeParam == .passive_Mode {
-////                lclMulti_Select_Helper.deactivate_Mode()
-////                lclMoveHelper.deactivate_Mode()
-////                lclDelete_Helper.deactivate_Mode()
-////                lclWriteNote_Helper.deactivate_Mode()
-////                lclPassiveHelper.activate_Mode(activationCell: nil)
-//            modeActivator(mode_Param: passive_Helper, activationCellParam: nil)
-//            currentPatternMode = .passive_Mode
-//        }
-//        else if patternModeParam == .resize_Mode {
-////                lclMulti_Select_Helper.deactivate_Mode()
-////                lclMoveHelper.deactivate_Mode()
-////                lclDelete_Helper.deactivate_Mode()
-////                lclWriteNote_Helper.deactivate_Mode()
-////                lclPassiveHelper.deactivate_Mode()
-////                lclResizeHelper.activate_Mode(activationCell: nil)
-//            modeActivator(mode_Param: resize_Helper, activationCellParam: nil)
-//            currentPatternMode = .resize_Mode
-//        }
-//        else if patternModeParam == .write_Mode {
-////                lclMulti_Select_Helper.deactivate_Mode()
-////                lclMoveHelper.deactivate_Mode()
-////                lclDelete_Helper.deactivate_Mode()
-////                lclPassiveHelper.deactivate_Mode()
-//            if currentData.note_Im_In == nil {
-//                //lclWriteNote_Helper.activate_Mode(activationCell: currentData)
-//                modeActivator(mode_Param: writeNote_Helper, activationCellParam: currentData)
-//                currentPatternMode = .write_Mode
-//            }
-//
-//        }
-//        else if patternModeParam == .delete_Mode {
-//
-//            if currentData.note_Im_In != nil {
-//                if let lclNoteCollection = currentNoteCollection {
-//                    lclNoteCollection.deleteSelectedNotes()
-//                }
-//            }
-//
-////                lclMulti_Select_Helper.deactivate_Mode()
-////                lclMoveHelper.deactivate_Mode()
-////                lclPassiveHelper.deactivate_Mode()
-////                lclWriteNote_Helper.deactivate_Mode()
-////                lclDelete_Helper.activate_Mode(activationCell: currentData)
-////                currentPatternMode = .delete_Mode
-//            modeActivator(mode_Param: delete_Helper, activationCellParam: currentData)
-//            currentPatternMode = .delete_Mode
-//        }
-//        else if patternModeParam == .move_Mode {
-////                lclMulti_Select_Helper.deactivate_Mode()
-////                lclDelete_Helper.deactivate_Mode()
-////                lclPassiveHelper.deactivate_Mode()
-////                lclWriteNote_Helper.deactivate_Mode()
-////                lclMoveHelper.activate_Mode(activationCell: currentData)
-////                currentPatternMode = .move_Mode
-//            modeActivator(mode_Param: move_Helper, activationCellParam: currentData)
-//            currentPatternMode = .move_Mode
-//        }
-//        else if patternModeParam == .multi_Select_Mode {
-//
-//            if currentPatternMode == .passive_Mode {
-//                // if theres a selected note
-//                if let lclCurrNoteCollection = currentNoteCollection {
-//                    if lclCurrNoteCollection.note_Currently_Under_Cursor != nil {
-//                        lclCurrNoteCollection.note_Currently_Under_Cursor = nil
-//                    }
-//                }
-//            }
-//
-////                lclDelete_Helper.deactivate_Mode()
-////                lclPassiveHelper.deactivate_Mode()
-////                lclWriteNote_Helper.deactivate_Mode()
-////                lclMoveHelper.deactivate_Mode()
-////                lclMulti_Select_Helper.activate_Mode(activationCell: currentData)
-////                currentPatternMode = .multi_Select_Mode
-//
-//            modeActivator(mode_Param: multi_Select_Helper, activationCellParam: currentData)
-//            currentPatternMode = .multi_Select_Mode
-//        }
-//    }
-//    centralState_Data_Evaluation()
-//}
