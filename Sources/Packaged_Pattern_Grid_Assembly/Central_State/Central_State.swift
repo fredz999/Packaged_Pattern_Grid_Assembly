@@ -35,7 +35,6 @@ public class Central_State : ObservableObject {
     
     @Published var modeString : String?
     
-    
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -141,11 +140,13 @@ public class Central_State : ObservableObject {
         }
         centralState_Data_Evaluation()
     }
-    
+    @Published var mode_String = ""
     func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
         for helper in helperArray {
             if let lclHelper = helper,let lclModeParam = mode_Param {
-                if lclModeParam.selectableModeId == lclHelper.selectableModeId{lclHelper.activate_Mode(activationCell: activationCellParam)}
+                if lclModeParam.selectableModeId == lclHelper.selectableModeId{
+                    mode_String = lclHelper.activate_Mode(activationCell: activationCellParam)
+                }
                 else if lclModeParam.selectableModeId != lclHelper.selectableModeId{lclHelper.deactivate_Mode()}
             }
         }
