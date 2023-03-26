@@ -36,17 +36,15 @@ class Move_Helper: P_Selectable_Mode {
                         let movingCellSetHolder = Moving_Cell_Set_Holder(initial_Snapshot_Param: note_Movement_SnapShot)
                         moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
                     }
-                    
                 }
             }
-            
         }
         return generateModeDescriptorString()
     }
     
-    func generateModeDescriptorString()->String{
+    func generateModeDescriptorString() -> String {
         var retVal = "Move Mode"
-        if deleteActive == false{
+        if deleteActive == false {
             retVal = "Copy Mode"
         }
         return retVal
