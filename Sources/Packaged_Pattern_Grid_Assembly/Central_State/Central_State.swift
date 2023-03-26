@@ -88,8 +88,8 @@ public class Central_State : ObservableObject {
     }
     
     public func set_Copy_Move_Delete_Status(moveDeleteOn:Bool) {
-        if let lclDeleteHelper = move_Helper {
-            if lclDeleteHelper.deleteActive != moveDeleteOn{lclDeleteHelper.deleteActive = moveDeleteOn}
+        if let lclMoveHelper = move_Helper {
+            if lclMoveHelper.deleteActive != moveDeleteOn{lclMoveHelper.deleteActive = moveDeleteOn}
         }
     }
 

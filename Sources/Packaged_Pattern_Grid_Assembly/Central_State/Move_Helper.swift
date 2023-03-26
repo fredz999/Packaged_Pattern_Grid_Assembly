@@ -18,8 +18,6 @@ class Move_Helper: P_Selectable_Mode {
 
     var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []
     
-     
- 
     func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
         if mode_Active == false {
             mode_Active = true
@@ -47,7 +45,11 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func generateModeDescriptorString()->String{
-        return "Move Mode"
+        var retVal = "Move Mode"
+        if deleteActive == false{
+            retVal = "Copy Mode"
+        }
+        return retVal
     }
     
     func deactivate_Mode() {
