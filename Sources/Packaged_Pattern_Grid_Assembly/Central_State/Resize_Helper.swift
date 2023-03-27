@@ -132,22 +132,11 @@ class Resize_Helper: P_Selectable_Mode {
                                 
                                 
                             print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count
-                                  ,"new_Note_Cell_Set min: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
-                                  ,"new_Note_Cell_Set max: ",new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+                                  ,"new_Note_Cell_Set minX: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+                                  ,"new_Note_Cell_Set minY: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_Y_Number
+                                  ,"new_Note_Cell_Set maxX: ",new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
                             )
                                 
-                            //let allCellsToRight = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
-                                
-                                
-                            //available_On_Right
-                                
-                            //available_On_Right = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
-                            // available_On_Right = 1: right of the final note at snapshot
-                            // available_On_Right = 2: not part of note
-                            
-                            // available_On_Right = 3: left of currRightLimit_Resize
-                            // available_On_Right = 4: left of currRightLimit_Resize
-                            // currRightLimit_Resize = left of either the nearest note or the border
 
                             for cell in new_Note_Cell_Set {
                                 cell.reset_To_Original()
