@@ -182,10 +182,11 @@ public class Data_Vals_Holder : ObservableObject {
                 if check_Cell_Not_In_Note() == false {
                     check_Highlighted()
                     check_In_MultiSelect_Note_Set()
+                    check_In_Potential_Set()
                 }
                 else if check_Cell_Not_In_Note() == true {
                     check_In_MultiSelect_BackGround_Set()
-                    check_In_Potential_Set()
+                    
                     check_In_Resize_Set()
                 }
             }
