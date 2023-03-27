@@ -37,7 +37,7 @@ public class Central_State : ObservableObject {
     
     @Published public var mode_String = ""
     
-    @Published public var temp_MovingSetCount_String = ""
+    //@Published public var temp_MovingSetCount_String = ""
     
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions

@@ -18,11 +18,12 @@ class Move_Helper: P_Selectable_Mode {
 
     
     //temp_MovingSetCount_String
-    var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []{
-        didSet {
-            parentCentralState.temp_MovingSetCount_String = "moving_Cell_Set count: "+moving_Cell_Set_Holder_Array.count.description
-        }
-    }
+    var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []
+//    {
+//        didSet {
+//            parentCentralState.temp_MovingSetCount_String = "moving_Cell_Set count: "+moving_Cell_Set_Holder_Array.count.description
+//        }
+//    }
     
     
     
@@ -66,8 +67,8 @@ class Move_Helper: P_Selectable_Mode {
         }
     }
     
-    public var deleteActive : Bool = true{
-        didSet{
+    public var deleteActive : Bool = true {
+        didSet {
             print("deleteActive was set tae: ",deleteActive.description)
         }
     }
@@ -140,12 +141,14 @@ class Move_Helper: P_Selectable_Mode {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                     }
                     
-                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, fromMultiMove: true)
+                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set)
                     // add it to the moving stuff thing in here - until move mode goes aff
                     
                 }
             }
         }
+        // highlight the notes here
+        
         nil_Cell_Sets()
     }
     
