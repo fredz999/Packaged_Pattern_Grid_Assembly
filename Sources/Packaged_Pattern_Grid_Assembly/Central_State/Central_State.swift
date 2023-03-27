@@ -63,11 +63,11 @@ public class Central_State : ObservableObject {
         currentData = data_Grid.dataLineArray[0].dataCellArray[0]
         curr_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
-        let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-        
-        for cell in currLine.dataCellArray {
-        currLineSet.insert(cell)
-        }
+        //let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+        currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+//        for cell in currLine.dataCellArray {
+//        currLineSet.insert(cell)
+//        }
         
         move_Helper = Move_Helper(parentCentral_State_Param: self, selectableModeIdParam: 0)
         helperArray.append(move_Helper)
@@ -294,6 +294,8 @@ public class Central_State : ObservableObject {
     }
     
     var currLineSet = Set<Underlying_Data_Cell>()
+//    var currLineArray : [Underlying_Data_Cell]=[]
+    var currLine : Underlying_Data_Line
     
     func data_Slider_LowBracket_Update(newLower:Int){
     

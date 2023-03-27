@@ -73,7 +73,11 @@ class Resize_Helper: P_Selectable_Mode {
                     
                     let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
                     if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
-                        if lcl_Note_At_Cursor.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil {
+                        // getting an out of range error here - it needs to be the whole line array or a one cell set
+                        // with the datacellX in it
+                        //if lcl_Note_At_Cursor.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil {
+                        //currLineSet
+                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
                             // were now ok to expand dis note, cos theres at least one to the right
                             // find if theres a note on right
                             let nextCellDataX = lclCurrNoteMax.dataCell_X_Number+1
@@ -94,11 +98,7 @@ class Resize_Helper: P_Selectable_Mode {
                 }
             }
         }
-        
-        
-        
-        
-        
+
     }
 
     func resize_Right_Side_Handler(){
