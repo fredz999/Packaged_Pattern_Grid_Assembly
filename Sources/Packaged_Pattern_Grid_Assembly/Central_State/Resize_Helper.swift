@@ -123,7 +123,7 @@ class Resize_Helper: P_Selectable_Mode {
                             .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
                             && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
-                                
+                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right: ",available_On_Right.count)
                             //let allCellsToRight = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
                                 
                                 
