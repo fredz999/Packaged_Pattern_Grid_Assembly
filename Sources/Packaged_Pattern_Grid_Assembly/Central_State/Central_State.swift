@@ -239,7 +239,7 @@ public class Central_State : ObservableObject {
     
     var curr_Data_Pos_Y : Int {
         didSet {
-            let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+            currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             currLineSet.removeAll()
             //var newSet = Set<Underlying_Data_Cell>()
 //            for cell in currLine.dataCellArray{
