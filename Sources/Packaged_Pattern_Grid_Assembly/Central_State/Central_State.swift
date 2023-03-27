@@ -65,9 +65,9 @@ public class Central_State : ObservableObject {
         curr_Data_Pos_Y = 0
         //let currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-//        for cell in currLine.dataCellArray {
-//        currLineSet.insert(cell)
-//        }
+        for cell in currLine.dataCellArray {
+        currLineSet.insert(cell)
+        }
         
         move_Helper = Move_Helper(parentCentral_State_Param: self, selectableModeIdParam: 0)
         helperArray.append(move_Helper)
