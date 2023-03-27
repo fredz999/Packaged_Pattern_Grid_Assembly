@@ -125,10 +125,17 @@ class Resize_Helper: P_Selectable_Mode {
                             .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
                             && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
-                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right: ",available_On_Right.count
-                                  ,", aor min: ",available_On_Right.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
-                                  ,", aor max: ",available_On_Right.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+//                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right: ",available_On_Right.count
+//                                  ,", aor min: ",available_On_Right.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+//                                  ,", aor max: ",available_On_Right.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+//                            )
+                                
+                                
+                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count
+                                  ,"new_Note_Cell_Set min: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+                                  ,"new_Note_Cell_Set max: ",new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
                             )
+                                
                             //let allCellsToRight = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
                                 
                                 
