@@ -109,7 +109,9 @@ class Resize_Helper: P_Selectable_Mode {
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
                     
                     if delta_X >= 0 {
+                        
                         let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+                        
                         let lowCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
 
                             if let rightMostCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -123,7 +125,10 @@ class Resize_Helper: P_Selectable_Mode {
                             .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
                             && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
-                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right: ",available_On_Right.count)
+                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right: ",available_On_Right.count
+                                  ,", aor min: ",available_On_Right.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+                                  ,", aor max: ",available_On_Right.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+                            )
                             //let allCellsToRight = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
                                 
                                 
