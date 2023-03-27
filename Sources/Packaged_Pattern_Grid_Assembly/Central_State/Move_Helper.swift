@@ -19,11 +19,18 @@ class Move_Helper: P_Selectable_Mode {
     
     //temp_MovingSetCount_String
     var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []
-//    {
-//        didSet {
-//            parentCentralState.temp_MovingSetCount_String = "moving_Cell_Set count: "+moving_Cell_Set_Holder_Array.count.description
-//        }
-//    }
+    {
+        didSet {
+            //de select all the notes?
+            
+            if let lclNoteCollection = parentCentralState.currentNoteCollection,moving_Cell_Set_Holder_Array.count > 0{
+                for note in lclNoteCollection.noteArray{
+                    note.highlighted = false
+                }
+            }
+            
+        }
+    }
     
     
     
@@ -140,7 +147,8 @@ class Move_Helper: P_Selectable_Mode {
                     
                     for cell in moving_Cell_Set.potential_Moved_Set {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                        cell.change_Highlight(highlightStatusParam: false)
+                        
+                        //cell.handleVisibleStateChange(type: .activate_Potential_Set )
                     }
                     
                     currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set)
@@ -184,7 +192,7 @@ class Note_Movement_SnapShot{
 class Moving_Cell_Set_Holder {
     
     var initial_Snapshot : Note_Movement_SnapShot
-    
+
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = potential_Moved_Set.symmetricDifference(newValue)
