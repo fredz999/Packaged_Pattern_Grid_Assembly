@@ -29,7 +29,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_On_Right : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var purple_On_Right : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var combined_From_Note : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
@@ -64,25 +64,21 @@ class Resize_Helper: P_Selectable_Mode {
                     hSliderRef.jumpToACell(cellNum: destinationCellIndex)
                 }
                 
-                
                 let currNoteSet = Set<Underlying_Data_Cell>(lcl_Note_At_Cursor.dataCellArray)
                 
-                //let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
+
                 let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(currNoteSet)
                 
                 if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
-                    //1: make sure the subunit to the right is a note free cell
                     
                     let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
+                    
                     if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
-                        // getting an out of range error here - it needs to be the whole line array or a one cell set
-                        // with the datacellX in it
-                        //if lcl_Note_At_Cursor.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil {
-                        //currLineSet
+
                         if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
-                            // were now ok to expand dis note, cos theres at least one to the right
-                            // find if theres a note on right
+
                             let nextCellDataX = lclCurrNoteMax.dataCell_X_Number+1
+                            
                             let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
                             
                             if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
@@ -97,6 +93,7 @@ class Resize_Helper: P_Selectable_Mode {
             
                         }
                     }
+                    combined_From_Note = currNoteSet.union(available_On_Right)
                 }
             }
         }
@@ -123,9 +120,12 @@ class Resize_Helper: P_Selectable_Mode {
 //                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
 //                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                                 
-                            new_Note_Cell_Set = available_On_Right
-                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
-                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+//                            new_Note_Cell_Set = available_On_Right
+//                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+//                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                                
+                                new_Note_Cell_Set = combined_From_Note.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+                                && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
 //                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right: ",available_On_Right.count
 //                                  ,", aor min: ",available_On_Right.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
@@ -222,8 +222,8 @@ class Resize_Helper: P_Selectable_Mode {
             if available_On_Right.count > 0 {
                 available_On_Right.removeAll()
             }
-            if purple_On_Right.count > 0 {
-                purple_On_Right.removeAll()
+            if combined_From_Note.count > 0 {
+                combined_From_Note.removeAll()
             }
             mode_Active=false
         }
