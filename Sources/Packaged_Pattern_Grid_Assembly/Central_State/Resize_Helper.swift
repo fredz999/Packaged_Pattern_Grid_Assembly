@@ -67,7 +67,9 @@ class Resize_Helper: P_Selectable_Mode {
                 
                 let currNoteSet = Set<Underlying_Data_Cell>(lcl_Note_At_Cursor.dataCellArray)
                 
-                let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
+                //let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
+                let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(currNoteSet)
+                
                 if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
                     //1: make sure the subunit to the right is a note free cell
                     
