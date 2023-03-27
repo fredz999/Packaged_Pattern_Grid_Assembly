@@ -24,8 +24,8 @@ class Resize_Helper: P_Selectable_Mode {
     var snapshot_Cursor_X : Int?
     var snapshot_Cursor_Y : Int?
     
-    var currLeftLimit_Resize : Int
-    var currRightLimit_Resize : Int
+//    var currLeftLimit_Resize : Int
+//    var currRightLimit_Resize : Int
     
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_On_Right : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
@@ -34,8 +34,8 @@ class Resize_Helper: P_Selectable_Mode {
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
-        currLeftLimit_Resize = 0
-        currRightLimit_Resize = dimensions.dataGrid_X_Unit_Count-1
+//        currLeftLimit_Resize = 0
+//        currRightLimit_Resize = dimensions.dataGrid_X_Unit_Count-1
     }
     
     func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
@@ -44,7 +44,7 @@ class Resize_Helper: P_Selectable_Mode {
             if let lclActivationCell = activationCell{
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
-                currRightLimit_Resize = dimensions.dataGrid_X_Unit_Count-1
+                //currRightLimit_Resize = dimensions.dataGrid_X_Unit_Count-1
                 move_Slider_To_Rightmost_Note_Unit()
             }
         }
@@ -55,6 +55,9 @@ class Resize_Helper: P_Selectable_Mode {
         return "Resize Mode"
     }
     
+    var rightDataXLimit : Int?
+    var currentNextRight : Int?
+    
     func move_Slider_To_Rightmost_Note_Unit(){
         
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
@@ -63,38 +66,60 @@ class Resize_Helper: P_Selectable_Mode {
                     let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
                     hSliderRef.jumpToACell(cellNum: destinationCellIndex)
                 }
-                
+                //===================================================================================================================
                 let currNoteSet = Set<Underlying_Data_Cell>(lcl_Note_At_Cursor.dataCellArray)
                 
-
                 let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(currNoteSet)
                 
                 if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
-                    
-                    let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
-                    
                     if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
-
                         if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
-
-                            let nextCellDataX = lclCurrNoteMax.dataCell_X_Number+1
                             
+                            currentNextRight = lclCurrNoteMax.dataCell_X_Number+1
+                            
+                            let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
                             let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
                             
-                            if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
-                                $0.dataCell_X_Number < $1.dataCell_X_Number
-                            }){
-                                available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX
-                                    && $0.dataCell_X_Number < firstCell_On_Right_Thats_In_A_Note.dataCell_X_Number})
-                            }
-                            else if cells_On_Right_That_Have_Notes.count == 0 {
-                                available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX})
-                            }
-            
+                                                        if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
+                                                            $0.dataCell_X_Number < $1.dataCell_X_Number
+                                                        }){
+                                                            rightDataXLimit = firstCell_On_Right_Thats_In_A_Note.dataCell_X_Number
+                                                        }
+                                                        else if cells_On_Right_That_Have_Notes.count == 0 {
+                                                            rightDataXLimit = dimensions.dataGrid_X_Unit_Count-1
+                                                        }
+                            
+                            
                         }
                     }
-                    combined_From_Note = currNoteSet.union(available_On_Right)
                 }
+                
+//                if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
+//
+//                    let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
+//
+//                    if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
+//
+//                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
+//
+//                            let nextCellDataX = lclCurrNoteMax.dataCell_X_Number+1
+//
+//                            let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
+//
+//                            if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
+//                                $0.dataCell_X_Number < $1.dataCell_X_Number
+//                            }){
+////                                available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX
+////                                    && $0.dataCell_X_Number < firstCell_On_Right_Thats_In_A_Note.dataCell_X_Number})
+//                            }
+//                            else if cells_On_Right_That_Have_Notes.count == 0 {
+//                                //available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX})
+//                            }
+//
+//                        }
+//                    }
+//                    combined_From_Note = currNoteSet.union(available_On_Right)
+//                }
             }
         }
 
@@ -116,28 +141,20 @@ class Resize_Helper: P_Selectable_Mode {
                             if let rightMostCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                             ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                             
-//                            new_Note_Cell_Set = parentCentralState.currLineSet
-//                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
-//                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
-                                
-//                            new_Note_Cell_Set = available_On_Right
-//                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
-//                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
-                                
-                                new_Note_Cell_Set = combined_From_Note.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
-                                && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                                   
+                            //currentNextRight  = rightMostCell.dataCell_X_Number
+
+                            new_Note_Cell_Set = combined_From_Note.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
-//                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right: ",available_On_Right.count
-//                                  ,", aor min: ",available_On_Right.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
-//                                  ,", aor max: ",available_On_Right.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
-//                            )
+                            //available_On_Right has to be altered
                                 
-                                
-//                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count
-//                                  ,"new_Note_Cell_Set minX: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
-//                                  ,"new_Note_Cell_Set minY: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_Y_Number
-//                                  ,"new_Note_Cell_Set maxX: ",new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
-//                            )
+                            if let lclRightMost = rightDataXLimit {
+                            available_On_Right = combined_From_Note.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
+                            && $0.dataCell_X_Number <= lclRightMost}
+                            }
+                            
+                            //= rightMostCell.dataCell_X_Number
                                 
                             for cell in available_On_Right {
                                 cell.reset_To_Original()
