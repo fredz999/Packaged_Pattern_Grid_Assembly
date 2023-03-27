@@ -186,6 +186,7 @@ public class Data_Vals_Holder : ObservableObject {
                 }
                 else if check_Cell_Not_In_Note() == true {
                     check_In_MultiSelect_BackGround_Set()
+                    check_In_Potential_Set()
                     check_In_Resize_Set()
                 }
             }
