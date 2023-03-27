@@ -37,6 +37,8 @@ public class Central_State : ObservableObject {
     
     @Published public var mode_String = ""
     
+    @Published public var temp_MovingSetCount_String = ""
+    
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -127,8 +129,6 @@ public class Central_State : ObservableObject {
         else if patternModeParam == .move_Mode {
             modeActivator(mode_Param: move_Helper, activationCellParam: currentData)
             currentPatternMode = .move_Mode
-//            if let lclMoveHelper = move_Helper { }
-            
         }
         else if patternModeParam == .multi_Select_Mode {
             if currentPatternMode == .passive_Mode {
@@ -143,8 +143,6 @@ public class Central_State : ObservableObject {
         }
         centralState_Data_Evaluation()
     }
-    
-    
     
     func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
         for helper in helperArray {
@@ -192,11 +190,7 @@ public class Central_State : ObservableObject {
                     lclResize_Helper.resize_Right_Side_Handler()
                 }
             }
-            
-            
-            //print("current_Cursor_Set length: ",current_Cursor_Set.count)
-            
-            
+
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]

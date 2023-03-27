@@ -16,7 +16,16 @@ class Move_Helper: P_Selectable_Mode {
     
     var mode_Active: Bool = false
 
-    var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []
+    
+    //temp_MovingSetCount_String
+    var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []{
+        didSet{
+            parentCentralState.temp_MovingSetCount_String = "moving_Cell_Set count: "+moving_Cell_Set_Holder_Array.count.description
+        }
+    }
+    
+    
+    
     
     func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
         if mode_Active == false {
@@ -118,7 +127,7 @@ class Move_Helper: P_Selectable_Mode {
 
     func writeMovedNote_DeleteOldNote(){
         
-        for moving_Cell_Set in moving_Cell_Set_Holder_Array{
+        for moving_Cell_Set in moving_Cell_Set_Holder_Array {
             
             if moving_Cell_Set.potential_Moved_Set.count > 0 {
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
@@ -127,7 +136,7 @@ class Move_Helper: P_Selectable_Mode {
                         currNoteCollection.delete_Note_By_Id(note_Id_Param: moving_Cell_Set.initial_Snapshot.snapShot_Note_Id_Param)
                     }
                     
-                    for cell in moving_Cell_Set.potential_Moved_Set{
+                    for cell in moving_Cell_Set.potential_Moved_Set {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                     }
                     
