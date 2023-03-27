@@ -70,19 +70,19 @@ class Resize_Helper: P_Selectable_Mode {
                 //let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
                 let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(currNoteSet)
                 
-                if let lclCurrNoteMin = currNoteSet.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
+                if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
                     //1: make sure the subunit to the right is a note free cell
                     
-                    let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMin.dataCell_X_Number})
-                    if lclCurrNoteMin.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
+                    let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
+                    if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
                         // getting an out of range error here - it needs to be the whole line array or a one cell set
                         // with the datacellX in it
                         //if lcl_Note_At_Cursor.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil {
                         //currLineSet
-                        //if parentCentralState.currLine.dataCellArray[lclCurrNoteMin.dataCell_X_Number+1].note_Im_In == nil{
+                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
                             // were now ok to expand dis note, cos theres at least one to the right
                             // find if theres a note on right
-                            let nextCellDataX = lclCurrNoteMin.dataCell_X_Number+1
+                            let nextCellDataX = lclCurrNoteMax.dataCell_X_Number+1
                             let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
                             
                             if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
@@ -95,7 +95,7 @@ class Resize_Helper: P_Selectable_Mode {
                                 available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX})
                             }
             
-                        //}
+                        }
                     }
                 }
             }
