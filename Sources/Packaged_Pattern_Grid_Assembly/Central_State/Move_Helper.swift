@@ -155,7 +155,7 @@ class Move_Helper: P_Selectable_Mode {
                     
                     for cell in moving_Cell_Set.potential_Moved_Set {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                        
+                        cell.change_Highlight(highlightStatusParam: true)
                         //cell.handleVisibleStateChange(type: .activate_Potential_Set )
                     }
                     
