@@ -19,18 +19,19 @@ class Move_Helper: P_Selectable_Mode {
     
     //temp_MovingSetCount_String
     var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []
-    {
-        didSet {
-            //de select all the notes?
-            
-            if let lclNoteCollection = parentCentralState.currentNoteCollection,moving_Cell_Set_Holder_Array.count > 0{
-                for note in lclNoteCollection.noteArray{
-                    note.highlighted = false
-                }
-            }
-            
-        }
-    }
+//    {
+//        didSet {
+//            //de select all the notes?
+//            // I want to only do this when there is ANY seperation from each of the cells
+//            // but there must be some move
+//            if let lclNoteCollection = parentCentralState.currentNoteCollection,moving_Cell_Set_Holder_Array.count > 0 {
+//                for note in lclNoteCollection.noteArray {
+//                    note.highlighted = false
+//                }
+//            }
+//
+//        }
+//    }
     
     
     
@@ -100,6 +101,13 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Multi_Note_Selected(){
+        //deHighlightCollection()
+        if parentCentralState.curr_Data_Pos_X != snapshot_Cursor_X
+            || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y{
+            if let collection = parentCentralState.currentNoteCollection{
+                collection.deHighlightCollection()
+            }
+        }
         for m in 0..<moving_Cell_Set_Holder_Array.count{
             var proposedSet = Set<Underlying_Data_Cell>()
             if let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y {

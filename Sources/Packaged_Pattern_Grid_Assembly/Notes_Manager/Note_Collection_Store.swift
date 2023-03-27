@@ -61,6 +61,14 @@ public class Note_Collection : ObservableObject {
         }
     }
     
+    func deHighlightCollection(){
+        for note in noteArray{
+            if note.highlighted == true{
+                note.highlighted = false
+            }
+        }
+    }
+    
     public func swapArray(newNoteArrayParam: [Note]){
         noteArray = newNoteArrayParam
     }
