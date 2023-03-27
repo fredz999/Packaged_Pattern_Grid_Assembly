@@ -131,6 +131,7 @@ class Move_Helper: P_Selectable_Mode {
         for moving_Cell_Set in moving_Cell_Set_Holder_Array {
             
             if moving_Cell_Set.potential_Moved_Set.count > 0 {
+                
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
                     
                     if deleteActive == true {
@@ -139,12 +140,13 @@ class Move_Helper: P_Selectable_Mode {
                     
                     for cell in moving_Cell_Set.potential_Moved_Set {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                        cell.change_Highlight(highlightStatusParam: false)
                     }
                     
                     currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set)
-                    // add it to the moving stuff thing in here - until move mode goes aff
-                    
+
                 }
+                
             }
         }
         // highlight the notes here
