@@ -79,7 +79,7 @@ class Resize_Helper: P_Selectable_Mode {
                         // with the datacellX in it
                         //if lcl_Note_At_Cursor.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil {
                         //currLineSet
-                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMin.dataCell_X_Number+1].note_Im_In == nil{
+                        //if parentCentralState.currLine.dataCellArray[lclCurrNoteMin.dataCell_X_Number+1].note_Im_In == nil{
                             // were now ok to expand dis note, cos theres at least one to the right
                             // find if theres a note on right
                             let nextCellDataX = lclCurrNoteMin.dataCell_X_Number+1
@@ -95,7 +95,7 @@ class Resize_Helper: P_Selectable_Mode {
                                 available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX})
                             }
             
-                        }
+                        //}
                     }
                 }
             }
