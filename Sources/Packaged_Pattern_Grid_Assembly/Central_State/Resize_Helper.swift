@@ -131,25 +131,25 @@ class Resize_Helper: P_Selectable_Mode {
 //                            )
                                 
                                 
-                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count
-                                  ,"new_Note_Cell_Set minX: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
-                                  ,"new_Note_Cell_Set minY: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_Y_Number
-                                  ,"new_Note_Cell_Set maxX: ",new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
-                            )
+//                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count
+//                                  ,"new_Note_Cell_Set minX: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+//                                  ,"new_Note_Cell_Set minY: ",new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_Y_Number
+//                                  ,"new_Note_Cell_Set maxX: ",new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number
+//                            )
                                 
-
+                            for cell in available_On_Right {
+                                cell.reset_To_Original()
+                                if cell.in_Resize_Set == true {
+                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                                }
+                            }
                             for cell in new_Note_Cell_Set {
                                 cell.reset_To_Original()
                                 if cell.in_Resize_Set == false {
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
                                 }
                             }
-//                            for cell in available_On_Right {
-//                                cell.reset_To_Original()
-//                                if cell.in_Resize_Set == true {
-//                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-//                                }
-//                            }
+                            
                         }
                     }
                 }
