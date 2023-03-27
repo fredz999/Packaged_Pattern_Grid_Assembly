@@ -18,13 +18,34 @@ class Resize_Helper: P_Selectable_Mode {
 
     var select_Highlighted_Notes : [Note] = []
     
+    
+    var parentCentralState : Central_State
+
+    var snapshot_Cursor_X : Int?
+    var snapshot_Cursor_Y : Int?
+    
+    var currLeftLimit_Resize : Int
+    var currRightLimit_Resize : Int
+    
+    var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var available_On_Right : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var purple_On_Right : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
+    init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
+        selectableModeId = selectableModeIdParam
+        parentCentralState = parentCentral_State_Param
+        currLeftLimit_Resize = 0
+        currRightLimit_Resize = dimensions.dataGrid_X_Unit_Count-1
+    }
+    
     func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
         if mode_Active == false {
             mode_Active = true
             if let lclActivationCell = activationCell{
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
-                move_Slider_To_Last_Cell_In_Note()
+                currRightLimit_Resize = dimensions.dataGrid_X_Unit_Count-1
+                move_Slider_To_Rightmost_Note_Unit()
             }
         }
         return generateModeDescriptorString()
@@ -34,15 +55,50 @@ class Resize_Helper: P_Selectable_Mode {
         return "Resize Mode"
     }
     
-    func move_Slider_To_Last_Cell_In_Note(){
+    func move_Slider_To_Rightmost_Note_Unit(){
+        
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 if let hSliderRef = parentCentralState.h_Slider_Ref {
                     let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
                     hSliderRef.jumpToACell(cellNum: destinationCellIndex)
                 }
+                
+                
+                let currNoteSet = Set<Underlying_Data_Cell>(lcl_Note_At_Cursor.dataCellArray)
+                
+                let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
+                if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
+                    //1: make sure the subunit to the right is a note free cell
+                    
+                    let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
+                    if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
+                        if lcl_Note_At_Cursor.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil {
+                            // were now ok to expand dis note, cos theres at least one to the right
+                            // find if theres a note on right
+                            let nextCellDataX = lclCurrNoteMax.dataCell_X_Number+1
+                            let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
+                            
+                            if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
+                                $0.dataCell_X_Number < $1.dataCell_X_Number
+                            }){
+                                available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX
+                                    && $0.dataCell_X_Number < firstCell_On_Right_Thats_In_A_Note.dataCell_X_Number})
+                            }
+                            else if cells_On_Right_That_Have_Notes.count == 0 {
+                                available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX})
+                            }
+            
+                        }
+                    }
+                }
             }
         }
+        
+        
+        
+        
+        
     }
 
     func resize_Right_Side_Handler(){
@@ -59,19 +115,35 @@ class Resize_Helper: P_Selectable_Mode {
                             if let rightMostCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                             ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                             
-                            new_Note_Cell_Set = parentCentralState.currLineSet
+//                            new_Note_Cell_Set = parentCentralState.currLineSet
+//                            .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+//                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                                
+                            new_Note_Cell_Set = available_On_Right
                             .filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
                             && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
-                            the_Rest = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
+                                
+                            //let allCellsToRight = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
+                                
+                                
+                            //available_On_Right
+                                
+                            //available_On_Right = parentCentralState.currLineSet.subtracting(new_Note_Cell_Set)
+                            // available_On_Right = 1: right of the final note at snapshot
+                            // available_On_Right = 2: not part of note
                             
+                            // available_On_Right = 3: left of currRightLimit_Resize
+                            // available_On_Right = 4: left of currRightLimit_Resize
+                            // currRightLimit_Resize = left of either the nearest note or the border
+
                             for cell in new_Note_Cell_Set {
                                 cell.reset_To_Original()
                                 if cell.in_Resize_Set == false {
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
                                 }
                             }
-                            for cell in the_Rest {
+                            for cell in available_On_Right {
                                 cell.reset_To_Original()
                                 if cell.in_Resize_Set == true {
                                     cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
@@ -84,8 +156,6 @@ class Resize_Helper: P_Selectable_Mode {
         }
     }
 
-    var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var the_Rest : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     func deactivate_Mode() {
         if mode_Active == true {
             if new_Note_Cell_Set.count > 0 {
@@ -146,28 +216,17 @@ class Resize_Helper: P_Selectable_Mode {
                 }
                 
             }
-            if the_Rest.count > 0{
-                the_Rest.removeAll()
+            if available_On_Right.count > 0 {
+                available_On_Right.removeAll()
             }
-            
+            if purple_On_Right.count > 0 {
+                purple_On_Right.removeAll()
+            }
             mode_Active=false
         }
     }
     
-    var parentCentralState : Central_State
-
-    var snapshot_Cursor_X : Int?
-    var snapshot_Cursor_Y : Int?
     
-    var currLeftLimit : Int
-    var currRightLimit : Int
-
-    init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
-        selectableModeId = selectableModeIdParam
-        parentCentralState = parentCentral_State_Param
-        currLeftLimit = 0
-        currRightLimit = dimensions.dataGrid_X_Unit_Count-1
-    }
     
     
 

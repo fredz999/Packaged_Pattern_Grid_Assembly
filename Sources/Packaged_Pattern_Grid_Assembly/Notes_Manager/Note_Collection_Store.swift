@@ -88,7 +88,6 @@ public class Note_Collection : ObservableObject {
     }
     
     func write_Note_Data(cellSetParam : Set<Underlying_Data_Cell>,highlightAfterWrite : Bool){
-        //,fromMultiMove:Bool
         var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = cellSetParam.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             startCellSet.insert(minX)

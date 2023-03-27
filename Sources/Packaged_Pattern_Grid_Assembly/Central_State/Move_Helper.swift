@@ -86,16 +86,16 @@ class Move_Helper: P_Selectable_Mode {
     var snapshot_Cursor_X : Int?
     var snapshot_Cursor_Y : Int?
     
-    var currLeftLimit : Int
-    var currRightLimit : Int
+    var currLeftLimit_Move : Int
+    var currRightLimit_Move : Int
     var lineBelowOpen : Bool
     var lineAboveOpen : Bool
 
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
-        currLeftLimit = 0
-        currRightLimit = dimensions.dataGrid_X_Unit_Count-1
+        currLeftLimit_Move = 0
+        currRightLimit_Move = dimensions.dataGrid_X_Unit_Count-1
         lineBelowOpen = true
         lineAboveOpen = true
     }
@@ -120,19 +120,19 @@ class Move_Helper: P_Selectable_Mode {
 
                 let newLineSet : Set<Underlying_Data_Cell>
                 = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
-                if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
+                if proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move {
                     proposedSet = newLineSet
                     .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
                 }
-                else if proposedNewMinIndex < currLeftLimit {
+                else if proposedNewMinIndex < currLeftLimit_Move {
                     proposedSet = parentCentralState.currLineSet
-                    .filter{$0.dataCell_X_Number >= currLeftLimit
+                    .filter{$0.dataCell_X_Number >= currLeftLimit_Move
                     && $0.dataCell_X_Number <= (moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)}
                 }
-                else if proposedNewMaxIndex > currRightLimit {
+                else if proposedNewMaxIndex > currRightLimit_Move {
                     proposedSet = parentCentralState.currLineSet
-                    .filter{$0.dataCell_X_Number >=  currRightLimit-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
-                    && $0.dataCell_X_Number <= currRightLimit
+                    .filter{$0.dataCell_X_Number >=  currRightLimit_Move-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
+                    && $0.dataCell_X_Number <= currRightLimit_Move
                     }
                 }
                 moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
@@ -170,6 +170,8 @@ class Move_Helper: P_Selectable_Mode {
     
     func nil_Cell_Sets(){
         moving_Cell_Set_Holder_Array.removeAll()
+        currLeftLimit_Move = 0
+        currRightLimit_Move = dimensions.dataGrid_X_Unit_Count-1
     }
     
 }
