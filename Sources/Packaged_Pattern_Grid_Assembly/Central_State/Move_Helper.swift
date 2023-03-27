@@ -19,7 +19,7 @@ class Move_Helper: P_Selectable_Mode {
     
     //temp_MovingSetCount_String
     var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []{
-        didSet{
+        didSet {
             parentCentralState.temp_MovingSetCount_String = "moving_Cell_Set count: "+moving_Cell_Set_Holder_Array.count.description
         }
     }
