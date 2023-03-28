@@ -18,24 +18,25 @@ class Resize_Helper: P_Selectable_Mode {
 
     var select_Highlighted_Notes : [Note] = []
     
-    
     var parentCentralState : Central_State
 
     var snapshot_Cursor_X : Int?
     var snapshot_Cursor_Y : Int?
     
-//    var currLeftLimit_Resize : Int
-//    var currRightLimit_Resize : Int
+    var rightDataXLimit : Int?
+    var currentNextRight : Int?
+    
+    var leftDataXLimit : Int?
+    var currentNextLeft : Int?
     
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    //var combined_From_Note : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+
+    var resizeMode : E_Resize_Mode = .rightSeideResize
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
-//        currLeftLimit_Resize = 0
-//        currRightLimit_Resize = dimensions.dataGrid_X_Unit_Count-1
     }
     
     func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
@@ -44,21 +45,29 @@ class Resize_Helper: P_Selectable_Mode {
             if let lclActivationCell = activationCell{
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
-                //currRightLimit_Resize = dimensions.dataGrid_X_Unit_Count-1
-                move_Slider_To_Rightmost_Note_Unit()
+                right_Side_Resize_Start()
             }
+        }
+        else if mode_Active == true, resizeMode == .rightSeideResize {
+            resizeMode = .leftSideResize
+            if let lclActivationCell = activationCell{
+                snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
+                snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
+                left_Side_Resize_Start()
+            }
+        }
+        else if mode_Active == true, resizeMode == .leftSideResize {
+            resizeMode = .deactivateResize
+            parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
         }
         return generateModeDescriptorString()
     }
     
-    func generateModeDescriptorString()->String{
-        return "Resize Mode"
+    func generateModeDescriptorString() -> String {
+        return resizeMode.rawValue
     }
-    
-    var rightDataXLimit : Int?
-    var currentNextRight : Int?
-    
-    func move_Slider_To_Rightmost_Note_Unit(){
+
+    func right_Side_Resize_Start(){
         
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
@@ -66,7 +75,6 @@ class Resize_Helper: P_Selectable_Mode {
                     let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
                     hSliderRef.jumpToACell(cellNum: destinationCellIndex)
                 }
-                //===================================================================================================================
                 let currNoteSet = Set<Underlying_Data_Cell>(lcl_Note_At_Cursor.dataCellArray)
                 
                 let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(currNoteSet)
@@ -80,45 +88,18 @@ class Resize_Helper: P_Selectable_Mode {
                             let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
                             let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
                             
-                                if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
-                                    $0.dataCell_X_Number < $1.dataCell_X_Number
-                                }){
-                                    rightDataXLimit = firstCell_On_Right_Thats_In_A_Note.dataCell_X_Number
-                                }
-                                else if cells_On_Right_That_Have_Notes.count == 0 {
-                                    rightDataXLimit = dimensions.dataGrid_X_Unit_Count-1
-                                }
+                            if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
+                                $0.dataCell_X_Number < $1.dataCell_X_Number
+                            }){
+                                rightDataXLimit = firstCell_On_Right_Thats_In_A_Note.dataCell_X_Number
+                            }
+                            else if cells_On_Right_That_Have_Notes.count == 0 {
+                                rightDataXLimit = dimensions.dataGrid_X_Unit_Count-1
+                            }
 
                         }
                     }
                 }
-                
-//                if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
-//
-//                    let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
-//
-//                    if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
-//
-//                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
-//
-//                            let nextCellDataX = lclCurrNoteMax.dataCell_X_Number+1
-//
-//                            let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
-//
-//                            if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
-//                                $0.dataCell_X_Number < $1.dataCell_X_Number
-//                            }){
-////                                available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX
-////                                    && $0.dataCell_X_Number < firstCell_On_Right_Thats_In_A_Note.dataCell_X_Number})
-//                            }
-//                            else if cells_On_Right_That_Have_Notes.count == 0 {
-//                                //available_On_Right = allCellsToRight.filter({$0.dataCell_X_Number >= nextCellDataX})
-//                            }
-//
-//                        }
-//                    }
-//                    combined_From_Note = currNoteSet.union(available_On_Right)
-//                }
             }
         }
 
@@ -132,10 +113,6 @@ class Resize_Helper: P_Selectable_Mode {
 
                 let delta_X = parentCentralState.currentData.dataCell_X_Number - lcl_Note_At_Cursor.lowest_Index
                 
-                //naaahhhhh mate, right you want
-                // availableCellsSet left side of the note up to the right hand barrier cell
-                // currentSwipeSet: left side of the note up to the max in the currData cursor set
-                // I ..... thiiiink new_Note_Cell_Set is the intersection of those two
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
                     if delta_X >= 0, let lclRightMost = rightDataXLimit {
                         let cursorSet = parentCentralState.currLineSet.filter({
@@ -165,9 +142,7 @@ class Resize_Helper: P_Selectable_Mode {
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
                                 }
                             }
-    
-                            
-                            
+
                         }
                     }
                 }
@@ -176,54 +151,53 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     
-    //                if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
-    //
-    //                    if delta_X >= 0, let lclRightMost = rightDataXLimit {
-    //
-    //                        let cursorSet = parentCentralState.currLineSet.filter({
-    //                            $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index
-    //                        })
-    //
-    //                        let lowCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
-    //
-    //                        if let rightMostCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-    //                        ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-    //
-    //                        new_Note_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
-    //                        && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
-    //
-    //                        available_On_Right = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
-    //                        && $0.dataCell_X_Number <= lclRightMost}
-    //
-    //                        for cell in new_Note_Cell_Set {
-    //                            cell.reset_To_Original()
-    //                            if cell.in_Resize_Set == false {
-    //                                cell.handleVisibleStateChange(type: .activate_Resize_Set)
-    //                            }
-    //                        }
-    //
-    //                        for cell in available_On_Right {
-    //                            cell.reset_To_Original()
-    //                            if cell.in_Resize_Set == true {
-    //                                cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-    //                            }
-    //                        }
-    //
-    //
-    //                        }
-    //                    }
-    //                }
+    func left_Side_Resize_Start(){
+        if let lclNoteCollection = parentCentralState.currentNoteCollection {
+            if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
+                if let hSliderRef = parentCentralState.h_Slider_Ref {
+                    let destinationCellIndex = lcl_Note_At_Cursor.lowest_Index //- ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
+                    hSliderRef.jumpToACell(cellNum: destinationCellIndex)
+                }
+//                let currNoteSet = Set<Underlying_Data_Cell>(lcl_Note_At_Cursor.dataCellArray)
+//
+//                let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(currNoteSet)
+//
+//                if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
+//                    if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
+//                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
+//
+//                            currentNextRight = lclCurrNoteMax.dataCell_X_Number+1
+//
+//                            let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
+//                            let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
+//
+//                            if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
+//                                $0.dataCell_X_Number < $1.dataCell_X_Number
+//                            }){
+//                                rightDataXLimit = firstCell_On_Right_Thats_In_A_Note.dataCell_X_Number
+//                            }
+//                            else if cells_On_Right_That_Have_Notes.count == 0 {
+//                                rightDataXLimit = dimensions.dataGrid_X_Unit_Count-1
+//                            }
+//
+//                        }
+//                    }
+//                }
+            }
+        }
+    }
     
-
+    func resize_Left_Side_Handler(){
+        
+    }
+    
+    
     func deactivate_Mode() {
         if mode_Active == true {
             if new_Note_Cell_Set.count > 0 {
-                
                 if let lclNoteCollection = parentCentralState.currentNoteCollection {
                     if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-                        
                         lcl_Note_At_Cursor.dataCellArray.removeAll()
-                        
                         if new_Note_Cell_Set.count == 1 {
                             let newCellArray = Array(new_Note_Cell_Set)
                             newCellArray[0].change_Type(newType: .single_Note)
@@ -270,29 +244,26 @@ class Resize_Helper: P_Selectable_Mode {
                             }
                             lcl_Note_At_Cursor.dataCellArray = newCellArray
                         }
-                        new_Note_Cell_Set.removeAll()
                     }
                 }
-                
             }
             if available_Cell_Set.count > 0 {
                 available_Cell_Set.removeAll()
             }
-//            if combined_From_Note.count > 0 {
-//                combined_From_Note.removeAll()
-//            }
+            if new_Note_Cell_Set.count > 0{
+                new_Note_Cell_Set.removeAll()
+            }
             mode_Active=false
         }
     }
-    
-    
-    
-    
 
-
-    
 }
 
+enum E_Resize_Mode : String {
+    case rightSeideResize = "Resize Rightward"
+    case leftSideResize = "Resize Leftward"
+    case deactivateResize = ""
+}
 
 
 
