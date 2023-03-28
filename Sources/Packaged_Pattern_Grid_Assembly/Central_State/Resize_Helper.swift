@@ -28,7 +28,7 @@ class Resize_Helper: P_Selectable_Mode {
 //    var currRightLimit_Resize : Int
     
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var available_On_Right : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     //var combined_From_Note : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
@@ -131,45 +131,39 @@ class Resize_Helper: P_Selectable_Mode {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
 
                 let delta_X = parentCentralState.currentData.dataCell_X_Number - lcl_Note_At_Cursor.lowest_Index
-
+                
+                //naaahhhhh mate, right you want
+                // availableCellsSet left side of the note up to the right hand barrier cell
+                // currentSwipeSet: left side of the note up to the max in the currData cursor set
+                // I ..... thiiiink new_Note_Cell_Set is the intersection of those two
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
-
                     if delta_X >= 0, let lclRightMost = rightDataXLimit {
-
                         let cursorSet = parentCentralState.currLineSet.filter({
-                            $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index
-                            && $0.dataCell_X_Number < lclRightMost
-                        })
-                        //parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+                        $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                         
                         let lowCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
-
-                        if let rightMostCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                        
+                        if let cursorMaxCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                             
-                        new_Note_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
-                        && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
-
-                        //if let lclRightMost = rightDataXLimit {
-                        //print("rightDataXLimit: ",lclRightMost.description)
-                        available_On_Right = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
-                        && $0.dataCell_X_Number <= lclRightMost}
-                        //}
-
-                        for cell in new_Note_Cell_Set {
-                            cell.reset_To_Original()
-                            if cell.in_Resize_Set == false {
-                                cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                        available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number <= lclRightMost}
+                            let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+                                && $0.dataCell_X_Number <= cursorMaxCell.dataCell_X_Number}
+                            new_Note_Cell_Set = currentSwipeSet.intersection(available_Cell_Set)
+                     
+                            for cell in new_Note_Cell_Set {
+                                cell.reset_To_Original()
+                                if cell.in_Resize_Set == false {
+                                    cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                                }
                             }
-                        }
-                            
-                        for cell in available_On_Right {
-                            cell.reset_To_Original()
-                            if cell.in_Resize_Set == true {
-                                cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+    
+                            for cell in available_Cell_Set {
+                                cell.reset_To_Original()
+                                if cell.in_Resize_Set == true {
+                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                                }
                             }
-                        }
-                            
                             
                         }
                     }
@@ -177,6 +171,46 @@ class Resize_Helper: P_Selectable_Mode {
             }
         }
     }
+    
+    
+    //                if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
+    //
+    //                    if delta_X >= 0, let lclRightMost = rightDataXLimit {
+    //
+    //                        let cursorSet = parentCentralState.currLineSet.filter({
+    //                            $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index
+    //                        })
+    //
+    //                        let lowCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
+    //
+    //                        if let rightMostCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+    //                        ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+    //
+    //                        new_Note_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+    //                        && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+    //
+    //                        available_On_Right = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
+    //                        && $0.dataCell_X_Number <= lclRightMost}
+    //
+    //                        for cell in new_Note_Cell_Set {
+    //                            cell.reset_To_Original()
+    //                            if cell.in_Resize_Set == false {
+    //                                cell.handleVisibleStateChange(type: .activate_Resize_Set)
+    //                            }
+    //                        }
+    //
+    //                        for cell in available_On_Right {
+    //                            cell.reset_To_Original()
+    //                            if cell.in_Resize_Set == true {
+    //                                cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+    //                            }
+    //                        }
+    //
+    //
+    //                        }
+    //                    }
+    //                }
+    
 
     func deactivate_Mode() {
         if mode_Active == true {
@@ -238,8 +272,8 @@ class Resize_Helper: P_Selectable_Mode {
                 }
                 
             }
-            if available_On_Right.count > 0 {
-                available_On_Right.removeAll()
+            if available_Cell_Set.count > 0 {
+                available_Cell_Set.removeAll()
             }
 //            if combined_From_Note.count > 0 {
 //                combined_From_Note.removeAll()
