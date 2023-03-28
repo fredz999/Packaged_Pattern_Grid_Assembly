@@ -32,7 +32,7 @@ class Resize_Helper: P_Selectable_Mode {
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
 
-    var resizeMode : E_Resize_Mode = .rightSeideResize
+    var resizeMode : E_Resize_Mode = .inactiveSubMode
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
@@ -40,8 +40,9 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
-        if mode_Active == false {
-            if resizeMode != .rightSeideResize{resizeMode = .rightSeideResize}
+        
+        if mode_Active == false, resizeMode == .inactiveSubMode {
+            resizeMode = .rightSideSubMode
             mode_Active = true
             if let lclActivationCell = activationCell{
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
@@ -49,17 +50,17 @@ class Resize_Helper: P_Selectable_Mode {
                 right_Side_Resize_Start()
             }
         }
-        else if mode_Active == true, resizeMode == .rightSeideResize {
-            resizeMode = .leftSideResize
+        else if mode_Active == true, resizeMode == .rightSideSubMode {
+            resizeMode = .leftSideSubMode
             if let lclActivationCell = activationCell {
                 left_Side_Resize_Start()
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
             }
         }
-        else if mode_Active == true, resizeMode == .leftSideResize {
-            //resizeMode = .deactivateResize
-            deactivate_Mode()
+        else if mode_Active == true, resizeMode == .leftSideSubMode {
+            resizeMode = .inactiveSubMode
+            //deactivate_Mode()
             parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
         }
         //return generateModeDescriptorString()
@@ -261,9 +262,9 @@ class Resize_Helper: P_Selectable_Mode {
 }
 
 enum E_Resize_Mode : String {
-    case rightSeideResize = "Resize Rightward"
-    case leftSideResize = "Resize Leftward"
-    //case deactivateResize = ""
+    case rightSideSubMode = "Resize Rightward"
+    case leftSideSubMode = "Resize Leftward"
+    case inactiveSubMode = ""
 }
 
 
