@@ -12,12 +12,12 @@ class Delete_Helper : P_Selectable_Mode{
     var selectableModeId : Int
     var mode_Active: Bool = false
     
-    func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
+    func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false{
             mode_Active=true
             if current_Trail_Corner == nil {current_Trail_Corner = activationCell}
         }
-        return generateModeDescriptorString()
+        //return generateModeDescriptorString()
     }
     
     func generateModeDescriptorString()->String{

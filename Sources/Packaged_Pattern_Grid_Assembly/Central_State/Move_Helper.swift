@@ -36,7 +36,7 @@ class Move_Helper: P_Selectable_Mode {
     
     
     
-    func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
+    func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
             if let lclActivationCell = activationCell{
@@ -57,7 +57,7 @@ class Move_Helper: P_Selectable_Mode {
                 }
             }
         }
-        return generateModeDescriptorString()
+        //return generateModeDescriptorString()
     }
     
     func generateModeDescriptorString() -> String {
@@ -179,7 +179,7 @@ class Move_Helper: P_Selectable_Mode {
 protocol P_Selectable_Mode {
     var selectableModeId : Int{get set}
     var mode_Active : Bool{get set}
-    func activate_Mode(activationCell : Underlying_Data_Cell?)->String
+    func activate_Mode(activationCell : Underlying_Data_Cell?)
     func generateModeDescriptorString()->String
     func deactivate_Mode()
 }

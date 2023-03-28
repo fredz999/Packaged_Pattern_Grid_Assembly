@@ -20,7 +20,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
     
     var mode_Active: Bool = false
     
-    func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
+    func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
             if let lclActivationCell = activationCell{
@@ -28,7 +28,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 snapshot_Multi_Select_Cursor_Y = lclActivationCell.dataCell_Y_Number
             }
         }
-        return generateModeDescriptorString()
+        //return generateModeDescriptorString()
     }
     
     func generateModeDescriptorString()->String{

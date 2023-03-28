@@ -39,7 +39,7 @@ class Resize_Helper: P_Selectable_Mode {
         parentCentralState = parentCentral_State_Param
     }
     
-    func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
+    func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             if resizeMode != .rightSeideResize{resizeMode = .rightSeideResize}
             mode_Active = true
@@ -61,7 +61,7 @@ class Resize_Helper: P_Selectable_Mode {
             resizeMode = .deactivateResize
             parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
         }
-        return generateModeDescriptorString()
+        //return generateModeDescriptorString()
     }
     
     func generateModeDescriptorString() -> String {
