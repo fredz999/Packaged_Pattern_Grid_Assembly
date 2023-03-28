@@ -103,6 +103,7 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
+        print("set pattern called")
         if patternModeParam == .passive_Mode {
             modeActivator(mode_Param: passive_Helper, activationCellParam: nil)
             currentPatternMode = .passive_Mode
