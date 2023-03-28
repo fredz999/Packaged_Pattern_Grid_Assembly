@@ -150,7 +150,8 @@ public class Central_State : ObservableObject {
             if let lclHelper = helper,let lclModeParam = mode_Param {
                 if lclModeParam.selectableModeId == lclHelper.selectableModeId {
                     lclHelper.activate_Mode(activationCell: activationCellParam)
-                    mode_String = lclHelper.generateModeDescriptorString()
+                    print("mode_String is supposed to be: ",lclHelper.generateModeDescriptorString())
+                    mode_String = "" //lclHelper.generateModeDescriptorString()
                 }
                 else if lclModeParam.selectableModeId != lclHelper.selectableModeId{lclHelper.deactivate_Mode()}
             }
