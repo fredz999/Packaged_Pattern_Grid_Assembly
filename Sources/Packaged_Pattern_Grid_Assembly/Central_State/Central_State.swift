@@ -103,7 +103,7 @@ public class Central_State : ObservableObject {
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
-        print("set pattern called")
+        print("set pattern called: ",patternModeParam.rawValue)
         if patternModeParam == .passive_Mode {
             modeActivator(mode_Param: passive_Helper, activationCellParam: nil)
             currentPatternMode = .passive_Mode
@@ -312,14 +312,14 @@ public class Central_State : ObservableObject {
     
 }
 
-public enum E_PatternModeType {
-    case write_Mode
-    case delete_Mode
-    case move_Mode
-    case resize_Mode
-    case passive_Mode
-    case no_Note_Collection
-    case multi_Select_Mode
+public enum E_PatternModeType : String {
+    case write_Mode = "write_Mode"
+    case delete_Mode = "delete_Mode"
+    case move_Mode = "move_Mode"
+    case resize_Mode = "resize_Mode"
+    case passive_Mode = "passive_Mode"
+    case no_Note_Collection = "no_Note_Collection"
+    case multi_Select_Mode = "multi_Select_Mode"
 }
 
 //public enum E_PatternModeType : String {
