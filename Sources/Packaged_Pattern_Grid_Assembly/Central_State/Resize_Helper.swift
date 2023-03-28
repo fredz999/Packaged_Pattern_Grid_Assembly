@@ -222,7 +222,7 @@ class Resize_Helper: P_Selectable_Mode {
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
                                 }
                             }
-                            
+                            print("adfkvnosdjifvijsdfiovnsdofiv")
                         }
                     }
                 }
