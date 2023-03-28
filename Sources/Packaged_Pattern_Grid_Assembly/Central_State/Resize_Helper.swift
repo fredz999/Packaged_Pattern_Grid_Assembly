@@ -134,9 +134,13 @@ class Resize_Helper: P_Selectable_Mode {
 
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
 
-                    if delta_X >= 0 {
+                    if delta_X >= 0, let lclRightMost = rightDataXLimit {
 
-                        let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+                        let cursorSet = parentCentralState.currLineSet.filter({
+                            $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index
+                            && $0.dataCell_X_Number < lclRightMost
+                        })
+                        //parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                         
                         let lowCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
 
@@ -146,11 +150,11 @@ class Resize_Helper: P_Selectable_Mode {
                         new_Note_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
                         && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
 
-                        if let lclRightMost = rightDataXLimit {
-                        print("rightDataXLimit: ",lclRightMost.description)
+                        //if let lclRightMost = rightDataXLimit {
+                        //print("rightDataXLimit: ",lclRightMost.description)
                         available_On_Right = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
                         && $0.dataCell_X_Number <= lclRightMost}
-                        }
+                        //}
 
                         for cell in new_Note_Cell_Set {
                             cell.reset_To_Original()
