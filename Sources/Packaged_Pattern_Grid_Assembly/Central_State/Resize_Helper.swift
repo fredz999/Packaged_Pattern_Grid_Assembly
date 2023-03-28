@@ -60,7 +60,6 @@ class Resize_Helper: P_Selectable_Mode {
         else if mode_Active == true, resizeMode == .leftSideResize {
             resizeMode = .deactivateResize
             parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
-            return generateModeDescriptorString()
         }
         return generateModeDescriptorString()
     }
