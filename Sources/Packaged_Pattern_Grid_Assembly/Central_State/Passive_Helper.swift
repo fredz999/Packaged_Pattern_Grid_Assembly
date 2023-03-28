@@ -8,6 +8,7 @@
 import Foundation
 
 class Passive_Helper: P_Selectable_Mode {
+    
     var selectableModeId: Int
     
     let dimensions = ComponentDimensions.StaticDimensions
@@ -15,6 +16,7 @@ class Passive_Helper: P_Selectable_Mode {
     var mode_Active: Bool = false
     
     func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
+        print("activate_Mode( passive moed")
         if mode_Active == false{mode_Active=true}
         return generateModeDescriptorString() 
     }
