@@ -126,6 +126,7 @@ class Resize_Helper: P_Selectable_Mode {
     }
 
     func resize_Right_Side_Handler(){
+        print("resize_Right_Side_Handler()")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 let delta_X = parentCentralState.currentData.dataCell_X_Number - lcl_Note_At_Cursor.lowest_Index
