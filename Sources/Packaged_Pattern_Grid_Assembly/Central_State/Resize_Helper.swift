@@ -29,7 +29,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_On_Right : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var combined_From_Note : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    //var combined_From_Note : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
@@ -153,13 +153,14 @@ class Resize_Helper: P_Selectable_Mode {
 //                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
                             //available_On_Right has to be altered
-                                print("rightDataXLimit: ",rightDataXLimit)
+                            //print("rightDataXLimit: ",rightDataXLimit)
                             if let lclRightMost = rightDataXLimit {
-                            available_On_Right = combined_From_Note.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
+                            //available_On_Right = combined_From_Note.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
+                            available_On_Right = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
                             && $0.dataCell_X_Number <= lclRightMost}
                             }
                                 
-                            else if rightDataXLimit == nil{print("rightDataXLimit == nil")}
+                            //else if rightDataXLimit == nil{print("rightDataXLimit == nil")}
                             
                             //print("combined_From_Note count: ",combined_From_Note.count)
                             //print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right count: ",available_On_Right.count)
@@ -249,9 +250,9 @@ class Resize_Helper: P_Selectable_Mode {
             if available_On_Right.count > 0 {
                 available_On_Right.removeAll()
             }
-            if combined_From_Note.count > 0 {
-                combined_From_Note.removeAll()
-            }
+//            if combined_From_Note.count > 0 {
+//                combined_From_Note.removeAll()
+//            }
             mode_Active=false
         }
     }
