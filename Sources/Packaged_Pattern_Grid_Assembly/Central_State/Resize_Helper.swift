@@ -32,7 +32,7 @@ class Resize_Helper: P_Selectable_Mode {
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
 
-    var resizeMode : E_Resize_Mode = .inactiveSubMode
+    var resizeMode : E_Resize_Mode = .inactiveResizeMode
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
@@ -41,7 +41,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         
-        if mode_Active == false, resizeMode == .inactiveSubMode {
+        if mode_Active == false, resizeMode == .inactiveResizeMode {
             print("reached........1")
             resizeMode = .rightSideSubMode
             mode_Active = true
@@ -62,7 +62,7 @@ class Resize_Helper: P_Selectable_Mode {
         }
         else if mode_Active == true, resizeMode == .leftSideSubMode {
             print("reached........3")
-            resizeMode = .inactiveSubMode
+            resizeMode = .inactiveResizeMode
             parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
         }
         //return generateModeDescriptorString()
@@ -266,7 +266,7 @@ class Resize_Helper: P_Selectable_Mode {
 enum E_Resize_Mode : String {
     case rightSideSubMode = "Resize Rightward"
     case leftSideSubMode = "Resize Leftward"
-    case inactiveSubMode = "inactiveSubMode"
+    case inactiveResizeMode = "inactiveResizeMode"
 }
 
 
