@@ -40,7 +40,6 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
-        
         if mode_Active == false {
             mode_Active = true
             if let lclActivationCell = activationCell{
