@@ -42,6 +42,7 @@ class Resize_Helper: P_Selectable_Mode {
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         
         if mode_Active == false, resizeMode == .inactiveSubMode {
+            print("reached........1")
             resizeMode = .rightSideSubMode
             mode_Active = true
             if let lclActivationCell = activationCell{
@@ -51,6 +52,7 @@ class Resize_Helper: P_Selectable_Mode {
             }
         }
         else if mode_Active == true, resizeMode == .rightSideSubMode {
+            print("reached........2")
             resizeMode = .leftSideSubMode
             if let lclActivationCell = activationCell {
                 left_Side_Resize_Start()
@@ -59,8 +61,8 @@ class Resize_Helper: P_Selectable_Mode {
             }
         }
         else if mode_Active == true, resizeMode == .leftSideSubMode {
+            print("reached........3")
             resizeMode = .inactiveSubMode
-            //deactivate_Mode()
             parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
         }
         //return generateModeDescriptorString()
