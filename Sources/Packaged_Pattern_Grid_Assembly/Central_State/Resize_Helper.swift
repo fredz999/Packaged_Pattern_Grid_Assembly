@@ -63,7 +63,7 @@ class Resize_Helper: P_Selectable_Mode {
         else if mode_Active == true, resizeMode == .leftSideSubMode {
             print("reached........3")
             resizeMode = .inactiveResizeMode
-            deactivate_Mode()
+            mode_Active = false
             parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
         }
         //return generateModeDescriptorString()
@@ -198,68 +198,68 @@ class Resize_Helper: P_Selectable_Mode {
     
     
     func deactivate_Mode() {
-        if mode_Active == true {
-            if new_Note_Cell_Set.count > 0 {
-                if let lclNoteCollection = parentCentralState.currentNoteCollection {
-                    if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-                        lcl_Note_At_Cursor.dataCellArray.removeAll()
-                        if new_Note_Cell_Set.count == 1 {
-                            let newCellArray = Array(new_Note_Cell_Set)
-                            newCellArray[0].change_Type(newType: .single_Note)
-                            newCellArray[0].note_Im_In = lcl_Note_At_Cursor
-                            lcl_Note_At_Cursor.lowest_Index = newCellArray[0].dataCell_X_Number
-                            lcl_Note_At_Cursor.highest_Index = newCellArray[0].dataCell_X_Number
-                            for cell in newCellArray{
-                                if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
-                                if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
-                            }
-                            lcl_Note_At_Cursor.dataCellArray = newCellArray
-                        }
-                        else if new_Note_Cell_Set.count == 2 {
-                            let newCellArray = new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                            newCellArray[0].change_Type(newType: .start_Note)
-                            newCellArray[0].note_Im_In = lcl_Note_At_Cursor
-                            lcl_Note_At_Cursor.lowest_Index = newCellArray[0].dataCell_X_Number
-                            newCellArray[1].change_Type(newType: .end_Note)
-                            newCellArray[1].note_Im_In = lcl_Note_At_Cursor
-                            lcl_Note_At_Cursor.highest_Index = newCellArray[1].dataCell_X_Number
-                            for cell in newCellArray{
-                                if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
-                                if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
-                            }
-                            lcl_Note_At_Cursor.dataCellArray = newCellArray
-                        }
-                        else if new_Note_Cell_Set.count > 2 {
-                            let newCellArray = new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                            let firstIndex = 0
-                            let finalIndex = newCellArray.count-1
-                            newCellArray[firstIndex].change_Type(newType: .start_Note)
-                            newCellArray[firstIndex].note_Im_In = lcl_Note_At_Cursor
-                            lcl_Note_At_Cursor.lowest_Index = newCellArray[firstIndex].dataCell_X_Number
-                            for x in 1..<finalIndex{
-                                newCellArray[x].change_Type(newType: .mid_Note)
-                                newCellArray[x].note_Im_In = lcl_Note_At_Cursor
-                            }
-                            newCellArray[finalIndex].change_Type(newType: .end_Note)
-                            newCellArray[finalIndex].note_Im_In = lcl_Note_At_Cursor
-                            lcl_Note_At_Cursor.highest_Index = newCellArray[finalIndex].dataCell_X_Number
-                            for cell in newCellArray{
-                                if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
-                                if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
-                            }
-                            lcl_Note_At_Cursor.dataCellArray = newCellArray
-                        }
-                    }
-                }
-            }
-            if available_Cell_Set.count > 0 {
-                available_Cell_Set.removeAll()
-            }
-            if new_Note_Cell_Set.count > 0{
-                new_Note_Cell_Set.removeAll()
-            }
-            mode_Active=false
-        }
+//        if mode_Active == true {
+//            if new_Note_Cell_Set.count > 0 {
+//                if let lclNoteCollection = parentCentralState.currentNoteCollection {
+//                    if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
+//                        lcl_Note_At_Cursor.dataCellArray.removeAll()
+//                        if new_Note_Cell_Set.count == 1 {
+//                            let newCellArray = Array(new_Note_Cell_Set)
+//                            newCellArray[0].change_Type(newType: .single_Note)
+//                            newCellArray[0].note_Im_In = lcl_Note_At_Cursor
+//                            lcl_Note_At_Cursor.lowest_Index = newCellArray[0].dataCell_X_Number
+//                            lcl_Note_At_Cursor.highest_Index = newCellArray[0].dataCell_X_Number
+//                            for cell in newCellArray{
+//                                if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+//                                if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
+//                            }
+//                            lcl_Note_At_Cursor.dataCellArray = newCellArray
+//                        }
+//                        else if new_Note_Cell_Set.count == 2 {
+//                            let newCellArray = new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//                            newCellArray[0].change_Type(newType: .start_Note)
+//                            newCellArray[0].note_Im_In = lcl_Note_At_Cursor
+//                            lcl_Note_At_Cursor.lowest_Index = newCellArray[0].dataCell_X_Number
+//                            newCellArray[1].change_Type(newType: .end_Note)
+//                            newCellArray[1].note_Im_In = lcl_Note_At_Cursor
+//                            lcl_Note_At_Cursor.highest_Index = newCellArray[1].dataCell_X_Number
+//                            for cell in newCellArray{
+//                                if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+//                                if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
+//                            }
+//                            lcl_Note_At_Cursor.dataCellArray = newCellArray
+//                        }
+//                        else if new_Note_Cell_Set.count > 2 {
+//                            let newCellArray = new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//                            let firstIndex = 0
+//                            let finalIndex = newCellArray.count-1
+//                            newCellArray[firstIndex].change_Type(newType: .start_Note)
+//                            newCellArray[firstIndex].note_Im_In = lcl_Note_At_Cursor
+//                            lcl_Note_At_Cursor.lowest_Index = newCellArray[firstIndex].dataCell_X_Number
+//                            for x in 1..<finalIndex{
+//                                newCellArray[x].change_Type(newType: .mid_Note)
+//                                newCellArray[x].note_Im_In = lcl_Note_At_Cursor
+//                            }
+//                            newCellArray[finalIndex].change_Type(newType: .end_Note)
+//                            newCellArray[finalIndex].note_Im_In = lcl_Note_At_Cursor
+//                            lcl_Note_At_Cursor.highest_Index = newCellArray[finalIndex].dataCell_X_Number
+//                            for cell in newCellArray{
+//                                if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+//                                if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
+//                            }
+//                            lcl_Note_At_Cursor.dataCellArray = newCellArray
+//                        }
+//                    }
+//                }
+//            }
+//            if available_Cell_Set.count > 0 {
+//                available_Cell_Set.removeAll()
+//            }
+//            if new_Note_Cell_Set.count > 0{
+//                new_Note_Cell_Set.removeAll()
+//            }
+//            mode_Active=false
+//        }
     }
 
 }
