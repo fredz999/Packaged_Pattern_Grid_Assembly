@@ -153,7 +153,7 @@ class Resize_Helper: P_Selectable_Mode {
 //                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
                             //available_On_Right has to be altered
-                                
+                                print("rightDataXLimit: ",rightDataXLimit)
                             if let lclRightMost = rightDataXLimit {
                             available_On_Right = combined_From_Note.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
                             && $0.dataCell_X_Number <= lclRightMost}
