@@ -147,7 +147,7 @@ class Resize_Helper: P_Selectable_Mode {
                         && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
 
                         if let lclRightMost = rightDataXLimit {
-                            print("rightDataXLimit: ",lclRightMost.description)
+                        print("rightDataXLimit: ",lclRightMost.description)
                         available_On_Right = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
                         && $0.dataCell_X_Number <= lclRightMost}
                         }
