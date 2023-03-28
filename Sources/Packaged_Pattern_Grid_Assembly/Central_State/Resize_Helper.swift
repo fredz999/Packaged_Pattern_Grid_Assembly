@@ -155,7 +155,7 @@ class Resize_Helper: P_Selectable_Mode {
                             && $0.dataCell_X_Number <= lclRightMost}
                             }
                             
-                            //print("")
+                                print("combined_From_Note count: ",combined_From_Note.count)
                             //print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right count: ",available_On_Right.count)
                                 
                             for cell in new_Note_Cell_Set {
