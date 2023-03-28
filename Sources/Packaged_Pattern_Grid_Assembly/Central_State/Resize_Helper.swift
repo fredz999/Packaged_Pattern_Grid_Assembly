@@ -41,6 +41,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     func activate_Mode(activationCell: Underlying_Data_Cell?)->String {
         if mode_Active == false {
+            if resizeMode != .rightSeideResize{resizeMode = .rightSeideResize}
             mode_Active = true
             if let lclActivationCell = activationCell{
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
@@ -50,10 +51,10 @@ class Resize_Helper: P_Selectable_Mode {
         }
         else if mode_Active == true, resizeMode == .rightSeideResize {
             resizeMode = .leftSideResize
-            if let lclActivationCell = activationCell{
+            if let lclActivationCell = activationCell {
+                left_Side_Resize_Start()
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
-                left_Side_Resize_Start()
             }
         }
         else if mode_Active == true, resizeMode == .leftSideResize {
@@ -149,7 +150,6 @@ class Resize_Helper: P_Selectable_Mode {
             }
         }
     }
-    
     
     func left_Side_Resize_Start(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
