@@ -158,8 +158,9 @@ class Resize_Helper: P_Selectable_Mode {
                             available_On_Right = combined_From_Note.filter{$0.dataCell_X_Number >= rightMostCell.dataCell_X_Number
                             && $0.dataCell_X_Number <= lclRightMost}
                             }
+                            else if rightDataXLimit == nil{print("rightDataXLimit == nil")}
                             
-                                print("combined_From_Note count: ",combined_From_Note.count)
+                                //print("combined_From_Note count: ",combined_From_Note.count)
                             //print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_On_Right count: ",available_On_Right.count)
                                 
                             for cell in new_Note_Cell_Set {
