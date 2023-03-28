@@ -126,27 +126,31 @@ class Resize_Helper: P_Selectable_Mode {
     }
 
     func resize_Right_Side_Handler(){
-        print("resize_Right_Side_Handler()")
+        //print("resize_Right_Side_Handler()")
         
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
-            print("resize_Right_Side_Handler()1")
+            //print("resize_Right_Side_Handler()1")
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-                print("resize_Right_Side_Handler()2")
+                //print("resize_Right_Side_Handler()2")
                 let delta_X = parentCentralState.currentData.dataCell_X_Number - lcl_Note_At_Cursor.lowest_Index
 
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
-                    print("resize_Right_Side_Handler()3")
+                    //print("resize_Right_Side_Handler()3")
                     if delta_X >= 0 {
-                        print("resize_Right_Side_Handler()4")
+                        //print("resize_Right_Side_Handler()4")
                         let cursorSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                         
                         let lowCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lcl_Note_At_Cursor.dataCellArray[0].four_Four_Half_Cell_Index})
 
                             if let rightMostCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                             ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                                print("resize_Right_Side_Handler()5")
-                            new_Note_Cell_Set = combined_From_Note.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
-                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                                
+                                new_Note_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+                                && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                                
+                                //print("resize_Right_Side_Handler()5")
+//                            new_Note_Cell_Set = combined_From_Note.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
+//                            && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
                             //available_On_Right has to be altered
                                 
