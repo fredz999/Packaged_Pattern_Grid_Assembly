@@ -156,18 +156,20 @@ class Resize_Helper: P_Selectable_Mode {
                             
                             //= rightMostCell.dataCell_X_Number
                                 
-                            for cell in available_On_Right {
-                                cell.reset_To_Original()
-                                if cell.in_Resize_Set == true {
-                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-                                }
-                            }
+                                
                             for cell in new_Note_Cell_Set {
                                 cell.reset_To_Original()
                                 if cell.in_Resize_Set == false {
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
                                 }
                             }
+                            for cell in available_On_Right {
+                                cell.reset_To_Original()
+                                if cell.in_Resize_Set == true {
+                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                                }
+                            }
+                            
                             
                         }
                     }
