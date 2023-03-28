@@ -151,6 +151,14 @@ class Resize_Helper: P_Selectable_Mode {
                                 && $0.dataCell_X_Number <= cursorMaxCell.dataCell_X_Number}
                             new_Note_Cell_Set = currentSwipeSet.intersection(available_Cell_Set)
                      
+                            
+                            for cell in available_Cell_Set {
+                                cell.reset_To_Original()
+                                if cell.in_Resize_Set == true {
+                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                                }
+                            }
+                            
                             for cell in new_Note_Cell_Set {
                                 cell.reset_To_Original()
                                 if cell.in_Resize_Set == false {
@@ -158,12 +166,7 @@ class Resize_Helper: P_Selectable_Mode {
                                 }
                             }
     
-                            for cell in available_Cell_Set {
-                                cell.reset_To_Original()
-                                if cell.in_Resize_Set == true {
-                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-                                }
-                            }
+                            
                             
                         }
                     }
