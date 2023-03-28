@@ -266,7 +266,7 @@ class Resize_Helper: P_Selectable_Mode {
 enum E_Resize_Mode : String {
     case rightSideSubMode = "Resize Rightward"
     case leftSideSubMode = "Resize Leftward"
-    case inactiveSubMode = ""
+    case inactiveSubMode = "inactiveSubMode"
 }
 
 
