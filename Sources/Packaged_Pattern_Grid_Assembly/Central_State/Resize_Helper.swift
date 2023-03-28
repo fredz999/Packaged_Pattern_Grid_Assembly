@@ -63,6 +63,7 @@ class Resize_Helper: P_Selectable_Mode {
         else if mode_Active == true, resizeMode == .leftSideSubMode {
             print("reached........3")
             resizeMode = .inactiveResizeMode
+            deactivate_Mode()
             parentCentralState.setPatternMode(patternModeParam: .passive_Mode)
         }
         //return generateModeDescriptorString()
