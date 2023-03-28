@@ -110,7 +110,7 @@ public class Central_State : ObservableObject {
         }
         else if patternModeParam == .resize_Mode {
             modeActivator(mode_Param: resize_Helper, activationCellParam: currentData)
-            if currentPatternMode != .resize_Mode{currentPatternMode = .resize_Mode}
+            currentPatternMode = .resize_Mode
         }
         else if patternModeParam == .write_Mode {
             if currentData.note_Im_In == nil {
@@ -146,16 +146,24 @@ public class Central_State : ObservableObject {
     }
     
     func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
+        
+        if let lclModeParam = mode_Param {
+            print("fucking mode param: ",lclModeParam.generateModeDescriptorString())
+        }
+        
         for helper in helperArray {
             if let lclHelper = helper,let lclModeParam = mode_Param {
                 if lclModeParam.selectableModeId == lclHelper.selectableModeId {
                     lclHelper.activate_Mode(activationCell: activationCellParam)
-                    print("mode_String is supposed to be: ",lclHelper.generateModeDescriptorString())
-                    mode_String = "" //lclHelper.generateModeDescriptorString()
+//                    print("mode_String is supposed to be: ",lclHelper.generateModeDescriptorString())
+//                    mode_String = "" //lclHelper.generateModeDescriptorString()
                 }
-                else if lclModeParam.selectableModeId != lclHelper.selectableModeId{lclHelper.deactivate_Mode()}
+                else if lclModeParam.selectableModeId != lclHelper.selectableModeId{
+                    lclHelper.deactivate_Mode()
+                }
             }
         }
+        
     }
     
     func centralState_Data_Evaluation(){
