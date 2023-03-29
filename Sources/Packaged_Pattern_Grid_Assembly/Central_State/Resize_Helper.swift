@@ -182,7 +182,7 @@ class Resize_Helper: P_Selectable_Mode {
                 let delta_X = lcl_Note_At_Cursor.highest_Index - parentCentralState.currentData.dataCell_X_Number
                 
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0 {
-                    print("resize_Left_Side_Handler()   2.5")
+                    print("resize_Left_Side_Handler()   2.5,.....leftDataXLimit: ",leftDataXLimit == nil ? "neel" : "not neel")
                     if delta_X >= 0, let lclLeftMost = leftDataXLimit {
                         print("resize_Left_Side_Handler()   3")
                     let cursorSet = parentCentralState.currLineSet.filter({
