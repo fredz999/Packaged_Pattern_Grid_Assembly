@@ -31,20 +31,11 @@ class Resize_Helper: P_Selectable_Mode {
     
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-
-//    var resizeMode : E_Resize_Mode = .rightSideSubMode {
-//        didSet {
-//            if resizeMode == .rightSideSubMode{right_Side_Resize_Start()}
-//            else if resizeMode == .leftSideSubMode{left_Side_Resize_Start()}
-//        }
-//    }
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
     }
-    
-    
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
@@ -53,7 +44,6 @@ class Resize_Helper: P_Selectable_Mode {
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
                 right_Side_Resize_Start()
-                //left_Side_Resize_Start()
             }
         }
     }
@@ -62,9 +52,6 @@ class Resize_Helper: P_Selectable_Mode {
         return parentCentralState.resizeMode.rawValue
     }
 
-    
-    
-    
     func right_Side_Resize_Start(){
         
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
@@ -224,6 +211,10 @@ class Resize_Helper: P_Selectable_Mode {
             }
         }
     }
+    
+    
+    
+    
     
     func write_The_Altered_Note(){
         if new_Note_Cell_Set.count > 0 {
