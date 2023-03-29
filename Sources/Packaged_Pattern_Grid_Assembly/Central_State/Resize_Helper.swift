@@ -43,7 +43,9 @@ class Resize_Helper: P_Selectable_Mode {
             if let lclActivationCell = activationCell{
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
                 snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
-                right_Side_Resize_Start()
+                //right_Side_Resize_Start()
+                if parentCentralState.resizeMode == .leftSideSubMode{left_Side_Resize_Start()}
+                else if parentCentralState.resizeMode == .rightSideSubMode{right_Side_Resize_Start()}
             }
         }
     }
