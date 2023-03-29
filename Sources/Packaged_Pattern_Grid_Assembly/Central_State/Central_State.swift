@@ -240,16 +240,20 @@ public class Central_State : ObservableObject {
     }
     
     public func swap_Resize_Sub_Mode(){
-        if let lcl_Resize_Helper = resize_Helper {
-            if lcl_Resize_Helper.resizeMode == .rightSideSubMode {
-                lcl_Resize_Helper.resizeMode = .leftSideSubMode
+        if resizeMode == .rightSideSubMode{resizeMode = .leftSideSubMode}
+        else if resizeMode == .rightSideSubMode{resizeMode = .leftSideSubMode}
+    }
+    
+    @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode {
+        didSet {
+            if let lcl_Resize_Helper = resize_Helper {
+                if resizeMode == .rightSideSubMode{lcl_Resize_Helper.right_Side_Resize_Start()}
+                else if resizeMode == .leftSideSubMode{lcl_Resize_Helper.left_Side_Resize_Start()}
             }
-            else if lcl_Resize_Helper.resizeMode == .leftSideSubMode {
-                lcl_Resize_Helper.resizeMode = .rightSideSubMode
-            }
+            
         }
     }
-
+    
     var timing_Change_Compensation_Index : Int? = nil
 
     var currentYCursor_Slider_Position : Int = 0

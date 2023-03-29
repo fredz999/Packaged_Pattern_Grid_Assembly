@@ -32,12 +32,12 @@ class Resize_Helper: P_Selectable_Mode {
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
 
-    var resizeMode : E_Resize_Mode = .rightSideSubMode {
-        didSet {
-            if resizeMode == .rightSideSubMode{right_Side_Resize_Start()}
-            else if resizeMode == .leftSideSubMode{left_Side_Resize_Start()}
-        }
-    }
+//    var resizeMode : E_Resize_Mode = .rightSideSubMode {
+//        didSet {
+//            if resizeMode == .rightSideSubMode{right_Side_Resize_Start()}
+//            else if resizeMode == .leftSideSubMode{left_Side_Resize_Start()}
+//        }
+//    }
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
@@ -59,7 +59,7 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func generateModeDescriptorString() -> String {
-        return resizeMode.rawValue
+        return parentCentralState.resizeMode.rawValue
     }
 
     
@@ -304,7 +304,7 @@ class Resize_Helper: P_Selectable_Mode {
 
 }
 
-enum E_Resize_Mode : String {
+public enum E_Resize_Mode : String {
     case rightSideSubMode = "Resize Rightward"
     case leftSideSubMode = "Resize Leftward"
 }
