@@ -176,11 +176,13 @@ class Resize_Helper: P_Selectable_Mode {
     func resize_Left_Side_Handler(){
         print("resize_Left_Side_Handler()")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
+            print("resize_Left_Side_Handler()   1.5")
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
+                print("resize_Left_Side_Handler()   2")
                 let delta_X = lcl_Note_At_Cursor.highest_Index - parentCentralState.currentData.dataCell_X_Number
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0 {
                     if delta_X >= 0, let lclLeftMost = leftDataXLimit {
-                        print("resize_Left_Side_Handler()   2")
+                        print("resize_Left_Side_Handler()   3")
                     let cursorSet = parentCentralState.currLineSet.filter({
                     $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                     let right_Most_CellGroup_In_Note = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index
@@ -188,7 +190,7 @@ class Resize_Helper: P_Selectable_Mode {
 
                         if let cursorMinCell = cursorSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let rightMostCell = right_Most_CellGroup_In_Note.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                            print("resize_Left_Side_Handler()   3")
+                            print("resize_Left_Side_Handler()   4")
                             available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                                                 
                             let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= cursorMinCell.dataCell_X_Number && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
