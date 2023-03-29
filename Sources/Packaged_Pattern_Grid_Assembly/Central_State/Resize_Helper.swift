@@ -204,7 +204,11 @@ class Resize_Helper: P_Selectable_Mode {
                             for cell in new_Note_Cell_Set {
                                 cell.reset_To_Original()
                                 if cell.in_Resize_Set == false {
+                                    print("cell.in_Resize_Set == false")
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                                }
+                                else if cell.in_Resize_Set == true{
+                                    print("else if cell.in_Resize_Set == true")
                                 }
                             }
                             
