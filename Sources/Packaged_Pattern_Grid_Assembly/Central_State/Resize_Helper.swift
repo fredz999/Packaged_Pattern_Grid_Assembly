@@ -138,7 +138,6 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func left_Side_Resize_Start(){
-        print("left_Side_Resize_Start()")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 if let hSliderRef = parentCentralState.h_Slider_Ref {
@@ -175,6 +174,7 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func resize_Left_Side_Handler(){
+        print("resize_Left_Side_Handler()")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 let delta_X = lcl_Note_At_Cursor.highest_Index - parentCentralState.currentData.dataCell_X_Number
