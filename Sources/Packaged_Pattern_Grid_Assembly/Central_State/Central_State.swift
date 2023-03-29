@@ -194,8 +194,14 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .resize_Mode {
                 if let lclResize_Helper = resize_Helper {
-                    lclResize_Helper.resize_Left_Side_Handler()
-                        //.resize_Right_Side_Handler()
+                    
+                    if resizeMode == .leftSideSubMode {
+                        lclResize_Helper.resize_Left_Side_Handler()
+                    }
+                    else if resizeMode == .rightSideSubMode {
+                        lclResize_Helper.resize_Right_Side_Handler()
+                    }
+
                 }
             }
 
