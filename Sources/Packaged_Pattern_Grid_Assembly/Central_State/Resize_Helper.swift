@@ -179,8 +179,6 @@ class Resize_Helper: P_Selectable_Mode {
                         }
                     }
                 }
-                
-                
             }
         }
     }
@@ -223,7 +221,7 @@ class Resize_Helper: P_Selectable_Mode {
                                 }
                             }
                             
-                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count)
+                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", leftLimit: ",leftDataXLimit,", currentNextLeft: " ,currentNextLeft)
                             
                         }
                     }
