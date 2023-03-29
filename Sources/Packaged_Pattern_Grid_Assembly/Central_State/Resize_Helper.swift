@@ -180,6 +180,7 @@ class Resize_Helper: P_Selectable_Mode {
                 let delta_X = lcl_Note_At_Cursor.highest_Index - parentCentralState.currentData.dataCell_X_Number
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0 {
                     if delta_X >= 0, let lclLeftMost = leftDataXLimit {
+                        print("resize_Left_Side_Handler()   2")
                     let cursorSet = parentCentralState.currLineSet.filter({
                     $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                     let right_Most_CellGroup_In_Note = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index
@@ -187,7 +188,7 @@ class Resize_Helper: P_Selectable_Mode {
 
                         if let cursorMinCell = cursorSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let rightMostCell = right_Most_CellGroup_In_Note.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-
+                            print("resize_Left_Side_Handler()   3")
                             available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                                                 
                             let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= cursorMinCell.dataCell_X_Number && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
