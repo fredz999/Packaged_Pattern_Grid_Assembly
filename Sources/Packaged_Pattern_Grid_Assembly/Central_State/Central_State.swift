@@ -239,9 +239,9 @@ public class Central_State : ObservableObject {
         }
     }
     
-    public func swap_Resize_Sub_Mode(){
-        if resizeMode == .rightSideSubMode{resizeMode = .leftSideSubMode}
-        else if resizeMode == .rightSideSubMode{resizeMode = .leftSideSubMode}
+    public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
+        if modeParam == .rightSideSubMode{resizeMode = .rightSideSubMode}
+        else if modeParam == .leftSideSubMode{resizeMode = .leftSideSubMode}
     }
     
     @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode {
