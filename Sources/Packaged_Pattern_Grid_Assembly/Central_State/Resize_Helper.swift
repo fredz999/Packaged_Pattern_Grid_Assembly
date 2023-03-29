@@ -222,7 +222,9 @@ class Resize_Helper: P_Selectable_Mode {
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
                                 }
                             }
-                            print("adfkvnosdjifvijsdfiovnsdofiv")
+                            
+                            print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count)
+                            
                         }
                     }
                 }
