@@ -253,7 +253,6 @@ public class Central_State : ObservableObject {
                 resizeMode = .rightSideSubMode
             }
             else if modeParam == .leftSideSubMode {
-                print("left resize mode activated")
                 lclResizer.write_The_Altered_Note()
                 resizeMode = .leftSideSubMode
             }
