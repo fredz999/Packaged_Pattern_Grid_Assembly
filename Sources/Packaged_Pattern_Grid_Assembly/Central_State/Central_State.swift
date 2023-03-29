@@ -58,6 +58,7 @@ public class Central_State : ObservableObject {
     var resize_Helper : Resize_Helper?
     
     var helperArray : [P_Selectable_Mode?] = []
+    
     public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam
         currentData = data_Grid.dataLineArray[0].dataCellArray[0]
@@ -235,6 +236,17 @@ public class Central_State : ObservableObject {
             }
             timing_Change_Compensation_Index = nil
         }
+        }
+    }
+    
+    public func swap_Resize_Sub_Mode(){
+        if let lcl_Resize_Helper = resize_Helper {
+            if lcl_Resize_Helper.resizeMode == .rightSideSubMode {
+                lcl_Resize_Helper.resizeMode = .leftSideSubMode
+            }
+            else if lcl_Resize_Helper.resizeMode == .leftSideSubMode {
+                lcl_Resize_Helper.resizeMode = .rightSideSubMode
+            }
         }
     }
 
