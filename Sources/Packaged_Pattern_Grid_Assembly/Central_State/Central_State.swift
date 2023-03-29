@@ -240,8 +240,14 @@ public class Central_State : ObservableObject {
     }
     
     public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
-        if modeParam == .rightSideSubMode{resizeMode = .rightSideSubMode}
-        else if modeParam == .leftSideSubMode{resizeMode = .leftSideSubMode}
+        if modeParam == .rightSideSubMode {
+            resizeMode = .rightSideSubMode
+            
+        }
+        else if modeParam == .leftSideSubMode {
+            resizeMode = .leftSideSubMode
+            
+        }
     }
     
     @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode {
@@ -250,7 +256,6 @@ public class Central_State : ObservableObject {
                 if resizeMode == .rightSideSubMode{lcl_Resize_Helper.right_Side_Resize_Start()}
                 else if resizeMode == .leftSideSubMode{lcl_Resize_Helper.left_Side_Resize_Start()}
             }
-            
         }
     }
     
@@ -264,17 +269,7 @@ public class Central_State : ObservableObject {
         didSet {
             currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             currLineSet.removeAll()
-            //var newSet = Set<Underlying_Data_Cell>()
-//            for cell in currLine.dataCellArray{
-//                newSet.insert(cell)
-//            }
-            //= newSet
             currLineSet = Set(currLine.dataCellArray)
-            
-            //let gridLine = parentCentralState.data_Grid.dataLineArray[parentCentralState.curr_Data_Pos_Y]
-            //                currLineSet = Set(gridLine.dataCellArray)
-            
-            
         }
     }
     
@@ -317,7 +312,7 @@ public class Central_State : ObservableObject {
     }
     
     var currLineSet = Set<Underlying_Data_Cell>()
-//    var currLineArray : [Underlying_Data_Cell]=[]
+
     var currLine : Underlying_Data_Line
     
     func data_Slider_LowBracket_Update(newLower:Int){
@@ -343,17 +338,6 @@ public enum E_PatternModeType : String {
     case no_Note_Collection = "no_Note_Collection"
     case multi_Select_Mode = "multi_Select_Mode"
 }
-
-//public enum E_PatternModeType : String {
-//    case write_Mode = "write_Mode"
-//    case delete_Mode = "delete_Mode"
-//    case move_Mode = "move_Mode"
-//    case resize_Mode_R = "resize_Mode_R"
-//    case passive_Mode = "passive_Mode"
-//    case no_Note_Collection = "no_Note_Collection"
-//    case multi_Select_Mode = "multi_Select_Mode"
-//}
- 
 
 public enum E_Note_Movement_Type {
     case leftWard

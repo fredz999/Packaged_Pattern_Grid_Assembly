@@ -185,51 +185,44 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func resize_Left_Side_Handler(){
-        
-                    if let lclNoteCollection = parentCentralState.currentNoteCollection {
-                    if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-                        
-                    let delta_X = lcl_Note_At_Cursor.highest_Index - parentCentralState.currentData.dataCell_X_Number
-                    if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0 {
+        if let lclNoteCollection = parentCentralState.currentNoteCollection {
+            if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
+                let delta_X = lcl_Note_At_Cursor.highest_Index - parentCentralState.currentData.dataCell_X_Number
+                if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0 {
                     if delta_X >= 0, let lclLeftMost = leftDataXLimit {
-                                    
                     let cursorSet = parentCentralState.currLineSet.filter({
                     $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-
                     let right_Most_CellGroup_In_Note = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index
                         == lcl_Note_At_Cursor.dataCellArray[lcl_Note_At_Cursor.dataCellArray.count-1].four_Four_Half_Cell_Index})
 
-                    if let cursorMinCell = cursorSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                    ,let rightMostCell = right_Most_CellGroup_In_Note.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        if let cursorMinCell = cursorSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                        ,let rightMostCell = right_Most_CellGroup_In_Note.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 
-                    available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
-                                        
-                    let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= cursorMinCell.dataCell_X_Number && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
-                    
-                    new_Note_Cell_Set = currentSwipeSet.intersection(available_Cell_Set)
-
-                    for cell in available_Cell_Set {
-                        cell.reset_To_Original()
-                        if cell.in_Resize_Set == true {
-                            cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-                        }
-                    }
-
-                    for cell in new_Note_Cell_Set {
-                        cell.reset_To_Original()
-                        if cell.in_Resize_Set == false {
-                            cell.handleVisibleStateChange(type: .activate_Resize_Set)
-                        }
-                    }
+                            available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                                                
+                            let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= cursorMinCell.dataCell_X_Number && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
+                            new_Note_Cell_Set = currentSwipeSet.intersection(available_Cell_Set)
+
+                            for cell in available_Cell_Set {
+                                cell.reset_To_Original()
+                                if cell.in_Resize_Set == true {
+                                    cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+                                }
+                            }
+
+                            for cell in new_Note_Cell_Set {
+                                cell.reset_To_Original()
+                                if cell.in_Resize_Set == false {
+                                    cell.handleVisibleStateChange(type: .activate_Resize_Set)
+                                }
+                            }
                             
+                        }
                     }
                 }
             }
         }
-    }
-    
-        
     }
     
     
@@ -295,174 +288,15 @@ class Resize_Helper: P_Selectable_Mode {
             if available_Cell_Set.count > 0 {
                 available_Cell_Set.removeAll()
             }
-            if new_Note_Cell_Set.count > 0{
+            if new_Note_Cell_Set.count > 0 {
                 new_Note_Cell_Set.removeAll()
             }
             mode_Active=false
         }
     }
-
 }
 
 public enum E_Resize_Mode : String {
     case rightSideSubMode = "Resize Rightward"
     case leftSideSubMode = "Resize Leftward"
 }
-
-
-
-//if let lclNoteCollection = parentCentralState.currentNoteCollection {
-//    if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-//        let cellArray = lcl_Note_At_Cursor.dataCellArray
-//
-//        cellArray[cellArray.count-1].change_Type(newType: .mid_Note)
-//
-//        if let newMax = new_Note_Cell_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//            newMax.change_Type(newType: .end_Note)
-//            let midSet = new_Note_Cell_Set.filter{$0 != newMax}
-//            for cell in midSet{
-//                cell.change_Type(newType: .mid_Note)
-//            }
-//        }
-//
-//        let combinedAdditionSet = Set<Underlying_Data_Cell>(cellArray).union(new_Note_Cell_Set)
-//        let newArray = combinedAdditionSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//        lcl_Note_At_Cursor.lowest_Index = newArray[0].dataCell_X_Number
-//        lcl_Note_At_Cursor.highest_Index = newArray[newArray.count-1].dataCell_X_Number
-//
-//        for cell in newArray{
-//            if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
-//            if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
-//        }
-//
-//        new_Note_Cell_Set.removeAll()
-//        the_Rest.removeAll()
-//
-//        lcl_Note_At_Cursor.dataCellArray.removeAll()
-//        lcl_Note_At_Cursor.dataCellArray = newArray
-//        print("lcl_Note_At_Cursor count: ",lcl_Note_At_Cursor.dataCellArray.count)
-//
-//    }
-//}
-
-
-
-
-//this happens with x slider
-//    func resize(){
-//        for note in select_Highlighted_Notes{
-//            note.shortenToNearestViableUnit()
-//        }
-//    }
-
-//    func resize(){
-//        for m in 0..<moving_Cell_Set_Holder_Array.count{
-//            var proposedSet = Set<Underlying_Data_Cell>()
-//            if let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y {
-//                let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
-//                let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclSnapshot_Y
-//                let proposedNewYNumber = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Y_Index + delta_Y_Grid_Units
-//
-//                let proposedNewMinIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index + delta_X_Grid_Units
-//                let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
-//
-//                let newLineSet : Set<Underlying_Data_Cell>
-//                = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
-//                if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
-//                    proposedSet = newLineSet
-//                    .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
-//                }
-//                else if proposedNewMinIndex < currLeftLimit {
-//                    proposedSet = parentCentralState.currLineSet
-//                    .filter{$0.dataCell_X_Number >= currLeftLimit
-//                    && $0.dataCell_X_Number <= (moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)}
-//                }
-//                else if proposedNewMaxIndex > currRightLimit {
-//                    proposedSet = parentCentralState.currLineSet
-//                    .filter{$0.dataCell_X_Number >=  currRightLimit-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
-//                    && $0.dataCell_X_Number <= currRightLimit
-//                    }
-//                }
-//                moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-//                moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m].potential_Moved_Set.filter({$0.note_Im_In != nil})
-//            }
-//        }
-//    }
-
-
-
-//    func provisional_Note_Cell_Count_Alteration(cellDelta:Int){
-//        let gridLine = parentCentralState.data_Grid.dataLineArray[parentCentralState.curr_Data_Pos_Y]
-//        let currLineSet : Set<Underlying_Data_Cell> = Set(gridLine.dataCellArray)
-//
-//        if cellDelta > 0 {
-//
-//            if dimensions.patternTimingConfiguration == .fourFour {
-//
-//                let upperHalfCellSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == centralState.currentData.four_Four_Half_Cell_Index})
-//
-//                if let maxUpper = upperHalfCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//                new_Note_Cell_Set = currLineSet.filter{$0.dataCell_X_Number >= highest_Index && $0.dataCell_X_Number <= maxUpper.dataCell_X_Number}
-//                the_Rest = currLineSet.subtracting(new_Note_Cell_Set)
-//
-//                    for cell in new_Note_Cell_Set{
-//                        if cell.in_Resize_Set == false{
-//                            cell.handleVisibleStateChange(type: .activate_Resize_Set)
-//                        }
-//                    }
-//                    for cell in the_Rest {
-//                        if cell.in_Resize_Set == true{
-//                            cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-//                        }
-//                    }
-//
-//                }
-//            }
-//        }
-////        dataCellArray[lastElement].change_Type(newType: .mid_Note)
-////        dataCellArray[lastElement].change_Highlight(highlightStatusParam: true)
-////
-////        let next_1 = dataCellArray[lastElement].dataCell_X_Number+1
-////        let new_Cell_1 = parent_Note_Collection.parentCentralState.data_Grid.dataLineArray[note_Y_Number].dataCellArray[next_1]
-////        new_Cell_1.change_Type(newType: .mid_Note)
-////        new_Cell_1.note_Im_In = parent_Note_Collection.note_Currently_Under_Cursor
-////        new_Cell_1.change_Highlight(highlightStatusParam: true)
-////        dataCellArray.append(new_Cell_1)
-//
-//
-//    }
-
-//func movement_With_Multi_Note_Selected(){
-//    for m in 0..<moving_Cell_Set_Holder_Array.count{
-//        var proposedSet = Set<Underlying_Data_Cell>()
-//        if let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y {
-//            let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
-//            let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclSnapshot_Y
-//            let proposedNewYNumber = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Y_Index + delta_Y_Grid_Units
-//
-//            let proposedNewMinIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index + delta_X_Grid_Units
-//            let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
-//
-//            let newLineSet : Set<Underlying_Data_Cell>
-//            = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
-//            if proposedNewMinIndex >= currLeftLimit && proposedNewMaxIndex <= currRightLimit {
-//                proposedSet = newLineSet
-//                .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
-//            }
-//            else if proposedNewMinIndex < currLeftLimit {
-//                proposedSet = parentCentralState.currLineSet
-//                .filter{$0.dataCell_X_Number >= currLeftLimit
-//                && $0.dataCell_X_Number <= (moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)}
-//            }
-//            else if proposedNewMaxIndex > currRightLimit {
-//                proposedSet = parentCentralState.currLineSet
-//                .filter{$0.dataCell_X_Number >=  currRightLimit-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
-//                && $0.dataCell_X_Number <= currRightLimit
-//                }
-//            }
-//            moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-//            moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m].potential_Moved_Set.filter({$0.note_Im_In != nil})
-//        }
-//    }
-//}
