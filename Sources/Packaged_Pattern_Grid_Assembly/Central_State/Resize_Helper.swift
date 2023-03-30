@@ -109,7 +109,7 @@ class Resize_Helper: P_Selectable_Mode {
                         if let cursorMaxCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                   
-                        available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number <= lclRightMost}
+                        available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number < lclRightMost}
                             
                             let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
                                 && $0.dataCell_X_Number <= cursorMaxCell.dataCell_X_Number}
@@ -136,6 +136,10 @@ class Resize_Helper: P_Selectable_Mode {
             }
         }
     }
+    
+    
+    
+    
     
     func left_Side_Resize_Start(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
@@ -185,7 +189,7 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func resize_Left_Side_Handler(){
-        print("resize_Left_Side_Handler().....0")
+        //print("resize_Left_Side_Handler().....0")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             //print("resize_Left_Side_Handler()   1.5")
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
@@ -194,7 +198,7 @@ class Resize_Helper: P_Selectable_Mode {
                 
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0 {
                     //print("resize_Left_Side_Handler()   2.5,.....leftDataXLimit: ",leftDataXLimit == nil ? "neel" : "not neel")
-                    if let lclleftDataXLimit = leftDataXLimit {print("lclleftDataXLimit: ",lclleftDataXLimit,", delta_X: ",delta_X.description)}
+                    //if let lclleftDataXLimit = leftDataXLimit {print("lclleftDataXLimit: ",lclleftDataXLimit,", delta_X: ",delta_X.description)}
                     if delta_X >= 0, let lclLeftMost = leftDataXLimit {
                         //print("resize_Left_Side_Handler()   3")
                     let cursorSet = parentCentralState.currLineSet.filter({
@@ -205,9 +209,9 @@ class Resize_Helper: P_Selectable_Mode {
                         if let cursorMinCell = cursorSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let rightMostCell = right_Most_CellGroup_In_Note.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                             //("resize_Left_Side_Handler()   4")
-                            available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                    available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number > lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                                                 
-                            let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= cursorMinCell.dataCell_X_Number && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                    let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= cursorMinCell.dataCell_X_Number && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
                             new_Note_Cell_Set = currentSwipeSet.intersection(available_Cell_Set)
 
@@ -221,11 +225,7 @@ class Resize_Helper: P_Selectable_Mode {
                             for cell in new_Note_Cell_Set {
                                 cell.reset_To_Original()
                                 if cell.in_Resize_Set == false {
-                                    //print("cell.in_Resize_Set == false")
                                     cell.handleVisibleStateChange(type: .activate_Resize_Set)
-                                }
-                                else if cell.in_Resize_Set == true{
-                                    //print("else if cell.in_Resize_Set == true")
                                 }
                             }
                             
@@ -235,7 +235,6 @@ class Resize_Helper: P_Selectable_Mode {
             }
         }
     }
-    
     
     
     
