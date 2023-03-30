@@ -170,6 +170,14 @@ class Resize_Helper: P_Selectable_Mode {
                             else if cells_On_Left_That_Have_Notes.count == 0 {
                                 leftDataXLimit = 0
                             }
+                            
+                            if let lclLeftDataLimit = leftDataXLimit {
+                                print("lclLeftDataLimit : ",lclLeftDataLimit.description)
+                            }
+                            else if leftDataXLimit == nil {
+                                print("leftDataXLimit == nil")
+                            }
+                            
                         }
                     }
                 }
