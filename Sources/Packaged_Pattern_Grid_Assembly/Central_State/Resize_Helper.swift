@@ -186,7 +186,7 @@ class Resize_Helper: P_Selectable_Mode {
     }
     
     func resize_Left_Side_Handler(){
-        //print("resize_Left_Side_Handler()")
+        print("resize_Left_Side_Handler().....0")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             //print("resize_Left_Side_Handler()   1.5")
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {

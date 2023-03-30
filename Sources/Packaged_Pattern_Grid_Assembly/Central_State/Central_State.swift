@@ -263,8 +263,14 @@ public class Central_State : ObservableObject {
     @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode {
         didSet {
             if let lcl_Resize_Helper = resize_Helper {
-                if resizeMode == .rightSideSubMode{lcl_Resize_Helper.right_Side_Resize_Start()}
-                else if resizeMode == .leftSideSubMode{lcl_Resize_Helper.left_Side_Resize_Start()}
+                if resizeMode == .rightSideSubMode {
+                    lcl_Resize_Helper.right_Side_Resize_Start()
+                    lcl_Resize_Helper.resize_Right_Side_Handler()
+                }
+                else if resizeMode == .leftSideSubMode {
+                    lcl_Resize_Helper.left_Side_Resize_Start()
+                    lcl_Resize_Helper.resize_Left_Side_Handler()
+                }
             }
         }
     }
