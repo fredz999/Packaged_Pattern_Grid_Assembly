@@ -196,7 +196,7 @@ public class Central_State : ObservableObject {
                 if let lclResize_Helper = resize_Helper {
                     
                     if resizeMode == .leftSideSubMode {
-                        lclResize_Helper.resize_Left_Side_Handler()
+                        //lclResize_Helper.resize_Left_Side_Handler()
                     }
                     else if resizeMode == .rightSideSubMode {
                         lclResize_Helper.resize_Right_Side_Handler()
@@ -268,8 +268,8 @@ public class Central_State : ObservableObject {
                     lcl_Resize_Helper.resize_Right_Side_Handler()
                 }
                 else if resizeMode == .leftSideSubMode {
-                    lcl_Resize_Helper.left_Side_Resize_Start()
-                    lcl_Resize_Helper.resize_Left_Side_Handler()
+//                    lcl_Resize_Helper.left_Side_Resize_Start()
+//                    lcl_Resize_Helper.resize_Left_Side_Handler()
                 }
             }
         }
