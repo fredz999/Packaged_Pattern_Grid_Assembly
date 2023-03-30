@@ -170,9 +170,6 @@ class Resize_Helper: P_Selectable_Mode {
                             else if cells_On_Left_That_Have_Notes.count == 0 {
                                 leftDataXLimit = 0
                             }
-                            
-                           
-
                         }
                     }
                 }
