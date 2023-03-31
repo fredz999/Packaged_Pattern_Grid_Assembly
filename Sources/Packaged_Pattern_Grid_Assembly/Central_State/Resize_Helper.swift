@@ -166,7 +166,7 @@ class Resize_Helper: P_Selectable_Mode {
                     print("...........2")
                     //if lclCurrNoteMin.dataCell_X_Number > 0 {
                         print("...........3")
-                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMin.dataCell_X_Number-1].note_Im_In == nil{
+                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMin.dataCell_X_Number].note_Im_In == nil{
                             print("...........4")
                             currentNextLeft = lclCurrNoteMin.dataCell_X_Number-1
 
