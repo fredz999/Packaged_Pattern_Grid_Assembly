@@ -163,7 +163,7 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-        print("centralState_Data_Evaluation ")
+  
         if dimensions.patternTimingConfiguration == .fourFour {
             
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -194,15 +194,7 @@ public class Central_State : ObservableObject {
             }
             else if currentPatternMode == .resize_Mode {
                 if let lclResize_Helper = resize_Helper {
-
-                    if resizeMode == .leftSideSubMode {
-                        lclResize_Helper.resize_Left_Side_Handler()
-                    }
-                    else if resizeMode == .rightSideSubMode {
-                        print("if resizeMode == .rightSideSubMode")
-                        lclResize_Helper.resize_Right_Side_Handler()
-                    }
-
+                    lclResize_Helper.handleDataEvaluation()
                 }
             }
 
@@ -243,36 +235,6 @@ public class Central_State : ObservableObject {
             }
             timing_Change_Compensation_Index = nil
         }
-        }
-    }
-    
-    public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
-        if let lclResizer = resize_Helper {
-            
-            if modeParam == .rightSideSubMode {
-                lclResizer.write_The_Altered_Note()
-                resizeMode = .rightSideSubMode
-            }
-            else if modeParam == .leftSideSubMode {
-                lclResizer.write_The_Altered_Note()
-                resizeMode = .leftSideSubMode
-            }
-            
-        }
-    }
-    
-    @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode {
-        didSet {
-            if let lcl_Resize_Helper = resize_Helper {
-                if resizeMode == .rightSideSubMode {
-                    lcl_Resize_Helper.right_Side_Resize_Start()
-                    lcl_Resize_Helper.resize_Right_Side_Handler()
-                }
-                else if resizeMode == .leftSideSubMode {
-                    lcl_Resize_Helper.left_Side_Resize_Start()
-                    lcl_Resize_Helper.resize_Left_Side_Handler()
-                }
-            }
         }
     }
     

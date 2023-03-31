@@ -8,24 +8,15 @@
 import Foundation
 import SwiftUI
 
-class Resize_Helper: P_Selectable_Mode {
+public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     var selectableModeId: Int
     
     let dimensions = ComponentDimensions.StaticDimensions
     
     var mode_Active: Bool = false
-
-    //var select_Highlighted_Notes : [Note] = []
     
     var parentCentralState : Central_State
-
-    
-    
-    //================= these will need to be arrays
-    //var snapshot_Cursor_X : Int?
-    //var snapshot_Cursor_X_Array : [Int] = []
-    //var snapshot_Cursor_Y : Int?
     
     var rightDataXLimit : Int?
     var currentNextRight : Int?
@@ -38,12 +29,39 @@ class Resize_Helper: P_Selectable_Mode {
     //================= /these will need to be arrays
     
     
+    @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode {
+        didSet {
+            
+                if resizeMode == .rightSideSubMode {
+                    right_Side_Resize_Start()
+                    resize_Right_Side_Handler()
+                }
+                else if resizeMode == .leftSideSubMode {
+                    left_Side_Resize_Start()
+                    resize_Left_Side_Handler()
+                }
+        
+        }
+    }
     
-    
-    init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
+    public init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
     }
+    
+    public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
+        if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
+            write_The_Altered_Note()
+            resizeMode = .rightSideSubMode
+        }
+        else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
+            write_The_Altered_Note()
+            resizeMode = .leftSideSubMode
+        }
+    }
+    
+    
+    
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
@@ -56,12 +74,18 @@ class Resize_Helper: P_Selectable_Mode {
         }
     }
     
-    func generateModeDescriptorString() -> String {
-        return parentCentralState.resizeMode.rawValue
+    func generateModeDescriptorString () -> String {
+        return resizeMode.rawValue
     }
 
-    
-    
+    func handleDataEvaluation(){
+        if resizeMode == .rightSideSubMode {
+            resize_Left_Side_Handler()
+        }
+        else if resizeMode == .leftSideSubMode{
+            resize_Right_Side_Handler()
+        }
+    }
     
     func right_Side_Resize_Start(){
         print("right_Side_Resize_Start() 0")
