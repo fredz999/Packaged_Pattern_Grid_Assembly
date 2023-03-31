@@ -118,8 +118,14 @@ class Resize_Helper: P_Selectable_Mode {
                         
                         if let cursorMaxCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                  
-                        available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number < lclRightMost}
+                            
+                            if lclRightMost == dimensions.dataGrid_X_Unit_Count-1{
+                                available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number <= lclRightMost}
+                            }
+                            else if lclRightMost < dimensions.dataGrid_X_Unit_Count-1{
+                                available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number < lclRightMost}
+                            }
+                        
                             
                             let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
                                 && $0.dataCell_X_Number <= cursorMaxCell.dataCell_X_Number}
@@ -223,8 +229,13 @@ class Resize_Helper: P_Selectable_Mode {
                         ,let rightMostCell = right_Most_CellGroup_In_Note.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                             //("resize_Left_Side_Handler()   4")
                         
-                            if lclLeftMost == 0{}
-                    available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number > lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                        if lclLeftMost == 0{
+                            available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                        }
+                        else if lclLeftMost > 0{
+                            available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number > lclLeftMost && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
+                        }
+                    
                                                 
                     let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= cursorMinCell.dataCell_X_Number && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
