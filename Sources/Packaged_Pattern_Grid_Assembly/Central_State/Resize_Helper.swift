@@ -64,7 +64,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     
     func right_Side_Resize_Start(){
-        
+        print("right_Side_Resize_Start() 0")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 if let hSliderRef = parentCentralState.h_Slider_Ref {
@@ -102,6 +102,7 @@ class Resize_Helper: P_Selectable_Mode {
     }
 
     func resize_Right_Side_Handler(){
+        print("resize_Right_Side_Handler() 0")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
 
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
@@ -125,6 +126,7 @@ class Resize_Helper: P_Selectable_Mode {
 //                            else if lclRightMost < dimensions.dataGrid_X_Unit_Count-1{
 //                                available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number < lclRightMost}
 //                            }
+                            
                             available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number <= lclRightMost}
                             
                             let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number
