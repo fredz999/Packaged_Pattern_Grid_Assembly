@@ -24,8 +24,8 @@ class Resize_Helper: P_Selectable_Mode {
     
     //================= these will need to be arrays
     //var snapshot_Cursor_X : Int?
-    var snapshot_Cursor_X_Array : [Int] = []
-    var snapshot_Cursor_Y : Int?
+    // var snapshot_Cursor_X_Array : [Int] = []
+    //var snapshot_Cursor_Y : Int?
     
     var rightDataXLimit : Int?
     var currentNextRight : Int?
@@ -50,8 +50,8 @@ class Resize_Helper: P_Selectable_Mode {
             mode_Active = true
             if let lclActivationCell = activationCell{
                 //snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
-                snapshot_Cursor_X_Array.append(lclActivationCell.dataCell_X_Number)
-                snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
+                //snapshot_Cursor_X_Array.append(lclActivationCell.dataCell_X_Number)
+                //snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
             }
         }
     }
@@ -315,7 +315,7 @@ class Resize_Helper: P_Selectable_Mode {
             }
             mode_Active=false
         }
-        if snapshot_Cursor_X_Array.count > 0{snapshot_Cursor_X_Array.removeAll()}
+        //if snapshot_Cursor_X_Array.count > 0{snapshot_Cursor_X_Array.removeAll()}
     }
 }
 
