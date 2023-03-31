@@ -64,7 +64,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     
     func right_Side_Resize_Start(){
-        print("right_Side_Resize_Start() 0, rightDataXLimit: ",rightDataXLimit)
+
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
                 if let hSliderRef = parentCentralState.h_Slider_Ref {
@@ -102,7 +102,7 @@ class Resize_Helper: P_Selectable_Mode {
     }
 
     func resize_Right_Side_Handler(){
-        print("resize_Right_Side_Handler() 0")
+
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
 
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
