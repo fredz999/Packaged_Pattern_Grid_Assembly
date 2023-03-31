@@ -268,8 +268,8 @@ public class Central_State : ObservableObject {
                     lcl_Resize_Helper.resize_Right_Side_Handler()
                 }
                 else if resizeMode == .leftSideSubMode {
-//                    lcl_Resize_Helper.left_Side_Resize_Start()
-//                    lcl_Resize_Helper.resize_Left_Side_Handler()
+                    lcl_Resize_Helper.left_Side_Resize_Start()
+                    lcl_Resize_Helper.resize_Left_Side_Handler()
                 }
             }
         }

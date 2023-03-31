@@ -147,6 +147,8 @@ class Resize_Helper: P_Selectable_Mode {
         }
     }
     
+    
+    
     func left_Side_Resize_Start(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             print("...........0")
@@ -241,6 +243,10 @@ class Resize_Helper: P_Selectable_Mode {
             }
         }
     }
+    
+    
+    
+    
     
     func write_The_Altered_Note(){
         if new_Note_Cell_Set.count > 0 {
