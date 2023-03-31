@@ -64,10 +64,13 @@ class Resize_Helper: P_Selectable_Mode {
     
     
     func right_Side_Resize_Start(){
-
+        print("right_Side_Resize_Start() 0")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
+            print("right_Side_Resize_Start() 1")
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
+                print("right_Side_Resize_Start() 2")
                 if let hSliderRef = parentCentralState.h_Slider_Ref {
+                    print("right_Side_Resize_Start() 3")
                     let destinationCellIndex = lcl_Note_At_Cursor.highest_Index - ((dimensions.pattern_Grid_Cell_Sub_Unit_Count/2)-1)
                     hSliderRef.jumpToACell(cellNum: destinationCellIndex)
                 }
@@ -76,9 +79,11 @@ class Resize_Helper: P_Selectable_Mode {
                 let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(currNoteSet)
                 
                 if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
+                    print("right_Side_Resize_Start() 4")
                     if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
+                        print("right_Side_Resize_Start() 5")
                         if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
-                            
+                            print("right_Side_Resize_Start() 6")
                             currentNextRight = lclCurrNoteMax.dataCell_X_Number+1
                             
                             let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
@@ -102,16 +107,17 @@ class Resize_Helper: P_Selectable_Mode {
     }
 
     func resize_Right_Side_Handler(){
-
+        print("resize_Right_Side_Handler() 0")
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
 
             if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-
+                print("resize_Right_Side_Handler() 1")
                 let delta_X = parentCentralState.currentData.dataCell_X_Number - lcl_Note_At_Cursor.lowest_Index
                 
                 if dimensions.patternTimingConfiguration == .fourFour,lcl_Note_At_Cursor.dataCellArray.count > 0  {
-                    
+                    print("resize_Right_Side_Handler() 2")
                     if delta_X >= 0, let lclRightMost = rightDataXLimit {
+                        print("resize_Right_Side_Handler() 3")
                         let cursorSet = parentCentralState.currLineSet.filter({
                         $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
                         
@@ -119,7 +125,7 @@ class Resize_Helper: P_Selectable_Mode {
                         
                         if let cursorMaxCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                            
+                            print("resize_Right_Side_Handler() 4")
 //                            if lclRightMost == dimensions.dataGrid_X_Unit_Count-1{
 //                                available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number <= lclRightMost}
 //                            }
