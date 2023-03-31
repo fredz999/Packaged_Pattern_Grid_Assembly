@@ -24,7 +24,7 @@ class Resize_Helper: P_Selectable_Mode {
     
     //================= these will need to be arrays
     //var snapshot_Cursor_X : Int?
-    // var snapshot_Cursor_X_Array : [Int] = []
+    //var snapshot_Cursor_X_Array : [Int] = []
     //var snapshot_Cursor_Y : Int?
     
     var rightDataXLimit : Int?
@@ -164,7 +164,7 @@ class Resize_Helper: P_Selectable_Mode {
 
                 if let lclCurrNoteMin = currNoteSet.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
                     print("...........2")
-                    if lclCurrNoteMin.dataCell_X_Number > 0 {
+                    //if lclCurrNoteMin.dataCell_X_Number > 0 {
                         print("...........3")
                         if parentCentralState.currLine.dataCellArray[lclCurrNoteMin.dataCell_X_Number-1].note_Im_In == nil{
                             print("...........4")
@@ -190,7 +190,7 @@ class Resize_Helper: P_Selectable_Mode {
                             }
                             
                         }
-                    }
+                    //}
                 }
             }
         }
