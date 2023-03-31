@@ -199,6 +199,7 @@ public class Central_State : ObservableObject {
                         lclResize_Helper.resize_Left_Side_Handler()
                     }
                     else if resizeMode == .rightSideSubMode {
+                        print("if resizeMode == .rightSideSubMode")
                         lclResize_Helper.resize_Right_Side_Handler()
                     }
 
