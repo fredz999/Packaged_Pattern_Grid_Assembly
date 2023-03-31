@@ -164,9 +164,10 @@ class Resize_Helper: P_Selectable_Mode {
 
                 if let lclCurrNoteMin = currNoteSet.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
                     print("...........2")
-                    //if lclCurrNoteMin.dataCell_X_Number > 0 {
+                    if lclCurrNoteMin.dataCell_X_Number > 0 {
                         print("...........3")
-                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMin.dataCell_X_Number].note_Im_In == nil{
+                    // this is checking that there is at least one empty cell to the left
+                        if parentCentralState.currLine.dataCellArray[lclCurrNoteMin.dataCell_X_Number-1].note_Im_In == nil{
                             print("...........4")
                             currentNextLeft = lclCurrNoteMin.dataCell_X_Number-1
 
@@ -190,7 +191,11 @@ class Resize_Helper: P_Selectable_Mode {
                             }
                             
                         }
-                    //}
+                    }
+                    else if lclCurrNoteMin.dataCell_X_Number == 0 {
+                        currentNextLeft = 0
+                        leftDataXLimit = 0
+                    }
                 }
             }
         }
