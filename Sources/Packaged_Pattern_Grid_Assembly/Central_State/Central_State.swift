@@ -196,7 +196,7 @@ public class Central_State : ObservableObject {
                 if let lclResize_Helper = resize_Helper {
                     
                     if resizeMode == .leftSideSubMode {
-                        //lclResize_Helper.resize_Left_Side_Handler()
+                        lclResize_Helper.resize_Left_Side_Handler()
                     }
                     else if resizeMode == .rightSideSubMode {
                         lclResize_Helper.resize_Right_Side_Handler()
