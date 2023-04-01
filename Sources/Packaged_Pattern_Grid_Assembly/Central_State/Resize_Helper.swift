@@ -14,7 +14,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    var mode_Active: Bool = false
+    
     
     var parentCentralState : Central_State
     
@@ -28,21 +28,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     //================= /these will need to be arrays
     
-    
-    @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode {
-        didSet {
-            
-                if resizeMode == .rightSideSubMode {
-                    right_Side_Resize_Start()
-                    resize_Right_Side_Handler()
-                }
-                else if resizeMode == .leftSideSubMode {
-                    left_Side_Resize_Start()
-                    resize_Left_Side_Handler()
-                }
-        
-        }
-    }
+    @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode
     
     public init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
@@ -51,25 +37,28 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
         if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
-            write_The_Altered_Note()
             resizeMode = .rightSideSubMode
+            if mode_Active == true {
+                write_The_Altered_Note()
+                right_Side_Resize_Start()
+                resize_Right_Side_Handler()
+            }
         }
         else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
-            write_The_Altered_Note()
             resizeMode = .leftSideSubMode
+            if mode_Active == true {
+                write_The_Altered_Note()
+                left_Side_Resize_Start()
+                resize_Left_Side_Handler()
+            }
         }
     }
+    
+    public var mode_Active: Bool = false
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
-            
-            //if let lclActivationCell = activationCell{
-            //snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
-            //snapshot_Cursor_X_Array.append(lclActivationCell.dataCell_X_Number)
-            //snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
-            //}
-            
             if resizeMode == .leftSideSubMode{
                 left_Side_Resize_Start()
                 resize_Left_Side_Handler()
@@ -81,17 +70,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
     }
     
-    
     func generateModeDescriptorString () -> String {
         return resizeMode.rawValue
     }
 
     func handleDataEvaluation(){
         if resizeMode == .rightSideSubMode {
-            resize_Left_Side_Handler()
+            resize_Right_Side_Handler()
         }
         else if resizeMode == .leftSideSubMode{
-            resize_Right_Side_Handler()
+            resize_Left_Side_Handler()
         }
     }
     
