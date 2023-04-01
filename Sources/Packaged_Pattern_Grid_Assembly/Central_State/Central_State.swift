@@ -55,6 +55,7 @@ public class Central_State : ObservableObject {
     var passive_Helper : Passive_Helper?
     var writeNote_Helper : WriteNote_Helper?
     var multi_Select_Helper : Multi_Select_Helper?
+    
     public var resize_Helper : Resize_Helper?
     
     var helperArray : [P_Selectable_Mode?] = []
