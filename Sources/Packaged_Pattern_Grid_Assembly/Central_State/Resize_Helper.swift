@@ -264,8 +264,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                          
                         let currentSwipeSet = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= cursorMinCell.dataCell_X_Number && $0.dataCell_X_Number <= rightMostCell.dataCell_X_Number}
                             
-                            let csMax = currentSwipeSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                            print("currentSwipeSet max: ",csMax?.dataCell_X_Number)
+                            if let csMax = currentSwipeSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                                print("currentSwipeSet max: ",csMax.dataCell_X_Number)
+                            }
+                            
                             
                             
                             new_Note_Cell_Set = currentSwipeSet.intersection(available_Cell_Set)
