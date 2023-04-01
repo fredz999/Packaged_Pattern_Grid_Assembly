@@ -60,11 +60,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             mode_Active = true
             if resizeMode == .leftSideSubMode{
                 left_Side_Resize_Start()
-                resize_Left_Side_Handler()
+                //resize_Left_Side_Handler()
             }
             else if resizeMode == .rightSideSubMode{
                 right_Side_Resize_Start()
-                print("calling resize_Right_Side_Handler() 2")
+                //print("calling resize_Right_Side_Handler() 2")
                 //resize_Right_Side_Handler()
             }
         }
