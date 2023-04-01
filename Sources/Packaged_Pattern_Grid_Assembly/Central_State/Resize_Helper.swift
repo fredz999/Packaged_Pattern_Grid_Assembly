@@ -63,10 +63,20 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
-            if let lclActivationCell = activationCell{
-                //snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
-                //snapshot_Cursor_X_Array.append(lclActivationCell.dataCell_X_Number)
-                //snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
+            
+            //if let lclActivationCell = activationCell{
+            //snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
+            //snapshot_Cursor_X_Array.append(lclActivationCell.dataCell_X_Number)
+            //snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
+            //}
+            
+            if resizeMode == .leftSideSubMode{
+                left_Side_Resize_Start()
+                resize_Left_Side_Handler()
+            }
+            else if resizeMode == .rightSideSubMode{
+                right_Side_Resize_Start()
+                resize_Right_Side_Handler()
             }
         }
     }
