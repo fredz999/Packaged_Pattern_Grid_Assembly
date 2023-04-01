@@ -97,7 +97,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 let allCellsOutSideNote = parentCentralState.currLineSet.subtracting(currNoteSet)
                 
                 if let lclCurrNoteMax = currNoteSet.max(by: {$0.dataCell_X_Number<$1.dataCell_X_Number}){
-                    print("right_Side_Resize_Start() 4")
+                    print("right_Side_Resize_Start() 4, lclCurrNoteMax.dataCell_X_Number: ",lclCurrNoteMax.dataCell_X_Number)
                     if lclCurrNoteMax.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count-1 {
                         print("right_Side_Resize_Start() 5")
                         if parentCentralState.currLine.dataCellArray[lclCurrNoteMax.dataCell_X_Number+1].note_Im_In == nil{
@@ -105,6 +105,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             currentNextRight = lclCurrNoteMax.dataCell_X_Number+1
                             
                             let allCellsToRight = allCellsOutSideNote.filter({$0.dataCell_X_Number > lclCurrNoteMax.dataCell_X_Number})
+                            
                             let cells_On_Right_That_Have_Notes = allCellsToRight.filter{$0.note_Im_In != nil}
                             
                             if let firstCell_On_Right_Thats_In_A_Note = cells_On_Right_That_Have_Notes.min(by:{
@@ -115,7 +116,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             else if cells_On_Right_That_Have_Notes.count == 0 {
                                 rightDataXLimit = dimensions.dataGrid_X_Unit_Count-1
                             }
-
                         }
                     }
                 }
