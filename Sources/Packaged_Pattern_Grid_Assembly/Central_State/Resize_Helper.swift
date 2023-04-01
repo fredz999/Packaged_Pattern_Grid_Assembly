@@ -60,9 +60,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
     }
     
-    
-    
-    
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
@@ -73,6 +70,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             }
         }
     }
+    
     
     func generateModeDescriptorString () -> String {
         return resizeMode.rawValue
