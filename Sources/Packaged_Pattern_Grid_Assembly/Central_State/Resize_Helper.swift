@@ -14,8 +14,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    
-    
     var parentCentralState : Central_State
     
     var rightDataXLimit : Int?
@@ -146,6 +144,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         if let cursorMaxCell = cursorSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         ,let leftMostCell = lowCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                             print("resize_Right_Side_Handler() 4")
+                            
 //                            if lclRightMost == dimensions.dataGrid_X_Unit_Count-1{
 //                                available_Cell_Set = parentCentralState.currLineSet.filter{$0.dataCell_X_Number >= leftMostCell.dataCell_X_Number && $0.dataCell_X_Number <= lclRightMost}
 //                            }
@@ -294,7 +293,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     
-    func write_The_Altered_Note(){
+    public func write_The_Altered_Note(){
         if new_Note_Cell_Set.count > 0 {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
