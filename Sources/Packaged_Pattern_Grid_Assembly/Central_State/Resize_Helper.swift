@@ -290,6 +290,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     }
                     else if delta_X < 0{
                         print("this zone needs to be processed as well")
+                        //todo: rethink getting all sides in process
+                        // start with each side and identify the areas(sets) that you need
                     }
                 }
             }
