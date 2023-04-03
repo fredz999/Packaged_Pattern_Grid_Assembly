@@ -76,7 +76,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             resize_Right_Side_Handler()
         }
         else if resizeMode == .leftSideSubMode {
-            print("calling resize_Left_Side_Handler() 3")
+            //print("calling resize_Left_Side_Handler() 3")
             resize_Left_Side_Handler()
         }
     }
@@ -233,9 +233,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         // 3 establish snapshot_Cursor_Min_Cell, start_Cursor_Max_Cell
         snapshot_Cursor_Min_Cell = snapshot_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         snapshot_Cursor_Max_Cell = snapshot_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        
+        
+        
+        
         // 3.5 establish snapshot_Note_Set
         if let lclCurrentNoteCollection = parentCentralState.currentNoteCollection {
             if let lclCurrentNote = lclCurrentNoteCollection.note_Currently_Under_Cursor {
+                
+                
+                
                 snapshot_Note_Set = Set<Underlying_Data_Cell>(lclCurrentNote.dataCellArray)
                 if let minNoteCell = snapshot_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     // 4 establish cells_Left_Of_Note_Set
@@ -249,6 +256,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: { $0.dataCell_X_Number < $1.dataCell_X_Number }){
                         leftDataXLimit = maxNoteCellLeftOfNote.dataCell_X_Number
                     }
+                    
+                    if let hSliderRef = parentCentralState.h_Slider_Ref {
+                        let destinationCellIndex = lclCurrentNote.lowest_Index
+                        hSliderRef.jumpToACell(cellNum: destinationCellIndex)
+                    }
+                    
                 }
             }
         }
