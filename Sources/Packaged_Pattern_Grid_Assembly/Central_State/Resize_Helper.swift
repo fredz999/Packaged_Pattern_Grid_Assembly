@@ -245,6 +245,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 
                 snapshot_Note_Set = Set<Underlying_Data_Cell>(lclCurrentNote.dataCellArray)
                 if let minNoteCell = snapshot_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                    if let hSliderRef = parentCentralState.h_Slider_Ref {
+                        let destinationCellIndex = minNoteCell.dataCell_X_Number
+                        hSliderRef.jumpToACell(cellNum: destinationCellIndex)
+                    }
                     // 4 establish cells_Left_Of_Note_Set
                     snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < minNoteCell.dataCell_X_Number}
                     // 5 establish note_Cells_Left_Of_Note_Set
@@ -257,10 +261,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         leftDataXLimit = maxNoteCellLeftOfNote.dataCell_X_Number
                     }
                     
-                    if let hSliderRef = parentCentralState.h_Slider_Ref {
-                        let destinationCellIndex = lclCurrentNote.lowest_Index
-                        hSliderRef.jumpToACell(cellNum: destinationCellIndex)
-                    }
+//                    if let hSliderRef = parentCentralState.h_Slider_Ref {
+//                        let destinationCellIndex = lclCurrentNote.lowest_Index
+//                        hSliderRef.jumpToACell(cellNum: destinationCellIndex)
+//                    }
                     
                 }
             }
