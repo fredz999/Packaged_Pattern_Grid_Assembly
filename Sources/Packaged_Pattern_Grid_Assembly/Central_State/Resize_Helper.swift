@@ -181,8 +181,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
     }
     
-    
-    
     func deactivate_Mode() {
         if mode_Active == true {
             write_The_Altered_Note()
@@ -194,40 +192,72 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 new_Note_Cell_Set.removeAll()
             }
             
-            if snapshot_Line_Set != nil{snapshot_Line_Set = nil}
+            if snapshot_Line_Set.count > 0{snapshot_Line_Set.removeAll()}
             if snapshot_Cursor_Set.count > 0{snapshot_Cursor_Set.removeAll()}
+            if snapshot_Note_Set.count > 0{snapshot_Note_Set.removeAll()}
+            if snapshot_Cells_Left_Of_Note_Set.count > 0{snapshot_Cells_Left_Of_Note_Set.removeAll()}
+            if snapshot_Note_Cells_Left_Of_Note_Set.count > 0{snapshot_Note_Cells_Left_Of_Note_Set.removeAll()}
+            
+            
+            if snapshot_Cursor_Min_Cell != nil{snapshot_Cursor_Min_Cell = nil}
+            if snapshot_Cursor_Max_Cell != nil{snapshot_Cursor_Max_Cell = nil}
             
             mode_Active=false
         }
         
     }
     
-    var snapshot_Line_Set : Underlying_Data_Line?
+    var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var snapshot_Four_Four_Half_Cell_Index : Int?
+    var snapshot_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var snapshot_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var snapshot_Note_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
+    var snapshot_Cursor_Min_Cell : Underlying_Data_Cell?
+    var snapshot_Cursor_Max_Cell : Underlying_Data_Cell?
     
     
     func left_Side_Resize_Start(){
         
         // 1 establish line set
-        print("currLine Y Num: ",parentCentralState.currLine.dataCellArray[0].dataCell_Y_Number)
-        snapshot_Line_Set = parentCentralState.currLine
+        //print("currLine Y Num: ",parentCentralState.currLine.dataCellArray[0].dataCell_Y_Number)
+        snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
         
-        snapshot_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-        
-        print("snapshot_Cursor_Set min X:",snapshot_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number,
-              "snapshot_Cursor_Set max X:",snapshot_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number)
-        
-//                            let cursorSet = parentCentralState.currLineSet.filter({
-//                            $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-//                            let right_Most_CellGroup_In_Note = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index
-//                                == lcl_Note_At_Cursor.dataCellArray[lcl_Note_At_Cursor.dataCellArray.count-1].four_Four_Half_Cell_Index})
         
         
         // 2 establish start_Cursor_Set (currData four_Four_Half_Cell_Index) and start_Half_Cell_Index
-        // 3 establish start_Cursor_Min_Cell, start_Cursor_Max_Cell
-        // 4 establish cells_Left_Of_Note_Set
-        // 5 establish note_Cells_Left_Of_Note_Set
-        // 6 from this deduce whether the leftward_Barrier_Cell (either 0 or .max in note_Cells_Left_Of_Note_Set)
+        snapshot_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+        // 2.5 establish start_Cursor_Set (currData four_Four_Half_Cell_Index) and start_Half_Cell_Index
+        snapshot_Four_Four_Half_Cell_Index = parentCentralState.currentData.four_Four_Half_Cell_Index
+        // 3 establish snapshot_Cursor_Min_Cell, start_Cursor_Max_Cell
+        snapshot_Cursor_Min_Cell = snapshot_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        snapshot_Cursor_Max_Cell = snapshot_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+        // 3.5 establish snapshot_Note_Set
+        if let lclCurrentNoteCollection = parentCentralState.currentNoteCollection {
+            if let lclCurrentNote = lclCurrentNoteCollection.note_Currently_Under_Cursor {
+                snapshot_Note_Set = Set<Underlying_Data_Cell>(lclCurrentNote.dataCellArray)
+                if let minNoteCell = snapshot_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                    // 4 establish cells_Left_Of_Note_Set
+                    snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < minNoteCell.dataCell_X_Number}
+                    // 5 establish note_Cells_Left_Of_Note_Set
+                    snapshot_Note_Cells_Left_Of_Note_Set = snapshot_Cells_Left_Of_Note_Set.filter{$0.note_Im_In != nil}
+                    // 6 from this deduce whether the leftward_Barrier_Cell (either 0 or .max in note_Cells_Left_Of_Note_Set)
+                    if snapshot_Note_Cells_Left_Of_Note_Set.count == 0 {
+                         leftDataXLimit = 0
+                    }
+                    else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: { $0.dataCell_X_Number < $1.dataCell_X_Number }){
+                        leftDataXLimit = maxNoteCellLeftOfNote.dataCell_X_Number
+                    }
+                }
+            }
+        }
+        
+        
+        //snapshot_Cells_Left_Of_Note_Set  = snapshot_Line_Set.filter{$0.dataCell_X_Number < }
+
+        
+        
         // 7 establish viable_Cells_In_This_Resize_Set
         // 7 contd: if leftward_Barrier_Cell > 0 (leftward_Barrier_Cell+1 ... 1 left of cursor_Min_Cell)
         // 7 contd: else if leftward_Barrier_Cell == 0 (0 ... 1 left of cursor_Min_Cell)
@@ -238,8 +268,50 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         // 3 contd - if the currentData_X is below the leftmost Cell in the start cursor set
     }
     
+    var current_Four_Four_Half_Cell_Index : Int?
+    var current_Cursor_Set_Min : Int?
+    var current_Cursor_Set_Max : Int?
+    
     func resize_Left_Side_Handler(){
-        // 1: from currentData and start_Cursor_Set establish current_Half_Cell_Index from this: current_Cursor_Set then current_Cursor_Set_Min
+        
+        current_Four_Four_Half_Cell_Index = parentCentralState.currentData.four_Four_Half_Cell_Index
+        
+        if let cursorMinCell = parentCentralState.current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            current_Cursor_Set_Min = cursorMinCell.dataCell_X_Number
+        }
+        if let cursorMaxCell = parentCentralState.current_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            current_Cursor_Set_Max = cursorMaxCell.dataCell_X_Number
+        }
+        if let lclSnapshot_Four_Four_Half_Cell_Index = snapshot_Four_Four_Half_Cell_Index
+            , let lclSnapshotCursorMin = snapshot_Cursor_Min_Cell, let lclSnapshotCursorMax = snapshot_Cursor_Max_Cell {
+            
+            if parentCentralState.currentData.four_Four_Half_Cell_Index > lclSnapshot_Four_Four_Half_Cell_Index {
+                new_Note_Cell_Set = snapshot_Cursor_Set
+                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclSnapshotCursorMin.dataCell_X_Number}
+            }
+            else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclSnapshot_Four_Four_Half_Cell_Index {
+                if let lclMinX = leftDataXLimit, let lclCursorMin = current_Cursor_Set_Min {
+                    available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
+                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclCursorMin && $0.dataCell_X_Number < lclSnapshotCursorMax.dataCell_X_Number}
+                }
+            }
+        }
+        
+        for cell in available_Cell_Set {
+            cell.reset_To_Original()
+            if cell.in_Resize_Set == true {
+                cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
+            }
+        }
+        
+        for cell in new_Note_Cell_Set {
+            cell.reset_To_Original()
+            if cell.in_Resize_Set == false {
+                cell.handleVisibleStateChange(type: .activate_Resize_Set)
+            }
+        }
+        
+        // 1: from currentData and start_Cursor_Set establish current_Half_Cell_Index from this: current_Cursor_Set then current_Cursor_Set_Min and maybe current_Cursor_Set_Max
         // 1 contd: if (current_Half_Cell_Index > start_Half_Cell_Index) the new_Note_Cell_Set is the start_Cursor_Set
         // contd, the available_Cell_Set is leftwardBarrier+1 up to the current_Cursor_Set_Min-1
         // every cell in available_Cell_Set is reset to initial dataholder val if it was in the new_Note_Set
