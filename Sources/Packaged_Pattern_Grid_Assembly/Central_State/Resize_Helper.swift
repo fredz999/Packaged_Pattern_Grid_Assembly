@@ -39,7 +39,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if mode_Active == true {
                 write_The_Altered_Note()
                 right_Side_Resize_Start()
-                print("calling resize_Right_Side_Handler() 1")
                 resize_Right_Side_Handler()
             }
         }
@@ -353,7 +352,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     public func write_The_Altered_Note(){
-        
+        print("write_The_Altered_Note()")
         if new_Note_Cell_Set.count > 0 {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
