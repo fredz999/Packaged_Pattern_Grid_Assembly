@@ -181,11 +181,48 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
     }
     
+    
+    
+    func deactivate_Mode() {
+        if mode_Active == true {
+            write_The_Altered_Note()
+            
+            if available_Cell_Set.count > 0 {
+                available_Cell_Set.removeAll()
+            }
+            if new_Note_Cell_Set.count > 0 {
+                new_Note_Cell_Set.removeAll()
+            }
+            
+            if snapshot_Line_Set != nil{snapshot_Line_Set = nil}
+            if snapshot_Cursor_Set.count > 0{snapshot_Cursor_Set.removeAll()}
+            
+            mode_Active=false
+        }
+        
+    }
+    
+    var snapshot_Line_Set : Underlying_Data_Line?
+    var snapshot_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
+    
     func left_Side_Resize_Start(){
         
-        print("currLine Y Num: ",parentCentralState.currLine.dataCellArray[0].dataCell_Y_Number)
-        
         // 1 establish line set
+        print("currLine Y Num: ",parentCentralState.currLine.dataCellArray[0].dataCell_Y_Number)
+        snapshot_Line_Set = parentCentralState.currLine
+        
+        snapshot_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+        
+        print("snapshot_Cursor_Set min X:",snapshot_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number,
+              "snapshot_Cursor_Set max X:",snapshot_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})?.dataCell_X_Number)
+        
+//                            let cursorSet = parentCentralState.currLineSet.filter({
+//                            $0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+//                            let right_Most_CellGroup_In_Note = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index
+//                                == lcl_Note_At_Cursor.dataCellArray[lcl_Note_At_Cursor.dataCellArray.count-1].four_Four_Half_Cell_Index})
+        
+        
         // 2 establish start_Cursor_Set (currData four_Four_Half_Cell_Index) and start_Half_Cell_Index
         // 3 establish start_Cursor_Min_Cell, start_Cursor_Max_Cell
         // 4 establish cells_Left_Of_Note_Set
@@ -283,19 +320,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
     }
 
-    func deactivate_Mode() {
-        if mode_Active == true {
-            write_The_Altered_Note()
-            if available_Cell_Set.count > 0 {
-                available_Cell_Set.removeAll()
-            }
-            if new_Note_Cell_Set.count > 0 {
-                new_Note_Cell_Set.removeAll()
-            }
-            mode_Active=false
-        }
-        //if snapshot_Cursor_X_Array.count > 0{snapshot_Cursor_X_Array.removeAll()}
-    }
+    
 }
 
 public enum E_Resize_Mode : String {
