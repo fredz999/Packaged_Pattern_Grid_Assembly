@@ -309,7 +309,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclSnapshot_Four_Four_Half_Cell_Index {
                 if let lclMinX = leftDataXLimit, let lclCursorMin = current_Cursor_Set_Min {
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
-                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclCursorMin && $0.dataCell_X_Number < lclSnapshotCursorMax.dataCell_X_Number}
+                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclCursorMin && $0.dataCell_X_Number <= lclSnapshotCursorMax.dataCell_X_Number}
                 }
             }
         }
