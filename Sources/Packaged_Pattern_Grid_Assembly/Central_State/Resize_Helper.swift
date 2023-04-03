@@ -73,10 +73,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
     func handleDataEvaluation(){
         if resizeMode == .rightSideSubMode {
-            print("calling resize_Right_Side_Handler() 3")
             resize_Right_Side_Handler()
         }
-        else if resizeMode == .leftSideSubMode{
+        else if resizeMode == .leftSideSubMode {
+            print("calling resize_Left_Side_Handler() 3")
             resize_Left_Side_Handler()
         }
     }
