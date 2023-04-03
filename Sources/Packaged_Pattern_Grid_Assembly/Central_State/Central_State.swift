@@ -10,16 +10,7 @@ import SwiftUI
 
 public class Central_State : ObservableObject {
 
-    
     @Published var edit_Layer_Visible : Bool = true
-    
-    //@Published public var a_Note_Is_Highlighted : Bool = false
-    
-    // need to have a note is highlighted for the initial grab
-    // but i need to be able to see the button to drop the note someplace
-    //@Published public var pattern_Has_A_Note : Bool = false
-    
-    //@Published public var note_Write_Locked : Bool = false
     
     @Published public var write_Needs_Held_Down : Bool = false
     
@@ -33,12 +24,8 @@ public class Central_State : ObservableObject {
     
     @Published public var there_Is_A_Note_In_The_First_Place : Bool = false
     
-    //@Published var modeString : String?
-    
     @Published public var mode_String = ""
-    
-    //@Published public var temp_MovingSetCount_String = ""
-    
+
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
     let colors = ComponentColors.StaticColors
@@ -280,8 +267,7 @@ public class Central_State : ObservableObject {
         centralState_Data_Evaluation()
     }
 
-    var currentData : Underlying_Data_Cell
-    {
+    var currentData : Underlying_Data_Cell {
         willSet {
             if currentPatternMode == .delete_Mode {
                 if let lclDeleteHelper = delete_Helper {
