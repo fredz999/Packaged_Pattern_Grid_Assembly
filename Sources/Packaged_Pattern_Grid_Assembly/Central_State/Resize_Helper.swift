@@ -356,6 +356,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
                         }
                         lcl_Note_At_Cursor.dataCellArray = newCellArray
+                        lcl_Note_At_Cursor.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+                        lcl_Note_At_Cursor.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                     }
                     else if new_Note_Cell_Set.count == 2 {
                         let newCellArray = new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -370,6 +372,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
                         }
                         lcl_Note_At_Cursor.dataCellArray = newCellArray
+                        lcl_Note_At_Cursor.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
+                        lcl_Note_At_Cursor.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                     }
                     else if new_Note_Cell_Set.count > 2 {
                         let newCellArray = new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -390,6 +394,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             if cell.note_Im_In != lcl_Note_At_Cursor{cell.note_Im_In = lcl_Note_At_Cursor}
                         }
                         lcl_Note_At_Cursor.dataCellArray = newCellArray
+                        lcl_Note_At_Cursor.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
+                        lcl_Note_At_Cursor.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                     }
                 }
             }
