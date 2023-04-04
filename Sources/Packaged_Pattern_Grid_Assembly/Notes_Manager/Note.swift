@@ -29,9 +29,18 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     var note_Y_Number : Int
     var centralState : Central_State
     
+    var highestFourFourHalfCellIndex : Int
+    var lowestFourFourHalfCellIndex : Int
+    var highestSixEightHalfCellIndex : Int?
+    var lowestSixEightHalfCellIndex : Int?
+    
     public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
         self.lowest_Index = cellArray[0].dataCell_X_Number
         self.highest_Index = cellArray[cellArray.count-1].dataCell_X_Number
+        
+        self.highestFourFourHalfCellIndex = cellArray[cellArray.count-1].four_Four_Half_Cell_Index
+        self.lowestFourFourHalfCellIndex = cellArray[cellArray.count-1].four_Four_Half_Cell_Index
+        
         self.note_Y_Number = yParam
         self.parent_Note_Collection = parentParam
         self.id = id
@@ -85,10 +94,3 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     }
     
 }
-
-//enum CellConnectionType {
-//    case below
-//    case above
-//    case toRight
-//    case toLeft
-//}

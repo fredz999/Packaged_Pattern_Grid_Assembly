@@ -75,7 +75,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             resize_Right_Side_Handler()
         }
         else if resizeMode == .leftSideSubMode {
-            //print("calling resize_Left_Side_Handler() 3")
             resize_Left_Side_Handler()
         }
     }
@@ -187,6 +186,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if available_Cell_Set.count > 0 {
                 available_Cell_Set.removeAll()
             }
+            
             if new_Note_Cell_Set.count > 0 {
                 new_Note_Cell_Set.removeAll()
             }
@@ -194,9 +194,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if snapshot_Line_Set.count > 0{snapshot_Line_Set.removeAll()}
             if snapshot_Cursor_Set.count > 0{snapshot_Cursor_Set.removeAll()}
             if snapshot_Note_Set.count > 0{snapshot_Note_Set.removeAll()}
+//            if snapshot_Note_Highest_Half_Cell_Set.count > 0{snapshot_Note_Highest_Half_Cell_Set.removeAll()}
+//            if snapshot_Note_Lowest_Half_Cell_Set.count > 0{snapshot_Note_Lowest_Half_Cell_Set.removeAll()}
             if snapshot_Cells_Left_Of_Note_Set.count > 0{snapshot_Cells_Left_Of_Note_Set.removeAll()}
             if snapshot_Note_Cells_Left_Of_Note_Set.count > 0{snapshot_Note_Cells_Left_Of_Note_Set.removeAll()}
             
+            if snapshot_highest_Note_Half_Cell_Index != nil{snapshot_highest_Note_Half_Cell_Index = nil}
+            if snapshot_lowest_Note_Half_Cell_Index != nil{snapshot_highest_Note_Half_Cell_Index = nil}
             
             if snapshot_Cursor_Min_Cell != nil{snapshot_Cursor_Min_Cell = nil}
             if snapshot_Cursor_Max_Cell != nil{snapshot_Cursor_Max_Cell = nil}
@@ -208,13 +212,22 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var snapshot_Four_Four_Half_Cell_Index : Int?
     var snapshot_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//    var snapshot_Note_Highest_Half_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//    var snapshot_Note_Lowest_Half_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
+    
     var snapshot_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Note_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    
     var snapshot_Cursor_Min_Cell : Underlying_Data_Cell?
     var snapshot_Cursor_Max_Cell : Underlying_Data_Cell?
+    
+    
+    
+    
+    var snapshot_highest_Note_Half_Cell_Index : Int?
+    var snapshot_lowest_Note_Half_Cell_Index : Int?
+    var snapshot_Four_Four_Half_Cell_Index : Int?
     var current_Four_Four_Half_Cell_Index : Int?
     var current_Cursor_Set_Min : Int?
     var current_Cursor_Set_Max : Int?
@@ -228,6 +241,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         snapshot_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
         // 2.5 establish start_Cursor_Set (currData four_Four_Half_Cell_Index) and start_Half_Cell_Index
         snapshot_Four_Four_Half_Cell_Index = parentCentralState.currentData.four_Four_Half_Cell_Index
+        
         // 3 establish snapshot_Cursor_Min_Cell, start_Cursor_Max_Cell
         snapshot_Cursor_Min_Cell = snapshot_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
         
@@ -237,6 +251,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if let lclCurrentNoteCollection = parentCentralState.currentNoteCollection {
             
             if let lclCurrentNote = lclCurrentNoteCollection.note_Currently_Under_Cursor {
+                snapshot_highest_Note_Half_Cell_Index = lclCurrentNote.highestFourFourHalfCellIndex
+                
+                snapshot_lowest_Note_Half_Cell_Index = lclCurrentNote.lowestFourFourHalfCellIndex
                 
                 snapshot_Note_Set = Set<Underlying_Data_Cell>(lclCurrentNote.dataCellArray)
                 
@@ -276,10 +293,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             current_Cursor_Set_Max = cursorMaxCell.dataCell_X_Number
         }
         if let lclSnapshot_Four_Four_Half_Cell_Index = snapshot_Four_Four_Half_Cell_Index
+            , let lclNoteHighHalfCell = snapshot_highest_Note_Half_Cell_Index
+            //, let lclNoteLowHalfCell = snapshot_highest_Note_Half_Cell_Index
             , let lclSnapshotCursorMin = snapshot_Cursor_Min_Cell {
             
-            if parentCentralState.currentData.four_Four_Half_Cell_Index >= lclSnapshot_Four_Four_Half_Cell_Index {
-                new_Note_Cell_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == lclSnapshot_Four_Four_Half_Cell_Index}
+            if parentCentralState.currentData.four_Four_Half_Cell_Index >= lclNoteHighHalfCell {
+                new_Note_Cell_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteHighHalfCell}
+                
 //                if let halfCellMax = snapshot_Note_Set.max(by: {$0.four_Four_Half_Cell_Index < $1.four_Four_Half_Cell_Index})
 //                {
 //                    //print("halfCellMax count",halfCellMax.four_Four_Half_Cell_Index)
