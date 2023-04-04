@@ -215,16 +215,14 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     var snapshot_Cursor_Min_Cell : Underlying_Data_Cell?
     var snapshot_Cursor_Max_Cell : Underlying_Data_Cell?
-    
+    var current_Four_Four_Half_Cell_Index : Int?
+    var current_Cursor_Set_Min : Int?
+    var current_Cursor_Set_Max : Int?
     
     func left_Side_Resize_Start(){
         
         // 1 establish line set
-        //print("currLine Y Num: ",parentCentralState.currLine.dataCellArray[0].dataCell_Y_Number)
         snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
-        
-        
-        
         // 2 establish start_Cursor_Set (currData four_Four_Half_Cell_Index) and start_Half_Cell_Index
         snapshot_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
         // 2.5 establish start_Cursor_Set (currData four_Four_Half_Cell_Index) and start_Half_Cell_Index
@@ -284,9 +282,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         // 3 contd - if the currentData_X is below the leftmost Cell in the start cursor set
     }
     
-    var current_Four_Four_Half_Cell_Index : Int?
-    var current_Cursor_Set_Min : Int?
-    var current_Cursor_Set_Max : Int?
+    
     
     func resize_Left_Side_Handler(){
         
@@ -308,7 +304,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclSnapshot_Four_Four_Half_Cell_Index {
                 if let lclMinX = leftDataXLimit, let lclCursorMin = current_Cursor_Set_Min {
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
-                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclCursorMin && $0.dataCell_X_Number <= lclSnapshotCursorMax.dataCell_X_Number}
+                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclCursorMin && $0.dataCell_X_Number <= lclSnapshotCursorMax.dataCell_X_Number}
                 }
             }
         }
@@ -335,24 +331,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     }
     
     
-//                                for cell in available_Cell_Set {
-//                                    cell.reset_To_Original()
-//                                    if cell.in_Resize_Set == true {
-//                                        cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
-//                                    }
-//                                }
-//
-//                                for cell in new_Note_Cell_Set {
-//                                    cell.reset_To_Original()
-//                                    if cell.in_Resize_Set == false {
-//                                        cell.handleVisibleStateChange(type: .activate_Resize_Set)
-//                                    }
-//                                }
-
+    
     
     
     public func write_The_Altered_Note(){
-        print("write_The_Altered_Note()")
+        print("new_Note_Cell_Set.count : ",new_Note_Cell_Set.count)
         if new_Note_Cell_Set.count > 0 {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
