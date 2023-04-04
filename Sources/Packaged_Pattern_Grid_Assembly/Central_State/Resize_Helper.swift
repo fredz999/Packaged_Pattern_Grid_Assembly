@@ -279,8 +279,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             , let lclSnapshotCursorMin = snapshot_Cursor_Min_Cell {
             
             if parentCentralState.currentData.four_Four_Half_Cell_Index >= lclSnapshot_Four_Four_Half_Cell_Index {
-                new_Note_Cell_Set = snapshot_Cursor_Set
-                print("snapshot_Cursor_Set count: ",snapshot_Cursor_Set.count)
+               
+                if let halfCellMax = snapshot_Note_Set.max(by: {$0.four_Four_Half_Cell_Index < $1.four_Four_Half_Cell_Index})
+                {
+                    print("halfCellMax count",halfCellMax.four_Four_Half_Cell_Index)
+                }
+                //let finalNoteCellSet = snapshot_Note_Set.filter({$0.four_Four_Half_Cell_Index})
+                new_Note_Cell_Set = snapshot_Cursor_Set // no it has to be the final cell in the note
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclSnapshotCursorMin.dataCell_X_Number}
             }
             else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclSnapshot_Four_Four_Half_Cell_Index {
