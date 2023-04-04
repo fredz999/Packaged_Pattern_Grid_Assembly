@@ -222,10 +222,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     var snapshot_Cursor_Min_Cell : Underlying_Data_Cell?
     var snapshot_Cursor_Max_Cell : Underlying_Data_Cell?
     
-    
-    
-    
-    var snapshot_highest_Note_Half_Cell_Index : Int?
+    var snapshot_highest_Note_Half_Cell_Index : Int?{
+        didSet{
+            if let lclSnap = snapshot_highest_Note_Half_Cell_Index {
+                print("snapshot_highest_Note_Half_Cell_Index: ",lclSnap)
+            }
+            else if snapshot_highest_Note_Half_Cell_Index == nil {
+                print("snapshot_highest_Note_Half_Cell_Index set tae nil ")
+            }
+        }
+    }
     var snapshot_lowest_Note_Half_Cell_Index : Int?
     var snapshot_Four_Four_Half_Cell_Index : Int?
     var current_Four_Four_Half_Cell_Index : Int?
@@ -344,7 +350,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     public func write_The_Altered_Note(){
-
+        print("write_The_Altered_Note()")
         if new_Note_Cell_Set.count > 0 {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
