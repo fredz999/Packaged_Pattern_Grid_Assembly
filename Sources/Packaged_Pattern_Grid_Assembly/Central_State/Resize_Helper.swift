@@ -298,25 +298,15 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if let cursorMaxCell = parentCentralState.current_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             current_Cursor_Set_Max = cursorMaxCell.dataCell_X_Number
         }
-        if let lclSnapshot_Four_Four_Half_Cell_Index = snapshot_Four_Four_Half_Cell_Index
-            , let lclNoteHighHalfCell = snapshot_highest_Note_Half_Cell_Index
-            //, let lclNoteLowHalfCell = snapshot_highest_Note_Half_Cell_Index
+        if let lclNoteHighHalfCell = snapshot_highest_Note_Half_Cell_Index
             , let lclSnapshotCursorMin = snapshot_Cursor_Min_Cell {
             
             if parentCentralState.currentData.four_Four_Half_Cell_Index >= lclNoteHighHalfCell {
                 new_Note_Cell_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteHighHalfCell}
-                
-//                if let halfCellMax = snapshot_Note_Set.max(by: {$0.four_Four_Half_Cell_Index < $1.four_Four_Half_Cell_Index})
-//                {
-//                    //print("halfCellMax count",halfCellMax.four_Four_Half_Cell_Index)
-//
-//                    new_Note_Cell_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == halfCellMax.four_Four_Half_Cell_Index}
-//                }
-                //let finalNoteCellSet = snapshot_Note_Set.filter({$0.four_Four_Half_Cell_Index})
-                //new_Note_Cell_Set = snapshot_Cursor_Set // no it has to be the final cell in the note
-                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclSnapshotCursorMin.dataCell_X_Number}
+
+                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclNoteHighHalfCell}
             }
-            else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclSnapshot_Four_Four_Half_Cell_Index {
+            else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclNoteHighHalfCell {
                 if let lclMinX = leftDataXLimit, let lclCursorMin = current_Cursor_Set_Min,let lclNoteNax = snapshot_Note_Max {
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
                     new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclCursorMin && $0.dataCell_X_Number <= lclNoteNax}
