@@ -166,17 +166,21 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     }
     
     func resize_Right_Side_Handler(){
-        print("resize_Right_Side_Handler()")
+        print("resize_Right_Side_Handler() 0")
         if let lcl_CursorMaxCell = parentCentralState.current_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            print("resize_Right_Side_Handler() 1")
             current_Cursor_Set_Max_X = lcl_CursorMaxCell.dataCell_X_Number
         }
 
         if let lclNoteLowhHalfCell = snapshot_Lowest_Note_Half_Cell_Index {
+            print("resize_Right_Side_Handler() 2")
             if parentCentralState.currentData.four_Four_Half_Cell_Index <= lclNoteLowhHalfCell {
+                print("resize_Right_Side_Handler() 3")
                 new_Note_Cell_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteLowhHalfCell}
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclNoteLowhHalfCell}
             }
             else if parentCentralState.currentData.four_Four_Half_Cell_Index > lclNoteLowhHalfCell {
+                print("resize_Right_Side_Handler() 4")
                 if let lclMaxX = rightDataXLimit, let lclCursorMax = current_Cursor_Set_Max_X,let lclNoteNin = snapshot_Note_Min_X {
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMaxX &&  $0.dataCell_X_Number < lclCursorMax}
                     new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclCursorMax && $0.dataCell_X_Number <= lclNoteNin}
@@ -184,6 +188,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             }
         }
         for cell in available_Cell_Set {
+            print("resize_Right_Side_Handler() 5")
             cell.reset_To_Original()
             if cell.in_Resize_Set == true {
                 cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
@@ -191,6 +196,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
 
         for cell in new_Note_Cell_Set {
+            print("resize_Right_Side_Handler() 6")
             cell.reset_To_Original()
             if cell.in_Resize_Set == false {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
