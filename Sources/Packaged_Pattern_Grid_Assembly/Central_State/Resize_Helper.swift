@@ -164,8 +164,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     snapshot_Cells_Right_Of_Note_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > maxNoteCell.dataCell_X_Number}
                     print("snapshot_Cells_Right_Of_Note_Set count: ",snapshot_Cells_Right_Of_Note_Set.count)
                     snapshot_Note_Cells_Right_Of_Note_Set = snapshot_Cells_Right_Of_Note_Set.filter{$0.note_Im_In != nil}
-
-                    if snapshot_Cells_Right_Of_Note_Set.count == 0 {
+                    print("snapshot_Note_Cells_Right_Of_Note_Set count: ",snapshot_Note_Cells_Right_Of_Note_Set.count)
+                    if snapshot_Note_Cells_Right_Of_Note_Set.count == 0 {
                         print("right_Side_Resize_Start 4")
                         rightDataXLimit = dimensions.dataGrid_X_Unit_Count-1
                     }
