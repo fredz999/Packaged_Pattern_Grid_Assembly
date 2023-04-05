@@ -97,7 +97,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if snapshot_Cells_Left_Of_Note_Set.count > 0{snapshot_Cells_Left_Of_Note_Set.removeAll()}
             if snapshot_Note_Cells_Left_Of_Note_Set.count > 0{snapshot_Note_Cells_Left_Of_Note_Set.removeAll()}
             if snapshot_highest_Note_Half_Cell_Index != nil{snapshot_highest_Note_Half_Cell_Index = nil}
+            
+            if snapshot_Cells_Right_Of_Note_Set.count > 0{snapshot_Cells_Right_Of_Note_Set.removeAll()}
+            if snapshot_Note_Cells_Right_Of_Note_Set.count > 0{snapshot_Note_Cells_Right_Of_Note_Set.removeAll()}
             if snapshot_Lowest_Note_Half_Cell_Index != nil{snapshot_Lowest_Note_Half_Cell_Index = nil}
+            if current_Cursor_Set_Max_X != nil{current_Cursor_Set_Max_X = nil}
+            if snapshot_Note_Min_X != nil{snapshot_Note_Min_X = nil}
+            
             
             mode_Active=false
         }
@@ -123,6 +129,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     func right_Side_Resize_Start(){
+        print("right_Side_Resize_Start()")
         snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
 
         if let lclCurrentNoteCollection = parentCentralState.currentNoteCollection {
@@ -159,6 +166,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     }
     
     func resize_Right_Side_Handler(){
+        print("resize_Right_Side_Handler()")
         if let lcl_CursorMaxCell = parentCentralState.current_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             current_Cursor_Set_Max_X = lcl_CursorMaxCell.dataCell_X_Number
         }
