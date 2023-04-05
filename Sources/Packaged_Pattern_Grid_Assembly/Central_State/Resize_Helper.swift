@@ -140,13 +140,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     func right_Side_Resize_Start(){
-        print("right_Side_Resize_Start()")
+        print("right_Side_Resize_Start 0")
         snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
 
         if let lclCurrentNoteCollection = parentCentralState.currentNoteCollection {
-
+            print("right_Side_Resize_Start 1")
             if let lclCurrentNote = lclCurrentNoteCollection.note_Currently_Under_Cursor {
-
+                print("right_Side_Resize_Start 2")
                 //snapshot_highest_Note_Half_Cell_Index = lclCurrentNote.highestFourFourHalfCellIndex
                 snapshot_Lowest_Note_Half_Cell_Index = lclCurrentNote.lowestFourFourHalfCellIndex
 
@@ -155,7 +155,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 snapshot_Note_Min_X = snapshot_Note_Set.min(by: { $0.dataCell_X_Number < $1.dataCell_X_Number })?.dataCell_X_Number
 
                 if let maxNoteCell = snapshot_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-
+                    print("right_Side_Resize_Start 3")
                     if let hSliderRef = parentCentralState.h_Slider_Ref {
                         let destinationCellIndex = maxNoteCell.dataCell_X_Number
                         hSliderRef.jumpToACell(cellNum: destinationCellIndex)
@@ -166,10 +166,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     snapshot_Note_Cells_Right_Of_Note_Set = snapshot_Cells_Right_Of_Note_Set.filter{$0.note_Im_In != nil}
 
                     if snapshot_Cells_Right_Of_Note_Set.count == 0 {
-                        print("is this getting freaking settttt????")
+                        print("right_Side_Resize_Start 4")
                         rightDataXLimit = dimensions.dataGrid_X_Unit_Count-1
                     }
                     else if let minNoteCellRightOfNote = snapshot_Note_Cells_Right_Of_Note_Set.min(by: { $0.dataCell_X_Number < $1.dataCell_X_Number }){
+                        print("right_Side_Resize_Start 5")
                         rightDataXLimit = minNoteCellRightOfNote.dataCell_X_Number
                     }
                 }
