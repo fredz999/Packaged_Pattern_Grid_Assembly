@@ -179,31 +179,14 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if let lcl_CursorMaxCell = parentCentralState.current_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             current_Cursor_Set_Max_X = lcl_CursorMaxCell.dataCell_X_Number
         }
-        
-//        if let lclNoteHighHalfCell = snapshot_highest_Note_Half_Cell_Index {
-//            if parentCentralState.currentData.four_Four_Half_Cell_Index >= lclNoteHighHalfCell {
-//                new_Note_Cell_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteHighHalfCell}
-//                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclNoteHighHalfCell}
-//            }
-//            else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclNoteHighHalfCell {
-//                if let lclMinX = leftDataXLimit, let lclCursorMin = current_Cursor_Set_Min_X,let lclNoteNax = snapshot_Note_Max_X {
-//                    available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
-//                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclCursorMin && $0.dataCell_X_Number <= lclNoteNax}
-//                }
-//            }
-//        }
-        
-        
-        
+
         if let lclNoteLowhHalfCell = snapshot_Lowest_Note_Half_Cell_Index {
             if parentCentralState.currentData.four_Four_Half_Cell_Index <= lclNoteLowhHalfCell {
                 new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteLowhHalfCell}
                 available_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index > lclNoteLowhHalfCell}
             }
             else if parentCentralState.currentData.four_Four_Half_Cell_Index > lclNoteLowhHalfCell {
-                //print("resize_Right_Side_Handler() 0")
                 if let lclMaxX = rightDataXLimit, let lclCursorMax = current_Cursor_Set_Max_X,let lclNoteNin = snapshot_Note_Min_X {
-                    //print("resize_Right_Side_Handler() 1")
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclMaxX &&  $0.dataCell_X_Number > lclCursorMax}
                     new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number <= lclCursorMax && $0.dataCell_X_Number >= lclNoteNin}
                 }
@@ -219,7 +202,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
  
         for cell in available_Cell_Set {
-            //print("resize_Right_Side_Handler() 5")
+
             cell.reset_To_Original()
             if cell.in_Resize_Set == true {
                 cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
@@ -227,7 +210,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
 
         for cell in new_Note_Cell_Set {
-            //print("resize_Right_Side_Handler() 6")
             cell.reset_To_Original()
             if cell.in_Resize_Set == false {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
@@ -283,8 +265,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
         if let lclNoteHighHalfCell = snapshot_highest_Note_Half_Cell_Index {
             if parentCentralState.currentData.four_Four_Half_Cell_Index >= lclNoteHighHalfCell {
-//                new_Note_Cell_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteHighHalfCell}
-//                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclNoteHighHalfCell}
                 new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteHighHalfCell}
                 available_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < lclNoteHighHalfCell}
             }
