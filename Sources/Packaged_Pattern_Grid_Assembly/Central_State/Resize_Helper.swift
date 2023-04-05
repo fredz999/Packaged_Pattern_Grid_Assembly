@@ -208,9 +208,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclNoteLowhHalfCell}
             }
             else if parentCentralState.currentData.four_Four_Half_Cell_Index > lclNoteLowhHalfCell {
-                //print("resize_Right_Side_Handler() 4")
+                print("resize_Right_Side_Handler() 0")
                 if let lclMaxX = rightDataXLimit, let lclCursorMax = current_Cursor_Set_Max_X,let lclNoteNin = snapshot_Note_Min_X {
-                    print("resize_Right_Side_Handler() 7")
+                    print("resize_Right_Side_Handler() 1")
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lclMaxX &&  $0.dataCell_X_Number > lclCursorMax}
                     new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number <= lclCursorMax && $0.dataCell_X_Number >= lclNoteNin}
                 }
