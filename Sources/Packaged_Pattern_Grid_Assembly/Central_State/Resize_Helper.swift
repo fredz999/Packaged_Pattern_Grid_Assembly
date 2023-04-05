@@ -136,7 +136,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
             if let lclCurrentNote = lclCurrentNoteCollection.note_Currently_Under_Cursor {
 
-                snapshot_highest_Note_Half_Cell_Index = lclCurrentNote.highestFourFourHalfCellIndex
+                //snapshot_highest_Note_Half_Cell_Index = lclCurrentNote.highestFourFourHalfCellIndex
+                snapshot_Lowest_Note_Half_Cell_Index = lclCurrentNote.lowestFourFourHalfCellIndex
 
                 snapshot_Note_Set = Set<Underlying_Data_Cell>(lclCurrentNote.dataCellArray)
 

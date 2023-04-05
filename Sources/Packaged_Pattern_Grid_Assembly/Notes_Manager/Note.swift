@@ -39,7 +39,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         self.highest_Index = cellArray[cellArray.count-1].dataCell_X_Number
         
         self.highestFourFourHalfCellIndex = cellArray[cellArray.count-1].four_Four_Half_Cell_Index
-        self.lowestFourFourHalfCellIndex = cellArray[cellArray.count-1].four_Four_Half_Cell_Index
+        self.lowestFourFourHalfCellIndex = cellArray[0].four_Four_Half_Cell_Index
         
         self.note_Y_Number = yParam
         self.parent_Note_Collection = parentParam
