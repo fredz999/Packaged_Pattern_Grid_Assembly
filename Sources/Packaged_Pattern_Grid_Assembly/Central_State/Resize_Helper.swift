@@ -48,6 +48,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
             resizeMode = .rightSideSubMode
             if mode_Active == true {
+                print("call write from swap_Resize_Sub_Mode() -> .rightSideSubMode")
                 write_The_Altered_Note()
                 right_Side_Resize_Start()
                 resize_Right_Side_Handler()
@@ -56,6 +57,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
             resizeMode = .leftSideSubMode
             if mode_Active == true {
+                print("call write from swap_Resize_Sub_Mode() -> .leftSideSubMode")
                 write_The_Altered_Note()
                 left_Side_Resize_Start()
                 resize_Left_Side_Handler()
@@ -99,6 +101,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             
+            print("call write from deactivate_Mode()")
             write_The_Altered_Note()
             
             if available_Cell_Set.count > 0 {
@@ -303,7 +306,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
 
     public func write_The_Altered_Note(){
-        print("write_The_Altered_Note()........................................")
+        //print("write_The_Altered_Note()........................................")
         if new_Note_Cell_Set.count > 0 {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
