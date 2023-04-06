@@ -82,7 +82,6 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     var parentCentralState : Central_State
-
     var snapshot_Cursor_X : Int?
     var snapshot_Cursor_Y : Int?
     
