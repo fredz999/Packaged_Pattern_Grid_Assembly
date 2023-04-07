@@ -204,6 +204,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     func get_Left_Side_Cursor_Delta(){
+        print("get_Left_Side_Cursor_Delta..........")
         resize_Left_Side_Handler(cursorHalfCellDelta:6)
     }
     
