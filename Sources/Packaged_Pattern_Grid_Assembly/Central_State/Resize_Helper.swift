@@ -206,11 +206,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     func get_Left_Side_Cursor_Delta(){
         //print("get_Left_Side_Cursor_Delta..........")
         //var current_Cursor_Set_Min_X : Int
-        
+        resize_Left_Side_Handler()
     }
     
     
-    func resize_Left_Side_Handler(current_Cursor_Set_Min_X_Param:Int){
+    func resize_Left_Side_Handler(){
 
         if let cursorMinCell = parentCentralState.current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             let current_Cursor_Set_Min_X = cursorMinCell.dataCell_X_Number
@@ -225,12 +225,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclNoteHighHalfCell {
                     if let lclMinX = leftDataXLimit,let lclNoteNax = snapshot_Note_Max_X {
                         if lclMinX == 0{
-                            available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclMinX &&  $0.dataCell_X_Number < current_Cursor_Set_Min_X_Param}
-                            new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= current_Cursor_Set_Min_X_Param && $0.dataCell_X_Number <= lclNoteNax}
+                            available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclMinX &&  $0.dataCell_X_Number < current_Cursor_Set_Min_X}
+                            new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= current_Cursor_Set_Min_X && $0.dataCell_X_Number <= lclNoteNax}
                         }
                         else if lclMinX > 0{
-                            available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < current_Cursor_Set_Min_X_Param}
-                            new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= current_Cursor_Set_Min_X_Param && $0.dataCell_X_Number <= lclNoteNax}
+                            available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < current_Cursor_Set_Min_X}
+                            new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= current_Cursor_Set_Min_X && $0.dataCell_X_Number <= lclNoteNax}
                         }
                     }
                 }
