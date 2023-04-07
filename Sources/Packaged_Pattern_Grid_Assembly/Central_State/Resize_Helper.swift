@@ -234,7 +234,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 //    var rightwardBarrierDataX : Int?
     
     func resize_Left_Side_Handler(halfCellDeltaParam:Int) {
-        print("resize_Left_Side_Handler")
+        print("snapshotMinHalfCellIndex: ",snapshotMinHalfCellIndex,", currentHalfCellDelta: ",currentHalfCellDelta,", snapshotMaxHalfCellIndex: ",snapshotMaxHalfCellIndex)
+        
+        
+        
         if let lclSnapshotHalfCellIndex = snapshotMinHalfCellIndex, let lclCurrHalfCellDelta = currentHalfCellDelta,let lcl_maxHalfCellIndex = snapshotMaxHalfCellIndex{
             let currentHalfCellIndexParam = lclSnapshotHalfCellIndex + lclCurrHalfCellDelta
             
