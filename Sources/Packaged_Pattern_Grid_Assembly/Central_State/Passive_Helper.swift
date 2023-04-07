@@ -16,9 +16,7 @@ class Passive_Helper: P_Selectable_Mode {
     var mode_Active: Bool = false
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
-        //print("activate_Mode( passive moed")
         if mode_Active == false{mode_Active=true}
-        //return generateModeDescriptorString() 
     }
     
     func generateModeDescriptorString()->String{

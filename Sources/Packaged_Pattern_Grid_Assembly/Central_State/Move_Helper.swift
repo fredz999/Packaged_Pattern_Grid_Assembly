@@ -75,11 +75,7 @@ class Move_Helper: P_Selectable_Mode {
         }
     }
     
-    public var deleteActive : Bool = true {
-        didSet {
-            print("deleteActive was set tae: ",deleteActive.description)
-        }
-    }
+    public var deleteActive : Bool = true
     
     var parentCentralState : Central_State
     var snapshot_Cursor_X : Int?
