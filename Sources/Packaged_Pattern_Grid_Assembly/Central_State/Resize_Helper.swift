@@ -265,7 +265,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 if let lcl_LeftwardBarrierDataX = leftwardBarrierDataX {
                     
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX &&  $0.four_Four_Half_Cell_Index < currentHalfCellIndexParam}
-                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index < lclSnapshotMaxHalfCellIndex}
+                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index <= lclSnapshotMaxHalfCellIndex}
                     //new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.dataCell_X_Number < lcl_RightwardBarrierDataX}
                     
 //                    if lcl_LeftwardBarrierDataX == 0 {
