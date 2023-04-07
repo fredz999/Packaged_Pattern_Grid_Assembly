@@ -259,14 +259,23 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             else if currentHalfCellIndexParam < lcl_maxHalfCellIndex {
                 
                 if let lcl_RightwardBarrierDataX = rightwardBarrierDataX,  let lcl_LeftwardBarrierDataX = leftwardBarrierDataX {
-                    if lcl_LeftwardBarrierDataX == 0 {
-                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX &&  $0.dataCell_X_Number < lcl_RightwardBarrierDataX}
-                        new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX && $0.dataCell_X_Number <= lcl_LeftwardBarrierDataX}
-                    }
-                    else if lcl_LeftwardBarrierDataX == 0 {
-                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX &&  $0.dataCell_X_Number < lcl_RightwardBarrierDataX}
-                        new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX && $0.dataCell_X_Number <= lcl_LeftwardBarrierDataX}
-                    }
+                    
+                    available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX &&  $0.four_Four_Half_Cell_Index < currentHalfCellIndexParam}
+                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.dataCell_X_Number < lcl_RightwardBarrierDataX}
+                    
+//                    if lcl_LeftwardBarrierDataX == 0 {
+//                        //currentHalfCellIndexParam
+//                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX &&  $0.four_Four_Half_Cell_Index < currentHalfCellIndexParam}
+//                        new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.dataCell_X_Number < lcl_RightwardBarrierDataX}
+//                        //available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX &&  $0.dataCell_X_Number < lcl_RightwardBarrierDataX}
+//                        //new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX && $0.dataCell_X_Number < lcl_RightwardBarrierDataX}
+//                    }
+//                    else if lcl_LeftwardBarrierDataX == 0 {
+//                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX &&  $0.dataCell_X_Number < lcl_RightwardBarrierDataX}
+//                        new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lcl_LeftwardBarrierDataX && $0.dataCell_X_Number <= lcl_LeftwardBarrierDataX}
+//                    }
+                    
+                    
                 }
             }
             
