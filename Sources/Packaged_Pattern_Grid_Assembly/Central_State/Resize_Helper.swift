@@ -204,12 +204,17 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if let lclNoteHighHalfCell = snapshot_highest_Note_Half_Cell_Index {
             if parentCentralState.currentData.four_Four_Half_Cell_Index >= lclNoteHighHalfCell {
                 new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteHighHalfCell}
-                available_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < lclNoteHighHalfCell}
+                available_Cell_Set.removeAll()
+                //= snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < lclNoteHighHalfCell}
             }
             else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclNoteHighHalfCell {
                 if let lclMinX = leftDataXLimit, let lclCursorMin = current_Cursor_Set_Min_X,let lclNoteNax = snapshot_Note_Max_X {
+                    
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
+                    
                     new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclCursorMin && $0.dataCell_X_Number <= lclNoteNax}
+                    
+                    
                 }
             }
         }
