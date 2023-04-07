@@ -146,6 +146,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     var snapshot_Left_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Note_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
+    
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
@@ -163,6 +165,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
         snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
         snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.lowestFourFourHalfCellIndex}
+        // TODO: do properly, notes left and notes right
+        rightwardBarrierDataX = 95
         snapshotMinHalfCellIndex = noteParam.lowestFourFourHalfCellIndex
         snapshotMaxHalfCellIndex = noteParam.highestFourFourHalfCellIndex
         
