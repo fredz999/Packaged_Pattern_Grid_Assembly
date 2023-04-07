@@ -222,6 +222,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         //var snapshotLeftHalfCellIndex : Int?
         if let lclSnapshotHalfCellIndex = snapshotMinHalfCellIndex {
             currentHalfCellDelta = currentHalfCellIndexParam - lclSnapshotHalfCellIndex
+            resize_Left_Side_Handler(halfCellDeltaParam:(currentHalfCellIndexParam - lclSnapshotHalfCellIndex))
         }
     }
     
