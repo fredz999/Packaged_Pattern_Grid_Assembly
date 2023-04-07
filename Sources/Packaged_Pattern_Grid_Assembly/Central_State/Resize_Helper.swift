@@ -215,6 +215,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
 
         for cell in available_Cell_Set {
+            print("available_Cell_Set cell: ",cell.dataCell_X_Number,", reset")
             cell.reset_To_Original()
             if cell.in_Resize_Set == true {
                 cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
@@ -222,6 +223,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
 
         for cell in new_Note_Cell_Set {
+            print("new_Note_Cell_Set cell: ",cell.dataCell_X_Number,", reset")
             cell.reset_To_Original()
             if cell.in_Resize_Set == false {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
