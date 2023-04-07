@@ -204,8 +204,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     func get_Left_Side_Cursor_Delta(){
-        //print("get_Left_Side_Cursor_Delta..........")
-        //var current_Cursor_Set_Min_X : Int
+        // have to do summink here for individual notes
         resize_Left_Side_Handler()
     }
     
@@ -213,15 +212,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     func resize_Left_Side_Handler(){
 
         if let cursorMinCell = parentCentralState.current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+            
             let current_Cursor_Set_Min_X = cursorMinCell.dataCell_X_Number
-            //resize_Left_Side_Handler(current_Cursor_Set_Min_X_Param:current_Cursor_Set_Min_X)
-            
-            
+
             if let lclNoteHighHalfCell = snapshot_highest_Note_Half_Cell_Index {
+                
                 if parentCentralState.currentData.four_Four_Half_Cell_Index >= lclNoteHighHalfCell {
                     new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lclNoteHighHalfCell}
                     available_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < lclNoteHighHalfCell}
                 }
+                
                 else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclNoteHighHalfCell {
                     if let lclMinX = leftDataXLimit,let lclNoteNax = snapshot_Note_Max_X {
                         if lclMinX == 0{
@@ -237,6 +237,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             }
         }
         
+        paintCells()
+
+    }
+    
+    func paintCells(){
         for cell in available_Cell_Set {
             cell.reset_To_Original()
             if cell.in_Resize_Set == true {
@@ -250,7 +255,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
             }
         }
-
     }
     
     
