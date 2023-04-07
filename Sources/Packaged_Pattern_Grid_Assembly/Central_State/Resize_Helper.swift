@@ -50,7 +50,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
                 write_The_Altered_Note()
                 right_Side_Resize_Start()
-                resize_Right_Side_Handler()
+                //resize_Right_Side_Handler()
             }
         }
         else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
@@ -59,6 +59,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
                 write_The_Altered_Note()
                 left_Side_Resize_Start()
+                
 //                leftSizeResizer.left_Side_Resize_Start()
 //
 //                leftSizeResizer.resize_Left_Side_Handler()
@@ -209,17 +210,20 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             else if parentCentralState.currentData.four_Four_Half_Cell_Index < lclNoteHighHalfCell {
                 if let lclMinX = leftDataXLimit, let lclCursorMin = current_Cursor_Set_Min_X,let lclNoteNax = snapshot_Note_Max_X {
                     
-                    available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
-                    
-                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclCursorMin && $0.dataCell_X_Number <= lclNoteNax}
-                    
-                    
+                    if lclMinX == 0{
+                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
+                        new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclCursorMin && $0.dataCell_X_Number <= lclNoteNax}
+                    }
+                    else if lclMinX > 0{
+                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lclMinX &&  $0.dataCell_X_Number < lclCursorMin}
+                        new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number >= lclCursorMin && $0.dataCell_X_Number <= lclNoteNax}
+                    }
+
                 }
             }
         }
 
         for cell in available_Cell_Set {
-            print("available_Cell_Set cell: ",cell.dataCell_X_Number,", reset")
             cell.reset_To_Original()
             if cell.in_Resize_Set == true {
                 cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
@@ -227,7 +231,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
 
         for cell in new_Note_Cell_Set {
-            print("new_Note_Cell_Set cell: ",cell.dataCell_X_Number,", reset")
             cell.reset_To_Original()
             if cell.in_Resize_Set == false {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
@@ -235,6 +238,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
 
     }
+    
+    
     
     
     func right_Side_Resize_Start(){
@@ -306,6 +311,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             }
         }
     }
+    
 
     public func write_The_Altered_Note(){
 
