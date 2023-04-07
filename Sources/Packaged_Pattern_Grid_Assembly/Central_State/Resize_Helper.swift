@@ -234,12 +234,19 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 //    var rightwardBarrierDataX : Int?
     
     func resize_Left_Side_Handler(halfCellDeltaParam:Int) {
-        print("snapshotMinHalfCellIndex: ",snapshotMinHalfCellIndex,", currentHalfCellDelta: ",currentHalfCellDelta,", snapshotMaxHalfCellIndex: ",snapshotMaxHalfCellIndex)
+        print("snapshotMinHalfCellIndex: ",snapshotMinHalfCellIndex
+              ,", currentHalfCellDelta: "
+              ,currentHalfCellDelta
+              ,", snapshotMaxHalfCellIndex: "
+              ,snapshotMaxHalfCellIndex
+        ,"rightwardBarrierDataX: ",rightwardBarrierDataX
+        ,"leftwardBarrierDataX: ",leftwardBarrierDataX)
         
         
         
         if let lclSnapshotHalfCellIndex = snapshotMinHalfCellIndex, let lclCurrHalfCellDelta = currentHalfCellDelta,let lcl_maxHalfCellIndex = snapshotMaxHalfCellIndex{
             let currentHalfCellIndexParam = lclSnapshotHalfCellIndex + lclCurrHalfCellDelta
+            
             
             if currentHalfCellIndexParam >= lcl_maxHalfCellIndex{
                 new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_maxHalfCellIndex}
