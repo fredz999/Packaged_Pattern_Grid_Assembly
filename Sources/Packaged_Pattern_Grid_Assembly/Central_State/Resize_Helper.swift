@@ -132,8 +132,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
     var snapshot_Note_Max_X : Int?
     
-    var snapshot_Cells_Right_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var snapshot_Note_Cells_Right_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
     var snapshot_Lowest_Note_Half_Cell_Index : Int?
     var current_Cursor_Set_Max_X : Int?
     var snapshot_Note_Min_X : Int?
@@ -144,8 +143,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Left_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
     var snapshot_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Note_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
+    var snapshot_Cells_Right_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    var snapshot_Note_Cells_Right_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
     
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
@@ -166,7 +169,14 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
         snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.lowestFourFourHalfCellIndex}
         // TODO: do properly, notes left and notes right
-        rightwardBarrierDataX = 95
+        
+        snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < noteParam.lowestFourFourHalfCellIndex}
+        snapshot_Note_Cells_Left_Of_Note_Set = snapshot_Cells_Left_Of_Note_Set.filter{$0.note_Im_In != nil}
+        
+        snapshot_Cells_Right_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.highestFourFourHalfCellIndex}
+        snapshot_Note_Cells_Right_Of_Note_Set = snapshot_Cells_Right_Of_Note_Set.filter{$0.note_Im_In != nil}
+        
+        //rightwardBarrierDataX = 95
         snapshotMinHalfCellIndex = noteParam.lowestFourFourHalfCellIndex
         snapshotMaxHalfCellIndex = noteParam.highestFourFourHalfCellIndex
         
@@ -177,12 +187,21 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 
                 
                 snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < minCursorCell.dataCell_X_Number}
+                
                 if snapshot_Note_Cells_Left_Of_Note_Set.count == 0 {
                      leftwardBarrierDataX = 0
                 }
                 else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: { $0.dataCell_X_Number < $1.dataCell_X_Number }){
                     leftwardBarrierDataX = maxNoteCellLeftOfNote.dataCell_X_Number
                 }
+                
+                if snapshot_Note_Cells_Right_Of_Note_Set.count == 0 {
+                    rightwardBarrierDataX = dimensions.dataGrid_X_Unit_Count-1
+                }
+                else if let minNoteCellRightOfNote = snapshot_Note_Cells_Left_Of_Note_Set.min(by: { $0.dataCell_X_Number < $1.dataCell_X_Number }){
+                    rightwardBarrierDataX = minNoteCellRightOfNote.dataCell_X_Number
+                }
+                
             }
         }
         
