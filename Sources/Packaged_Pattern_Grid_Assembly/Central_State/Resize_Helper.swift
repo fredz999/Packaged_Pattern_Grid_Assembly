@@ -171,7 +171,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
         snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < noteParam.lowestFourFourHalfCellIndex}
         snapshot_Note_Cells_Left_Of_Note_Set = snapshot_Cells_Left_Of_Note_Set.filter{$0.note_Im_In != nil}
-        print("snapshot_Note_Cells_Left_Of_Note_Set: ",snapshot_Note_Cells_Left_Of_Note_Set.count)
+        
         snapshotMinHalfCellIndex = noteParam.lowestFourFourHalfCellIndex
         snapshotMaxHalfCellIndex = noteParam.highestFourFourHalfCellIndex
         
@@ -188,7 +188,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 }
                 else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     leftwardBarrierDataX = maxNoteCellLeftOfNote.dataCell_X_Number
+                    if let lclleftwardBarrierDataX = leftwardBarrierDataX{
+                        print("leftwardBarrierDataX: ",lclleftwardBarrierDataX)
+                    }
+                    
                 }
+                
             }
         }
     }
