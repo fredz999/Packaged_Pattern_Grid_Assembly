@@ -100,7 +100,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if left_Side_Resizer_Garage != nil{left_Side_Resizer_Garage = nil}
             
             //if snapshot_Line_Set.count > 0{snapshot_Line_Set.removeAll()}
-            if snapshot_Note_Set.count > 0{snapshot_Note_Set.removeAll()}
+            //if snapshot_Note_Set.count > 0{snapshot_Note_Set.removeAll()}
             if snapshot_Cells_Left_Of_Note_Set.count > 0{snapshot_Cells_Left_Of_Note_Set.removeAll()}
             if snapshot_Note_Cells_Left_Of_Note_Set.count > 0{snapshot_Note_Cells_Left_Of_Note_Set.removeAll()}
             
@@ -145,7 +145,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     //var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var snapshot_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    //var snapshot_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Left_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
     var snapshot_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
@@ -174,7 +174,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     func left_Side_Resize_Start(noteParam:Note){
         
         var snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
-        snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
+        var snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
         snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.lowestFourFourHalfCellIndex}
 
         snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < noteParam.lowestFourFourHalfCellIndex}
