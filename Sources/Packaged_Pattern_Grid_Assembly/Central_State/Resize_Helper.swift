@@ -179,7 +179,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             
 
             for noteParam in highlightSet{
-                
+                print("trying to resize id: ",noteParam.id.description)
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
                 let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.lowestFourFourHalfCellIndex}
