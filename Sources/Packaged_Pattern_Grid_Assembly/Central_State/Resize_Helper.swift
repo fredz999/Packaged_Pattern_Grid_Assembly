@@ -30,7 +30,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
             resizeMode = .rightSideSubMode
             if mode_Active == true {
-                write_The_Altered_Note()
+                write_The_Altered_Notes()
                 right_Side_Resize_Start()
             }
         }
@@ -39,7 +39,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if mode_Active == true {
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
                     //if let lclNote = currNoteCollection.note_Currently_Under_Cursor {
-                        write_The_Altered_Note()
+                        write_The_Altered_Notes()
                         left_Side_Resize_Start()
                     //}
                 }
@@ -85,7 +85,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if mode_Active == true {
             
 
-            write_The_Altered_Note()
+            write_The_Altered_Notes()
             
 //            if available_Cell_Set.count > 0 {
 //                available_Cell_Set.removeAll()
@@ -311,10 +311,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 //        }
 //    }
 
-    public func write_The_Altered_Note(){
+    public func write_The_Altered_Notes(){
         for resizer in left_Side_Resizer_Garage_Array {
             //print("trying to resize id: ",resizer.noteReference.id.description)
+            
                     resizer.noteReference.dataCellArray.removeAll()
+                    if resizer.noteReference.highlighted == true{resizer.noteReference.highlighted = false}
             
                     if resizer.new_Note_Cell_Set.count == 1 {
                         let newCellArray = Array(resizer.new_Note_Cell_Set)
@@ -370,8 +372,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         resizer.noteReference.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                     }
             
-                //}
-            //}
+                
         }
         
                         
