@@ -101,8 +101,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             
             //if snapshot_Line_Set.count > 0{snapshot_Line_Set.removeAll()}
             //if snapshot_Note_Set.count > 0{snapshot_Note_Set.removeAll()}
-            if snapshot_Cells_Left_Of_Note_Set.count > 0{snapshot_Cells_Left_Of_Note_Set.removeAll()}
-            if snapshot_Note_Cells_Left_Of_Note_Set.count > 0{snapshot_Note_Cells_Left_Of_Note_Set.removeAll()}
+            //if snapshot_Cells_Left_Of_Note_Set.count > 0{snapshot_Cells_Left_Of_Note_Set.removeAll()}
+            //if snapshot_Note_Cells_Left_Of_Note_Set.count > 0{snapshot_Note_Cells_Left_Of_Note_Set.removeAll()}
             
             if snapshot_Cells_Right_Of_Note_Set.count > 0{snapshot_Cells_Right_Of_Note_Set.removeAll()}
             if snapshot_Note_Cells_Right_Of_Note_Set.count > 0{snapshot_Note_Cells_Right_Of_Note_Set.removeAll()}
@@ -146,10 +146,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     //var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     //var snapshot_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var snapshot_Left_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    //var snapshot_Left_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
-    var snapshot_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var snapshot_Note_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    //var snapshot_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    //var snapshot_Note_Cells_Left_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
     var snapshot_Cells_Right_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Note_Cells_Right_Of_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
@@ -165,31 +165,38 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     // For each note ==============================================================
-    var snapshotMinHalfCellIndex : Int?
-    var snapshotMaxHalfCellIndex : Int?
+    var snapshot_Group_MinHalfCellIndex : Int?
+//    var snapshotMaxHalfCellIndex : Int?
     
     var left_Side_Resizer_Garage : Left_Side_Resizer_Garage?
     
     
+    // this is going to have to be the cursornote, somehow have to seperate this from the other notes
+    
     func left_Side_Resize_Start(noteParam:Note){
         
-        var snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
-        var snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
-        snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.lowestFourFourHalfCellIndex}
+        let snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
+        let snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
+        let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.lowestFourFourHalfCellIndex}
 
-        snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < noteParam.lowestFourFourHalfCellIndex}
-        snapshot_Note_Cells_Left_Of_Note_Set = snapshot_Cells_Left_Of_Note_Set.filter{$0.note_Im_In != nil}
-        
-        snapshotMinHalfCellIndex = noteParam.lowestFourFourHalfCellIndex
-        snapshotMaxHalfCellIndex = noteParam.highestFourFourHalfCellIndex
-        
-        if let hSliderRef = parentCentralState.h_Slider_Ref {
-            if let minCursorCell = snapshot_Left_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                
-                let destinationCellIndex = minCursorCell.dataCell_X_Number
-                hSliderRef.jumpToACell(cellNum: destinationCellIndex)
-            
-                snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < minCursorCell.dataCell_X_Number}
+        let snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < noteParam.lowestFourFourHalfCellIndex}
+        let snapshot_Note_Cells_Left_Of_Note_Set = snapshot_Cells_Left_Of_Note_Set.filter{$0.note_Im_In != nil}
+
+                if snapshot_Group_MinHalfCellIndex == nil{
+                    if let lclNoteCollection = parentCentralState.currentNoteCollection {
+                        if let lclCurrNoteUnderCursor = lclNoteCollection.note_Currently_Under_Cursor {
+                            if noteParam.id == lclCurrNoteUnderCursor.id {
+                                snapshot_Group_MinHalfCellIndex = noteParam.lowestFourFourHalfCellIndex
+                                if let hSliderRef = parentCentralState.h_Slider_Ref {
+                                    if let minCursorCell = snapshot_Left_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                                        let destinationCellIndex = minCursorCell.dataCell_X_Number
+                                        hSliderRef.jumpToACell(cellNum: destinationCellIndex)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 
                 if snapshot_Note_Cells_Left_Of_Note_Set.count == 0 {
                     left_Side_Resizer_Garage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: noteParam.lowestFourFourHalfCellIndex
@@ -203,13 +210,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                         , leftwardBarrierDataX: maxNoteCellLeftOfNote.dataCell_X_Number
                                                                         , snapshot_Line_Set: snapshot_Line_Set)
                 }
-            }
-        }
+            //}
+        //}
     }
     
     
     func get_Left_Side_Cursor_Delta(currentHalfCellIndexParam:Int){
-        if let lclSnapshotHalfCellIndex = snapshotMinHalfCellIndex {
+        if let lclSnapshotHalfCellIndex = snapshot_Group_MinHalfCellIndex {
             let currentHalfCellDelta = currentHalfCellIndexParam - lclSnapshotHalfCellIndex
             if let lcl_left_Side_Resizer_Garage = left_Side_Resizer_Garage{
                 lcl_left_Side_Resizer_Garage.resize_Left_Side_Handler(halfCellDeltaParam: currentHalfCellDelta)
