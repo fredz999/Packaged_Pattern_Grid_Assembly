@@ -313,8 +313,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
     public func write_The_Altered_Note(){
         for resizer in left_Side_Resizer_Garage_Array {
-            print("trying to resize id: ",resizer.noteReference.id.description)
+            //print("trying to resize id: ",resizer.noteReference.id.description)
                     resizer.noteReference.dataCellArray.removeAll()
+            
                     if resizer.new_Note_Cell_Set.count == 1 {
                         let newCellArray = Array(resizer.new_Note_Cell_Set)
                         newCellArray[0].change_Type(newType: .single_Note)
@@ -346,6 +347,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         resizer.noteReference.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                     }
                     else if resizer.new_Note_Cell_Set.count > 2 {
+                        print("resizer.new_Note_Cell_Set.count: ",resizer.new_Note_Cell_Set.count.description)
                         let newCellArray = resizer.new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         let firstIndex = 0
                         let finalIndex = newCellArray.count-1
