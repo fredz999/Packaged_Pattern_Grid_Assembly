@@ -38,10 +38,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             resizeMode = .leftSideSubMode
             if mode_Active == true {
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
-                    if let lclNote = currNoteCollection.note_Currently_Under_Cursor {
+                    //if let lclNote = currNoteCollection.note_Currently_Under_Cursor {
                         write_The_Altered_Note()
                         left_Side_Resize_Start()
-                    }
+                    //}
                 }
             }
         }
@@ -54,9 +54,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             mode_Active = true
             if resizeMode == .leftSideSubMode {
                 if let currNoteCollection = parentCentralState.currentNoteCollection {
-                    if let lclNote = currNoteCollection.note_Currently_Under_Cursor{
+                    //if let lclNote = currNoteCollection.note_Currently_Under_Cursor{
                         left_Side_Resize_Start()
-                    }
+                    //}
                 }
             }
             else if resizeMode == .rightSideSubMode{
