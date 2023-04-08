@@ -99,7 +99,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             //if snapshot_Line_Set_Array.count > 0{snapshot_Line_Set_Array.removeAll()}
             if left_Side_Resizer_Garage != nil{left_Side_Resizer_Garage = nil}
             
-            if snapshot_Line_Set.count > 0{snapshot_Line_Set.removeAll()}
+            //if snapshot_Line_Set.count > 0{snapshot_Line_Set.removeAll()}
             if snapshot_Note_Set.count > 0{snapshot_Note_Set.removeAll()}
             if snapshot_Cells_Left_Of_Note_Set.count > 0{snapshot_Cells_Left_Of_Note_Set.removeAll()}
             if snapshot_Note_Cells_Left_Of_Note_Set.count > 0{snapshot_Note_Cells_Left_Of_Note_Set.removeAll()}
@@ -144,7 +144,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     
-    var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    //var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Note_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var snapshot_Left_Cursor_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
@@ -167,12 +167,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     // For each note ==============================================================
     var snapshotMinHalfCellIndex : Int?
     var snapshotMaxHalfCellIndex : Int?
-    var left_Side_Resizer_Garage : Left_Side_Resizer_Garage?
-    func left_Side_Resize_Start(noteParam:Note){
     
+    var left_Side_Resizer_Garage : Left_Side_Resizer_Garage?
+    
+    
+    func left_Side_Resize_Start(noteParam:Note){
         
-        
-        snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
+        var snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
         snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
         snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.lowestFourFourHalfCellIndex}
 
@@ -191,21 +192,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < minCursorCell.dataCell_X_Number}
                 
                 if snapshot_Note_Cells_Left_Of_Note_Set.count == 0 {
-                     //leftwardBarrierDataX = 0
-//                    left_Side_Resizer_Garage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex : noteParam.lowestFourFourHalfCellIndex
-//                                                                        ,snapshotMaxHalfCellIndex : noteParam.highestFourFourHalfCellIndex, leftwardBarrierDataX: 0)
                     left_Side_Resizer_Garage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: noteParam.lowestFourFourHalfCellIndex
                                                                         , snapshotMaxHalfCellIndex: noteParam.highestFourFourHalfCellIndex
                                                                         , leftwardBarrierDataX: 0
                                                                         , snapshot_Line_Set: snapshot_Line_Set)
-                    
-                    
                 }
                 else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                    //leftwardBarrierDataX = maxNoteCellLeftOfNote.dataCell_X_Number
-//                    left_Side_Resizer_Garage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex : noteParam.lowestFourFourHalfCellIndex
-//                                                                        ,snapshotMaxHalfCellIndex : noteParam.highestFourFourHalfCellIndex
-//                                                                        , leftwardBarrierDataX: maxNoteCellLeftOfNote.dataCell_X_Number)
                     left_Side_Resizer_Garage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: noteParam.lowestFourFourHalfCellIndex
                                                                         , snapshotMaxHalfCellIndex: noteParam.highestFourFourHalfCellIndex
                                                                         , leftwardBarrierDataX: maxNoteCellLeftOfNote.dataCell_X_Number
