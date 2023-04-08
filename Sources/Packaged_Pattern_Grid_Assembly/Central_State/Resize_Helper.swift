@@ -188,12 +188,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 }
                 else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     leftwardBarrierDataX = maxNoteCellLeftOfNote.dataCell_X_Number
-                    if let lclleftwardBarrierDataX = leftwardBarrierDataX{
-                        print("leftwardBarrierDataX: ",lclleftwardBarrierDataX)
-                    }
-                    
                 }
-                
             }
         }
     }
@@ -221,8 +216,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             }
             else if currentHalfCellIndexParam < lcl_maxHalfCellIndex {
                 if let lcl_LeftwardBarrierDataX = leftwardBarrierDataX {
-                    available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX &&  $0.four_Four_Half_Cell_Index < currentHalfCellIndexParam}
-                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index <= lclSnapshotMaxHalfCellIndex}
+                    available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX &&  $0.four_Four_Half_Cell_Index <= lcl_maxHalfCellIndex}
+                    new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index <= lclSnapshotMaxHalfCellIndex}
                 }
             }
             
