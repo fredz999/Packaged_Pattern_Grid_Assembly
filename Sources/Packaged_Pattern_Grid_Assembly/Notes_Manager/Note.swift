@@ -27,6 +27,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     
     var dimensions = ComponentDimensions.StaticDimensions
     var note_Y_Number : Int
+    var containing_Line : Underlying_Data_Line
     var centralState : Central_State
     
     var highestFourFourHalfCellIndex : Int
@@ -34,7 +35,8 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     var highestSixEightHalfCellIndex : Int?
     var lowestSixEightHalfCellIndex : Int?
     
-    public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int) {
+    public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int,containingLineParam:Underlying_Data_Line) {
+        self.containing_Line = containingLineParam
         self.lowest_Index = cellArray[0].dataCell_X_Number
         self.highest_Index = cellArray[cellArray.count-1].dataCell_X_Number
         

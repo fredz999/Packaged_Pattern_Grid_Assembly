@@ -180,7 +180,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             for noteParam in highlightSet{
                 print("trying to resize id: ",noteParam.id.description)
                 
-                let snapshot_Line_Set = Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
+                let snapshot_Line_Set = Set<Underlying_Data_Cell>(noteParam.containing_Line.dataCellArray)   //noteParam.containing_Line
+                //Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(noteParam.dataCellArray)
                 let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == noteParam.lowestFourFourHalfCellIndex}
 
@@ -275,7 +276,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if let lclSnapshotHalfCellIndex = snapshot_Group_MinHalfCellIndex {
             let currentHalfCellDelta = currentHalfCellIndexParam - lclSnapshotHalfCellIndex
             
-            for resizeGarage in left_Side_Resizer_Garage_Array{
+            for resizeGarage in left_Side_Resizer_Garage_Array {
                 resizeGarage.resize_Left_Side_Handler(halfCellDeltaParam: currentHalfCellDelta)
             }
             
