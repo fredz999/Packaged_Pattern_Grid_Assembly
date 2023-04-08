@@ -61,9 +61,10 @@ class Passive_Helper: P_Selectable_Mode {
                 for cell in lclNoteImIn.dataCellArray{
                     yString.append(","+cell.dataCell_Y_Number.description)
                 }
-                
+                let highdCount = lclNoteCollection.noteArray.filter{ $0.highlighted == true }.count
                 print("note_Collection_Highlight_Handler(: id: ",lclNoteImIn.id.description)
-                print("yString: ",yString)
+                print("yString: ",yString,", highCount: ",highdCount.description)
+                
                 lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
             }
 
