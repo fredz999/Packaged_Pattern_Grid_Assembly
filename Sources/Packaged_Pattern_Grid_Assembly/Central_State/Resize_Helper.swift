@@ -206,19 +206,20 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if let lclSnapshotMinHalfCellIndex = snapshotMinHalfCellIndex
             , let lclCurrHalfCellDelta = currentHalfCellDelta
             ,let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
-            ,let lcl_maxHalfCellIndex = snapshotMaxHalfCellIndex{
+            ,let lcl_maxHalfCellIndex = snapshotMaxHalfCellIndex
+        ,let lcl_LeftwardBarrierDataX = leftwardBarrierDataX {
             
             let currentHalfCellIndexParam = lclSnapshotMinHalfCellIndex + lclCurrHalfCellDelta
     
             if currentHalfCellIndexParam >= lcl_maxHalfCellIndex{
                 new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_maxHalfCellIndex}
-                available_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < lcl_maxHalfCellIndex}
+                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX &&  $0.four_Four_Half_Cell_Index <= lcl_maxHalfCellIndex}
             }
             else if currentHalfCellIndexParam < lcl_maxHalfCellIndex {
-                if let lcl_LeftwardBarrierDataX = leftwardBarrierDataX {
+                
                     available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX &&  $0.four_Four_Half_Cell_Index <= lcl_maxHalfCellIndex}
                     new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index <= lclSnapshotMaxHalfCellIndex}
-                }
+               
             }
             
         }
