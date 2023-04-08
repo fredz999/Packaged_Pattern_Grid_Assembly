@@ -37,12 +37,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
             resizeMode = .leftSideSubMode
             if mode_Active == true {
-                if let currNoteCollection = parentCentralState.currentNoteCollection {
+                //if let currNoteCollection = parentCentralState.currentNoteCollection {
                     //if let lclNote = currNoteCollection.note_Currently_Under_Cursor {
                         write_The_Altered_Notes()
                         left_Side_Resize_Start()
                     //}
-                }
+                //}
             }
         }
     }
@@ -53,11 +53,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if mode_Active == false {
             mode_Active = true
             if resizeMode == .leftSideSubMode {
-                if let currNoteCollection = parentCentralState.currentNoteCollection {
+                //if let currNoteCollection = parentCentralState.currentNoteCollection {
                     //if let lclNote = currNoteCollection.note_Currently_Under_Cursor{
                         left_Side_Resize_Start()
                     //}
-                }
+                //}
             }
             else if resizeMode == .rightSideSubMode{
                 right_Side_Resize_Start()
@@ -96,7 +96,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 //            }
             
             //if snapshot_Line_Set_Array.count > 0{snapshot_Line_Set_Array.removeAll()}
-            if left_Side_Resizer_Garage_Array.count > 0{left_Side_Resizer_Garage_Array.removeAll()}
+            if left_Side_Resizer_Garage_Array.count > 0{
+                for resizer in left_Side_Resizer_Garage_Array {
+                    if resizer.noteReference.highlighted == true{resizer.noteReference.highlighted = false}
+                }
+                left_Side_Resizer_Garage_Array.removeAll()
+            }
             
             //if snapshot_Line_Set.count > 0{snapshot_Line_Set.removeAll()}
             //if snapshot_Note_Set.count > 0{snapshot_Note_Set.removeAll()}
@@ -371,7 +376,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         resizer.noteReference.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                         resizer.noteReference.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                     }
-            if resizer.noteReference.highlighted == true{resizer.noteReference.highlighted = false}
+                    
                 
         }
         
