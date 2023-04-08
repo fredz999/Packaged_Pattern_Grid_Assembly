@@ -178,8 +178,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             
 
             for note in highlightSet{
-                print("trying to resize id: ",note.id.description)
-                
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)   //noteParam.containing_Line
                 //Set<Underlying_Data_Cell>(parentCentralState.currLine.dataCellArray)
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
@@ -314,14 +312,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 //    }
 
     public func write_The_Altered_Note(){
-//        if let lclLeftSideResizer = left_Side_Resizer_Garage_Array {
-//            if lclLeftSideResizer.new_Note_Cell_Set.count > 0 {
-                
         for resizer in left_Side_Resizer_Garage_Array {
-            //if let lclNoteCollection = parentCentralState.currentNoteCollection {
-                //if let lcl_Note_At_Cursor = lclNoteCollection.note_Currently_Under_Cursor {
-                    //lcl_Note_At_Cursor.dataCellArray.removeAll()
-            
+            print("trying to resize id: ",resizer.noteReference.id.description)
                     resizer.noteReference.dataCellArray.removeAll()
                     if resizer.new_Note_Cell_Set.count == 1 {
                         let newCellArray = Array(resizer.new_Note_Cell_Set)
