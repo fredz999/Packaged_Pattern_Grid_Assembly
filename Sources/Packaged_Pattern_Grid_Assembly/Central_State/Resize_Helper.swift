@@ -316,7 +316,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             //print("trying to resize id: ",resizer.noteReference.id.description)
             
                     resizer.noteReference.dataCellArray.removeAll()
-                    if resizer.noteReference.highlighted == true{resizer.noteReference.highlighted = false}
+                    
             
                     if resizer.new_Note_Cell_Set.count == 1 {
                         let newCellArray = Array(resizer.new_Note_Cell_Set)
@@ -371,7 +371,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         resizer.noteReference.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                         resizer.noteReference.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                     }
-            
+            if resizer.noteReference.highlighted == true{resizer.noteReference.highlighted = false}
                 
         }
         
