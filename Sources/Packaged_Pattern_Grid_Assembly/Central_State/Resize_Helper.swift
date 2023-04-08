@@ -171,12 +171,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
         snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < noteParam.lowestFourFourHalfCellIndex}
         snapshot_Note_Cells_Left_Of_Note_Set = snapshot_Cells_Left_Of_Note_Set.filter{$0.note_Im_In != nil}
-
+        print("snapshot_Note_Cells_Left_Of_Note_Set: ",snapshot_Note_Cells_Left_Of_Note_Set.count)
         snapshotMinHalfCellIndex = noteParam.lowestFourFourHalfCellIndex
         snapshotMaxHalfCellIndex = noteParam.highestFourFourHalfCellIndex
         
         if let hSliderRef = parentCentralState.h_Slider_Ref {
             if let minCursorCell = snapshot_Left_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                
                 let destinationCellIndex = minCursorCell.dataCell_X_Number
                 hSliderRef.jumpToACell(cellNum: destinationCellIndex)
             
@@ -185,7 +186,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 if snapshot_Note_Cells_Left_Of_Note_Set.count == 0 {
                      leftwardBarrierDataX = 0
                 }
-                else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: { $0.dataCell_X_Number < $1.dataCell_X_Number }){
+                else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     leftwardBarrierDataX = maxNoteCellLeftOfNote.dataCell_X_Number
                 }
             }
@@ -196,11 +197,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     func get_Left_Side_Cursor_Delta(currentHalfCellIndexParam:Int){
         if let lclSnapshotHalfCellIndex = snapshotMinHalfCellIndex {
             currentHalfCellDelta = currentHalfCellIndexParam - lclSnapshotHalfCellIndex
-            resize_Left_Side_Handler(halfCellDeltaParam:(currentHalfCellIndexParam - lclSnapshotHalfCellIndex))
+            resize_Left_Side_Handler()
         }
     }
 
-    func resize_Left_Side_Handler(halfCellDeltaParam:Int) {
+    func resize_Left_Side_Handler() {
 
         if let lclSnapshotMinHalfCellIndex = snapshotMinHalfCellIndex
             , let lclCurrHalfCellDelta = currentHalfCellDelta

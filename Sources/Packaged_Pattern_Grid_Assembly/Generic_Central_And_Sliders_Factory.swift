@@ -124,9 +124,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         if centralGridSet == true {
             ForEach(visible_Grid_Store.vis_Line_Store_Array){ visibleLine in
                 ForEach(visibleLine.visual_Cell_Store_Array){ visibleUnit in
-                    //if let lclXFloat = visibleUnit.xFloat, let lclYFloat = visibleUnit.yFloat{
-                        self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index).offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
-                    //}
+                    self.returnCentralGridUnit(xParam: visibleUnit.x_Index, yParam: visibleLine.y_Index).offset(x:visibleUnit.xFloat,y:visibleUnit.yFloat)
                 }
             }
         }
