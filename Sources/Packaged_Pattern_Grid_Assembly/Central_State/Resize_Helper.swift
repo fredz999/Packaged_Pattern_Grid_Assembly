@@ -347,7 +347,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         resizer.noteReference.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                     }
                     else if resizer.new_Note_Cell_Set.count > 2 {
-                        print("resizer.new_Note_Cell_Set.count: ",resizer.new_Note_Cell_Set.count.description)
+                        
                         let newCellArray = resizer.new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                         let firstIndex = 0
                         let finalIndex = newCellArray.count-1

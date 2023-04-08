@@ -161,7 +161,7 @@ public class Central_State : ObservableObject {
             if currentPatternMode == .passive_Mode {
                 if let lclPassiveHelper = passive_Helper {
                     lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
-                    print("respond_To_Cursor_Movement called")
+                    
                 }
             }
             else if currentPatternMode == .write_Mode {

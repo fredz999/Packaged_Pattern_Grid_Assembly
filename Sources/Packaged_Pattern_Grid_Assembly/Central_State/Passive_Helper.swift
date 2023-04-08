@@ -57,7 +57,7 @@ class Passive_Helper: P_Selectable_Mode {
 //                else if lclNoteCollection.selected_Notes_Array.count == 0 {
 //                    lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
 //                }
-                
+                print("note_Collection_Highlight_Handler(: id: ",lclNoteImIn.id.description)
                 lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
             }
 
