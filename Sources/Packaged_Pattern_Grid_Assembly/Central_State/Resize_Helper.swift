@@ -364,7 +364,7 @@ class Right_Side_Resizer_Garage {
         if let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
             , let lcl_maxHalfCellIndex = snapshotMaxHalfCellIndex
             , let lcl_RightwardBarrierDataX = rightwardBarrierDataX {
-            
+            print("resize_Right_Side_Handler(, halfCellDeltaParam: ",halfCellDeltaParam.description)
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
     
             if currentHalfCellIndexParam >= lcl_maxHalfCellIndex{
