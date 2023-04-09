@@ -118,7 +118,7 @@ public class ComponentColors {
     
     public var grid_Note_Highlighted_Color : Color = Color(red:0.5,green:1,blue:0)
     
-    public var grid_Note_Highlighted_Resize_Color : Color = Color(red:0,green:1,blue:1)
+    //public var grid_Note_Highlighted_Resize_Color : Color = Color(red:0,green:1,blue:1)
     
     public var viable_Set_Combined_Color : Color = Color(red:0.3,green:0.6,blue:0)
     

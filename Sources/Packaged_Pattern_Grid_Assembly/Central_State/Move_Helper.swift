@@ -96,7 +96,6 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Multi_Note_Selected(){
-        //deHighlightCollection()
         if parentCentralState.curr_Data_Pos_X != snapshot_Cursor_X
             || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y{
             if let collection = parentCentralState.currentNoteCollection{
