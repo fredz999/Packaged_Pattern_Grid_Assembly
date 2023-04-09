@@ -342,6 +342,7 @@ class Left_Side_Resizer_Garage {
     }
     
     deinit{
+        print("deinit callde in garage")
     if snapshotMinHalfCellIndex != nil{snapshotMinHalfCellIndex = nil}
     if snapshotMaxHalfCellIndex != nil{snapshotMaxHalfCellIndex = nil}
     if leftwardBarrierDataX != nil{leftwardBarrierDataX = nil}
