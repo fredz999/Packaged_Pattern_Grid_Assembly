@@ -288,7 +288,7 @@ class Left_Side_Resizer_Garage {
                 new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index <= lcl_maxHalfCellIndex}
             }
         }
-        print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_Cell_Set count: ",available_Cell_Set.count)
+        print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_Cell_Set count: ",available_Cell_Set.count,",halfCellDeltaParam: ",halfCellDeltaParam)
         paintCells()
     }
     
