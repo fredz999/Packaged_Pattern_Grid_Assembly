@@ -240,7 +240,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                 }
                 if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index {
-                    print("> ..... lclNoteRef Y: ",lclNoteRef.note_Y_Number)
+                    //print("> ..... lclNoteRef Y: ",lclNoteRef.note_Y_Number)
+                    if lclNoteRef.highlighted == true{lclNoteRef.highlighted = false}
                 }
             }
  
