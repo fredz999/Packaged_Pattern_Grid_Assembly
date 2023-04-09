@@ -76,8 +76,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         else if resizeMode == .leftSideSubMode {
             let currHalfCell = parentCentralState.currentData.four_Four_Half_Cell_Index
             get_Left_Side_Cursor_Delta(currentHalfCellIndexParam: currHalfCell)
-            //resize_Left_Side_Handler()
-            //leftSizeResizer.resize_Left_Side_Handler()
         }
     }
     
@@ -98,7 +96,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if snapshot_Lowest_Note_Half_Cell_Index != nil{snapshot_Lowest_Note_Half_Cell_Index = nil}
             if current_Cursor_Set_Max_X != nil{current_Cursor_Set_Max_X = nil}
             if snapshot_Note_Min_X != nil{snapshot_Note_Min_X = nil}
-            
+            if snapshot_Group_MinHalfCellIndex != nil{snapshot_Group_MinHalfCellIndex = nil}
             
             mode_Active=false
         }
