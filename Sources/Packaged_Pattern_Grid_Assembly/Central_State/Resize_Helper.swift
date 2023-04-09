@@ -71,7 +71,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
     func handleDataEvaluation(){
         if resizeMode == .rightSideSubMode {
-            resize_Right_Side_Handler()
+            //resize_Right_Side_Handler()
         }
         else if resizeMode == .leftSideSubMode {
             let currHalfCell = parentCentralState.currentData.four_Four_Half_Cell_Index
@@ -85,16 +85,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
             write_The_Leftward_Altered_Notes()
 
-            for garage in left_Side_Resizer_Garage_Array{
-                if garage.noteReference != nil{garage.noteReference = nil}
-//                var snapshotMinHalfCellIndex : Int?
-//                var snapshotMaxHalfCellIndex : Int?
-//                var leftwardBarrierDataX : Int?
-//                var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-//                var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-//                var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-//                var noteReference : Note?
-            }
+//            for garage in left_Side_Resizer_Garage_Array{
+//                //if garage.noteReference != nil{garage.noteReference = nil}
+////                var snapshotMinHalfCellIndex : Int?
+////                var snapshotMaxHalfCellIndex : Int?
+////                var leftwardBarrierDataX : Int?
+////                var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+////                var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+////                var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+////                var noteReference : Note?
+//            }
             left_Side_Resizer_Garage_Array.removeAll()
             
             
@@ -158,14 +158,14 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     let newResizeGarage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
                                                                         , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                         , leftwardBarrierDataX: 0
-                                                                   , snapshot_Line_Set: snapshot_Line_Set, noteParam: note)
+                                                                   , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeMode)
                     left_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
                 else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     let newResizeGarage  = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
                                                                         , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                         , leftwardBarrierDataX: maxNoteCellLeftOfNote.dataCell_X_Number
-                                                                    , snapshot_Line_Set: snapshot_Line_Set, noteParam: note)
+                                                                    , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeMode)
                     left_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
                 
@@ -175,21 +175,64 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
  
     }
     
+    func right_Side_Resize_Start(){
+        if let lclNoteCollection = parentCentralState.currentNoteCollection {
+            
+            let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
+            
+            for note in highlightSet{
+                let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
+                let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
+                let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.lowestFourFourHalfCellIndex}
+
+                let snapshot_Cells_Left_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index < note.lowestFourFourHalfCellIndex}
+                let snapshot_Note_Cells_Left_Of_Note_Set = snapshot_Cells_Left_Of_Note_Set.filter{$0.note_Im_In != nil}
+
+                if snapshot_Group_MinHalfCellIndex == nil{
+                    if let lclNoteCollection = parentCentralState.currentNoteCollection {
+                        if let lclCurrNoteUnderCursor = lclNoteCollection.note_Currently_Under_Cursor {
+                            if note.id == lclCurrNoteUnderCursor.id {
+                                snapshot_Group_MinHalfCellIndex = note.lowestFourFourHalfCellIndex
+                                if let hSliderRef = parentCentralState.h_Slider_Ref {
+                                    if let minCursorCell = snapshot_Left_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                                        let destinationCellIndex = minCursorCell.dataCell_X_Number
+                                        hSliderRef.jumpToACell(cellNum: destinationCellIndex)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if snapshot_Note_Cells_Left_Of_Note_Set.count == 0 {
+                    let newResizeGarage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
+                                                                        , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                        , leftwardBarrierDataX: 0
+                                                                   , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeMode)
+                    left_Side_Resizer_Garage_Array.append(newResizeGarage)
+                }
+                else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                    let newResizeGarage  = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
+                                                                        , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                        , leftwardBarrierDataX: maxNoteCellLeftOfNote.dataCell_X_Number
+                                                                    , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeMode)
+                    left_Side_Resizer_Garage_Array.append(newResizeGarage)
+                }
+                
+            }
+                
+        }
+ 
+    }
     
     func get_Left_Side_Cursor_Delta(currentHalfCellIndexParam:Int){
         if let lclSnapshotHalfCellIndex = snapshot_Group_MinHalfCellIndex {
             let currentHalfCellDelta = currentHalfCellIndexParam - lclSnapshotHalfCellIndex
-            
             for resizeGarage in left_Side_Resizer_Garage_Array {
                 resizeGarage.resize_Left_Side_Handler(halfCellDeltaParam: currentHalfCellDelta)
             }
-
         }
     }
-
-    func right_Side_Resize_Start(){}
-    
-    func resize_Right_Side_Handler(){}
 
     public func write_The_Leftward_Altered_Notes(){
         for resizer in left_Side_Resizer_Garage_Array {
@@ -272,7 +315,7 @@ class Left_Side_Resizer_Garage {
     var noteReference : Note?
     
     init(snapshotMinHalfCellIndex: Int, snapshotMaxHalfCellIndex: Int, leftwardBarrierDataX: Int
-    , snapshot_Line_Set: Set<Underlying_Data_Cell>,noteParam:Note){
+         , snapshot_Line_Set: Set<Underlying_Data_Cell>,noteParam:Note,resizeModeParam : E_Resize_Mode){
     self.noteReference = noteParam
     self.snapshotMinHalfCellIndex = snapshotMinHalfCellIndex
     self.snapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
@@ -300,6 +343,7 @@ class Left_Side_Resizer_Garage {
     }
     
     deinit{
+    print("garage deinit called")
     if snapshotMinHalfCellIndex != nil{snapshotMinHalfCellIndex = nil}
     if snapshotMaxHalfCellIndex != nil{snapshotMaxHalfCellIndex = nil}
     if leftwardBarrierDataX != nil{leftwardBarrierDataX = nil}
