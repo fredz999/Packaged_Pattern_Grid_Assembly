@@ -265,7 +265,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     func get_Right_Side_Cursor_Delta(currentHalfCellIndexParam:Int){
         if let lclSnapshotHalfCellIndex = snapshot_Group_MaxHalfCellIndex {
-            let currentHalfCellDelta =  lclSnapshotHalfCellIndex - currentHalfCellIndexParam
+            let currentHalfCellDelta = currentHalfCellIndexParam - lclSnapshotHalfCellIndex
             for resizeGarage in right_Side_Resizer_Garage_Array {
                 resizeGarage.resize_Right_Side_Handler(halfCellDeltaParam: currentHalfCellDelta)
             }
@@ -360,7 +360,7 @@ class Right_Side_Resizer_Garage {
     }
     
     func resize_Right_Side_Handler(halfCellDeltaParam:Int) {
-        print("resize_Right_Side_Handler(")
+        print("resize_Right_Side_Handler(, halfCellDeltaParam: ",halfCellDeltaParam.description)
         if let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
             , let lcl_maxHalfCellIndex = snapshotMaxHalfCellIndex
             , let lcl_RightwardBarrierDataX = rightwardBarrierDataX {
