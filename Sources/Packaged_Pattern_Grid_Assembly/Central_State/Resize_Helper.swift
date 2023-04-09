@@ -86,7 +86,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             write_The_Leftward_Altered_Notes()
 
             for garage in left_Side_Resizer_Garage_Array{
-            if garage.noteReference != nil{
+            if let lclNoteRef = garage.noteReference{
+                lclNoteRef.highlighted = false
                 garage.noteReference = nil
             }
 //                var snapshotMinHalfCellIndex : Int?
@@ -294,12 +295,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     lclNoteRef.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                     lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                 }
-                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index {
-                    if lclNoteRef.highlighted == true{lclNoteRef.highlighted = false}
-                }
-                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index {
-                    if lclNoteRef.highlighted == false{lclNoteRef.highlighted = true}
-                }
+//                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index {
+//                    if lclNoteRef.highlighted == true{lclNoteRef.highlighted = false}
+//                }
+//                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index {
+//                    if lclNoteRef.highlighted == false{lclNoteRef.highlighted = true}
+//                }
             }
  
         }
