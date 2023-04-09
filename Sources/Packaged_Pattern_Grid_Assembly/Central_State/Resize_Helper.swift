@@ -30,7 +30,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
             resizeMode = .rightSideSubMode
             if mode_Active == true {
-                write_The_Altered_Notes()
+                write_The_Leftward_Altered_Notes()
                 right_Side_Resize_Start()
             }
         }
@@ -39,7 +39,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if mode_Active == true {
                 //if let currNoteCollection = parentCentralState.currentNoteCollection {
                     //if let lclNote = currNoteCollection.note_Currently_Under_Cursor {
-                        write_The_Altered_Notes()
+                        write_The_Leftward_Altered_Notes()
                         left_Side_Resize_Start()
                     //}
                 //}
@@ -83,7 +83,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if mode_Active == true {
             
 
-            write_The_Altered_Notes()
+            write_The_Leftward_Altered_Notes()
 
             for garage in left_Side_Resizer_Garage_Array{
                 if garage.noteReference != nil{garage.noteReference = nil}
@@ -181,7 +181,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     func resize_Right_Side_Handler(){}
 
-    public func write_The_Altered_Notes(){
+    public func write_The_Leftward_Altered_Notes(){
         for resizer in left_Side_Resizer_Garage_Array {
             if let lclNoteRef = resizer.noteReference{
                 
@@ -239,9 +239,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     lclNoteRef.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                     lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                 }
-
-                lclNoteRef.highlighted = true
-                
+                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index {
+                    print("> ..... lclNoteRef Y: ",lclNoteRef.note_Y_Number)
+                }
             }
  
         }
