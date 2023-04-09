@@ -87,7 +87,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
             for garage in left_Side_Resizer_Garage_Array{
             if let lclNoteRef = garage.noteReference{
-                lclNoteRef.highlighted = true
+                //lclNoteRef.highlighted = true
                 garage.noteReference = nil
             }
 //                var snapshotMinHalfCellIndex : Int?
@@ -297,6 +297,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 }
                 if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index {
                     if lclNoteRef.highlighted == true{lclNoteRef.highlighted = false}
+                }
+                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index {
+                    if lclNoteRef.highlighted == false{lclNoteRef.highlighted = true}
                 }
 //                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index {
 //                    if lclNoteRef.highlighted == false{lclNoteRef.highlighted = true}
