@@ -64,7 +64,6 @@ class Passive_Helper: P_Selectable_Mode {
 //                let highdCount = lclNoteCollection.noteArray.filter{ $0.highlighted == true }.count
 //                print("note_Collection_Highlight_Handler(: id: ",lclNoteImIn.id.description)
 //                print("yString: ",yString,", highCount: ",highdCount.description)
-                print("respond_To_Cursor_Movement( called")
                 lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
             }
 
