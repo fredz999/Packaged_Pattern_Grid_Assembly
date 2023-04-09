@@ -292,10 +292,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     lclNoteRef.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                     lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                 }
-                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index {
-                    //print("> ..... lclNoteRef Y: ",lclNoteRef.note_Y_Number)
-                    if lclNoteRef.highlighted == true{lclNoteRef.highlighted = false}
-                }
+//                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index {
+//                    if lclNoteRef.highlighted == true{lclNoteRef.highlighted = false}
+//                }
             }
  
         }
@@ -343,7 +342,6 @@ class Left_Side_Resizer_Garage {
     }
     
     deinit{
-    print("garage deinit called")
     if snapshotMinHalfCellIndex != nil{snapshotMinHalfCellIndex = nil}
     if snapshotMaxHalfCellIndex != nil{snapshotMaxHalfCellIndex = nil}
     if leftwardBarrierDataX != nil{leftwardBarrierDataX = nil}
