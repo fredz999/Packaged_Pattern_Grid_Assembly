@@ -85,16 +85,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
             write_The_Leftward_Altered_Notes()
 
-//            for garage in left_Side_Resizer_Garage_Array{
-//                //if garage.noteReference != nil{garage.noteReference = nil}
-////                var snapshotMinHalfCellIndex : Int?
-////                var snapshotMaxHalfCellIndex : Int?
-////                var leftwardBarrierDataX : Int?
-////                var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-////                var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-////                var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-////                var noteReference : Note?
-//            }
+            for garage in left_Side_Resizer_Garage_Array{
+            if garage.noteReference != nil{garage.noteReference = nil}
+//                var snapshotMinHalfCellIndex : Int?
+//                var snapshotMaxHalfCellIndex : Int?
+//                var leftwardBarrierDataX : Int?
+//                var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//                var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//                var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//                var noteReference : Note?
+            }
             left_Side_Resizer_Garage_Array.removeAll()
             
             
