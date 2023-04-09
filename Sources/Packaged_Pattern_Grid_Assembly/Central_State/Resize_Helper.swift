@@ -86,7 +86,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             write_The_Leftward_Altered_Notes()
 
             for garage in left_Side_Resizer_Garage_Array{
-            if garage.noteReference != nil{garage.noteReference = nil}
+            if garage.noteReference != nil{
+                garage.noteReference = nil
+            }
 //                var snapshotMinHalfCellIndex : Int?
 //                var snapshotMaxHalfCellIndex : Int?
 //                var leftwardBarrierDataX : Int?
@@ -294,6 +296,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 }
                 if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index {
                     if lclNoteRef.highlighted == true{lclNoteRef.highlighted = false}
+                }
+                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index {
+                    if lclNoteRef.highlighted == false{lclNoteRef.highlighted = true}
                 }
             }
  
