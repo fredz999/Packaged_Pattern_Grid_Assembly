@@ -272,12 +272,12 @@ class Left_Side_Resizer_Garage {
     var noteReference : Note?
     
     init(snapshotMinHalfCellIndex: Int, snapshotMaxHalfCellIndex: Int, leftwardBarrierDataX: Int
-         , snapshot_Line_Set: Set<Underlying_Data_Cell>,noteParam:Note){
-        self.noteReference = noteParam
-        self.snapshotMinHalfCellIndex = snapshotMinHalfCellIndex
-        self.snapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
-        self.leftwardBarrierDataX = leftwardBarrierDataX
-        self.snapshot_Line_Set = snapshot_Line_Set
+    , snapshot_Line_Set: Set<Underlying_Data_Cell>,noteParam:Note){
+    self.noteReference = noteParam
+    self.snapshotMinHalfCellIndex = snapshotMinHalfCellIndex
+    self.snapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
+    self.leftwardBarrierDataX = leftwardBarrierDataX
+    self.snapshot_Line_Set = snapshot_Line_Set
     }
     
     func resize_Left_Side_Handler(halfCellDeltaParam:Int) {
@@ -300,7 +300,13 @@ class Left_Side_Resizer_Garage {
     }
     
     deinit{
-        print("yo deiniting.....")
+    if snapshotMinHalfCellIndex != nil{snapshotMinHalfCellIndex = nil}
+    if snapshotMaxHalfCellIndex != nil{snapshotMaxHalfCellIndex = nil}
+    if leftwardBarrierDataX != nil{leftwardBarrierDataX = nil}
+    if snapshot_Line_Set.count > 0{snapshot_Line_Set.removeAll()}
+    if new_Note_Cell_Set.count > 0{new_Note_Cell_Set.removeAll()}
+    if available_Cell_Set.count > 0{available_Cell_Set.removeAll()}
+    if noteReference != nil{noteReference = nil}
     }
     
     func paintCells(){
