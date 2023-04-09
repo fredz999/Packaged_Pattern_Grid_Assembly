@@ -87,8 +87,18 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
             for garage in left_Side_Resizer_Garage_Array{
                 if garage.noteReference != nil{garage.noteReference = nil}
+//                var snapshotMinHalfCellIndex : Int?
+//                var snapshotMaxHalfCellIndex : Int?
+//                var leftwardBarrierDataX : Int?
+//                var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//                var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//                var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//                var noteReference : Note?
             }
             left_Side_Resizer_Garage_Array.removeAll()
+            
+            
+            
             if snapshot_Cells_Right_Of_Note_Set.count > 0{snapshot_Cells_Right_Of_Note_Set.removeAll()}
             if snapshot_Note_Cells_Right_Of_Note_Set.count > 0{snapshot_Note_Cells_Right_Of_Note_Set.removeAll()}
             if rightwardBarrierDataX != nil{rightwardBarrierDataX = nil}
@@ -114,12 +124,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     // For each note ==============================================================
     var snapshot_Group_MinHalfCellIndex : Int?
     var left_Side_Resizer_Garage_Array : [Left_Side_Resizer_Garage] = []
+    
     func left_Side_Resize_Start(){
-        if let lclNoteCollection = parentCentralState.currentNoteCollection{
+        if let lclNoteCollection = parentCentralState.currentNoteCollection {
             
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
             
-
             for note in highlightSet{
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
@@ -271,7 +281,6 @@ class Left_Side_Resizer_Garage {
     }
     
     func resize_Left_Side_Handler(halfCellDeltaParam:Int) {
-        
         if let lclSnapshotMinHalfCellIndex = snapshotMinHalfCellIndex
             , let lcl_maxHalfCellIndex = snapshotMaxHalfCellIndex
             , let lcl_LeftwardBarrierDataX = leftwardBarrierDataX {
@@ -287,8 +296,11 @@ class Left_Side_Resizer_Garage {
                 new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index >= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index <= lcl_maxHalfCellIndex}
             }
         }
-        print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available_Cell_Set count: ",available_Cell_Set.count,",halfCellDeltaParam: ",halfCellDeltaParam)
         paintCells()
+    }
+    
+    deinit{
+        print("yo deiniting.....")
     }
     
     func paintCells(){
