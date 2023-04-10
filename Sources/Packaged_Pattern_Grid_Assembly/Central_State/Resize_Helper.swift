@@ -200,11 +200,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         print("right_Side_Resize_Start() 0")
         
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
-            print("right_Side_Resize_Start() 1")
+            //print("right_Side_Resize_Start() 1")
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
             
             for note in highlightSet{
-                print("right_Side_Resize_Start() 2")
+                //print("right_Side_Resize_Start() 2")
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
                 
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
@@ -216,16 +216,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 let snapshot_Note_Cells_Right_Of_Note_Set = snapshot_Cells_Right_Of_Note_Set.filter{$0.note_Im_In != nil}
 
                 if snapshot_Group_MaxHalfCellIndex == nil {
-                    print("right_Side_Resize_Start() 3")
+                    //print("right_Side_Resize_Start() 3")
                     if let lclNoteCollection = parentCentralState.currentNoteCollection {
-                        print("right_Side_Resize_Start() 4")
+                        //print("right_Side_Resize_Start() 4")
                         if let lclCurrNoteUnderCursor = lclNoteCollection.note_Currently_Under_Cursor {
-                            print("right_Side_Resize_Start() 5")
+                            //print("right_Side_Resize_Start() 5")
                             if note.id == lclCurrNoteUnderCursor.id {
                                 snapshot_Group_MaxHalfCellIndex = note.highestFourFourHalfCellIndex
                                 if let hSliderRef = parentCentralState.h_Slider_Ref {
                                     if let maxCursorCell = snapshot_Right_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                                        print("right_Side_Resize_Start() 6")
+                                        //print("right_Side_Resize_Start() 6")
                                         let destinationCellIndex = maxCursorCell.dataCell_X_Number
                                         hSliderRef.jumpToACell(cellNum: destinationCellIndex)
                                     }
