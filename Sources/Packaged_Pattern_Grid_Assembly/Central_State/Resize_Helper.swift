@@ -74,34 +74,33 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             
             write_The_Leftward_Altered_Notes()
 
-//            for garage in left_Side_Resizer_Garage_Array{
-//            if let lclNoteRef = garage.noteReference{
-//
+            for garage in left_Side_Resizer_Garage_Array{
+            if let lclNoteRef = garage.noteReference{
+
 //                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index{
 //                    lclNoteRef.highlighted = false
 //                }
-//                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index{
-//                    lclNoteRef.highlighted = true
-//                }
-//
-//                garage.noteReference = nil
-//            }
-//
-//            }
-//            for garage in right_Side_Resizer_Garage_Array{
-//                        if let lclNoteRef = garage.noteReference{
-//
-//                            if parentCentralState.currentData.dataCell_X_Number < lclNoteRef.highest_Index{
-//                                lclNoteRef.highlighted = false
-//                            }
-//                            else if parentCentralState.currentData.dataCell_X_Number >= lclNoteRef.highest_Index{
-//                                lclNoteRef.highlighted = true
-//                            }
-//
-//                            garage.noteReference = nil
-//                        }
-//
-//                        }
+                if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index{
+                    lclNoteRef.highlighted = true
+                }
+
+                garage.noteReference = nil
+            }
+
+            }
+            for garage in right_Side_Resizer_Garage_Array {
+                if let lclNoteRef = garage.noteReference {
+
+//                    if parentCentralState.currentData.dataCell_X_Number < lclNoteRef.highest_Index{
+//                        lclNoteRef.highlighted = false
+//                    }
+                    if parentCentralState.currentData.dataCell_X_Number >= lclNoteRef.highest_Index{
+                        lclNoteRef.highlighted = true
+                    }
+
+                    garage.noteReference = nil
+                }
+            }
             
             
             left_Side_Resizer_Garage_Array.removeAll()
