@@ -348,34 +348,38 @@ class Right_Side_Resizer_Garage {
     var snapshot_Line_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var new_Note_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var available_Cell_Set : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    
     var noteReference : Note?
     
     init(snapshotMinHalfCellIndex: Int, snapshotMaxHalfCellIndex: Int, rightwardBarrierDataXParam: Int
          , snapshot_Line_Set: Set<Underlying_Data_Cell>,noteParam:Note, resizeModeParam : E_Resize_Mode){
-    self.noteReference = noteParam
-    self.snapshotMinHalfCellIndex = snapshotMinHalfCellIndex
-    self.snapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
-    self.rightwardBarrierDataX = rightwardBarrierDataXParam
-    self.snapshot_Line_Set = snapshot_Line_Set
+        print("snapshotMinHalfCellIndex set to: ",snapshotMinHalfCellIndex)
+        print("snapshotMaxHalfCellIndex set to: ",snapshotMaxHalfCellIndex)
+        print("rightwardBarrierDataXParam set to: ",rightwardBarrierDataXParam)
+        
+        print("snapshot_Line_Set count: ",snapshot_Line_Set.count)
+        print("noteParam cell count:",noteParam.dataCellArray.count)
+        
+        
+        
+        
+//    self.noteReference = noteParam
+//    self.snapshotMinHalfCellIndex = snapshotMinHalfCellIndex
+//    self.snapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
+//    self.rightwardBarrierDataX = rightwardBarrierDataXParam
+//    self.snapshot_Line_Set = snapshot_Line_Set
     }
     
     func resize_Right_Side_Handler(halfCellDeltaParam:Int) {
-        //print("resize_Right_Side_Handler(, halfCellDeltaParam: ",halfCellDeltaParam.description)
+
         if let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
             , let lcl_minHalfCellIndex = snapshotMinHalfCellIndex
             , let lcl_RightwardBarrierDataX = rightwardBarrierDataX {
-            //print("resize_Right_Side_Handler(, halfCellDeltaParam: ",halfCellDeltaParam.description)
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
-            
-            //print("currentHalfCellIndexParam: ",currentHalfCellIndexParam,", lcl_minHalfCellIndex: ",lcl_minHalfCellIndex,", lcl_RightwardBarrierDataX: ",lcl_RightwardBarrierDataX)
-            
+
             if currentHalfCellIndexParam <= lcl_minHalfCellIndex{
-                print("currentHalfCellIndexParam <= lcl_maxHalfCellIndex, lcl_minHalfCellIndex: ",lcl_minHalfCellIndex)
                 new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
-                
-//                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_maxHalfCellIndex}
-//                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX &&  $0.four_Four_Half_Cell_Index <= lcl_maxHalfCellIndex}
             }
             else if currentHalfCellIndexParam > lcl_minHalfCellIndex {
                 
