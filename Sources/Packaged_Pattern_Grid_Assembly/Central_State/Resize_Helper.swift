@@ -74,36 +74,37 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             
             write_The_Leftward_Altered_Notes()
 
-            for garage in left_Side_Resizer_Garage_Array{
-            if let lclNoteRef = garage.noteReference{
-
-                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index{
-                    lclNoteRef.highlighted = false
-                }
-                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index{
-                    lclNoteRef.highlighted = true
-                }
-                
-                garage.noteReference = nil
-            }
-
-            }
-            left_Side_Resizer_Garage_Array.removeAll()
+//            for garage in left_Side_Resizer_Garage_Array{
+//            if let lclNoteRef = garage.noteReference{
+//
+//                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index{
+//                    lclNoteRef.highlighted = false
+//                }
+//                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index{
+//                    lclNoteRef.highlighted = true
+//                }
+//
+//                garage.noteReference = nil
+//            }
+//
+//            }
+//            for garage in right_Side_Resizer_Garage_Array{
+//                        if let lclNoteRef = garage.noteReference{
+//
+//                            if parentCentralState.currentData.dataCell_X_Number < lclNoteRef.highest_Index{
+//                                lclNoteRef.highlighted = false
+//                            }
+//                            else if parentCentralState.currentData.dataCell_X_Number >= lclNoteRef.highest_Index{
+//                                lclNoteRef.highlighted = true
+//                            }
+//
+//                            garage.noteReference = nil
+//                        }
+//
+//                        }
             
-            for garage in right_Side_Resizer_Garage_Array{
-            if let lclNoteRef = garage.noteReference{
-
-                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index{
-                    lclNoteRef.highlighted = false
-                }
-                else if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index{
-                    lclNoteRef.highlighted = true
-                }
-                
-                garage.noteReference = nil
-            }
-
-            }
+            
+            left_Side_Resizer_Garage_Array.removeAll()
             right_Side_Resizer_Garage_Array.removeAll()
             
             
@@ -112,8 +113,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if snapshot_Note_Cells_Right_Of_Note_Set.count > 0{snapshot_Note_Cells_Right_Of_Note_Set.removeAll()}
             
             if rightwardBarrierDataX != nil{rightwardBarrierDataX = nil}
-            //if leftwardBarrierDataX != nil{leftwardBarrierDataX = nil}
-            
+
             if snapshot_highest_Note_Half_Cell_Index != nil{snapshot_highest_Note_Half_Cell_Index = nil}
             if snapshot_Lowest_Note_Half_Cell_Index != nil{snapshot_Lowest_Note_Half_Cell_Index = nil}
             if current_Cursor_Set_Max_X != nil{current_Cursor_Set_Max_X = nil}
@@ -271,8 +271,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     }
 
     public func write_The_Leftward_Altered_Notes(){
-        print("write_The_Leftward_Altered_Notes, mode: ",resizeMode.rawValue)
-        
         if resizeMode == .leftSideSubMode{
             for resizer in left_Side_Resizer_Garage_Array {
                 if let lclNoteRef = resizer.noteReference {
