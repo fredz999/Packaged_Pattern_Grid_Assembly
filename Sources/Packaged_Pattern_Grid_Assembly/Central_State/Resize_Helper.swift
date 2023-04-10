@@ -138,7 +138,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
 
             for note in highlightSet{
-                if note.highlighted == true{note.highlighted = false}
+                print("left_Side_Resize_Start() note length: ",note.dataCellArray.count)
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                 let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.lowestFourFourHalfCellIndex}
@@ -190,7 +190,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
             
             for note in highlightSet{
-                if note.highlighted == true{note.highlighted = false}
+                print("right_Side_Resize_Start() note length: ",note.dataCellArray.count)
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
                 
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
