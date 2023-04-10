@@ -75,41 +75,47 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             
             reWriteNotes()
 
-            for garage in left_Side_Resizer_Garage_Array{
-            if let lclNoteRef = garage.noteReference{
-                lclNoteRef.highlighted = true
-                garage.noteReference = nil
-            }
-
-            }
-            for garage in right_Side_Resizer_Garage_Array {
-                if let lclNoteRef = garage.noteReference {
-                    lclNoteRef.highlighted = true
-                    garage.noteReference = nil
-                }
-            }
-            
-            
-            left_Side_Resizer_Garage_Array.removeAll()
-            right_Side_Resizer_Garage_Array.removeAll()
-            
-            
-            
-            if snapshot_Cells_Right_Of_Note_Set.count > 0{snapshot_Cells_Right_Of_Note_Set.removeAll()}
-            if snapshot_Note_Cells_Right_Of_Note_Set.count > 0{snapshot_Note_Cells_Right_Of_Note_Set.removeAll()}
-            
-            if rightwardBarrierDataX != nil{rightwardBarrierDataX = nil}
-
-            if snapshot_highest_Note_Half_Cell_Index != nil{snapshot_highest_Note_Half_Cell_Index = nil}
-            if snapshot_Lowest_Note_Half_Cell_Index != nil{snapshot_Lowest_Note_Half_Cell_Index = nil}
-            if current_Cursor_Set_Max_X != nil{current_Cursor_Set_Max_X = nil}
-            if snapshot_Note_Min_X != nil{snapshot_Note_Min_X = nil}
-            
-            if snapshot_Group_MinHalfCellIndex != nil{snapshot_Group_MinHalfCellIndex = nil}
-            if snapshot_Group_MaxHalfCellIndex != nil{snapshot_Group_MaxHalfCellIndex = nil}
+            clear_Variables()
             
             mode_Active=false
         }
+    }
+    
+    func clear_Variables(){
+        
+        for garage in left_Side_Resizer_Garage_Array{
+        if let lclNoteRef = garage.noteReference{
+            lclNoteRef.highlighted = true
+            garage.noteReference = nil
+        }
+
+        }
+        for garage in right_Side_Resizer_Garage_Array {
+            if let lclNoteRef = garage.noteReference {
+                lclNoteRef.highlighted = true
+                garage.noteReference = nil
+            }
+        }
+        
+        
+        left_Side_Resizer_Garage_Array.removeAll()
+        right_Side_Resizer_Garage_Array.removeAll()
+        
+        
+        
+        if snapshot_Cells_Right_Of_Note_Set.count > 0{snapshot_Cells_Right_Of_Note_Set.removeAll()}
+        if snapshot_Note_Cells_Right_Of_Note_Set.count > 0{snapshot_Note_Cells_Right_Of_Note_Set.removeAll()}
+        
+        if rightwardBarrierDataX != nil{rightwardBarrierDataX = nil}
+
+        if snapshot_highest_Note_Half_Cell_Index != nil{snapshot_highest_Note_Half_Cell_Index = nil}
+        if snapshot_Lowest_Note_Half_Cell_Index != nil{snapshot_Lowest_Note_Half_Cell_Index = nil}
+        if current_Cursor_Set_Max_X != nil{current_Cursor_Set_Max_X = nil}
+        if snapshot_Note_Min_X != nil{snapshot_Note_Min_X = nil}
+        
+        if snapshot_Group_MinHalfCellIndex != nil{snapshot_Group_MinHalfCellIndex = nil}
+        if snapshot_Group_MaxHalfCellIndex != nil{snapshot_Group_MaxHalfCellIndex = nil}
+        
     }
     
     var snapshot_Note_Max_X : Int?
@@ -381,6 +387,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
      
             }
         }
+        clear_Variables()
     }
 }
 
