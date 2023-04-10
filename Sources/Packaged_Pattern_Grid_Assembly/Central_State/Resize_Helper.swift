@@ -24,15 +24,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     }
     
     public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
+        reWriteNotes()
         if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
-            reWriteNotes()
+            //reWriteNotes()
             resizeMode = .rightSideSubMode
             if mode_Active == true {
                 right_Side_Resize_Start()
             }
         }
         else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
-            reWriteNotes()
+            //reWriteNotes()
             resizeMode = .leftSideSubMode
             if mode_Active == true {
                 left_Side_Resize_Start()
