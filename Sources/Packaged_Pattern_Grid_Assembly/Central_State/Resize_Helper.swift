@@ -25,7 +25,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
         
-        if left_Side_Resizer_Garage_Array.count > 0 || right_Side_Resizer_Garage_Array.count > 0{
+        if left_Side_Resizer_Garage_Array.count == 0 && right_Side_Resizer_Garage_Array.count == 0{
             reWriteNotes()
             
             if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
