@@ -80,10 +80,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 //                if parentCentralState.currentData.dataCell_X_Number > lclNoteRef.highest_Index{
 //                    lclNoteRef.highlighted = false
 //                }
-                if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index{
-                    lclNoteRef.highlighted = true
-                }
-
+//                if parentCentralState.currentData.dataCell_X_Number <= lclNoteRef.highest_Index{
+//                    lclNoteRef.highlighted = true
+//                }
+                lclNoteRef.highlighted = true
                 garage.noteReference = nil
             }
 
@@ -91,13 +91,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             for garage in right_Side_Resizer_Garage_Array {
                 if let lclNoteRef = garage.noteReference {
 
-                    if parentCentralState.currentData.dataCell_X_Number < lclNoteRef.highest_Index{
-                        lclNoteRef.highlighted = false
-                    }
-                    if parentCentralState.currentData.dataCell_X_Number >= lclNoteRef.highest_Index{
-                        lclNoteRef.highlighted = true
-                    }
-
+//                    if parentCentralState.currentData.dataCell_X_Number < lclNoteRef.highest_Index{
+//                        lclNoteRef.highlighted = false
+//                    }
+//                    if parentCentralState.currentData.dataCell_X_Number >= lclNoteRef.highest_Index{
+//                        lclNoteRef.highlighted = true
+//                    }
+                    lclNoteRef.highlighted = true
                     garage.noteReference = nil
                 }
             }
