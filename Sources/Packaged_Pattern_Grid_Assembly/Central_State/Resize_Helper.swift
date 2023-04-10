@@ -399,11 +399,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
      
             }
         }
-        
-        
-
     }
-
 }
 
 
