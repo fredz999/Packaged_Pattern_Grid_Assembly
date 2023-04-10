@@ -254,6 +254,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
     public func reWriteNotes(){
         if resizeMode == .leftSideSubMode{
+            print("reWriteNotes() resizeMode == .leftSideSubMode{")
             for resizer in left_Side_Resizer_Garage_Array {
                 if let lclNoteRef = resizer.noteReference {
                     lclNoteRef.dataCellArray.removeAll()
@@ -316,6 +317,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             }
         }
         else if resizeMode == .rightSideSubMode{
+            print("reWriteNotes() resizeMode == .rightSideSubMode")
             for resizer in right_Side_Resizer_Garage_Array {
                 if let lclNoteRef = resizer.noteReference {
                     
