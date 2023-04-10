@@ -173,7 +173,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 if snapshot_Note_Cells_Left_Of_Note_Set.count == 0 {
                     let newResizeGarage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
                                                                         , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
-                                                                        , leftwardBarrierDataX: 0
+                                                                        , leftwardBarrierDataX: -1
                                                                    , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeMode)
                     left_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
