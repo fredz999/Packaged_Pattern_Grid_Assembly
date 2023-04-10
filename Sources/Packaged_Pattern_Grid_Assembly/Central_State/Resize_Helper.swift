@@ -16,9 +16,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     var parentCentralState : Central_State
     
-    
-
-    
     @Published public var resizeMode : E_Resize_Mode = .rightSideSubMode
     
     public init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
@@ -274,6 +271,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     }
 
     public func write_The_Leftward_Altered_Notes(){
+        print("write_The_Leftward_Altered_Notes")
         for resizer in left_Side_Resizer_Garage_Array {
             if let lclNoteRef = resizer.noteReference{
                 
@@ -381,7 +379,6 @@ class Right_Side_Resizer_Garage {
             
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
             
-            print("currentHalfCellIndexParam: ",currentHalfCellIndexParam,", lcl_minHalfCellIndex: ",lcl_minHalfCellIndex)
             if currentHalfCellIndexParam < lcl_minHalfCellIndex{
                 new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
