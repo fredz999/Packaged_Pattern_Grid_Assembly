@@ -355,42 +355,42 @@ class Right_Side_Resizer_Garage {
     
     init(snapshotMinHalfCellIndex: Int, snapshotMaxHalfCellIndex: Int, rightwardBarrierDataXParam: Int
          , snapshot_Line_Set: Set<Underlying_Data_Cell>,noteParam:Note, resizeModeParam : E_Resize_Mode){
-        print("snapshotMinHalfCellIndex set to: ",snapshotMinHalfCellIndex)
-        print("snapshotMaxHalfCellIndex set to: ",snapshotMaxHalfCellIndex)
-        print("rightwardBarrierDataXParam set to: ",rightwardBarrierDataXParam)
+//        print("snapshotMinHalfCellIndex set to: ",snapshotMinHalfCellIndex)
+//        print("snapshotMaxHalfCellIndex set to: ",snapshotMaxHalfCellIndex)
+//        print("rightwardBarrierDataXParam set to: ",rightwardBarrierDataXParam)
+//
+//        print("snapshot_Line_Set count: ",snapshot_Line_Set.count)
+//        print("noteParam cell count:",noteParam.dataCellArray.count)
+//
+//        print("noteParam.lowestFourFourHalfCellIndex",noteParam.lowestFourFourHalfCellIndex,"noteParam.highestFourFourHalfCellIndex: ",noteParam.highestFourFourHalfCellIndex )
         
-        print("snapshot_Line_Set count: ",snapshot_Line_Set.count)
-        print("noteParam cell count:",noteParam.dataCellArray.count)
-        
-        print("noteParam.lowestFourFourHalfCellIndex",noteParam.lowestFourFourHalfCellIndex,"noteParam.highestFourFourHalfCellIndex: ",noteParam.highestFourFourHalfCellIndex )
         
         
-        
-//    self.noteReference = noteParam
-//    self.snapshotMinHalfCellIndex = snapshotMinHalfCellIndex
-//    self.snapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
-//    self.rightwardBarrierDataX = rightwardBarrierDataXParam
-//    self.snapshot_Line_Set = snapshot_Line_Set
+    self.noteReference = noteParam
+    self.snapshotMinHalfCellIndex = snapshotMinHalfCellIndex
+    self.snapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
+    self.rightwardBarrierDataX = rightwardBarrierDataXParam
+    self.snapshot_Line_Set = snapshot_Line_Set
     }
     
     func resize_Right_Side_Handler(halfCellDeltaParam:Int) {
-
-        if let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
-            , let lcl_minHalfCellIndex = snapshotMinHalfCellIndex
-            , let lcl_RightwardBarrierDataX = rightwardBarrierDataX {
-            let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
-
-            if currentHalfCellIndexParam <= lcl_minHalfCellIndex{
-                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
-                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
-            }
-            else if currentHalfCellIndexParam > lcl_minHalfCellIndex {
-                
-                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
-                new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index <= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
-            }
-        }
-        paintCells()
+print("halfCellDeltaParam: ",halfCellDeltaParam)
+//        if let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
+//            , let lcl_minHalfCellIndex = snapshotMinHalfCellIndex
+//            , let lcl_RightwardBarrierDataX = rightwardBarrierDataX {
+//            let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
+//
+//            if currentHalfCellIndexParam <= lcl_minHalfCellIndex{
+//                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
+//                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
+//            }
+//            else if currentHalfCellIndexParam > lcl_minHalfCellIndex {
+//
+//                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
+//                new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index <= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
+//            }
+//        }
+//        paintCells()
     }
     
     deinit{
