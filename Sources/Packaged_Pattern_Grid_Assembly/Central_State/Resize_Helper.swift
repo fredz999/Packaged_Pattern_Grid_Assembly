@@ -273,7 +273,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     public func write_The_Leftward_Altered_Notes(){
         print("write_The_Leftward_Altered_Notes, mode: ",resizeMode.rawValue)
         for resizer in left_Side_Resizer_Garage_Array {
-            if let lclNoteRef = resizer.noteReference{
+            if let lclNoteRef = resizer.noteReference {
                 
                 lclNoteRef.dataCellArray.removeAll()
                 if resizer.new_Note_Cell_Set.count == 1 {
