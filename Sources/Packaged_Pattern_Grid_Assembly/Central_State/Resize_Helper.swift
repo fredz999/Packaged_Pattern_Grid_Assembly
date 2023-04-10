@@ -362,7 +362,7 @@ class Right_Side_Resizer_Garage {
         print("snapshot_Line_Set count: ",snapshot_Line_Set.count)
         print("noteParam cell count:",noteParam.dataCellArray.count)
         
-        print("noteParam.lowestFourFourHalfCellIndex",noteParam.lowestFourFourHalfCellIndex,"noteParam.highestFourFourHalfCellIndex: ",noteParam.highestFourFourHalfCellIndex)
+        print("noteParam.lowestFourFourHalfCellIndex",noteParam.lowestFourFourHalfCellIndex,"noteParam.highestFourFourHalfCellIndex: ",noteParam.highestFourFourHalfCellIndex )
         
         
         
