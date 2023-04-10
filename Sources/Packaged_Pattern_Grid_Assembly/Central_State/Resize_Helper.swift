@@ -27,20 +27,22 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         
         if left_Side_Resizer_Garage_Array.count > 0 || right_Side_Resizer_Garage_Array.count > 0{
             reWriteNotes()
+            
+            if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
+                resizeMode = .rightSideSubMode
+                if mode_Active == true {
+                    right_Side_Resize_Start()
+                }
+            }
+            else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
+                resizeMode = .leftSideSubMode
+                if mode_Active == true {
+                    left_Side_Resize_Start()
+                }
+            }
         }
         
-        if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
-            resizeMode = .rightSideSubMode
-            if mode_Active == true {
-                right_Side_Resize_Start()
-            }
-        }
-        else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
-            resizeMode = .leftSideSubMode
-            if mode_Active == true {
-                left_Side_Resize_Start()
-            }
-        }
+        
         
     }
     
