@@ -26,14 +26,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
         reWriteNotes()
         if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
-            //reWriteNotes()
             resizeMode = .rightSideSubMode
             if mode_Active == true {
                 right_Side_Resize_Start()
             }
         }
         else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
-            //reWriteNotes()
             resizeMode = .leftSideSubMode
             if mode_Active == true {
                 left_Side_Resize_Start()
@@ -140,6 +138,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
 
             for note in highlightSet{
+                if note.highlighted == true{note.highlighted = false}
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                 let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.lowestFourFourHalfCellIndex}
@@ -191,6 +190,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
             
             for note in highlightSet{
+                if note.highlighted == true{note.highlighted = false}
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
                 
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
@@ -222,7 +222,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
                 if snapshot_Note_Cells_Right_Of_Note_Set.count == 0 {
                     let newResizeGarage = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
-                                                                        , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                    , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                     , rightwardBarrierDataXParam: dimensions.dataGrid_X_Unit_Count
                                                                    , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeMode)
                     right_Side_Resizer_Garage_Array.append(newResizeGarage)
