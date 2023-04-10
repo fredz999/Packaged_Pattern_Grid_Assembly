@@ -27,14 +27,14 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
             resizeMode = .rightSideSubMode
             if mode_Active == true {
-                write_The_Leftward_Altered_Notes()
+                reWriteNotes()
                 right_Side_Resize_Start()
             }
         }
         else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
             resizeMode = .leftSideSubMode
             if mode_Active == true {
-                write_The_Leftward_Altered_Notes()
+                reWriteNotes()
                 left_Side_Resize_Start()
             }
         }
@@ -72,7 +72,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             
-            write_The_Leftward_Altered_Notes()
+            reWriteNotes()
 
             for garage in left_Side_Resizer_Garage_Array{
             if let lclNoteRef = garage.noteReference{
@@ -269,11 +269,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
     }
 
-    public func write_The_Leftward_Altered_Notes(){
+    public func reWriteNotes(){
         if resizeMode == .leftSideSubMode{
             for resizer in left_Side_Resizer_Garage_Array {
                 if let lclNoteRef = resizer.noteReference {
-                    
                     lclNoteRef.dataCellArray.removeAll()
                     if resizer.new_Note_Cell_Set.count == 1 {
                         let newCellArray = Array(resizer.new_Note_Cell_Set)
@@ -414,17 +413,6 @@ class Right_Side_Resizer_Garage {
     
     init(snapshotMinHalfCellIndex: Int, snapshotMaxHalfCellIndex: Int, rightwardBarrierDataXParam: Int
          , snapshot_Line_Set: Set<Underlying_Data_Cell>,noteParam:Note, resizeModeParam : E_Resize_Mode){
-//        print("snapshotMinHalfCellIndex set to: ",snapshotMinHalfCellIndex)
-//        print("snapshotMaxHalfCellIndex set to: ",snapshotMaxHalfCellIndex)
-//        print("rightwardBarrierDataXParam set to: ",rightwardBarrierDataXParam)
-//
-//        print("snapshot_Line_Set count: ",snapshot_Line_Set.count)
-//        print("noteParam cell count:",noteParam.dataCellArray.count)
-//
-//        print("noteParam.lowestFourFourHalfCellIndex",noteParam.lowestFourFourHalfCellIndex,"noteParam.highestFourFourHalfCellIndex: ",noteParam.highestFourFourHalfCellIndex )
-        
-        
-        
     self.noteReference = noteParam
     self.snapshotMinHalfCellIndex = snapshotMinHalfCellIndex
     self.snapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
