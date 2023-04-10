@@ -203,11 +203,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             
             for note in highlightSet{
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
+                
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                 
                 let snapshot_Right_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.highestFourFourHalfCellIndex}
+                //let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.lowestFourFourHalfCellIndex}
 
-                let snapshot_Cells_Right_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index > note.lowestFourFourHalfCellIndex}
+                let snapshot_Cells_Right_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index > note.highestFourFourHalfCellIndex}
                 
                 let snapshot_Note_Cells_Right_Of_Note_Set = snapshot_Cells_Right_Of_Note_Set.filter{$0.note_Im_In != nil}
 
@@ -360,6 +362,7 @@ class Right_Side_Resizer_Garage {
         print("snapshot_Line_Set count: ",snapshot_Line_Set.count)
         print("noteParam cell count:",noteParam.dataCellArray.count)
         
+        print("noteParam.lowestFourFourHalfCellIndex",noteParam.lowestFourFourHalfCellIndex,"noteParam.highestFourFourHalfCellIndex: ",noteParam.highestFourFourHalfCellIndex)
         
         
         
