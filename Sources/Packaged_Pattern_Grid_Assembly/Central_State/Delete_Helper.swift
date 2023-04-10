@@ -221,13 +221,6 @@ class Delete_Helper : P_Selectable_Mode{
         if multiple_Line_Corners_Set.count > 0 {
             multiple_Line_Corners_Set.removeAll()
         }
-
-//        if delete_Area_Set.count > 0 {
-//            for cell in delete_Area_Set {
-//                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
-//            }
-//            delete_Area_Set.removeAll()
-//        }
     }
 
 }

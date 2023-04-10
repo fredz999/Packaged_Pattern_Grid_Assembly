@@ -134,7 +134,6 @@ public class Central_State : ObservableObject {
     }
     
     func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
-        
         for helper in helperArray {
             if let lclHelper = helper,let lclModeParam = mode_Param {
                 if lclModeParam.selectableModeId == lclHelper.selectableModeId {
@@ -146,7 +145,6 @@ public class Central_State : ObservableObject {
                 }
             }
         }
-        
     }
     
     func centralState_Data_Evaluation(){
@@ -204,7 +202,9 @@ public class Central_State : ObservableObject {
     }
 
     public func change_Timing_Signature_Central() {
+        
         if timing_Sig_Change_Possible == true {
+            
         if dimensions.patternTimingConfiguration == .sixEight {
             if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index != 0{
                 timing_Change_Compensation_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
@@ -215,14 +215,18 @@ public class Central_State : ObservableObject {
                 timing_Change_Compensation_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
             }
         }
+            
         dimensions.flip_Timing_Signature_Dimensions()
+            
         data_Grid.changeTimingSignature_Data_Level()
+            
         if let lclCompensateIndex = timing_Change_Compensation_Index {
             if let lclHslider = h_Slider_Ref {
                 lclHslider.jumpToACell(cellNum: lclCompensateIndex)
             }
             timing_Change_Compensation_Index = nil
         }
+        //redo tha cursor
         }
     }
     
