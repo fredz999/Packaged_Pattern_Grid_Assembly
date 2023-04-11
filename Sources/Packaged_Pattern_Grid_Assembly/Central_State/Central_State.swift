@@ -226,6 +226,7 @@ public class Central_State : ObservableObject {
             timing_Change_Compensation_Index = nil
         }
         //redo tha cursor
+            centralState_Data_Evaluation()
         }
     }
     
@@ -365,13 +366,7 @@ public class Central_State : ObservableObject {
     }
     
 }
-//            if resizeMode == .leftSideSubMode {
-//                if left_Side_Resizer_Garage_Array.count > 0{
-//                    reWriteNotes()
-//                    clear_Variables()
-//                }
-//                left_Side_Resize_Start()
-//            }
+
 public enum E_ResizeActions {
     case subModeleftWard
     case subModerightWard

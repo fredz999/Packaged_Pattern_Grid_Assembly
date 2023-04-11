@@ -181,12 +181,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
 
     }
-    
-    
-    
-    
-    
-    
+
     func right_Side_Resize_Start(){
         
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
