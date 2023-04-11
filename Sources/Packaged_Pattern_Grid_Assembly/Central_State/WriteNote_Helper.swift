@@ -79,6 +79,7 @@ class WriteNote_Helper: P_Selectable_Mode {
                 else if parentCentralState.dimensions.patternTimingConfiguration == .sixEight {
                     print(".sixEight")
                 }
+                print("nat suuuuure")
             }
             
         }
