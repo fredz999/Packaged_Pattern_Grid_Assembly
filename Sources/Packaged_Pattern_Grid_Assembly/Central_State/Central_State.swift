@@ -148,7 +148,7 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-        print("centralState_Data_Evaluation() called")
+
         if dimensions.patternTimingConfiguration == .fourFour {
             
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
@@ -193,7 +193,7 @@ public class Central_State : ObservableObject {
     }
     
     func establishCursorSet(){
-        print("establishCursorSet() called")
+
         if dimensions.patternTimingConfiguration == .fourFour {
             let newCursorSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
             accessCursorSet(newSet: newCursorSet)
@@ -205,7 +205,7 @@ public class Central_State : ObservableObject {
     }
     
     public func change_Timing_Signature_Central() {
-        print("change_Timing_Signature_Central() called")
+
         if timing_Sig_Change_Possible == true {
             
         if dimensions.patternTimingConfiguration == .sixEight {
