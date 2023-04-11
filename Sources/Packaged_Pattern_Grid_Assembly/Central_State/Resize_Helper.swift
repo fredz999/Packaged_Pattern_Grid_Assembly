@@ -21,8 +21,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         parentCentralState = parentCentral_State_Param
     }
     
-    public var resizeSubMode : E_Resize_Mode = .rightSideSubMode{
-        didSet{
+    public var resizeSubMode : E_Resize_Mode = .rightSideSubMode {
+        didSet {
             parentCentralState.mode_String = resizeSubMode.rawValue
         }
     }
