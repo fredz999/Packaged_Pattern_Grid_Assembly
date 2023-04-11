@@ -296,6 +296,85 @@ public class Central_State : ObservableObject {
     centralState_Data_Evaluation()
     }
     
+    //activate, then specify
+    func resizeModeActions(action:E_ResizeActions){
+        if let lclResizeHelper = resize_Helper {
+        if currentPatternMode == .resize_Mode {
+            
+                if lclResizeHelper.resizeSubMode == .leftSideSubMode {
+                    if action == .subModerightWard {
+                        if lclResizeHelper.left_Side_Resizer_Garage_Array.count > 0{
+                            lclResizeHelper.reWriteNotes()
+                            lclResizeHelper.resizeSubMode = .standBySubMode
+                        }
+                        lclResizeHelper.right_Side_Resize_Start()
+                        lclResizeHelper.resizeSubMode = .rightSideSubMode
+                    }
+                    else if action == .writeCurrent{
+                        if lclResizeHelper.left_Side_Resizer_Garage_Array.count > 0{
+                            lclResizeHelper.reWriteNotes()
+                            lclResizeHelper.resizeSubMode = .standBySubMode
+                        }
+                    }
+                }
+                else if lclResizeHelper.resizeSubMode == .rightSideSubMode {
+                    if action == .subModeleftWard {
+                        if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0 {
+                            lclResizeHelper.reWriteNotes()
+                            lclResizeHelper.resizeSubMode = .standBySubMode
+                        }
+                        lclResizeHelper.left_Side_Resize_Start()
+                        lclResizeHelper.resizeSubMode = .leftSideSubMode
+                    }
+                    else if action == .writeCurrent{
+                        if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0{
+                            lclResizeHelper.reWriteNotes()
+                            lclResizeHelper.resizeSubMode = .standBySubMode
+                        }
+                    }
+                }
+                else if lclResizeHelper.resizeSubMode == .standBySubMode {
+                    if action == .subModeleftWard{
+                        lclResizeHelper.left_Side_Resize_Start()
+                        lclResizeHelper.resizeSubMode = .leftSideSubMode
+                    }
+                    else if action == .subModerightWard{
+                        lclResizeHelper.right_Side_Resize_Start()
+                        lclResizeHelper.resizeSubMode = .rightSideSubMode
+                    }
+                }
+            }
+        else if currentPatternMode != .resize_Mode {
+            if action == .subModeleftWard {
+                setPatternMode(patternModeParam: .resize_Mode)
+                lclResizeHelper.left_Side_Resize_Start()
+                lclResizeHelper.resizeSubMode = .leftSideSubMode
+            }
+            else if action == .subModerightWard {
+                setPatternMode(patternModeParam: .resize_Mode)
+                lclResizeHelper.right_Side_Resize_Start()
+                lclResizeHelper.resizeSubMode = .rightSideSubMode
+            }
+            //else if action == .writeCurrent {}
+        }
+            
+            
+        }
+        
+    }
+    
+}
+//            if resizeMode == .leftSideSubMode {
+//                if left_Side_Resizer_Garage_Array.count > 0{
+//                    reWriteNotes()
+//                    clear_Variables()
+//                }
+//                left_Side_Resize_Start()
+//            }
+public enum E_ResizeActions {
+    case subModeleftWard
+    case subModerightWard
+    case writeCurrent
 }
 
 public enum E_PatternModeType : String {
