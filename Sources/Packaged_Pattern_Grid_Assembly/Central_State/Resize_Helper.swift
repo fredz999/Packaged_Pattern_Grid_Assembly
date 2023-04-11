@@ -208,6 +208,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                     , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                     , rightwardBarrierDataXParam: dimensions.dataGrid_X_Unit_Count
                                                                    , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
+                    
+                    newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
+                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_Index && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
                     right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
                 else if let minNoteCellRightOfNote = snapshot_Note_Cells_Right_Of_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -216,12 +219,15 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                         , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                      , rightwardBarrierDataXParam: minNoteCellRightOfNote.dataCell_X_Number
                                                                     , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
+                    newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
+                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_Index && $0.dataCell_X_Number < minNoteCellRightOfNote.dataCell_X_Number}
                     right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
             
             }
             //paint cells
             for garage in right_Side_Resizer_Garage_Array {
+                
                 garage.paintCells()
             }
             
