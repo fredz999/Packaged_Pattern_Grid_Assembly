@@ -313,6 +313,7 @@ public class Central_State : ObservableObject {
                         if lclResizeHelper.left_Side_Resizer_Garage_Array.count > 0{
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
+                            setPatternMode(patternModeParam: .passive_Mode)
                         }
                     }
                 }
@@ -331,7 +332,6 @@ public class Central_State : ObservableObject {
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
                             setPatternMode(patternModeParam: .passive_Mode)
-                            //print("action was .writeCurrent, currmode = ",lclResizeHelper.resizeSubMode.rawValue)
                         }
                     }
                 }
