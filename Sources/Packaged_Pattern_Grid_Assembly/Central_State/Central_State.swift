@@ -148,48 +148,47 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-
         if dimensions.patternTimingConfiguration == .fourFour {
-            
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-            //current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
-            
-            if currentPatternMode == .passive_Mode {
-                if let lclPassiveHelper = passive_Helper {
-                    lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
-                }
-            }
-            else if currentPatternMode == .write_Mode {
-                if let lclWriteHelper = writeNote_Helper {
-                    if currentData.note_Im_In == nil {
-                        lclWriteHelper.establish_Potential_Cells_Set()
-                    }
-                }
-            }
-            else if currentPatternMode == .move_Mode {
-                if let lclMoveHelper = move_Helper {
-                    lclMoveHelper.movement_With_Multi_Note_Selected()
-                }
-            }
-            else if currentPatternMode == .multi_Select_Mode {
-                if let lclMulti_Select_Helper = multi_Select_Helper {
-                    lclMulti_Select_Helper.area_Select_Handler()
-                }
-            }
-            else if currentPatternMode == .resize_Mode {
-                if let lclResize_Helper = resize_Helper {
-                    lclResize_Helper.handleDataEvaluation()
-                }
-            }
-
+            modeSpecificActions()
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             curr_Data_Pos_X = dimensions.currentSixEightDataIndex
-            //current_Cursor_Set = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
+            modeSpecificActions()
         }
         establishCursorSet()
+    }
+    
+    func modeSpecificActions(){
+        if currentPatternMode == .passive_Mode {
+            if let lclPassiveHelper = passive_Helper {
+                lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
+            }
+        }
+        else if currentPatternMode == .write_Mode {
+            if let lclWriteHelper = writeNote_Helper {
+                if currentData.note_Im_In == nil {
+                    lclWriteHelper.establish_Potential_Cells_Set()
+                }
+            }
+        }
+        else if currentPatternMode == .move_Mode {
+            if let lclMoveHelper = move_Helper {
+                lclMoveHelper.movement_With_Multi_Note_Selected()
+            }
+        }
+        else if currentPatternMode == .multi_Select_Mode {
+            if let lclMulti_Select_Helper = multi_Select_Helper {
+                lclMulti_Select_Helper.area_Select_Handler()
+            }
+        }
+        else if currentPatternMode == .resize_Mode {
+            if let lclResize_Helper = resize_Helper {
+                lclResize_Helper.handleDataEvaluation()
+            }
+        }
     }
     
     func establishCursorSet(){
