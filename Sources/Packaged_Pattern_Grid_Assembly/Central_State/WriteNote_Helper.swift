@@ -82,6 +82,9 @@ class WriteNote_Helper: P_Selectable_Mode {
             }
             
         }
+        else if initial_WriteOnCell == nil{
+            print("initial_WriteOnCell == nil")
+        }
     }
 
     
