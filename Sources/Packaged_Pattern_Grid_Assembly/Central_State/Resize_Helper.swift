@@ -174,7 +174,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
             }
 
-            for garage in right_Side_Resizer_Garage_Array {
+            for garage in left_Side_Resizer_Garage_Array {
                 garage.paintCells()
             }
             
