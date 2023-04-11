@@ -297,7 +297,7 @@ public class Central_State : ObservableObject {
     }
     
     //activate, then specify
-    func resizeModeActions(action:E_ResizeActions){
+    public func resizeModeActions(action:E_ResizeActions){
         if let lclResizeHelper = resize_Helper {
         if currentPatternMode == .resize_Mode {
             
