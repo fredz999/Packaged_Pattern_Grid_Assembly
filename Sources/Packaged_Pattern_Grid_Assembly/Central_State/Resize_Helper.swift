@@ -218,12 +218,20 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                     , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                     right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
-                
+            
             }
-                
+            //paint cells
+            for garage in right_Side_Resizer_Garage_Array {
+                garage.paintCells()
+            }
+            
         }
- 
+
     }
+    
+    
+    
+    
     
     func get_Left_Side_Cursor_Delta(currentHalfCellIndexParam:Int){
         if let lclSnapshotHalfCellIndex = snapshot_Group_MinHalfCellIndex {
