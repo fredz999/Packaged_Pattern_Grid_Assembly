@@ -148,12 +148,12 @@ public class Central_State : ObservableObject {
     }
     
     func centralState_Data_Evaluation(){
-  
+        print("centralState_Data_Evaluation() called")
         if dimensions.patternTimingConfiguration == .fourFour {
             
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
+            //current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
             
             if currentPatternMode == .passive_Mode {
                 if let lclPassiveHelper = passive_Helper {
@@ -187,21 +187,23 @@ public class Central_State : ObservableObject {
         else if dimensions.patternTimingConfiguration == .sixEight {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
             curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+            //current_Cursor_Set = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
+        }
+        establishCursorSet()
+    }
+    
+    func establishCursorSet(){
+        print("establishCursorSet() called")
+        if dimensions.patternTimingConfiguration == .fourFour {
+            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight {
             current_Cursor_Set = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
         }
     }
     
-    public func change_Write_Needs_Held_Down(){
-        if write_Needs_Held_Down == true {
-            write_Needs_Held_Down = false
-        }
-        else if write_Needs_Held_Down == false {
-            write_Needs_Held_Down = true
-        }
-    }
-
     public func change_Timing_Signature_Central() {
-        
+        print("change_Timing_Signature_Central() called")
         if timing_Sig_Change_Possible == true {
             
         if dimensions.patternTimingConfiguration == .sixEight {
@@ -221,15 +223,25 @@ public class Central_State : ObservableObject {
             
         if let lclCompensateIndex = timing_Change_Compensation_Index {
             if let lclHslider = h_Slider_Ref {
-                print("curr X: ", currentData.dataCell_X_Number,", lclCompensateIndex:",lclCompensateIndex )
                 lclHslider.jumpToACell(cellNum: lclCompensateIndex)
             }
             timing_Change_Compensation_Index = nil
         }
-        //redo tha cursor
-            //centralState_Data_Evaluation()
+
+            
         }
     }
+    
+    public func change_Write_Needs_Held_Down(){
+        if write_Needs_Held_Down == true {
+            write_Needs_Held_Down = false
+        }
+        else if write_Needs_Held_Down == false {
+            write_Needs_Held_Down = true
+        }
+    }
+
+    
     
     var timing_Change_Compensation_Index : Int? = nil
 
