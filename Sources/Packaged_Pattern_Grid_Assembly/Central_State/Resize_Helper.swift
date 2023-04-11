@@ -111,13 +111,16 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     var right_Side_Resizer_Garage_Array : [Right_Side_Resizer_Garage] = []
     
+    
+    
+    
     func left_Side_Resize_Start(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
 
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
 
             for note in highlightSet {
-                //print("left_Side_Resize_Start() note length: ",note.dataCellArray.count)
+
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                 let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.lowestFourFourHalfCellIndex}
@@ -146,13 +149,25 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                     , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                     , leftwardBarrierDataX: -1
                                                                     , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
+                    
+                    newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
+                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > -1 && $0.dataCell_X_Number < note.highest_Index}
+                    
                     left_Side_Resizer_Garage_Array.append(newResizeGarage)
+                    
+                    
+                    
                 }
                 else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     let newResizeGarage  = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
                                                                     , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                     , leftwardBarrierDataX: maxNoteCellLeftOfNote.dataCell_X_Number
                                                                     , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
+                    
+              
+                    newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
+                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > maxNoteCellLeftOfNote.dataCell_X_Number && $0.dataCell_X_Number < note.highest_Index}
+                    
                     left_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
 
@@ -162,16 +177,19 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
     }
     
+    
+    
+    
+    
+    
     func right_Side_Resize_Start(){
         
-        print("right_Side_Resize_Start() 0")
-        
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
-            print("right_Side_Resize_Start() 1")
+
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
             
             for note in highlightSet{
-                print("right_Side_Resize_Start() 2")
+
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
                 
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
@@ -203,7 +221,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 }
 
                 if snapshot_Note_Cells_Right_Of_Note_Set.count == 0 {
-                    print("right_Side_Resize_Start() 7")
                     let newResizeGarage = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
                                                                     , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                     , rightwardBarrierDataXParam: dimensions.dataGrid_X_Unit_Count
@@ -214,7 +231,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
                 else if let minNoteCellRightOfNote = snapshot_Note_Cells_Right_Of_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                    print("right_Side_Resize_Start() 8")
                     let newResizeGarage  = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
                                                                         , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
                                                                      , rightwardBarrierDataXParam: minNoteCellRightOfNote.dataCell_X_Number
@@ -234,10 +250,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
 
     }
-    
-    
-    
-    
     
     func get_Left_Side_Cursor_Delta(currentHalfCellIndexParam:Int){
         if let lclSnapshotHalfCellIndex = snapshot_Group_MinHalfCellIndex {
@@ -444,11 +456,9 @@ class Right_Side_Resizer_Garage {
     }
     
     func paintCells(){
-        print("paintCells(),new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available count: ",available_Cell_Set.count)
         for cell in available_Cell_Set {
             cell.reset_To_Original()
             if cell.in_Resize_Set == true {
-                print("cell.in_Resize_Set == true ")
                 cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
             }
         }
@@ -456,7 +466,6 @@ class Right_Side_Resizer_Garage {
         for cell in new_Note_Cell_Set {
             cell.reset_To_Original()
             if cell.in_Resize_Set == false {
-                print("cell.in_Resize_Set == false ")
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
             }
         }
