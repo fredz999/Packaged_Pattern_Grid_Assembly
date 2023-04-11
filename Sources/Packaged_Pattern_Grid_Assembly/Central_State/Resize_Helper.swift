@@ -521,6 +521,9 @@ class Right_Side_Resizer_Garage {
                     new_Note_Cell_Set = available_Cell_Set.filter{$0.six_Eight_Half_Cell_Index <= currentHalfCellIndexParam && $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
                 }
             }
+            else{
+                print("else reached...............")
+            }
             
         }
 
