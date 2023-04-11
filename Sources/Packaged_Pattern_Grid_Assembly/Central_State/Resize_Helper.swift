@@ -40,8 +40,14 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
     func handleDataEvaluation(){
         if resizeSubMode == .rightSideSubMode {
-            let currHalfCell = parentCentralState.currentData.four_Four_Half_Cell_Index
-            get_Right_Side_Cursor_Delta(currentHalfCellIndexParam: currHalfCell)
+            if dimensions.patternTimingConfiguration == .fourFour{
+                let currHalfCell = parentCentralState.currentData.four_Four_Half_Cell_Index
+                get_Right_Side_Cursor_Delta(currentHalfCellIndexParam: currHalfCell)
+            }
+            else if dimensions.patternTimingConfiguration == .sixEight{
+                let currHalfCell = parentCentralState.currentData.six_Eight_Half_Cell_Index
+                get_Right_Side_Cursor_Delta(currentHalfCellIndexParam: currHalfCell)
+            }
         }
         else if resizeSubMode == .leftSideSubMode {
             let currHalfCell = parentCentralState.currentData.four_Four_Half_Cell_Index
