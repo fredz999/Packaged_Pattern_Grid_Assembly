@@ -228,8 +228,8 @@ public class Central_State : ObservableObject {
             timing_Change_Compensation_Index = nil
         }
 
-            
         }
+        establishCursorSet()
     }
     
     public func change_Write_Needs_Held_Down(){
