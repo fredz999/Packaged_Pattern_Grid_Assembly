@@ -243,7 +243,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     garage.paintCells()
                 }
             }
-            else if dimensions.patternTimingConfiguration == .fourFour {
+            else if dimensions.patternTimingConfiguration == .sixEight {
                 for note in highlightSet {
 
                 let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Line.dataCellArray)
