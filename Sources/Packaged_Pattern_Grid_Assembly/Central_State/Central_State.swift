@@ -221,12 +221,13 @@ public class Central_State : ObservableObject {
             
         if let lclCompensateIndex = timing_Change_Compensation_Index {
             if let lclHslider = h_Slider_Ref {
+                print("curr X: ", currentData.dataCell_X_Number,", lclCompensateIndex:",lclCompensateIndex )
                 lclHslider.jumpToACell(cellNum: lclCompensateIndex)
             }
             timing_Change_Compensation_Index = nil
         }
         //redo tha cursor
-            centralState_Data_Evaluation()
+            //centralState_Data_Evaluation()
         }
     }
     
