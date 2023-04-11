@@ -438,7 +438,7 @@ class Right_Side_Resizer_Garage {
     }
     
     func paintCells(){
-        print("paintCells()")
+        print("paintCells(),new_Note_Cell_Set count: ",new_Note_Cell_Set.count,", available count: ",available_Cell_Set.count)
         for cell in available_Cell_Set {
             cell.reset_To_Original()
             if cell.in_Resize_Set == true {
