@@ -509,7 +509,7 @@ class Right_Side_Resizer_Garage {
                 , let lcl_RightwardBarrierDataX = rightwardBarrierDataX {
                 //print("dimensions.patternTimingConfiguration == .sixEight ............1")
                 let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
-                print("currentHalfCellIndexParam: ",currentHalfCellIndexParam)
+                print("currentHalfCellIndexParam: ",currentHalfCellIndexParam,", lcl_minHalfCellIndex: ",lcl_minHalfCellIndex)
                 if currentHalfCellIndexParam < lcl_minHalfCellIndex{
                     //print("dimensions.patternTimingConfiguration == .sixEight ............2")
 //                    new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
