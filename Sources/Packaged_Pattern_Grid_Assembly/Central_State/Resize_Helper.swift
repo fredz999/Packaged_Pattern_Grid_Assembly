@@ -503,7 +503,7 @@ class Right_Side_Resizer_Garage {
             
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
-            
+            print("dimensions.patternTimingConfiguration == .sixEight ............")
             if let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
                 , let lcl_minHalfCellIndex = snapshotMinHalfCellIndex
                 , let lcl_RightwardBarrierDataX = rightwardBarrierDataX {
