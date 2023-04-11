@@ -115,6 +115,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     
     func left_Side_Resize_Start(){
+        
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
 
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
@@ -173,6 +174,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
             }
 
+            for garage in right_Side_Resizer_Garage_Array {
+                garage.paintCells()
+            }
+            
         }
 
     }
