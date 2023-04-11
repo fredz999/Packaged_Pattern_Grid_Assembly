@@ -32,8 +32,8 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     
     var highestFourFourHalfCellIndex : Int
     var lowestFourFourHalfCellIndex : Int
-    var highestSixEightHalfCellIndex : Int?
-    var lowestSixEightHalfCellIndex : Int?
+    var highestSixEightHalfCellIndex : Int
+    var lowestSixEightHalfCellIndex : Int
     
     public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int,containingLineParam:Underlying_Data_Line) {
         self.containing_Line = containingLineParam
@@ -42,6 +42,9 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         
         self.highestFourFourHalfCellIndex = cellArray[cellArray.count-1].four_Four_Half_Cell_Index
         self.lowestFourFourHalfCellIndex = cellArray[0].four_Four_Half_Cell_Index
+        
+        self.highestSixEightHalfCellIndex = cellArray[cellArray.count-1].six_Eight_Half_Cell_Index
+        self.lowestSixEightHalfCellIndex = cellArray[0].six_Eight_Half_Cell_Index
         
         self.note_Y_Number = yParam
         self.parent_Note_Collection = parentParam
