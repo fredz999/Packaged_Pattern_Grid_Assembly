@@ -326,10 +326,11 @@ public class Central_State : ObservableObject {
                         lclResizeHelper.resizeSubMode = .leftSideSubMode
                     }
                     else if action == .writeCurrent{
-                        print("action == .writeCurrent")
+                        
                         if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0{
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
+                            print("action was .writeCurrent, currmode = ",lclResizeHelper.resizeSubMode.rawValue)
                         }
                     }
                 }
