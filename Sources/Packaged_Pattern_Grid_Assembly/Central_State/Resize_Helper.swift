@@ -16,66 +16,21 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     var parentCentralState : Central_State
     
-    
-    
     public init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
     }
     
-//    public func swap_Resize_Sub_Mode(modeParam : E_Resize_Mode){
-//
-//        if modeParam == .rightSideSubMode {
-//            if right_Side_Resizer_Garage_Array.count == 0 {
-//                right_Side_Resize_Start()
-//            }
-//            else if right_Side_Resizer_Garage_Array.count > 0 {
-//                reWriteNotes()
-//                clear_Variables()
-//                right_Side_Resize_Start()
-//            }
-//        }
-//
-//
-//
-////        if left_Side_Resizer_Garage_Array.count == 0 && right_Side_Resizer_Garage_Array.count == 0{
-////
-////            reWriteNotes()
-////
-////            if modeParam == .rightSideSubMode, resizeMode == .leftSideSubMode {
-////                resizeMode = .rightSideSubMode
-////                if mode_Active == true {
-////                    right_Side_Resize_Start()
-////                }
-////            }
-////            else if modeParam == .leftSideSubMode, resizeMode == .rightSideSubMode {
-////                resizeMode = .leftSideSubMode
-////                if mode_Active == true {
-////                    left_Side_Resize_Start()
-////                }
-////            }
-////        }
-//    }
+    public var resizeSubMode : E_Resize_Mode = .rightSideSubMode{
+        didSet{
+            parentCentralState.mode_String = resizeSubMode.rawValue
+        }
+    }
     
-    @Published public var resizeSubMode : E_Resize_Mode = .rightSideSubMode
     public var mode_Active: Bool = false
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
-//            if resizeMode == .leftSideSubMode {
-//                if left_Side_Resizer_Garage_Array.count > 0{
-//                    reWriteNotes()
-//                    clear_Variables()
-//                }
-//                left_Side_Resize_Start()
-//            }
-//            else if resizeMode == .rightSideSubMode{
-//                if left_Side_Resizer_Garage_Array.count > 0{
-//                    reWriteNotes()
-//                    clear_Variables()
-//                }
-//                right_Side_Resize_Start()
-//            }
         }
     }
     
@@ -149,9 +104,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     // For each note ==============================================================
     var snapshot_Group_MinHalfCellIndex : Int?
+    
     var snapshot_Group_MaxHalfCellIndex : Int?
     
     var left_Side_Resizer_Garage_Array : [Left_Side_Resizer_Garage] = []
+    
     var right_Side_Resizer_Garage_Array : [Right_Side_Resizer_Garage] = []
     
     func left_Side_Resize_Start(){
