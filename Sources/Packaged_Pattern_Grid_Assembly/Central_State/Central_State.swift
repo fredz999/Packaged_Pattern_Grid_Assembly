@@ -195,10 +195,12 @@ public class Central_State : ObservableObject {
     func establishCursorSet(){
         print("establishCursorSet() called")
         if dimensions.patternTimingConfiguration == .fourFour {
-            current_Cursor_Set = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
+            let newCursorSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
+            accessCursorSet(newSet: newCursorSet)
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
-            current_Cursor_Set = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
+            let newCursorSet = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
+            accessCursorSet(newSet: newCursorSet)
         }
     }
     
@@ -257,7 +259,14 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var current_Cursor_Set = Set<Underlying_Data_Cell>(){
+    
+    func accessCursorSet(newSet:Set<Underlying_Data_Cell>){
+        current_Cursor_Set.removeAll()
+        current_Cursor_Set = newSet
+    }
+    
+    var current_Cursor_Set = Set<Underlying_Data_Cell>()
+    {
         willSet {
             let delta = current_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
