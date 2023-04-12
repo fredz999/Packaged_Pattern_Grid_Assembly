@@ -49,16 +49,16 @@ class Right_Side_Resizer_Garage {
         if let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
             , let lcl_minHalfCellIndex = snapshotMinHalfCellIndex
             , let lcl_RightwardBarrierDataX = rightwardBarrierDataX
-            , let lcl_LeftwardBarrierDataX = leftwardBarrierDataX{
+            , let lcl_LeftwardBarrierDataX = leftwardBarrierDataX
+            , let lclNoteRef = noteReference{
             
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
             
-            if currentHalfCellIndexParam < lcl_minHalfCellIndex{
-                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX && $0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
-                    //.filter{$0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
-                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lcl_LeftwardBarrierDataX}
-                    //.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
-                //self.leftwardBarrierDataX
+            if currentHalfCellIndexParam < lcl_minHalfCellIndex {
+                new_Note_Cell_Set = lclNoteRef.minimumSet
+                if let lastMinimalCell = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lastMinimalCell.dataCell_X_Number}
+                }
             }
             if currentHalfCellIndexParam >= lcl_minHalfCellIndex {
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lcl_LeftwardBarrierDataX}
@@ -73,11 +73,37 @@ class Right_Side_Resizer_Garage {
     func resizeSizEightHandler(halfCellDeltaParam:Int){
         if let lclSnapshotMaxHalfCellIndex = snapshotMaxHalfCellIndex
             , let lcl_minHalfCellIndex = snapshotMinHalfCellIndex
-            , let lcl_RightwardBarrierDataX = rightwardBarrierDataX {
+            , let lcl_RightwardBarrierDataX = rightwardBarrierDataX
+            , let lclNoteRef = noteReference{
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
             if currentHalfCellIndexParam < lcl_minHalfCellIndex{
-                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.six_Eight_Half_Cell_Index == lcl_minHalfCellIndex}
-                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
+//                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.six_Eight_Half_Cell_Index == lcl_minHalfCellIndex}
+//                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
+                
+                if lclNoteRef.minimumSet.count == 3{
+                    // take the top one aff
+                    if let lastSixEightMinimalCell = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        let firstTwoMin = lclNoteRef.minimumSet.filter{$0.dataCell_X_Number != lastSixEightMinimalCell.dataCell_X_Number}
+                        new_Note_Cell_Set = firstTwoMin
+                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number >= lastSixEightMinimalCell.dataCell_X_Number}
+                    }
+                }
+                else if lclNoteRef.minimumSet.count == 2{
+                    if let lastMin = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        new_Note_Cell_Set = lclNoteRef.minimumSet
+                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX && $0.dataCell_X_Number >= lastMin.dataCell_X_Number}
+                    }
+                }
+                
+                
+//                new_Note_Cell_Set = lclNoteRef.minimumSet
+//                if let lastSixEightMinimalCell = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//
+//                }
+                
+//                if let sixEightMinimalCell = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+//                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lastMinimalCell.dataCell_X_Number}
+//                }
             }
             if currentHalfCellIndexParam >= lcl_minHalfCellIndex {
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}

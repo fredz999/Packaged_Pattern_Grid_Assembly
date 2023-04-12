@@ -30,10 +30,17 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     var containing_Line : Underlying_Data_Line
     var centralState : Central_State
     
+    
+    
     var highestFourFourHalfCellIndex : Int
     var lowestFourFourHalfCellIndex : Int
     var highestSixEightHalfCellIndex : Int
     var lowestSixEightHalfCellIndex : Int
+    
+//    var minimumSixEightSet : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+//    var minimumFourFourSet : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
+    //var lastMinimalCell : Underlying_Data_Cell?
+    var minimumSet : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
     public init(id: UUID = UUID(), cellArray: [Underlying_Data_Cell],parentParam:Note_Collection,yParam:Int,containingLineParam:Underlying_Data_Line) {
         self.containing_Line = containingLineParam
@@ -45,6 +52,18 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         
         self.highestSixEightHalfCellIndex = cellArray[cellArray.count-1].six_Eight_Half_Cell_Index
         self.lowestSixEightHalfCellIndex = cellArray[0].six_Eight_Half_Cell_Index
+        
+        if cellArray.count == 2{
+            self.minimumSet.insert(cellArray[0])
+            self.minimumSet.insert(cellArray[1])
+        }
+        else if cellArray.count > 2 {
+            self.minimumSet.insert(cellArray[0])
+            self.minimumSet.insert(cellArray[1])
+            self.minimumSet.insert(cellArray[2])
+        }
+        
+        
         
         self.note_Y_Number = yParam
         self.parent_Note_Collection = parentParam
