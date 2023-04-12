@@ -322,13 +322,10 @@ public class Central_State : ObservableObject {
     public func resizeModeActions(action:E_ResizeActions){
         if let lclResizeHelper = resize_Helper {
         if currentPatternMode == .resize_Mode {
-            
                 if lclResizeHelper.resizeSubMode == .leftSideSubMode {
-                    
                     if action == .subModerightWard {
                         if lclResizeHelper.left_Side_Resizer_Garage_Array.count > 0 {
                             lclResizeHelper.reWriteNotes()
-                            //lclResizeHelper.resizeSubMode = .standBySubMode
                         }
                         lclResizeHelper.right_Side_Resize_Start()
                         lclResizeHelper.resizeSubMode = .rightSideSubMode
@@ -345,7 +342,6 @@ public class Central_State : ObservableObject {
                     if action == .subModeleftWard {
                         if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0 {
                             lclResizeHelper.reWriteNotes()
-                            //lclResizeHelper.resizeSubMode = .standBySubMode
                         }
                         lclResizeHelper.left_Side_Resize_Start()
                         lclResizeHelper.resizeSubMode = .leftSideSubMode
@@ -354,7 +350,6 @@ public class Central_State : ObservableObject {
                         if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0{
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
-                            //print("setPatternMode(patternModeParam: .passive_Mode)")
                             setPatternMode(patternModeParam: .passive_Mode)
                         }
                     }

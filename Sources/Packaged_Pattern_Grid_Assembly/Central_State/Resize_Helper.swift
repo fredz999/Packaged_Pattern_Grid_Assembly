@@ -382,8 +382,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     }
 
     public func reWriteNotes(){
-
-        if left_Side_Resizer_Garage_Array.count > 0{
+        print("reWriteNotes()................")
+        if left_Side_Resizer_Garage_Array.count > 0 {
             for resizer in left_Side_Resizer_Garage_Array {
                 if let lclNoteRef = resizer.noteReference {
                     lclNoteRef.dataCellArray.removeAll()
