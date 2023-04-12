@@ -318,13 +318,16 @@ public class Central_State : ObservableObject {
     centralState_Data_Evaluation()
     }
     
-    //activate, then specify
+
     public func resizeModeActions(action:E_ResizeActions){
         if let lclResizeHelper = resize_Helper {
         if currentPatternMode == .resize_Mode {
+            
                 if lclResizeHelper.resizeSubMode == .leftSideSubMode {
+                    
                     if action == .subModerightWard {
-                        if lclResizeHelper.left_Side_Resizer_Garage_Array.count > 0{
+                        if lclResizeHelper.left_Side_Resizer_Garage_Array.count > 0 {
+                            print("lclResizeHelper.left_Side_Resizer_Garage_Array.count > 0")
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
                         }
@@ -367,6 +370,12 @@ public class Central_State : ObservableObject {
                         lclResizeHelper.resizeSubMode = .rightSideSubMode
                     }
                 }
+            
+            
+            
+            
+            
+            
             }
         else if currentPatternMode != .resize_Mode {
             if action == .subModeleftWard {
@@ -385,6 +394,14 @@ public class Central_State : ObservableObject {
         }
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 
