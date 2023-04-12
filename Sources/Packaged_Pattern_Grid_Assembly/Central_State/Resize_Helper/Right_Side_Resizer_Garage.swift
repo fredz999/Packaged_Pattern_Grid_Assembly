@@ -54,7 +54,8 @@ class Right_Side_Resizer_Garage {
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
             
             if currentHalfCellIndexParam < lcl_minHalfCellIndex{
-                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
+                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > lcl_LeftwardBarrierDataX && $0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
+                    //.filter{$0.four_Four_Half_Cell_Index == lcl_minHalfCellIndex}
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lcl_LeftwardBarrierDataX}
                     //.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
                 //self.leftwardBarrierDataX
