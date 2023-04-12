@@ -123,9 +123,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     
     var right_Side_Resizer_Garage_Array : [Right_Side_Resizer_Garage] = []
     
-    
-    
-    
     func left_Side_Resize_Start(){
         
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
@@ -244,9 +241,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
     }
 
-    
-    
-    
     func right_Side_Resize_Start(){
         if let lclNoteCollection = parentCentralState.currentNoteCollection {
             let highlightSet = Set<Note>(lclNoteCollection.noteArray.filter{$0.highlighted == true})
@@ -280,23 +274,23 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 }
 
                 if snapshot_Note_Cells_Right_Of_Note_Set.count == 0 {
-                    let newResizeGarage = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
-                                                                    , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
-                                                                    , rightwardBarrierDataXParam: dimensions.dataGrid_X_Unit_Count
-                                                                   , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
-                    
-                    newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_Index && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
-                    right_Side_Resizer_Garage_Array.append(newResizeGarage)
+                let newResizeGarage = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
+                                                                , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                , rightwardBarrierDataXParam: dimensions.dataGrid_X_Unit_Count
+                                                               , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
+                
+                newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
+                newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_Index && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
+                right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
                 else if let minNoteCellRightOfNote = snapshot_Note_Cells_Right_Of_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                    let newResizeGarage  = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
-                                                                        , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
-                                                                     , rightwardBarrierDataXParam: minNoteCellRightOfNote.dataCell_X_Number
-                                                                    , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
-                    newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_Index && $0.dataCell_X_Number < minNoteCellRightOfNote.dataCell_X_Number}
-                    right_Side_Resizer_Garage_Array.append(newResizeGarage)
+                let newResizeGarage  = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
+                                                                    , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                 , rightwardBarrierDataXParam: minNoteCellRightOfNote.dataCell_X_Number
+                                                                , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
+                newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
+                newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_Index && $0.dataCell_X_Number < minNoteCellRightOfNote.dataCell_X_Number}
+                right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
             
             }
@@ -361,8 +355,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
         }
     }
     
-    
-    
     func get_Left_Side_Cursor_Delta(currentHalfCellIndexParam:Int){
         if let lclSnapshotHalfCellIndex = snapshot_Group_MinHalfCellIndex {
             let currentHalfCellDelta = currentHalfCellIndexParam - lclSnapshotHalfCellIndex
@@ -382,9 +374,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     }
 
     public func reWriteNotes(){
-        print("reWriteNotes()................")
         if left_Side_Resizer_Garage_Array.count > 0 {
+
             for resizer in left_Side_Resizer_Garage_Array {
+//                if dimensions.patternTimingConfiguration == .fourFour { }
+
+     
                 if let lclNoteRef = resizer.noteReference {
                     lclNoteRef.dataCellArray.removeAll()
                     if resizer.new_Note_Cell_Set.count == 1 {
@@ -400,6 +395,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         lclNoteRef.dataCellArray = newCellArray
                         lclNoteRef.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                         lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+                        lclNoteRef.highestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
+                        lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
                     }
                     else if resizer.new_Note_Cell_Set.count == 2 {
                         let newCellArray = resizer.new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -416,6 +413,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         lclNoteRef.dataCellArray = newCellArray
                         lclNoteRef.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
                         lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+                        lclNoteRef.highestSixEightHalfCellIndex = newCellArray[1].six_Eight_Half_Cell_Index
+                        lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
                     }
                     else if resizer.new_Note_Cell_Set.count > 2 {
                         
@@ -439,10 +438,13 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         lclNoteRef.dataCellArray = newCellArray
                         lclNoteRef.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                         lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
+                        lclNoteRef.highestSixEightHalfCellIndex = newCellArray[finalIndex].six_Eight_Half_Cell_Index
+                        lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[firstIndex].six_Eight_Half_Cell_Index
                     }
                     
                 }
-     
+                
+                
             }
         }
         else if right_Side_Resizer_Garage_Array.count > 0{
@@ -462,6 +464,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             lclNoteRef.dataCellArray = newCellArray
                             lclNoteRef.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                             lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+                            lclNoteRef.highestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
+                            lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
                         }
                         else if resizer.new_Note_Cell_Set.count == 2 {
                             let newCellArray = resizer.new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -478,6 +482,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             lclNoteRef.dataCellArray = newCellArray
                             lclNoteRef.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
                             lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+                            lclNoteRef.highestSixEightHalfCellIndex = newCellArray[1].six_Eight_Half_Cell_Index
+                            lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
                         }
                         else if resizer.new_Note_Cell_Set.count > 2 {
                             
@@ -501,6 +507,8 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             lclNoteRef.dataCellArray = newCellArray
                             lclNoteRef.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                             lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
+                            lclNoteRef.highestSixEightHalfCellIndex = newCellArray[finalIndex].six_Eight_Half_Cell_Index
+                            lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[firstIndex].six_Eight_Half_Cell_Index
                         }
                         
                     }
@@ -508,9 +516,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 
             }
         }
-            
-   
-    
         clear_Variables()
     }
 }
@@ -601,10 +606,7 @@ class Right_Side_Resizer_Garage {
             }
         }
     }
-    
-    
 }
-
 
 class Left_Side_Resizer_Garage {
     let dimensions = ComponentDimensions.StaticDimensions
@@ -699,22 +701,7 @@ class Left_Side_Resizer_Garage {
             }
         }
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 public enum E_Resize_Mode : String {
     case rightSideSubMode = "Resize Rightward"
