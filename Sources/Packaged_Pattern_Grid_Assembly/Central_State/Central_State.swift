@@ -345,6 +345,7 @@ public class Central_State : ObservableObject {
                 else if lclResizeHelper.resizeSubMode == .rightSideSubMode {
                     if action == .subModeleftWard {
                         if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0 {
+                            print("lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0 ")
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
                         }
@@ -352,7 +353,6 @@ public class Central_State : ObservableObject {
                         lclResizeHelper.resizeSubMode = .leftSideSubMode
                     }
                     else if action == .writeCurrent{
-                        
                         if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0{
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
