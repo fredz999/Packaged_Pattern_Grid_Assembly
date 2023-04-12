@@ -331,13 +331,12 @@ public class Central_State : ObservableObject {
                             lclResizeHelper.resizeSubMode = .standBySubMode
                         }
                         lclResizeHelper.right_Side_Resize_Start()
-                        lclResizeHelper.resizeSubMode = .rightSideSubMode
+                        //lclResizeHelper.resizeSubMode = .rightSideSubMode
                     }
                     else if action == .writeCurrent{
                         if lclResizeHelper.left_Side_Resizer_Garage_Array.count > 0{
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
-                            print("setPatternMode(patternModeParam: .passive_Mode)")
                             setPatternMode(patternModeParam: .passive_Mode)
                         }
                     }
@@ -346,7 +345,7 @@ public class Central_State : ObservableObject {
                     if action == .subModeleftWard {
                         if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0 {
                             lclResizeHelper.reWriteNotes()
-                            lclResizeHelper.resizeSubMode = .standBySubMode
+                            //lclResizeHelper.resizeSubMode = .standBySubMode
                         }
                         lclResizeHelper.left_Side_Resize_Start()
                         lclResizeHelper.resizeSubMode = .leftSideSubMode
@@ -355,7 +354,7 @@ public class Central_State : ObservableObject {
                         if lclResizeHelper.right_Side_Resizer_Garage_Array.count > 0{
                             lclResizeHelper.reWriteNotes()
                             lclResizeHelper.resizeSubMode = .standBySubMode
-                            print("setPatternMode(patternModeParam: .passive_Mode)")
+                            //print("setPatternMode(patternModeParam: .passive_Mode)")
                             setPatternMode(patternModeParam: .passive_Mode)
                         }
                     }
