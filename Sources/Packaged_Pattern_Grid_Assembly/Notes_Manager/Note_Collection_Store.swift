@@ -79,7 +79,7 @@ public class Note_Collection : ObservableObject {
     
     func react_To_Mode_Change(){
         if let lclCurrHighlighted = note_Currently_Under_Cursor {
-            for cell in lclCurrHighlighted.dataCellArray {
+            for cell in lclCurrHighlighted.note_Modification_Object.dataCellArray {
                 if let lcl_Data_Vals = cell.currentConnectedDataVals {
                     lcl_Data_Vals.check_Highlighted()
                 }

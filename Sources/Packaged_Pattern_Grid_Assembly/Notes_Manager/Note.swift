@@ -32,7 +32,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     //var highestSixEightHalfCellIndex : Int
     //var lowestSixEightHalfCellIndex : Int
     //var minimumSet : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
-    var dataCellArray : [Underlying_Data_Cell] = []
+    //var dataCellArray : [Underlying_Data_Cell] = []
     // transferred to new object ========================================
     
     var note_Modification_Object : Note_Modification_Object
@@ -64,7 +64,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
 //            self.minimumSet.insert(cellArray[1])
 //            self.minimumSet.insert(cellArray[2])
 //        }
-        self.dataCellArray = cellArray
+        //self.dataCellArray = cellArray
         // transferred to new object ========================================
         
         var minSet = Set<Underlying_Data_Cell>()
@@ -88,15 +88,15 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     }
     
     public func yieldNoteData()->(Int,Int,Int){
-        let lastElement = dataCellArray.count-1
-        let startCellNum = dataCellArray[0].dataCell_X_Number
-        let length = dataCellArray.count
-        let endCellNum = dataCellArray[lastElement].dataCell_X_Number
+        let lastElement = note_Modification_Object.dataCellArray.count-1
+        let startCellNum = note_Modification_Object.dataCellArray[0].dataCell_X_Number
+        let length = note_Modification_Object.dataCellArray.count
+        let endCellNum = note_Modification_Object.dataCellArray[lastElement].dataCell_X_Number
         return (startCellNum,length,endCellNum)
     }
     
     func resetCells(){
-        for cell in dataCellArray {
+        for cell in note_Modification_Object.dataCellArray {
             cell.change_Highlight(highlightStatusParam: false)
             cell.reset_To_Original()
         }
@@ -105,12 +105,12 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     var note_Is_Pre_MultiSelected : Bool = false {
         didSet {
             if note_Is_Pre_MultiSelected == false {
-                for cell in dataCellArray{
+                for cell in note_Modification_Object.dataCellArray{
                     cell.handleVisibleStateChange(type: .deActivate_Multiselect_Note_Set)
                 }
             }
             else if note_Is_Pre_MultiSelected == true {
-                for cell in dataCellArray{
+                for cell in note_Modification_Object.dataCellArray{
                     cell.handleVisibleStateChange(type: .activate_Multiselect_Note_Set)
                 }
             }
@@ -120,12 +120,12 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     var highlighted : Bool = false {
         didSet{
             if highlighted == true {
-                for dataCell in dataCellArray {
+                for dataCell in note_Modification_Object.dataCellArray {
                     dataCell.change_Highlight(highlightStatusParam: true)
                 }
             }
             else if highlighted == false {
-                for dataCell in dataCellArray {
+                for dataCell in note_Modification_Object.dataCellArray {
                     dataCell.change_Highlight(highlightStatusParam: false)
                 }
             }
