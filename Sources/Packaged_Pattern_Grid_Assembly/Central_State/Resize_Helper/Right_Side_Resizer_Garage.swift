@@ -57,8 +57,8 @@ class Right_Side_Resizer_Garage {
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
             
             if currentHalfCellIndexParam < lcl_minHalfCellIndex {
-                new_Note_Cell_Set = lclNoteRef.minimumSet
-                if let lastMinimalCell = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                new_Note_Cell_Set = lclNoteRef.note_Modification_Object.minimumSet
+                if let lastMinimalCell = lclNoteRef.note_Modification_Object.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lastMinimalCell.dataCell_X_Number}
                 }
             }
@@ -91,17 +91,17 @@ class Right_Side_Resizer_Garage {
 //                new_Note_Cell_Set = snapshot_Line_Set.filter{$0.six_Eight_Half_Cell_Index == lcl_minHalfCellIndex}
 //                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
                 
-                if lclNoteRef.minimumSet.count == 3{
+                if lclNoteRef.note_Modification_Object.minimumSet.count == 3{
                     // take the top one aff
-                    if let lastSixEightMinimalCell = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                        let firstTwoMin = lclNoteRef.minimumSet.filter{$0.dataCell_X_Number != lastSixEightMinimalCell.dataCell_X_Number}
+                    if let lastSixEightMinimalCell = lclNoteRef.note_Modification_Object.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        let firstTwoMin = lclNoteRef.note_Modification_Object.minimumSet.filter{$0.dataCell_X_Number != lastSixEightMinimalCell.dataCell_X_Number}
                         new_Note_Cell_Set = firstTwoMin
                         available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lastSixEightMinimalCell.dataCell_X_Number}
                     }
                 }
-                else if lclNoteRef.minimumSet.count == 2{
-                    if let lastMin = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                        new_Note_Cell_Set = lclNoteRef.minimumSet
+                else if lclNoteRef.note_Modification_Object.minimumSet.count == 2{
+                    if let lastMin = lclNoteRef.note_Modification_Object.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                        new_Note_Cell_Set = lclNoteRef.note_Modification_Object.minimumSet
                         available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX && $0.dataCell_X_Number > lastMin.dataCell_X_Number}
                     }
                 }
