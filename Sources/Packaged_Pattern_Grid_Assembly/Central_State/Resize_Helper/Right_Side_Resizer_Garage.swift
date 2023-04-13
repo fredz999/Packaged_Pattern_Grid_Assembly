@@ -51,7 +51,8 @@ class Right_Side_Resizer_Garage {
             , let lcl_RightwardBarrierDataX = rightwardBarrierDataX
             , let lcl_LeftwardBarrierDataX = leftwardBarrierDataX
             , let lclNoteRef = noteReference{
-            
+            //lcl_LeftwardBarrierDataX
+            print("lcl_LeftwardBarrierDataX X : ",lcl_LeftwardBarrierDataX)
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
             
             if currentHalfCellIndexParam < lcl_minHalfCellIndex {
