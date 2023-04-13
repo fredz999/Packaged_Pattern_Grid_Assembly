@@ -448,7 +448,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             
             for resizer in right_Side_Resizer_Garage_Array{
                     if let lclNoteRef = resizer.noteReference {
-                    print("[0] xNUm: ", Array(resizer.new_Note_Cell_Set)[0].dataCell_X_Number)
+                        
+                        if let minnie = resizer.new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                            print("minnie xNUm: ", minnie.dataCell_X_Number)
+                        }
+                    
                         lclNoteRef.dataCellArray.removeAll()
                         if resizer.new_Note_Cell_Set.count == 1 {
                             let newCellArray = Array(resizer.new_Note_Cell_Set)
