@@ -132,7 +132,11 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if dimensions.patternTimingConfiguration == .fourFour {
                 for note in highlightSet {
                     
-                    let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Data_Line.dataCellArray)
+                    //let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Data_Line.dataCellArray)
+                    let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.note_Modification_Object.containing_Data_Line.dataCellArray)
+                    
+                    
+                    
                     let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                     let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.lowestFourFourHalfCellIndex}
                     
@@ -192,7 +196,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             else if dimensions.patternTimingConfiguration == .sixEight {
                 for note in highlightSet {
                     
-                    let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Data_Line.dataCellArray)
+                    //let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Data_Line.dataCellArray)
+                    //.note_Modification_Object.containing_Data_Line.dataCellArray
+                    let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.note_Modification_Object.containing_Data_Line.dataCellArray)
                     let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                     let snapshot_Left_Cursor_Set = snapshot_Note_Set.filter{$0.six_Eight_Half_Cell_Index == note.lowestSixEightHalfCellIndex}
                     
@@ -247,7 +253,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             if dimensions.patternTimingConfiguration == .fourFour {
                 for note in highlightSet {
 
-                let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Data_Line.dataCellArray)
+                //let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Data_Line.dataCellArray)
+                    
+                let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.note_Modification_Object.containing_Data_Line.dataCellArray)
                 
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                 
@@ -301,7 +309,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
             else if dimensions.patternTimingConfiguration == .sixEight {
                 for note in highlightSet {
 
-                let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.containing_Data_Line.dataCellArray)
+                let snapshot_Line_Set = Set<Underlying_Data_Cell>(note.note_Modification_Object.containing_Data_Line.dataCellArray)
                 
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                 

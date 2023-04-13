@@ -49,7 +49,8 @@ class Move_Helper: P_Selectable_Mode {
                     
                     for selectedNote in selectedNotes {
                         let note_Movement_SnapShot = Note_Movement_SnapShot(note_Low_Index: selectedNote.lowest_X_Index
-                        , note_High_Index: selectedNote.highest_X_Index, note_Y_Index_Param: selectedNote.containing_Data_Line.line_Y_Num    //.note_Y_Number
+                                                                            , note_High_Index: selectedNote.highest_X_Index, note_Y_Index_Param: selectedNote.note_Modification_Object.containing_Data_Line.line_Y_Num 
+                            //.containing_Data_Line.line_Y_Num    //.note_Y_Number
                         , snapshotNoteIdParam: selectedNote.id)
                         let movingCellSetHolder = Moving_Cell_Set_Holder(initial_Snapshot_Param: note_Movement_SnapShot)
                         moving_Cell_Set_Holder_Array.append(movingCellSetHolder)

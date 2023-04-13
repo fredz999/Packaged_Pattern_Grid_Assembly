@@ -24,7 +24,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     var centralState : Central_State
     
     // transferred to new object ========================================
-    var containing_Data_Line : Underlying_Data_Line
+    //var containing_Data_Line : Underlying_Data_Line
     var lowest_X_Index : Int
     var highest_X_Index : Int
     var highestFourFourHalfCellIndex : Int
@@ -44,7 +44,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         
         
         // transferred to new object ========================================
-        self.containing_Data_Line = containingLineParam
+        //self.containing_Data_Line = containingLineParam
         self.lowest_X_Index = cellArray[0].dataCell_X_Number
         self.highest_X_Index = cellArray[cellArray.count-1].dataCell_X_Number
         
