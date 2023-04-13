@@ -48,7 +48,7 @@ class Move_Helper: P_Selectable_Mode {
                     let selectedNotes = lclCurrNoteCollection.noteArray.filter{$0.highlighted == true}
                     
                     for selectedNote in selectedNotes {
-                        let note_Movement_SnapShot = Note_Movement_SnapShot(note_Low_Index: selectedNote.lowest_X_Index
+                        let note_Movement_SnapShot = Note_Movement_SnapShot(note_Low_Index: selectedNote.note_Modification_Object.lowest_X_Index
                                                                             , note_High_Index: selectedNote.highest_X_Index, note_Y_Index_Param: selectedNote.note_Modification_Object.containing_Data_Line.line_Y_Num 
                             //.containing_Data_Line.line_Y_Num    //.note_Y_Number
                         , snapshotNoteIdParam: selectedNote.id)
