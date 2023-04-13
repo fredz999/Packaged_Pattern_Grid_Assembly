@@ -52,7 +52,8 @@ class Right_Side_Resizer_Garage {
             , let lcl_LeftwardBarrierDataX = leftwardBarrierDataX
             , let lclNoteRef = noteReference{
             //lcl_LeftwardBarrierDataX
-            print("lcl_LeftwardBarrierDataX X : ",lcl_LeftwardBarrierDataX)
+            //print("lcl_LeftwardBarrierDataX X : ",lcl_LeftwardBarrierDataX)
+            
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
             
             if currentHalfCellIndexParam < lcl_minHalfCellIndex {
@@ -62,14 +63,16 @@ class Right_Side_Resizer_Garage {
                 }
             }
             if currentHalfCellIndexParam >= lcl_minHalfCellIndex {
-                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lcl_LeftwardBarrierDataX}
+                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number >= lcl_LeftwardBarrierDataX}
                     //.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
                 //print("lcl_LeftwardBarrierDataX: ",lcl_LeftwardBarrierDataX.description)
-                new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index <= currentHalfCellIndexParam && $0.dataCell_X_Number >= lcl_LeftwardBarrierDataX}
+                new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index <= currentHalfCellIndexParam}
+                    //&& $0.dataCell_X_Number >= lcl_LeftwardBarrierDataX}
                     //.filter{$0.four_Four_Half_Cell_Index <= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
                 if let minNewNote = new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     print("minNewNote X : ",minNewNote.dataCell_X_Number,",lcl_LeftwardBarrierDataX: ",lcl_LeftwardBarrierDataX)
                 }
+                
             }
             
         }
@@ -93,13 +96,13 @@ class Right_Side_Resizer_Garage {
                     if let lastSixEightMinimalCell = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                         let firstTwoMin = lclNoteRef.minimumSet.filter{$0.dataCell_X_Number != lastSixEightMinimalCell.dataCell_X_Number}
                         new_Note_Cell_Set = firstTwoMin
-                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number >= lastSixEightMinimalCell.dataCell_X_Number}
+                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number > lastSixEightMinimalCell.dataCell_X_Number}
                     }
                 }
                 else if lclNoteRef.minimumSet.count == 2{
                     if let lastMin = lclNoteRef.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                         new_Note_Cell_Set = lclNoteRef.minimumSet
-                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX && $0.dataCell_X_Number >= lastMin.dataCell_X_Number}
+                        available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX && $0.dataCell_X_Number > lastMin.dataCell_X_Number}
                     }
                 }
                 
@@ -114,8 +117,9 @@ class Right_Side_Resizer_Garage {
 //                }
             }
             if currentHalfCellIndexParam >= lcl_minHalfCellIndex {
-                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.six_Eight_Half_Cell_Index > lcl_minHalfCellIndex}
-                new_Note_Cell_Set = available_Cell_Set.filter{$0.six_Eight_Half_Cell_Index <= currentHalfCellIndexParam && $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
+                available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
+                new_Note_Cell_Set = available_Cell_Set.filter{$0.six_Eight_Half_Cell_Index <= currentHalfCellIndexParam}
+                    //&& $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
             }
         }
     }
