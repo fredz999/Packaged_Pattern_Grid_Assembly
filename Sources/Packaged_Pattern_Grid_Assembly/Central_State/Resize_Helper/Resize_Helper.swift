@@ -420,10 +420,12 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         newCellArray[firstIndex].change_Type(newType: .start_Note)
                         newCellArray[firstIndex].note_Im_In = resizer.noteReference
                         lclNoteRef.lowest_Index = newCellArray[firstIndex].dataCell_X_Number
+                        
                         for x in 1..<finalIndex{
                             newCellArray[x].change_Type(newType: .mid_Note)
                             newCellArray[x].note_Im_In = resizer.noteReference
                         }
+                        
                         newCellArray[finalIndex].change_Type(newType: .end_Note)
                         newCellArray[finalIndex].note_Im_In = resizer.noteReference
                         lclNoteRef.highest_Index = newCellArray[finalIndex].dataCell_X_Number
