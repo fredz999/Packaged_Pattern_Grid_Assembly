@@ -30,7 +30,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     //var highestFourFourHalfCellIndex : Int
     //var lowestFourFourHalfCellIndex : Int
     //var highestSixEightHalfCellIndex : Int
-    var lowestSixEightHalfCellIndex : Int
+    //var lowestSixEightHalfCellIndex : Int
     var minimumSet : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     var dataCellArray : [Underlying_Data_Cell] = []
     // transferred to new object ========================================
@@ -52,7 +52,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         //self.lowestFourFourHalfCellIndex = cellArray[0].four_Four_Half_Cell_Index
         
         //self.highestSixEightHalfCellIndex = cellArray[cellArray.count-1].six_Eight_Half_Cell_Index
-        self.lowestSixEightHalfCellIndex = cellArray[0].six_Eight_Half_Cell_Index
+        //self.lowestSixEightHalfCellIndex = cellArray[0].six_Eight_Half_Cell_Index
         
         
         if cellArray.count == 2{
