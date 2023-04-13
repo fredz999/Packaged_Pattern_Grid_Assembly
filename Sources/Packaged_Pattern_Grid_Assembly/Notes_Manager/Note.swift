@@ -27,7 +27,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     //var containing_Data_Line : Underlying_Data_Line
     //var lowest_X_Index : Int
     //var highest_X_Index : Int
-    var highestFourFourHalfCellIndex : Int
+    //var highestFourFourHalfCellIndex : Int
     var lowestFourFourHalfCellIndex : Int
     var highestSixEightHalfCellIndex : Int
     var lowestSixEightHalfCellIndex : Int
@@ -48,7 +48,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         //self.lowest_X_Index = cellArray[0].dataCell_X_Number
         //self.highest_X_Index = cellArray[cellArray.count-1].dataCell_X_Number
         
-        self.highestFourFourHalfCellIndex = cellArray[cellArray.count-1].four_Four_Half_Cell_Index
+        //self.highestFourFourHalfCellIndex = cellArray[cellArray.count-1].four_Four_Half_Cell_Index
         self.lowestFourFourHalfCellIndex = cellArray[0].four_Four_Half_Cell_Index
         
         self.highestSixEightHalfCellIndex = cellArray[cellArray.count-1].six_Eight_Half_Cell_Index

@@ -161,7 +161,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     
                     if snapshot_Note_Cells_Left_Of_Note_Set.count == 0 {
                         let newResizeGarage = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
-                                                                       , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                       , snapshotMaxHalfCellIndex: note.note_Modification_Object.highestFourFourHalfCellIndex
                                                                        , leftwardBarrierDataX: -1
                                                                        , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                         
@@ -175,7 +175,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     }
                     else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                         let newResizeGarage  = Left_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
-                                                                        , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                        , snapshotMaxHalfCellIndex: note.note_Modification_Object.highestFourFourHalfCellIndex
                                                                         , leftwardBarrierDataX: maxNoteCellLeftOfNote.dataCell_X_Number
                                                                         , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                         
@@ -259,9 +259,9 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 
                 let snapshot_Note_Set = Set<Underlying_Data_Cell>(note.dataCellArray)
                 
-                let snapshot_Right_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.highestFourFourHalfCellIndex}
+                let snapshot_Right_Cursor_Set = snapshot_Note_Set.filter{$0.four_Four_Half_Cell_Index == note.note_Modification_Object.highestFourFourHalfCellIndex}
 
-                let snapshot_Cells_Right_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index > note.highestFourFourHalfCellIndex}
+                let snapshot_Cells_Right_Of_Note_Set = snapshot_Line_Set.filter{$0.four_Four_Half_Cell_Index > note.note_Modification_Object.highestFourFourHalfCellIndex}
                 
                 let snapshot_Note_Cells_Right_Of_Note_Set = snapshot_Cells_Right_Of_Note_Set.filter{$0.note_Im_In != nil}
 
@@ -269,7 +269,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     if let lclNoteCollection = parentCentralState.currentNoteCollection {
                         if let lclCurrNoteUnderCursor = lclNoteCollection.note_Currently_Under_Cursor {
                             if note.id == lclCurrNoteUnderCursor.id {
-                                snapshot_Group_MaxHalfCellIndex = note.highestFourFourHalfCellIndex
+                                snapshot_Group_MaxHalfCellIndex = note.note_Modification_Object.highestFourFourHalfCellIndex
                                 if let hSliderRef = parentCentralState.h_Slider_Ref {
                                     if let maxCursorCell = snapshot_Right_Cursor_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                                         let destinationCellIndex = maxCursorCell.dataCell_X_Number
@@ -283,7 +283,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
 
                 if snapshot_Note_Cells_Right_Of_Note_Set.count == 0 {
                 let newResizeGarage = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
-                                                                , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                , snapshotMaxHalfCellIndex: note.note_Modification_Object.highestFourFourHalfCellIndex
                                                                 , rightwardBarrierDataXParam: dimensions.dataGrid_X_Unit_Count
                                                                 , leftwardBarrierDataXParam: note.note_Modification_Object.lowest_X_Index
                                                                , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
@@ -294,7 +294,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 }
                 else if let minNoteCellRightOfNote = snapshot_Note_Cells_Right_Of_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                 let newResizeGarage  = Right_Side_Resizer_Garage(snapshotMinHalfCellIndex: note.lowestFourFourHalfCellIndex
-                                                                    , snapshotMaxHalfCellIndex: note.highestFourFourHalfCellIndex
+                                                                    , snapshotMaxHalfCellIndex: note.note_Modification_Object.highestFourFourHalfCellIndex
                                                                  , rightwardBarrierDataXParam: minNoteCellRightOfNote.dataCell_X_Number, leftwardBarrierDataXParam: note.note_Modification_Object.lowest_X_Index
                                                                 , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                 newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
@@ -399,7 +399,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
                         }
                         lclNoteRef.dataCellArray = newCellArray
-                        lclNoteRef.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+                        lclNoteRef.note_Modification_Object.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                         lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                         lclNoteRef.highestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
                         lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
@@ -417,7 +417,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
                         }
                         lclNoteRef.dataCellArray = newCellArray
-                        lclNoteRef.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
+                        lclNoteRef.note_Modification_Object.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
                         lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                         lclNoteRef.highestSixEightHalfCellIndex = newCellArray[1].six_Eight_Half_Cell_Index
                         lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
@@ -444,7 +444,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
                         }
                         lclNoteRef.dataCellArray = newCellArray
-                        lclNoteRef.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
+                        lclNoteRef.note_Modification_Object.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                         lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                         lclNoteRef.highestSixEightHalfCellIndex = newCellArray[finalIndex].six_Eight_Half_Cell_Index
                         lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[firstIndex].six_Eight_Half_Cell_Index
@@ -471,7 +471,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                 if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
                             }
                             lclNoteRef.dataCellArray = newCellArray
-                            lclNoteRef.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+                            lclNoteRef.note_Modification_Object.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                             lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                             lclNoteRef.highestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
                             lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
@@ -489,7 +489,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                 if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
                             }
                             lclNoteRef.dataCellArray = newCellArray
-                            lclNoteRef.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
+                            lclNoteRef.note_Modification_Object.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
                             lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
                             lclNoteRef.highestSixEightHalfCellIndex = newCellArray[1].six_Eight_Half_Cell_Index
                             lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
@@ -514,7 +514,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                 if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
                             }
                             lclNoteRef.dataCellArray = newCellArray
-                            lclNoteRef.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
+                            lclNoteRef.note_Modification_Object.highestFourFourHalfCellIndex = newCellArray[finalIndex].four_Four_Half_Cell_Index
                             lclNoteRef.lowestFourFourHalfCellIndex = newCellArray[firstIndex].four_Four_Half_Cell_Index
                             lclNoteRef.highestSixEightHalfCellIndex = newCellArray[finalIndex].six_Eight_Half_Cell_Index
                             lclNoteRef.lowestSixEightHalfCellIndex = newCellArray[firstIndex].six_Eight_Half_Cell_Index
