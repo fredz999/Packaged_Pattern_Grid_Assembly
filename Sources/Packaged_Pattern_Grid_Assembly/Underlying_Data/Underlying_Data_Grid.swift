@@ -37,7 +37,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     
     func set_Data_Grid(){
         for line_Y_Number in 0..<dimensions.DATA_final_Line_Y_Index {
-            let newLine = Underlying_Data_Line()
+            let newLine = Underlying_Data_Line(yNumParam: line_Y_Number)
             //var new_Line_Set = Set<Underlying_Data_Cell>()
             
             for x in 0..<dimensions.dataGrid_X_Unit_Count{
@@ -76,7 +76,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
 
                 }
                 
-                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: line_Y_Number, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
+                let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: line_Y_Number, parentLineParam: newLine, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
                 , initialStatusParam: initialStatus, fourFourSubIndexParam: fourFour_Sub_Count, sixEightSubIndexParam: sixEight_Sub_Count
                 , four_Four_Cell_Index_Param: fourFour_Cell_Count, six_Eight_Cell_Index_Param: sixEight_Cell_Count
                 , four_Four_Half_Sub_Index_Param: fourFour_Half_Sub_Count
@@ -145,6 +145,10 @@ public class Underlying_Data_Line:ObservableObject,Identifiable,Equatable,Hashab
         hasher.combine(id)
     }
     
+    init(yNumParam:Int){
+        line_Y_Num = yNumParam
+    }
+    var line_Y_Num : Int
     public var id = UUID()
     
     public var dataCellArray : [Underlying_Data_Cell] = []

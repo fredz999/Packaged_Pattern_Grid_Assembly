@@ -46,7 +46,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var in_MultiSelectNote_Set : Bool = false
  
-    func handleVisibleStateChange(type : E_VisibleStateChangeType){
+    func handleVisibleStateChange(type : E_VisibleStateChangeType) {
         if type == .activate_Passive_Cursor_Set {
             if in_Passive_Cursor_Set == false {
                 in_Passive_Cursor_Set = true
@@ -185,6 +185,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var note_Im_In : Note?
     
+    var parentLine : Underlying_Data_Line
+    
     weak var currentConnectedDataVals : Data_Vals_Holder?
 
     var note_Reset_Status : E_CellStatus
@@ -202,7 +204,12 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var six_Eight_Half_Sub_Index : Int
     public var six_Eight_Half_Cell_Index : Int
     
-    public init(xNumParam:Int,yNumParam:Int,fourStatusParam:E_CellStatus,sixStatusParam:E_CellStatus,initialStatusParam:E_CellStatus
+    public init(xNumParam:Int
+    ,yNumParam:Int
+    ,parentLineParam: Underlying_Data_Line
+    ,fourStatusParam:E_CellStatus
+    ,sixStatusParam:E_CellStatus
+    ,initialStatusParam:E_CellStatus
     ,fourFourSubIndexParam:Int
     ,sixEightSubIndexParam:Int
     ,four_Four_Cell_Index_Param:Int
@@ -223,6 +230,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     dataCell_X_Number = xNumParam
     dataCell_Y_Number = yNumParam
+    parentLine = parentLineParam
     
     fourStatus = fourStatusParam
     sixStatus = sixStatusParam
