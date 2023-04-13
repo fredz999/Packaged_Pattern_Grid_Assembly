@@ -75,6 +75,8 @@ class Right_Side_Resizer_Garage {
             , let lcl_minHalfCellIndex = snapshotMinHalfCellIndex
             , let lcl_RightwardBarrierDataX = rightwardBarrierDataX
             , let lclNoteRef = noteReference{
+            
+            print("lcl_minHalfCellIndex : ",lcl_minHalfCellIndex)
             let currentHalfCellIndexParam = lclSnapshotMaxHalfCellIndex + halfCellDeltaParam
             
             if currentHalfCellIndexParam < lcl_minHalfCellIndex{
