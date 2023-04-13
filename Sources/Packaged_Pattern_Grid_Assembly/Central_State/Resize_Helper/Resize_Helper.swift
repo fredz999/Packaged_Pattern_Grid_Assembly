@@ -166,7 +166,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                        , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                         
                         newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                        newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > -1 && $0.dataCell_X_Number < note.highest_X_Index}
+                        newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > -1 && $0.dataCell_X_Number < note.note_Modification_Object.highest_X_Index}
                         
                         left_Side_Resizer_Garage_Array.append(newResizeGarage)
                         
@@ -181,7 +181,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         
                         
                         newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                        newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > maxNoteCellLeftOfNote.dataCell_X_Number && $0.dataCell_X_Number < note.highest_X_Index}
+                        newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > maxNoteCellLeftOfNote.dataCell_X_Number && $0.dataCell_X_Number < note.note_Modification_Object.highest_X_Index}
                         
                         left_Side_Resizer_Garage_Array.append(newResizeGarage)
                     }
@@ -227,7 +227,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                        , leftwardBarrierDataX: -1
                                                                        , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                         newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                        newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > -1 && $0.dataCell_X_Number < note.highest_X_Index}
+                        newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > -1 && $0.dataCell_X_Number < note.note_Modification_Object.highest_X_Index}
                         left_Side_Resizer_Garage_Array.append(newResizeGarage)
                     }
                     else if let maxNoteCellLeftOfNote = snapshot_Note_Cells_Left_Of_Note_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -236,7 +236,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                         , leftwardBarrierDataX: maxNoteCellLeftOfNote.dataCell_X_Number
                                                                         , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                         newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                        newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > maxNoteCellLeftOfNote.dataCell_X_Number && $0.dataCell_X_Number < note.highest_X_Index}
+                        newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > maxNoteCellLeftOfNote.dataCell_X_Number && $0.dataCell_X_Number < note.note_Modification_Object.highest_X_Index}
                         left_Side_Resizer_Garage_Array.append(newResizeGarage)
                     }
                 }
@@ -289,7 +289,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                 
                 newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_X_Index && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
+                newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.note_Modification_Object.highest_X_Index && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
                 right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
                 else if let minNoteCellRightOfNote = snapshot_Note_Cells_Right_Of_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -298,7 +298,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                  , rightwardBarrierDataXParam: minNoteCellRightOfNote.dataCell_X_Number, leftwardBarrierDataXParam: note.note_Modification_Object.lowest_X_Index
                                                                 , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                 newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_X_Index && $0.dataCell_X_Number < minNoteCellRightOfNote.dataCell_X_Number}
+                newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.note_Modification_Object.highest_X_Index && $0.dataCell_X_Number < minNoteCellRightOfNote.dataCell_X_Number}
                 right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
             
@@ -343,7 +343,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                    , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                     
                     newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_X_Index && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
+                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.note_Modification_Object.highest_X_Index && $0.dataCell_X_Number < dimensions.dataGrid_X_Unit_Count}
                     right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
                 else if let minNoteCellRightOfNote = snapshot_Note_Cells_Right_Of_Note_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -352,7 +352,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                                                                      , rightwardBarrierDataXParam: minNoteCellRightOfNote.dataCell_X_Number, leftwardBarrierDataXParam: note.note_Modification_Object.lowest_X_Index
                                                                     , snapshot_Line_Set: snapshot_Line_Set, noteParam: note, resizeModeParam: resizeSubMode)
                     newResizeGarage.new_Note_Cell_Set = Set(note.dataCellArray)
-                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.highest_X_Index && $0.dataCell_X_Number < minNoteCellRightOfNote.dataCell_X_Number}
+                    newResizeGarage.available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number > note.note_Modification_Object.highest_X_Index && $0.dataCell_X_Number < minNoteCellRightOfNote.dataCell_X_Number}
                     right_Side_Resizer_Garage_Array.append(newResizeGarage)
                 }
             
@@ -393,7 +393,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         newCellArray[0].change_Type(newType: .single_Note)
                         newCellArray[0].note_Im_In = resizer.noteReference
                         lclNoteRef.note_Modification_Object.lowest_X_Index = newCellArray[0].dataCell_X_Number
-                        lclNoteRef.highest_X_Index = newCellArray[0].dataCell_X_Number
+                        lclNoteRef.note_Modification_Object.highest_X_Index = newCellArray[0].dataCell_X_Number
                         for cell in newCellArray{
                             if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                             if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
@@ -411,7 +411,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         lclNoteRef.note_Modification_Object.lowest_X_Index = newCellArray[0].dataCell_X_Number
                         newCellArray[1].change_Type(newType: .end_Note)
                         newCellArray[1].note_Im_In = resizer.noteReference
-                        lclNoteRef.highest_X_Index = newCellArray[1].dataCell_X_Number
+                        lclNoteRef.note_Modification_Object.highest_X_Index = newCellArray[1].dataCell_X_Number
                         for cell in newCellArray{
                             if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                             if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
@@ -438,7 +438,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         
                         newCellArray[finalIndex].change_Type(newType: .end_Note)
                         newCellArray[finalIndex].note_Im_In = resizer.noteReference
-                        lclNoteRef.highest_X_Index = newCellArray[finalIndex].dataCell_X_Number
+                        lclNoteRef.note_Modification_Object.highest_X_Index = newCellArray[finalIndex].dataCell_X_Number
                         for cell in newCellArray {
                             if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                             if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
@@ -465,7 +465,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             newCellArray[0].change_Type(newType: .single_Note)
                             newCellArray[0].note_Im_In = resizer.noteReference
                             lclNoteRef.note_Modification_Object.lowest_X_Index = newCellArray[0].dataCell_X_Number
-                            lclNoteRef.highest_X_Index = newCellArray[0].dataCell_X_Number
+                            lclNoteRef.note_Modification_Object.highest_X_Index = newCellArray[0].dataCell_X_Number
                             for cell in newCellArray{
                                 if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                                 if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
@@ -483,7 +483,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             lclNoteRef.note_Modification_Object.lowest_X_Index = newCellArray[0].dataCell_X_Number
                             newCellArray[1].change_Type(newType: .end_Note)
                             newCellArray[1].note_Im_In = resizer.noteReference
-                            lclNoteRef.highest_X_Index = newCellArray[1].dataCell_X_Number
+                            lclNoteRef.note_Modification_Object.highest_X_Index = newCellArray[1].dataCell_X_Number
                             for cell in newCellArray{
                                 if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                                 if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
@@ -508,7 +508,7 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                             }
                             newCellArray[finalIndex].change_Type(newType: .end_Note)
                             newCellArray[finalIndex].note_Im_In = resizer.noteReference
-                            lclNoteRef.highest_X_Index = newCellArray[finalIndex].dataCell_X_Number
+                            lclNoteRef.note_Modification_Object.highest_X_Index = newCellArray[finalIndex].dataCell_X_Number
                             for cell in newCellArray {
                                 if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                                 if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
