@@ -67,10 +67,11 @@ class Right_Side_Resizer_Garage {
                 //print("lcl_LeftwardBarrierDataX: ",lcl_LeftwardBarrierDataX.description)
                 new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index <= currentHalfCellIndexParam && $0.dataCell_X_Number >= lcl_LeftwardBarrierDataX}
                     //.filter{$0.four_Four_Half_Cell_Index <= currentHalfCellIndexParam && $0.four_Four_Half_Cell_Index >= lcl_minHalfCellIndex}
+                if let minNewNote = new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                    print("minNewNote X : ",minNewNote.dataCell_X_Number,",lcl_LeftwardBarrierDataX: ",lcl_LeftwardBarrierDataX)
+                }
             }
-            if let minNewNote = new_Note_Cell_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-                print("minNewNote X : ",minNewNote.dataCell_X_Number)
-            }
+            
         }
     }
     
