@@ -67,24 +67,24 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         //self.dataCellArray = cellArray
         // transferred to new object ========================================
         
-        var minSet = Set<Underlying_Data_Cell>()
-        if cellArray.count == 2{
-            minSet.insert(cellArray[0])
-            minSet.insert(cellArray[1])
-        }
-        else if cellArray.count > 2 {
-            minSet.insert(cellArray[0])
-            minSet.insert(cellArray[1])
-            minSet.insert(cellArray[2])
-        }
+//        var minSet = Set<Underlying_Data_Cell>()
+//        if cellArray.count == 2{
+//            minSet.insert(cellArray[0])
+//            minSet.insert(cellArray[1])
+//        }
+//        else if cellArray.count > 2 {
+//            minSet.insert(cellArray[0])
+//            minSet.insert(cellArray[1])
+//            minSet.insert(cellArray[2])
+//        }
 
         self.note_Modification_Object = Note_Modification_Object(dataCellArray: cellArray, lowest_X_Index: cellArray[0].dataCell_X_Number
                                                                  , highest_X_Index: cellArray[cellArray.count-1].dataCell_X_Number, containing_Data_Line: containingLineParam
                                                                  , highestFourFourHalfCellIndex: cellArray[cellArray.count-1].four_Four_Half_Cell_Index
                                                                  , lowestFourFourHalfCellIndex: cellArray[0].four_Four_Half_Cell_Index
                                                                  , highestSixEightHalfCellIndex: cellArray[cellArray.count-1].six_Eight_Half_Cell_Index
-                                                                 , lowestSixEightHalfCellIndex: cellArray[0].six_Eight_Half_Cell_Index
-                                                                 , minimumSet: minSet)
+                                                                 , lowestSixEightHalfCellIndex: cellArray[0].six_Eight_Half_Cell_Index)
+//                                                                 , minimumSet: minSet)
     }
     
     public func yieldNoteData()->(Int,Int,Int){
@@ -118,7 +118,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     }
     
     var highlighted : Bool = false {
-        didSet{
+        didSet {
             if highlighted == true {
                 for dataCell in note_Modification_Object.dataCellArray {
                     dataCell.change_Highlight(highlightStatusParam: true)
@@ -145,7 +145,10 @@ class Note_Modification_Object{
     var lowestSixEightHalfCellIndex : Int
     var minimumSet : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
-    init(dataCellArray: [Underlying_Data_Cell], lowest_X_Index: Int, highest_X_Index: Int, containing_Data_Line: Underlying_Data_Line, highestFourFourHalfCellIndex: Int, lowestFourFourHalfCellIndex: Int, highestSixEightHalfCellIndex: Int, lowestSixEightHalfCellIndex: Int, minimumSet: Set<Underlying_Data_Cell>) {
+    init(dataCellArray: [Underlying_Data_Cell], lowest_X_Index: Int, highest_X_Index: Int, containing_Data_Line: Underlying_Data_Line, highestFourFourHalfCellIndex: Int, lowestFourFourHalfCellIndex: Int, highestSixEightHalfCellIndex: Int, lowestSixEightHalfCellIndex: Int) {
+        
+        
+        
         self.dataCellArray = dataCellArray
         self.lowest_X_Index = lowest_X_Index
         self.highest_X_Index = highest_X_Index
@@ -154,7 +157,20 @@ class Note_Modification_Object{
         self.lowestFourFourHalfCellIndex = lowestFourFourHalfCellIndex
         self.highestSixEightHalfCellIndex = highestSixEightHalfCellIndex
         self.lowestSixEightHalfCellIndex = lowestSixEightHalfCellIndex
-        self.minimumSet = minimumSet
+        //self.minimumSet = minimumSet
+        
+        var minSet = Set<Underlying_Data_Cell>()
+        if self.dataCellArray.count == 2{
+            minSet.insert(self.dataCellArray[0])
+            minSet.insert(self.dataCellArray[1])
+        }
+        else if self.dataCellArray.count > 2 {
+            minSet.insert(self.dataCellArray[0])
+            minSet.insert(self.dataCellArray[1])
+            minSet.insert(self.dataCellArray[2])
+        }
+        
+        self.minimumSet = minSet
     }
     
     // do like note rewrites in here instead

@@ -242,8 +242,6 @@ public class Central_State : ObservableObject {
         }
     }
 
-    
-    
     var timing_Change_Compensation_Index : Int? = nil
 
     var currentYCursor_Slider_Position : Int = 0
@@ -257,7 +255,6 @@ public class Central_State : ObservableObject {
             currLineSet = Set(currLine.dataCellArray)
         }
     }
-    
     
     func accessCursorSet(newSet:Set<Underlying_Data_Cell>){
         current_Cursor_Set.removeAll()
@@ -318,7 +315,6 @@ public class Central_State : ObservableObject {
     centralState_Data_Evaluation()
     }
     
-
     public func resizeModeActions(action:E_ResizeActions){
         if let lclResizeHelper = resize_Helper {
         if currentPatternMode == .resize_Mode {
@@ -377,20 +373,14 @@ public class Central_State : ObservableObject {
                 lclResizeHelper.resizeSubMode = .rightSideSubMode
             }
         }
-            
-            
-        }
-        
+    }
     }
     
     
     
     
     
-    
-    
-    
-    
+
 }
 
 public enum E_ResizeActions {
