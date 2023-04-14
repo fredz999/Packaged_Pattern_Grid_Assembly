@@ -157,7 +157,8 @@ public class Modifiable_Note_Data{
         if newDataCellSet.count > 0{
 
             let newDataCellArray = newDataCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-            self.dataCellArray.removeAll()
+            noteParent.resetCells()
+            self.dataCellArray.removeAll()// this actually has to reset the note cells as well
             self.dataCellArray = newDataCellArray
             
             if self.dataCellArray.count == 1{
