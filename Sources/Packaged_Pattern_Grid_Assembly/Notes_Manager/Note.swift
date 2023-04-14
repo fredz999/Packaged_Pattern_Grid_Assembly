@@ -153,6 +153,7 @@ public class Modifiable_Note_Data{
     
     
     func applyModification(newDataCellSet: Set<Underlying_Data_Cell>){
+        print(" applyModification by set called")
         if newDataCellSet.count > 0{
 
             let newDataCellArray = newDataCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
