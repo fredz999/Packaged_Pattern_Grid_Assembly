@@ -151,43 +151,151 @@ public class Modifiable_Note_Data{
         noteParent = parentParam
     }
     
-    func applyModification(newDataCellArray: [Underlying_Data_Cell]){
-        let newDataCellSet = Set<Underlying_Data_Cell>(newDataCellArray)
-        
-        self.dataCellArray.removeAll()
-        self.dataCellArray = newDataCellArray
-        
-        if let minCell = newDataCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            self.lowest_X_Index = minCell.dataCell_X_Number
-        }
-        if let maxCell = newDataCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-            self.highest_X_Index = maxCell.dataCell_X_Number
-        }
-        
-        self.containing_Data_Line = newDataCellArray[0].parentLine
-        
-        self.highestFourFourHalfCellIndex = newDataCellArray[newDataCellArray.count-1].four_Four_Half_Cell_Index
-        self.lowestFourFourHalfCellIndex = newDataCellArray[0].four_Four_Half_Cell_Index
-        
-        self.highestSixEightHalfCellIndex = newDataCellArray[newDataCellArray.count-1].six_Eight_Half_Cell_Index
-        self.lowestSixEightHalfCellIndex = newDataCellArray[0].six_Eight_Half_Cell_Index
-        
-        self.minimumSet.removeAll()
-        
-        if self.dataCellArray.count == 2 {
-            self.minimumSet.insert(self.dataCellArray[0])
-            self.minimumSet.insert(self.dataCellArray[1])
-        }
-        else if self.dataCellArray.count > 2 {
-            self.minimumSet.insert(self.dataCellArray[0])
-            self.minimumSet.insert(self.dataCellArray[1])
-            self.minimumSet.insert(self.dataCellArray[2])
-        }
-        for cell in self.dataCellArray{
-            cell.note_Im_In = noteParent
-        }
+    
+    func applyModification(newDataCellSet: Set<Underlying_Data_Cell>){
+        if newDataCellSet.count > 0{
 
+            let newDataCellArray = newDataCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+            self.dataCellArray.removeAll()
+            self.dataCellArray = newDataCellArray
+            
+            if self.dataCellArray.count == 1{
+                self.dataCellArray[0].change_Type(newType: .single_Note)
+                for cell in self.dataCellArray{
+                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                }
+            }
+            else if self.dataCellArray.count == 2{
+                self.dataCellArray[0].change_Type(newType: .start_Note)
+                self.dataCellArray[1].change_Type(newType: .end_Note)
+                for cell in self.dataCellArray{
+                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                }
+            }
+            else if self.dataCellArray.count > 2{
+                let firstIndex = 0
+                let finalIndex = self.dataCellArray.count-1
+                self.dataCellArray[firstIndex].change_Type(newType: .start_Note)
+                for x in 1..<finalIndex{
+                    self.dataCellArray[x].change_Type(newType: .mid_Note)
+                }
+                self.dataCellArray[finalIndex].change_Type(newType: .end_Note)
+                for cell in self.dataCellArray {
+                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                }
+            }
+            
+            if let minCell = newDataCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                self.lowest_X_Index = minCell.dataCell_X_Number
+            }
+            if let maxCell = newDataCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                self.highest_X_Index = maxCell.dataCell_X_Number
+            }
+            
+            self.containing_Data_Line = newDataCellArray[0].parentLine
+            
+            self.highestFourFourHalfCellIndex = newDataCellArray[newDataCellArray.count-1].four_Four_Half_Cell_Index
+            self.lowestFourFourHalfCellIndex = newDataCellArray[0].four_Four_Half_Cell_Index
+            
+            self.highestSixEightHalfCellIndex = newDataCellArray[newDataCellArray.count-1].six_Eight_Half_Cell_Index
+            self.lowestSixEightHalfCellIndex = newDataCellArray[0].six_Eight_Half_Cell_Index
+            
+            
+            self.lowest_X_Index = self.dataCellArray[0].dataCell_X_Number
+            self.highest_X_Index = self.dataCellArray[self.dataCellArray.count-1].dataCell_X_Number
+            
+            self.minimumSet.removeAll()
+            
+            if self.dataCellArray.count == 2 {
+                self.minimumSet.insert(self.dataCellArray[0])
+                self.minimumSet.insert(self.dataCellArray[1])
+            }
+            else if self.dataCellArray.count > 2 {
+                self.minimumSet.insert(self.dataCellArray[0])
+                self.minimumSet.insert(self.dataCellArray[1])
+                self.minimumSet.insert(self.dataCellArray[2])
+            }
+            
+            for cell in self.dataCellArray{
+                cell.note_Im_In = noteParent
+            }
+            
+        }
     }
+    
+    
+    func applyModification(newDataCellArray: [Underlying_Data_Cell]){
+        if newDataCellArray.count > 0{
+            
+            let newDataCellSet = Set<Underlying_Data_Cell>(newDataCellArray)
+            self.dataCellArray.removeAll()
+            self.dataCellArray = newDataCellArray
+            
+            if self.dataCellArray.count == 1{
+                self.dataCellArray[0].change_Type(newType: .single_Note)
+                for cell in self.dataCellArray{
+                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                }
+            }
+            else if self.dataCellArray.count == 2{
+                self.dataCellArray[0].change_Type(newType: .start_Note)
+                self.dataCellArray[1].change_Type(newType: .end_Note)
+                for cell in self.dataCellArray{
+                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                }
+            }
+            else if self.dataCellArray.count > 2{
+                let firstIndex = 0
+                let finalIndex = self.dataCellArray.count-1
+                self.dataCellArray[firstIndex].change_Type(newType: .start_Note)
+                for x in 1..<finalIndex{
+                    self.dataCellArray[x].change_Type(newType: .mid_Note)
+                }
+                self.dataCellArray[finalIndex].change_Type(newType: .end_Note)
+                for cell in self.dataCellArray {
+                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                }
+            }
+            
+            if let minCell = newDataCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                self.lowest_X_Index = minCell.dataCell_X_Number
+            }
+            if let maxCell = newDataCellSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                self.highest_X_Index = maxCell.dataCell_X_Number
+            }
+            
+            self.containing_Data_Line = newDataCellArray[0].parentLine
+            
+            self.highestFourFourHalfCellIndex = newDataCellArray[newDataCellArray.count-1].four_Four_Half_Cell_Index
+            self.lowestFourFourHalfCellIndex = newDataCellArray[0].four_Four_Half_Cell_Index
+            
+            self.highestSixEightHalfCellIndex = newDataCellArray[newDataCellArray.count-1].six_Eight_Half_Cell_Index
+            self.lowestSixEightHalfCellIndex = newDataCellArray[0].six_Eight_Half_Cell_Index
+            
+            
+            self.lowest_X_Index = self.dataCellArray[0].dataCell_X_Number
+            self.highest_X_Index = self.dataCellArray[self.dataCellArray.count-1].dataCell_X_Number
+            
+            self.minimumSet.removeAll()
+            
+            if self.dataCellArray.count == 2 {
+                self.minimumSet.insert(self.dataCellArray[0])
+                self.minimumSet.insert(self.dataCellArray[1])
+            }
+            else if self.dataCellArray.count > 2 {
+                self.minimumSet.insert(self.dataCellArray[0])
+                self.minimumSet.insert(self.dataCellArray[1])
+                self.minimumSet.insert(self.dataCellArray[2])
+            }
+            
+            for cell in self.dataCellArray{
+                cell.note_Im_In = noteParent
+            }
+            
+        }
+    }
+
+    
     
     // do like note rewrites in here instead
 }
