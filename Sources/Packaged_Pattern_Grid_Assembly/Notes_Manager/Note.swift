@@ -152,7 +152,7 @@ public class Modifiable_Note_Data{
     }
     
     
-    func applyModification(newDataCellSet: Set<Underlying_Data_Cell>){
+    func reWrite_Note_Data(newDataCellSet: Set<Underlying_Data_Cell>){
         print(" applyModification by set called")
         if newDataCellSet.count > 0{
 
@@ -161,14 +161,16 @@ public class Modifiable_Note_Data{
             self.dataCellArray = newDataCellArray
             
             if self.dataCellArray.count == 1{
-                self.dataCellArray[0].change_Type(newType: .single_Note)
+                if self.dataCellArray[0].currentType != .single_Note{self.dataCellArray[0].change_Type(newType: .single_Note)}
                 for cell in self.dataCellArray{
                     if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                 }
             }
             else if self.dataCellArray.count == 2{
-                self.dataCellArray[0].change_Type(newType: .start_Note)
-                self.dataCellArray[1].change_Type(newType: .end_Note)
+                //self.dataCellArray[0].change_Type(newType: .start_Note)
+                if self.dataCellArray[0].currentType != .start_Note{self.dataCellArray[0].change_Type(newType: .start_Note)}
+                //self.dataCellArray[1].change_Type(newType: .end_Note)
+                if self.dataCellArray[1].currentType != .end_Note{self.dataCellArray[1].change_Type(newType: .end_Note)}
                 for cell in self.dataCellArray{
                     if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                 }
@@ -176,13 +178,21 @@ public class Modifiable_Note_Data{
             else if self.dataCellArray.count > 2{
                 let firstIndex = 0
                 let finalIndex = self.dataCellArray.count-1
-                self.dataCellArray[firstIndex].change_Type(newType: .start_Note)
+                
+                //self.dataCellArray[firstIndex].change_Type(newType: .start_Note)
+                if self.dataCellArray[firstIndex].currentType != .start_Note{self.dataCellArray[firstIndex].change_Type(newType: .start_Note)}
+                
                 for x in 1..<finalIndex{
-                    self.dataCellArray[x].change_Type(newType: .mid_Note)
+                    //self.dataCellArray[x].change_Type(newType: .mid_Note)
+                    if self.dataCellArray[x].currentType != .mid_Note{self.dataCellArray[x].change_Type(newType: .mid_Note)}
                 }
-                self.dataCellArray[finalIndex].change_Type(newType: .end_Note)
+                //self.dataCellArray[finalIndex].change_Type(newType: .end_Note)
+                if self.dataCellArray[finalIndex].currentType != .end_Note{self.dataCellArray[finalIndex].change_Type(newType: .end_Note)}
+                
                 for cell in self.dataCellArray {
                     if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                    if cell.in_Potential_Set == true {cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
+                    cell.note_Im_In = noteParent
                 }
             }
             
@@ -217,9 +227,9 @@ public class Modifiable_Note_Data{
                 self.minimumSet.insert(self.dataCellArray[2])
             }
             
-            for cell in self.dataCellArray{
-                cell.note_Im_In = noteParent
-            }
+//            for cell in self.dataCellArray{
+//                cell.note_Im_In = noteParent
+//            }
             
         }
     }

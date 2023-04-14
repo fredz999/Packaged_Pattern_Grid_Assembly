@@ -22,7 +22,6 @@ class WriteNote_Helper: P_Selectable_Mode {
                 initial_WriteOnCell = lclActivationCell
             }
         }
-        //return generateModeDescriptorString()
     }
     
     func generateModeDescriptorString()->String{
@@ -41,15 +40,12 @@ class WriteNote_Helper: P_Selectable_Mode {
             if initial_WriteOnCell != nil{initial_WriteOnCell=nil}
         }
     }
-    
-    //var note_Collection_Ref : Note_Collection
-    
+
     var parentCentralState : Central_State
     
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
         mode_Active = false
-        //note_Collection_Ref = note_CollectionParam
         parentCentralState = parentCentral_State_Param
     }
     
@@ -69,7 +65,6 @@ class WriteNote_Helper: P_Selectable_Mode {
         }
     }
 
-    
     func establish_Potential_Cells_Set(){
         if let lclInitialCell = initial_WriteOnCell {
     
@@ -216,7 +211,6 @@ class WriteNote_Helper: P_Selectable_Mode {
     
         }
     }
-
     
 }
 

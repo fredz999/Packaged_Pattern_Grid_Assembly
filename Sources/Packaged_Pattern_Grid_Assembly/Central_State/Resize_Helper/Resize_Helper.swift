@@ -464,45 +464,48 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                 for resizer in right_Side_Resizer_Garage_Array {
                         if let lclNoteRef = resizer.noteReference {
                             if let lclModifiableNoteData = lclNoteRef.modifiable_Note_Data{
-                            lclModifiableNoteData.dataCellArray.removeAll()
+                            //lclModifiableNoteData.dataCellArray.removeAll()
+                                
                             if resizer.new_Note_Cell_Set.count == 1 {
-                                let newCellArray = Array(resizer.new_Note_Cell_Set)
-                                newCellArray[0].change_Type(newType: .single_Note)
-                                newCellArray[0].note_Im_In = resizer.noteReference
-                                lclModifiableNoteData.lowest_X_Index = newCellArray[0].dataCell_X_Number
-                                lclModifiableNoteData.highest_X_Index = newCellArray[0].dataCell_X_Number
-                                for cell in newCellArray{
-                                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
-                                    if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
-                                }
-                                lclModifiableNoteData.dataCellArray = newCellArray
-                                lclModifiableNoteData.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
-                                lclModifiableNoteData.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
-                                lclModifiableNoteData.highestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
-                                lclModifiableNoteData.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
+//                                let newCellArray = Array(resizer.new_Note_Cell_Set)
+//                                newCellArray[0].change_Type(newType: .single_Note)
+//                                newCellArray[0].note_Im_In = resizer.noteReference
+//                                lclModifiableNoteData.lowest_X_Index = newCellArray[0].dataCell_X_Number
+//                                lclModifiableNoteData.highest_X_Index = newCellArray[0].dataCell_X_Number
+//                                for cell in newCellArray{
+//                                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+//                                    if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
+//                                }
+//                                lclModifiableNoteData.dataCellArray = newCellArray
+//                                lclModifiableNoteData.highestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+//                                lclModifiableNoteData.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+//                                lclModifiableNoteData.highestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
+//                                lclModifiableNoteData.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
+                                lclModifiableNoteData.reWrite_Note_Data(newDataCellSet: resizer.new_Note_Cell_Set)
                             }
                             else if resizer.new_Note_Cell_Set.count == 2 {
-                                let newCellArray = resizer.new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-                                newCellArray[0].change_Type(newType: .start_Note)
-                                newCellArray[0].note_Im_In = resizer.noteReference
-                                lclModifiableNoteData.lowest_X_Index = newCellArray[0].dataCell_X_Number
-                                newCellArray[1].change_Type(newType: .end_Note)
-                                newCellArray[1].note_Im_In = resizer.noteReference
-                                lclModifiableNoteData.highest_X_Index = newCellArray[1].dataCell_X_Number
-                                for cell in newCellArray{
-                                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
-                                    if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
-                                }
-                                lclModifiableNoteData.dataCellArray = newCellArray
-                                lclModifiableNoteData.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
-                                lclModifiableNoteData.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
-                                lclModifiableNoteData.highestSixEightHalfCellIndex = newCellArray[1].six_Eight_Half_Cell_Index
-                                lclModifiableNoteData.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
+//                                let newCellArray = resizer.new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//                                newCellArray[0].change_Type(newType: .start_Note)
+//                                newCellArray[0].note_Im_In = resizer.noteReference
+//                                lclModifiableNoteData.lowest_X_Index = newCellArray[0].dataCell_X_Number
+//                                newCellArray[1].change_Type(newType: .end_Note)
+//                                newCellArray[1].note_Im_In = resizer.noteReference
+//                                lclModifiableNoteData.highest_X_Index = newCellArray[1].dataCell_X_Number
+//                                for cell in newCellArray{
+//                                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+//                                    if cell.note_Im_In != resizer.noteReference{cell.note_Im_In = lclNoteRef}
+//                                }
+//                                lclModifiableNoteData.dataCellArray = newCellArray
+//                                lclModifiableNoteData.highestFourFourHalfCellIndex = newCellArray[1].four_Four_Half_Cell_Index
+//                                lclModifiableNoteData.lowestFourFourHalfCellIndex = newCellArray[0].four_Four_Half_Cell_Index
+//                                lclModifiableNoteData.highestSixEightHalfCellIndex = newCellArray[1].six_Eight_Half_Cell_Index
+//                                lclModifiableNoteData.lowestSixEightHalfCellIndex = newCellArray[0].six_Eight_Half_Cell_Index
+                                lclModifiableNoteData.reWrite_Note_Data(newDataCellSet: resizer.new_Note_Cell_Set)
                             }
                             else if resizer.new_Note_Cell_Set.count > 2 {
                                 // try for the lclModifiableNoteData rewrite here
                                 
-                                lclModifiableNoteData.applyModification(newDataCellSet: resizer.new_Note_Cell_Set)
+                                lclModifiableNoteData.reWrite_Note_Data(newDataCellSet: resizer.new_Note_Cell_Set)
                                 
 //                                let newCellArray = resizer.new_Note_Cell_Set.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
 //                                lclModifiableNoteData.applyModification(newDataCellArray: newCellArray)

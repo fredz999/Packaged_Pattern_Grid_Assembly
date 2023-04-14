@@ -123,15 +123,7 @@ public class Note_Collection : ObservableObject {
         }
 
         if local_Cell_Array.count > 0 {
-            let line = parentCentralState.data_Grid.dataLineArray[local_Cell_Array[0].dataCell_Y_Number]
-            
-//            let modObject = Note_Modification_Object(dataCellArray: local_Cell_Array, lowest_X_Index: local_Cell_Array[0].dataCell_X_Number
-//                     , highest_X_Index: local_Cell_Array[local_Cell_Array.count-1].dataCell_X_Number, containing_Data_Line: line
-//                     , highestFourFourHalfCellIndex: local_Cell_Array[local_Cell_Array.count-1].four_Four_Half_Cell_Index
-//                     , lowestFourFourHalfCellIndex: local_Cell_Array[0].four_Four_Half_Cell_Index
-//                     , highestSixEightHalfCellIndex: local_Cell_Array[local_Cell_Array.count-1].six_Eight_Half_Cell_Index
-//                     , lowestSixEightHalfCellIndex: local_Cell_Array[0].six_Eight_Half_Cell_Index, parentParam: self)
-            
+            let line = parentCentralState.data_Grid.dataLineArray[local_Cell_Array[0].parentLine.line_Y_Num]
             let note = Note(cellArray: local_Cell_Array, parentParam: self, yParam: local_Cell_Array[0].dataCell_Y_Number, containingLineParam: line)
             noteArray.append(note)
             if highlightAfterWrite == true{note.highlighted = true}

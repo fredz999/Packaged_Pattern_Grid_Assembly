@@ -52,11 +52,11 @@ class Move_Helper: P_Selectable_Mode {
                             , note_High_Index: lclModifiable_Note_Data.highest_X_Index
                             , note_Y_Index_Param: lclModifiable_Note_Data.containing_Data_Line.line_Y_Num
                             , snapshotNoteIdParam: selectedNote.id)
-                            let movingCellSetHolder = Moving_Cell_Set_Holder(initial_Snapshot_Param: note_Movement_SnapShot)
+                            let movingCellSetHolder = Moving_Cell_Set_Holder(initial_Snapshot_Param: note_Movement_SnapShot, noteParam: selectedNote)
                             moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
                         }
-                        
                     }
+                    
                 }
             }
         }
@@ -65,7 +65,7 @@ class Move_Helper: P_Selectable_Mode {
     
     func generateModeDescriptorString() -> String {
         var retVal = "Move Mode"
-        if deleteActive == false {
+        if dont_Copy_Just_Move == false {
             retVal = "Copy Mode"
         }
         return retVal
@@ -74,11 +74,11 @@ class Move_Helper: P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active=false
-            writeMovedNote_DeleteOldNote()
+            update_Note()
         }
     }
     
-    public var deleteActive : Bool = true
+    public var dont_Copy_Just_Move : Bool = true
     
     var parentCentralState : Central_State
     var snapshot_Cursor_X : Int?
@@ -138,32 +138,53 @@ class Move_Helper: P_Selectable_Mode {
         }
     }
 
-    func writeMovedNote_DeleteOldNote(){
-        
-        for moving_Cell_Set in moving_Cell_Set_Holder_Array {
-            
-            if moving_Cell_Set.potential_Moved_Set.count > 0 {
-                
-                if let currNoteCollection = parentCentralState.currentNoteCollection {
-                    
-                    if deleteActive == true {
-                        currNoteCollection.delete_Note_By_Id(note_Id_Param: moving_Cell_Set.initial_Snapshot.snapShot_Note_Id_Param)
-                    }
-                    
-                    for cell in moving_Cell_Set.potential_Moved_Set {
-                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                    }
-                    
-                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
-
+    func update_Note(){
+        // ok that is is moved
+        if dont_Copy_Just_Move == true {
+            for moving_Cell_Set in moving_Cell_Set_Holder_Array {
+                if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data{
+                    modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
                 }
-                
             }
         }
-        // highlight the notes here
+        else if dont_Copy_Just_Move == false {
+            //i.e you copy and write a new one
+            for moving_Cell_Set in moving_Cell_Set_Holder_Array {
+                for cell in moving_Cell_Set.potential_Moved_Set {
+                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                }
+                if let currNoteCollection = parentCentralState.currentNoteCollection {
+                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
+                }
+            }
+        }
         
         nil_Cell_Sets()
     }
+//    func update_Note(){
+//
+//        for moving_Cell_Set in moving_Cell_Set_Holder_Array {
+//
+//            if moving_Cell_Set.potential_Moved_Set.count > 0 {
+//
+//                if let currNoteCollection = parentCentralState.currentNoteCollection {
+//
+//                    if deleteActive == true {
+//                        currNoteCollection.delete_Note_By_Id(note_Id_Param: moving_Cell_Set.initial_Snapshot.snapShot_Note_Id_Param)
+//                    }
+//
+//                    for cell in moving_Cell_Set.potential_Moved_Set {
+//                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//                    }
+//
+//                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
+//
+//                }
+//
+//            }
+//        }
+//        nil_Cell_Sets()
+//    }
     
     func nil_Cell_Sets(){
         moving_Cell_Set_Holder_Array.removeAll()
@@ -196,6 +217,7 @@ class Note_Movement_SnapShot{
 
 class Moving_Cell_Set_Holder {
     
+    var noteImIn : Note
     var initial_Snapshot : Note_Movement_SnapShot
 
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
@@ -226,7 +248,8 @@ class Moving_Cell_Set_Holder {
         }
     }
     
-    init(initial_Snapshot_Param:Note_Movement_SnapShot){
+    init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){
+        noteImIn = noteParam
         initial_Snapshot = initial_Snapshot_Param
     }
     
