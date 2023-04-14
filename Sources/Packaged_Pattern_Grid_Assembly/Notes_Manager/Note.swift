@@ -160,7 +160,7 @@ class Note_Modification_Object{
         //self.minimumSet = minimumSet
         
         var minSet = Set<Underlying_Data_Cell>()
-        if self.dataCellArray.count == 2{
+        if self.dataCellArray.count == 2 {
             minSet.insert(self.dataCellArray[0])
             minSet.insert(self.dataCellArray[1])
         }
