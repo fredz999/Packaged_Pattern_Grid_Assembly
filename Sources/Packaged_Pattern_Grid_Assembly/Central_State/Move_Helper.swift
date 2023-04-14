@@ -141,6 +141,7 @@ class Move_Helper: P_Selectable_Mode {
     func update_Note(){
         // ok that is is moved
         if dont_Copy_Just_Move == true {
+            print("dont_Copy_Just_Move == true")
             for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                 if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data{
                     modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
@@ -148,7 +149,7 @@ class Move_Helper: P_Selectable_Mode {
             }
         }
         else if dont_Copy_Just_Move == false {
-            //i.e you copy and write a new one
+            print("dont_Copy_Just_Move == false")
             for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                 for cell in moving_Cell_Set.potential_Moved_Set {
                     cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
@@ -158,9 +159,9 @@ class Move_Helper: P_Selectable_Mode {
                 }
             }
         }
-        
         nil_Cell_Sets()
     }
+    
 //    func update_Note(){
 //
 //        for moving_Cell_Set in moving_Cell_Set_Holder_Array {
