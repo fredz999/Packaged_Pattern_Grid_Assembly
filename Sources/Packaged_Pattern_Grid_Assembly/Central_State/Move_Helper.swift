@@ -47,12 +47,15 @@ class Move_Helper: P_Selectable_Mode {
                     let selectedNotes = lclCurrNoteCollection.noteArray.filter{$0.highlighted == true}
                     
                     for selectedNote in selectedNotes {
-                        let note_Movement_SnapShot = Note_Movement_SnapShot(note_Low_Index: selectedNote.note_Modification_Object.lowest_X_Index
-                                                                            , note_High_Index: selectedNote.note_Modification_Object.highest_X_Index, note_Y_Index_Param: selectedNote.note_Modification_Object.containing_Data_Line.line_Y_Num 
-                            //.containing_Data_Line.line_Y_Num    //.note_Y_Number
-                        , snapshotNoteIdParam: selectedNote.id)
-                        let movingCellSetHolder = Moving_Cell_Set_Holder(initial_Snapshot_Param: note_Movement_SnapShot)
-                        moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
+                        if let lclModifiable_Note_Data = selectedNote.modifiable_Note_Data{
+                            let note_Movement_SnapShot = Note_Movement_SnapShot(note_Low_Index: lclModifiable_Note_Data.lowest_X_Index
+                            , note_High_Index: lclModifiable_Note_Data.highest_X_Index
+                            , note_Y_Index_Param: lclModifiable_Note_Data.containing_Data_Line.line_Y_Num
+                            , snapshotNoteIdParam: selectedNote.id)
+                            let movingCellSetHolder = Moving_Cell_Set_Holder(initial_Snapshot_Param: note_Movement_SnapShot)
+                            moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
+                        }
+                        
                     }
                 }
             }
