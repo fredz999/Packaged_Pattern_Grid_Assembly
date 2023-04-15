@@ -62,7 +62,6 @@ class Right_Side_Resizer_Garage {
                 }
             }
             if currentHalfCellIndexParam >= lcl_minHalfCellIndex {
-                print("currentHalfCellIndexParam >= lcl_minHalfCellIndex")
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number >= lcl_LeftwardBarrierDataX}
                 new_Note_Cell_Set = available_Cell_Set.filter{$0.four_Four_Half_Cell_Index <= currentHalfCellIndexParam}
             }
@@ -117,15 +116,14 @@ class Right_Side_Resizer_Garage {
     
     func paintCells(){
         for cell in available_Cell_Set {
-            //cell.reset_To_Original()
+            cell.reset_To_Original()
             if cell.in_Resize_Set == true {
                 cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
             }
         }
 
         for cell in new_Note_Cell_Set {
-            //cell.reset_To_Original()
-            cell.partial_Reset_To_Original()
+            cell.reset_To_Original()
             if cell.in_Resize_Set == false {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
             }
