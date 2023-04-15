@@ -297,6 +297,9 @@ public class Central_State : ObservableObject {
                 }
             }
         }
+        didSet{
+            print("currX: ",currentData.dataCell_X_Number,",currY: ",currentData.parentLine.line_Y_Num)
+        }
     }
     
     var currLineSet = Set<Underlying_Data_Cell>()
