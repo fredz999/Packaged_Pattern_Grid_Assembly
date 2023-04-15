@@ -124,7 +124,8 @@ class Right_Side_Resizer_Garage {
         }
 
         for cell in new_Note_Cell_Set {
-            cell.reset_To_Original()
+            //cell.reset_To_Original()
+            cell.partial_Reset_To_Original()
             if cell.in_Resize_Set == false {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
             }
