@@ -47,7 +47,7 @@ public class Modifiable_Note_Data{
     
     
     func reWrite_Note_Data(newDataCellSet: Set<Underlying_Data_Cell>){
-        print("newDataCellSet: ",newDataCellSet.count)
+        
         if newDataCellSet.count > 0{
 
             let newDataCellArray = newDataCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
@@ -62,6 +62,7 @@ public class Modifiable_Note_Data{
                 }
             }
             else if self.dataCellArray.count == 2{
+                print("self.dataCellArray.count == 2,noteParent?:")
                 if self.dataCellArray[0].currentType != .start_Note{self.dataCellArray[0].change_Type(newType: .start_Note)}
                 if self.dataCellArray[1].currentType != .end_Note{self.dataCellArray[1].change_Type(newType: .end_Note)}
                 for cell in self.dataCellArray{
