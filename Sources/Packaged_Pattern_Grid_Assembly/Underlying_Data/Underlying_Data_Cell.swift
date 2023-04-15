@@ -22,7 +22,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public var dataCell_X_Number : Int
     
-    public var dataCell_Y_Number : Int
+    //public var dataCell_Y_Number : Int
 
     var in_Prohibited_Set : Bool = false
     
@@ -229,7 +229,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     six_Eight_Half_Cell_Index = six_Eight_Half_Cell_Index_Param
 
     dataCell_X_Number = xNumParam
-    dataCell_Y_Number = yNumParam
+    //dataCell_Y_Number = yNumParam
     parentLine = parentLineParam
     
     fourStatus = fourStatusParam
@@ -280,7 +280,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 
                 lcl_Data_Vals.updateValsFromNewData(
                 newXNum: dataCell_X_Number
-                , newYNum: dataCell_Y_Number
+                , newYNum: parentLine.line_Y_Num //dataCell_Y_Number
                 , newCellNoteStatus: note_Reset_Status
                 , newNoteImIn: nil)
                 

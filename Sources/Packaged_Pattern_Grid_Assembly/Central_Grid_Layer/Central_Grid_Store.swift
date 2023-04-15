@@ -89,7 +89,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         
         //TODO: cell_Swap_Underlying_Data needs updated to include visual config
         data_Vals_Holder = Data_Vals_Holder(xNumParam: underlying_Data_Cell_Param.dataCell_X_Number
-        , yNumParam: underlying_Data_Cell_Param.dataCell_Y_Number
+        , yNumParam: underlying_Data_Cell_Param.parentLine.line_Y_Num
         , typeParam: underlying_Data_Cell_Param.currentType
         , cellWidthParam:widthParam, cellHeightParam: dimensions.pattern_Grid_Sub_Cell_Height
         , xOffsetParam:xOffsetParam)
@@ -106,7 +106,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
-        , newYNum: new_Data_Cell.dataCell_Y_Number
+        , newYNum: new_Data_Cell.parentLine.line_Y_Num
         , newCellNoteStatus: new_Data_Cell.currentType
         , newNoteImIn: new_Data_Cell.note_Im_In)
         

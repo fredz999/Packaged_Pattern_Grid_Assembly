@@ -25,7 +25,7 @@ class Multi_Select_Helper : P_Selectable_Mode {
             mode_Active = true
             if let lclActivationCell = activationCell{
                 snapshot_Multi_Select_Cursor_X = lclActivationCell.dataCell_X_Number
-                snapshot_Multi_Select_Cursor_Y = lclActivationCell.dataCell_Y_Number
+                snapshot_Multi_Select_Cursor_Y = lclActivationCell.parentLine.line_Y_Num
             }
         }
         //return generateModeDescriptorString()
@@ -145,9 +145,9 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 
                 potential_MultiSelect_Background_Cells_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                     $0.dataCell_X_Number <= parentCentralState.curr_Data_Pos_X
-                    && $0.dataCell_Y_Number <= parentCentralState.curr_Data_Pos_Y
+                    && $0.parentLine.line_Y_Num <= parentCentralState.curr_Data_Pos_Y
                     && $0.dataCell_X_Number >= lclSnapshot_X
-                    && $0.dataCell_Y_Number >= lclSnapshot_Y
+                    && $0.parentLine.line_Y_Num >= lclSnapshot_Y
                 }
                 
             }
@@ -157,9 +157,9 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 
                 potential_MultiSelect_Background_Cells_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                     $0.dataCell_X_Number <= parentCentralState.curr_Data_Pos_X
-                    && $0.dataCell_Y_Number >= parentCentralState.curr_Data_Pos_Y
+                    && $0.parentLine.line_Y_Num >= parentCentralState.curr_Data_Pos_Y
                     && $0.dataCell_X_Number >= lclSnapshot_X
-                    && $0.dataCell_Y_Number <= lclSnapshot_Y
+                    && $0.parentLine.line_Y_Num <= lclSnapshot_Y
                 }
                 
             }
@@ -169,9 +169,9 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 
                 potential_MultiSelect_Background_Cells_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                     $0.dataCell_X_Number >= parentCentralState.curr_Data_Pos_X
-                    && $0.dataCell_Y_Number <= parentCentralState.curr_Data_Pos_Y
+                    && $0.parentLine.line_Y_Num <= parentCentralState.curr_Data_Pos_Y
                     && $0.dataCell_X_Number <= lclSnapshot_X
-                    && $0.dataCell_Y_Number >= lclSnapshot_Y
+                    && $0.parentLine.line_Y_Num >= lclSnapshot_Y
                 }
                 
             }
@@ -181,9 +181,9 @@ class Multi_Select_Helper : P_Selectable_Mode {
                 
                 potential_MultiSelect_Background_Cells_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                     $0.dataCell_X_Number >= parentCentralState.curr_Data_Pos_X
-                    && $0.dataCell_Y_Number >= parentCentralState.curr_Data_Pos_Y
+                    && $0.parentLine.line_Y_Num >= parentCentralState.curr_Data_Pos_Y
                     && $0.dataCell_X_Number <= lclSnapshot_X
-                    && $0.dataCell_Y_Number <= lclSnapshot_Y
+                    && $0.parentLine.line_Y_Num <= lclSnapshot_Y
                 }
                 
             }

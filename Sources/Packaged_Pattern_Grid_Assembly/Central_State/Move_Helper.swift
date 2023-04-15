@@ -41,7 +41,7 @@ class Move_Helper: P_Selectable_Mode {
             if let lclActivationCell = activationCell{
                 
                 snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
-                snapshot_Cursor_Y = lclActivationCell.dataCell_Y_Number
+                snapshot_Cursor_Y = lclActivationCell.parentLine.line_Y_Num
                 
                 if let lclCurrNoteCollection = parentCentralState.currentNoteCollection {
                     let selectedNotes = lclCurrNoteCollection.noteArray.filter{$0.highlighted == true}

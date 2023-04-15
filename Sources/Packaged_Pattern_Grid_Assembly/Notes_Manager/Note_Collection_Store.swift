@@ -124,7 +124,7 @@ public class Note_Collection : ObservableObject {
 
         if local_Cell_Array.count > 0 {
             let line = parentCentralState.data_Grid.dataLineArray[local_Cell_Array[0].parentLine.line_Y_Num]
-            let note = Note(cellArray: local_Cell_Array, parentParam: self, yParam: local_Cell_Array[0].dataCell_Y_Number, containingLineParam: line)
+            let note = Note(cellArray: local_Cell_Array, parentParam: self, yParam: local_Cell_Array[0].parentLine.line_Y_Num, containingLineParam: line)
             noteArray.append(note)
             if highlightAfterWrite == true{note.highlighted = true}
             for cell in local_Cell_Array {

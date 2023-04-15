@@ -67,9 +67,12 @@ class Delete_Helper : P_Selectable_Mode{
         didSet {
             if let lclDelete_Cursor_StartData = current_Trail_Corner {
                 let new_Corner_Set = parentCentralState.data_Grid.grid_Of_Cells_Set
-                .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
-                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-                }
+                    .filter{$0.parentLine.line_Y_Num == lclDelete_Cursor_StartData.parentLine.line_Y_Num
+                        && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
+                    }
+//                .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
+//                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
+//                }
                 for cell in new_Corner_Set{
                     multiple_Line_Corners_Set.insert(cell)
                 }
@@ -96,13 +99,16 @@ class Delete_Helper : P_Selectable_Mode{
         if let lclCurrent_Initial_Cell = current_Trail_Corner {
 
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
-            let initialY = lclCurrent_Initial_Cell.dataCell_Y_Number
+            let initialY = lclCurrent_Initial_Cell.parentLine.line_Y_Num
+                //.dataCell_Y_Number
 
             let prevX = previousDataCell.dataCell_X_Number
-            let prevY = previousDataCell.dataCell_Y_Number
+            let prevY = previousDataCell.parentLine.line_Y_Num
+                //.dataCell_Y_Number
 
             let nextX = nextDataCell.dataCell_X_Number
-            let nextY = nextDataCell.dataCell_Y_Number
+            let nextY = nextDataCell.parentLine.line_Y_Num
+                //.dataCell_Y_Number
 
             if current_Direction == .stationary {
                 if nextX != initialX{current_Direction = .horizontal}
@@ -136,7 +142,7 @@ class Delete_Helper : P_Selectable_Mode{
         if finalX > initialX {
             let new_Horz_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
-            .filter{$0.dataCell_Y_Number ==  curr_Y
+            .filter{$0.parentLine.line_Y_Num ==  curr_Y
                 && $0.dataCell_X_Number > initialX
                 && $0.dataCell_X_Number < finalX
             }
@@ -152,7 +158,7 @@ class Delete_Helper : P_Selectable_Mode{
         else if finalX < initialX {
             let new_Horz_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
-            .filter{$0.dataCell_Y_Number ==  curr_Y
+            .filter{$0.parentLine.line_Y_Num ==  curr_Y
                 && $0.dataCell_X_Number < initialX
                 && $0.dataCell_X_Number > finalX
             }
@@ -172,7 +178,7 @@ class Delete_Helper : P_Selectable_Mode{
         if finalY > initialY {
             let new_Vert_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
-            .filter{$0.dataCell_X_Number == curr_X && $0.dataCell_Y_Number >= initialY && $0.dataCell_Y_Number <= finalY}
+            .filter{$0.dataCell_X_Number == curr_X && $0.parentLine.line_Y_Num >= initialY && $0.parentLine.line_Y_Num <= finalY}
 
             for cell in new_Vert_Set{
                 let cell_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
@@ -188,7 +194,7 @@ class Delete_Helper : P_Selectable_Mode{
         else if finalY < initialY {
             let new_Vert_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
-            .filter{$0.dataCell_X_Number == curr_X && $0.dataCell_Y_Number >= finalY && $0.dataCell_Y_Number <= initialY}
+            .filter{$0.dataCell_X_Number == curr_X && $0.parentLine.line_Y_Num >= finalY && $0.parentLine.line_Y_Num <= initialY}
             for cell in new_Vert_Set{
                 let cell_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter{$0.four_Four_Half_Cell_Index == cell.four_Four_Half_Cell_Index}
                 for subCell in cell_Set{
