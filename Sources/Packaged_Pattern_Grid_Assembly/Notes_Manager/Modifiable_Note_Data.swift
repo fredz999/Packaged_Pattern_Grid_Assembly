@@ -62,7 +62,7 @@ public class Modifiable_Note_Data{
                 }
             }
             else if self.dataCellArray.count == 2{
-                print("self.dataCellArray.count == 2,noteParent?:")
+                //print("self.dataCellArray.count == 2,noteParent?:")
                 if self.dataCellArray[0].currentType != .start_Note{self.dataCellArray[0].change_Type(newType: .start_Note)}
                 if self.dataCellArray[1].currentType != .end_Note{self.dataCellArray[1].change_Type(newType: .end_Note)}
                 for cell in self.dataCellArray{
@@ -78,15 +78,16 @@ public class Modifiable_Note_Data{
                     if self.dataCellArray[x].currentType != .mid_Note{self.dataCellArray[x].change_Type(newType: .mid_Note)}
                 }
                 if self.dataCellArray[finalIndex].currentType != .end_Note{self.dataCellArray[finalIndex].change_Type(newType: .end_Note)}
-                
-                for cell in self.dataCellArray {
-                    if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
-                    if cell.in_Potential_Set == true {cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
-                    cell.note_Im_In = noteParent
-                    if let lclNoteImIn = cell.note_Im_In {
-                        print("cell.note_Im_In id: ",lclNoteImIn.id)
-                    }
-                }
+
+            }
+            
+            for cell in self.dataCellArray {
+                if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
+                if cell.in_Potential_Set == true {cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
+                cell.note_Im_In = noteParent
+//                if let lclNoteImIn = cell.note_Im_In {
+//                    print("cell.note_Im_In id: ",lclNoteImIn.id)
+//                }
             }
             
             if let minCell = newDataCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
