@@ -82,6 +82,7 @@ class Right_Side_Resizer_Garage {
                 if let lclModifiableNoteData = lclNoteRef.modifiable_Note_Data{
 
                 if lclModifiableNoteData.minimumSet.count == 3{
+                    print("it reached a three")
                     if let lastSixEightMinimalCell = lclModifiableNoteData.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                         let firstTwoMin = lclModifiableNoteData.minimumSet.filter{$0.dataCell_X_Number != lastSixEightMinimalCell.dataCell_X_Number}
                         new_Note_Cell_Set = firstTwoMin
@@ -89,7 +90,6 @@ class Right_Side_Resizer_Garage {
                     }
                 }
                 else if lclModifiableNoteData.minimumSet.count == 2{
-                    print("p'twang")
                     if let lastMin = lclModifiableNoteData.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                         new_Note_Cell_Set = lclModifiableNoteData.minimumSet
                         available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX && $0.dataCell_X_Number > lastMin.dataCell_X_Number}

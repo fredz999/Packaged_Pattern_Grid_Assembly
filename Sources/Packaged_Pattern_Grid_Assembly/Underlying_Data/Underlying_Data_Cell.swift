@@ -270,8 +270,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-    //var in_Cursor_Set : Bool = false
-    
     public func reset_To_Original(){
         if currentType == .single_Note || currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
             currentType = note_Reset_Status

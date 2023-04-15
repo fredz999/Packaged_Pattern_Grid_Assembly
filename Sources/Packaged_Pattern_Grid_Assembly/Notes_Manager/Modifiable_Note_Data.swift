@@ -31,7 +31,7 @@ public class Modifiable_Note_Data{
         self.lowestSixEightHalfCellIndex = lowestSixEightHalfCellIndex
         
         var minSet = Set<Underlying_Data_Cell>()
-        
+
         if self.dataCellArray.count == 2 {
             minSet.insert(self.dataCellArray[0])
             minSet.insert(self.dataCellArray[1])
@@ -104,7 +104,7 @@ public class Modifiable_Note_Data{
             self.highest_X_Index = self.dataCellArray[self.dataCellArray.count-1].dataCell_X_Number
             
             self.minimumSet.removeAll()
-            
+
             if self.dataCellArray.count == 2 {
                 self.minimumSet.insert(self.dataCellArray[0])
                 self.minimumSet.insert(self.dataCellArray[1])
