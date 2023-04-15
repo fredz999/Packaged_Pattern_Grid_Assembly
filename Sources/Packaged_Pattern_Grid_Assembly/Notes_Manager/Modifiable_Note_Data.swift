@@ -83,6 +83,9 @@ public class Modifiable_Note_Data{
                     if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                     if cell.in_Potential_Set == true {cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
                     cell.note_Im_In = noteParent
+                    if let lclNoteImIn = cell.note_Im_In {
+                        print("cell.note_Im_In id: ",lclNoteImIn.id)
+                    }
                 }
             }
             
