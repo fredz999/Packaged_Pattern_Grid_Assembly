@@ -388,7 +388,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
     public func reWriteNotes(){
         if left_Side_Resizer_Garage_Array.count > 0 {
             for resizer in left_Side_Resizer_Garage_Array {
-                
                 if let lclNoteRef = resizer.noteReference {
                     if let lclModifiableNoteData = lclNoteRef.modifiable_Note_Data {
                         if resizer.new_Note_Cell_Set.count == 1 {
@@ -402,13 +401,10 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                         }
                     }
                 }
-                
-                
             }
         }
         if right_Side_Resizer_Garage_Array.count > 0{
             for resizer in right_Side_Resizer_Garage_Array {
-                
             if let lclNoteRef = resizer.noteReference {
                 if let lclModifiableNoteData = lclNoteRef.modifiable_Note_Data {
                     if resizer.new_Note_Cell_Set.count == 1 {
@@ -422,7 +418,6 @@ public class Resize_Helper: ObservableObject, P_Selectable_Mode {
                     }
                 }
             }
-
         }
     }
     clear_Variables()
