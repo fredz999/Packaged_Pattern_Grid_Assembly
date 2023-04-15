@@ -89,6 +89,7 @@ class Right_Side_Resizer_Garage {
                     }
                 }
                 else if lclModifiableNoteData.minimumSet.count == 2{
+                    print("p'twang")
                     if let lastMin = lclModifiableNoteData.minimumSet.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                         new_Note_Cell_Set = lclModifiableNoteData.minimumSet
                         available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX && $0.dataCell_X_Number > lastMin.dataCell_X_Number}
@@ -99,7 +100,6 @@ class Right_Side_Resizer_Garage {
             if currentHalfCellIndexParam >= lcl_minHalfCellIndex {
                 available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
                 new_Note_Cell_Set = available_Cell_Set.filter{$0.six_Eight_Half_Cell_Index <= currentHalfCellIndexParam}
-                    //&& $0.six_Eight_Half_Cell_Index >= lcl_minHalfCellIndex}
             }
         }
     }
