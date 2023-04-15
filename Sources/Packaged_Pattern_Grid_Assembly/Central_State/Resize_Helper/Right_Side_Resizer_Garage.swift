@@ -117,14 +117,14 @@ class Right_Side_Resizer_Garage {
     
     func paintCells(){
         for cell in available_Cell_Set {
-            cell.reset_To_Original()
+            //cell.reset_To_Original()
             if cell.in_Resize_Set == true {
                 cell.handleVisibleStateChange(type: .deActivate_Resize_Set)
             }
         }
 
         for cell in new_Note_Cell_Set {
-            cell.reset_To_Original()
+            //cell.reset_To_Original()
             if cell.in_Resize_Set == false {
                 cell.handleVisibleStateChange(type: .activate_Resize_Set)
             }
