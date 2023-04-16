@@ -54,10 +54,10 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
         
     public func artificially_H_Increment(){
-
+// h.c.v
         let jump = CGFloat(dimensions.pattern_Grid_Cell_Sub_Unit_Count) * dimensions.pattern_Grid_Sub_Cell_Width
-        accumulatedDrag += 23
-        //dimensions.cursor_X_Jump
+        
+        accumulatedDrag += dimensions.cursor_Horz_Slider_Jump_Addition//23
 
         if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
             currentVal = accumulatedDrag
@@ -69,21 +69,6 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         }
 
     }
-
-//    public func artificially_H_Decrement(){
-//
-//        accumulatedDrag -= dimensions.cursor_X_Jump
-//
-//        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary {
-//            currentVal = accumulatedDrag
-//        }
-//
-//        else if (accumulatedDrag) < 0 {
-//            accumulatedDrag = 0
-//            currentVal = 0
-//        }
-//
-//    }
     
     public func jumpToACell(cellNum:Int){
         let proposedNewVal = CGFloat(cellNum)*dimensions.pattern_Grid_Sub_Cell_Width
@@ -100,9 +85,6 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     
     public func calculateCursorCellXPos(){
         test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
-        //dimensions.test_X_Position(currValParam: currentVal, computedLineParam: &computedLineDisplacement)
-        //central_State_Ref.cursor_Slider_Update()
-            //.cursor_Slider_Update(new_X: nil , new_Y: nil)
     }
     
     func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){

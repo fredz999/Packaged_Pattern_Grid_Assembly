@@ -152,22 +152,7 @@ public class Central_State : ObservableObject {
             }
         }
     }
-        
-//        for helper in helperArray {
-//            if let lclHelper = helper,let lclModeParam = mode_Param {
-//                if lclModeParam.selectableModeId == lclHelper.selectableModeId {
-//                    lclHelper.activate_Mode(activationCell: activationCellParam)
-//                    mode_String = lclHelper.generateModeDescriptorString()
-//                    print("mode activated: ",lclHelper.generateModeDescriptorString())
-//                }
-//                else if lclModeParam.selectableModeId != lclHelper.selectableModeId && lclModeParam.mode_Active == true {
-//                    lclHelper.deactivate_Mode()
-//                    print("mode deactivated: ",lclHelper.generateModeDescriptorString())
-//                }
-//            }
-//        }
- 
-    
+
     func centralState_Data_Evaluation(){
         if dimensions.patternTimingConfiguration == .fourFour {
             currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
