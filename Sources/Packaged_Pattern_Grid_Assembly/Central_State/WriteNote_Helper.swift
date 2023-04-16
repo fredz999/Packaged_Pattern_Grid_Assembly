@@ -53,6 +53,7 @@ class WriteNote_Helper: P_Selectable_Mode {
     }
     
     func establish_Potential_Cells_Set(){
+        print("establish_Potential_Cells_Set()")
         if let lclInitialCell = initial_WriteOnCell {
             if lclInitialCell.dataCell_X_Number < parentCentralState.currentData.dataCell_X_Number {
             if parentCentralState.dimensions.patternTimingConfiguration == .fourFour {
