@@ -141,13 +141,11 @@ public class Central_State : ObservableObject {
                         if lclHelper.mode_Active == false {
                             lclHelper.activate_Mode(activationCell: activationCellParam)
                             mode_String = lclHelper.generateModeDescriptorString()
-                            print("activating lclHelper.selectableModeId: ",lclHelper.selectableModeId,", ",lclHelper.generateModeDescriptorString())
                         }
                     }
                     else if lclHelper.selectableModeId != lclMode_Param.selectableModeId {
                         if lclHelper.mode_Active == true {
                             lclHelper.deactivate_Mode()
-                            print("deactivating lclHelper.selectableModeId: ",lclHelper.selectableModeId,", ",lclHelper.generateModeDescriptorString())
                         }
                     }
                 }
