@@ -20,7 +20,7 @@ public class ComponentDimensions : ObservableObject {
     public let pattern_Grid_Unit_VerticalEdge_Width : CGFloat = 1
     public let pattern_Grid_Unit_HorzEdge_Width : CGFloat = 1
     
-    public let cursor_Horz_Slider_Jump_Addition : CGFloat = 40
+    public let cursor_Horz_Slider_Jump_Addition : CGFloat = 24
     
     //============== Central Grid SECTION =========================
     public let DATA_final_Line_Y_Index : Int = 64
