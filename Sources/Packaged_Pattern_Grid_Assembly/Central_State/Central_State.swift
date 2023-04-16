@@ -139,6 +139,7 @@ public class Central_State : ObservableObject {
                 if lclModeParam.selectableModeId == lclHelper.selectableModeId {
                     lclHelper.activate_Mode(activationCell: activationCellParam)
                     mode_String = lclHelper.generateModeDescriptorString()
+                    print("mode deactivated: ",lclHelper.generateModeDescriptorString())
                 }
                 else if lclModeParam.selectableModeId != lclHelper.selectableModeId && lclModeParam.mode_Active == true {
                     lclHelper.deactivate_Mode()
