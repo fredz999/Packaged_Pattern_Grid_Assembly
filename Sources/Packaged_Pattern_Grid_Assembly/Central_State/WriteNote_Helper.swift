@@ -47,7 +47,7 @@ class WriteNote_Helper: P_Selectable_Mode {
             if let lclActivationCell = activationCell {
                 initial_WriteOnCell = lclActivationCell
                 //print("timing config: ",dimensions.patternTimingConfiguration.rawValue,",initCell fourFourIndex")
-                establish_Potential_Cells_Set()
+                //establish_Potential_Cells_Set()
             }
         }
     }
