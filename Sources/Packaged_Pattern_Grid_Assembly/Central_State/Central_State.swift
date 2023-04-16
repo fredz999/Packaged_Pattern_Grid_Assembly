@@ -134,20 +134,41 @@ public class Central_State : ObservableObject {
     }
     
     func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
-        for helper in helperArray {
-            if let lclHelper = helper,let lclModeParam = mode_Param {
-                if lclModeParam.selectableModeId == lclHelper.selectableModeId {
-                    lclHelper.activate_Mode(activationCell: activationCellParam)
-                    mode_String = lclHelper.generateModeDescriptorString()
-                    print("mode activated: ",lclHelper.generateModeDescriptorString())
-                }
-                else if lclModeParam.selectableModeId != lclHelper.selectableModeId && lclModeParam.mode_Active == true {
-                    lclHelper.deactivate_Mode()
-                    print("mode deactivated: ",lclHelper.generateModeDescriptorString())
+        if let lclMode_Param = mode_Param {
+            for optionalHelper in helperArray {
+                if let lclHelper = optionalHelper {
+                    if lclHelper.selectableModeId == lclMode_Param.selectableModeId {
+                        if lclHelper.mode_Active == false {
+                            lclHelper.activate_Mode(activationCell: activationCellParam)
+                            mode_String = lclHelper.generateModeDescriptorString()
+                            print("activating lclHelper.selectableModeId: ",lclHelper.selectableModeId)
+                        }
+                    }
+                    else if lclHelper.selectableModeId != lclMode_Param.selectableModeId {
+                        if lclHelper.mode_Active == true {
+                            lclHelper.deactivate_Mode()
+                            print("deactivating lclHelper.selectableModeId: ",lclHelper.selectableModeId)
+                        }
+                    }
                 }
             }
         }
     }
+        
+//        for helper in helperArray {
+//            if let lclHelper = helper,let lclModeParam = mode_Param {
+//                if lclModeParam.selectableModeId == lclHelper.selectableModeId {
+//                    lclHelper.activate_Mode(activationCell: activationCellParam)
+//                    mode_String = lclHelper.generateModeDescriptorString()
+//                    print("mode activated: ",lclHelper.generateModeDescriptorString())
+//                }
+//                else if lclModeParam.selectableModeId != lclHelper.selectableModeId && lclModeParam.mode_Active == true {
+//                    lclHelper.deactivate_Mode()
+//                    print("mode deactivated: ",lclHelper.generateModeDescriptorString())
+//                }
+//            }
+//        }
+ 
     
     func centralState_Data_Evaluation(){
         if dimensions.patternTimingConfiguration == .fourFour {
