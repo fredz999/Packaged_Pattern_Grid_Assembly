@@ -46,7 +46,8 @@ class WriteNote_Helper: P_Selectable_Mode {
             mode_Active = true
             if let lclActivationCell = activationCell {
                 initial_WriteOnCell = lclActivationCell
-                print("timing config: ",dimensions.patternTimingConfiguration.rawValue,",initCell fourFourIndex")
+                //print("timing config: ",dimensions.patternTimingConfiguration.rawValue,",initCell fourFourIndex")
+                establish_Potential_Cells_Set()
             }
         }
     }
@@ -55,7 +56,6 @@ class WriteNote_Helper: P_Selectable_Mode {
         if let lclInitialCell = initial_WriteOnCell {
             if lclInitialCell.dataCell_X_Number < parentCentralState.currentData.dataCell_X_Number {
             if parentCentralState.dimensions.patternTimingConfiguration == .fourFour {
-            print("establish_Potential_Cells_Set().........0")
             let lowerHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
             let upperHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
             var combinedSet = Set<Underlying_Data_Cell>()
@@ -87,7 +87,6 @@ class WriteNote_Helper: P_Selectable_Mode {
             }
             }
             else if parentCentralState.dimensions.patternTimingConfiguration == .sixEight {
-                print("establish_Potential_Cells_Set().........1")
                 let lowerHalfCellSet = parentCentralState.currLineSet.filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
                 let upperHalfCellSet = parentCentralState.currLineSet
                     .filter({$0.six_Eight_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
@@ -123,7 +122,6 @@ class WriteNote_Helper: P_Selectable_Mode {
         }
         else if lclInitialCell.dataCell_X_Number > parentCentralState.currentData.dataCell_X_Number {
             if parentCentralState.dimensions.patternTimingConfiguration == .fourFour {
-            print("establish_Potential_Cells_Set().........2")
                 
             let upperHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == lclInitialCell.four_Four_Half_Cell_Index})
             let lowerHalfCellSet = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
@@ -157,7 +155,6 @@ class WriteNote_Helper: P_Selectable_Mode {
             }
         }
             else if parentCentralState.dimensions.patternTimingConfiguration == .sixEight {
-            print("establish_Potential_Cells_Set().........3")
             let upperHalfCellSet = parentCentralState.currLineSet
             .filter({$0.six_Eight_Half_Cell_Index == lclInitialCell.six_Eight_Half_Cell_Index})
             let lowerHalfCellSet = parentCentralState.currLineSet
@@ -220,25 +217,3 @@ enum E_SwipeDirections{
     case rightward
     case stationary
 }
-
-//func establish_Potential_Cells_Set(){
-//    print("establish_Potential_Cells_Set()")
-//    if let lclInitialCell = initial_WriteOnCell {
-//
-//        if lclInitialCell.dataCell_X_Number < parentCentralState.currentData.dataCell_X_Number {
-//            if parentCentralState.dimensions.patternTimingConfiguration == .fourFour {
-//                print(".fourFour")
-//            }
-//            else if parentCentralState.dimensions.patternTimingConfiguration == .sixEight {
-//                print(".sixEight")
-//            }
-//            print("nat suuuuure")
-//        }
-//
-//    }
-//    else if initial_WriteOnCell == nil{
-//        print("initial_WriteOnCell == nil")
-//    }
-//}
-
-

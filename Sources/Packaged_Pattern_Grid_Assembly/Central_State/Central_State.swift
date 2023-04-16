@@ -142,6 +142,7 @@ public class Central_State : ObservableObject {
                 }
                 else if lclModeParam.selectableModeId != lclHelper.selectableModeId{
                     lclHelper.deactivate_Mode()
+                    print("lclHelper.deactivate_Mode() hit")
                 }
             }
         }
