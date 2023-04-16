@@ -153,9 +153,9 @@ public class Visible_Injected_Generic_View_Line <InjectedViewType:View> : Observ
     public var unitArray = [InjectedViewType]()
 }
 
-public enum E_CentralGridTiming {
-    case sixEight
-    case fourFour
+public enum E_CentralGridTiming : String {
+    case sixEight = "sixEight"
+    case fourFour = "fourFour"
 }
 
 

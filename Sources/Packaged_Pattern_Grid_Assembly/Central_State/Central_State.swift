@@ -297,10 +297,6 @@ public class Central_State : ObservableObject {
                 }
             }
         }
-//        didSet{
-//            print("currX: ",currentData.dataCell_X_Number
-//                  ,",currY: ",currentData.parentLine.line_Y_Num,", note nil?: ",currentData.note_Im_In == nil ? "nil" : "not nil")
-//        }
     }
     
     var currLineSet = Set<Underlying_Data_Cell>()

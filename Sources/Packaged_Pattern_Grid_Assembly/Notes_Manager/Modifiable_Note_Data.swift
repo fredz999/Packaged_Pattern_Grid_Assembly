@@ -85,9 +85,6 @@ public class Modifiable_Note_Data{
                 if cell.in_Resize_Set == true {cell.handleVisibleStateChange(type: .deActivate_Resize_Set)}
                 if cell.in_Potential_Set == true {cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
                 cell.note_Im_In = noteParent
-//                if let lclNoteImIn = cell.note_Im_In {
-//                    print("cell.note_Im_In id: ",lclNoteImIn.id)
-//                }
             }
             
             if let minCell = newDataCellSet.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -122,8 +119,7 @@ public class Modifiable_Note_Data{
             }
         }
     }
-    
-    
+
     func applyModification(newDataCellArray: [Underlying_Data_Cell]){
         if newDataCellArray.count > 0{
             
