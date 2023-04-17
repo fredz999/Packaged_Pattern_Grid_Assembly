@@ -92,6 +92,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 //                central_State_Ref.cursor_Slider_Update()
 //            }
             computedLineParam = currValParam
+            central_State_Ref.cursor_Slider_Update()
         }
         
         

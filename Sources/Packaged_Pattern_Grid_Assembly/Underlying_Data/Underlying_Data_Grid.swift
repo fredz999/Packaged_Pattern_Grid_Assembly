@@ -77,8 +77,11 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 }
                 
                 let newDataCell = Underlying_Data_Cell(xNumParam: x, yNumParam: line_Y_Number, parentLineParam: newLine, fourStatusParam: currFourStatus, sixStatusParam: currSixStatus
-                , initialStatusParam: initialStatus, fourFourSubIndexParam: fourFour_Sub_Count, sixEightSubIndexParam: sixEight_Sub_Count
-                , four_Four_Cell_Index_Param: fourFour_Cell_Count, six_Eight_Cell_Index_Param: sixEight_Cell_Count
+                , initialStatusParam: initialStatus
+                , fourFourSubIndexParam: fourFour_Sub_Count
+                , sixEightSubIndexParam: sixEight_Sub_Count
+                , four_Four_Cell_Index_Param: fourFour_Cell_Count
+                , six_Eight_Cell_Index_Param: sixEight_Cell_Count
                 , four_Four_Half_Sub_Index_Param: fourFour_Half_Sub_Count
                 , four_Four_Half_Cell_Index_Param: fourFour_Half_Cell_Count
                 , six_Eight_Half_Sub_Index_Param: sixEight_Half_Sub_Count
@@ -107,12 +110,10 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     sixEight_Half_Sub_Count=0
                     sixEight_Half_Cell_Count+=1
                 }
-                //new_Line_Set.insert(newDataCell)
                 newLine.dataCellArray.append(newDataCell)
                 grid_Of_Cells_Set.insert(newDataCell)
             }
             dataLineArray.append(newLine)
-            //grid_Of_Cells_Set.insert(new_Line_Set)
         }
     }
     
