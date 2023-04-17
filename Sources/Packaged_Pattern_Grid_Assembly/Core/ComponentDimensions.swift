@@ -78,9 +78,6 @@ public class ComponentDimensions : ObservableObject {
     var currentFourFourDataIndex : Int = 0
     var currentSixEightDataIndex : Int = 0
     var currentSingleCellDataIndex : Int = 0
-    
-    //var nearestLeftFourFourCellStartIndex : Int = 0
-    //var nearestLeftSixEightCellStartIndex : Int = 0
 
     public func flip_Timing_Signature_Dimensions() {
         if patternTimingConfiguration == .fourFour {
@@ -113,7 +110,7 @@ public class ComponentColors {
     
     public var potential_Cell_Color : Color = Color(red:0.6,green:0,blue:0.6)
 
-    public var passiveMode_Cursor_Color : Color = .pink
+    public var passiveMode_Cursor_Color : Color = .blue
     
     public var deleteNoteMode_Cursor_Color : Color = Color(red:1,green:0.5,blue:0)
     
@@ -122,8 +119,6 @@ public class ComponentColors {
     public var grid_Note_Color : Color = Color(red:0.4,green:0.8,blue:0)
     
     public var grid_Note_Highlighted_Color : Color = Color(red:0.5,green:1,blue:0)
-    
-    //public var grid_Note_Highlighted_Resize_Color : Color = Color(red:0,green:1,blue:1)
     
     public var viable_Set_Combined_Color : Color = Color(red:0.3,green:0.6,blue:0)
     
