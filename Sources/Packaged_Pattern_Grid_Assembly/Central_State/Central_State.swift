@@ -77,6 +77,11 @@ public class Central_State : ObservableObject {
         
         centralState_Data_Evaluation()
         
+        postInitStartup()
+    }
+    
+    func postInitStartup(){
+        setPatternMode(patternModeParam: .passive_Mode)
     }
     
     public func set_Copy_Move_Delete_Status(moveDeleteOn:Bool) {
