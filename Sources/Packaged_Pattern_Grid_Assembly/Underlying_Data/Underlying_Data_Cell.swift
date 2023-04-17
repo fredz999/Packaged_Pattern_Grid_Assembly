@@ -21,6 +21,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var id = UUID()
     
     public var dataCell_X_Number : Int
+    
+//    public var dataCell_X_Float : Int
 
     var in_Prohibited_Set : Bool = false
     

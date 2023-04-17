@@ -85,10 +85,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
             }
             
         }
-         
 
-        
-        
         if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
             if lclMaxLesserSix.x_Position_Float !=
                 dimensions.currentSixEightPosition{dimensions.currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
