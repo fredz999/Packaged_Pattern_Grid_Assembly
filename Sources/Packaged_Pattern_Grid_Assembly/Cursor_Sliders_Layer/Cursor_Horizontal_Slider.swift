@@ -60,14 +60,14 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         
         //accumulatedDrag += dimensions.cursor_Horz_Slider_Jump_Addition//23
 
-        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
-            currentVal = accumulatedDrag
-        }
-
-        else if (accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
-            accumulatedDrag = (dimensions.potential_Note_Rightward_Boundary)
-            currentVal = (dimensions.potential_Note_Rightward_Boundary)
-        }
+//        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
+//            currentVal = accumulatedDrag
+//        }
+//
+//        else if (accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
+//            accumulatedDrag = (dimensions.potential_Note_Rightward_Boundary)
+//            currentVal = (dimensions.potential_Note_Rightward_Boundary)
+//        }
 
     }
     
