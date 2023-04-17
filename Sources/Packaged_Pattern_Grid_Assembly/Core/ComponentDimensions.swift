@@ -69,7 +69,7 @@ public class ComponentDimensions : ObservableObject {
     
     var four_Four_Slider_Positions = Set<Cell_X_Descriptor>() 
     var six_Eight_Slider_Positions = Set<Cell_X_Descriptor>()
-    //var single_Cell_Slider_Positions = Set<Cell_X_Descriptor>()
+    var single_Cell_Slider_Positions = Set<Cell_X_Descriptor>()
     
     var currentFourFourPosition : CGFloat = 0
     var currentSixEightPosition : CGFloat = 0
