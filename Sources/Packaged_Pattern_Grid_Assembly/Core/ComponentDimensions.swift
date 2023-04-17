@@ -73,12 +73,14 @@ public class ComponentDimensions : ObservableObject {
     
     var currentFourFourPosition : CGFloat = 0
     var currentSixEightPosition : CGFloat = 0
+    var currentSingleCellPosition : CGFloat = 0
     
     var currentFourFourDataIndex : Int = 0
     var currentSixEightDataIndex : Int = 0
+    var currentSingleCellDataIndex : Int = 0
     
-    var nearestLeftFourFourCellStartIndex : Int = 0
-    var nearestLeftSixEightCellStartIndex : Int = 0
+    //var nearestLeftFourFourCellStartIndex : Int = 0
+    //var nearestLeftSixEightCellStartIndex : Int = 0
 
     public func flip_Timing_Signature_Dimensions() {
         if patternTimingConfiguration == .fourFour {

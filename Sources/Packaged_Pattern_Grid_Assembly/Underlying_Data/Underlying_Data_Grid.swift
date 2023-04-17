@@ -61,6 +61,8 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     initialStatus = currSixStatus
                 }
                 
+                //** NOTE ** this is set to happen ONCE because its genreating sets in the dimensions file that are then used to set line
+                // positions in the sliders.
                 if line_Y_Number == 0 {
 
                     if fourFour_Half_Sub_Count == 0  {
@@ -122,7 +124,9 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
             }
             dataLineArray.append(newLine)
         }
-        print("singleCellDescriptors count: ",dimensions.single_Cell_Slider_Positions.count)
+        print("four_Four_Slider_Positions:",dimensions.four_Four_Slider_Positions.count
+              ,"six_Eight_Slider_Positions:",dimensions.single_Cell_Slider_Positions.count
+              ,"single_Cell_Slider_Positions:",dimensions.single_Cell_Slider_Positions.count)
     }
     
     public func changeTimingSignature_Data_Level(){

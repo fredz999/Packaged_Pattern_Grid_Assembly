@@ -74,6 +74,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 
         let lesserSetFourFour = dimensions.four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
         let lesserSetSixEight = dimensions.six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
+        let lesserSetSingleCell = dimensions.single_Cell_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
 
         if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
             
@@ -85,13 +86,19 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
             }
             
         }
-
         if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
-            if lclMaxLesserSix.x_Position_Float !=
-                dimensions.currentSixEightPosition{dimensions.currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
-            if lclMaxLesserSix.x_Position_Int !=
-                dimensions.currentSixEightDataIndex{dimensions.currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
+            if lclMaxLesserSix.x_Position_Float != dimensions.currentSixEightPosition{dimensions.currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
+            if lclMaxLesserSix.x_Position_Int != dimensions.currentSixEightDataIndex{dimensions.currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
         }
+        //do the single cell position in here then figure out how this relates to the setting of the currentData in central
+        // see then how to have simultaneous 1: cursor positions and 2: current single cell to ensure selection of all notes is possible
+        // because the basic mechanism of this is that the line pos and cursor pos are set in the same func
+        // and the selected data is the cursors minimum
+        
+//        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
+//            if lclMaxLesserSix.x_Position_Float != dimensions.currentSixEightPosition{dimensions.currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
+//            if lclMaxLesserSix.x_Position_Int != dimensions.currentSixEightDataIndex{dimensions.currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
+//        }
         
         
         if dimensions.patternTimingConfiguration == .fourFour {
