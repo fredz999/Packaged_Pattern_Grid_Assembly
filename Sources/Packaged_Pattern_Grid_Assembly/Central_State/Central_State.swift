@@ -25,6 +25,7 @@ public class Central_State : ObservableObject {
     @Published public var there_Is_A_Note_In_The_First_Place : Bool = false
     
     @Published public var mode_String = ""
+    @Published public var mode_Id : Int?
 
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
@@ -141,6 +142,7 @@ public class Central_State : ObservableObject {
                         if lclHelper.mode_Active == false {
                             lclHelper.activate_Mode(activationCell: activationCellParam)
                             mode_String = lclHelper.generateModeDescriptorString()
+                            mode_Id = lclHelper.selectableModeId
                         }
                     }
                     else if lclHelper.selectableModeId != lclMode_Param.selectableModeId {
