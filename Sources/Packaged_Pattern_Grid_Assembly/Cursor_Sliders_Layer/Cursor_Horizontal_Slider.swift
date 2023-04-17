@@ -71,19 +71,27 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
     
     func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
-        print("currValParam: ",currValParam.description)
+
         let lesserSetFourFour = dimensions.four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
         let lesserSetSixEight = dimensions.six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
 
         if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
             
             if lclMaxLesserFour.x_Position_Float != dimensions.currentFourFourPosition{
-                //dimensions.currentFourFourPosition = lclMaxLesserFour.x_Position_Float
+                dimensions.currentFourFourPosition = lclMaxLesserFour.x_Position_Float
             }
             if lclMaxLesserFour.x_Position_Int != dimensions.currentFourFourDataIndex {
                 dimensions.currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int
             }
             
+        }
+         
+        if dimensions.patternTimingConfiguration == .fourFour {
+//            if computedLineParam != dimensions.currentFourFourPosition{
+//                computedLineParam = dimensions.currentFourFourPosition
+//                central_State_Ref.cursor_Slider_Update()
+//            }
+            computedLineParam = currValParam
         }
         
         
@@ -94,12 +102,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
                 dimensions.currentSixEightDataIndex{dimensions.currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
         }
         
-        if dimensions.patternTimingConfiguration == .fourFour {
-            if computedLineParam != dimensions.currentFourFourPosition{
-                computedLineParam = dimensions.currentFourFourPosition
-                central_State_Ref.cursor_Slider_Update()
-            }
-        }
+        
         
         else if dimensions.patternTimingConfiguration == .sixEight {
             if computedLineParam != dimensions.currentSixEightPosition {
