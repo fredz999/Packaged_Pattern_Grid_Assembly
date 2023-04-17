@@ -155,12 +155,14 @@ public class Central_State : ObservableObject {
 
     func centralState_Data_Evaluation(){
         if dimensions.patternTimingConfiguration == .fourFour {
-            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            //currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
             curr_Data_Pos_X = dimensions.currentFourFourDataIndex
             modeSpecificActions()
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
-            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            //currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
             curr_Data_Pos_X = dimensions.currentSixEightDataIndex
             modeSpecificActions()
         }
