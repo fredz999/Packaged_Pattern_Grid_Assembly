@@ -90,6 +90,10 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
             if lclMaxLesserSix.x_Position_Float != dimensions.currentSixEightPosition{dimensions.currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
             if lclMaxLesserSix.x_Position_Int != dimensions.currentSixEightDataIndex{dimensions.currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
         }
+        if let lclMaxLesserSingleCell = lesserSetSingleCell.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
+            if lclMaxLesserSingleCell.x_Position_Float != dimensions.currentSingleCellPosition{dimensions.currentSingleCellPosition = lclMaxLesserSingleCell.x_Position_Float}
+            if lclMaxLesserSingleCell.x_Position_Int != dimensions.currentSingleCellDataIndex{dimensions.currentSingleCellDataIndex = lclMaxLesserSingleCell.x_Position_Int}
+        }
         //do the single cell position in here then figure out how this relates to the setting of the currentData in central
         // see then how to have simultaneous 1: cursor positions and 2: current single cell to ensure selection of all notes is possible
         // because the basic mechanism of this is that the line pos and cursor pos are set in the same func
@@ -97,10 +101,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         // cant explain the count diff in thingy....actually its cyclical depending on the four four and six eight
         // raising the question how come six eight has 96?
         
-//        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
-//            if lclMaxLesserSix.x_Position_Float != dimensions.currentSixEightPosition{dimensions.currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
-//            if lclMaxLesserSix.x_Position_Int != dimensions.currentSixEightDataIndex{dimensions.currentSixEightDataIndex = lclMaxLesserSix.x_Position_Int}
-//        }
+
         
         
         if dimensions.patternTimingConfiguration == .fourFour {
@@ -108,7 +109,8 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 //                computedLineParam = dimensions.currentFourFourPosition
 //                central_State_Ref.cursor_Slider_Update()
 //            }
-            computedLineParam = currValParam
+            //computedLineParam = currValParam
+            computedLineParam = dimensions.currentSingleCellPosition
             central_State_Ref.cursor_Slider_Update()
         }
         else if dimensions.patternTimingConfiguration == .sixEight {
@@ -116,7 +118,8 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 //                computedLineParam = dimensions.currentSixEightPosition
 //                central_State_Ref.cursor_Slider_Update()
 //            }
-            computedLineParam = currValParam
+            //computedLineParam = currValParam
+            computedLineParam = dimensions.currentSingleCellPosition
             central_State_Ref.cursor_Slider_Update()
         }
         

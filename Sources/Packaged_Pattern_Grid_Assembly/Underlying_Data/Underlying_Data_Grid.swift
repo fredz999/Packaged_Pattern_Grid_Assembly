@@ -63,6 +63,9 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 
                 //** NOTE ** this is set to happen ONCE because its genreating sets in the dimensions file that are then used to set line
                 // positions in the sliders.
+                // the reason that there are differing amounts of indexes (I suspect) is because they only get instansiated when the sub count is 0
+                // the singleCell_Half_Sub_Count remains zero throughout and subsequently dimensions.single_Cell_Slider_Positions has a
+                // 1:1 relationship with the xpositions of each vertical line in the grid
                 if line_Y_Number == 0 {
 
                     if fourFour_Half_Sub_Count == 0  {
