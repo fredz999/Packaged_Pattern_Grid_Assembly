@@ -86,14 +86,7 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
             
         }
          
-        if dimensions.patternTimingConfiguration == .fourFour {
-//            if computedLineParam != dimensions.currentFourFourPosition{
-//                computedLineParam = dimensions.currentFourFourPosition
-//                central_State_Ref.cursor_Slider_Update()
-//            }
-            computedLineParam = currValParam
-            central_State_Ref.cursor_Slider_Update()
-        }
+
         
         
         if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
@@ -104,12 +97,21 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         }
         
         
-        
+        if dimensions.patternTimingConfiguration == .fourFour {
+//            if computedLineParam != dimensions.currentFourFourPosition{
+//                computedLineParam = dimensions.currentFourFourPosition
+//                central_State_Ref.cursor_Slider_Update()
+//            }
+            computedLineParam = currValParam
+            central_State_Ref.cursor_Slider_Update()
+        }
         else if dimensions.patternTimingConfiguration == .sixEight {
-            if computedLineParam != dimensions.currentSixEightPosition {
-                computedLineParam = dimensions.currentSixEightPosition
-                central_State_Ref.cursor_Slider_Update()
-            }
+//            if computedLineParam != dimensions.currentSixEightPosition {
+//                computedLineParam = dimensions.currentSixEightPosition
+//                central_State_Ref.cursor_Slider_Update()
+//            }
+            computedLineParam = currValParam
+            central_State_Ref.cursor_Slider_Update()
         }
         
     }
