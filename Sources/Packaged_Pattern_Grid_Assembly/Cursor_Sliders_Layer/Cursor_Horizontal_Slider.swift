@@ -54,10 +54,11 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
         
     public func artificially_H_Increment(){
-// h.c.v
-        let jump = CGFloat(dimensions.pattern_Grid_Cell_Sub_Unit_Count) * dimensions.pattern_Grid_Sub_Cell_Width
+        // h.c.v
         
-        accumulatedDrag += dimensions.cursor_Horz_Slider_Jump_Addition//23
+        //let jump = CGFloat(dimensions.pattern_Grid_Cell_Sub_Unit_Count) * dimensions.pattern_Grid_Sub_Cell_Width
+        
+        //accumulatedDrag += dimensions.cursor_Horz_Slider_Jump_Addition//23
 
         if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
             currentVal = accumulatedDrag
