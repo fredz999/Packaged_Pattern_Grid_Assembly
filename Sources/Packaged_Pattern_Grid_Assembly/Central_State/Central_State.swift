@@ -77,7 +77,7 @@ public class Central_State : ObservableObject {
         
         centralState_Data_Evaluation()
         
-        postInitStartup()
+        //postInitStartup()
     }
     
     func postInitStartup(){
