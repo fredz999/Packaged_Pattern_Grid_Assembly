@@ -94,6 +94,8 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
         // see then how to have simultaneous 1: cursor positions and 2: current single cell to ensure selection of all notes is possible
         // because the basic mechanism of this is that the line pos and cursor pos are set in the same func
         // and the selected data is the cursors minimum
+        // cant explain the count diff in thingy....actually its cyclical depending on the four four and six eight
+        // raising the question how come six eight has 96?
         
 //        if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
 //            if lclMaxLesserSix.x_Position_Float != dimensions.currentSixEightPosition{dimensions.currentSixEightPosition = lclMaxLesserSix.x_Position_Float}
