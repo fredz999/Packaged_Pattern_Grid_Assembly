@@ -52,24 +52,6 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
             currentVal = dimensions.potential_Note_Leftward_Boundary
         }
     }
-        
-    public func artificially_H_Increment(){
-        // h.c.v
-        
-        //let jump = CGFloat(dimensions.pattern_Grid_Cell_Sub_Unit_Count) * dimensions.pattern_Grid_Sub_Cell_Width
-        
-        //accumulatedDrag += dimensions.cursor_Horz_Slider_Jump_Addition//23
-
-//        if (accumulatedDrag) <= (dimensions.initial_Right_Boundary),accumulatedDrag >= dimensions.initial_Left_Boundary{
-//            currentVal = accumulatedDrag
-//        }
-//
-//        else if (accumulatedDrag) > (dimensions.potential_Note_Rightward_Boundary) {
-//            accumulatedDrag = (dimensions.potential_Note_Rightward_Boundary)
-//            currentVal = (dimensions.potential_Note_Rightward_Boundary)
-//        }
-
-    }
     
     public func jumpToACell(cellNum:Int){
         let proposedNewVal = CGFloat(cellNum)*dimensions.pattern_Grid_Sub_Cell_Width
@@ -89,17 +71,21 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
     }
     
     func test_X_Position(currValParam:CGFloat,computedLineParam:inout CGFloat){
-        
+        print("currValParam: ",currValParam.description)
         let lesserSetFourFour = dimensions.four_Four_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
-        
+        let lesserSetSixEight = dimensions.six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
+
         if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
-            if lclMaxLesserFour.x_Position_Float !=
-                dimensions.currentFourFourPosition{dimensions.currentFourFourPosition = lclMaxLesserFour.x_Position_Float}
-            if lclMaxLesserFour.x_Position_Int !=
-                dimensions.currentFourFourDataIndex{dimensions.currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int}
+            
+            if lclMaxLesserFour.x_Position_Float != dimensions.currentFourFourPosition{
+                dimensions.currentFourFourPosition = lclMaxLesserFour.x_Position_Float
+            }
+            if lclMaxLesserFour.x_Position_Int != dimensions.currentFourFourDataIndex {
+                dimensions.currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int
+            }
+            
         }
         
-        let lesserSetSixEight = dimensions.six_Eight_Slider_Positions.filter{$0.x_Position_Float <= currValParam}
         
         if let lclMaxLesserSix = lesserSetSixEight.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
             if lclMaxLesserSix.x_Position_Float !=

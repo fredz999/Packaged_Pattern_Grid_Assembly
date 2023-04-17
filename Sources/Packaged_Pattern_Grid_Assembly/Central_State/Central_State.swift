@@ -381,12 +381,6 @@ public class Central_State : ObservableObject {
         }
     }
     }
-    
-    
-    
-    
-    
-
 }
 
 public enum E_ResizeActions {
