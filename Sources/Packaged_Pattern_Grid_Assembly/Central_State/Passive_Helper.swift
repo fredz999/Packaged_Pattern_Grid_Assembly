@@ -35,7 +35,6 @@ class Passive_Helper: P_Selectable_Mode {
     }
     
     func respond_To_Cursor_Movement(cell_Data_X:Int,cell_Data_Y:Int){
-        print("respond_To_Cursor_Movement(")
         if let lclNoteImIn = parentCentralState.currentData.note_Im_In {
             if let lclNoteCollection = parentCentralState.currentNoteCollection {
                 lclNoteCollection.note_Collection_Highlight_Handler(noteParam: lclNoteImIn)
@@ -46,7 +45,6 @@ class Passive_Helper: P_Selectable_Mode {
                 lclNoteCollection.note_Collection_Highlight_Handler(noteParam: nil)
             }
         }
-        
     }
 
     func test_For_Write_Lock(){
