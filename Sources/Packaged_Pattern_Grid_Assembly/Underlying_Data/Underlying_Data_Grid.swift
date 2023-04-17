@@ -72,6 +72,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                         let insertFloat = CGFloat(x)*dimensions.pattern_Grid_Sub_Cell_Width
                         let cellIndexDescriptor : Cell_X_Descriptor = Cell_X_Descriptor(x_Position_Int: x, x_Position_Float: insertFloat)
                         dimensions.six_Eight_Slider_Positions.insert(cellIndexDescriptor)
+                        print("dimensions.six_Eight_Slider_Positions.insert(cellIndexDescriptor)")
                     }
 
                 }
@@ -115,7 +116,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
             }
             dataLineArray.append(newLine)
         }
-        print("six_Eight_Slider_Positions count: ",dimensions.six_Eight_Slider_Positions.count)
+        //print("six_Eight_Slider_Positions count: ",dimensions.six_Eight_Slider_Positions.count)
     }
     
     public func changeTimingSignature_Data_Level(){
