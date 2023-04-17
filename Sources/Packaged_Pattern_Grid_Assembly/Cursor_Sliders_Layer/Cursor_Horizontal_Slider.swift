@@ -77,12 +77,12 @@ public class Cursor_Horizontal_Slider_Store : ObservableObject {
 
         if let lclMaxLesserFour = lesserSetFourFour.max(by:{$0.x_Position_Int < $1.x_Position_Int}) {
             
-//            if lclMaxLesserFour.x_Position_Float != dimensions.currentFourFourPosition{
-//                dimensions.currentFourFourPosition = lclMaxLesserFour.x_Position_Float
-//            }
-//            if lclMaxLesserFour.x_Position_Int != dimensions.currentFourFourDataIndex {
-//                dimensions.currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int
-//            }
+            if lclMaxLesserFour.x_Position_Float != dimensions.currentFourFourPosition{
+                //dimensions.currentFourFourPosition = lclMaxLesserFour.x_Position_Float
+            }
+            if lclMaxLesserFour.x_Position_Int != dimensions.currentFourFourDataIndex {
+                dimensions.currentFourFourDataIndex = lclMaxLesserFour.x_Position_Int
+            }
             
         }
         
