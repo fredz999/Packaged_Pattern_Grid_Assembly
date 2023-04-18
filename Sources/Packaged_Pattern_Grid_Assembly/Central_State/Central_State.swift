@@ -369,10 +369,7 @@ public class Central_State : ObservableObject {
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
-        for cell in current_Cursor_Set{
-            cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
-        }
-        current_Cursor_Set.removeAll()
+
         
     lower_Bracket_Number = newLower
         
@@ -382,14 +379,10 @@ public class Central_State : ObservableObject {
     lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
         //remove the cursey boy here?
-        //its convinced that the cursor set hasnt changed its y-val here no matter what?
-//        var curSetStr = ""
-//        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
-//        print("data_Slider_LowBracket_Update().....: ",curSetStr)
 //        for cell in current_Cursor_Set{
-//            cell.in_Passive_Cursor_Set
+//            cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
 //        }
-        //cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
+//        current_Cursor_Set.removeAll()
         
         centralState_Data_Evaluation()
 //        curSetStr = ""
