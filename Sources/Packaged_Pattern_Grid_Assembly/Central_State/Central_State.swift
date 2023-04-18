@@ -73,8 +73,6 @@ public class Central_State : ObservableObject {
             currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             currLineSet.removeAll()
             currLineSet = Set(currLine.dataCellArray)
-            //print("curr_Data_Pos_Y changed")
-            //establishCursorSet()
         }
     }
     
@@ -127,6 +125,36 @@ public class Central_State : ObservableObject {
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
         setPatternMode(patternModeParam: .passive_Mode)
+    }
+    
+    func modeSpecificActions(){
+        if currentPatternMode == .passive_Mode {
+            if let lclPassiveHelper = passive_Helper {
+                lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
+            }
+        }
+        else if currentPatternMode == .write_Mode {
+            if let lclWriteHelper = writeNote_Helper {
+                if currentData.note_Im_In == nil {
+                    lclWriteHelper.establish_Potential_Cells_Set()
+                }
+            }
+        }
+        else if currentPatternMode == .move_Mode {
+            if let lclMoveHelper = move_Helper {
+                lclMoveHelper.movement_With_Multi_Note_Selected()
+            }
+        }
+        else if currentPatternMode == .multi_Select_Mode {
+            if let lclMulti_Select_Helper = multi_Select_Helper {
+                lclMulti_Select_Helper.area_Select_Handler()
+            }
+        }
+        else if currentPatternMode == .resize_Mode {
+            if let lclResize_Helper = resize_Helper {
+                lclResize_Helper.handleDataEvaluation()
+            }
+        }
     }
     
     public func setPatternMode(patternModeParam : E_PatternModeType){
@@ -307,38 +335,9 @@ public class Central_State : ObservableObject {
         establishCursorSet()
     }
     
-    func modeSpecificActions(){
-        if currentPatternMode == .passive_Mode {
-            if let lclPassiveHelper = passive_Helper {
-                lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
-            }
-        }
-        else if currentPatternMode == .write_Mode {
-            if let lclWriteHelper = writeNote_Helper {
-                if currentData.note_Im_In == nil {
-                    lclWriteHelper.establish_Potential_Cells_Set()
-                }
-            }
-        }
-        else if currentPatternMode == .move_Mode {
-            if let lclMoveHelper = move_Helper {
-                lclMoveHelper.movement_With_Multi_Note_Selected()
-            }
-        }
-        else if currentPatternMode == .multi_Select_Mode {
-            if let lclMulti_Select_Helper = multi_Select_Helper {
-                lclMulti_Select_Helper.area_Select_Handler()
-            }
-        }
-        else if currentPatternMode == .resize_Mode {
-            if let lclResize_Helper = resize_Helper {
-                lclResize_Helper.handleDataEvaluation()
-            }
-        }
-    }
+    
     
     func establishCursorSet(){
-
         if dimensions.patternTimingConfiguration == .fourFour {
             let newCursorSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
             accessCursorSet(newSet: newCursorSet)
@@ -370,30 +369,21 @@ public class Central_State : ObservableObject {
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
-        
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
 
         
     lower_Bracket_Number = newLower
-        
+    curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
     if let lcl_Central_Grid_Ref = central_Grid_Store {
     lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
-        //remove the cursey boy here?
-//        for cell in current_Cursor_Set{
-//            cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
-//        }
-//        current_Cursor_Set.removeAll()
-        
-        centralState_Data_Evaluation()
-//        curSetStr = ""
-//        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
-//        print("data_Slider_LowBracket_Update().....: ",curSetStr)
-    
+ 
+    centralState_Data_Evaluation()
+ 
     }
     
 }
