@@ -379,8 +379,9 @@ public class Central_State : ObservableObject {
     lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
         //remove the cursey boy here?
+        print("data_Slider_LowBracket_Update().....")
     centralState_Data_Evaluation()
-    print("data_Slider_LowBracket_Update().....")
+    
     }
     
 }
