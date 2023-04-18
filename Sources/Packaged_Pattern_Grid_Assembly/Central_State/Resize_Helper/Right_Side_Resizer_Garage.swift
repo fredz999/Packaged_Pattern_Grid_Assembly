@@ -87,7 +87,6 @@ class Right_Side_Resizer_Garage {
                         
                         let firstTwoMin = lclModifiableNoteData.minimumSet.filter{$0.dataCell_X_Number < lastSixEightMinimalCell.dataCell_X_Number}
                         new_Note_Cell_Set = firstTwoMin
-                        print("new_Note_Cell_Set count: ",new_Note_Cell_Set.count)
                         available_Cell_Set = snapshot_Line_Set.filter{$0.dataCell_X_Number < lcl_RightwardBarrierDataX &&  $0.dataCell_X_Number >= lastSixEightMinimalCell.dataCell_X_Number}
                     }
                 }

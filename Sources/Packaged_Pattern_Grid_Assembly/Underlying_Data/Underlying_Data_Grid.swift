@@ -127,9 +127,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
             }
             dataLineArray.append(newLine)
         }
-        print("four_Four_Slider_Positions:",dimensions.four_Four_Slider_Positions.count
-              ,"six_Eight_Slider_Positions:",dimensions.six_Eight_Slider_Positions.count
-              ,"single_Cell_Slider_Positions:",dimensions.single_Cell_Slider_Positions.count)
     }
     
     public func changeTimingSignature_Data_Level(){

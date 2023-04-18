@@ -100,7 +100,7 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
     
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
-        
+        print("cell_Swap_Underlying_Data(")
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
         
         
