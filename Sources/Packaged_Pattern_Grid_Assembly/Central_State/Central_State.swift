@@ -73,6 +73,8 @@ public class Central_State : ObservableObject {
             currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             currLineSet.removeAll()
             currLineSet = Set(currLine.dataCellArray)
+            print("curr_Data_Pos_Y changed")
+            //establishCursorSet()
         }
     }
     
@@ -84,7 +86,6 @@ public class Central_State : ObservableObject {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
                 deltaString.append(cell.parentLine.line_Y_Num.description+",")
             }
-            print("current_Cursor_Set, willSet, count: ",current_Cursor_Set.count,", deltaString: ",deltaString)
         }
         didSet {
             var deltaString = ""
@@ -92,7 +93,6 @@ public class Central_State : ObservableObject {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: true))
                 deltaString.append(cell.parentLine.line_Y_Num.description+",")
             }
-            print("current_Cursor_Set, didSet, count: ",current_Cursor_Set.count,", deltaString: ",deltaString)
         }
     }
     
