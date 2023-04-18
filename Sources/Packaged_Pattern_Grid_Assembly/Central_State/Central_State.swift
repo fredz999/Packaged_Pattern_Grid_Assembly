@@ -369,7 +369,11 @@ public class Central_State : ObservableObject {
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
-         
+        for cell in current_Cursor_Set{
+            cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
+        }
+        current_Cursor_Set.removeAll()
+        
     lower_Bracket_Number = newLower
         
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
@@ -386,10 +390,7 @@ public class Central_State : ObservableObject {
 //            cell.in_Passive_Cursor_Set
 //        }
         //cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
-        for cell in current_Cursor_Set{
-            cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
-        }
-        current_Cursor_Set.removeAll()
+        
         centralState_Data_Evaluation()
 //        curSetStr = ""
 //        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
