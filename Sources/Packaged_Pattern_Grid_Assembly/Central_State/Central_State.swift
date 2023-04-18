@@ -349,11 +349,11 @@ public class Central_State : ObservableObject {
     }
     
     func accessCursorSet(newSet:Set<Underlying_Data_Cell>){
-        var yString1 = ""
-        var yString2 = ""
-        for cell in current_Cursor_Set{yString1.append(cell.parentLine.line_Y_Num.description)}
-        for cell in newSet{yString2.append(cell.parentLine.line_Y_Num.description)}
-        print("yString1: ",yString1,",....yString2: ",yString2)
+//        var yString1 = ""
+//        var yString2 = ""
+//        for cell in current_Cursor_Set{yString1.append(cell.parentLine.line_Y_Num.description)}
+//        for cell in newSet{yString2.append(cell.parentLine.line_Y_Num.description)}
+//        print("yString1: ",yString1,",....yString2: ",yString2)
         current_Cursor_Set.removeAll()
         current_Cursor_Set = newSet
     }
