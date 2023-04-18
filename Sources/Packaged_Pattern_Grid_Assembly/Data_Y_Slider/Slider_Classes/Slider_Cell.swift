@@ -15,7 +15,7 @@ class Slider_Cell : UICollection_View_Other_Extension {
     private static let reuseId = "SliderCell"
 
     public var labelText = 0
-    
+
     var optionalAddView : UIView?
 
     static func registerWithCollectionView(collectionView: UICollectionView) {
@@ -34,8 +34,8 @@ class Slider_Cell : UICollection_View_Other_Extension {
     override init(frame: CGRect) {
         //let dimensions = ComponentDimensions.StaticDimensions
         super.init(frame: frame)
-        
-        
+
+
 //        contentView.addSubview(self.Cell_Info_View)
 //
 //        Cell_Info_View.text = "\(self.labelText)"
@@ -58,6 +58,5 @@ class Slider_Cell : UICollection_View_Other_Extension {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-}
 
+}

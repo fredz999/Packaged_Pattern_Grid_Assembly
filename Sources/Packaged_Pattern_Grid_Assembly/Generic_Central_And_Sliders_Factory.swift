@@ -33,9 +33,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     public var central_Grid_Manufacturing_Closure : ((Central_Cell_Store)->InjectedCentralCellType)?
     //=============================================================================================================
     
-    public var wrapped_Vertical_Slider : Wrapped_Vertical_Slider<Injected_Data_Y_Slider_Cell_Type>
+    public var wrapped_Vertical_Slider : Wrapped_Data_Y_Slider<Injected_Data_Y_Slider_Cell_Type>
     
-    public var generic_Slider_Y_Coord : Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
+    public var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
     
     public init(dataGridParam:Underlying_Data_Grid){
         
@@ -43,9 +43,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         
         centralState = Central_State(dataGridParam: dataGridParam)
         
-        generic_Slider_Y_Coord = Generic_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
+        generic_Slider_Y_Coord = Data_Y_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>()
         
-        wrapped_Vertical_Slider = Wrapped_Vertical_Slider(coordParam: generic_Slider_Y_Coord, centralStateParam: centralState)
+        wrapped_Vertical_Slider = Wrapped_Data_Y_Slider(coordParam: generic_Slider_Y_Coord, centralStateParam: centralState)
 
         cursor_Horizontal_Slider_Store = Cursor_Horizontal_Slider_Store(central_State_Param: centralState)
         
@@ -131,7 +131,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     }
     
     @ViewBuilder public func returnData_Y_Slider() -> some View {
-    Generic_Slider_View(generic_Slider_Coordinator_Param: generic_Slider_Y_Coord)
+    Data_Y_Slider_View(generic_Slider_Coordinator_Param: generic_Slider_Y_Coord)
     .frame(width: dimensions.ui_Unit_Width*2,height: dimensions.Vert_Cursor_Slider_Height)
     }
     

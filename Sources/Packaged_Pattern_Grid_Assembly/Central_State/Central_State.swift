@@ -48,6 +48,48 @@ public class Central_State : ObservableObject {
     
     var helperArray : [P_Selectable_Mode?] = []
     
+    var currentData : Underlying_Data_Cell {
+        willSet {
+            if currentPatternMode == .delete_Mode {
+                if let lclDeleteHelper = delete_Helper {
+                    lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
+                }
+            }
+        }
+    }
+    
+    var currLineSet = Set<Underlying_Data_Cell>()
+
+    var currLine : Underlying_Data_Line
+    
+    var timing_Change_Compensation_Index : Int? = nil
+
+    var currentYCursor_Slider_Position : Int = 0
+    
+    var curr_Data_Pos_X : Int
+    
+    var curr_Data_Pos_Y : Int {
+        didSet {
+            currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+            currLineSet.removeAll()
+            currLineSet = Set(currLine.dataCellArray)
+        }
+    }
+    
+    var current_Cursor_Set = Set<Underlying_Data_Cell>() {
+        willSet {
+            let delta = current_Cursor_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
+            }
+        }
+        didSet {
+            for cell in current_Cursor_Set {
+                cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: true))
+            }
+        }
+    }
+    
     public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam
         currentData = data_Grid.dataLineArray[0].dataCellArray[0]
@@ -78,12 +120,6 @@ public class Central_State : ObservableObject {
         
         centralState_Data_Evaluation()
         
-    }
-    
-    public func set_Copy_Move_Delete_Status(moveDeleteOn:Bool) {
-        if let lclMoveHelper = move_Helper {
-            if lclMoveHelper.dont_Copy_Just_Move != moveDeleteOn{lclMoveHelper.dont_Copy_Just_Move = moveDeleteOn}
-        }
     }
 
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
@@ -134,85 +170,6 @@ public class Central_State : ObservableObject {
         centralState_Data_Evaluation()
     }
     
-    func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
-        if let lclMode_Param = mode_Param {
-            for optionalHelper in helperArray {
-                if let lclHelper = optionalHelper {
-                    if lclHelper.selectableModeId == lclMode_Param.selectableModeId {
-                        if lclHelper.mode_Active == false {
-                            lclHelper.activate_Mode(activationCell: activationCellParam)
-                            mode_String = lclHelper.generateModeDescriptorString()
-                            mode_Id = lclHelper.selectableModeId
-                        }
-                    }
-                    else if lclHelper.selectableModeId != lclMode_Param.selectableModeId {
-                        if lclHelper.mode_Active == true {
-                            lclHelper.deactivate_Mode()
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    func centralState_Data_Evaluation(){
-        if dimensions.patternTimingConfiguration == .fourFour {
-            //currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentFourFourDataIndex]
-            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
-            curr_Data_Pos_X = dimensions.currentFourFourDataIndex
-            modeSpecificActions()
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-            //currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSixEightDataIndex]
-            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
-            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
-            modeSpecificActions()
-        }
-        establishCursorSet()
-    }
-    
-    func modeSpecificActions(){
-        if currentPatternMode == .passive_Mode {
-            if let lclPassiveHelper = passive_Helper {
-                lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
-            }
-        }
-        else if currentPatternMode == .write_Mode {
-            if let lclWriteHelper = writeNote_Helper {
-                if currentData.note_Im_In == nil {
-                    lclWriteHelper.establish_Potential_Cells_Set()
-                }
-            }
-        }
-        else if currentPatternMode == .move_Mode {
-            if let lclMoveHelper = move_Helper {
-                lclMoveHelper.movement_With_Multi_Note_Selected()
-            }
-        }
-        else if currentPatternMode == .multi_Select_Mode {
-            if let lclMulti_Select_Helper = multi_Select_Helper {
-                lclMulti_Select_Helper.area_Select_Handler()
-            }
-        }
-        else if currentPatternMode == .resize_Mode {
-            if let lclResize_Helper = resize_Helper {
-                lclResize_Helper.handleDataEvaluation()
-            }
-        }
-    }
-    
-    func establishCursorSet(){
-
-        if dimensions.patternTimingConfiguration == .fourFour {
-            let newCursorSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
-            accessCursorSet(newSet: newCursorSet)
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-            let newCursorSet = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
-            accessCursorSet(newSet: newCursorSet)
-        }
-    }
-    
     public func change_Timing_Signature_Central() {
 
         if timing_Sig_Change_Possible == true {
@@ -252,79 +209,6 @@ public class Central_State : ObservableObject {
         }
     }
 
-    var timing_Change_Compensation_Index : Int? = nil
-
-    var currentYCursor_Slider_Position : Int = 0
-    
-    var curr_Data_Pos_X : Int
-    
-    var curr_Data_Pos_Y : Int {
-        didSet {
-            currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-            currLineSet.removeAll()
-            currLineSet = Set(currLine.dataCellArray)
-        }
-    }
-    
-    func accessCursorSet(newSet:Set<Underlying_Data_Cell>){
-        current_Cursor_Set.removeAll()
-        current_Cursor_Set = newSet
-    }
-    
-    var current_Cursor_Set = Set<Underlying_Data_Cell>()
-    {
-        willSet {
-            let delta = current_Cursor_Set.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
-            }
-        }
-        didSet {
-            for cell in current_Cursor_Set {
-                cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: true))
-            }
-        }
-    }
-    
-    func cursor_Visible_Change_Type(isActivation:Bool)->E_VisibleStateChangeType {
-        var retVal : E_VisibleStateChangeType = .activate_Passive_Cursor_Set
-        if isActivation == false {
-            retVal = .deActivate_Passive_Cursor_Set
-        }
-        return retVal
-    }
-    
-    func cursor_Slider_Update(){
-        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-        centralState_Data_Evaluation()
-    }
-
-    var currentData : Underlying_Data_Cell {
-        willSet {
-            if currentPatternMode == .delete_Mode {
-                if let lclDeleteHelper = delete_Helper {
-                    lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
-                }
-            }
-        }
-    }
-    
-    var currLineSet = Set<Underlying_Data_Cell>()
-
-    var currLine : Underlying_Data_Line
-    
-    func data_Slider_LowBracket_Update(newLower:Int){
-    
-    lower_Bracket_Number = newLower
-        
-    higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
-
-    if let lcl_Central_Grid_Ref = central_Grid_Store {
-    lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
-    }
-    centralState_Data_Evaluation()
-    }
-    
     public func resizeModeActions(action:E_ResizeActions){
         if let lclResizeHelper = resize_Helper {
         if currentPatternMode == .resize_Mode {
@@ -385,6 +269,114 @@ public class Central_State : ObservableObject {
         }
     }
     }
+    
+    func modeActivator(mode_Param:P_Selectable_Mode?,activationCellParam:Underlying_Data_Cell?){
+        if let lclMode_Param = mode_Param {
+            for optionalHelper in helperArray {
+                if let lclHelper = optionalHelper {
+                    if lclHelper.selectableModeId == lclMode_Param.selectableModeId {
+                        if lclHelper.mode_Active == false {
+                            lclHelper.activate_Mode(activationCell: activationCellParam)
+                            mode_String = lclHelper.generateModeDescriptorString()
+                            mode_Id = lclHelper.selectableModeId
+                        }
+                    }
+                    else if lclHelper.selectableModeId != lclMode_Param.selectableModeId {
+                        if lclHelper.mode_Active == true {
+                            lclHelper.deactivate_Mode()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    func centralState_Data_Evaluation(){
+        if dimensions.patternTimingConfiguration == .fourFour {
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
+            curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+            modeSpecificActions()
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
+            curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+            modeSpecificActions()
+        }
+        establishCursorSet()
+    }
+    
+    func modeSpecificActions(){
+        if currentPatternMode == .passive_Mode {
+            if let lclPassiveHelper = passive_Helper {
+                lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
+            }
+        }
+        else if currentPatternMode == .write_Mode {
+            if let lclWriteHelper = writeNote_Helper {
+                if currentData.note_Im_In == nil {
+                    lclWriteHelper.establish_Potential_Cells_Set()
+                }
+            }
+        }
+        else if currentPatternMode == .move_Mode {
+            if let lclMoveHelper = move_Helper {
+                lclMoveHelper.movement_With_Multi_Note_Selected()
+            }
+        }
+        else if currentPatternMode == .multi_Select_Mode {
+            if let lclMulti_Select_Helper = multi_Select_Helper {
+                lclMulti_Select_Helper.area_Select_Handler()
+            }
+        }
+        else if currentPatternMode == .resize_Mode {
+            if let lclResize_Helper = resize_Helper {
+                lclResize_Helper.handleDataEvaluation()
+            }
+        }
+    }
+    
+    func establishCursorSet(){
+
+        if dimensions.patternTimingConfiguration == .fourFour {
+            let newCursorSet = currLineSet.filter({$0.four_Four_Half_Cell_Index == currentData.four_Four_Half_Cell_Index})
+            accessCursorSet(newSet: newCursorSet)
+        }
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            let newCursorSet = currLineSet.filter({$0.six_Eight_Half_Cell_Index == currentData.six_Eight_Half_Cell_Index})
+            accessCursorSet(newSet: newCursorSet)
+        }
+    }
+    
+    func accessCursorSet(newSet:Set<Underlying_Data_Cell>){
+        current_Cursor_Set.removeAll()
+        current_Cursor_Set = newSet
+    }
+    
+    func cursor_Visible_Change_Type(isActivation:Bool)->E_VisibleStateChangeType {
+        var retVal : E_VisibleStateChangeType = .activate_Passive_Cursor_Set
+        if isActivation == false {
+            retVal = .deActivate_Passive_Cursor_Set
+        }
+        return retVal
+    }
+    
+    func cursor_Slider_Update(){
+        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+        centralState_Data_Evaluation()
+    }
+
+    func data_Slider_LowBracket_Update(newLower:Int){
+    
+    lower_Bracket_Number = newLower
+        
+    higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
+
+    if let lcl_Central_Grid_Ref = central_Grid_Store {
+    lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
+    }
+    centralState_Data_Evaluation()
+    }
+    
 }
 
 public enum E_ResizeActions {
