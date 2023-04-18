@@ -379,8 +379,13 @@ public class Central_State : ObservableObject {
     lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
         //remove the cursey boy here?
-        print("data_Slider_LowBracket_Update().....")
+        var curSetStr = ""
+        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
+        print("data_Slider_LowBracket_Update().....: ",curSetStr)
     centralState_Data_Evaluation()
+        curSetStr = ""
+        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
+        print("data_Slider_LowBracket_Update().....: ",curSetStr)
     
     }
     
