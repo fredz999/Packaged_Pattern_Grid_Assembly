@@ -99,8 +99,10 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
     }
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
-        print("cell_Swap_Underlying_Data(",new_Data_Cell.in_Passive_Cursor_Set ? ",inCursor" : "not in cursor",",cellX:"
-              ,new_Data_Cell.dataCell_X_Number.description)
+        if new_Data_Cell.in_Passive_Cursor_Set == true{
+            print("X: ",new_Data_Cell.dataCell_X_Number,", Y: ",new_Data_Cell.parentLine.line_Y_Num )
+        }
+        
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
