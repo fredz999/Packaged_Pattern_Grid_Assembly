@@ -80,18 +80,15 @@ public class Central_State : ObservableObject {
     
     var current_Cursor_Set = Set<Underlying_Data_Cell>() {
         willSet {
-            var deltaString = ""
+            print("set called?")
             let delta = current_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
-                deltaString.append(cell.parentLine.line_Y_Num.description+",")
             }
         }
         didSet {
-            var deltaString = ""
             for cell in current_Cursor_Set {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: true))
-                deltaString.append(cell.parentLine.line_Y_Num.description+",")
             }
         }
     }
@@ -373,6 +370,7 @@ public class Central_State : ObservableObject {
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
+         
     lower_Bracket_Number = newLower
         
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
