@@ -201,9 +201,6 @@ enum E_VisibleStateChangeType: String {
     case activate_Multiselect_Note_Set = "activate_Multiselect_Note_Set"
     case deActivate_Multiselect_Note_Set = "deActivate_Multiselect_Note_Set"
     
-    case activate_Cursor_Set = "activate_Cursor_Set"
-    case deActivate_Cursor_Set = "deActivate_Cursor_Set"
-    
     case activate_Delete_Square_Set = "activate_Delete_Square_Set"
     case deActivate_Delete_Square_Set = "deActivate_Delete_Square_Set"
     

@@ -78,12 +78,14 @@ public class Central_State : ObservableObject {
     
     var current_Cursor_Set = Set<Underlying_Data_Cell>() {
         willSet {
+            print("current_Cursor_Set, willSet")
             let delta = current_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
             }
         }
         didSet {
+            print("current_Cursor_Set, didSet")
             for cell in current_Cursor_Set {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: true))
             }
