@@ -369,7 +369,7 @@ public class Central_State : ObservableObject {
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
-        print("cursor_Slider_Update().....")
+        
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
@@ -380,7 +380,9 @@ public class Central_State : ObservableObject {
     if let lcl_Central_Grid_Ref = central_Grid_Store {
     lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
+        //remove the cursey boy here?
     centralState_Data_Evaluation()
+    print("data_Slider_LowBracket_Update().....")
     }
     
 }
