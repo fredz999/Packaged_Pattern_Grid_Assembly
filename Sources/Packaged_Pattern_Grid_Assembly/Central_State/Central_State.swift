@@ -382,8 +382,15 @@ public class Central_State : ObservableObject {
 //        var curSetStr = ""
 //        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
 //        print("data_Slider_LowBracket_Update().....: ",curSetStr)
+//        for cell in current_Cursor_Set{
+//            cell.in_Passive_Cursor_Set
+//        }
+        //cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
+        for cell in current_Cursor_Set{
+            cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
+        }
         current_Cursor_Set.removeAll()
-    centralState_Data_Evaluation()
+        centralState_Data_Evaluation()
 //        curSetStr = ""
 //        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
 //        print("data_Slider_LowBracket_Update().....: ",curSetStr)
