@@ -80,7 +80,6 @@ public class Central_State : ObservableObject {
     
     var current_Cursor_Set = Set<Underlying_Data_Cell>() {
         willSet {
-            print("set called?")
             let delta = current_Cursor_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: false))
@@ -379,13 +378,15 @@ public class Central_State : ObservableObject {
     lcl_Central_Grid_Ref.changeDataBracket(newLower: newLower)
     }
         //remove the cursey boy here?
-        var curSetStr = ""
-        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
-        print("data_Slider_LowBracket_Update().....: ",curSetStr)
+        //its convinced that the cursor set hasnt changed its y-val here no matter what?
+//        var curSetStr = ""
+//        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
+//        print("data_Slider_LowBracket_Update().....: ",curSetStr)
+        current_Cursor_Set.removeAll()
     centralState_Data_Evaluation()
-        curSetStr = ""
-        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
-        print("data_Slider_LowBracket_Update().....: ",curSetStr)
+//        curSetStr = ""
+//        for cell in current_Cursor_Set{curSetStr.append(cell.parentLine.line_Y_Num.description+", ")}
+//        print("data_Slider_LowBracket_Update().....: ",curSetStr)
     
     }
     
