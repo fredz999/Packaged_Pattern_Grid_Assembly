@@ -73,7 +73,7 @@ public class Central_State : ObservableObject {
             currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
             currLineSet.removeAll()
             currLineSet = Set(currLine.dataCellArray)
-            print("curr_Data_Pos_Y changed")
+            //print("curr_Data_Pos_Y changed")
             //establishCursorSet()
         }
     }
@@ -206,14 +206,14 @@ public class Central_State : ObservableObject {
         establishCursorSet()
     }
     
-    public func change_Write_Needs_Held_Down(){
-        if write_Needs_Held_Down == true {
-            write_Needs_Held_Down = false
-        }
-        else if write_Needs_Held_Down == false {
-            write_Needs_Held_Down = true
-        }
-    }
+//    public func change_Write_Needs_Held_Down(){
+//        if write_Needs_Held_Down == true {
+//            write_Needs_Held_Down = false
+//        }
+//        else if write_Needs_Held_Down == false {
+//            write_Needs_Held_Down = true
+//        }
+//    }
 
     public func resizeModeActions(action:E_ResizeActions){
         if let lclResizeHelper = resize_Helper {
@@ -369,6 +369,7 @@ public class Central_State : ObservableObject {
     func cursor_Slider_Update(){
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
+        print("cursor_Slider_Update().....")
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
