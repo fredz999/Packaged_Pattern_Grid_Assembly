@@ -25,22 +25,26 @@ public class Wrapped_Data_Y_Slider<T:View> {
     func setupCoordinator(){
         self.generic_Slider_coordinator.parentWrapper = self
     }
+    
+    func haveAStore (indyParam:IndexPath) -> Data_Y_Cell_Store {
+        return Data_Y_Cell_Store(firstIndexRow: indyParam.row)
+    }
 
-    @ViewBuilder func yield_A_Cell() -> some View {
-        // I have to inject the actual cell part from the other side
-        // the cell part will then be housed in a default container view that simply has the store
-        // which in turn will be uesd to recieve the note and number variables e.t.c
-        // need to 1: get the visual config of the data)Y into variables in a section of the dimensions
-
-        ZStack(alignment: .topLeading) {
-            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
-            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            .offset(x:(dimensions.ui_Unit_Width*3)-1)
-            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            //Text(y.description).foregroundColor(.white)
-        }
+    @ViewBuilder func yield_A_Cell(dataStore:Data_Y_Cell_Store) -> some View {
+//        ZStack(alignment: .topLeading) {
+//            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
+//            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
+//            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
+//            .offset(x:(dimensions.ui_Unit_Width*3)-1)
+//            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
+//        }
         
+        Default_UICollection_Cell_Overlay(data_Y_Cell_Store: dataStore)
+        
+    }
+    
+    func alterIndex(indyPath:IndexPath){
+        print(".....section: ",indyPath.section.description,",row: ",indyPath.row.description)
     }
     
     func printIndex(indyPath:IndexPath){
@@ -68,20 +72,25 @@ public class Wrapped_Data_Y_Slider<T:View> {
 
 }
 
+
+
 public class Data_Y_Cell_Store : ObservableObject {
-    public init(){}
+   
+    public init(firstIndexRow:Int){
+        tuxt = firstIndexRow.description
+    }
+
     @Published public var tuxt = ""
     
     func alterText(newText:String){
         tuxt = newText
     }
-    
+
 }
 
 struct Default_UICollection_Cell_Overlay : View {
     let dimensions = ComponentDimensions.StaticDimensions
-    @StateObject var cellStuff : Data_Y_Cell_Store = Data_Y_Cell_Store()
-// will place injectable content in here?
+    @ObservedObject var data_Y_Cell_Store : Data_Y_Cell_Store
     var body: some View {
         return ZStack(alignment: .topLeading) {
             Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
@@ -89,10 +98,11 @@ struct Default_UICollection_Cell_Overlay : View {
             Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
             .offset(x:(dimensions.ui_Unit_Width*3)-1)
             Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            Text(cellStuff.tuxt).foregroundColor(.white)
+            Text(data_Y_Cell_Store.tuxt).foregroundColor(.white)
         }
     }
 }
+
 //struct Default_UICollection_Cell_Overlay : View {
 //    var body: some View {
 //        return ZStack(alignment: .topLeading){

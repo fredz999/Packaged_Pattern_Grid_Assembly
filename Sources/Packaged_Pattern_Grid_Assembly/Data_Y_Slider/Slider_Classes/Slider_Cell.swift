@@ -12,18 +12,19 @@ import UIKit
 //class Slider_Cell : UICollection_View_Slight_Extension {
 class Slider_Cell : UICollection_View_Other_Extension {
 
+    
+//    
+//    var optionalAddView : UIView?
+    
     private static let reuseId = "SliderCell"
 
     public var labelText = 0
-
-    var optionalAddView : UIView?
 
     static func registerWithCollectionView(collectionView: UICollectionView) {
         collectionView.register(Slider_Cell.self, forCellWithReuseIdentifier: reuseId)
     }
 
     static func getReusedCellFrom(collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollection_View_Other_Extension{
-        //print("reuseId: ",reuseId.description,", indexPath: ",indexPath.description)
         return collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! Slider_Cell
     }
 

@@ -30,14 +30,11 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
-        timesReuseCalled += 1
-        print(".getReusedCellFrom called",timesReuseCalled.description," times")
-        
         if let lclParentWrapper = parentWrapper {
             if vertical_Slider_Cell.has_BeenOverlayed == false {
-                let newYelRec = lclParentWrapper.yield_A_Cell()
-                timesYieldCalled += 1
-                print(".yield_A_Cell() called",timesYieldCalled.description," times")
+                let dataStoreParam = lclParentWrapper.haveAStore(indyParam: indexPath)
+                let newYelRec = lclParentWrapper.yield_A_Cell(dataStore: dataStoreParam)
+                vertical_Slider_Cell.optionalAddStore = dataStoreParam
                 let uicThing = UIHostingController(rootView: newYelRec)
                 if let uiV = uicThing.view {
                     vertical_Slider_Cell.backgroundColor = .clear
@@ -46,17 +43,25 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
                     uiV.accessibilityIdentifier = "uiv"
                     vertical_Slider_Cell.addSubview(uiV)
                     let constraints = [
-                        uicThing.view.topAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.topAnchor, constant: 0),
-                        uicThing.view.leftAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.leftAnchor, constant: 0),
-                        uicThing.view.bottomAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.bottomAnchor, constant: 0),
-                        uicThing.view.rightAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.rightAnchor, constant: 0),
+                    uicThing.view.topAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.topAnchor, constant: 0),
+                    uicThing.view.leftAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.leftAnchor, constant: 0),
+                    uicThing.view.bottomAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.bottomAnchor, constant: 0),
+                    uicThing.view.rightAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.rightAnchor, constant: 0),
                     ]
                     NSLayoutConstraint.activate(constraints)
                     vertical_Slider_Cell.has_BeenOverlayed = true
                 }
-                
+           }
+           else if vertical_Slider_Cell.has_BeenOverlayed != false {
+               //vertical_Slider_Cell.optionalAddStore
+               if let lcloptionalAddStore = vertical_Slider_Cell.optionalAddStore{
+                   lcloptionalAddStore.alterText(newText: indexPath.row.description)
+               }
            }
         }
+        
+        // if vertical slider already has_BeenOverlayed then alter the existing label rather than do noffink
+        
         return vertical_Slider_Cell
     }
     

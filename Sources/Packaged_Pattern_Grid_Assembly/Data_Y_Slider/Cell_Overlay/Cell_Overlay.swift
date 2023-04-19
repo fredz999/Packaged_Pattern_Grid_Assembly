@@ -32,6 +32,7 @@ class UICollection_View_Slight_Extension : UICollectionViewCell {
 
 public class UICollection_View_Other_Extension : UICollectionViewCell {
     var has_BeenOverlayed : Bool = false
+    var optionalAddStore : Data_Y_Cell_Store?
     deinit{
         for v in subviews{
             if v.accessibilityIdentifier == "uiv"{
