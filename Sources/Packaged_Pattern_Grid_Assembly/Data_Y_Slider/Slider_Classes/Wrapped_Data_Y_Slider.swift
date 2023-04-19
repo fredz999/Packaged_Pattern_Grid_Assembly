@@ -27,10 +27,10 @@ public class Wrapped_Data_Y_Slider<T:View> {
     }
 
     @ViewBuilder func yield_A_Cell() -> some View {
-        if injectedCellFactoryMethod == nil{
+        if injectedCellFactoryMethod == nil {
             Default_UICollection_Cell_Overlay()
         }
-        else if let lclInjectedMethod = injectedCellFactoryMethod{
+        else if let lclInjectedMethod = injectedCellFactoryMethod {
             lclInjectedMethod()
         }
     }

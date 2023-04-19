@@ -26,7 +26,7 @@ public struct Data_Y_Slider_View<T:View>: UIViewRepresentable {
 
     public func makeUIView(context: Context) -> UICollectionView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = context.coordinator
         collectionView.delegate = context.coordinator
