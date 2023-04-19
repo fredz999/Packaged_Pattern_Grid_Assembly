@@ -31,20 +31,30 @@ public class Wrapped_Data_Y_Slider<T:View> {
             Default_UICollection_Cell_Overlay()
         }
         else if let lclInjectedMethod = injectedCellFactoryMethod {
-            lclInjectedMethod("spell")
+            lclInjectedMethod()
         }
     }
 
-    public func inject_Cell_Factory_Method(cell_Factory_Method:@escaping ((String)->T)){
+    public func inject_Cell_Factory_Method(cell_Factory_Method : @escaping (()->T)){
         injectedCellFactoryMethod = cell_Factory_Method
     }
 
-    var injectedCellFactoryMethod : ((String)->T)?
+    var injectedCellFactoryMethod : (()->T)?
 
     deinit{
         if injectedCellFactoryMethod != nil{injectedCellFactoryMethod=nil}
     }
 
+}
+
+public class Data_Y_Cell_Store : ObservableObject {
+    public init(){}
+    @Published var tuxt = ""
+    
+    func alterText(newText:String){
+        tuxt = newText
+    }
+    
 }
 
 struct Default_UICollection_Cell_Overlay : View {
