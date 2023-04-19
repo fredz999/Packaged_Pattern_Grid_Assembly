@@ -43,6 +43,10 @@ public class Wrapped_Data_Y_Slider<T:View> {
         
     }
     
+    func printIndex(indyPath:IndexPath){
+        print("section: ",indyPath.section.description,",row: ",indyPath.row.description)
+    }
+    
 //    @ViewBuilder func yield_A_Cell(indexPath:IndexPath) -> some View {
 //        if injectedCellFactoryMethod == nil {
 //            Default_UICollection_Cell_Overlay()
