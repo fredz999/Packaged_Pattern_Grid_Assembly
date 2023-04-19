@@ -70,9 +70,11 @@ public class Central_State : ObservableObject {
     
     var curr_Data_Pos_Y : Int {
         didSet {
-            currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
-            currLineSet.removeAll()
-            currLineSet = Set(currLine.dataCellArray)
+            if curr_Data_Pos_Y < data_Grid.dataLineArray.count{
+                currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
+                currLineSet.removeAll()
+                currLineSet = Set(currLine.dataCellArray)
+            }
         }
     }
     
