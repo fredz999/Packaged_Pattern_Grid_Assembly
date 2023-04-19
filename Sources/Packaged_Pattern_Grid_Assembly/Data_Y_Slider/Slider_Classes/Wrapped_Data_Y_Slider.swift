@@ -29,7 +29,7 @@ public class Wrapped_Data_Y_Slider<T:View> {
     func haveAStore (indyParam:IndexPath) -> Data_Y_Cell_Store {
         return Data_Y_Cell_Store(firstIndexRow: indyParam.row)
     }
-
+    var timesLaunched : Int = 0
     @ViewBuilder func yield_A_Cell(dataStore:Data_Y_Cell_Store) -> some View {
 //        ZStack(alignment: .topLeading) {
 //            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
@@ -38,17 +38,9 @@ public class Wrapped_Data_Y_Slider<T:View> {
 //            .offset(x:(dimensions.ui_Unit_Width*3)-1)
 //            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
 //        }
-        
+
         Default_UICollection_Cell_Overlay(data_Y_Cell_Store: dataStore)
-        //Default_UICollection_Cell_Overlay()
-    }
-    
-    func alterIndex(indyPath:IndexPath){
-        print(".....section: ",indyPath.section.description,",row: ",indyPath.row.description)
-    }
-    
-    func printIndex(indyPath:IndexPath){
-        print(".....section: ",indyPath.section.description,",row: ",indyPath.row.description)
+        
     }
     
 //    @ViewBuilder func yield_A_Cell(indexPath:IndexPath) -> some View {
