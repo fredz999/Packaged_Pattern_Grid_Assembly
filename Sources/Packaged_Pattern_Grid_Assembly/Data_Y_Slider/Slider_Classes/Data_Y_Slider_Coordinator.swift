@@ -20,7 +20,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     }
     
     public func addResponder(responderParam:P_VSlider_Responder){
-        vertical_Slider_Responders.append(responderParam)
+        //vertical_Slider_Responders.append(responderParam)
     }
     
     var parentWrapper : Wrapped_Data_Y_Slider<T>?
