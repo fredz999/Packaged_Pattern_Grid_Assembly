@@ -38,7 +38,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
                 if let uiV = uicThing.view {
                     vertical_Slider_Cell.backgroundColor = .clear
                     uicThing.view.translatesAutoresizingMaskIntoConstraints = false
-                    uicThing.view.backgroundColor = .white
+                    uicThing.view.backgroundColor = .clear
                     uiV.accessibilityIdentifier = "uiv"
                     vertical_Slider_Cell.addSubview(uiV)
                     let constraints = [
