@@ -67,7 +67,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if vertical_Slider_Responders.count > 0 {
             for res in vertical_Slider_Responders {
-                //res.react_To_Swiper_Y(y_OffsetParam: scrollView.contentOffset.y)
+                res.react_To_Swiper_Y(y_OffsetParam: scrollView.contentOffset.y)
             }
         }
     }

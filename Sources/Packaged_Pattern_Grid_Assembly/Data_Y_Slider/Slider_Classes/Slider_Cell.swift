@@ -12,10 +12,6 @@ import UIKit
 //class Slider_Cell : UICollection_View_Slight_Extension {
 class Slider_Cell : UICollection_View_Other_Extension {
 
-    
-//    
-//    var optionalAddView : UIView?
-    
     private static let reuseId = "SliderCell"
 
     public var labelText = 0
