@@ -33,7 +33,8 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
         if let lclParentWrapper = parentWrapper {
             if vertical_Slider_Cell.has_BeenOverlayed == false {
-                let newYelRec = lclParentWrapper.yield_A_Cell()
+                
+                let newYelRec = lclParentWrapper.yield_A_Cell(indexPath: indexPath)
                 let uicThing = UIHostingController(rootView: newYelRec)
                 
                 if let uiV = uicThing.view {

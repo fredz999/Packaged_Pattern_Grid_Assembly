@@ -26,14 +26,30 @@ public class Wrapped_Data_Y_Slider<T:View> {
         self.generic_Slider_coordinator.parentWrapper = self
     }
 
-    @ViewBuilder func yield_A_Cell() -> some View {
-        if injectedCellFactoryMethod == nil {
-            Default_UICollection_Cell_Overlay()
+    @ViewBuilder func yield_A_Cell(indexPath:IndexPath) -> some View {
+        // I have to inject the actual cell part from the other side
+        // the cell part will then be housed in a default container view that simply has the store
+        // which in turn will be uesd to recieve the note and number variables e.t.c
+        // need to 1: get the visual config of the data)Y into variables in a section of the dimensions
+
+        ZStack(alignment: .topLeading) {
+            Rectangle().frame(width: dimensions.ui_Unit_Width*2,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
+            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            .offset(x:(dimensions.ui_Unit_Width*2)-1)
+            Rectangle().frame(width: dimensions.ui_Unit_Width*2,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            Text(indexPath.description).foregroundColor(.white)
         }
-        else if let lclInjectedMethod = injectedCellFactoryMethod {
-            lclInjectedMethod()
-        }
+        
     }
+//    @ViewBuilder func yield_A_Cell(indexPath:IndexPath) -> some View {
+//        if injectedCellFactoryMethod == nil {
+//            Default_UICollection_Cell_Overlay()
+//        }
+//        else if let lclInjectedMethod = injectedCellFactoryMethod {
+//            lclInjectedMethod()
+//        }
+//    }
 
     public func inject_Cell_Factory_Method(cell_Factory_Method : @escaping (()->T)){
         injectedCellFactoryMethod = cell_Factory_Method
@@ -58,14 +74,29 @@ public class Data_Y_Cell_Store : ObservableObject {
 }
 
 struct Default_UICollection_Cell_Overlay : View {
+    let dimensions = ComponentDimensions.StaticDimensions
+    @StateObject var cellStuff : Data_Y_Cell_Store = Data_Y_Cell_Store()
+// will place injectable content in here?
     var body: some View {
-        return ZStack(alignment: .topLeading){
-            Rectangle().frame(width: 30,height: 30).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
-            Rectangle().frame(width: 30,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            Rectangle().frame(width: 1,height: 30).foregroundColor(Color(red: 0, green: 0, blue: 1))
+        return ZStack(alignment: .topLeading) {
+            Rectangle().frame(width: dimensions.ui_Unit_Width*2,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
+            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            .offset(x:(dimensions.ui_Unit_Width*2)-1)
+            Rectangle().frame(width: dimensions.ui_Unit_Width*2,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            Text(cellStuff.tuxt).foregroundColor(.white)
         }
     }
 }
+//struct Default_UICollection_Cell_Overlay : View {
+//    var body: some View {
+//        return ZStack(alignment: .topLeading){
+//            Rectangle().frame(width: 30,height: 30).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
+//            Rectangle().frame(width: 30,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
+//            Rectangle().frame(width: 1,height: 30).foregroundColor(Color(red: 0, green: 0, blue: 1))
+//        }
+//    }
+//}
 
 
 class Generic_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
