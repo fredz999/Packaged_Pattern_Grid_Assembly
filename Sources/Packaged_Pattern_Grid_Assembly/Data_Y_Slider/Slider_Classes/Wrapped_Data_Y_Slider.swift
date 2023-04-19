@@ -49,7 +49,7 @@ public class Wrapped_Data_Y_Slider<T:View> {
 
 public class Data_Y_Cell_Store : ObservableObject {
     public init(){}
-    @Published var tuxt = ""
+    @Published public var tuxt = ""
     
     func alterText(newText:String){
         tuxt = newText
