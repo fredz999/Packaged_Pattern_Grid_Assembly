@@ -53,7 +53,6 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
                 }
            }
            else if vertical_Slider_Cell.has_BeenOverlayed != false {
-               //vertical_Slider_Cell.optionalAddStore
                if let lcloptionalAddStore = vertical_Slider_Cell.optionalAddStore{
                    lcloptionalAddStore.alterText(newText: indexPath.row.description)
                }
