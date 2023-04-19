@@ -26,14 +26,16 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     var parentWrapper : Wrapped_Data_Y_Slider<T>?
 
     var timesYieldCalled : Int = 0
+    var timesReuseCalled : Int = 0
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
+        timesReuseCalled += 1
+        print(".getReusedCellFrom called",timesReuseCalled.description," times")
         
         if let lclParentWrapper = parentWrapper {
             if vertical_Slider_Cell.has_BeenOverlayed == false {
                 let newYelRec = lclParentWrapper.yield_A_Cell()
-                //lclParentWrapper.printIndex(indyPath: indexPath)
                 timesYieldCalled += 1
                 print(".yield_A_Cell() called",timesYieldCalled.description," times")
                 let uicThing = UIHostingController(rootView: newYelRec)
