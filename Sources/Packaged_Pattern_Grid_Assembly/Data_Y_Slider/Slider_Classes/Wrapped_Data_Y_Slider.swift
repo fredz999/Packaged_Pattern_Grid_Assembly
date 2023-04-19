@@ -26,7 +26,7 @@ public class Wrapped_Data_Y_Slider<T:View> {
         self.generic_Slider_coordinator.parentWrapper = self
     }
 
-    @ViewBuilder func yield_A_Cell(indexPath:IndexPath) -> some View {
+    @ViewBuilder func yield_A_Cell(x:Int,y:Int) -> some View {
         // I have to inject the actual cell part from the other side
         // the cell part will then be housed in a default container view that simply has the store
         // which in turn will be uesd to recieve the note and number variables e.t.c
@@ -38,7 +38,7 @@ public class Wrapped_Data_Y_Slider<T:View> {
             Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
             .offset(x:(dimensions.ui_Unit_Width*3)-1)
             Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            Text(indexPath.description).foregroundColor(.white)
+            Text(x.description+", "+y.description).foregroundColor(.white)
         }
         
     }
