@@ -39,8 +39,8 @@ public class Wrapped_Data_Y_Slider<T:View> {
 //            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
 //        }
         
-        //Default_UICollection_Cell_Overlay(data_Y_Cell_Store: dataStore)
-        Default_UICollection_Cell_Overlay()
+        Default_UICollection_Cell_Overlay(data_Y_Cell_Store: dataStore)
+        //Default_UICollection_Cell_Overlay()
     }
     
     func alterIndex(indyPath:IndexPath){
@@ -88,24 +88,9 @@ public class Data_Y_Cell_Store : ObservableObject {
 
 }
 
-struct Default_UICollection_Cell_Overlay : View {
-    let dimensions = ComponentDimensions.StaticDimensions
-    //@ObservedObject var data_Y_Cell_Store : Data_Y_Cell_Store
-    var body: some View {
-        return ZStack(alignment: .topLeading) {
-            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
-            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            .offset(x:(dimensions.ui_Unit_Width*3)-1)
-            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            //Text(data_Y_Cell_Store.tuxt).foregroundColor(.white)
-        }
-    }
-}
-
 //struct Default_UICollection_Cell_Overlay : View {
 //    let dimensions = ComponentDimensions.StaticDimensions
-//    @ObservedObject var data_Y_Cell_Store : Data_Y_Cell_Store
+//    //@ObservedObject var data_Y_Cell_Store : Data_Y_Cell_Store
 //    var body: some View {
 //        return ZStack(alignment: .topLeading) {
 //            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
@@ -113,10 +98,25 @@ struct Default_UICollection_Cell_Overlay : View {
 //            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
 //            .offset(x:(dimensions.ui_Unit_Width*3)-1)
 //            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
-//            Text(data_Y_Cell_Store.tuxt).foregroundColor(.white)
+//            //Text(data_Y_Cell_Store.tuxt).foregroundColor(.white)
 //        }
 //    }
 //}
+
+struct Default_UICollection_Cell_Overlay : View {
+    let dimensions = ComponentDimensions.StaticDimensions
+    @ObservedObject var data_Y_Cell_Store : Data_Y_Cell_Store
+    var body: some View {
+        return ZStack(alignment: .topLeading) {
+            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
+            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            .offset(x:(dimensions.ui_Unit_Width*3)-1)
+            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            Text(data_Y_Cell_Store.tuxt).foregroundColor(.white)
+        }
+    }
+}
 
 
 class Generic_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
