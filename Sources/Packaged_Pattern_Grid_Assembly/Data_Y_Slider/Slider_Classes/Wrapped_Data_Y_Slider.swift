@@ -44,7 +44,7 @@ public class Wrapped_Data_Y_Slider<T:View> {
     }
     
     func printIndex(indyPath:IndexPath){
-        print("section: ",indyPath.section.description,",row: ",indyPath.row.description)
+        print(".....section: ",indyPath.section.description,",row: ",indyPath.row.description)
     }
     
 //    @ViewBuilder func yield_A_Cell(indexPath:IndexPath) -> some View {
