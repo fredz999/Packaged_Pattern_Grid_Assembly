@@ -32,8 +32,9 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         if let lclParentWrapper = parentWrapper {
             if vertical_Slider_Cell.has_BeenOverlayed == false {
                 //print("indexPath section: ",indexPath.section.description,", row: ",indexPath.row.description)
-                lclParentWrapper.printIndex(indyPath: indexPath)
-                let newYelRec = lclParentWrapper.yield_A_Cell(x: indexPath.section, y: indexPath.row)
+                //lclParentWrapper.printIndex(indyPath: indexPath)
+                let newYelRec = lclParentWrapper.yield_A_Cell()
+                    //.yield_A_Cell(x: indexPath.section, y: indexPath.row)
                 let uicThing = UIHostingController(rootView: newYelRec)
                 
                 if let uiV = uicThing.view {

@@ -23,6 +23,7 @@ class Slider_Cell : UICollection_View_Other_Extension {
     }
 
     static func getReusedCellFrom(collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollection_View_Other_Extension{
+        print("reuseId: ",reuseId.description,", indexPath: ",indexPath.description)
         return collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! Slider_Cell
     }
 
