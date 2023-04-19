@@ -35,21 +35,23 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
             if vertical_Slider_Cell.has_BeenOverlayed == false {
                 let newYelRec = lclParentWrapper.yield_A_Cell()
                 let uicThing = UIHostingController(rootView: newYelRec)
+                
                 if let uiV = uicThing.view {
                     vertical_Slider_Cell.backgroundColor = .clear
                     uicThing.view.translatesAutoresizingMaskIntoConstraints = false
                     uicThing.view.backgroundColor = .clear
                     uiV.accessibilityIdentifier = "uiv"
                     vertical_Slider_Cell.addSubview(uiV)
-                    let constraints = [
-                        uicThing.view.topAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.topAnchor, constant: 0),
-                        uicThing.view.leftAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.leftAnchor, constant: 0),
-                        uicThing.view.bottomAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.bottomAnchor, constant: 0),
-                        uicThing.view.rightAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.rightAnchor, constant: 0),
-                    ]
-                    NSLayoutConstraint.activate(constraints)
+//                    let constraints = [
+//                        uicThing.view.topAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.topAnchor, constant: 0),
+//                        uicThing.view.leftAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.leftAnchor, constant: 0),
+//                        uicThing.view.bottomAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.bottomAnchor, constant: 0),
+//                        uicThing.view.rightAnchor.constraint(equalTo: vertical_Slider_Cell.contentView.rightAnchor, constant: 0),
+//                    ]
+//                    NSLayoutConstraint.activate(constraints)
                     vertical_Slider_Cell.has_BeenOverlayed = true
                 }
+                
            }
         }
         return vertical_Slider_Cell
