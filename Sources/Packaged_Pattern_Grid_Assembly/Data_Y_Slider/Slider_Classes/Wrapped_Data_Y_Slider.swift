@@ -50,9 +50,9 @@ public class Wrapped_Data_Y_Slider<T:View> {
 struct Default_UICollection_Cell_Overlay : View {
     var body: some View {
         return ZStack(alignment: .topLeading){
-            Rectangle().frame(width: 30,height: 30).foregroundColor(Color(red: 0.6, green: 0, blue: 0.6))
-            Rectangle().frame(width: 30,height: 1).foregroundColor(Color(red: 1, green: 0, blue: 1))
-            Rectangle().frame(width: 1,height: 30).foregroundColor(Color(red: 1, green: 0, blue: 1))
+            Rectangle().frame(width: 30,height: 30).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
+            Rectangle().frame(width: 30,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            Rectangle().frame(width: 1,height: 30).foregroundColor(Color(red: 0, green: 0, blue: 1))
         }
     }
 }
@@ -84,6 +84,7 @@ class Generic_Slider_Responder_Store : ObservableObject, P_VSlider_Responder {
         , trackedInt != dimensions.DATA_final_Line_Y_Index{trackedInt = dimensions.DATA_final_Line_Y_Index}
     }
 }
+
 //
 //struct Generic_Cell : View{
 //    var body: some View{
