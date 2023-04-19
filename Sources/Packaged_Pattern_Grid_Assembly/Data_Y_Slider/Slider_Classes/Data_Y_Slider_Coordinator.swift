@@ -22,10 +22,6 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     public func addResponder(responderParam:P_VSlider_Responder){
         vertical_Slider_Responders.append(responderParam)
     }
-
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dimensions.DATA_final_Line_Y_Index
-    }
     
     var parentWrapper : Wrapped_Data_Y_Slider<T>?
 
@@ -81,6 +77,15 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return dimensions.DATA_final_Line_Y_Index
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        print("select or summink")
+    }
+    
     
     public var v_Collection_View : UICollectionView?
     

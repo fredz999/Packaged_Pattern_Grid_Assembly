@@ -38,7 +38,7 @@ public class Wrapped_Data_Y_Slider<T:View> {
             Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
             .offset(x:(dimensions.ui_Unit_Width*3)-1)
             Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            Text(x.description+", "+y.description).foregroundColor(.white)
+            Text(y.description).foregroundColor(.white)
         }
         
     }
