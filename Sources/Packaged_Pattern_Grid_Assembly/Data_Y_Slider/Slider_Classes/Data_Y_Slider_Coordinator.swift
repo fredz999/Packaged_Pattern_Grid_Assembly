@@ -32,6 +32,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         if let lclParentWrapper = parentWrapper {
             if vertical_Slider_Cell.has_BeenOverlayed == false {
                 let newYelRec = lclParentWrapper.yield_A_Cell()
+                lclParentWrapper.printIndex(indyPath: indexPath)
                 let uicThing = UIHostingController(rootView: newYelRec)
                 if let uiV = uicThing.view {
                     vertical_Slider_Cell.backgroundColor = .clear
