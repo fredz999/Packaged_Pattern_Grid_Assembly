@@ -31,15 +31,15 @@ public class Wrapped_Data_Y_Slider<T:View> {
             Default_UICollection_Cell_Overlay()
         }
         else if let lclInjectedMethod = injectedCellFactoryMethod {
-            lclInjectedMethod()
+            lclInjectedMethod("spell")
         }
     }
 
-    public func inject_Cell_Factory_Method(cell_Factory_Method:@escaping (()->T)){
+    public func inject_Cell_Factory_Method(cell_Factory_Method:@escaping ((String)->T)){
         injectedCellFactoryMethod = cell_Factory_Method
     }
 
-    var injectedCellFactoryMethod : (()->T)?
+    var injectedCellFactoryMethod : ((String)->T)?
 
     deinit{
         if injectedCellFactoryMethod != nil{injectedCellFactoryMethod=nil}
