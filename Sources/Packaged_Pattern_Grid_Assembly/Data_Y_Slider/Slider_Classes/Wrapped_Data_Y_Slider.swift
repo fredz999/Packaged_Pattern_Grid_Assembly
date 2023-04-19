@@ -33,11 +33,11 @@ public class Wrapped_Data_Y_Slider<T:View> {
         // need to 1: get the visual config of the data)Y into variables in a section of the dimensions
 
         ZStack(alignment: .topLeading) {
-            Rectangle().frame(width: dimensions.ui_Unit_Width*2,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
+            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
             Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
             Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            .offset(x:(dimensions.ui_Unit_Width*2)-1)
-            Rectangle().frame(width: dimensions.ui_Unit_Width*2,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            .offset(x:(dimensions.ui_Unit_Width*3)-1)
+            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
             Text(indexPath.description).foregroundColor(.white)
         }
         
@@ -79,11 +79,11 @@ struct Default_UICollection_Cell_Overlay : View {
 // will place injectable content in here?
     var body: some View {
         return ZStack(alignment: .topLeading) {
-            Rectangle().frame(width: dimensions.ui_Unit_Width*2,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
+            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 0.6))
             Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
             Rectangle().frame(width: 1,height: dimensions.ui_Unit_Height).foregroundColor(Color(red: 0, green: 0, blue: 1))
-            .offset(x:(dimensions.ui_Unit_Width*2)-1)
-            Rectangle().frame(width: dimensions.ui_Unit_Width*2,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
+            .offset(x:(dimensions.ui_Unit_Width*3)-1)
+            Rectangle().frame(width: dimensions.ui_Unit_Width*3,height: 1).foregroundColor(Color(red: 0, green: 0, blue: 1))
             Text(cellStuff.tuxt).foregroundColor(.white)
         }
     }

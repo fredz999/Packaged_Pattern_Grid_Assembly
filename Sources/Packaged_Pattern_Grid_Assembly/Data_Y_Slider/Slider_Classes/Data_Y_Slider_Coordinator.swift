@@ -30,7 +30,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     var parentWrapper : Wrapped_Data_Y_Slider<T>?
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("indexPath: ..................",indexPath.description)
+        //print("indexPath: ..................",indexPath.description)
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
         
         if let lclParentWrapper = parentWrapper {
@@ -69,7 +69,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = dimensions.ui_Unit_Width*2
+        let width = dimensions.ui_Unit_Width*3
         let height = dimensions.ui_Unit_Height
         return CGSize(width: width, height: height)
     }
