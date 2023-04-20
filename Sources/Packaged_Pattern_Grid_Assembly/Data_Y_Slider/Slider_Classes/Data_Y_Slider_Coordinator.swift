@@ -35,6 +35,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         
         let vertical_Slider_Cell = Slider_Cell.getReusedCellFrom(collectionView: collectionView, cellForItemAt: indexPath)
         if let lclParentWrapper = parentWrapper {
+            
             if vertical_Slider_Cell.has_BeenOverlayed == false {
                 let dataStoreParam = lclParentWrapper.haveAStore(indyParam: indexPath)
                 let newYelRec = lclParentWrapper.yield_A_Cell(dataStore: dataStoreParam)
@@ -56,7 +57,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
                     vertical_Slider_Cell.has_BeenOverlayed = true
                 }
            }
-           else if vertical_Slider_Cell.has_BeenOverlayed != false {
+           else if vertical_Slider_Cell.has_BeenOverlayed == true {
                if let lcloptionalAddStore = vertical_Slider_Cell.optionalAddStore{
                    lcloptionalAddStore.alterText(newText: indexPath.row.description)
                }
