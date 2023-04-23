@@ -370,15 +370,16 @@ public class Central_State : ObservableObject {
     }
     
     func cursor_Slider_Update(){
-        if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
-            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-            centralState_Data_Evaluation()
-        }
-        //curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+//        if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
+//            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+//            centralState_Data_Evaluation()
+//        }
+        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+        centralState_Data_Evaluation()
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
-        //curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number // this even needed?
+    curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number // this even needed?
 //    if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
 //        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
 //    }
