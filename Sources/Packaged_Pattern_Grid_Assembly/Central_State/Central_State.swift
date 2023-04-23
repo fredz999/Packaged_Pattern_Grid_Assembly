@@ -71,7 +71,7 @@ public class Central_State : ObservableObject {
     
     var curr_Data_Pos_Y : Int {
         didSet {
-            //print("curr_Data_Pos_Y set: ",curr_Data_Pos_Y.description)
+            print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description)
             
             if curr_Data_Pos_Y < data_Grid.dataLineArray.count {
                 currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -90,7 +90,10 @@ public class Central_State : ObservableObject {
             }
         }
         didSet {
-            print("current_Cursor_Set: ")
+            if let lclMin = current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                print("current_Cursor_Set min.parentLine.line_Y_Num: ",lclMin.parentLine.line_Y_Num)
+            }
+            
             for cell in current_Cursor_Set {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: true))
             }
