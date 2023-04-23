@@ -72,13 +72,11 @@ public class Central_State : ObservableObject {
     var curr_Data_Pos_Y : Int {
         didSet {
             print("curr_Data_Pos_Y: ",curr_Data_Pos_Y.description)
-            
             if curr_Data_Pos_Y < data_Grid.dataLineArray.count {
                 currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
                 currLineSet.removeAll()
                 currLineSet = Set(currLine.dataCellArray)
             }
-            
         }
     }
     
@@ -386,12 +384,12 @@ public class Central_State : ObservableObject {
     func data_Slider_LowBracket_Update(newLower:Int){
         
     //curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number // this even needed?
+    lower_Bracket_Number = newLower
+    
     if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
     }
         
-    lower_Bracket_Number = newLower
-    
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
     if let lcl_Central_Grid_Ref = central_Grid_Store {
