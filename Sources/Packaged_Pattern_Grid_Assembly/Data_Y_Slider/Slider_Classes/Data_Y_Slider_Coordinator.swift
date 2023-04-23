@@ -78,7 +78,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = dimensions.ui_Unit_Width*3
+        let width = dimensions.ui_Unit_Width//*3
         let height = dimensions.ui_Unit_Height
         return CGSize(width: width, height: height)
     }
