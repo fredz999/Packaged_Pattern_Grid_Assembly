@@ -106,6 +106,8 @@ class Move_Helper: P_Selectable_Mode {
         for m in 0..<moving_Cell_Set_Holder_Array.count{
             var proposedSet = Set<Underlying_Data_Cell>()
             if let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y {
+                print("lclSnapshot_X: ",lclSnapshot_X,", parentCentralState.curr_Data_Pos_X: ",parentCentralState.curr_Data_Pos_X)
+                // this needs to be measured differntly its not taking in-cursor x movement into account
                 let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
                 let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclSnapshot_Y
                 let proposedNewYNumber = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Y_Index + delta_Y_Grid_Units
@@ -113,9 +115,9 @@ class Move_Helper: P_Selectable_Mode {
                 let proposedNewMinIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index + delta_X_Grid_Units
                 let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
                 
-                print("moving_Cell_Set_Holder_Array[0]: ",moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index
-                      ,", moving_Cell_Set_Holder_Array[m]: ",moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index
-                      ,", delta_X_Grid_Units: ",delta_X_Grid_Units)
+//                print("moving_Cell_Set_Holder_Array[0]: ",moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index
+//                      ,", moving_Cell_Set_Holder_Array[m]: ",moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index
+//                      ,", delta_X_Grid_Units: ",delta_X_Grid_Units)
                 
                 let newLineSet : Set<Underlying_Data_Cell>
                 = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
