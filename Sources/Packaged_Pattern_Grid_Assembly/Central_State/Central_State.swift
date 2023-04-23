@@ -25,6 +25,7 @@ public class Central_State : ObservableObject {
     @Published public var there_Is_A_Note_In_The_First_Place : Bool = false
     
     @Published public var mode_String = ""
+    
     @Published public var mode_Id : Int?
 
     public let data_Grid : Underlying_Data_Grid
@@ -70,7 +71,8 @@ public class Central_State : ObservableObject {
     
     var curr_Data_Pos_Y : Int {
         didSet {
-            if curr_Data_Pos_Y < data_Grid.dataLineArray.count{
+            print("curr_Data_Pos_Y set: ",curr_Data_Pos_Y.description)
+            if curr_Data_Pos_Y < data_Grid.dataLineArray.count {
                 currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
                 currLineSet.removeAll()
                 currLineSet = Set(currLine.dataCellArray)
