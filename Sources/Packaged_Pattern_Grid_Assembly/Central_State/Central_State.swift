@@ -386,7 +386,7 @@ public class Central_State : ObservableObject {
     //curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number // this even needed?
     
     
-    if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
+    if (currentYCursor_Slider_Position + newLower) < data_Grid.dataLineArray.count {
         lower_Bracket_Number = newLower
         higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
         if let lcl_Central_Grid_Ref = central_Grid_Store {
@@ -394,6 +394,9 @@ public class Central_State : ObservableObject {
         }
         curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
         centralState_Data_Evaluation()
+    }
+    else if (currentYCursor_Slider_Position + lower_Bracket_Number) >= data_Grid.dataLineArray.count {
+        
     }
 
     }
