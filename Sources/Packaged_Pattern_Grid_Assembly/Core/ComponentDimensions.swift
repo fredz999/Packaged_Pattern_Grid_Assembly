@@ -13,7 +13,6 @@ public class ComponentDimensions : ObservableObject {
     public let backGroundWidth : CGFloat = 375
     public let backGroundHeight : CGFloat = 647
     
-    //public var slider_Width : CGFloat = 24
     public var data_Y_Slider_Cell_Overlay_Width : CGFloat = 72
     public var ui_Unit_Width : CGFloat = 24
     public var ui_Unit_Height : CGFloat = 16

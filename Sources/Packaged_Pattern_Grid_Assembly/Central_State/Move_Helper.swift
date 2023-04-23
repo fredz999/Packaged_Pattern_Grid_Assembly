@@ -56,11 +56,9 @@ class Move_Helper: P_Selectable_Mode {
                             moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
                         }
                     }
-                    
                 }
             }
         }
-        //return generateModeDescriptorString()
     }
     
     func generateModeDescriptorString() -> String {
@@ -100,8 +98,8 @@ class Move_Helper: P_Selectable_Mode {
     
     func movement_With_Multi_Note_Selected(){
         if parentCentralState.curr_Data_Pos_X != snapshot_Cursor_X
-            || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y{
-            if let collection = parentCentralState.currentNoteCollection{
+            || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y {
+            if let collection = parentCentralState.currentNoteCollection {
                 collection.deHighlightCollection()
             }
         }
@@ -122,6 +120,7 @@ class Move_Helper: P_Selectable_Mode {
                     .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
                 }
                 else if proposedNewMinIndex < currLeftLimit_Move {
+                    print("hit here........")
                     proposedSet = parentCentralState.currLineSet
                     .filter{$0.dataCell_X_Number >= currLeftLimit_Move
                     && $0.dataCell_X_Number <= (moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)}
@@ -132,6 +131,7 @@ class Move_Helper: P_Selectable_Mode {
                     && $0.dataCell_X_Number <= currRightLimit_Move
                     }
                 }
+                
                 moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
                 moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m].potential_Moved_Set.filter({$0.note_Im_In != nil})
             }
