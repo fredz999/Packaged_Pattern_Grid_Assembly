@@ -379,10 +379,9 @@ public class Central_State : ObservableObject {
 
     func data_Slider_LowBracket_Update(newLower:Int){
         //curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number // this even needed?
-        if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
-            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-            //centralState_Data_Evaluation()
-        }
+//    if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
+//        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+//    }
         
     lower_Bracket_Number = newLower
     
