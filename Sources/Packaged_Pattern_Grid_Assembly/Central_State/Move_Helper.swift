@@ -112,7 +112,11 @@ class Move_Helper: P_Selectable_Mode {
                 
                 let proposedNewMinIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index + delta_X_Grid_Units
                 let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
-                print("proposedNewMinIndex: ",proposedNewMinIndex,", proposedNewMaxIndex: ",proposedNewMaxIndex)
+                
+                print("moving_Cell_Set_Holder_Array[0]: ",moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index
+                      ,", moving_Cell_Set_Holder_Array[m]: ",moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index
+                      ,", delta_X_Grid_Units: ",delta_X_Grid_Units)
+                
                 let newLineSet : Set<Underlying_Data_Cell>
                 = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
                 if proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move {
