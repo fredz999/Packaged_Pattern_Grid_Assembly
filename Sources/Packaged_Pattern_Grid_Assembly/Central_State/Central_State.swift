@@ -71,7 +71,7 @@ public class Central_State : ObservableObject {
     
     var curr_Data_Pos_Y : Int {
         didSet {
-            print("curr_Data_Pos_Y set: ",curr_Data_Pos_Y.description)
+            //print("curr_Data_Pos_Y set: ",curr_Data_Pos_Y.description)
             
             if curr_Data_Pos_Y < data_Grid.dataLineArray.count {
                 currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
@@ -90,6 +90,7 @@ public class Central_State : ObservableObject {
             }
         }
         didSet {
+            print("current_Cursor_Set: ")
             for cell in current_Cursor_Set {
                 cell.handleVisibleStateChange(type: cursor_Visible_Change_Type(isActivation: true))
             }
@@ -370,19 +371,21 @@ public class Central_State : ObservableObject {
     }
     
     func cursor_Slider_Update(){
-//        if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
-//            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-//            centralState_Data_Evaluation()
-//        }
-        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-        centralState_Data_Evaluation()
+        if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
+            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+            centralState_Data_Evaluation()
+        }
+        
+//        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+//        centralState_Data_Evaluation()
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
-    curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number // this even needed?
-//    if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
-//        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-//    }
+        
+    //curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number // this even needed?
+    if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
+        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+    }
         
     lower_Bracket_Number = newLower
     
