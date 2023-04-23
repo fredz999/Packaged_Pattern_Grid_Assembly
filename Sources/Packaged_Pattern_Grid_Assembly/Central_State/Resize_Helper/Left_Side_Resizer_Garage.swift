@@ -70,9 +70,7 @@ class Left_Side_Resizer_Garage {
             }
             
         }
-        
-        
-        
+
         paintCells()
     }
 
