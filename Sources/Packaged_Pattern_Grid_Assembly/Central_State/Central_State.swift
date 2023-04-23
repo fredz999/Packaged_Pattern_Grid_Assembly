@@ -72,11 +72,13 @@ public class Central_State : ObservableObject {
     var curr_Data_Pos_Y : Int {
         didSet {
             print("curr_Data_Pos_Y set: ",curr_Data_Pos_Y.description)
+            
             if curr_Data_Pos_Y < data_Grid.dataLineArray.count {
                 currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
                 currLineSet.removeAll()
                 currLineSet = Set(currLine.dataCellArray)
             }
+            
         }
     }
     
@@ -368,15 +370,22 @@ public class Central_State : ObservableObject {
     }
     
     func cursor_Slider_Update(){
-        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
-        centralState_Data_Evaluation()
+        if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
+            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+            centralState_Data_Evaluation()
+        }
+        //curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
-
+        //curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number // this even needed?
+        if (currentYCursor_Slider_Position + lower_Bracket_Number) < data_Grid.dataLineArray.count {
+            curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+            //centralState_Data_Evaluation()
+        }
         
     lower_Bracket_Number = newLower
-    curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
+    
     higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
 
     if let lcl_Central_Grid_Ref = central_Grid_Store {
