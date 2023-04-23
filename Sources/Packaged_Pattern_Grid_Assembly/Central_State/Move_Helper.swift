@@ -116,16 +116,18 @@ class Move_Helper: P_Selectable_Mode {
                 let newLineSet : Set<Underlying_Data_Cell>
                 = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
                 if proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move {
+                    print("proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move")
                     proposedSet = newLineSet
                     .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
                 }
                 else if proposedNewMinIndex < currLeftLimit_Move {
-                    print("hit here........")
+                    print("proposedNewMinIndex < currLeftLimit_Move")
                     proposedSet = parentCentralState.currLineSet
                     .filter{$0.dataCell_X_Number >= currLeftLimit_Move
                     && $0.dataCell_X_Number <= (moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)}
                 }
                 else if proposedNewMaxIndex > currRightLimit_Move {
+                    print("proposedNewMinIndex > currLeftLimit_Move")
                     proposedSet = parentCentralState.currLineSet
                     .filter{$0.dataCell_X_Number >=  currRightLimit_Move-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
                     && $0.dataCell_X_Number <= currRightLimit_Move
