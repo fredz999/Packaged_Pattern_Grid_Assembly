@@ -53,7 +53,6 @@ class Delete_Helper : P_Selectable_Mode{
             }
         }
         didSet {
-            print("delete_Cursor_Set didSet")
             for cell in delete_Cursor_Set {
                 cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
             }
@@ -87,6 +86,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     func process_Delete_Cursor_Position() {
+        print("delete_Cursor_Set didSet.......")
         if dimensions.patternTimingConfiguration == .fourFour {
             delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
         }
