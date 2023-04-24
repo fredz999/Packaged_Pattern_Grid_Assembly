@@ -88,10 +88,11 @@ class Delete_Helper : P_Selectable_Mode{
     var deleteHelper_NextDataCell : Underlying_Data_Cell?
     
     func setProcessCells(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
-        if previousDataCell != deleteHelper_PreviousDataCell, nextDataCell != deleteHelper_NextDataCell {
+        if previousDataCell != deleteHelper_PreviousDataCell {
             deleteHelper_PreviousDataCell = previousDataCell
+        }
+        if nextDataCell != deleteHelper_NextDataCell {
             deleteHelper_NextDataCell = nextDataCell
-            establishDirection()
         }
     }
     
@@ -101,7 +102,7 @@ class Delete_Helper : P_Selectable_Mode{
         if let lclPreviousDataCell = deleteHelper_PreviousDataCell,let lclNextDataCell = deleteHelper_NextDataCell {
             
             let deltaX = lclNextDataCell.dataCell_X_Number - lclPreviousDataCell.dataCell_X_Number
-            let deltaY = lclNextDataCell.parentLine.line_Y_Num - lclPreviousDataCell.parentLine.line_Y_Num
+            //let deltaY = lclNextDataCell.parentLine.line_Y_Num - lclPreviousDataCell.parentLine.line_Y_Num
             print("deltaX: ",deltaX.description)
 //            var statusString = ""
 //
