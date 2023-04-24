@@ -233,6 +233,25 @@ public class Central_State : ObservableObject {
         establishCursorSet()
     }
     
+    public func change_Move_Copy_Sub_Mode(isCopyOnly:Bool) {
+        
+        if let lclMoveHelper = move_Helper {
+            
+            if isCopyOnly == true {
+                if lclMoveHelper.dont_Copy_Just_Move == false {
+                    lclMoveHelper.dont_Copy_Just_Move = true
+                }
+            }
+            else if isCopyOnly == false {
+                if lclMoveHelper.dont_Copy_Just_Move == true {
+                    lclMoveHelper.dont_Copy_Just_Move = false
+                }
+            }
+            
+        }
+    }
+    
+    
 //    public func change_Write_Needs_Held_Down(){
 //        if write_Needs_Held_Down == true {
 //            write_Needs_Held_Down = false

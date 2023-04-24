@@ -16,46 +16,18 @@ class Move_Helper: P_Selectable_Mode {
     
     var mode_Active: Bool = false
     
-    //temp_MovingSetCount_String
     var moving_Cell_Set_Holder_Array : [Moving_Cell_Set_Holder] = []
-//    {
-//        didSet {
-//            //de select all the notes?
-//            // I want to only do this when there is ANY seperation from each of the cells
-//            // but there must be some move
-//            if let lclNoteCollection = parentCentralState.currentNoteCollection,moving_Cell_Set_Holder_Array.count > 0 {
-//                for note in lclNoteCollection.noteArray {
-//                    note.highlighted = false
-//                }
-//            }
-//
-//        }
-//    }
-    
-    
-    
-    
+
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false {
             mode_Active = true
             if let lclActivationCell = activationCell{
                 
-//                if dimensions.patternTimingConfiguration == .fourFour{
-//                    parentCentralState.current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                }
-//                else if dimensions.patternTimingConfiguration == .sixEight{
-//                    snapshot_Cursor_Min_X
-//                }
-                
                 if let currCursorMin = parentCentralState.current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     snapshot_Cursor_Min_X = currCursorMin.dataCell_X_Number
                 }
                 snapshot_Cursor_Y = lclActivationCell.parentLine.line_Y_Num
-                
-                // this needs to be minX from a cursor set
-//                snapshot_Cursor_Min_X = lclActivationCell.dataCell_X_Number
-                
-                
+
                 if let lclCurrNoteCollection = parentCentralState.currentNoteCollection {
                     let selectedNotes = lclCurrNoteCollection.noteArray.filter{$0.highlighted == true}
                     
@@ -119,21 +91,11 @@ class Move_Helper: P_Selectable_Mode {
         for m in 0..<moving_Cell_Set_Holder_Array.count{
             var proposedSet = Set<Underlying_Data_Cell>()
             if let lclSnapshot_X = snapshot_Cursor_Min_X,let lclSnapshot_Y = snapshot_Cursor_Y {
-                print("lclSnapshot_X: ",lclSnapshot_X,", parentCentralState.curr_Data_Pos_X: ",parentCentralState.curr_Cursor_Min_Data_Pos_X)
-                // this needs to be measured differntly its not taking in-cursor x movement into account
-                //instead of using lclSnapshot_X might have to use the min of the current half cell
-                //should use the delat of the cursor set?......
                 let delta_X_Grid_Units = parentCentralState.curr_Cursor_Min_Data_Pos_X - lclSnapshot_X
                 let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclSnapshot_Y
                 let proposedNewYNumber = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Y_Index + delta_Y_Grid_Units
-                
                 let proposedNewMinIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index + delta_X_Grid_Units
                 let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
-                
-//                print("moving_Cell_Set_Holder_Array[0]: ",moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index
-//                      ,", moving_Cell_Set_Holder_Array[m]: ",moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index
-//                      ,", delta_X_Grid_Units: ",delta_X_Grid_Units)
-                
                 let newLineSet : Set<Underlying_Data_Cell>
                 = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
                 if proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move {
