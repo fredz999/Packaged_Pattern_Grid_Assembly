@@ -106,16 +106,16 @@ class Delete_Helper : P_Selectable_Mode{
             var statusString = ""
             
             if deltaY != 0 && deltaX != 0 {
-                statusString.append(", Y + X ")
+                statusString += ", Y + X "    //.append(", Y + X ")
             }
             else if deltaY != 0 && deltaX == 0 {
-                statusString.append(", Y only ")
+                statusString += ", Y only "  //.append(", Y only ")
             }
             else if deltaY == 0 && deltaX != 0 {
-                statusString.append(", X only ")
+                statusString += ", X only "   //.append(", X only ")
             }
             
-            print(statusString)
+            print("statusString: ",statusString)
         }
         
         
