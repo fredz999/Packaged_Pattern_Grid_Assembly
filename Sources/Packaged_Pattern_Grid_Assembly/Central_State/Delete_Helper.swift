@@ -53,6 +53,7 @@ class Delete_Helper : P_Selectable_Mode{
             }
         }
         didSet {
+            print("delete_Cursor_Set didSet")
             for cell in delete_Cursor_Set {
                 cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
             }
