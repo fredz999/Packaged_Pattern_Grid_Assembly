@@ -136,7 +136,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     private func incorporate_Row_Into_DeleteSet(curr_Y:Int,initialX:Int,finalX:Int){
-        print("incorporate_Row_Into_DeleteSet(")
+        //print("incorporate_Row_Into_DeleteSet(")
         if finalX > initialX {
             let new_Horz_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
