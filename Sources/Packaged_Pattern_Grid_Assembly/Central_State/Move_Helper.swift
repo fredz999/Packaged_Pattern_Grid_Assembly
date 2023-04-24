@@ -40,8 +40,21 @@ class Move_Helper: P_Selectable_Mode {
             mode_Active = true
             if let lclActivationCell = activationCell{
                 
-                snapshot_Cursor_X = lclActivationCell.dataCell_X_Number
+//                if dimensions.patternTimingConfiguration == .fourFour{
+//                    parentCentralState.current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+//                }
+//                else if dimensions.patternTimingConfiguration == .sixEight{
+//                    snapshot_Cursor_Min_X
+//                }
+                
+                if let currCursorMin = parentCentralState.current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+                    snapshot_Cursor_Min_X = currCursorMin.dataCell_X_Number
+                }
                 snapshot_Cursor_Y = lclActivationCell.parentLine.line_Y_Num
+                
+                // this needs to be minX from a cursor set
+//                snapshot_Cursor_Min_X = lclActivationCell.dataCell_X_Number
+                
                 
                 if let lclCurrNoteCollection = parentCentralState.currentNoteCollection {
                     let selectedNotes = lclCurrNoteCollection.noteArray.filter{$0.highlighted == true}
@@ -79,7 +92,7 @@ class Move_Helper: P_Selectable_Mode {
     public var dont_Copy_Just_Move : Bool = true
     
     var parentCentralState : Central_State
-    var snapshot_Cursor_X : Int?
+    var snapshot_Cursor_Min_X : Int?
     var snapshot_Cursor_Y : Int?
     
     var currLeftLimit_Move : Int
@@ -97,7 +110,7 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Multi_Note_Selected(){
-        if parentCentralState.curr_Data_Pos_X != snapshot_Cursor_X
+        if parentCentralState.curr_Cursor_Min_Data_Pos_X != snapshot_Cursor_Min_X
             || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y {
             if let collection = parentCentralState.currentNoteCollection {
                 collection.deHighlightCollection()
@@ -105,10 +118,12 @@ class Move_Helper: P_Selectable_Mode {
         }
         for m in 0..<moving_Cell_Set_Holder_Array.count{
             var proposedSet = Set<Underlying_Data_Cell>()
-            if let lclSnapshot_X = snapshot_Cursor_X,let lclSnapshot_Y = snapshot_Cursor_Y {
-                print("lclSnapshot_X: ",lclSnapshot_X,", parentCentralState.curr_Data_Pos_X: ",parentCentralState.curr_Data_Pos_X)
+            if let lclSnapshot_X = snapshot_Cursor_Min_X,let lclSnapshot_Y = snapshot_Cursor_Y {
+                print("lclSnapshot_X: ",lclSnapshot_X,", parentCentralState.curr_Data_Pos_X: ",parentCentralState.curr_Cursor_Min_Data_Pos_X)
                 // this needs to be measured differntly its not taking in-cursor x movement into account
-                let delta_X_Grid_Units = parentCentralState.curr_Data_Pos_X - lclSnapshot_X
+                //instead of using lclSnapshot_X might have to use the min of the current half cell
+                //should use the delat of the cursor set?......
+                let delta_X_Grid_Units = parentCentralState.curr_Cursor_Min_Data_Pos_X - lclSnapshot_X
                 let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclSnapshot_Y
                 let proposedNewYNumber = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Y_Index + delta_Y_Grid_Units
                 

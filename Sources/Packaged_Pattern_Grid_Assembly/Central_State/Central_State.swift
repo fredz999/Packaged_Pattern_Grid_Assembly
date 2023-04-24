@@ -67,7 +67,7 @@ public class Central_State : ObservableObject {
 
     var currentYCursor_Slider_Position : Int = 0
     
-    var curr_Data_Pos_X : Int
+    var curr_Cursor_Min_Data_Pos_X : Int
     
     var curr_Data_Pos_Y : Int {
         didSet {
@@ -96,7 +96,7 @@ public class Central_State : ObservableObject {
     public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam
         currentData = data_Grid.dataLineArray[0].dataCellArray[0]
-        curr_Data_Pos_X = 0
+        curr_Cursor_Min_Data_Pos_X = 0
         curr_Data_Pos_Y = 0
         currLine = data_Grid.dataLineArray[curr_Data_Pos_Y]
         for cell in currLine.dataCellArray {
@@ -133,7 +133,7 @@ public class Central_State : ObservableObject {
     func modeSpecificActions(){
         if currentPatternMode == .passive_Mode {
             if let lclPassiveHelper = passive_Helper {
-                lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
+                lclPassiveHelper.respond_To_Cursor_Movement(cell_Data_X: curr_Cursor_Min_Data_Pos_X, cell_Data_Y: curr_Data_Pos_Y)
             }
         }
         else if currentPatternMode == .write_Mode {
@@ -208,13 +208,13 @@ public class Central_State : ObservableObject {
         if timing_Sig_Change_Possible == true {
             
         if dimensions.patternTimingConfiguration == .sixEight {
-            if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index != 0{
-                timing_Change_Compensation_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].four_Four_Half_Sub_Index
+            if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Cursor_Min_Data_Pos_X].four_Four_Half_Sub_Index != 0{
+                timing_Change_Compensation_Index = curr_Cursor_Min_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Cursor_Min_Data_Pos_X].four_Four_Half_Sub_Index
             }
         }
         else if dimensions.patternTimingConfiguration == .fourFour {
-            if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index != 0{
-                timing_Change_Compensation_Index = curr_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Data_Pos_X].six_Eight_Half_Sub_Index
+            if data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Cursor_Min_Data_Pos_X].six_Eight_Half_Sub_Index != 0{
+                timing_Change_Compensation_Index = curr_Cursor_Min_Data_Pos_X - data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[curr_Cursor_Min_Data_Pos_X].six_Eight_Half_Sub_Index
             }
         }
             
@@ -328,12 +328,12 @@ public class Central_State : ObservableObject {
         if curr_Data_Pos_Y < data_Grid.dataLineArray.count{
             if dimensions.patternTimingConfiguration == .fourFour {
                 currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
-                curr_Data_Pos_X = dimensions.currentFourFourDataIndex
+                curr_Cursor_Min_Data_Pos_X = dimensions.currentFourFourDataIndex
                 modeSpecificActions()
             }
             else if dimensions.patternTimingConfiguration == .sixEight {
                 currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
-                curr_Data_Pos_X = dimensions.currentSixEightDataIndex
+                curr_Cursor_Min_Data_Pos_X = dimensions.currentSixEightDataIndex
                 modeSpecificActions()
             }
         }
