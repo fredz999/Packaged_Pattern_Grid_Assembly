@@ -84,17 +84,8 @@ class Delete_Helper : P_Selectable_Mode{
         parentCentralState = parentCentral_State_Param
     }
 
-//    func process_Delete_Cursor_Position() {
-//
-//        if dimensions.patternTimingConfiguration == .fourFour {
-//            delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-//        }
-//        else if dimensions.patternTimingConfiguration == .sixEight {
-//            delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
-//        }
-//    }
-
     var deleteHelper_PreviousDataCell : Underlying_Data_Cell?
+    
     var deleteHelper_NextDataCell : Underlying_Data_Cell?
     
     func setProcessCells(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell){
@@ -141,11 +132,11 @@ class Delete_Helper : P_Selectable_Mode{
                 }
             }
         }
-        }
+    }
     }
 
     private func incorporate_Row_Into_DeleteSet(curr_Y:Int,initialX:Int,finalX:Int){
- 
+        print("incorporate_Row_Into_DeleteSet(")
         if finalX > initialX {
             let new_Horz_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
@@ -181,7 +172,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     private func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
- 
+        print("incorporate_Column_Into_DeleteSet(")
         if finalY > initialY {
             let new_Vert_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
