@@ -14,10 +14,9 @@ class Delete_Helper : P_Selectable_Mode{
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false{
-            mode_Active=true
+            mode_Active = true
             if current_Trail_Corner == nil {current_Trail_Corner = activationCell}
         }
-        //return generateModeDescriptorString()
     }
     
     func generateModeDescriptorString()->String{
@@ -88,12 +87,36 @@ class Delete_Helper : P_Selectable_Mode{
     
     var deleteHelper_NextDataCell : Underlying_Data_Cell?
     
-    func setProcessCells(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell){
-        if previousDataCell != deleteHelper_PreviousDataCell, nextDataCell != deleteHelper_NextDataCell{
+    func setProcessCells(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
+        if previousDataCell != deleteHelper_PreviousDataCell, nextDataCell != deleteHelper_NextDataCell {
             deleteHelper_PreviousDataCell = previousDataCell
             deleteHelper_NextDataCell = nextDataCell
-            process_Current_Line()
+            establishDirection()
         }
+    }
+    
+    func establishDirection(){
+        // 1: establish which axis is in delta
+        
+        if let lclPreviousDataCell = deleteHelper_PreviousDataCell,let lclNextDataCell = deleteHelper_NextDataCell {
+            let deltaX = lclNextDataCell.dataCell_X_Number - lclPreviousDataCell.dataCell_X_Number
+            let deltaY = lclNextDataCell.parentLine.line_Y_Num - lclPreviousDataCell.parentLine.line_Y_Num
+            
+            if deltaY > 0 && deltaX > 0{
+                print("both")
+            }
+            else if deltaY > 0 && deltaX == 0{
+                print("deltaY only")
+            }
+            else if deltaY == 0 && deltaX > 0{
+                print("deltaX only")
+            }
+            
+        }
+        
+        
+        
+        process_Current_Line()
     }
     
     func process_Current_Line() {
@@ -109,28 +132,30 @@ class Delete_Helper : P_Selectable_Mode{
             let nextX = lclNextDataCell.dataCell_X_Number
             let nextY = lclNextDataCell.parentLine.line_Y_Num
 
-            if current_Direction == .stationary {
-                if nextX != initialX{current_Direction = .horizontal}
-                else if nextY != initialY{current_Direction = .vertical}
-            }
-            else if current_Direction == .horizontal {
-                if prevY != nextY{
-                    current_Trail_Corner = lclPreviousDataCell
-                    current_Direction = .vertical
-                }
-                else if prevY == nextY {
-                    incorporate_Row_Into_DeleteSet(curr_Y: nextY, initialX: initialX, finalX: nextX)
-                }
-            }
-            else if current_Direction == .vertical {
-                if prevX != nextX{
-                    current_Trail_Corner = lclPreviousDataCell
-                    current_Direction = .horizontal
-                }
-                else if prevX == nextX{
-                    incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
-                }
-            }
+//            if current_Direction == .stationary {
+//                if nextX != initialX{current_Direction = .horizontal}
+//                else if nextY != initialY{current_Direction = .vertical}
+//            }
+//            else if current_Direction == .horizontal {
+//                if prevY != nextY{
+//                    current_Trail_Corner = lclPreviousDataCell
+//                    current_Direction = .vertical
+//                }
+//                else if prevY == nextY {
+//                    incorporate_Row_Into_DeleteSet(curr_Y: nextY, initialX: initialX, finalX: nextX)
+//                }
+//            }
+//            else if current_Direction == .vertical {
+//                if prevX != nextX{
+//                    current_Trail_Corner = lclPreviousDataCell
+//                    current_Direction = .horizontal
+//                }
+//                else if prevX == nextX{
+//                    incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
+//                }
+//            }
+                
+                
         }
     }
     }
