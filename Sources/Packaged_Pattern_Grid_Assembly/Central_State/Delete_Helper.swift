@@ -94,6 +94,7 @@ class Delete_Helper : P_Selectable_Mode{
         if nextDataCell != deleteHelper_NextDataCell {
             deleteHelper_NextDataCell = nextDataCell
         }
+        establishDirection()
     }
     
     func establishDirection(){
