@@ -53,7 +53,8 @@ public class Central_State : ObservableObject {
         willSet {
             if currentPatternMode == .delete_Mode {
                 if let lclDeleteHelper = delete_Helper {
-                    lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
+                    //lclDeleteHelper.process_Current_Line(lclPreviousDataCell:currentData,lclNextDataCell:newValue)
+                    lclDeleteHelper.setProcessCells(previousDataCell:currentData,nextDataCell:newValue)
                 }
             }
         }

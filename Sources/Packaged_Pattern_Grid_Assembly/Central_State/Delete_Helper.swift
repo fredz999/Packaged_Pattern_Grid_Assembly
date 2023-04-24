@@ -94,46 +94,61 @@ class Delete_Helper : P_Selectable_Mode{
 //        }
 //    }
 
-    func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
-        print("previousDataCell X: ",previousDataCell.dataCell_X_Number,", nextDataCell X: ",nextDataCell.dataCell_X_Number)
-        if let lclCurrent_Initial_Cell = current_Trail_Corner {
-
-            let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
-            let initialY = lclCurrent_Initial_Cell.parentLine.line_Y_Num
-                //.dataCell_Y_Number
-
-            let prevX = previousDataCell.dataCell_X_Number
-            let prevY = previousDataCell.parentLine.line_Y_Num
-                //.dataCell_Y_Number
-
-            let nextX = nextDataCell.dataCell_X_Number
-            let nextY = nextDataCell.parentLine.line_Y_Num
-                //.dataCell_Y_Number
-
-            if current_Direction == .stationary {
-                if nextX != initialX{current_Direction = .horizontal}
-                else if nextY != initialY{current_Direction = .vertical}
-            }
-            else if current_Direction == .horizontal {
-                if prevY != nextY{
-                    current_Trail_Corner = previousDataCell
-                    current_Direction = .vertical
-                }
-                else if prevY == nextY {
-                    incorporate_Row_Into_DeleteSet(curr_Y: nextY, initialX: initialX, finalX: nextX)
-                }
-            }
-            else if current_Direction == .vertical {
-                if prevX != nextX{
-                    current_Trail_Corner = previousDataCell
-                    current_Direction = .horizontal
-                }
-                else if prevX == nextX{
-                    incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
-                }
-            }
-
+    var deleteHelper_PreviousDataCell : Underlying_Data_Cell?
+    var deleteHelper_NextDataCell : Underlying_Data_Cell?
+    
+    func setProcessCells(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell){
+        if previousDataCell != deleteHelper_PreviousDataCell, nextDataCell != deleteHelper_NextDataCell{
+            deleteHelper_PreviousDataCell = previousDataCell
+            deleteHelper_NextDataCell = nextDataCell
+            process_Current_Line()
         }
+    }
+    
+    func process_Current_Line() {
+//lclPreviousDataCell:Underlying_Data_Cell,lclNextDataCell:Underlying_Data_Cell
+        if let lclPreviousDataCell = deleteHelper_PreviousDataCell,let lclNextDataCell = deleteHelper_NextDataCell {
+            
+            if let lclCurrent_Initial_Cell = current_Trail_Corner {
+
+                        let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
+                        let initialY = lclCurrent_Initial_Cell.parentLine.line_Y_Num
+
+                        let prevX = lclPreviousDataCell.dataCell_X_Number
+                        let prevY = lclPreviousDataCell.parentLine.line_Y_Num
+
+                        let nextX = lclNextDataCell.dataCell_X_Number
+                        let nextY = lclNextDataCell.parentLine.line_Y_Num
+
+                        if current_Direction == .stationary {
+                            if nextX != initialX{current_Direction = .horizontal}
+                            else if nextY != initialY{current_Direction = .vertical}
+                        }
+                        else if current_Direction == .horizontal {
+                            if prevY != nextY{
+                                current_Trail_Corner = lclPreviousDataCell
+                                current_Direction = .vertical
+                            }
+                            else if prevY == nextY {
+                                incorporate_Row_Into_DeleteSet(curr_Y: nextY, initialX: initialX, finalX: nextX)
+                            }
+                        }
+                        else if current_Direction == .vertical {
+                            if prevX != nextX{
+                                current_Trail_Corner = lclPreviousDataCell
+                                current_Direction = .horizontal
+                            }
+                            else if prevX == nextX{
+                                incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
+                            }
+                        }
+
+                    }
+            
+        }
+ 
+        
+        
 
     }
 
