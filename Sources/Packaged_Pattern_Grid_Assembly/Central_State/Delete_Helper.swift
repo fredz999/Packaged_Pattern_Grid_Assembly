@@ -102,13 +102,13 @@ class Delete_Helper : P_Selectable_Mode{
             let deltaX = lclNextDataCell.dataCell_X_Number - lclPreviousDataCell.dataCell_X_Number
             let deltaY = lclNextDataCell.parentLine.line_Y_Num - lclPreviousDataCell.parentLine.line_Y_Num
             
-            if deltaY > 0 && deltaX > 0{
+            if deltaY != 0 && deltaX != 0{
                 print("both")
             }
-            else if deltaY > 0 && deltaX == 0{
+            else if deltaY != 0 && deltaX == 0{
                 print("deltaY only")
             }
-            else if deltaY == 0 && deltaX > 0{
+            else if deltaY == 0 && deltaX != 0{
                 print("deltaX only")
             }
             
