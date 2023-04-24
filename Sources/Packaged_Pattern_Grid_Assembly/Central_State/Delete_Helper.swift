@@ -66,16 +66,15 @@ class Delete_Helper : P_Selectable_Mode{
     var current_Trail_Corner : Underlying_Data_Cell?{
         didSet {
             if let lclDelete_Cursor_StartData = current_Trail_Corner {
+                
                 let new_Corner_Set = parentCentralState.data_Grid.grid_Of_Cells_Set
-                    .filter{$0.parentLine.line_Y_Num == lclDelete_Cursor_StartData.parentLine.line_Y_Num
-                        && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-                    }
-//                .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
-//                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-//                }
+                .filter{$0.parentLine.line_Y_Num == lclDelete_Cursor_StartData.parentLine.line_Y_Num
+                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
+                }
                 for cell in new_Corner_Set{
                     multiple_Line_Corners_Set.insert(cell)
                 }
+                
             }
         }
     }
@@ -85,15 +84,15 @@ class Delete_Helper : P_Selectable_Mode{
         parentCentralState = parentCentral_State_Param
     }
 
-    func process_Delete_Cursor_Position() {
-        print("delete_Cursor_Set didSet.......")
-        if dimensions.patternTimingConfiguration == .fourFour {
-            delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
-        }
-        else if dimensions.patternTimingConfiguration == .sixEight {
-            delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
-        }
-    }
+//    func process_Delete_Cursor_Position() {
+//
+//        if dimensions.patternTimingConfiguration == .fourFour {
+//            delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
+//        }
+//        else if dimensions.patternTimingConfiguration == .sixEight {
+//            delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
+//        }
+//    }
 
     func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
          
@@ -229,12 +228,6 @@ class Delete_Helper : P_Selectable_Mode{
             multiple_Line_Corners_Set.removeAll()
         }
 
-//        if delete_Area_Set.count > 0 {
-//            for cell in delete_Area_Set {
-//                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
-//            }
-//            delete_Area_Set.removeAll()
-//        }
     }
 
 }

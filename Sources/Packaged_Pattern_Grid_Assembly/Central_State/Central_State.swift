@@ -54,6 +54,7 @@ public class Central_State : ObservableObject {
             if currentPatternMode == .delete_Mode {
                 if let lclDeleteHelper = delete_Helper {
                     lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
+                    print("hmmmm.........")
                 }
             }
         }
