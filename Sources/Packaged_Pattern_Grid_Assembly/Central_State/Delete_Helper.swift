@@ -125,12 +125,12 @@ class Delete_Helper : P_Selectable_Mode{
     }
     
     func processSeperatedCells(){
-        //simply take the n-1 and n cells?
+        print("processSeperatedCells()")
         if seperatedCellsFinalIndex > 0 {
+            
             let secondLastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex-1]
             let lastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex]
  
-            
             if lastCell.dataCell_X_Number > secondLastCell.dataCell_X_Number+1 {
                     let addedSet = parentCentralState.currLineSet.filter {
                         $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
@@ -147,38 +147,36 @@ class Delete_Helper : P_Selectable_Mode{
             }
             
             
-            else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
-                // add line between going from lastCell ... secondLastCell
-            }
-            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number-1 {
-                // add line between going from lastCell ... secondLastCell
-            }
-            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
-                // add line between going from lastCell ... secondLastCell
-            }
-            
-
-            else if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
-                // add line between going from lastCell ... secondLastCell
-            }
-            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num+1 {
-                // add line between going from lastCell ... secondLastCell
-            }
-            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num  {
-                // add line between going from lastCell ... secondLastCell
-            }
-            
-            
-            
-            else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
-                // add line between going from lastCell ... secondLastCell
-            }
-            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
-                // add line between going from lastCell ... secondLastCell
-            }
-            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
-                // add line between going from lastCell ... secondLastCell
-            }
+//            else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
+//                // add line between going from lastCell ... secondLastCell
+//            }
+//            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number-1 {
+//                // add line between going from lastCell ... secondLastCell
+//            }
+//            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
+//                // add line between going from lastCell ... secondLastCell
+//            }
+//
+//
+//            else if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
+//                // add line between going from lastCell ... secondLastCell
+//            }
+//            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num+1 {
+//                // add line between going from lastCell ... secondLastCell
+//            }
+//            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num  {
+//                // add line between going from lastCell ... secondLastCell
+//            }
+//
+//            else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
+//                // add line between going from lastCell ... secondLastCell
+//            }
+//            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
+//                // add line between going from lastCell ... secondLastCell
+//            }
+//            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
+//                // add line between going from lastCell ... secondLastCell
+//            }
             
         }
     }
