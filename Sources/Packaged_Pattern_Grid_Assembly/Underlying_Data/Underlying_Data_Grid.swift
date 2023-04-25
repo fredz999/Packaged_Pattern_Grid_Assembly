@@ -123,6 +123,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     sixEight_Half_Cell_Count+=1
                 }
                 newLine.dataCellArray.append(newDataCell)
+                newLine.cellSet.insert(newDataCell)
                 grid_Of_Cells_Set.insert(newDataCell)
             }
             dataLineArray.append(newLine)
@@ -165,7 +166,7 @@ public class Underlying_Data_Line:ObservableObject,Identifiable,Equatable,Hashab
     public var id = UUID()
     
     public var dataCellArray : [Underlying_Data_Cell] = []
-    
+    var cellSet = Set<Underlying_Data_Cell>()
 }
 
 public enum E_CellStatus : String {
