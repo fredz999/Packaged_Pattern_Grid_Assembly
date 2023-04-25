@@ -105,14 +105,13 @@ class Delete_Helper : P_Selectable_Mode{
     
     var between_Seperated = Set<Underlying_Data_Cell>(){
         willSet {
-            let delta = delete_Cursor_Set.symmetricDifference(newValue)
+            let delta = between_Seperated.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
             }
         }
         didSet {
-            print("between_Sep count: ",between_Seperated.count)
-            for cell in delete_Cursor_Set {
+            for cell in between_Seperated {
                 cell.handleVisibleStateChange(type : .activate_Potential_Set )
             }
         }
