@@ -121,12 +121,12 @@ class Delete_Helper : P_Selectable_Mode{
     func processCurrCell(cellParam:Underlying_Data_Cell){
         array_Of_Seperated_Cells.append(cellParam) // paint lines between these(because theyre ordered) using the sets which are faster
         seperatedCellsFinalIndex = array_Of_Seperated_Cells.count-1
-        print("seperatedCellsFinalIndex: ",seperatedCellsFinalIndex)
+        //print("seperatedCellsFinalIndex: ",seperatedCellsFinalIndex)
         processSeperatedCells()
     }
     
     func processSeperatedCells(){
-        print("processSeperatedCells()")
+        //print("processSeperatedCells()")
         if seperatedCellsFinalIndex > 0 {
             
             let secondLastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex-1]
@@ -146,7 +146,7 @@ class Delete_Helper : P_Selectable_Mode{
             else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
                 between_Seperated.insert(lastCell)
             }
-            
+            print("between_Seperated count: ",between_Seperated.count)
             
 //            else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
 //                // add line between going from lastCell ... secondLastCell
