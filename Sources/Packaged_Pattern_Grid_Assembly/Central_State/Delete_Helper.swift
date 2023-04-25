@@ -117,7 +117,6 @@ class Delete_Helper : P_Selectable_Mode{
         }
     }
     
-    
     func processCurrCell(cellParam:Underlying_Data_Cell){
         array_Of_Seperated_Cells.append(cellParam)
         seperatedCellsFinalIndex = array_Of_Seperated_Cells.count-1
@@ -126,91 +125,22 @@ class Delete_Helper : P_Selectable_Mode{
     
     func processSeperatedCells(){
         if seperatedCellsFinalIndex > 0 {
-            
             let secondLastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex-1]
             let lastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex]
- 
-//            if lastCell.dataCell_X_Number > secondLastCell.dataCell_X_Number+1 {
-//            let addedSet = parentCentralState.currLineSet.filter {
-//                $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
-//                $0.dataCell_X_Number <= lastCell.dataCell_X_Number
-//            }
-//            between_Seperated = between_Seperated.union(addedSet)
-//            }
-//            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number+1 {
-//                between_Seperated.insert(secondLastCell)
-//                between_Seperated.insert(lastCell)
-//            }
-//            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
-//                between_Seperated.insert(lastCell)
-//            }
-//
-//
-//            else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
-//            let addedSet = parentCentralState.currLineSet.filter {
-//                $0.dataCell_X_Number >= lastCell.dataCell_X_Number &&
-//                $0.dataCell_X_Number <= secondLastCell.dataCell_X_Number
-//            }
-//            between_Seperated = between_Seperated.union(addedSet)
-//            }
-//            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number-1 {
-//                between_Seperated.insert(secondLastCell)
-//                between_Seperated.insert(lastCell)
-//            }
-//            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
-//                between_Seperated.insert(lastCell)
-//            }
-
-            //need the x limits of this to be the same as the set cursor
             
-            if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
-            let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-            $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
-            $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
-                
-//            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
-//            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
-                
-            $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index &&
-            $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index
+            if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number {
+                print("X diff..........")
             }
-            between_Seperated = between_Seperated.union(addedSet)
+            else if lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
+                print("Y diff..........")
             }
-            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num+1 {
-            between_Seperated.insert(secondLastCell)
-            between_Seperated.insert(lastCell)
+            else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
+            && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
+                print("X diff.......... && Y diff..........")
             }
-            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
-            between_Seperated.insert(lastCell)
-            }
-            
-            else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
-                
-                let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-                $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
-                $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num &&
-                    
-    //            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
-    //            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
-                    
-                $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index &&
-                $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index
-                }
-                
-            between_Seperated = between_Seperated.union(addedSet)
-            }
-            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
-            between_Seperated.insert(lastCell)
-            between_Seperated.insert(secondLastCell)
-            }
-            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
-            between_Seperated.insert(lastCell)
-            }
-
-            
         }
     }
-
+    
     func nil_Delete_Square_Set(){
         if delete_Cursor_Set.count > 0 {
             for cell in delete_Cursor_Set {
@@ -227,6 +157,108 @@ enum E_DeleteLineDirection : String {
     case vertical = "vertical"
     case stationary = "stationary"
 }
+
+
+
+
+//func processSeperatedCells(){
+//    if seperatedCellsFinalIndex > 0 {
+//
+//        let secondLastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex-1]
+//        let lastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex]
+//
+//        // there needs to be a first and last x
+//        // in a column the first and last x FOR EACH LINE will be the .half_Cell_Set(different for each line)
+//        // in a row it'll be the >= whichever the leftmost is and <= rightmost
+//
+//
+////            if lastCell.dataCell_X_Number > secondLastCell.dataCell_X_Number+1 {
+////            let addedSet = parentCentralState.currLineSet.filter {
+////                $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+////                $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+////            }
+////            between_Seperated = between_Seperated.union(addedSet)
+////            }
+////            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number+1 {
+////                between_Seperated.insert(secondLastCell)
+////                between_Seperated.insert(lastCell)
+////            }
+////            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
+////                between_Seperated.insert(lastCell)
+////            }
+////
+////
+////            else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
+////            let addedSet = parentCentralState.currLineSet.filter {
+////                $0.dataCell_X_Number >= lastCell.dataCell_X_Number &&
+////                $0.dataCell_X_Number <= secondLastCell.dataCell_X_Number
+////            }
+////            between_Seperated = between_Seperated.union(addedSet)
+////            }
+////            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number-1 {
+////                between_Seperated.insert(secondLastCell)
+////                between_Seperated.insert(lastCell)
+////            }
+////            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
+////                between_Seperated.insert(lastCell)
+////            }
+//
+//        //need the x limits of this to be the same as the set cursor
+//
+//        if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
+//
+//        let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+//        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
+//        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
+//
+////            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+////            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+//
+//        $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index &&
+//        $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index
+//
+//        }
+//        between_Seperated = between_Seperated.union(addedSet)
+//        }
+//        else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num+1 {
+//        between_Seperated.insert(secondLastCell)
+//        between_Seperated.insert(lastCell)
+//        }
+//        else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
+//        between_Seperated.insert(lastCell)
+//        }
+//
+//        else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
+//
+//            let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+//            $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
+//            $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num &&
+//
+////            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+////            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+//
+//            $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index &&
+//            $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index
+//            }
+//
+//        between_Seperated = between_Seperated.union(addedSet)
+//        }
+//        else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
+//        between_Seperated.insert(lastCell)
+//        between_Seperated.insert(secondLastCell)
+//        }
+//        else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
+//        between_Seperated.insert(lastCell)
+//        }
+//
+//
+//    }
+//}
+
+
+
+
+
 
 //
 //class Delete_Helper : P_Selectable_Mode{
