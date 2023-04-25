@@ -171,8 +171,8 @@ class Delete_Helper : P_Selectable_Mode{
 //            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
 //            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
                 
-            $0.four_Four_Half_Cell_Index >= secondLastCell.four_Four_Half_Cell_Index &&
-            $0.four_Four_Half_Cell_Index <= lastCell.four_Four_Half_Cell_Index
+            $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index &&
+            $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index
             }
             between_Seperated = between_Seperated.union(addedSet)
             }
@@ -193,8 +193,8 @@ class Delete_Helper : P_Selectable_Mode{
     //            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
     //            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
                     
-                $0.four_Four_Half_Cell_Index >= lastCell.four_Four_Half_Cell_Index &&
-                $0.four_Four_Half_Cell_Index <= secondLastCell.four_Four_Half_Cell_Index
+                $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index &&
+                $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index
                 }
                 
             between_Seperated = between_Seperated.union(addedSet)
