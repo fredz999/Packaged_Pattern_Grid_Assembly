@@ -164,11 +164,11 @@ class Delete_Helper : P_Selectable_Mode{
                 
             }
             else if lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
-                print("Y diff..........")
+                print("Y liff..........")
                 if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
                     
                     
-                let x_Set = lastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index}
+                let x_Set = secondLastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index}
                     
                 let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                 $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
@@ -176,9 +176,6 @@ class Delete_Helper : P_Selectable_Mode{
 
 //                $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
 //                $0.dataCell_X_Number <= lastCell.dataCell_X_Number
-
-        //        $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index &&
-        //        $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index
 
                 }
                 let x_and_y_Set = y_Set.intersection(x_Set)
@@ -195,7 +192,7 @@ class Delete_Helper : P_Selectable_Mode{
 
                 else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
 
-                    let x_Set = lastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index}
+                    let x_Set = secondLastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index}
                     
                     let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                         
@@ -204,12 +201,9 @@ class Delete_Helper : P_Selectable_Mode{
                         
 //                    $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
 //                    $0.dataCell_X_Number <= lastCell.dataCell_X_Number
-
-        //            $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index &&
-        //            $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index
                     }
             
-                    let x_and_y_Set = x_Set.intersection(y_Set)
+                    let x_and_y_Set = y_Set.intersection(x_Set)
 
                 between_Seperated = between_Seperated.union(x_and_y_Set)
                 }
