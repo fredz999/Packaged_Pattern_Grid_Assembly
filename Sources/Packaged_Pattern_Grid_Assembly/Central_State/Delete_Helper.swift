@@ -161,7 +161,7 @@ class Delete_Helper : P_Selectable_Mode{
                 between_Seperated.insert(lastCell)
             }
 
-            if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
+            else if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
             let addedSet = parentCentralState.currLineSet.filter {
                 $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
                 $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num
