@@ -165,6 +165,50 @@ class Delete_Helper : P_Selectable_Mode{
             }
             else if lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
                 print("Y diff..........")
+                if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
+                let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
+                $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
+
+                $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+                $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+
+        //        $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index &&
+        //        $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index
+
+                }
+                between_Seperated = between_Seperated.union(addedSet)
+                }
+                else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num+1 {
+                between_Seperated.insert(secondLastCell)
+                between_Seperated.insert(lastCell)
+                }
+                else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
+                between_Seperated.insert(lastCell)
+                }
+
+                else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
+
+                    let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                    $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
+                    $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num &&
+
+                    $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+                    $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+
+        //            $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index &&
+        //            $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index
+                    }
+
+                between_Seperated = between_Seperated.union(addedSet)
+                }
+                else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
+                between_Seperated.insert(lastCell)
+                between_Seperated.insert(secondLastCell)
+                }
+                else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
+                between_Seperated.insert(lastCell)
+                }
             }
             else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
             && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
@@ -236,16 +280,15 @@ enum E_DeleteLineDirection : String {
 //        //need the x limits of this to be the same as the set cursor
 //
 //        if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
-//
 //        let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
 //        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
 //        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
 //
-////            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
-////            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+//        $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+//        $0.dataCell_X_Number <= lastCell.dataCell_X_Number
 //
-//        $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index &&
-//        $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index
+////        $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index &&
+////        $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index
 //
 //        }
 //        between_Seperated = between_Seperated.union(addedSet)
@@ -264,11 +307,11 @@ enum E_DeleteLineDirection : String {
 //            $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
 //            $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num &&
 //
-////            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
-////            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+//            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+//            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
 //
-//            $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index &&
-//            $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index
+////            $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index &&
+////            $0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index
 //            }
 //
 //        between_Seperated = between_Seperated.union(addedSet)
