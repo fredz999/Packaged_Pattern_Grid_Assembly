@@ -111,7 +111,7 @@ class Delete_Helper : P_Selectable_Mode{
             }
         }
         didSet {
-            print("between_Seperated count: ",between_Seperated.count)
+            print("between_Sep count: ",between_Seperated.count)
             for cell in delete_Cursor_Set {
                 cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
             }
