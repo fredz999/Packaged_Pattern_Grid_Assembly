@@ -161,14 +161,18 @@ class Delete_Helper : P_Selectable_Mode{
 //                between_Seperated.insert(lastCell)
 //            }
 
+            //need the x limits of this to be the same as the set cursor
+            
             if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
             let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
             $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
             $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
-            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
-            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
                 
+//            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+//            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
                 
+            $0.four_Four_Half_Cell_Index >= secondLastCell.four_Four_Half_Cell_Index &&
+            $0.four_Four_Half_Cell_Index <= lastCell.four_Four_Half_Cell_Index
             }
             between_Seperated = between_Seperated.union(addedSet)
             }
@@ -181,10 +185,18 @@ class Delete_Helper : P_Selectable_Mode{
             }
             
             else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
-            let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-            $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
-            $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num
-            }
+                
+                let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
+                $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
+                    
+    //            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+    //            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+                    
+                $0.four_Four_Half_Cell_Index >= lastCell.four_Four_Half_Cell_Index &&
+                $0.four_Four_Half_Cell_Index <= secondLastCell.four_Four_Half_Cell_Index
+                }
+                
             between_Seperated = between_Seperated.union(addedSet)
             }
             else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
