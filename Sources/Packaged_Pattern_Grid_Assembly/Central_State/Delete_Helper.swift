@@ -178,14 +178,14 @@ class Delete_Helper : P_Selectable_Mode{
             
             else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
             let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-            $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
-            $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num
+            $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
+            $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num
             }
             between_Seperated = between_Seperated.union(addedSet)
             }
             else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
-            between_Seperated.insert(secondLastCell)
             between_Seperated.insert(lastCell)
+            between_Seperated.insert(secondLastCell)
             }
             else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
             between_Seperated.insert(lastCell)
