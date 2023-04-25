@@ -181,7 +181,7 @@ class Delete_Helper : P_Selectable_Mode{
         //        $0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index
 
                 }
-                let x_and_y_Set = x_Set.intersection(y_Set)
+                let x_and_y_Set = y_Set.intersection(x_Set)
                 between_Seperated = between_Seperated.union(x_and_y_Set)
                     
                 }
