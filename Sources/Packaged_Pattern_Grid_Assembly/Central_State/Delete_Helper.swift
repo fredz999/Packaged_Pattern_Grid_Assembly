@@ -91,31 +91,93 @@ class Delete_Helper : P_Selectable_Mode{
         }
     }
 
-    func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
-        let deltaY = nextDataCell.parentLine.line_Y_Num - previousDataCell.parentLine.line_Y_Num
-        print("deltaY: ",deltaY)
+    
+//    func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
+//
+//        let deltaY = nextDataCell.parentLine.line_Y_Num - previousDataCell.parentLine.line_Y_Num
+//        let deltaX = nextDataCell.dataCell_X_Number - previousDataCell.dataCell_X_Number
+//
+//
+//    }
+    
+    var seperatedCellsFinalIndex : Int = 0
+    var array_Of_Seperated_Cells = [Underlying_Data_Cell]()
+    
+    var between_Seperated = Set<Underlying_Data_Cell>()
+    
+    func processCurrCell(cellParam:Underlying_Data_Cell){
+        print("currCell_X: ",cellParam.dataCell_X_Number)
+        array_Of_Seperated_Cells.append(cellParam) // paint lines between these(because theyre ordered) using the sets which are faster
+        seperatedCellsFinalIndex = array_Of_Seperated_Cells.count-1
+        processSeperatedCells()
+    }
+    
+    func processSeperatedCells(){
+        //simply take the n-1 and n cells?
+        if seperatedCellsFinalIndex > 0 {
+            let secondLastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex-1]
+            let lastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex]
+ 
+            
+            if lastCell.dataCell_X_Number > secondLastCell.dataCell_X_Number+1 {
+                    let addedSet = parentCentralState.currLineSet.filter {
+                        $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+                        $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+                    }
+                between_Seperated = between_Seperated.union(addedSet)
+            }
+            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number+1 {
+                between_Seperated.insert(secondLastCell)
+                between_Seperated.insert(lastCell)
+            }
+            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
+                between_Seperated.insert(lastCell)
+            }
+            
+            
+            else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
+                // add line between going from lastCell ... secondLastCell
+            }
+            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number-1 {
+                // add line between going from lastCell ... secondLastCell
+            }
+            else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
+                // add line between going from lastCell ... secondLastCell
+            }
+            
+
+            else if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
+                // add line between going from lastCell ... secondLastCell
+            }
+            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num+1 {
+                // add line between going from lastCell ... secondLastCell
+            }
+            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num  {
+                // add line between going from lastCell ... secondLastCell
+            }
+            
+            
+            
+            else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
+                // add line between going from lastCell ... secondLastCell
+            }
+            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
+                // add line between going from lastCell ... secondLastCell
+            }
+            else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
+                // add line between going from lastCell ... secondLastCell
+            }
+            
+        }
     }
 
     func nil_Delete_Square_Set(){
- 
-        //if current_Direction != .stationary{current_Direction = .stationary}
-        //if current_Trail_Corner != nil{current_Trail_Corner = nil}
-
-//        if min_X != nil{min_X=nil}
-//        if max_X != nil{max_X=nil}
-//        if min_Y != nil{min_Y=nil}
-//        if max_Y != nil{max_Y=nil}
-
         if delete_Cursor_Set.count > 0 {
             for cell in delete_Cursor_Set {
                 cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
             }
             delete_Cursor_Set.removeAll()
         }
-
-//        if multiple_Line_Corners_Set.count > 0 {
-//            multiple_Line_Corners_Set.removeAll()
-//        }
     }
 
 }
@@ -125,7 +187,6 @@ enum E_DeleteLineDirection : String {
     case vertical = "vertical"
     case stationary = "stationary"
 }
-
 
 //
 //class Delete_Helper : P_Selectable_Mode{

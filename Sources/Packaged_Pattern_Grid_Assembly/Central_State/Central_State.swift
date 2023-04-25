@@ -50,14 +50,23 @@ public class Central_State : ObservableObject {
     var helperArray : [P_Selectable_Mode?] = []
     
     var currentData : Underlying_Data_Cell {
-            willSet {
-                if currentPatternMode == .delete_Mode {
-                    if let lclDeleteHelper = delete_Helper {
-                        lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
-                    }
+        didSet{
+            //processCurrCell(
+            if currentPatternMode == .delete_Mode {
+                if let lclDeleteHelper = delete_Helper {
+                    //lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
+                    lclDeleteHelper.processCurrCell(cellParam: currentData)
                 }
             }
         }
+//        willSet {
+//            if currentPatternMode == .delete_Mode {
+//                if let lclDeleteHelper = delete_Helper {
+//                    lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
+//                }
+//            }
+//        }
+    }
     
     var currLineSet = Set<Underlying_Data_Cell>()
 
