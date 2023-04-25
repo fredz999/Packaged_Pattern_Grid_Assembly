@@ -121,6 +121,7 @@ class Delete_Helper : P_Selectable_Mode{
     func processCurrCell(cellParam:Underlying_Data_Cell){
         array_Of_Seperated_Cells.append(cellParam) // paint lines between these(because theyre ordered) using the sets which are faster
         seperatedCellsFinalIndex = array_Of_Seperated_Cells.count-1
+        print("seperatedCellsFinalIndex: ",seperatedCellsFinalIndex)
         processSeperatedCells()
     }
     
