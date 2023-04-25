@@ -103,10 +103,22 @@ class Delete_Helper : P_Selectable_Mode{
     var seperatedCellsFinalIndex : Int = 0
     var array_Of_Seperated_Cells = [Underlying_Data_Cell]()
     
-    var between_Seperated = Set<Underlying_Data_Cell>()
+    var between_Seperated = Set<Underlying_Data_Cell>(){
+        willSet {
+            let delta = delete_Cursor_Set.symmetricDifference(newValue)
+            for cell in delta {
+                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
+            }
+        }
+        didSet {
+            for cell in delete_Cursor_Set {
+                cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
+            }
+        }
+    }
+    
     
     func processCurrCell(cellParam:Underlying_Data_Cell){
-        print("currCell_X: ",cellParam.dataCell_X_Number)
         array_Of_Seperated_Cells.append(cellParam) // paint lines between these(because theyre ordered) using the sets which are faster
         seperatedCellsFinalIndex = array_Of_Seperated_Cells.count-1
         processSeperatedCells()
