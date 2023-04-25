@@ -14,7 +14,7 @@ class Delete_Helper : P_Selectable_Mode{
     
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false{
-            mode_Active = true
+            mode_Active=true
             if current_Trail_Corner == nil {current_Trail_Corner = activationCell}
         }
     }
@@ -65,15 +65,16 @@ class Delete_Helper : P_Selectable_Mode{
     var current_Trail_Corner : Underlying_Data_Cell?{
         didSet {
             if let lclDelete_Cursor_StartData = current_Trail_Corner {
-                
                 let new_Corner_Set = parentCentralState.data_Grid.grid_Of_Cells_Set
-                .filter{$0.parentLine.line_Y_Num == lclDelete_Cursor_StartData.parentLine.line_Y_Num
-                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-                }
+                    .filter{$0.parentLine.line_Y_Num == lclDelete_Cursor_StartData.parentLine.line_Y_Num
+                        && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
+                    }
+//                .filter{$0.dataCell_Y_Number == lclDelete_Cursor_StartData.dataCell_Y_Number
+//                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
+//                }
                 for cell in new_Corner_Set{
                     multiple_Line_Corners_Set.insert(cell)
                 }
-                
             }
         }
     }
@@ -83,91 +84,57 @@ class Delete_Helper : P_Selectable_Mode{
         parentCentralState = parentCentral_State_Param
     }
 
-    var deleteHelper_PreviousDataCell : Underlying_Data_Cell?
-    
-    var deleteHelper_NextDataCell : Underlying_Data_Cell?
-    
-    func setProcessCells(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
-        if previousDataCell != deleteHelper_PreviousDataCell {
-            deleteHelper_PreviousDataCell = previousDataCell
+    func process_Delete_Cursor_Position() {
+        if dimensions.patternTimingConfiguration == .fourFour {
+            delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.four_Four_Half_Cell_Index})
         }
-        if nextDataCell != deleteHelper_NextDataCell {
-            deleteHelper_NextDataCell = nextDataCell
+        else if dimensions.patternTimingConfiguration == .sixEight {
+            delete_Cursor_Set = parentCentralState.currLineSet.filter({$0.four_Four_Half_Cell_Index == parentCentralState.currentData.six_Eight_Half_Cell_Index})
         }
-        establishDirection()
     }
-    
-    func establishDirection(){
-        // 1: establish which axis is in delta
-        
-        if let lclPreviousDataCell = deleteHelper_PreviousDataCell,let lclNextDataCell = deleteHelper_NextDataCell {
-            
-            let deltaX = lclNextDataCell.dataCell_X_Number - lclPreviousDataCell.dataCell_X_Number
-            //let deltaY = lclNextDataCell.parentLine.line_Y_Num - lclPreviousDataCell.parentLine.line_Y_Num
-            print("deltaX: ",deltaX.description)
-//            var statusString = ""
-//
-//            if deltaY != 0 && deltaX != 0 {
-//                statusString += ", Y + X "    //.append(", Y + X ")
-//            }
-//            else if deltaY != 0 && deltaX == 0 {
-//                statusString += ", Y only "  //.append(", Y only ")
-//            }
-//            else if deltaY == 0 && deltaX != 0 {
-//                statusString += ", X only "   //.append(", X only ")
-//            }
-//
-//            print("statusString: ",statusString)
-        }
-        
-        
-        
-        process_Current_Line()
-    }
-    
-    func process_Current_Line() {
-        if let lclPreviousDataCell = deleteHelper_PreviousDataCell,let lclNextDataCell = deleteHelper_NextDataCell {
-            //print("process_Current_Line().........")
-            if let lclCurrent_Initial_Cell = current_Trail_Corner {
+
+    func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
+         
+        if let lclCurrent_Initial_Cell = current_Trail_Corner {
+
             let initialX = lclCurrent_Initial_Cell.dataCell_X_Number
             let initialY = lclCurrent_Initial_Cell.parentLine.line_Y_Num
+                //.dataCell_Y_Number
+            let prevX = previousDataCell.dataCell_X_Number
+            let prevY = previousDataCell.parentLine.line_Y_Num
+                //.dataCell_Y_Number
+            let nextX = nextDataCell.dataCell_X_Number
+            let nextY = nextDataCell.parentLine.line_Y_Num
+                //.dataCell_Y_Number
+            if current_Direction == .stationary {
+                if nextX != initialX{current_Direction = .horizontal}
+                else if nextY != initialY{current_Direction = .vertical}
+            }
+            else if current_Direction == .horizontal {
+                if prevY != nextY{
+                    current_Trail_Corner = previousDataCell
+                    current_Direction = .vertical
+                }
+                else if prevY == nextY {
+                    incorporate_Row_Into_DeleteSet(curr_Y: nextY, initialX: initialX, finalX: nextX)
+                }
+            }
+            else if current_Direction == .vertical {
+                if prevX != nextX{
+                    current_Trail_Corner = previousDataCell
+                    current_Direction = .horizontal
+                }
+                else if prevX == nextX{
+                    incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
+                }
+            }
 
-            let prevX = lclPreviousDataCell.dataCell_X_Number
-            let prevY = lclPreviousDataCell.parentLine.line_Y_Num
-
-            let nextX = lclNextDataCell.dataCell_X_Number
-            let nextY = lclNextDataCell.parentLine.line_Y_Num
-
-//            if current_Direction == .stationary {
-//                if nextX != initialX{current_Direction = .horizontal}
-//                else if nextY != initialY{current_Direction = .vertical}
-//            }
-//            else if current_Direction == .horizontal {
-//                if prevY != nextY{
-//                    current_Trail_Corner = lclPreviousDataCell
-//                    current_Direction = .vertical
-//                }
-//                else if prevY == nextY {
-//                    incorporate_Row_Into_DeleteSet(curr_Y: nextY, initialX: initialX, finalX: nextX)
-//                }
-//            }
-//            else if current_Direction == .vertical {
-//                if prevX != nextX{
-//                    current_Trail_Corner = lclPreviousDataCell
-//                    current_Direction = .horizontal
-//                }
-//                else if prevX == nextX{
-//                    incorporate_Column_Into_DeleteSet(curr_X:nextX,initialY:initialY,finalY:nextY)
-//                }
-//            }
-                
-                
         }
-    }
+
     }
 
     private func incorporate_Row_Into_DeleteSet(curr_Y:Int,initialX:Int,finalX:Int){
-        print("incorporate_Row_Into_DeleteSet(")
+ 
         if finalX > initialX {
             let new_Horz_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
@@ -203,7 +170,7 @@ class Delete_Helper : P_Selectable_Mode{
     }
 
     private func incorporate_Column_Into_DeleteSet(curr_X:Int,initialY:Int,finalY:Int){
-        print("incorporate_Column_Into_DeleteSet(")
+ 
         if finalY > initialY {
             let new_Vert_Set =
             parentCentralState.data_Grid.grid_Of_Cells_Set
@@ -257,6 +224,12 @@ class Delete_Helper : P_Selectable_Mode{
             multiple_Line_Corners_Set.removeAll()
         }
 
+//        if delete_Area_Set.count > 0 {
+//            for cell in delete_Area_Set {
+//                cell.handleVisibleStateChange(type: .deActivate_Delete_Square_Set)
+//            }
+//            delete_Area_Set.removeAll()
+//        }
     }
 
 }
