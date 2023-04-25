@@ -111,6 +111,7 @@ class Delete_Helper : P_Selectable_Mode{
             }
         }
         didSet {
+            print("between_Seperated count: ",between_Seperated.count)
             for cell in delete_Cursor_Set {
                 cell.handleVisibleStateChange(type : .activate_Delete_Square_Set)
             }
@@ -146,7 +147,7 @@ class Delete_Helper : P_Selectable_Mode{
             else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
                 between_Seperated.insert(lastCell)
             }
-            print("between_Seperated count: ",between_Seperated.count)
+            
             
 //            else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
 //                // add line between going from lastCell ... secondLastCell
