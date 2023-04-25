@@ -188,7 +188,7 @@ class Delete_Helper : P_Selectable_Mode{
                 
                 let addedSet = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
                 $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
-                $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
+                $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num &&
                     
     //            $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
     //            $0.dataCell_X_Number <= lastCell.dataCell_X_Number
