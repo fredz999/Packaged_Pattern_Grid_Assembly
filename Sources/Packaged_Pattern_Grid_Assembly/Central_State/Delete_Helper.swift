@@ -181,6 +181,9 @@ class Delete_Helper : P_Selectable_Mode{
                         }
                         between_Seperated = between_Seperated.union(y_Set)
                     }
+                    else{
+                        print("hit that else.........1")
+                    }
                     
 //                let x_Set = secondLastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == lastCell.four_Four_Half_Cell_Index}
 //
@@ -217,6 +220,9 @@ class Delete_Helper : P_Selectable_Mode{
                         $0.dataCell_X_Number <= maxX.dataCell_X_Number
                         }
                         between_Seperated = between_Seperated.union(y_Set)
+                    }
+                    else{
+                        print("hit that else.........2")
                     }
                 }
                 else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
