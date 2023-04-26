@@ -16,7 +16,6 @@ class Delete_Helper : P_Selectable_Mode{
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         if mode_Active == false{
             mode_Active=true
-            //if current_Trail_Corner == nil {current_Trail_Corner = activationCell}
         }
     }
     
@@ -34,16 +33,6 @@ class Delete_Helper : P_Selectable_Mode{
     var parentCentralState : Central_State
 
     let dimensions = ComponentDimensions.StaticDimensions
-
-    var min_X : Int?
-    var max_X : Int?
-    var min_Y : Int?
-    var max_Y : Int?
-
-    var curr_Max_X_Right : Int?
-    var curr_Max_X_Left : Int?
-    var curr_Max_Y_Up : Int?
-    var curr_Max_Y_Down : Int?
 
     var delete_Cursor_Set = Set<Underlying_Data_Cell>(){
         willSet {
@@ -76,16 +65,16 @@ class Delete_Helper : P_Selectable_Mode{
     var seperatedCellsFinalIndex : Int = 0
     var array_Of_Seperated_Cells = [Underlying_Data_Cell]()
     
-    var between_Seperated = Set<Underlying_Data_Cell>(){
-        willSet {
-            let delta = between_Seperated.symmetricDifference(newValue)
-            for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
-            }
-        }
+    var between_Seperated_Cells_Set = Set<Underlying_Data_Cell>(){
+//        willSet {
+//            let delta = between_Seperated_Cells_Set.symmetricDifference(newValue)
+//            for cell in delta {
+//                cell.handleVisibleStateChange(type: .deActivate_Potential_Set )
+//            }
+//        }
         didSet {
-            for cell in between_Seperated {
-                cell.handleVisibleStateChange(type : .activate_Potential_Set )
+            for cell in between_Seperated_Cells_Set {
+                //cell.handleVisibleStateChange(type : .activate_Potential_Set )
                 if let lclNote = cell.note_Im_In{
                     if let lclNoteCollection = parentCentralState.currentNoteCollection{
                         lclNoteCollection.delete_Note_By_Id(note_Id_Param: lclNote.id)
@@ -127,7 +116,7 @@ class Delete_Helper : P_Selectable_Mode{
                             $0.dataCell_X_Number >= minX.dataCell_X_Number &&
                             $0.dataCell_X_Number <= maxX.dataCell_X_Number
                             }
-                            between_Seperated = between_Seperated.union(y_Set)
+                            between_Seperated_Cells_Set = between_Seperated_Cells_Set.union(y_Set)
                         }
                     }
                     else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number {
@@ -139,7 +128,7 @@ class Delete_Helper : P_Selectable_Mode{
                             $0.dataCell_X_Number >= minX.dataCell_X_Number &&
                             $0.dataCell_X_Number <= maxX.dataCell_X_Number
                             }
-                            between_Seperated = between_Seperated.union(y_Set)
+                            between_Seperated_Cells_Set = between_Seperated_Cells_Set.union(y_Set)
                         }
                     }
                     
@@ -157,7 +146,7 @@ class Delete_Helper : P_Selectable_Mode{
                             $0.dataCell_X_Number >= minX.dataCell_X_Number &&
                             $0.dataCell_X_Number <= maxX.dataCell_X_Number
                             }
-                            between_Seperated = between_Seperated.union(y_Set)
+                            between_Seperated_Cells_Set = between_Seperated_Cells_Set.union(y_Set)
                         }
                         else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num {
                             let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
@@ -166,7 +155,7 @@ class Delete_Helper : P_Selectable_Mode{
                             $0.dataCell_X_Number >= minX.dataCell_X_Number &&
                             $0.dataCell_X_Number <= maxX.dataCell_X_Number
                             }
-                            between_Seperated = between_Seperated.union(y_Set)
+                            between_Seperated_Cells_Set = between_Seperated_Cells_Set.union(y_Set)
                         }
                         
                     }
@@ -194,7 +183,7 @@ class Delete_Helper : P_Selectable_Mode{
                             $0.dataCell_X_Number >= minX.dataCell_X_Number &&
                             $0.dataCell_X_Number <= maxX.dataCell_X_Number
                             }
-                            between_Seperated = between_Seperated.union(y_Set)
+                            between_Seperated_Cells_Set = between_Seperated_Cells_Set.union(y_Set)
                         }
                     }
                     else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number {
@@ -206,7 +195,7 @@ class Delete_Helper : P_Selectable_Mode{
                             $0.dataCell_X_Number >= minX.dataCell_X_Number &&
                             $0.dataCell_X_Number <= maxX.dataCell_X_Number
                             }
-                            between_Seperated = between_Seperated.union(y_Set)
+                            between_Seperated_Cells_Set = between_Seperated_Cells_Set.union(y_Set)
                         }
                     }
                     
@@ -224,7 +213,7 @@ class Delete_Helper : P_Selectable_Mode{
                             $0.dataCell_X_Number >= minX.dataCell_X_Number &&
                             $0.dataCell_X_Number <= maxX.dataCell_X_Number
                             }
-                            between_Seperated = between_Seperated.union(y_Set)
+                            between_Seperated_Cells_Set = between_Seperated_Cells_Set.union(y_Set)
                         }
                         else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num {
                             let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
@@ -233,7 +222,7 @@ class Delete_Helper : P_Selectable_Mode{
                             $0.dataCell_X_Number >= minX.dataCell_X_Number &&
                             $0.dataCell_X_Number <= maxX.dataCell_X_Number
                             }
-                            between_Seperated = between_Seperated.union(y_Set)
+                            between_Seperated_Cells_Set = between_Seperated_Cells_Set.union(y_Set)
                         }
                         
                     }
@@ -241,10 +230,10 @@ class Delete_Helper : P_Selectable_Mode{
                 
             }
 
-            else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
-            && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
-                print("X diff.......... && Y diff..........")
-            }
+//            else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
+//            && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
+//                print("X diff.......... && Y diff..........")
+//            }
             
             
         }
@@ -258,13 +247,15 @@ class Delete_Helper : P_Selectable_Mode{
             delete_Cursor_Set.removeAll()
         }
         
-        if between_Seperated.count > 0 {
-            between_Seperated.removeAll()
-        }
-        
         if array_Of_Seperated_Cells.count > 0{
             array_Of_Seperated_Cells.removeAll()
         }
+        
+        if between_Seperated_Cells_Set.count > 0 {
+            between_Seperated_Cells_Set.removeAll()
+        }
+        
+        
         seperatedCellsFinalIndex = 0
     }
 
