@@ -230,6 +230,11 @@ class Delete_Helper : P_Selectable_Mode{
                 }
                 
             }
+
+            else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
+            && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
+                print("X diff.......... && Y diff..........")
+            }
             
             
         }
