@@ -106,6 +106,8 @@ public class ComponentColors {
     
     public var multiSelectedNoteColor : Color = Color(red:1,green:1,blue:0)
     
+    public var selectedNoteColor : Color = Color(red:0.7,green:0,blue:0)
+    
     public var prohibited_Cell_Color : Color = Color(red:0.6,green:0,blue:0)
     
     public var potential_Cell_Color : Color = Color(red:0.6,green:0,blue:0.6)

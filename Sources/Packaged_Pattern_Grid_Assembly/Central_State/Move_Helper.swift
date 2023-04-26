@@ -116,7 +116,6 @@ class Move_Helper: P_Selectable_Mode {
                     && $0.dataCell_X_Number <= currRightLimit_Move
                     }
                 }
-                
                 moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
                 moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m].potential_Moved_Set.filter({$0.note_Im_In != nil})
             }
@@ -127,7 +126,7 @@ class Move_Helper: P_Selectable_Mode {
         // ok that is is moved
         if dont_Copy_Just_Move == true {
             for moving_Cell_Set in moving_Cell_Set_Holder_Array {
-                if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data{
+                if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
                     modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
                 }
             }

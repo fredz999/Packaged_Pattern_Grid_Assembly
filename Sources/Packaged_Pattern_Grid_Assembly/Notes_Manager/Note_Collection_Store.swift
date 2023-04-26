@@ -92,6 +92,7 @@ public class Note_Collection : ObservableObject {
     }
     
     func write_Note_Data(cellSetParam : Set<Underlying_Data_Cell>,highlightAfterWrite : Bool){
+        
         var startCellSet = Set<Underlying_Data_Cell>()
         if let minX = cellSetParam.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
             startCellSet.insert(minX)
@@ -111,6 +112,7 @@ public class Note_Collection : ObservableObject {
         var local_Cell_Array = [Underlying_Data_Cell]()
         
         for index in 0..<startCellSet.count {
+            
             let currStartCell = startCells[index]
             let currEndCell = endCells[index]
             local_Cell_Array.append(currStartCell)
@@ -120,6 +122,7 @@ public class Note_Collection : ObservableObject {
                 local_Cell_Array.append(midCell)
             }
             local_Cell_Array.append(currEndCell)
+            
         }
 
         if local_Cell_Array.count > 0 {
@@ -131,6 +134,7 @@ public class Note_Collection : ObservableObject {
                 cell.note_Im_In = note
             }
         }
+        
     }
     
     func deleteSelectedNotes(){
