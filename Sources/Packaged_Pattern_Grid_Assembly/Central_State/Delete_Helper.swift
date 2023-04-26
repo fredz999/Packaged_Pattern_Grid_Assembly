@@ -170,14 +170,35 @@ class Delete_Helper : P_Selectable_Mode{
                 ,let maxX = x_Four_Four_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
 
 
-
-                    let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-                    $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
-                    $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
-                    $0.dataCell_X_Number >= minX.dataCell_X_Number &&
-                    $0.dataCell_X_Number <= maxX.dataCell_X_Number
+                    if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num {
+                        let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
+                        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
+                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
+                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
+                        }
+                        between_Seperated = between_Seperated.union(y_Set)
                     }
-                    between_Seperated = between_Seperated.union(y_Set)
+                    else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num {
+                        let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+                        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
+                        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
+                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
+                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
+                        }
+                        between_Seperated = between_Seperated.union(y_Set)
+                    }
+//                    else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
+//                        let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+//                        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
+//                        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
+//                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
+//                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
+//                        }
+//                        between_Seperated = between_Seperated.union(y_Set)
+//                    }
+                    
+                    
 
 
                 }
