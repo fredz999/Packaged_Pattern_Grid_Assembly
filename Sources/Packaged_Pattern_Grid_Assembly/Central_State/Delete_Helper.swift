@@ -59,24 +59,6 @@ class Delete_Helper : P_Selectable_Mode{
         }
     }
 
-    //var multiple_Line_Corners_Set = Set<Underlying_Data_Cell>()
-
-    //var current_Direction : E_DeleteLineDirection = .stationary
-
-//    var current_Trail_Corner : Underlying_Data_Cell?{
-//        didSet {
-//            if let lclDelete_Cursor_StartData = current_Trail_Corner {
-//                let new_Corner_Set = parentCentralState.data_Grid.grid_Of_Cells_Set
-//                .filter{$0.parentLine.line_Y_Num == lclDelete_Cursor_StartData.parentLine.line_Y_Num
-//                    && $0.four_Four_Half_Cell_Index == lclDelete_Cursor_StartData.four_Four_Half_Cell_Index
-//                }
-//                for cell in new_Corner_Set{
-//                    multiple_Line_Corners_Set.insert(cell)
-//                }
-//            }
-//        }
-//    }
-    
     init(parentCentral_State_Param:Central_State,selectableModeIdParam:Int){
         selectableModeId = selectableModeIdParam
         parentCentralState = parentCentral_State_Param
@@ -91,15 +73,6 @@ class Delete_Helper : P_Selectable_Mode{
         }
     }
 
-    
-//    func process_Current_Line(previousDataCell:Underlying_Data_Cell,nextDataCell:Underlying_Data_Cell) {
-//
-//        let deltaY = nextDataCell.parentLine.line_Y_Num - previousDataCell.parentLine.line_Y_Num
-//        let deltaX = nextDataCell.dataCell_X_Number - previousDataCell.dataCell_X_Number
-//
-//
-//    }
-    
     var seperatedCellsFinalIndex : Int = 0
     var array_Of_Seperated_Cells = [Underlying_Data_Cell]()
     
@@ -286,12 +259,13 @@ class Delete_Helper : P_Selectable_Mode{
         }
         
         if between_Seperated.count > 0 {
-//            for cell in between_Seperated {
-//                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-//            }
             between_Seperated.removeAll()
         }
         
+        if array_Of_Seperated_Cells.count > 0{
+            array_Of_Seperated_Cells.removeAll()
+        }
+        seperatedCellsFinalIndex = 0
     }
 
 }
