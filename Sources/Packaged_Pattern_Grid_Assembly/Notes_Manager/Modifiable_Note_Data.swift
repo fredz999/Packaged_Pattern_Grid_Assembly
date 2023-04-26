@@ -21,6 +21,7 @@ public class Modifiable_Note_Data{
     var minimumSet : Set<Underlying_Data_Cell> = Set<Underlying_Data_Cell>()
     
     init(dataCellArray: [Underlying_Data_Cell], lowest_X_Index: Int, highest_X_Index: Int, containing_Data_Line: Underlying_Data_Line, highestFourFourHalfCellIndex: Int, lowestFourFourHalfCellIndex: Int, highestSixEightHalfCellIndex: Int, lowestSixEightHalfCellIndex: Int,parentParam:Note) {
+        
         self.dataCellArray = dataCellArray
         self.lowest_X_Index = lowest_X_Index
         self.highest_X_Index = highest_X_Index
@@ -30,24 +31,24 @@ public class Modifiable_Note_Data{
         self.highestSixEightHalfCellIndex = highestSixEightHalfCellIndex
         self.lowestSixEightHalfCellIndex = lowestSixEightHalfCellIndex
         
-        var minSet = Set<Underlying_Data_Cell>()
+        var most_Shrunk_Set = Set<Underlying_Data_Cell>()
 
         if self.dataCellArray.count == 2 {
-            minSet.insert(self.dataCellArray[0])
-            minSet.insert(self.dataCellArray[1])
+            most_Shrunk_Set.insert(self.dataCellArray[0])
+            most_Shrunk_Set.insert(self.dataCellArray[1])
         }
         else if self.dataCellArray.count > 2 {
-            minSet.insert(self.dataCellArray[0])
-            minSet.insert(self.dataCellArray[1])
-            minSet.insert(self.dataCellArray[2])
+            most_Shrunk_Set.insert(self.dataCellArray[0])
+            most_Shrunk_Set.insert(self.dataCellArray[1])
+            most_Shrunk_Set.insert(self.dataCellArray[2])
         }
-        self.minimumSet = minSet
+        self.minimumSet = most_Shrunk_Set
         noteParent = parentParam
     }
     
     
     func reWrite_Note_Data(newDataCellSet: Set<Underlying_Data_Cell>){
-        
+        print("id........................: ",noteParent.id)
         if newDataCellSet.count > 0{
 
             let newDataCellArray = newDataCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
