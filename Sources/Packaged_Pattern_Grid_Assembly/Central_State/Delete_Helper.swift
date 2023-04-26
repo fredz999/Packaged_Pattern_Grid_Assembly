@@ -129,42 +129,43 @@ class Delete_Helper : P_Selectable_Mode{
             let lastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex]
             
             if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number {
-                //print("X diff..........")
                 
                 let secondLastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex-1]
                 let lastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex]
-                if lastCell.dataCell_X_Number > secondLastCell.dataCell_X_Number+1 {
-                let addedSet = parentCentralState.currLineSet.filter {
-                    $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
-                    $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+                
+                
+                
+                let x_Four_Four_Set = secondLastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index}
+                if let minX = x_Four_Four_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
+                ,let maxX = x_Four_Four_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
+
+
+                    if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num {
+                        let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+//                        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
+//                        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
+                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
+                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
+                        }
+                        between_Seperated = between_Seperated.union(y_Set)
+                    }
+                    else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num {
+                        let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
+//                        $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
+//                        $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num &&
+                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
+                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
+                        }
+                        between_Seperated = between_Seperated.union(y_Set)
+                    }
                 }
-                between_Seperated = between_Seperated.union(addedSet)
-                }
-                else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number+1 {
-                    between_Seperated.insert(secondLastCell)
-                    between_Seperated.insert(lastCell)
-                }
-                else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
-                    between_Seperated.insert(lastCell)
-                }
-                else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
-                let addedSet = parentCentralState.currLineSet.filter {
-                    $0.dataCell_X_Number >= lastCell.dataCell_X_Number &&
-                    $0.dataCell_X_Number <= secondLastCell.dataCell_X_Number
-                }
-                between_Seperated = between_Seperated.union(addedSet)
-                }
-                else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number-1 {
-                    between_Seperated.insert(secondLastCell)
-                    between_Seperated.insert(lastCell)
-                }
-                else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
-                    between_Seperated.insert(lastCell)
-                }
+                
+                
+                
+                
                 
             }
             else if lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
-                
                 let x_Four_Four_Set = secondLastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index}
                 if let minX = x_Four_Four_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                 ,let maxX = x_Four_Four_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -188,127 +189,9 @@ class Delete_Helper : P_Selectable_Mode{
                         }
                         between_Seperated = between_Seperated.union(y_Set)
                     }
-//                    else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
-//                        let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-//                        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
-//                        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
-//                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
-//                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
-//                        }
-//                        between_Seperated = between_Seperated.union(y_Set)
-//                    }
-                    
-                    
-
-
                 }
-                
             }
-            
-//            else if lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
-//                //print("Y liff..........")
-//
-//
-//
-//
-//
-//                let x_Four_Four_Set = secondLastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index}
-//                if let minX = x_Four_Four_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                ,let maxX = x_Four_Four_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//
-//
-//                    let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-//                    $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
-//                    $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
-//                    $0.dataCell_X_Number >= minX.dataCell_X_Number &&
-//                    $0.dataCell_X_Number <= maxX.dataCell_X_Number
-//                    }
-//                    between_Seperated = between_Seperated.union(y_Set)
-//
-//
-//                }
-//
-//
-//                if lastCell.parentLine.line_Y_Num > secondLastCell.parentLine.line_Y_Num+1 {
-//
-//                    if let minX = x_Four_Four_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                    ,let maxX = x_Four_Four_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//
-//
-//                        let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-//                        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
-//                        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
-//                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
-//                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
-//                        }
-//                        between_Seperated = between_Seperated.union(y_Set)
-//
-//
-//                    }
-//
-//                }
-//                else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num+1 {
-//                if let minX = x_Four_Four_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                    ,let maxX = x_Four_Four_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//
-//                    let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-//                        $0.parentLine.line_Y_Num >= secondLastCell.parentLine.line_Y_Num &&
-//                        $0.parentLine.line_Y_Num <= lastCell.parentLine.line_Y_Num &&
-//                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
-//                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
-//                    }
-//                    between_Seperated = between_Seperated.union(y_Set)
-//                }
-////                between_Seperated.insert(secondLastCell)
-////                between_Seperated.insert(lastCell)
-//
-//                }
-//                else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
-//                between_Seperated.insert(lastCell)
-//                }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//                else if lastCell.parentLine.line_Y_Num < secondLastCell.parentLine.line_Y_Num-1 {
-//
-//                    let x_Four_Four_Set = secondLastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index}
-//
-//                    if let minX = x_Four_Four_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
-//                    ,let maxX = x_Four_Four_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
-//                        let y_Set = parentCentralState.data_Grid.grid_Of_Cells_Set.filter {
-//                        $0.parentLine.line_Y_Num >= lastCell.parentLine.line_Y_Num &&
-//                        $0.parentLine.line_Y_Num <= secondLastCell.parentLine.line_Y_Num &&
-//                        $0.dataCell_X_Number >= minX.dataCell_X_Number &&
-//                        $0.dataCell_X_Number <= maxX.dataCell_X_Number
-//                        }
-//                        between_Seperated = between_Seperated.union(y_Set)
-//                    }
-//                    else{
-//                        print("hit that else.........2")
-//                    }
-//                }
-//                else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num-1 {
-//                between_Seperated.insert(lastCell)
-//                between_Seperated.insert(secondLastCell)
-//                }
-//                else if lastCell.parentLine.line_Y_Num == secondLastCell.parentLine.line_Y_Num {
-//                between_Seperated.insert(lastCell)
-//                }
-//            }
-            
-            
+
             else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
             && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
                 print("X diff.......... && Y diff..........")
@@ -333,6 +216,35 @@ enum E_DeleteLineDirection : String {
     case stationary = "stationary"
 }
 
+
+//if lastCell.dataCell_X_Number > secondLastCell.dataCell_X_Number+1 {
+//let addedSet = parentCentralState.currLineSet.filter {
+//    $0.dataCell_X_Number >= secondLastCell.dataCell_X_Number &&
+//    $0.dataCell_X_Number <= lastCell.dataCell_X_Number
+//}
+//between_Seperated = between_Seperated.union(addedSet)
+//}
+//else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number+1 {
+//    between_Seperated.insert(secondLastCell)
+//    between_Seperated.insert(lastCell)
+//}
+//else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
+//    between_Seperated.insert(lastCell)
+//}
+//else if lastCell.dataCell_X_Number < secondLastCell.dataCell_X_Number-1 {
+//let addedSet = parentCentralState.currLineSet.filter {
+//    $0.dataCell_X_Number >= lastCell.dataCell_X_Number &&
+//    $0.dataCell_X_Number <= secondLastCell.dataCell_X_Number
+//}
+//between_Seperated = between_Seperated.union(addedSet)
+//}
+//else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number-1 {
+//    between_Seperated.insert(secondLastCell)
+//    between_Seperated.insert(lastCell)
+//}
+//else if lastCell.dataCell_X_Number == secondLastCell.dataCell_X_Number {
+//    between_Seperated.insert(lastCell)
+//}
 
 
 
