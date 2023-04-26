@@ -74,7 +74,7 @@ class Delete_Helper : P_Selectable_Mode{
 //        }
         didSet {
             for cell in between_Seperated_Cells_Set {
-                //cell.handleVisibleStateChange(type : .activate_Potential_Set )
+                cell.handleVisibleStateChange(type : .activate_Potential_Set )
                 if let lclNote = cell.note_Im_In{
                     if let lclNoteCollection = parentCentralState.currentNoteCollection{
                         lclNoteCollection.delete_Note_By_Id(note_Id_Param: lclNote.id)
@@ -230,10 +230,10 @@ class Delete_Helper : P_Selectable_Mode{
                 
             }
 
-//            else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
-//            && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
-//                print("X diff.......... && Y diff..........")
-//            }
+            else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
+            && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
+                print("X diff.......... && Y diff..........")
+            }
             
             
         }
