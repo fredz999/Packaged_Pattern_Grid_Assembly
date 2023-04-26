@@ -113,6 +113,11 @@ class Delete_Helper : P_Selectable_Mode{
         didSet {
             for cell in between_Seperated {
                 cell.handleVisibleStateChange(type : .activate_Potential_Set )
+                if let lclNote = cell.note_Im_In{
+                    if let lclNoteCollection = parentCentralState.currentNoteCollection{
+                        lclNoteCollection.delete_Note_By_Id(note_Id_Param: lclNote.id)
+                    }
+                }
             }
         }
     }
