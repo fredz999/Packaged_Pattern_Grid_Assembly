@@ -127,21 +127,23 @@ class Move_Helper: P_Selectable_Mode {
 
     func persist_New_Note_Data(){
         // MOVE
-        if dont_Copy_Just_Move == true {
-            for moving_Cell_Set in moving_Cell_Set_Holder_Array {
-                if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
-                    modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
+        if parentCentralState.movingNoteCurrentlyWriteable == true{
+            if dont_Copy_Just_Move == true {
+                for moving_Cell_Set in moving_Cell_Set_Holder_Array {
+                    if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
+                        modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
+                    }
                 }
             }
-        }
-        // COPY
-        else if dont_Copy_Just_Move == false {
-            for moving_Cell_Set in moving_Cell_Set_Holder_Array {
-                for cell in moving_Cell_Set.potential_Moved_Set {
-                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                }
-                if let currNoteCollection = parentCentralState.currentNoteCollection {
-                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
+            // COPY
+            else if dont_Copy_Just_Move == false {
+                for moving_Cell_Set in moving_Cell_Set_Holder_Array {
+                    for cell in moving_Cell_Set.potential_Moved_Set {
+                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                    }
+                    if let currNoteCollection = parentCentralState.currentNoteCollection {
+                        currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
+                    }
                 }
             }
         }
@@ -206,8 +208,14 @@ class Moving_Cell_Set_Holder {
         didSet {
             if prohibition_Indicator_Set.count == 0{
                 print("prohibition_Indicator_Set.count == 0")
+                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false{
+                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = true
+                }
             }
             else if prohibition_Indicator_Set.count > 0{
+                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true{
+                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = false
+                }
                 for cell in prohibition_Indicator_Set {
                     cell.handleVisibleStateChange(type : .activate_Prohibited)
                 }

@@ -51,21 +51,12 @@ public class Central_State : ObservableObject {
     
     var currentData : Underlying_Data_Cell {
         didSet{
-            //processCurrCell(
             if currentPatternMode == .delete_Mode {
                 if let lclDeleteHelper = delete_Helper {
-                    //lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
                     lclDeleteHelper.processCurrCell(cellParam: currentData)
                 }
             }
         }
-//        willSet {
-//            if currentPatternMode == .delete_Mode {
-//                if let lclDeleteHelper = delete_Helper {
-//                    lclDeleteHelper.process_Current_Line(previousDataCell:currentData,nextDataCell:newValue)
-//                }
-//            }
-//        }
     }
     
     var currLineSet = Set<Underlying_Data_Cell>()
@@ -101,6 +92,8 @@ public class Central_State : ObservableObject {
             }
         }
     }
+    
+    var movingNoteCurrentlyWriteable : Bool = false
     
     public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam
@@ -259,16 +252,6 @@ public class Central_State : ObservableObject {
             
         }
     }
-    
-    
-//    public func change_Write_Needs_Held_Down(){
-//        if write_Needs_Held_Down == true {
-//            write_Needs_Held_Down = false
-//        }
-//        else if write_Needs_Held_Down == false {
-//            write_Needs_Held_Down = true
-//        }
-//    }
 
     public func resizeModeActions(action:E_ResizeActions){
         if let lclResizeHelper = resize_Helper {
@@ -367,8 +350,6 @@ public class Central_State : ObservableObject {
         }
         establishCursorSet()
     }
-    
-    
     
     func establishCursorSet(){
         if dimensions.patternTimingConfiguration == .fourFour {
