@@ -204,6 +204,7 @@ class Moving_Cell_Set_Holder {
             for cell in potential_Moved_Set {
                 cell.handleVisibleStateChange(type : .activate_Potential_Set)
             }
+            print("potential_Moved_Set count: ",potential_Moved_Set.count)
         }
     }
     
@@ -239,7 +240,6 @@ class Moving_Cell_Set_Holder {
     
     func restoreToOriginal(){
         //initial_Snapshot.
-        print("restoreToOriginal()")
         for cell in potential_Moved_Set {
             cell.reset_To_Original()
         }
@@ -251,4 +251,3 @@ class Moving_Cell_Set_Holder {
 //    }
 
 }
-
