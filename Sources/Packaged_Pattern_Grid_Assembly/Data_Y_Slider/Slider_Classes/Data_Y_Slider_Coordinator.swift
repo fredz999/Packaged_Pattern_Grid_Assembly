@@ -13,11 +13,12 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     
     let dimensions = ComponentDimensions.StaticDimensions
     
-    public var vertical_Slider_Responders : [P_VSlider_Responder] = []{
-        didSet{
-            print("vertical_Slider_Responders count: ",vertical_Slider_Responders.count)
-        }
-    }
+    public var vertical_Slider_Responders : [P_VSlider_Responder] = []
+//    {
+//        didSet{
+//            print("vertical_Slider_Responders count: ",vertical_Slider_Responders.count)
+//        }
+//    }
 
     public override init(){
         super.init()

@@ -204,10 +204,15 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
-            //print("prohibition_Indicator_Set count: ",prohibition_Indicator_Set.count.description)
-            for cell in prohibition_Indicator_Set {
-                cell.handleVisibleStateChange(type : .activate_Prohibited)
+            if prohibition_Indicator_Set.count == 0{
+                print("prohibition_Indicator_Set.count == 0")
             }
+            else if prohibition_Indicator_Set.count > 0{
+                for cell in prohibition_Indicator_Set {
+                    cell.handleVisibleStateChange(type : .activate_Prohibited)
+                }
+            }
+            
         }
     }
     

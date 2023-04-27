@@ -99,7 +99,7 @@ class Delete_Helper : P_Selectable_Mode{
             if dimensions.patternTimingConfiguration == .fourFour{
                 
                 if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number {
-                    //print("X diff..........")
+
                     let secondLastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex-1]
                     let lastCell = array_Of_Seperated_Cells[seperatedCellsFinalIndex]
 
@@ -134,7 +134,7 @@ class Delete_Helper : P_Selectable_Mode{
                     
                 }
                 else if lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
-                    //print("Y diff..........")
+
                     let x_Four_Four_Set = secondLastCell.parentLine.cellSet.filter{$0.four_Four_Half_Cell_Index == secondLastCell.four_Four_Half_Cell_Index}
                     if let minX = x_Four_Four_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
                     ,let maxX = x_Four_Four_Set.max(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
@@ -230,11 +230,6 @@ class Delete_Helper : P_Selectable_Mode{
                 }
                 
             }
-
-//            else if lastCell.dataCell_X_Number != secondLastCell.dataCell_X_Number
-//            && lastCell.parentLine.line_Y_Num != secondLastCell.parentLine.line_Y_Num {
-//                print("X diff.......... && Y diff..........")
-//            }
             
             
         }
