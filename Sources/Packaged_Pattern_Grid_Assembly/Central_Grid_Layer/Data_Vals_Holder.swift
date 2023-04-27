@@ -133,7 +133,9 @@ public class Data_Vals_Holder : ObservableObject {
         
         else if status_Update_TypeParam == .prohibitedSet {
             if value == true {
+                
                 if referenced_in_Prohibited_Set == false{
+                    print("referenced_in_Prohibited_Set=true")
                     referenced_in_Prohibited_Set=true
                 }
             }
