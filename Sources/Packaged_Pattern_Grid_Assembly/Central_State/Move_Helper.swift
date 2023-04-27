@@ -143,17 +143,19 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
             }
-            nil_Cell_Sets()
-        }
-        else if parentCentralState.movingNoteCurrentlyWriteable == true {
             // TODO: reverse move
             // go back to original
-            
             if moving_Cell_Set_Holder_Array.count > 0{
                 for movingSetHolder in moving_Cell_Set_Holder_Array{
                     movingSetHolder.restoreToOriginal()
                 }
             }
+            nil_Cell_Sets()
+        }
+        else if parentCentralState.movingNoteCurrentlyWriteable == true {
+            //rewrite the note
+            
+            
             
             nil_Cell_Sets()
             
