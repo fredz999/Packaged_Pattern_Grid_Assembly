@@ -150,6 +150,13 @@ class Move_Helper: P_Selectable_Mode {
             // TODO: reverse move
             // go back to original
             
+            if moving_Cell_Set_Holder_Array.count > 0{
+                for movingSetHolder in moving_Cell_Set_Holder_Array{
+                    movingSetHolder.restoreToOriginal()
+                }
+            }
+            
+            nil_Cell_Sets()
             
         }
     }
@@ -234,6 +241,9 @@ class Moving_Cell_Set_Holder {
     
     func restoreToOriginal(){
         //initial_Snapshot.
+        for cell in potential_Moved_Set {
+            cell.reset_To_Original()
+        }
     }
     
 //    func updateSet(newSet:Set<Underlying_Data_Cell>){
