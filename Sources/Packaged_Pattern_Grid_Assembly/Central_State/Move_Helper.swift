@@ -148,31 +148,6 @@ class Move_Helper: P_Selectable_Mode {
         nil_Cell_Sets()
     }
     
-//    func update_Note(){
-//
-//        for moving_Cell_Set in moving_Cell_Set_Holder_Array {
-//
-//            if moving_Cell_Set.potential_Moved_Set.count > 0 {
-//
-//                if let currNoteCollection = parentCentralState.currentNoteCollection {
-//
-//                    if deleteActive == true {
-//                        currNoteCollection.delete_Note_By_Id(note_Id_Param: moving_Cell_Set.initial_Snapshot.snapShot_Note_Id_Param)
-//                    }
-//
-//                    for cell in moving_Cell_Set.potential_Moved_Set {
-//                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-//                    }
-//
-//                    currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
-//
-//                }
-//
-//            }
-//        }
-//        nil_Cell_Sets()
-//    }
-    
     func nil_Cell_Sets(){
         moving_Cell_Set_Holder_Array.removeAll()
         currLeftLimit_Move = 0
@@ -229,6 +204,7 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
+            print("didSet.....")
             for cell in prohibition_Indicator_Set {
                 cell.handleVisibleStateChange(type : .activate_Prohibited)
             }
@@ -240,11 +216,10 @@ class Moving_Cell_Set_Holder {
         initial_Snapshot = initial_Snapshot_Param
     }
     
-    func updateSet(newSet:Set<Underlying_Data_Cell>){
-        print("updateSet(newSet.......")
-        potential_Moved_Set = newSet
-        prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
-    }
+//    func updateSet(newSet:Set<Underlying_Data_Cell>){
+//        potential_Moved_Set = newSet
+//        prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
+//    }
 
 }
 
