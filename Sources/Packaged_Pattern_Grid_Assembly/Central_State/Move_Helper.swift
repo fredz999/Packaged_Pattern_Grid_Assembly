@@ -164,11 +164,11 @@ class Move_Helper: P_Selectable_Mode {
                     if cell.in_Prohibited_Set == true {
                         potentialProhibSetCount+=1
                     }
-                    else if cell.in_Prohibited_Set == true {
+                    else if cell.in_Prohibited_Set == false {
                         potentialViableSetCount+=1
                     }
                 }
-                print("potentialProhibSetCount: ",potentialProhibSetCount.description,", ",potentialViableSetCount.description)
+                print("potentialProhibSetCount: ",potentialProhibSetCount.description,", potentialViableSetCount",potentialViableSetCount.description)
             }
             
             
