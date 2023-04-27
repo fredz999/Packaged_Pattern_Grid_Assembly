@@ -157,18 +157,19 @@ class Move_Helper: P_Selectable_Mode {
             
             if moving_Cell_Set_Holder_Array.count > 0 {
                 
-                var potentialProhibSetCount = 0
-                var potentialViableSetCount = 0
+//                var potentialProhibSetCount = 0
+//                var potentialViableSetCount = 0
                 
                 for cell in moving_Cell_Set_Holder_Array[0].potential_Moved_Set {
                     if cell.in_Prohibited_Set == true {
-                        potentialProhibSetCount+=1
+                        cell.handleVisibleStateChange(type: .deActivate_Prohibited)
                     }
-                    else if cell.in_Prohibited_Set == false {
-                        potentialViableSetCount+=1
+                    if cell.in_Potential_Set == true {
+                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                     }
                 }
-                print("potentialProhibSetCount: ",potentialProhibSetCount.description,", potentialViableSetCount",potentialViableSetCount.description)
+                //print("potentialProhibSetCount: ",potentialProhibSetCount.description,", potentialViableSetCount",potentialViableSetCount.description)
+                //2: find the overlap between initial snap and the prohib then like use ids to restore the data or whateva
             }
             
             
