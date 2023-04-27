@@ -133,9 +133,7 @@ public class Data_Vals_Holder : ObservableObject {
         
         else if status_Update_TypeParam == .prohibitedSet {
             if value == true {
-                
                 if referenced_in_Prohibited_Set == false{
-                    print("referenced_in_Prohibited_Set=true")
                     referenced_in_Prohibited_Set=true
                 }
             }
@@ -180,22 +178,24 @@ public class Data_Vals_Holder : ObservableObject {
     func process_Visual_Status(){
         if check_In_MoveCursor_Set() == false {
             if check_In_Passive_Cursor_Set() == false {
+                
                 if check_Cell_Not_In_Note() == false {
                     check_Highlighted()
                     check_In_MultiSelect_Note_Set()
                     check_In_Potential_Set()
+                    check_In_Prohib_Set()
                 }
                 else if check_Cell_Not_In_Note() == true {
                     check_In_MultiSelect_BackGround_Set()
                     check_In_Potential_Set()
                     check_In_Resize_Set()
                 }
+                
             }
         }
-        else if check_In_MoveCursor_Set() == true {
-            print("check_In_MoveCursor_Set() == true")
-            check_In_Prohib_Set()
-        }
+//        else if check_In_MoveCursor_Set() == true {
+//            check_In_Prohib_Set()
+//        }
     }
     
     func check_Cell_Not_In_Note()->Bool{
