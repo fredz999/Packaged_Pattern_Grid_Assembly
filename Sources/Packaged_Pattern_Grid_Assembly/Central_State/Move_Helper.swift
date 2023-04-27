@@ -57,7 +57,7 @@ class Move_Helper: P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active=false
-            update_Note()
+            persist_New_Note_Data()
         }
     }
     
@@ -82,6 +82,7 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Multi_Note_Selected(){
+        print("movement_With_Multi_Note_Selected()")
         if parentCentralState.curr_Cursor_Min_Data_Pos_X != snapshot_Cursor_Min_X
             || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y {
             if let collection = parentCentralState.currentNoteCollection {
@@ -122,8 +123,8 @@ class Move_Helper: P_Selectable_Mode {
         }
     }
 
-    func update_Note(){
-        // ok that is is moved
+    func persist_New_Note_Data(){
+        // MOVE
         if dont_Copy_Just_Move == true {
             for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                 if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
@@ -131,6 +132,7 @@ class Move_Helper: P_Selectable_Mode {
                 }
             }
         }
+        // COPY
         else if dont_Copy_Just_Move == false {
             for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                 for cell in moving_Cell_Set.potential_Moved_Set {
