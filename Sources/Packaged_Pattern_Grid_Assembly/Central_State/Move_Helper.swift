@@ -155,8 +155,25 @@ class Move_Helper: P_Selectable_Mode {
 //                }
 //            }
             
+            if moving_Cell_Set_Holder_Array.count > 0 {
+                
+                var potentialProhibSetCount = 0
+                var potentialViableSetCount = 0
+                
+                for cell in moving_Cell_Set_Holder_Array[0].potential_Moved_Set {
+                    if cell.in_Prohibited_Set == true {
+                        potentialProhibSetCount+=1
+                    }
+                    else if cell.in_Prohibited_Set == true {
+                        potentialViableSetCount+=1
+                    }
+                }
+                print("potentialProhibSetCount: ",potentialProhibSetCount.description,", ",potentialViableSetCount.description)
+            }
+            
+            
+            
             //nil_Cell_Sets()
-            print("Writeable == false")
         }
     }
     
