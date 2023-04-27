@@ -82,9 +82,7 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Multi_Note_Selected(){
-        
-        
-        
+        print("movement_With_Multi_Note_Selected()....")
         if parentCentralState.curr_Cursor_Min_Data_Pos_X != snapshot_Cursor_Min_X
             || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y {
             if let collection = parentCentralState.currentNoteCollection {
@@ -127,7 +125,7 @@ class Move_Helper: P_Selectable_Mode {
 
     func persist_New_Note_Data(){
         // MOVE
-        if parentCentralState.movingNoteCurrentlyWriteable == true{
+        if parentCentralState.movingNoteCurrentlyWriteable == true {
             if dont_Copy_Just_Move == true {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                     if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
@@ -146,8 +144,14 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
             }
+            nil_Cell_Sets()
         }
-        nil_Cell_Sets()
+        else if parentCentralState.movingNoteCurrentlyWriteable == true {
+            // TODO: reverse move
+            // go back to original
+            
+            
+        }
     }
     
     func nil_Cell_Sets(){
@@ -207,7 +211,6 @@ class Moving_Cell_Set_Holder {
         }
         didSet {
             if prohibition_Indicator_Set.count == 0{
-                print("prohibition_Indicator_Set.count == 0")
                 if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false{
                     noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = true
                 }
@@ -227,6 +230,10 @@ class Moving_Cell_Set_Holder {
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){
         noteImIn = noteParam
         initial_Snapshot = initial_Snapshot_Param
+    }
+    
+    func restoreToOriginal(){
+        //initial_Snapshot.
     }
     
 //    func updateSet(newSet:Set<Underlying_Data_Cell>){

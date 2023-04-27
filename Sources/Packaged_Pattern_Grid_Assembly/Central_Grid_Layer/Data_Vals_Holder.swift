@@ -170,8 +170,6 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_MultiSelect_Note_Set == true{referenced_in_MultiSelect_Note_Set=false}
             }
         }
-        
-        
         process_Visual_Status()
     }
     
