@@ -149,13 +149,14 @@ class Move_Helper: P_Selectable_Mode {
         else if parentCentralState.movingNoteCurrentlyWriteable == false {
             // TODO: reverse move
             // go back to original
-            if moving_Cell_Set_Holder_Array.count > 0 {
-                for movingSetHolder in moving_Cell_Set_Holder_Array{
-                    movingSetHolder.restoreToOriginal()
-                }
-            }
+//            if moving_Cell_Set_Holder_Array.count > 0 {
+//                for movingSetHolder in moving_Cell_Set_Holder_Array{
+//                    movingSetHolder.restoreToOriginal()
+//                }
+//            }
             
-            nil_Cell_Sets()
+            //nil_Cell_Sets()
+            print("Writeable == false")
         }
     }
     
@@ -204,7 +205,7 @@ class Moving_Cell_Set_Holder {
             for cell in potential_Moved_Set {
                 cell.handleVisibleStateChange(type : .activate_Potential_Set)
             }
-            print("potential_Moved_Set count: ",potential_Moved_Set.count)
+            //print("potential_Moved_Set count: ",potential_Moved_Set.count)
         }
     }
     
