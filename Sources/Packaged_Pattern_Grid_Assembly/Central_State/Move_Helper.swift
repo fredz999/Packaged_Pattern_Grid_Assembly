@@ -82,7 +82,7 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Multi_Note_Selected(){
-        print("movement_With_Multi_Note_Selected()....")
+
         if parentCentralState.curr_Cursor_Min_Data_Pos_X != snapshot_Cursor_Min_X
             || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y {
             if let collection = parentCentralState.currentNoteCollection {
@@ -91,7 +91,6 @@ class Move_Helper: P_Selectable_Mode {
         }
         for m in 0..<moving_Cell_Set_Holder_Array.count {
             var proposedSet = Set<Underlying_Data_Cell>()
-            
             if let lclSnapshot_X = snapshot_Cursor_Min_X,let lclSnapshot_Y = snapshot_Cursor_Y {
                 let delta_X_Grid_Units = parentCentralState.curr_Cursor_Min_Data_Pos_X - lclSnapshot_X
                 let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclSnapshot_Y
@@ -241,6 +240,7 @@ class Moving_Cell_Set_Holder {
     
     func restoreToOriginal(){
         //initial_Snapshot.
+        print("restoreToOriginal()")
         for cell in potential_Moved_Set {
             cell.reset_To_Original()
         }
