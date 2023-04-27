@@ -190,6 +190,9 @@ public class Data_Vals_Holder : ObservableObject {
                 }
             }
         }
+        else if check_In_MoveCursor_Set() == true {
+            check_In_Prohib_Set()
+        }
     }
     
     func check_Cell_Not_In_Note()->Bool{
