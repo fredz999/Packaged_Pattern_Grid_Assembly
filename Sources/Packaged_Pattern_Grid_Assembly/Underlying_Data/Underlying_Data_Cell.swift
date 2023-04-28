@@ -30,6 +30,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var in_Potential_Set : Bool = false
     
+    var in_MoveNote_Cursor_Set : Bool = false
+    
+    
     var in_Resize_Set : Bool = false
     
     var in_Potential_Edge_Set : Bool = false
@@ -37,8 +40,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_Delete_Square_Set : Bool = false
     
     var in_Delete_Trail_Set : Bool = false
-    
-    var in_MoveNote_Cursor_Set : Bool = false
     
     var in_Passive_Cursor_Set : Bool = false
     
@@ -48,7 +49,23 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
  
     func handleVisibleStateChange(type : E_VisibleStateChangeType) {
         
-        if type == .activate_Passive_Cursor_Set {
+        if type == .activate_MoveNote_Cursor_Set {
+            if in_MoveNote_Cursor_Set == false {
+                in_MoveNote_Cursor_Set = true
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .moveNote_Cursor_Set, value: in_MoveNote_Cursor_Set)
+                }
+            }
+        }
+        else if type == .deActivate_MoveNote_Cursor_Set {
+            if in_MoveNote_Cursor_Set == true {
+                in_MoveNote_Cursor_Set = false
+                if let lclDataVals = currentConnectedDataVals {
+                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .moveNote_Cursor_Set, value: in_MoveNote_Cursor_Set)
+                }
+            }
+        }
+        else if type == .activate_Passive_Cursor_Set {
             if in_Passive_Cursor_Set == false {
                 in_Passive_Cursor_Set = true
                 if let lclDataVals = currentConnectedDataVals {
@@ -80,7 +97,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .activate_Multiselect_Note_Set {
             if in_MultiSelectNote_Set == false{
                 in_MultiSelectNote_Set = true
@@ -97,7 +113,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .activate_Delete_Square_Set {
             if in_Delete_Square_Set == false {
                 in_Delete_Square_Set = true
@@ -114,7 +129,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
                 in_Potential_Set = true
@@ -131,7 +145,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
         else if type == .activate_Resize_Set {
             if in_Resize_Set == false {
                 in_Resize_Set = true
@@ -148,8 +161,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
-        
-        
         else if type == .activate_Prohibited {
             if in_Prohibited_Set == false{in_Prohibited_Set=true}
             if let lclDataVals = currentConnectedDataVals{

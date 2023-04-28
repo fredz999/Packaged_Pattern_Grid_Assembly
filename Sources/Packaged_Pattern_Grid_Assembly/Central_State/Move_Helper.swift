@@ -251,6 +251,11 @@ class Moving_Cell_Set_Holder {
         else if noteWriteable == false {
             // potential is now ..... just make this... prohibited_Moving_Note_Color
             // prohib...... is just prohib
+            for cell in potential_Moved_Set {
+                if cell.in_MoveNote_Cursor_Set == false {
+                    cell.handleVisibleStateChange(type: .activate_MoveNote_Cursor_Set)
+                }
+            }
         }
     }
     
