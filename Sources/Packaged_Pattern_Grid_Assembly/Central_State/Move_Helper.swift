@@ -150,7 +150,7 @@ class Move_Helper: P_Selectable_Mode {
         else if parentCentralState.movingNoteCurrentlyWriteable == false {
             if moving_Cell_Set_Holder_Array.count > 0 {
                 
-                for holder in moving_Cell_Set_Holder_Array{
+                for holder in moving_Cell_Set_Holder_Array {
                     
                     for cell in holder.potential_Moved_Set {
                         if cell.in_Prohibited_Clashing_Cell_Set == true {
