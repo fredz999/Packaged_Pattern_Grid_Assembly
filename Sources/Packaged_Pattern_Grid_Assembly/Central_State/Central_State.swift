@@ -10,8 +10,6 @@ import SwiftUI
 
 public class Central_State : ObservableObject {
 
-    //@Published var edit_Layer_Visible : Bool = true
-    
     @Published public var write_Needs_Held_Down : Bool = false
     
     @Published public var timing_Sig_Change_Possible : Bool = true
@@ -28,7 +26,16 @@ public class Central_State : ObservableObject {
     
     @Published public var mode_Id : Int?
     
-    @Published public var movingNoteCurrentlyWriteable : Bool = false
+    @Published public var movingNoteCurrentlyWriteable : Bool = false {
+        didSet {
+                //hit the movehelper func
+            if let lclMove_Helper = move_Helper {
+                for movingHelper in lclMove_Helper.moving_Cell_Set_Holder_Array{
+                    movingHelper.handleNoteWriteabilityChange()
+                }
+            }
+        }
+    }
 
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions

@@ -132,7 +132,6 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
             }
-            // COPY
             else if dont_Copy_Just_Move == false {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                     for cell in moving_Cell_Set.potential_Moved_Set {
@@ -143,23 +142,10 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
             }
-            
             nil_Cell_Sets()
         }
         else if parentCentralState.movingNoteCurrentlyWriteable == false {
-            // TODO: reverse move
-            // go back to original
-//            if moving_Cell_Set_Holder_Array.count > 0 {
-//                for movingSetHolder in moving_Cell_Set_Holder_Array{
-//                    movingSetHolder.restoreToOriginal()
-//                }
-//            }
-            
             if moving_Cell_Set_Holder_Array.count > 0 {
-                
-//                var potentialProhibSetCount = 0
-//                var potentialViableSetCount = 0
-                
                 for cell in moving_Cell_Set_Holder_Array[0].potential_Moved_Set {
                     if cell.in_Prohibited_Set == true {
                         cell.handleVisibleStateChange(type: .deActivate_Prohibited)
@@ -168,14 +154,9 @@ class Move_Helper: P_Selectable_Mode {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                     }
                 }
-                //print("potentialProhibSetCount: ",potentialProhibSetCount.description,", potentialViableSetCount",potentialViableSetCount.description)
-                //2: find the overlap between initial snap and the prohib then like use ids to restore the data or whateva
             }
-            
-            
-            
-            //nil_Cell_Sets()
         }
+        nil_Cell_Sets()
     }
     
     func nil_Cell_Sets(){
@@ -210,6 +191,7 @@ class Note_Movement_SnapShot{
 class Moving_Cell_Set_Holder {
     
     var noteImIn : Note
+    
     var initial_Snapshot : Note_Movement_SnapShot
 
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
@@ -223,7 +205,6 @@ class Moving_Cell_Set_Holder {
             for cell in potential_Moved_Set {
                 cell.handleVisibleStateChange(type : .activate_Potential_Set)
             }
-            //print("potential_Moved_Set count: ",potential_Moved_Set.count)
         }
     }
     
@@ -248,8 +229,11 @@ class Moving_Cell_Set_Holder {
                     cell.handleVisibleStateChange(type : .activate_Prohibited)
                 }
             }
-            
         }
+    }
+    
+    func handleNoteWriteabilityChange(){
+        print("change le nombre ere")
     }
     
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){
@@ -257,12 +241,11 @@ class Moving_Cell_Set_Holder {
         initial_Snapshot = initial_Snapshot_Param
     }
     
-    func restoreToOriginal(){
-        //initial_Snapshot.
-        for cell in potential_Moved_Set {
-            cell.reset_To_Original()
-        }
-    }
+//    func restoreToOriginal(){
+//        for cell in potential_Moved_Set {
+//            cell.reset_To_Original()
+//        }
+//    }
     
 //    func updateSet(newSet:Set<Underlying_Data_Cell>){
 //        potential_Moved_Set = newSet
