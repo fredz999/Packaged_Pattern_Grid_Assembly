@@ -238,34 +238,31 @@ class Moving_Cell_Set_Holder {
     }
     
     func handleNoteWriteabilityChange(noteWriteable:Bool){
-        //print("handleNoteWriteabilityChange()..........",noteImIn.id.description,noteWriteable.description)
-        if noteWriteable == true {
-            for cell in potential_Moved_Set {
-                if cell.in_Prohibited_Moving_Cell_Set == true {
-                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
-                }
-                if cell.in_Potential_Set == false {
-                    cell.handleVisibleStateChange(type: .activate_Potential_Set)
-                }
-            }
-            for cell in prohibition_Indicator_Set {
-                if cell.in_Prohibited_Clashing_Cell_Set == false {
-                    cell.handleVisibleStateChange(type: .activate_Prohibited_Clashing_Cell)
-                }
-            }
-        }
-        else if noteWriteable == false {
-            // potential is now ..... just make this... prohibited_Moving_Note_Color
-            // prohib...... is just prohib
-            for cell in potential_Moved_Set {
-                if cell.in_Potential_Set == true {
-                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                }
-                if cell.in_Prohibited_Moving_Cell_Set == false {
-                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                }
-            }
-        }
+//        if noteWriteable == true {
+//            for cell in potential_Moved_Set {
+//                if cell.in_Prohibited_Moving_Cell_Set == true {
+//                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
+//                }
+//                if cell.in_Potential_Set == false {
+//                    cell.handleVisibleStateChange(type: .activate_Potential_Set)
+//                }
+//            }
+//            for cell in prohibition_Indicator_Set {
+//                if cell.in_Prohibited_Clashing_Cell_Set == false {
+//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Clashing_Cell)
+//                }
+//            }
+//        }
+//        else if noteWriteable == false {
+//            for cell in potential_Moved_Set {
+//                if cell.in_Potential_Set == true {
+//                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//                }
+//                if cell.in_Prohibited_Moving_Cell_Set == false {
+//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+//                }
+//            }
+//        }
     }
     
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){
