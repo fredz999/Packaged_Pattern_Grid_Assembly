@@ -94,6 +94,7 @@ public class Data_Vals_Holder : ObservableObject {
             else if value == false {
                 if referenced_in_MoveCursor_Set == true {
                     referenced_in_MoveCursor_Set = false
+                    print("referenced_in_MoveCursor_Set == false")
                 }
             }
         }
@@ -221,6 +222,7 @@ public class Data_Vals_Holder : ObservableObject {
             if statusColor != colors.grid_Note_Color {statusColor = colors.grid_Note_Color}
         }
     }
+    
     func check_In_Passive_Cursor_Set()->Bool{
         var retVal = false
         if referenced_in_PassiveCursor_Set == true {
