@@ -200,15 +200,20 @@ class Moving_Cell_Set_Holder {
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = potential_Moved_Set.symmetricDifference(newValue)
+            
             for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+                if cell.in_Potential_Set{cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
+                if cell.in_Prohibited_Moving_Cell_Set{cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)}
             }
         }
         didSet {
             if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
                 for cell in potential_Moved_Set {
                     cell.handleVisibleStateChange(type : .activate_Potential_Set)
+                }
+            }
+            else if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
+                for cell in potential_Moved_Set {
                     cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
                 }
             }
@@ -238,7 +243,7 @@ class Moving_Cell_Set_Holder {
             }
         }
     }
-    // TODO: figure out how to get
+ 
     func handleNoteWriteabilityChange(noteWriteable:Bool){
         if noteWriteable == true {
             for cell in potential_Moved_Set {
