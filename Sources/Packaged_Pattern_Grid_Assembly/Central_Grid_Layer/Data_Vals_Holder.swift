@@ -231,7 +231,6 @@ public class Data_Vals_Holder : ObservableObject {
         if referenced_in_MoveCursor_Set == true {
             retVal = true
             if statusColor != colors.moveNoteMode_Cursor_Color{statusColor = colors.moveNoteMode_Cursor_Color}
-            print("referenced_in_MoveCursor_Set == true")
         }
         return retVal
     }
