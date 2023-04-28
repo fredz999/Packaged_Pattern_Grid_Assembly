@@ -100,7 +100,7 @@ public class ComponentColors {
     
     public var cursorSliderLineColor : Color = Color(red:0.5,green:1,blue:0)
     
-    public var potentialColor : Color = Color(red: 0, green: 1, blue: 1)
+    
     
     public var multiSelectBackGroundColor : Color = Color(red:0.3,green:0.5,blue:0.1)
     
@@ -110,13 +110,14 @@ public class ComponentColors {
     
     
     
-    public var prohibited_Cell_Color : Color = Color(red:0.6,green:0.4,blue:0.2)
-    public var prohibited_Note_Color : Color = Color(red:0.8,green:0,blue:0)
+    public var prohibited_Cell_Color : Color = Color(red:0.6,green:0,blue:0)
+    public var prohibited_Moving_Note_Color : Color = Color(red:0.8,green:0,blue:0)
     public var prohibited_Cursor_Color : Color = Color(red:1,green:0.1,blue:0.1)
     
     
     
-    public var potential_Cell_Color : Color = Color(red:0.6,green:0,blue:0.6)
+    //public var potential_Cell_Color : Color = Color(red:0.6,green:0,blue:0.6)
+    public var potentialColor : Color = Color(red: 0, green: 1, blue: 1)
 
     public var passiveMode_Cursor_Color : Color = .blue
     

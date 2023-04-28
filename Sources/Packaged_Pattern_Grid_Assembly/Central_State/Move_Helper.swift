@@ -202,8 +202,10 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
-            for cell in potential_Moved_Set {
-                cell.handleVisibleStateChange(type : .activate_Potential_Set)
+            if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
+                for cell in potential_Moved_Set {
+                    cell.handleVisibleStateChange(type : .activate_Potential_Set)
+                }
             }
         }
     }
@@ -232,8 +234,24 @@ class Moving_Cell_Set_Holder {
         }
     }
     
-    func handleNoteWriteabilityChange(){
-        print("handleNoteWriteabilityChange()..........",noteImIn.id.description)
+    func handleNoteWriteabilityChange(noteWriteable:Bool){
+        //print("handleNoteWriteabilityChange()..........",noteImIn.id.description,noteWriteable.description)
+        if noteWriteable == true {
+            for cell in potential_Moved_Set {
+                if cell.in_Potential_Set == false {
+                    cell.handleVisibleStateChange(type: .activate_Potential_Set)
+                }
+            }
+            for cell in prohibition_Indicator_Set {
+                if cell.in_Prohibited_Set == false {
+                    cell.handleVisibleStateChange(type: .activate_Prohibited)
+                }
+            }
+        }
+        else if noteWriteable == false {
+            // potential is now ..... just make this... prohibited_Moving_Note_Color
+            // prohib...... is just prohib
+        }
     }
     
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){

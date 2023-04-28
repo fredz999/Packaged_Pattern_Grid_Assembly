@@ -176,7 +176,6 @@ public class Data_Vals_Holder : ObservableObject {
     func process_Visual_Status(){
         if check_In_MoveCursor_Set() == false {
             if check_In_Passive_Cursor_Set() == false {
-                
                 if check_Cell_Not_In_Note() == false {
                     check_Highlighted()
                     check_In_MultiSelect_Note_Set()
@@ -190,6 +189,9 @@ public class Data_Vals_Holder : ObservableObject {
                 }
                 
             }
+        }
+        else if check_In_MoveCursor_Set() == true {
+            
         }
     }
     
@@ -229,6 +231,7 @@ public class Data_Vals_Holder : ObservableObject {
         if referenced_in_MoveCursor_Set == true {
             retVal = true
             if statusColor != colors.moveNoteMode_Cursor_Color{statusColor = colors.moveNoteMode_Cursor_Color}
+            print("referenced_in_MoveCursor_Set == true")
         }
         return retVal
     }
