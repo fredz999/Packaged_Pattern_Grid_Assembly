@@ -233,7 +233,7 @@ class Moving_Cell_Set_Holder {
     }
     
     func handleNoteWriteabilityChange(){
-        print("change le nombre ere")
+        print("handleNoteWriteabilityChange()..........",noteImIn.id.description)
     }
     
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){

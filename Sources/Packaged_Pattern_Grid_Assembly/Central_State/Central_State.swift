@@ -28,7 +28,6 @@ public class Central_State : ObservableObject {
     
     @Published public var movingNoteCurrentlyWriteable : Bool = false {
         didSet {
-                //hit the movehelper func
             if let lclMove_Helper = move_Helper {
                 for movingHelper in lclMove_Helper.moving_Cell_Set_Holder_Array{
                     movingHelper.handleNoteWriteabilityChange()
