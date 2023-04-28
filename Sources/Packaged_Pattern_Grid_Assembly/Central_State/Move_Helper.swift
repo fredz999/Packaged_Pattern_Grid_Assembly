@@ -125,6 +125,7 @@ class Move_Helper: P_Selectable_Mode {
     func persist_New_Note_Data(){
         // MOVE
         if parentCentralState.movingNoteCurrentlyWriteable == true {
+            
             if dont_Copy_Just_Move == true {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                     if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
@@ -134,12 +135,14 @@ class Move_Helper: P_Selectable_Mode {
             }
             else if dont_Copy_Just_Move == false {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
+                    
                     for cell in moving_Cell_Set.potential_Moved_Set {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
                     }
                     if let currNoteCollection = parentCentralState.currentNoteCollection {
                         currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
                     }
+                    
                 }
             }
             nil_Cell_Sets()
@@ -147,8 +150,8 @@ class Move_Helper: P_Selectable_Mode {
         else if parentCentralState.movingNoteCurrentlyWriteable == false {
             if moving_Cell_Set_Holder_Array.count > 0 {
                 for cell in moving_Cell_Set_Holder_Array[0].potential_Moved_Set {
-                    if cell.in_Prohibited_Set == true {
-                        cell.handleVisibleStateChange(type: .deActivate_Prohibited)
+                    if cell.in_Prohibited_Clashing_Cell_Set == true {
+                        cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
                     }
                     if cell.in_Potential_Set == true {
                         cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
@@ -214,7 +217,7 @@ class Moving_Cell_Set_Holder {
         willSet {
             let delta = prohibition_Indicator_Set.symmetricDifference(newValue)
             for cell in delta {
-                cell.handleVisibleStateChange(type: .deActivate_Prohibited)
+                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
             }
         }
         didSet {
@@ -228,7 +231,7 @@ class Moving_Cell_Set_Holder {
                     noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = false
                 }
                 for cell in prohibition_Indicator_Set {
-                    cell.handleVisibleStateChange(type : .activate_Prohibited)
+                    cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
                 }
             }
         }
@@ -238,16 +241,16 @@ class Moving_Cell_Set_Holder {
         //print("handleNoteWriteabilityChange()..........",noteImIn.id.description,noteWriteable.description)
         if noteWriteable == true {
             for cell in potential_Moved_Set {
-                if cell.in_MoveNote_Cursor_Set == true {
-                    cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
+                if cell.in_Prohibited_Moving_Cell_Set == true {
+                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
                 }
                 if cell.in_Potential_Set == false {
                     cell.handleVisibleStateChange(type: .activate_Potential_Set)
                 }
             }
             for cell in prohibition_Indicator_Set {
-                if cell.in_Prohibited_Set == false {
-                    cell.handleVisibleStateChange(type: .activate_Prohibited)
+                if cell.in_Prohibited_Clashing_Cell_Set == false {
+                    cell.handleVisibleStateChange(type: .activate_Prohibited_Clashing_Cell)
                 }
             }
         }
@@ -255,8 +258,11 @@ class Moving_Cell_Set_Holder {
             // potential is now ..... just make this... prohibited_Moving_Note_Color
             // prohib...... is just prohib
             for cell in potential_Moved_Set {
-                if cell.in_MoveNote_Cursor_Set == false {
-                    cell.handleVisibleStateChange(type: .activate_MoveNote_Cursor_Set)
+                if cell.in_Potential_Set == true {
+                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                }
+                if cell.in_Prohibited_Moving_Cell_Set == false {
+                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
                 }
             }
         }

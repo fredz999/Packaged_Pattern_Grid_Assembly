@@ -184,8 +184,11 @@ public enum E_CellStatus : String {
 
 enum E_VisibleStateChangeType: String {
     
-    case activate_Prohibited = "activate_Prohibited"
-    case deActivate_Prohibited = "deActivate_Prohibited"
+    case activate_Prohibited_Clashing_Cell = "activate_Prohibited_Clashing_Cell"
+    case deActivate_Prohibited_Clashing_Cell = "deActivate_Prohibited_Clashing_Cell"
+    
+    case activate_Prohibited_Moving_Cell = "activate_Prohibited_Moving_Cell"
+    case deActivate_Prohibited_Moving_Cell = "deActivate_Prohibited_Moving_Cell"
 
     case activate_Viable_Set_Combined = "activate_Viable_Set_Combined"
     case deActivate_Viable_Set_Combined = "deActivate_Viable_Set_Combined"

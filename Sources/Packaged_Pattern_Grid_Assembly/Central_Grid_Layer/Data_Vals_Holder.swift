@@ -19,7 +19,15 @@ public class Data_Vals_Holder : ObservableObject {
 
     private var referenced_in_Highlighted_Set : Bool = false
     
-    private var referenced_in_Prohibited_Set : Bool = false
+    
+    
+    private var referenced_in_Prohibited_Clashing_Set : Bool = false
+    
+    private var referenced_in_Prohibited_Moving_Set : Bool = false
+    
+    private var referenced_in_Prohibited_Cursor_Set : Bool = false
+    
+    
     
     private var referenced_in_Cursor_Set : Bool = false
     
@@ -72,7 +80,36 @@ public class Data_Vals_Holder : ObservableObject {
     
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
         //update_Cell_Set_Membership(status_Update_TypeParam: .passiveCursorSet, value: false)
-        if status_Update_TypeParam == .passiveCursorSet  {
+        
+        if status_Update_TypeParam == .prohibitedClashingSet {
+            if value == true {
+                if referenced_in_Prohibited_Clashing_Set == false{
+                    referenced_in_Prohibited_Clashing_Set=true
+                }
+            }
+            else if value == false {
+                if referenced_in_Prohibited_Clashing_Set == true{
+                    referenced_in_Prohibited_Clashing_Set=false
+                }
+            }
+        }
+        
+        else if status_Update_TypeParam == .prohibitedMovingSet {
+            if value == true {
+                if referenced_in_Prohibited_Moving_Set == false{
+                    referenced_in_Prohibited_Moving_Set=true
+                }
+            }
+            else if value == false {
+                if referenced_in_Prohibited_Moving_Set == true{
+                    referenced_in_Prohibited_Moving_Set=false
+                }
+            }
+        }
+        
+        
+        
+        else if status_Update_TypeParam == .passiveCursorSet  {
             if value == true {
                 if referenced_in_PassiveCursor_Set == false {
                     referenced_in_PassiveCursor_Set = true
@@ -94,7 +131,6 @@ public class Data_Vals_Holder : ObservableObject {
             else if value == false {
                 if referenced_in_MoveCursor_Set == true {
                     referenced_in_MoveCursor_Set = false
-                    print("referenced_in_MoveCursor_Set == false")
                 }
             }
         }
@@ -132,19 +168,6 @@ public class Data_Vals_Holder : ObservableObject {
             }
         }
         
-        else if status_Update_TypeParam == .prohibitedSet {
-            if value == true {
-                if referenced_in_Prohibited_Set == false{
-                    referenced_in_Prohibited_Set=true
-                }
-            }
-            else if value == false {
-                if referenced_in_Prohibited_Set == true{
-                    referenced_in_Prohibited_Set=false
-                }
-            }
-        }
-        
         else if status_Update_TypeParam == .highlightedSet {
             if value == true {
                 if referenced_in_Highlighted_Set == false{referenced_in_Highlighted_Set=true}
@@ -171,6 +194,7 @@ public class Data_Vals_Holder : ObservableObject {
                 if referenced_in_MultiSelect_Note_Set == true{referenced_in_MultiSelect_Note_Set=false}
             }
         }
+        
         process_Visual_Status()
     }
     
@@ -240,8 +264,8 @@ public class Data_Vals_Holder : ObservableObject {
         return retVal
     }
     func check_In_Prohib_Set() {
-        if referenced_in_Prohibited_Set == true {
-            if statusColor != colors.prohibited_Cell_Color{statusColor = colors.prohibited_Cell_Color}
+        if referenced_in_Prohibited_Clashing_Set == true {
+            if statusColor != colors.prohibited_Clashing_Cell_Color{statusColor = colors.prohibited_Clashing_Cell_Color}
         }
     }
     func check_In_MultiSelect_BackGround_Set(){
@@ -312,7 +336,12 @@ public enum status_Update_Type {
     case deleteSquareSet
     case moveNote_Cursor_Set
     case passiveCursorSet
-    case prohibitedSet
+    
+    case prohibitedClashingSet
+    case prohibitedMovingSet
+    case prohibitedCursorSet
+    
+    
     case potentialSet
     case resizeSet
     case potentialEdgeSet
