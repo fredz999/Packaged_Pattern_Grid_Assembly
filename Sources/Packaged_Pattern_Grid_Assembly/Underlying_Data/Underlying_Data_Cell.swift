@@ -48,7 +48,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_MultiSelectNote_Set : Bool = false
  
     func handleVisibleStateChange(type : E_VisibleStateChangeType) {
-        
+        //handleVisibleStateChange(type: .activate_MoveNote_Cursor_Set)
+        //handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
         if type == .activate_MoveNote_Cursor_Set {
             if in_MoveNote_Cursor_Set == false {
                 in_MoveNote_Cursor_Set = true

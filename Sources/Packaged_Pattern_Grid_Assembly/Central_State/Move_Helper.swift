@@ -238,6 +238,9 @@ class Moving_Cell_Set_Holder {
         //print("handleNoteWriteabilityChange()..........",noteImIn.id.description,noteWriteable.description)
         if noteWriteable == true {
             for cell in potential_Moved_Set {
+                if cell.in_MoveNote_Cursor_Set == true {
+                    cell.handleVisibleStateChange(type: .deActivate_MoveNote_Cursor_Set)
+                }
                 if cell.in_Potential_Set == false {
                     cell.handleVisibleStateChange(type: .activate_Potential_Set)
                 }
