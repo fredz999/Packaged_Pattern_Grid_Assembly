@@ -190,9 +190,9 @@ public class Data_Vals_Holder : ObservableObject {
                 
             }
         }
-        else if check_In_MoveCursor_Set() == true {
-            print("thing was in movecursorSet")
-        }
+//        else if check_In_MoveCursor_Set() == true {
+//            print("thing was in movecursorSet")
+//        }
     }
     
     func check_Cell_Not_In_Note()->Bool{
@@ -210,6 +210,9 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retval
     }
+    
+    
+    
     func check_Highlighted(){
         if referenced_in_Highlighted_Set == true {
             if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.selectedNoteColor}
