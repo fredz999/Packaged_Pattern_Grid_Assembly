@@ -200,24 +200,25 @@ public class Data_Vals_Holder : ObservableObject {
     
     func process_Visual_Status(){
         if check_In_MoveCursor_Set() == false {
+            
             if check_In_Passive_Cursor_Set() == false {
+                
                 if check_Cell_Not_In_Note() == false {
                     check_Highlighted()
                     check_In_MultiSelect_Note_Set()
                     check_In_Potential_Set()
-                    check_In_Prohib_Set()
+                    check_In_Prohib_Clashing_Set()
                 }
                 else if check_Cell_Not_In_Note() == true {
                     check_In_MultiSelect_BackGround_Set()
                     check_In_Potential_Set()
                     check_In_Resize_Set()
+                    check_In_Prohib_Moving_Set()
                 }
                 
             }
         }
-//        else if check_In_MoveCursor_Set() == true {
-//            print("thing was in movecursorSet")
-//        }
+
     }
     
     func check_Cell_Not_In_Note()->Bool{
@@ -263,11 +264,18 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retVal
     }
-    func check_In_Prohib_Set() {
+    func check_In_Prohib_Clashing_Set() {
         if referenced_in_Prohibited_Clashing_Set == true {
             if statusColor != colors.prohibited_Clashing_Cell_Color{statusColor = colors.prohibited_Clashing_Cell_Color}
         }
     }
+    
+    func check_In_Prohib_Moving_Set() {
+        if referenced_in_Prohibited_Moving_Set == true {
+            if statusColor != colors.prohibited_Moving_Cell_Color{statusColor = colors.prohibited_Moving_Cell_Color}
+        }
+    }
+    
     func check_In_MultiSelect_BackGround_Set(){
         if referenced_in_MultiSelect_BackGround_Set == true {
             if statusColor != colors.multiSelectBackGroundColor{statusColor = colors.multiSelectBackGroundColor}
