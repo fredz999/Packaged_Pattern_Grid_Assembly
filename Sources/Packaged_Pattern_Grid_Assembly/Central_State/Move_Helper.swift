@@ -149,14 +149,23 @@ class Move_Helper: P_Selectable_Mode {
         }
         else if parentCentralState.movingNoteCurrentlyWriteable == false {
             if moving_Cell_Set_Holder_Array.count > 0 {
-                for cell in moving_Cell_Set_Holder_Array[0].potential_Moved_Set {
-                    if cell.in_Prohibited_Clashing_Cell_Set == true {
-                        cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
+                
+                for holder in moving_Cell_Set_Holder_Array{
+                    
+                    for cell in holder.potential_Moved_Set {
+                        if cell.in_Prohibited_Clashing_Cell_Set == true {
+                            cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
+                        }
+                        if cell.in_Prohibited_Moving_Cell_Set == true {
+                            cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+                        }
+                        if cell.in_Potential_Set == true {
+                            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                        }
                     }
-                    if cell.in_Potential_Set == true {
-                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                    }
+                    
                 }
+                
             }
         }
         nil_Cell_Sets()
