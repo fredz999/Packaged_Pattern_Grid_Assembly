@@ -238,6 +238,21 @@ class Moving_Cell_Set_Holder {
     }
     
     func handleNoteWriteabilityChange(noteWriteable:Bool){
+        if noteWriteable == true {
+            for cell in potential_Moved_Set {
+                if cell.in_Prohibited_Moving_Cell_Set == true {
+                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+                }
+            }
+        }
+        else if noteWriteable == false {
+            for cell in potential_Moved_Set {
+                if cell.in_Prohibited_Moving_Cell_Set == false {
+                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+                }
+            }
+        }
+    }
 //        if noteWriteable == true {
 //            for cell in potential_Moved_Set {
 //                if cell.in_Prohibited_Moving_Cell_Set == true {
@@ -254,6 +269,7 @@ class Moving_Cell_Set_Holder {
 //            }
 //        }
 //        else if noteWriteable == false {
+//
 //            for cell in potential_Moved_Set {
 //                if cell.in_Potential_Set == true {
 //                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
@@ -263,7 +279,7 @@ class Moving_Cell_Set_Holder {
 //                }
 //            }
 //        }
-    }
+    
     
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){
         noteImIn = noteParam
