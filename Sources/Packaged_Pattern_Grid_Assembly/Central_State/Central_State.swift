@@ -10,7 +10,7 @@ import SwiftUI
 
 public class Central_State : ObservableObject {
 
-    @Published var edit_Layer_Visible : Bool = true
+    //@Published var edit_Layer_Visible : Bool = true
     
     @Published public var write_Needs_Held_Down : Bool = false
     
@@ -27,6 +27,8 @@ public class Central_State : ObservableObject {
     @Published public var mode_String = ""
     
     @Published public var mode_Id : Int?
+    
+    @Published public var movingNoteCurrentlyWriteable : Bool = false
 
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions
@@ -93,7 +95,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    var movingNoteCurrentlyWriteable : Bool = false
+    
     
     public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam
