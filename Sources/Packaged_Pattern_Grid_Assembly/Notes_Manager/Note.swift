@@ -107,11 +107,10 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     
     func handleNoteWriteabilityChange(noteWriteable:Bool){
         if noteWriteable == true {
-            print("handleNoteWriteabilityChange")
             if let lclModifiable = modifiable_Note_Data {
 
                 for cell in lclModifiable.dataCellArray {
-                    //print("thing supposed to switched off?: ",cell.dataCell_X_Number)
+                    print("thing supposed to switched off?: ",cell.dataCell_X_Number)
                     if cell.in_Prohibited_Moving_Cell_Set == true {
                         cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
                     }
