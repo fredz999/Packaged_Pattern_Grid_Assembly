@@ -107,6 +107,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     
     func handleNoteWriteabilityChange(noteWriteable:Bool){
         if noteWriteable == true {
+            print("noteWriteable: ",noteWriteable.description)
             if let lclModifiable = modifiable_Note_Data{
                 for cell in lclModifiable.dataCellArray{
                     if cell.in_Prohibited_Moving_Cell_Set == true {
@@ -116,6 +117,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
             }
         }
         else if noteWriteable == false {
+            print("noteWriteable: ",noteWriteable.description)
             if let lclModifiable = modifiable_Note_Data{
                 for cell in lclModifiable.dataCellArray{
                     if cell.in_Prohibited_Moving_Cell_Set == true {

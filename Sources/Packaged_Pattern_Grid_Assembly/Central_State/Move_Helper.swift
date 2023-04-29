@@ -282,7 +282,7 @@ class Moving_Cell_Set_Holder {
 //                }
                 if noteImIn.movingNoteCurrentlyWriteable == false {
                     noteImIn.movingNoteCurrentlyWriteable = true
-                    print("prohibition_Indicator_Set.count == 0")
+                    //print("prohibition_Indicator_Set.count == 0")
                     //print("noteImIn.movingNoteCurrentlyWriteable = true")
                     
                 }
