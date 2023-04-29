@@ -281,11 +281,12 @@ class Moving_Cell_Set_Holder {
 //                }
                 if noteImIn.movingNoteCurrentlyWriteable == false {
                     noteImIn.movingNoteCurrentlyWriteable = true
+                    print("noteImIn.movingNoteCurrentlyWriteable = true")
                 }
                 
             }
             else if prohibition_Indicator_Set.count > 0 {
-                print("hello?....prohibition_Indicator_Set.count > 0 ")
+                //print("hello?....prohibition_Indicator_Set.count > 0 ")
 //                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
 //                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = false
 //                }
