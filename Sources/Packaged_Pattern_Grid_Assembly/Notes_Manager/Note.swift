@@ -112,7 +112,11 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 print("lclModifiable = modifiable_Note_Data: ")
                 for cell in lclModifiable.dataCellArray{
                     if cell.in_Prohibited_Moving_Cell_Set == true {
+                        print("handleVisibleStateChange(")
                         cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+                    }
+                    else{
+                        print("whaaaaaaaaaaat is going on here?")
                     }
                 }
             }
