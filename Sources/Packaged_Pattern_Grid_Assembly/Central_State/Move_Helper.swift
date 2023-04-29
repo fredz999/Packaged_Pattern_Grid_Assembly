@@ -274,7 +274,7 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
-            print("hello?....didset?")
+            
             if prohibition_Indicator_Set.count == 0 {
 //                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
 //                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = true
@@ -285,6 +285,7 @@ class Moving_Cell_Set_Holder {
                 
             }
             else if prohibition_Indicator_Set.count > 0 {
+                print("hello?....prohibition_Indicator_Set.count > 0 ")
 //                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
 //                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = false
 //                }
