@@ -59,7 +59,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     func handleVisibleStateChange(type : E_VisibleStateChangeType) {
         
         if type == .activate_Prohibited_Moving_Cell {
-            if in_Prohibited_Moving_Cell_Set == false{in_Prohibited_Moving_Cell_Set=true}
+            if in_Prohibited_Moving_Cell_Set == false{
+                in_Prohibited_Moving_Cell_Set=true
+                print("in_Prohibited_Moving_Cell_Set=true, datacellX: ",dataCell_X_Number.description)
+            }
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedMovingSet , value: in_Prohibited_Moving_Cell_Set)
             }
