@@ -283,6 +283,9 @@ class Moving_Cell_Set_Holder {
                     noteImIn.movingNoteCurrentlyWriteable = true
                     print("noteImIn.movingNoteCurrentlyWriteable = true")
                 }
+                for cell in prohibition_Indicator_Set {
+                    cell.handleVisibleStateChange(type : .deActivate_Prohibited_Clashing_Cell)
+                }
                 
             }
             else if prohibition_Indicator_Set.count > 0 {
