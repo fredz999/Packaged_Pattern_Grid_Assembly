@@ -124,50 +124,76 @@ class Move_Helper: P_Selectable_Mode {
 
     func persist_New_Note_Data(){
         // MOVE
-        if parentCentralState.movingNoteCurrentlyWriteable == true {
+        //if parentCentralState.movingNoteCurrentlyWriteable == true {
             if dont_Copy_Just_Move == true {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
-                    if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
-                        modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
+                    if moving_Cell_Set.noteImIn.movingNoteCurrentlyWriteable == true {
+                        if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
+                            modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
+                        }
+                    }
+                    else if moving_Cell_Set.noteImIn.movingNoteCurrentlyWriteable == false {
+                        for cell in moving_Cell_Set.potential_Moved_Set {
+                            if cell.in_Prohibited_Clashing_Cell_Set == true {
+                                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
+                            }
+                            if cell.in_Prohibited_Moving_Cell_Set == true {
+                                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+                            }
+                            if cell.in_Potential_Set == true {
+                                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                            }
+                        }
                     }
                 }
             }
             else if dont_Copy_Just_Move == false {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
-                    
-                    for cell in moving_Cell_Set.potential_Moved_Set {
-                        cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                    if moving_Cell_Set.noteImIn.movingNoteCurrentlyWriteable == true {
+                        for cell in moving_Cell_Set.potential_Moved_Set {
+                            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                        }
+                        if let currNoteCollection = parentCentralState.currentNoteCollection {
+                            currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
+                        }
                     }
-                    if let currNoteCollection = parentCentralState.currentNoteCollection {
-                        currNoteCollection.write_Note_Data(cellSetParam: moving_Cell_Set.potential_Moved_Set, highlightAfterWrite: true)
+                    else if moving_Cell_Set.noteImIn.movingNoteCurrentlyWriteable == false {
+                        for cell in moving_Cell_Set.potential_Moved_Set {
+                            if cell.in_Prohibited_Clashing_Cell_Set == true {
+                                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
+                            }
+                            if cell.in_Prohibited_Moving_Cell_Set == true {
+                                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+                            }
+                            if cell.in_Potential_Set == true {
+                                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+                            }
+                        }
                     }
-                    
                 }
             }
             nil_Cell_Sets()
-        }
-        else if parentCentralState.movingNoteCurrentlyWriteable == false {
-            if moving_Cell_Set_Holder_Array.count > 0 {
-                
-                for holder in moving_Cell_Set_Holder_Array {
-                    
-                    for cell in holder.potential_Moved_Set {
-                        if cell.in_Prohibited_Clashing_Cell_Set == true {
-                            cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
-                        }
-                        if cell.in_Prohibited_Moving_Cell_Set == true {
-                            cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-                        }
-                        if cell.in_Potential_Set == true {
-                            cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-                        }
-                    }
-                    
-                }
-                
-            }
-        }
-        nil_Cell_Sets()
+        //}
+//        else if parentCentralState.movingNoteCurrentlyWriteable == false {
+//            if moving_Cell_Set_Holder_Array.count > 0 {
+//                for holder in moving_Cell_Set_Holder_Array {
+//                    if holder.noteImIn.movingNoteCurrentlyWriteable == false {
+//                        for cell in holder.potential_Moved_Set {
+//                            if cell.in_Prohibited_Clashing_Cell_Set == true {
+//                                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
+//                            }
+//                            if cell.in_Prohibited_Moving_Cell_Set == true {
+//                                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+//                            }
+//                            if cell.in_Potential_Set == true {
+//                                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        nil_Cell_Sets()
     }
     
     func nil_Cell_Sets(){
@@ -215,16 +241,28 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
-            if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
+//            if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
+//                for cell in potential_Moved_Set {
+//                    cell.handleVisibleStateChange(type : .activate_Potential_Set)
+//                }
+//            }
+//            else if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
+//                for cell in potential_Moved_Set {
+//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+//                }
+//            }
+            
+            if noteImIn.movingNoteCurrentlyWriteable == true {
                 for cell in potential_Moved_Set {
                     cell.handleVisibleStateChange(type : .activate_Potential_Set)
                 }
             }
-            else if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
+            else if noteImIn.movingNoteCurrentlyWriteable == false {
                 for cell in potential_Moved_Set {
                     cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
                 }
             }
+            
         }
     }
     
@@ -236,39 +274,50 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
-            if prohibition_Indicator_Set.count == 0{
-                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
-                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = true
+            if prohibition_Indicator_Set.count == 0 {
+//                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
+//                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = true
+//                }
+                if noteImIn.movingNoteCurrentlyWriteable == false {
+                    noteImIn.movingNoteCurrentlyWriteable = true
                 }
+                
             }
-            else if prohibition_Indicator_Set.count > 0{
-                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
-                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = false
-                    //print("noteImIn movingNoteCurrentlyWriteable: false, id: ",noteImIn.id)
+            else if prohibition_Indicator_Set.count > 0 {
+//                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
+//                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = false
+//                }
+//                for cell in prohibition_Indicator_Set {
+//                    cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
+//                }
+                
+                if noteImIn.movingNoteCurrentlyWriteable == true {
+                    noteImIn.movingNoteCurrentlyWriteable = false
                 }
                 for cell in prohibition_Indicator_Set {
                     cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
                 }
+                
             }
         }
     }
  
-    func handleNoteWriteabilityChange(noteWriteable:Bool){
-        if noteWriteable == true {
-            for cell in potential_Moved_Set {
-                if cell.in_Prohibited_Moving_Cell_Set == true {
-                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-                }
-            }
-        }
-        else if noteWriteable == false {
-            for cell in potential_Moved_Set {
-                if cell.in_Prohibited_Moving_Cell_Set == false {
-                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                }
-            }
-        }
-    }
+//    func handleNoteWriteabilityChange(noteWriteable:Bool){
+//        if noteWriteable == true {
+//            for cell in potential_Moved_Set {
+//                if cell.in_Prohibited_Moving_Cell_Set == true {
+//                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+//                }
+//            }
+//        }
+//        else if noteWriteable == false {
+//            for cell in potential_Moved_Set {
+//                if cell.in_Prohibited_Moving_Cell_Set == false {
+//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+//                }
+//            }
+//        }
+//    }
     
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){
         noteImIn = noteParam

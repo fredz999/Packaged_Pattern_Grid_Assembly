@@ -28,16 +28,16 @@ public class Central_State : ObservableObject {
     
     
     
-    @Published public var movingNoteCurrentlyWriteable : Bool = false {
-        didSet {
-            if let lclMove_Helper = move_Helper {
-                for movingHelper in lclMove_Helper.moving_Cell_Set_Holder_Array{
-                    movingHelper.handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
-                }
-            }
-            // do the cursor in here....poss just change it in dimensions?
-        }
-    }
+//    @Published public var movingNoteCurrentlyWriteable : Bool = false {
+//        didSet {
+//            if let lclMove_Helper = move_Helper {
+//                for movingHelper in lclMove_Helper.moving_Cell_Set_Holder_Array{
+//                    movingHelper.handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
+//                }
+//            }
+//            // do the cursor in here....poss just change it in dimensions?
+//        }
+//    }
 
     public let data_Grid : Underlying_Data_Grid
     let dimensions = ComponentDimensions.StaticDimensions

@@ -97,16 +97,33 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         }
     }
     
-        @Published public var movingNoteCurrentlyWriteable : Bool = false {
-            didSet {
-//                if let lclMove_Helper = move_Helper {
-//                    for movingHelper in lclMove_Helper.moving_Cell_Set_Holder_Array{
-//                        movingHelper.handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
-//                    }
-//                }
-                // do the cursor in here....poss just change it in dimensions?
-                
+    @Published public var movingNoteCurrentlyWriteable : Bool = false {
+        didSet {
+            if let lclModifiable = modifiable_Note_Data{
+                handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
             }
         }
+    }
+    
+    func handleNoteWriteabilityChange(noteWriteable:Bool){
+        if noteWriteable == true {
+            if let lclModifiable = modifiable_Note_Data{
+                for cell in lclModifiable.dataCellArray{
+                    if cell.in_Prohibited_Moving_Cell_Set == true {
+                        cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+                    }
+                }
+            }
+        }
+        else if noteWriteable == false {
+            if let lclModifiable = modifiable_Note_Data{
+                for cell in lclModifiable.dataCellArray{
+                    if cell.in_Prohibited_Moving_Cell_Set == true {
+                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+                    }
+                }
+            }
+        }
+    }
     
 }
