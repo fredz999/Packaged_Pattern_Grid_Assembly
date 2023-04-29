@@ -282,12 +282,10 @@ class Moving_Cell_Set_Holder {
 //                }
                 if noteImIn.movingNoteCurrentlyWriteable == false {
                     noteImIn.movingNoteCurrentlyWriteable = true
-                    print("noteImIn.movingNoteCurrentlyWriteable = true")
+                    //print("noteImIn.movingNoteCurrentlyWriteable = true")
                     
                 }
-                for cell in prohibition_Indicator_Set {
-                    cell.handleVisibleStateChange(type : .deActivate_Prohibited_Moving_Cell)
-                }
+
                 
             }
             else if prohibition_Indicator_Set.count > 0 {
@@ -301,7 +299,7 @@ class Moving_Cell_Set_Holder {
                 
                 if noteImIn.movingNoteCurrentlyWriteable == true {
                     noteImIn.movingNoteCurrentlyWriteable = false
-                    print("note im in id: ",noteImIn.id,", just set to not writeable")
+                    //print("note im in id: ",noteImIn.id,", just set to not writeable")
                 }
                 for cell in prohibition_Indicator_Set {
                     cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
