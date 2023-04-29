@@ -97,40 +97,32 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
         }
     }
     
-    @Published public var movingNoteCurrentlyWriteable : Bool = false {
-        didSet {
-            //if let lclModifiable = modifiable_Note_Data{
-                handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
-            //}
-        }
-    }
-    
-    func handleNoteWriteabilityChange(noteWriteable:Bool){
-        if noteWriteable == true {
-            if let lclModifiable = modifiable_Note_Data {
 
-                for cell in lclModifiable.dataCellArray {
-                    // TODO: thing needs 2 b in potential set?
-                    print("thing supposed to switched off?: ",cell.dataCell_X_Number)
-                    if cell.in_Prohibited_Moving_Cell_Set == true {
-                        cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-                    }
-//                    else {
-//                        print("cell.in_Prohibited_Moving_Cell_Set?: ",cell.in_Prohibited_Moving_Cell_Set)
-//                    }
-                }
-            }
-
-        }
-        else if noteWriteable == false {
-            if let lclModifiable = modifiable_Note_Data{
-                for cell in lclModifiable.dataCellArray{
-                    if cell.in_Prohibited_Moving_Cell_Set == false {
-                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                    }
-                }
-            }
-        }
-    }
     
 }
+
+
+//        if noteWriteable == true {
+//            print("hit true")
+//            if let lclModifiable = modifiable_Note_Data {
+//
+//                for cell in lclModifiable.dataCellArray {// potential moved set
+//                    // TODO: thing needs 2 b in potential set?
+//                    print("thing supposed to switched off?: ",cell.dataCell_X_Number)
+//                    if cell.in_Prohibited_Moving_Cell_Set == true {
+//                        cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+//                    }
+//                }
+//            }
+//
+//        }
+//        else if noteWriteable == false {
+//
+//            if let lclModifiable = modifiable_Note_Data{
+//                for cell in lclModifiable.dataCellArray{
+//                    if cell.in_Prohibited_Moving_Cell_Set == false {
+//                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+//                    }
+//                }
+//            }
+//        }
