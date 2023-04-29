@@ -110,11 +110,11 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
 
             if let lclModifiable = modifiable_Note_Data{
 
-                for cell in lclModifiable.dataCellArray{
+                for cell in lclModifiable.dataCellArray {
                     if cell.in_Prohibited_Moving_Cell_Set == true {
                         cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
                     }
-                    else{
+                    else {
                         print("cell.in_Prohibited_Moving_Cell_Set?: ",cell.in_Prohibited_Moving_Cell_Set)
                     }
                 }
