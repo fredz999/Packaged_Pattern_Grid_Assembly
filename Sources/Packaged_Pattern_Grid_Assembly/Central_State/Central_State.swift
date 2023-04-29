@@ -26,6 +26,8 @@ public class Central_State : ObservableObject {
     
     @Published public var mode_Id : Int?
     
+    
+    
     @Published public var movingNoteCurrentlyWriteable : Bool = false {
         didSet {
             if let lclMove_Helper = move_Helper {
@@ -101,8 +103,6 @@ public class Central_State : ObservableObject {
             }
         }
     }
-    
-    
     
     public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam

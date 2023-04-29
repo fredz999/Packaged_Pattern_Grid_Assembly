@@ -125,7 +125,6 @@ class Move_Helper: P_Selectable_Mode {
     func persist_New_Note_Data(){
         // MOVE
         if parentCentralState.movingNoteCurrentlyWriteable == true {
-            
             if dont_Copy_Just_Move == true {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                     if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
@@ -238,13 +237,14 @@ class Moving_Cell_Set_Holder {
         }
         didSet {
             if prohibition_Indicator_Set.count == 0{
-                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false{
+                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
                     noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = true
                 }
             }
             else if prohibition_Indicator_Set.count > 0{
-                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true{
+                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
                     noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = false
+                    //print("noteImIn movingNoteCurrentlyWriteable: false, id: ",noteImIn.id)
                 }
                 for cell in prohibition_Indicator_Set {
                     cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
@@ -269,48 +269,10 @@ class Moving_Cell_Set_Holder {
             }
         }
     }
-//        if noteWriteable == true {
-//            for cell in potential_Moved_Set {
-//                if cell.in_Prohibited_Moving_Cell_Set == true {
-//                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
-//                }
-//                if cell.in_Potential_Set == false {
-//                    cell.handleVisibleStateChange(type: .activate_Potential_Set)
-//                }
-//            }
-//            for cell in prohibition_Indicator_Set {
-//                if cell.in_Prohibited_Clashing_Cell_Set == false {
-//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Clashing_Cell)
-//                }
-//            }
-//        }
-//        else if noteWriteable == false {
-//
-//            for cell in potential_Moved_Set {
-//                if cell.in_Potential_Set == true {
-//                    cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-//                }
-//                if cell.in_Prohibited_Moving_Cell_Set == false {
-//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-//                }
-//            }
-//        }
-    
     
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){
         noteImIn = noteParam
         initial_Snapshot = initial_Snapshot_Param
     }
-    
-//    func restoreToOriginal(){
-//        for cell in potential_Moved_Set {
-//            cell.reset_To_Original()
-//        }
-//    }
-    
-//    func updateSet(newSet:Set<Underlying_Data_Cell>){
-//        potential_Moved_Set = newSet
-//        prohibition_Indicator_Set = potential_Moved_Set.filter({$0.note_Im_In != nil})
-//    }
 
 }
