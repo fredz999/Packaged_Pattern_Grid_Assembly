@@ -293,6 +293,7 @@ class Moving_Cell_Set_Holder {
                 
                 if noteImIn.movingNoteCurrentlyWriteable == true {
                     noteImIn.movingNoteCurrentlyWriteable = false
+                    print("note im in id: ",noteImIn.id,", just set to not writeable")
                 }
                 for cell in prohibition_Indicator_Set {
                     cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)

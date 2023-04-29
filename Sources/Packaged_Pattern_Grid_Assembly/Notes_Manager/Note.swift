@@ -99,9 +99,9 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     
     @Published public var movingNoteCurrentlyWriteable : Bool = false {
         didSet {
-            if let lclModifiable = modifiable_Note_Data{
+            //if let lclModifiable = modifiable_Note_Data{
                 handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
-            }
+            //}
         }
     }
     
