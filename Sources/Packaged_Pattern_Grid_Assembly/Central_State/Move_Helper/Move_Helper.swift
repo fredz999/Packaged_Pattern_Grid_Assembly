@@ -123,8 +123,6 @@ class Move_Helper: P_Selectable_Mode {
     }
 
     func persist_New_Note_Data(){
-        // MOVE
-        //if parentCentralState.movingNoteCurrentlyWriteable == true {
             if dont_Copy_Just_Move == true {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                     if moving_Cell_Set.movingNoteCurrentlyWriteable == true {
@@ -173,27 +171,7 @@ class Move_Helper: P_Selectable_Mode {
                 }
             }
             nil_Cell_Sets()
-        //}
-//        else if parentCentralState.movingNoteCurrentlyWriteable == false {
-//            if moving_Cell_Set_Holder_Array.count > 0 {
-//                for holder in moving_Cell_Set_Holder_Array {
-//                    if holder.noteImIn.movingNoteCurrentlyWriteable == false {
-//                        for cell in holder.potential_Moved_Set {
-//                            if cell.in_Prohibited_Clashing_Cell_Set == true {
-//                                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
-//                            }
-//                            if cell.in_Prohibited_Moving_Cell_Set == true {
-//                                cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-//                            }
-//                            if cell.in_Potential_Set == true {
-//                                cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        nil_Cell_Sets()
+
     }
     
     func nil_Cell_Sets(){
@@ -218,10 +196,10 @@ class Note_Movement_SnapShot{
     var note_Y_Index : Int
     var snapShot_Note_Id_Param : UUID
     init(note_Low_Index: Int, note_High_Index: Int,note_Y_Index_Param:Int,snapshotNoteIdParam:UUID) {
-        self.note_Low_Index = note_Low_Index
-        self.note_High_Index = note_High_Index
-        snapShot_Note_Id_Param = snapshotNoteIdParam
-        note_Y_Index = note_Y_Index_Param
+    self.note_Low_Index = note_Low_Index
+    self.note_High_Index = note_High_Index
+    snapShot_Note_Id_Param = snapshotNoteIdParam
+    note_Y_Index = note_Y_Index_Param
     }
 }
 
@@ -239,56 +217,37 @@ class Moving_Cell_Set_Holder {
     
     @Published public var movingNoteCurrentlyWriteable : Bool = false {
         didSet {
-            //if let lclModifiable = modifiable_Note_Data{
-                handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
-            //}
+            handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
         }
     }
     
     func handleNoteWriteabilityChange(noteWriteable:Bool){
-        
-            if noteWriteable == true {
-                print("noteWriteable == true")
-                for cell in potential_Moved_Set {
-                    if cell.in_Prohibited_Moving_Cell_Set == true {
-                        cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-                    }
+        if noteWriteable == true {
+            for cell in potential_Moved_Set {
+                if cell.in_Prohibited_Moving_Cell_Set == true {
+                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
                 }
             }
-            else if noteWriteable == false {
-                print("noteWriteable == false")
-                for cell in potential_Moved_Set {
-                    if cell.in_Prohibited_Moving_Cell_Set == false {
-                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                    }
+        }
+        else if noteWriteable == false {
+
+            for cell in potential_Moved_Set {
+                if cell.in_Prohibited_Moving_Cell_Set == false {
+                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
                 }
             }
-   
-        
+        }
     }
-    
 
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
         willSet {
             let delta = potential_Moved_Set.symmetricDifference(newValue)
-            
             for cell in delta {
                 if cell.in_Potential_Set{cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
                 if cell.in_Prohibited_Moving_Cell_Set{cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)}
             }
         }
         didSet {
-//            if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
-//                for cell in potential_Moved_Set {
-//                    cell.handleVisibleStateChange(type : .activate_Potential_Set)
-//                }
-//            }
-//            else if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
-//                for cell in potential_Moved_Set {
-//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-//                }
-//            }
-            
             if movingNoteCurrentlyWriteable == true {
                 for cell in potential_Moved_Set {
                     if cell.in_Potential_Set == false {
@@ -297,16 +256,12 @@ class Moving_Cell_Set_Holder {
                 }
             }
             else if movingNoteCurrentlyWriteable == false {
-                
                 for cell in potential_Moved_Set {
                     if cell.in_Prohibited_Moving_Cell_Set == false {
                         cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                        //print("cell x: ", cell.dataCell_X_Number)
                     }
-                    //print(".in_Prohibited_Moving_Cell_Set == true ? : ",cell.in_Prohibited_Moving_Cell_Set.description,", noteId: ",noteImIn.id)
                 }
             }
-            
         }
     }
     
@@ -320,54 +275,21 @@ class Moving_Cell_Set_Holder {
         didSet {
             
             if prohibition_Indicator_Set.count == 0 {
-                
-//                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == false {
-//                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = true
-//                }
-
                 if movingNoteCurrentlyWriteable == false {
                     movingNoteCurrentlyWriteable = true
                 }
-
-                
             }
             else if prohibition_Indicator_Set.count > 0 {
-
-//                if noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable == true {
-//                    noteImIn.parent_Note_Collection.parentCentralState.movingNoteCurrentlyWriteable = false
-//                }
-//                for cell in prohibition_Indicator_Set {
-//                    cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
-//                }
-                
                 if movingNoteCurrentlyWriteable == true {
                     movingNoteCurrentlyWriteable = false
                 }
                 for cell in prohibition_Indicator_Set {
                     cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
                 }
-                
             }
         }
     }
- 
-//    func handleNoteWriteabilityChange(noteWriteable:Bool){
-//        if noteWriteable == true {
-//            for cell in potential_Moved_Set {
-//                if cell.in_Prohibited_Moving_Cell_Set == true {
-//                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-//                }
-//            }
-//        }
-//        else if noteWriteable == false {
-//            for cell in potential_Moved_Set {
-//                if cell.in_Prohibited_Moving_Cell_Set == false {
-//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-//                }
-//            }
-//        }
-//    }
-    
+
     init(initial_Snapshot_Param:Note_Movement_SnapShot,noteParam:Note){
         noteImIn = noteParam
         initial_Snapshot = initial_Snapshot_Param
