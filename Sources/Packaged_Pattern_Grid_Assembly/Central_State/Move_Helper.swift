@@ -117,6 +117,7 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
                 moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
+                print("potential_Moved_Set count: ",moving_Cell_Set_Holder_Array[m].potential_Moved_Set.filter({$0.note_Im_In != nil}).count  )
                 moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m].potential_Moved_Set.filter({$0.note_Im_In != nil})
             }
         }
@@ -264,7 +265,7 @@ class Moving_Cell_Set_Holder {
                 for cell in potential_Moved_Set {
                     if cell.in_Prohibited_Moving_Cell_Set == false {
                         cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                        print("cell x: ", cell.dataCell_X_Number)
+                        //print("cell x: ", cell.dataCell_X_Number)
                     }
                     //print(".in_Prohibited_Moving_Cell_Set == true ? : ",cell.in_Prohibited_Moving_Cell_Set.description,", noteId: ",noteImIn.id)
                 }
