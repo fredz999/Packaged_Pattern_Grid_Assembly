@@ -254,7 +254,9 @@ class Moving_Cell_Set_Holder {
             
             if noteImIn.movingNoteCurrentlyWriteable == true {
                 for cell in potential_Moved_Set {
-                    cell.handleVisibleStateChange(type : .activate_Potential_Set)
+                    if cell.in_Potential_Set == false {
+                        cell.handleVisibleStateChange(type : .activate_Potential_Set)
+                    }
                 }
             }
             else if noteImIn.movingNoteCurrentlyWriteable == false {
