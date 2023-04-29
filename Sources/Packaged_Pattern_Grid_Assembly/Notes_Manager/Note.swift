@@ -110,6 +110,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
             if let lclModifiable = modifiable_Note_Data {
 
                 for cell in lclModifiable.dataCellArray {
+                    // TODO: thing needs 2 b in potential set?
                     print("thing supposed to switched off?: ",cell.dataCell_X_Number)
                     if cell.in_Prohibited_Moving_Cell_Set == true {
                         cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
