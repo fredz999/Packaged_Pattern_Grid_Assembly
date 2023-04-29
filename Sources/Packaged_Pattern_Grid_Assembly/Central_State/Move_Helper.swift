@@ -260,7 +260,7 @@ class Moving_Cell_Set_Holder {
             else if noteImIn.movingNoteCurrentlyWriteable == false {
                 for cell in potential_Moved_Set {
                     cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                    print(".in_Prohibited_Moving_Cell_Set == true ? : ",cell.in_Prohibited_Moving_Cell_Set.description)
+                    print(".in_Prohibited_Moving_Cell_Set == true ? : ",cell.in_Prohibited_Moving_Cell_Set.description,", noteId: ",noteImIn.id)
                 }
             }
             
@@ -283,8 +283,6 @@ class Moving_Cell_Set_Holder {
 //                }
                 if noteImIn.movingNoteCurrentlyWriteable == false {
                     noteImIn.movingNoteCurrentlyWriteable = true
-
-                    
                 }
 
                 
