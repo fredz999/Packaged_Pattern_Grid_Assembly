@@ -283,9 +283,10 @@ class Moving_Cell_Set_Holder {
                 if noteImIn.movingNoteCurrentlyWriteable == false {
                     noteImIn.movingNoteCurrentlyWriteable = true
                     print("noteImIn.movingNoteCurrentlyWriteable = true")
+                    
                 }
                 for cell in prohibition_Indicator_Set {
-                    cell.handleVisibleStateChange(type : .deActivate_Prohibited_Clashing_Cell)
+                    cell.handleVisibleStateChange(type : .deActivate_Prohibited_Moving_Cell)
                 }
                 
             }
