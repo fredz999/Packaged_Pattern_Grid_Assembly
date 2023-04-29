@@ -258,9 +258,12 @@ class Moving_Cell_Set_Holder {
                 }
             }
             else if noteImIn.movingNoteCurrentlyWriteable == false {
+                
                 for cell in potential_Moved_Set {
-                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                    print("cell x: ", cell.dataCell_X_Number)
+                    if cell.in_Prohibited_Moving_Cell_Set == false {
+                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+                    }
+                    //print("cell x: ", cell.dataCell_X_Number)
                     //print(".in_Prohibited_Moving_Cell_Set == true ? : ",cell.in_Prohibited_Moving_Cell_Set.description,", noteId: ",noteImIn.id)
                 }
             }
