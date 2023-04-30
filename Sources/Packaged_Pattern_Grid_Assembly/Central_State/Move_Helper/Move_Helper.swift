@@ -134,7 +134,7 @@ class Move_Helper: P_Selectable_Mode {
                     let clashedSet = proposedSet.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn && $0.note_Im_In != nil})
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = clashedSet
                 }
-                else if dont_Copy_Just_Move == true{
+                else if dont_Copy_Just_Move == false{
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
                     .potential_Moved_Set.filter({$0.note_Im_In != nil})
