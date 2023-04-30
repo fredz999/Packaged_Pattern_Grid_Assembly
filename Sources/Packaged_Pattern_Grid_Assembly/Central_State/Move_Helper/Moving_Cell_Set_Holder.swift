@@ -82,9 +82,9 @@ class Moving_Cell_Set_Holder {
             else if prohibition_Indicator_Set.count > 0 {
                 if movingNoteCurrentlyWriteable == true {
                     movingNoteCurrentlyWriteable = false
-                    for cell in prohibition_Indicator_Set {
-                        cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
-                    }
+                }
+                for cell in prohibition_Indicator_Set {
+                    cell.handleVisibleStateChange(type : .activate_Prohibited_Clashing_Cell)
                 }
             }
         }
