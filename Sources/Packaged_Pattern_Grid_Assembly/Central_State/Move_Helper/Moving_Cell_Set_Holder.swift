@@ -73,7 +73,6 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
-            
             if prohibition_Indicator_Set.count == 0 {
                 if movingNoteCurrentlyWriteable == false {
                     movingNoteCurrentlyWriteable = true

@@ -116,9 +116,9 @@ class Move_Helper: P_Selectable_Mode {
                     && $0.dataCell_X_Number <= currRightLimit_Move
                     }
                 }
-                moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-                moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
-                .potential_Moved_Set.filter({$0.note_Im_In != nil})
+//                moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
+//                moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
+//                .potential_Moved_Set.filter({$0.note_Im_In != nil})
             }
         }
     }
