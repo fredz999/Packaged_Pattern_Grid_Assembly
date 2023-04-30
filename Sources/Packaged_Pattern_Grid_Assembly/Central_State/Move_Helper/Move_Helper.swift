@@ -117,18 +117,20 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
                 
-                if proposedSet.contains(where: {$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn}){
-                    moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-                    moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
-                    .potential_Moved_Set.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn})
-                }
-                else {
-                    moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-                }
+//                if proposedSet.contains(where: {$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn}){
+//                    moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
+//                    moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
+//                    .potential_Moved_Set.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn})
+//                }
+//                else {
+//                    moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
+//                }
             
-//                moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-//                moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
-//                .potential_Moved_Set.filter({$0.note_Im_In != nil})
+                moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
+                moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
+                .potential_Moved_Set.filter({$0.note_Im_In != nil})
+                
+                
             }
         }
     }
