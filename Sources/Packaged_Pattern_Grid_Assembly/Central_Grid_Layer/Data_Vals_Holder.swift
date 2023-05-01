@@ -259,9 +259,11 @@ public class Data_Vals_Holder : ObservableObject {
             retVal = true
             
             if referenced_note_Im_In == nil{
+                print("referenced_note_Im_In == nil")
                 if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
             }
             else if referenced_note_Im_In != nil{
+                print("referenced_note_Im_In != nil")
                 if statusColor != colors.cursor_Over_Note_Color{statusColor = colors.cursor_Over_Note_Color}
             }
         }
@@ -343,7 +345,7 @@ public class Data_Vals_Holder : ObservableObject {
                 referenced_note_Im_In = lclNewNote
             }
         }
-        else if newNoteImIn == nil{
+        else if newNoteImIn == nil {
             referenced_note_Im_In = nil
         }
     }
@@ -352,6 +354,8 @@ public class Data_Vals_Holder : ObservableObject {
             referenced_note_Im_In = lclNewNote
         }
     }
+        
+        
    }
 }
 
