@@ -96,7 +96,29 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
             }
         }
     }
-    
+
+    var moved_Away_From : Bool = false {
+        didSet {
+            if let lclModifiableNoteData = modifiable_Note_Data{
+                if moved_Away_From == true {
+//                    for dataCell in lclModifiableNoteData.dataCellArray {
+//                        dataCell.change_Highlight(highlightStatusParam: true)
+//                    }
+                    for cell in lclModifiableNoteData.dataCellArray {
+                        cell.handleVisibleStateChange(type: .activate_Move_Away_From_Cell)
+                    }
+                }
+                else if moved_Away_From == false {
+//                    for dataCell in lclModifiableNoteData.dataCellArray {
+//                        dataCell.change_Highlight(highlightStatusParam: false)
+//                    }
+                    for cell in lclModifiableNoteData.dataCellArray {
+                        cell.handleVisibleStateChange(type: .deActivate_Move_Away_From_Cell)
+                    }
+                }
+            }
+        }
+    }
 
     
 }

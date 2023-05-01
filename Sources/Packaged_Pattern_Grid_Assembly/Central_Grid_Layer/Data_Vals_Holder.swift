@@ -27,8 +27,6 @@ public class Data_Vals_Holder : ObservableObject {
     
     private var referenced_in_Prohibited_Cursor_Set : Bool = false
     
-    
-    
     private var referenced_in_Cursor_Set : Bool = false
     
     private var referenced_in_Potential_Set : Bool = false
@@ -36,8 +34,6 @@ public class Data_Vals_Holder : ObservableObject {
     private var referenced_in_Resize_Set : Bool = false
     
     private var referenced_in_Delete_Square_Set : Bool = false
-    
-    private var referenced_in_MoveCursor_Set : Bool = false
     
     private var referenced_in_PassiveCursor_Set : Bool = false
     
@@ -78,8 +74,24 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
+    private var referenced_in_MoveCursor_Set : Bool = false
+    
+    private var referenced_in_MoveAway_Set : Bool = false
+    
     public func update_Cell_Set_Membership(status_Update_TypeParam:status_Update_Type,value:Bool){
-        //update_Cell_Set_Membership(status_Update_TypeParam: .passiveCursorSet, value: false)
+
+        if status_Update_TypeParam == .movedAwayFrom_Set {
+            if value == true {
+                if referenced_in_MoveAway_Set == false {
+                    referenced_in_MoveAway_Set = true
+                }
+            }
+            else if value == false {
+                if referenced_in_MoveAway_Set == true {
+                    referenced_in_MoveAway_Set = false
+                }
+            }
+        }
         
         if status_Update_TypeParam == .prohibitedClashingSet {
             if value == true {
@@ -106,9 +118,7 @@ public class Data_Vals_Holder : ObservableObject {
                 }
             }
         }
-        
-        
-        
+
         else if status_Update_TypeParam == .passiveCursorSet  {
             if value == true {
                 if referenced_in_PassiveCursor_Set == false {
@@ -200,13 +210,10 @@ public class Data_Vals_Holder : ObservableObject {
     
     func process_Visual_Status(){
         if check_In_MoveCursor_Set() == false {
-            
             if check_In_Passive_Cursor_Set() == false {
-                
                 if check_Cell_Not_In_Note() == false {
                     check_Highlighted()
                     check_In_MultiSelect_Note_Set()
-                    //check_In_Potential_Set()
                     check_In_Prohib_Clashing_Set()
                 }
                 else if check_Cell_Not_In_Note() == true {
@@ -216,10 +223,8 @@ public class Data_Vals_Holder : ObservableObject {
                     check_In_Potential_Set()
                     check_In_Prohib_Moving_Set()
                 }
-                
             }
         }
-
     }
     
     func check_Cell_Not_In_Note()->Bool{
@@ -238,8 +243,6 @@ public class Data_Vals_Holder : ObservableObject {
         return retval
     }
     
-    
-    
     func check_Highlighted(){
         if referenced_in_Highlighted_Set == true {
             if statusColor != colors.grid_Note_Highlighted_Color{statusColor = colors.selectedNoteColor}
@@ -257,6 +260,7 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retVal
     }
+    
     func check_In_MoveCursor_Set()->Bool{
         var retVal = false
         if referenced_in_MoveCursor_Set == true {
@@ -265,6 +269,7 @@ public class Data_Vals_Holder : ObservableObject {
         }
         return retVal
     }
+    
     func check_In_Prohib_Clashing_Set() {
         if referenced_in_Prohibited_Clashing_Set == true {
             if statusColor != colors.prohibited_Clashing_Cell_Color{statusColor = colors.prohibited_Clashing_Cell_Color}
@@ -299,6 +304,12 @@ public class Data_Vals_Holder : ObservableObject {
             if statusColor != .purple{statusColor = .purple}
         }
     }
+    
+    func check_In_MovedAwayFrom_Set() {
+        if referenced_in_MoveAway_Set == true {
+            if statusColor != .black{statusColor = .black}
+        }
+    }
 
     @Published public var statusColor : Color
 
@@ -317,10 +328,8 @@ public class Data_Vals_Holder : ObservableObject {
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus,newNoteImIn:Note?){
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
-
     if referenced_currentStatus != newCellNoteStatus{referenced_currentStatus = newCellNoteStatus}
-        // have a seperate func for color change
-
+        
     if let lclCurrentNote = referenced_note_Im_In {
         if let lclNewNote = newNoteImIn {
             if lclNewNote != lclCurrentNote {
@@ -343,12 +352,14 @@ public enum status_Update_Type {
     case highlightedSet
     case cursorSet
     case deleteSquareSet
-    case moveNote_Cursor_Set
     case passiveCursorSet
     
     case prohibitedClashingSet
     case prohibitedMovingSet
     case prohibitedCursorSet
+    
+    case moveNote_Cursor_Set
+    case movedAwayFrom_Set
     
     
     case potentialSet

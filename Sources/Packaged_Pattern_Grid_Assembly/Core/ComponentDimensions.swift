@@ -116,7 +116,7 @@ public class ComponentColors {
     
     
     
-    //public var potential_Cell_Color : Color = Color(red:0.6,green:0,blue:0.6)
+
     public var potentialColor : Color = Color(red: 0, green: 1, blue: 1)
 
     public var passiveMode_Cursor_Color : Color = .white
@@ -125,11 +125,19 @@ public class ComponentColors {
     
     public var moveNoteMode_Cursor_Color : Color = Color(red:0.5,green:0.5,blue:0)
 
+    
+    
+    
     public var grid_Note_Color : Color = Color(red:0.4,green:0.8,blue:0)
+    
+    public var movedFromNoteColor : Color = Color(red:0.4,green:0.8,blue:0)
     
     public var grid_Note_Highlighted_Color : Color = Color(red:0.5,green:1,blue:0)
     
-    public var viable_Set_Combined_Color : Color = Color(red:0.3,green:0.6,blue:0)
+    
+    
+    
+    //public var viable_Set_Combined_Color : Color = Color(red:0.3,green:0.6,blue:0)
     
     public var grid_Blank_Color : Color = Color(red:0.2,green:0.4,blue:0)
     

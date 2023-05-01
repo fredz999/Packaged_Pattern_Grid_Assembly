@@ -14,7 +14,6 @@ class Moving_Cell_Set_Holder {
     
     var initial_Snapshot : Note_Movement_SnapShot
     
-    
     @Published public var movingNoteCurrentlyWriteable : Bool = false {
         didSet {
             handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)

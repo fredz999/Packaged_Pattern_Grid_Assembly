@@ -41,6 +41,13 @@ class Move_Helper: P_Selectable_Mode {
                             moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
                         }
                     }
+                    // gotta change their satis heah
+                    for selectedNote in selectedNotes {
+                        if let lclNoteData = selectedNote.modifiable_Note_Data {
+                            if lclNoteData.noteParent.moved_Away_From == false{lclNoteData.noteParent.moved_Away_From = true}
+                        }
+                    }
+                    
                 }
             }
         }
@@ -57,6 +64,14 @@ class Move_Helper: P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active=false
+            if let lclCurrNoteCollection = parentCentralState.currentNoteCollection {
+                let selectedNotes = lclCurrNoteCollection.noteArray.filter{$0.highlighted == true}
+                for selectedNote in selectedNotes {
+                    if let lclNoteData = selectedNote.modifiable_Note_Data {
+                        if lclNoteData.noteParent.moved_Away_From == true{lclNoteData.noteParent.moved_Away_From = false}
+                    }
+                }
+            }
             persist_New_Note_Data()
         }
     }
@@ -117,18 +132,6 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
                 
-//                if proposedSet.contains(where: {$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn}){
-//                    moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-//                    moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
-//                    .potential_Moved_Set.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn})
-//                }
-//                else {
-//                    moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-//                }
-            
-//                moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-//                moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
-//                .potential_Moved_Set.filter({$0.note_Im_In != nil})
                 if dont_Copy_Just_Move == true {
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
                     let clashedSet = proposedSet.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn && $0.note_Im_In != nil})

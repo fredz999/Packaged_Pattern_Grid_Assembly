@@ -39,8 +39,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     func set_Data_Grid(){
         for line_Y_Number in 0..<dimensions.DATA_final_Line_Y_Index {
             let newLine = Underlying_Data_Line(yNumParam: line_Y_Number)
-            //var new_Line_Set = Set<Underlying_Data_Cell>()
-            
+
             for x in 0..<dimensions.dataGrid_X_Unit_Count{
                 if fourFour_Sub_Count == 0{currFourStatus = .start_Blank}
                 else if fourFour_Sub_Count == 1{currFourStatus = .mid_Blank}
@@ -61,11 +60,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                     initialStatus = currSixStatus
                 }
                 
-                //** NOTE ** this is set to happen ONCE because its genreating sets in the dimensions file that are then used to set line
-                // positions in the sliders.
-                // the reason that there are differing amounts of indexes (I suspect) is because they only get instansiated when the sub count is 0
-                // the singleCell_Half_Sub_Count remains zero throughout and subsequently dimensions.single_Cell_Slider_Positions has a
-                // 1:1 relationship with the xpositions of each vertical line in the grid
                 if line_Y_Number == 0 {
 
                     if fourFour_Half_Sub_Count == 0  {
@@ -183,6 +177,9 @@ public enum E_CellStatus : String {
 }
 
 enum E_VisibleStateChangeType: String {
+    
+    case activate_Move_Away_From_Cell = "activate_Move_Away_From_Cell"
+    case deActivate_Move_Away_From_Cell = "deActivate_Move_Away_From_Cell"
     
     case activate_Prohibited_Clashing_Cell = "activate_Prohibited_Clashing_Cell"
     case deActivate_Prohibited_Clashing_Cell = "deActivate_Prohibited_Clashing_Cell"
