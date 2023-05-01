@@ -257,7 +257,13 @@ public class Data_Vals_Holder : ObservableObject {
         var retVal = false
         if referenced_in_PassiveCursor_Set == true {
             retVal = true
-            if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
+            
+            if referenced_note_Im_In == nil{
+                if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
+            }
+            else if referenced_note_Im_In != nil{
+                if statusColor != colors.cursor_Over_Note_Color{statusColor = colors.cursor_Over_Note_Color}
+            }
         }
         return retVal
     }

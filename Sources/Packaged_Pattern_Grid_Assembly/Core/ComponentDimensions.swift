@@ -97,8 +97,10 @@ public class ComponentDimensions : ObservableObject {
 public class ComponentColors {
     
     public var cursorSwiperColor : Color = Color(red:0.5,green:1,blue:0)
-    
     public var cursorSliderLineColor : Color = Color(red:0.5,green:1,blue:0)
+    public var passiveMode_Cursor_Color : Color = .pink
+    public var cursor_Over_Note_Color : Color = .yellow
+    
     
     
     
@@ -119,7 +121,7 @@ public class ComponentColors {
 
     public var potentialColor : Color = Color(red: 0, green: 1, blue: 1)
 
-    public var passiveMode_Cursor_Color : Color = .white
+    
     
     public var deleteNoteMode_Cursor_Color : Color = Color(red:1,green:0.5,blue:0)
     
@@ -135,9 +137,8 @@ public class ComponentColors {
     public var grid_Note_Highlighted_Color : Color = Color(red:0.5,green:1,blue:0)
     
     public var grid_Note_Resizing_Color : Color = Color(red:0.5,green:0,blue:1)
+
     
-    
-    //public var viable_Set_Combined_Color : Color = Color(red:0.3,green:0.6,blue:0)
     
     public var grid_Blank_Color : Color = Color(red:0.2,green:0.4,blue:0)
     
