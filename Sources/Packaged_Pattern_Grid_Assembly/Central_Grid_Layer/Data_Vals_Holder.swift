@@ -352,6 +352,7 @@ public class Data_Vals_Holder : ObservableObject {
     else if referenced_note_Im_In == nil {
         if let lclNewNote = newNoteImIn {
             referenced_note_Im_In = lclNewNote
+            print("lclNewNote = newNoteImIn..............: ")
         }
     }
         
