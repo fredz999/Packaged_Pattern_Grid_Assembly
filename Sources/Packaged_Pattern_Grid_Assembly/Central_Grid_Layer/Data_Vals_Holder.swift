@@ -215,7 +215,7 @@ public class Data_Vals_Holder : ObservableObject {
                     check_Highlighted()
                     check_In_MultiSelect_Note_Set()
                     check_In_Prohib_Clashing_Set()
-                    check_In_MovedAwayFrom_Set() 
+                    check_In_MovedAwayFrom_Set()
                 }
                 else if check_Cell_Not_In_Note() == true {
                     check_In_MultiSelect_BackGround_Set()
@@ -302,13 +302,13 @@ public class Data_Vals_Holder : ObservableObject {
     
     func check_In_Resize_Set() {
         if referenced_in_Resize_Set == true {
-            if statusColor != .purple{statusColor = .purple}
+            if statusColor != colors.grid_Note_Resizing_Color{statusColor = colors.grid_Note_Resizing_Color}
         }
     }
     
     func check_In_MovedAwayFrom_Set() {
         if referenced_in_MoveAway_Set == true {
-            if statusColor != .black{statusColor = .black}
+            if statusColor != colors.movedFromNoteColor{statusColor = colors.movedFromNoteColor}
         }
     }
 
