@@ -76,6 +76,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)
+                print("in_activate_Moved_Away_From_Set: ",in_activate_Moved_Away_From_Set)
             }
         }
         
