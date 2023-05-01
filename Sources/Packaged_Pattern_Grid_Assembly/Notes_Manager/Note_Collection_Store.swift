@@ -122,9 +122,7 @@ public class Note_Collection : ObservableObject {
                 local_Cell_Array.append(midCell)
             }
             local_Cell_Array.append(currEndCell)
-            
         }
-
         if local_Cell_Array.count > 0 {
             let line = parentCentralState.data_Grid.dataLineArray[local_Cell_Array[0].parentLine.line_Y_Num]
             let note = Note(cellArray: local_Cell_Array, parentParam: self, yParam: local_Cell_Array[0].parentLine.line_Y_Num, containingLineParam: line)
@@ -132,12 +130,11 @@ public class Note_Collection : ObservableObject {
             if highlightAfterWrite == true{note.highlighted = true}
             for cell in local_Cell_Array {
                 cell.note_Im_In = note
-                if let lclConnectedVals = cell.currentConnectedDataVals{
+                if let lclConnectedVals = cell.currentConnectedDataVals {
                     lclConnectedVals.updateNoteFromNewData(newNoteImIn: note)
                 }
             }
         }
-        
     }
     
     func deleteSelectedNotes(){
