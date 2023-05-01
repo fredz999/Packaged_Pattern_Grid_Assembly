@@ -130,7 +130,7 @@ public class ComponentColors {
     
     public var grid_Note_Color : Color = Color(red:0.4,green:0.8,blue:0)
     
-    public var movedFromNoteColor : Color = Color(red:0.4,green:0.8,blue:0)
+    public var movedFromNoteColor : Color = Color(red:0.4,green:0.4,blue:0)
     
     public var grid_Note_Highlighted_Color : Color = Color(red:0.5,green:1,blue:0)
     
