@@ -65,7 +65,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         if type == .activate_Move_Away_From_Cell {
             if in_activate_Moved_Away_From_Set == false {
                 in_activate_Moved_Away_From_Set = true
-                print("visible state change: in_activate_Moved_Away_From_Set = true")
             }
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)
@@ -74,7 +73,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         else if type == .deActivate_Move_Away_From_Cell {
             if in_activate_Moved_Away_From_Set == true {
                 in_activate_Moved_Away_From_Set = false
-                print("visible state change: in_activate_Moved_Away_From_Set = false")
             }
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)

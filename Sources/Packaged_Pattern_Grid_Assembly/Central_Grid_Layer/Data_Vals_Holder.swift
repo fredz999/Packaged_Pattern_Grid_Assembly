@@ -215,6 +215,7 @@ public class Data_Vals_Holder : ObservableObject {
                     check_Highlighted()
                     check_In_MultiSelect_Note_Set()
                     check_In_Prohib_Clashing_Set()
+                    check_In_MovedAwayFrom_Set() 
                 }
                 else if check_Cell_Not_In_Note() == true {
                     check_In_MultiSelect_BackGround_Set()
