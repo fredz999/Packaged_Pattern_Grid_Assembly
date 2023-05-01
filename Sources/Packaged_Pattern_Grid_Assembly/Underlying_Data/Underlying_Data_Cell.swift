@@ -21,17 +21,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public var id = UUID()
     
     public var dataCell_X_Number : Int
-    
-//    public var dataCell_X_Float : Int
 
-    
-    
     var in_Highlighted_Set : Bool = false
-    
-   
-    
-    
-    
+
     var in_Resize_Set : Bool = false
     
     var in_Potential_Edge_Set : Bool = false
@@ -320,8 +312,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 lcl_Data_Vals.updateValsFromNewData(
                 newXNum: dataCell_X_Number
                 , newYNum: parentLine.line_Y_Num
-                , newCellNoteStatus: note_Reset_Status
-                , newNoteImIn: nil)
+                , newCellNoteStatus: note_Reset_Status)
+                //, newNoteImIn: nil)
+                lcl_Data_Vals.updateNoteFromNewData(newNoteImIn: nil)
                 
                 if in_Passive_Cursor_Set == true {
                     if lcl_Data_Vals.statusColor != lcl_Data_Vals.colors.passiveMode_Cursor_Color{lcl_Data_Vals.statusColor = lcl_Data_Vals.colors.passiveMode_Cursor_Color}
