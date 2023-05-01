@@ -44,7 +44,10 @@ class Move_Helper: P_Selectable_Mode {
                     // gotta change their satis heah
                     for selectedNote in selectedNotes {
                         if let lclNoteData = selectedNote.modifiable_Note_Data {
-                            if lclNoteData.noteParent.moved_Away_From == false{lclNoteData.noteParent.moved_Away_From = true}
+                            if lclNoteData.noteParent.moved_Away_From == false{
+                                lclNoteData.noteParent.moved_Away_From = true
+                                print("lclNoteData.noteParent.moved_Away_From = true")
+                            }
                         }
                     }
                     
