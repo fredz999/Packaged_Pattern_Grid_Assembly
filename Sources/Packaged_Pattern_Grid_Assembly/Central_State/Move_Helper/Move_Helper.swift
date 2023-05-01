@@ -66,14 +66,16 @@ class Move_Helper: P_Selectable_Mode {
     func deactivate_Mode() {
         if mode_Active == true {
             mode_Active=false
-            if let lclCurrNoteCollection = parentCentralState.currentNoteCollection {
-                let selectedNotes = lclCurrNoteCollection.noteArray.filter{$0.highlighted == true}
-                for selectedNote in selectedNotes {
-                    if let lclNoteData = selectedNote.modifiable_Note_Data {
-                        if lclNoteData.noteParent.moved_Away_From == true{lclNoteData.noteParent.moved_Away_From = false}
-                    }
-                }
-            }
+//            if let lclCurrNoteCollection = parentCentralState.currentNoteCollection {
+//                let selectedNotes = lclCurrNoteCollection.noteArray.filter{$0.highlighted == true}
+//                // it needs to be the lclInitial it might not be selected at all
+//                // thinking maybe this needs done jus b4 write
+//                for selectedNote in selectedNotes {
+//                    if let lclNoteData = selectedNote.modifiable_Note_Data {
+//                        if lclNoteData.noteParent.moved_Away_From == true{lclNoteData.noteParent.moved_Away_From = false}
+//                    }
+//                }
+//            }
             persist_New_Note_Data()
         }
     }
@@ -134,6 +136,10 @@ class Move_Helper: P_Selectable_Mode {
                     }
                 }
                 
+                
+                
+                moving_Cell_Set_Holder_Array[m].noteImIn.moved_Away_From = false
+                
                 if dont_Copy_Just_Move == true {
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
                     let clashedSet = proposedSet.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn && $0.note_Im_In != nil})
@@ -151,6 +157,8 @@ class Move_Helper: P_Selectable_Mode {
     }
 
     func persist_New_Note_Data(){
+        //print("",moving_Cell_Set_Holder_Array[m].initial_Snapshot.   )
+        //moving_Cell_Set_Holder_Array[m].noteImIn.moved_Away_From = false
             if dont_Copy_Just_Move == true {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                     if moving_Cell_Set.movingNoteCurrentlyWriteable == true {
