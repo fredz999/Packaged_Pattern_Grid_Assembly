@@ -339,6 +339,9 @@ public class Data_Vals_Holder : ObservableObject {
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
     if referenced_currentStatus != newCellNoteStatus{referenced_currentStatus = newCellNoteStatus}
         
+        
+        if let lclNewNote = newNoteImIn {print("newNoteImIn: ")}
+        
     if let lclCurrentNote = referenced_note_Im_In {
         if let lclNewNote = newNoteImIn {
             if lclNewNote != lclCurrentNote {
@@ -352,7 +355,7 @@ public class Data_Vals_Holder : ObservableObject {
     else if referenced_note_Im_In == nil {
         if let lclNewNote = newNoteImIn {
             referenced_note_Im_In = lclNewNote
-            print("lclNewNote = newNoteImIn..............: ")
+            //print("lclNewNote = newNoteImIn..............: ")
         }
     }
         
