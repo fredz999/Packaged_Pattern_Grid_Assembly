@@ -138,7 +138,7 @@ class Move_Helper: P_Selectable_Mode {
                 
                 
                 
-                moving_Cell_Set_Holder_Array[m].noteImIn.moved_Away_From = false
+                //moving_Cell_Set_Holder_Array[m].noteImIn.moved_Away_From = false
                 
                 if dont_Copy_Just_Move == true {
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
@@ -161,7 +161,10 @@ class Move_Helper: P_Selectable_Mode {
         //moving_Cell_Set_Holder_Array[m].noteImIn.moved_Away_From = false
             if dont_Copy_Just_Move == true {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
+                    moving_Cell_Set.noteImIn.moved_Away_From = false
+                    
                     if moving_Cell_Set.movingNoteCurrentlyWriteable == true {
+                        
                         if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
                             modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
                         }
@@ -183,6 +186,7 @@ class Move_Helper: P_Selectable_Mode {
             }
             else if dont_Copy_Just_Move == false {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
+                    moving_Cell_Set.noteImIn.moved_Away_From = false
                     if moving_Cell_Set.movingNoteCurrentlyWriteable == true {
                         for cell in moving_Cell_Set.potential_Moved_Set {
                             cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
