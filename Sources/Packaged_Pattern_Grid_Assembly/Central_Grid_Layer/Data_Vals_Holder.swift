@@ -259,11 +259,9 @@ public class Data_Vals_Holder : ObservableObject {
             retVal = true
             
             if referenced_note_Im_In == nil{
-                print("referenced_note_Im_In == nil")
                 if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
             }
             else if referenced_note_Im_In != nil{
-                print("referenced_note_Im_In != nil")
                 if statusColor != colors.cursor_Over_Note_Color{statusColor = colors.cursor_Over_Note_Color}
             }
         }
@@ -335,12 +333,13 @@ public class Data_Vals_Holder : ObservableObject {
    }
     
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus,newNoteImIn:Note?){
+        print("updateValsFromNewData(, newNote?: ",newNoteImIn == nil ? "nil" : "not nil")
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
     if referenced_currentStatus != newCellNoteStatus{referenced_currentStatus = newCellNoteStatus}
         
         
-        if let lclNewNote = newNoteImIn {print("newNoteImIn: ")}
+//        if let lclNewNote = newNoteImIn {print("newNoteImIn: ")}
         
     if let lclCurrentNote = referenced_note_Im_In {
         if let lclNewNote = newNoteImIn {
@@ -355,7 +354,6 @@ public class Data_Vals_Holder : ObservableObject {
     else if referenced_note_Im_In == nil {
         if let lclNewNote = newNoteImIn {
             referenced_note_Im_In = lclNewNote
-            //print("lclNewNote = newNoteImIn..............: ")
         }
     }
         
