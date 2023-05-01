@@ -19,8 +19,6 @@ public class Data_Vals_Holder : ObservableObject {
 
     private var referenced_in_Highlighted_Set : Bool = false
     
-    
-    
     private var referenced_in_Prohibited_Clashing_Set : Bool = false
     
     private var referenced_in_Prohibited_Moving_Set : Bool = false
@@ -333,14 +331,10 @@ public class Data_Vals_Holder : ObservableObject {
    }
     
     func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus,newNoteImIn:Note?){
-        print("updateValsFromNewData(, newNote?: ",newNoteImIn == nil ? "nil" : "not nil")
     if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
     if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
     if referenced_currentStatus != newCellNoteStatus{referenced_currentStatus = newCellNoteStatus}
-        
-        
-//        if let lclNewNote = newNoteImIn {print("newNoteImIn: ")}
-        
+
     if let lclCurrentNote = referenced_note_Im_In {
         if let lclNewNote = newNoteImIn {
             if lclNewNote != lclCurrentNote {

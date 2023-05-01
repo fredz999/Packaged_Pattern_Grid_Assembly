@@ -116,29 +116,3 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
 
     
 }
-
-
-//        if noteWriteable == true {
-//            print("hit true")
-//            if let lclModifiable = modifiable_Note_Data {
-//
-//                for cell in lclModifiable.dataCellArray {// potential moved set
-//                    // TODO: thing needs 2 b in potential set?
-//                    print("thing supposed to switched off?: ",cell.dataCell_X_Number)
-//                    if cell.in_Prohibited_Moving_Cell_Set == true {
-//                        cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-//                    }
-//                }
-//            }
-//
-//        }
-//        else if noteWriteable == false {
-//
-//            if let lclModifiable = modifiable_Note_Data{
-//                for cell in lclModifiable.dataCellArray{
-//                    if cell.in_Prohibited_Moving_Cell_Set == false {
-//                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-//                    }
-//                }
-//            }
-//        }

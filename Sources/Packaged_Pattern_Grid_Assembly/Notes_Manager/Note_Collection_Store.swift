@@ -132,6 +132,12 @@ public class Note_Collection : ObservableObject {
             if highlightAfterWrite == true{note.highlighted = true}
             for cell in local_Cell_Array {
                 cell.note_Im_In = note
+                if let lclConnectedVals = cell.currentConnectedDataVals{
+                    // TODO: dataNoteRef
+                    if lclConnectedVals.referenced_note_Im_In == nil{
+                        lclConnectedVals.referenced_note_Im_In = note
+                    }
+                }
             }
         }
         
