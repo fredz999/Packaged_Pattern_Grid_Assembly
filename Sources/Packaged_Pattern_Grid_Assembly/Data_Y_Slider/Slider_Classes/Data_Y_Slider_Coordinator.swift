@@ -110,6 +110,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         let last = 35
         let indexToScrollTo = IndexPath(item: last, section: 0)
         if let lclCollection_View = v_Collection_View {
+            print("lclCollection_View = v_Collection_View ")
             lclCollection_View.scrollToItem(at: indexToScrollTo, at: .bottom, animated: false)
         }
     }
