@@ -103,13 +103,11 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
                 if moved_Away_From == true {
                     for cell in lclModifiableNoteData.dataCellArray {
                         cell.handleVisibleStateChange(type: .activate_Move_Away_From_Cell)
-                        print("cell.handleVisibleStateChange(type: .activate_Move_Away_From_Cell)")
                     }
                 }
                 else if moved_Away_From == false {
                     for cell in lclModifiableNoteData.dataCellArray {
                         cell.handleVisibleStateChange(type: .deActivate_Move_Away_From_Cell)
-                        print("cell.handleVisibleStateChange(type: .deActivate_Move_Away_From_Cell)")
                     }
                 }
             }
