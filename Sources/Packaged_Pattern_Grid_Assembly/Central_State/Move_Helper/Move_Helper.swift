@@ -192,9 +192,9 @@ class Move_Helper: P_Selectable_Mode {
             else if dont_Copy_Just_Move == false {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
                     
-                    if moving_Cell_Set.noteImIn.moved_Away_From == true {
-                        moving_Cell_Set.noteImIn.moved_Away_From = false
-                    }
+//                    if moving_Cell_Set.noteImIn.moved_Away_From == true {
+//                        moving_Cell_Set.noteImIn.moved_Away_From = false
+//                    }
                     
                     if moving_Cell_Set.movingNoteCurrentlyWriteable == true {
                         for cell in moving_Cell_Set.potential_Moved_Set {
