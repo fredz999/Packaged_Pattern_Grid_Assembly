@@ -61,24 +61,25 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     var in_activate_MoveNote_Cursor_Set : Bool = false
  
     func handleVisibleStateChange(type : E_VisibleStateChangeType) {
-        if type == .activate_MoveNote_Cursor_Set {
-            if in_activate_MoveNote_Cursor_Set == false {
-                in_activate_MoveNote_Cursor_Set = true
-            }
-            if let lclDataVals = currentConnectedDataVals {
-                lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_MoveNote_Cursor_Set)
-            }
-        }
-        else if type == .deActivate_MoveNote_Cursor_Set{
-            if in_activate_MoveNote_Cursor_Set == true {
-                in_activate_MoveNote_Cursor_Set = false
-            }
-            if let lclDataVals = currentConnectedDataVals {
-                lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_MoveNote_Cursor_Set)
-            }
-        }
         
-        else if type == .activate_Prohibited_Moving_Cell {
+//        if type == .activate_MoveNote_Cursor_Set {
+//            if in_activate_MoveNote_Cursor_Set == false {
+//                in_activate_MoveNote_Cursor_Set = true
+//            }
+//            if let lclDataVals = currentConnectedDataVals {
+//                lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_MoveNote_Cursor_Set)
+//            }
+//        }
+//        else if type == .deActivate_MoveNote_Cursor_Set{
+//            if in_activate_MoveNote_Cursor_Set == true {
+//                in_activate_MoveNote_Cursor_Set = false
+//            }
+//            if let lclDataVals = currentConnectedDataVals {
+//                lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_MoveNote_Cursor_Set)
+//            }
+//        }
+        
+        if type == .activate_Prohibited_Moving_Cell {
             if in_Prohibited_Moving_Cell_Set == false{
                 in_Prohibited_Moving_Cell_Set=true
             }
