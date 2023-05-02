@@ -184,6 +184,7 @@ class Move_Helper: P_Selectable_Mode {
                     
                     if moving_Cell_Set.noteImIn.moved_Away_From == true {
                         moving_Cell_Set.noteImIn.moved_Away_From = false
+                        print("copy moved away reset")
                     }
                     
                     if moving_Cell_Set.movingNoteCurrentlyWriteable == true {
