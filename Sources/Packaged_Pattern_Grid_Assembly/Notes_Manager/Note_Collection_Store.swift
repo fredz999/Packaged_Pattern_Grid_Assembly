@@ -131,7 +131,8 @@ public class Note_Collection : ObservableObject {
             for cell in local_Cell_Array {
                 cell.note_Im_In = note
                 if let lclConnectedVals = cell.currentConnectedDataVals {
-                    lclConnectedVals.updateNoteFromNewData(newNoteImIn: note)
+                    //lclConnectedVals.updateNoteFromNewData(newNoteImIn: note)
+                    lclConnectedVals.externallySetCursorState.is_Over_Note_Cell = true
                 }
             }
         }

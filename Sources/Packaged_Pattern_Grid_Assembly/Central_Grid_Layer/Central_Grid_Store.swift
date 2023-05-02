@@ -99,16 +99,20 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
     }
     
     public func cell_Swap_Underlying_Data(new_Data_Cell : Underlying_Data_Cell){
-        if let lclNoteImIn = new_Data_Cell.note_Im_In {
-            print("new data Cell nuuuute: ",lclNoteImIn.id)
-        }
+//        if let lclNoteImIn = new_Data_Cell.note_Im_In {
+//            print("new data Cell nuuuute: ",lclNoteImIn.id)
+//        }
         new_Data_Cell.currentConnectedDataVals = data_Vals_Holder
         data_Vals_Holder.updateValsFromNewData(
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.parentLine.line_Y_Num
         , newCellNoteStatus: new_Data_Cell.currentType)
         //, newNoteImIn: new_Data_Cell.note_Im_In)
-        data_Vals_Holder.updateNoteFromNewData(newNoteImIn: new_Data_Cell.note_Im_In)
+        // data_Vals_Holder.updateNoteFromNewData(newNoteImIn: new_Data_Cell.note_Im_In)
+        
+        if let lclNoteImIn = new_Data_Cell.note_Im_In {
+            data_Vals_Holder.externallySetCursorState.is_Over_Note_Cell = true
+        }
     }
     
 }

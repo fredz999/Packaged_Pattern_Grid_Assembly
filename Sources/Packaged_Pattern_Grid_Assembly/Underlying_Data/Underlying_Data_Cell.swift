@@ -314,10 +314,12 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 , newYNum: parentLine.line_Y_Num
                 , newCellNoteStatus: note_Reset_Status)
                 //, newNoteImIn: nil)
-                lcl_Data_Vals.updateNoteFromNewData(newNoteImIn: nil)
+                //lcl_Data_Vals.updateNoteFromNewData(newNoteImIn: nil)
+
+                lcl_Data_Vals.externallySetCursorState.is_Over_Note_Cell = false
                 
                 if in_Passive_Cursor_Set == true {
-                    if lcl_Data_Vals.statusColor != lcl_Data_Vals.colors.passiveMode_Cursor_Color{lcl_Data_Vals.statusColor = lcl_Data_Vals.colors.passiveMode_Cursor_Color}
+                    if lcl_Data_Vals.statusColor != lcl_Data_Vals.colors.cursor_Over_Blank_Passive_Color{lcl_Data_Vals.statusColor = lcl_Data_Vals.colors.cursor_Over_Blank_Passive_Color}
                 }
             }
         }

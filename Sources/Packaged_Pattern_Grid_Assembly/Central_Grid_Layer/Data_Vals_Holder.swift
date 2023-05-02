@@ -46,28 +46,22 @@ public class Data_Vals_Holder : ObservableObject {
             if referenced_currentStatus == .start_Note
                 || referenced_currentStatus == .mid_Note
                 || referenced_currentStatus == .end_Note {
-                
                 if statusColor != colors.grid_Note_Color && referenced_in_Cursor_Set == false {statusColor = colors.grid_Note_Color}
-                
                 if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width{sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
                 if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
             }
             else {
-                
                 if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false{
                     statusColor = colors.grid_Blank_Color
                 }
-                
                 if referenced_currentStatus == .start_Blank{
                     if sub_Cell_Width != dimensions.pattern_Start_Blank_Width {sub_Cell_Width = dimensions.pattern_Start_Blank_Width}
                     if cell_X_Offset != dimensions.pattern_Start_Blank_XOffset{cell_X_Offset = dimensions.pattern_Start_Blank_XOffset}
                 }
-                
                 else if referenced_currentStatus != .start_Blank{
                     if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width {sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
                     if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
                 }
-                
             }
         }
     }
@@ -252,31 +246,32 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
     
+    var externallySetCursorState = Cursor_State()
+//    public var referenced_note_Im_In : Note?
+//    func updateNoteFromNewData(newNoteImIn:Note?){
+//        if let lclCurrentNote = referenced_note_Im_In {
+//            if let lclNewNote = newNoteImIn {
+//                if lclNewNote != lclCurrentNote {
+//                    referenced_note_Im_In = lclNewNote
+//                }
+//            }
+//            else if newNoteImIn == nil {
+//                referenced_note_Im_In = nil
+//            }
+//        }
+//        else if referenced_note_Im_In == nil {
+//            if let lclNewNote = newNoteImIn {
+//                referenced_note_Im_In = lclNewNote
+//            }
+//        }
+//    }
+    
     func check_In_Passive_Cursor_Set()->Bool{
         var retVal = false
         if referenced_in_PassiveCursor_Set == true {
             retVal = true
-            
-            if referenced_note_Im_In == nil{
-                if statusColor != colors.passiveMode_Cursor_Color{statusColor = colors.passiveMode_Cursor_Color}
-            }
-            else if referenced_note_Im_In != nil{
-                if statusColor != colors.cursor_Over_Note_Color{statusColor = colors.cursor_Over_Note_Color}
-            }
-            //Cases
-//            Cursor over noteCell in move permitted
-//            Cursor over noteCell in move prohibited
-//            Cursor over blankCell in move permitted
-//            Cursor over blankCell in move prohibited
-            
-            
-            
-//            Cursor over noteCell in copyMove permitted
-//            Cursor over noteCell in copyMove prohibited
-//            Cursor over blankCell in copyMove permitted
-//            Cursor over blankCell in copyMove prohibited
-            //get all this injected from a E_CursorState enum titled cursorState
-            
+            externallySetCursorState.returnCursorCellColor(cellColor: &statusColor)
+
         }
         return retVal
     }
@@ -331,9 +326,7 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
 
-    @Published public var statusColor : Color
-
-   public var referenced_note_Im_In : Note?
+   @Published public var statusColor : Color
    
    public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus,cellWidthParam:CGFloat,cellHeightParam:CGFloat,xOffsetParam:CGFloat){
    cell_X_Offset = xOffsetParam
@@ -345,30 +338,13 @@ public class Data_Vals_Holder : ObservableObject {
    statusColor = colors.grid_Blank_Color
    }
     
-    //func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus,newNoteImIn:Note?){
-    func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus){
-    if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
-    if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
-    if referenced_currentStatus != newCellNoteStatus{referenced_currentStatus = newCellNoteStatus}
-    }
-    
-   func updateNoteFromNewData(newNoteImIn:Note?){
-       if let lclCurrentNote = referenced_note_Im_In {
-           if let lclNewNote = newNoteImIn {
-               if lclNewNote != lclCurrentNote {
-                   referenced_note_Im_In = lclNewNote
-               }
-           }
-           else if newNoteImIn == nil {
-               referenced_note_Im_In = nil
-           }
-       }
-       else if referenced_note_Im_In == nil {
-           if let lclNewNote = newNoteImIn {
-               referenced_note_Im_In = lclNewNote
-           }
-       }
+   func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus){
+   if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
+   if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
+   if referenced_currentStatus != newCellNoteStatus{referenced_currentStatus = newCellNoteStatus}
    }
+    
+   
     
 }
 
@@ -377,15 +353,14 @@ public enum status_Update_Type {
     case cursorSet
     case deleteSquareSet
     case passiveCursorSet
-    
+
     case prohibitedClashingSet
     case prohibitedMovingSet
     case prohibitedCursorSet
-    
+
     case moveNote_Cursor_Set
     case movedAwayFrom_Set
-    
-    
+
     case potentialSet
     case resizeSet
     case potentialEdgeSet
@@ -394,24 +369,68 @@ public enum status_Update_Type {
 }
 
 public class Cursor_State {
-    
-    var is_Over_Note_Cell : Bool = false
-    var is_In_Move : Bool = false
-    var cursor_App_Mode : E_Cursor_Mode = .in_Passive
-    
-    
-//            Cursor over noteCell in move permitted
-//            Cursor over noteCell in move prohibited
-//            Cursor over blankCell in move permitted
-//            Cursor over blankCell in move prohibited
 
-//            Cursor over noteCell in copyMove permitted
-//            Cursor over noteCell in copyMove prohibited
-//            Cursor over blankCell in copyMove permitted
-//            Cursor over blankCell in copyMove prohibited
+    var currCursorColor : Color
+    let colors = ComponentColors.StaticColors
+    var is_Over_Note_Cell : Bool = false
+    var note_Rewrite_Permitted : Bool = false
+    var cursor_Move_Mode : E_Cursor_Move_Mode = .inactive
+    
+    init(){
+        currCursorColor = colors.cursor_Over_Note_Passive_Color
+    }
+    
+    func returnCursorCellColor(cellColor : inout Color) {
+
+        if is_Over_Note_Cell == true {
+            if cursor_Move_Mode == .inactive {
+                if cellColor != colors.cursor_Over_Note_Passive_Color{cellColor = colors.cursor_Over_Note_Passive_Color}
+            }
+            else if cursor_Move_Mode == .in_Move {
+                if note_Rewrite_Permitted == true {
+                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                }
+                else if note_Rewrite_Permitted == false {
+                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                }
+            }
+            else if cursor_Move_Mode == .in_Move_Copy {
+                if note_Rewrite_Permitted == true {
+                    if cellColor != colors.cursor_Over_Note_CopyMove_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                }
+                else if note_Rewrite_Permitted == false {
+                    if cellColor != colors.cursor_Over_Note_CopyMove_Prohibited{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                }
+            }
+        }
+        else if is_Over_Note_Cell == false {
+            if cursor_Move_Mode == .inactive {
+                if cellColor != colors.cursor_Over_Blank_Passive_Color{cellColor = colors.cursor_Over_Note_Move_Permitted}
+            }
+            else if cursor_Move_Mode == .in_Move {
+                if note_Rewrite_Permitted == true {
+                    if cellColor != colors.cursor_Over_Blank_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                }
+                else if note_Rewrite_Permitted == false {
+                    if cellColor != colors.cursor_Over_Blank_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                }
+            }
+            else if cursor_Move_Mode == .in_Move_Copy {
+                if note_Rewrite_Permitted == true {
+                    if cellColor != colors.cursor_Over_Blank_CopyMove_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                }
+                else if note_Rewrite_Permitted == false {
+                    if cellColor != colors.cursor_Over_Blank_CopyMove_Prohibited{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                }
+            }
+        }
+ 
+    }
+
 }
-public enum E_Cursor_Mode{
+
+public enum E_Cursor_Move_Mode{
     case in_Move
     case in_Move_Copy
-    case in_Passive
+    case inactive
 }

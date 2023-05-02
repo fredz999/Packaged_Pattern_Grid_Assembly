@@ -118,10 +118,21 @@ public class Modifiable_Note_Data{
                 self.minimumSet.insert(self.dataCellArray[2])
             }
             for cell in self.dataCellArray{
-                if let lclDataValsHolder = cell.currentConnectedDataVals{
-                    if lclDataValsHolder.referenced_note_Im_In == nil
-                    || lclDataValsHolder.referenced_note_Im_In != noteParent{
-                        lclDataValsHolder.updateNoteFromNewData(newNoteImIn: noteParent)
+//                if let lclDataValsHolder = cell.currentConnectedDataVals{
+//                    if lclDataValsHolder.referenced_note_Im_In == nil
+//                    || lclDataValsHolder.referenced_note_Im_In != noteParent{
+//                        //lclDataValsHolder.updateNoteFromNewData(newNoteImIn: noteParent)
+//                        lclDataValsHolder.externallySetCursorState.is_Over_Note_Cell = true
+//                    }
+//                }
+//                if noteParent != nil{
+//                    lclDataValsHolder.externallySetCursorState.is_Over_Note_Cell = true
+//                }
+                if cell.note_Im_In != nil{
+                    if let lclDataValsHolder = cell.currentConnectedDataVals{
+                        if lclDataValsHolder.externallySetCursorState.is_Over_Note_Cell != true {
+                            lclDataValsHolder.externallySetCursorState.is_Over_Note_Cell = true
+                        }
                     }
                 }
             }
