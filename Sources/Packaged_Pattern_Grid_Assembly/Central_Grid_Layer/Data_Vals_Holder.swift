@@ -204,6 +204,7 @@ public class Data_Vals_Holder : ObservableObject {
         }
         
         process_Visual_Status()
+        
     }
     
     func process_Visual_Status(){
@@ -262,6 +263,20 @@ public class Data_Vals_Holder : ObservableObject {
             else if referenced_note_Im_In != nil{
                 if statusColor != colors.cursor_Over_Note_Color{statusColor = colors.cursor_Over_Note_Color}
             }
+            //Cases
+//            Cursor over noteCell in move permitted
+//            Cursor over noteCell in move prohibited
+//            Cursor over blankCell in move permitted
+//            Cursor over blankCell in move prohibited
+            
+            
+            
+//            Cursor over noteCell in copyMove permitted
+//            Cursor over noteCell in copyMove prohibited
+//            Cursor over blankCell in copyMove permitted
+//            Cursor over blankCell in copyMove prohibited
+            //get all this injected from a E_CursorState enum titled cursorState
+            
         }
         return retVal
     }
@@ -376,4 +391,27 @@ public enum status_Update_Type {
     case potentialEdgeSet
     case multiSelectBackGroundSet
     case multiSelectNoteSet
+}
+
+public class Cursor_State {
+    
+    var is_Over_Note_Cell : Bool = false
+    var is_In_Move : Bool = false
+    var cursor_App_Mode : E_Cursor_Mode = .in_Passive
+    
+    
+//            Cursor over noteCell in move permitted
+//            Cursor over noteCell in move prohibited
+//            Cursor over blankCell in move permitted
+//            Cursor over blankCell in move prohibited
+
+//            Cursor over noteCell in copyMove permitted
+//            Cursor over noteCell in copyMove prohibited
+//            Cursor over blankCell in copyMove permitted
+//            Cursor over blankCell in copyMove prohibited
+}
+public enum E_Cursor_Mode{
+    case in_Move
+    case in_Move_Copy
+    case in_Passive
 }

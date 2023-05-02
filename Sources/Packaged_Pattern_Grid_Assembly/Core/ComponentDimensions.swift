@@ -98,8 +98,14 @@ public class ComponentColors {
     
     public var cursorSwiperColor : Color = Color(red:0.5,green:1,blue:0)
     public var cursorSliderLineColor : Color = Color(red:0.5,green:1,blue:0)
+    
     public var passiveMode_Cursor_Color : Color = .pink
     public var cursor_Over_Note_Color : Color = .yellow
+    
+    public var cursor_Over_Note_Move_Permitted : Color = .black
+    public var cursor_Over_Note_Move_Prohib : Color = .white
+    
+    
     
     
     
