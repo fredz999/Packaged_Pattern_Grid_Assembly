@@ -247,31 +247,12 @@ public class Data_Vals_Holder : ObservableObject {
     }
     
     var externallySetCursorState = Cursor_State()
-//    public var referenced_note_Im_In : Note?
-//    func updateNoteFromNewData(newNoteImIn:Note?){
-//        if let lclCurrentNote = referenced_note_Im_In {
-//            if let lclNewNote = newNoteImIn {
-//                if lclNewNote != lclCurrentNote {
-//                    referenced_note_Im_In = lclNewNote
-//                }
-//            }
-//            else if newNoteImIn == nil {
-//                referenced_note_Im_In = nil
-//            }
-//        }
-//        else if referenced_note_Im_In == nil {
-//            if let lclNewNote = newNoteImIn {
-//                referenced_note_Im_In = lclNewNote
-//            }
-//        }
-//    }
     
     func check_In_Passive_Cursor_Set()->Bool{
         var retVal = false
         if referenced_in_PassiveCursor_Set == true {
             retVal = true
             externallySetCursorState.returnCursorCellColor(cellColor: &statusColor)
-
         }
         return retVal
     }

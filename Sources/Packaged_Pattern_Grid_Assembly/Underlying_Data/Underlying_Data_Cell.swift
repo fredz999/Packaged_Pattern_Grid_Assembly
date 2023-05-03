@@ -196,25 +196,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
         
-        
-        
-        //        if type == .activate_MoveNote_Cursor_Set {
-        //            if in_MoveNote_Cursor_Set == false {
-        //                in_MoveNote_Cursor_Set = true
-        //                if let lclDataVals = currentConnectedDataVals {
-        //                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .moveNote_Cursor_Set, value: in_MoveNote_Cursor_Set)
-        //                }
-        //            }
-        //        }
-        //        else if type == .deActivate_MoveNote_Cursor_Set {
-        //            if in_MoveNote_Cursor_Set == true {
-        //                in_MoveNote_Cursor_Set = false
-        //                if let lclDataVals = currentConnectedDataVals {
-        //                    lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .moveNote_Cursor_Set, value: in_MoveNote_Cursor_Set)
-        //                }
-        //            }
-        //        }
-        
     }
 
     var note_Im_In : Note?
@@ -313,10 +294,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 newXNum: dataCell_X_Number
                 , newYNum: parentLine.line_Y_Num
                 , newCellNoteStatus: note_Reset_Status)
-                //, newNoteImIn: nil)
-                //lcl_Data_Vals.updateNoteFromNewData(newNoteImIn: nil)
 
-                lcl_Data_Vals.externallySetCursorState.is_Over_Note_Cell = false
+                //lcl_Data_Vals.externallySetCursorState.is_Over_Note_Cell = false
+                
+                alterCursorState(thisCellInNote: false, rewritePermitted: nil, cursorMoveMode: nil)
                 
                 if in_Passive_Cursor_Set == true {
                     if lcl_Data_Vals.statusColor != lcl_Data_Vals.colors.cursor_Over_Blank_Passive_Color{lcl_Data_Vals.statusColor = lcl_Data_Vals.colors.cursor_Over_Blank_Passive_Color}
@@ -324,4 +305,23 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
         }
     }
+    
+    func alterCursorState(thisCellInNote:Bool?,rewritePermitted:Bool?,cursorMoveMode:E_Cursor_Move_Mode?){
+        if let lclCurrDataVals = currentConnectedDataVals {
+            
+            if let lclThisIsCellInNote = thisCellInNote {
+                lclCurrDataVals.externallySetCursorState.is_Over_Note_Cell = lclThisIsCellInNote
+            }
+                
+            if let lclrewritePermitted = rewritePermitted {
+                lclCurrDataVals.externallySetCursorState.note_Rewrite_Permitted  = lclrewritePermitted
+            }
+            
+            if let lclcursorMoveMode = cursorMoveMode {
+                lclCurrDataVals.externallySetCursorState.cursor_Move_Mode  = lclcursorMoveMode
+            }
+        }
+    }
+    
+    
 }

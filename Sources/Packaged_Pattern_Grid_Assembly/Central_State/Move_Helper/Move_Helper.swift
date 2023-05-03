@@ -41,8 +41,9 @@ class Move_Helper: P_Selectable_Mode {
                             moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
                         }
                     }
-                    // gotta change their satis heah
+                    // TODO: set cursor movemode
                     if dont_Copy_Just_Move == true {
+                        // TODO: set cursor movemode
                         for selectedNote in selectedNotes {
                             if let lclNoteData = selectedNote.modifiable_Note_Data {
                                 if lclNoteData.noteParent.moved_Away_From == false{
@@ -153,13 +154,10 @@ class Move_Helper: P_Selectable_Mode {
 
             if dont_Copy_Just_Move == true {
                 for moving_Cell_Set in moving_Cell_Set_Holder_Array {
-                    
                     if moving_Cell_Set.noteImIn.moved_Away_From == true {
                         moving_Cell_Set.noteImIn.moved_Away_From = false
                     }
-                    
                     if moving_Cell_Set.movingNoteCurrentlyWriteable == true {
-                        
                         if let modNoteData = moving_Cell_Set.noteImIn.modifiable_Note_Data {
                             modNoteData.reWrite_Note_Data(newDataCellSet: moving_Cell_Set.potential_Moved_Set)
                         }
@@ -184,7 +182,6 @@ class Move_Helper: P_Selectable_Mode {
                     
                     if moving_Cell_Set.noteImIn.moved_Away_From == true {
                         moving_Cell_Set.noteImIn.moved_Away_From = false
-                        print("copy moved away reset")
                     }
                     
                     if moving_Cell_Set.movingNoteCurrentlyWriteable == true {

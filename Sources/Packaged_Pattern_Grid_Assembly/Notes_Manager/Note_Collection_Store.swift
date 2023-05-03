@@ -130,10 +130,12 @@ public class Note_Collection : ObservableObject {
             if highlightAfterWrite == true{note.highlighted = true}
             for cell in local_Cell_Array {
                 cell.note_Im_In = note
-                if let lclConnectedVals = cell.currentConnectedDataVals {
-                    //lclConnectedVals.updateNoteFromNewData(newNoteImIn: note)
-                    lclConnectedVals.externallySetCursorState.is_Over_Note_Cell = true
-                }
+                
+//                if let lclConnectedVals = cell.currentConnectedDataVals {
+//                    lclConnectedVals.externallySetCursorState.is_Over_Note_Cell = true
+//                }
+                cell.alterCursorState(thisCellInNote: true, rewritePermitted: nil, cursorMoveMode: nil)
+                
             }
         }
     }
