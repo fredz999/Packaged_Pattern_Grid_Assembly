@@ -50,7 +50,6 @@ class Move_Helper: P_Selectable_Mode {
                     }
                     if dont_Copy_Just_Move == true {
                         // TODO: set cursor movemode
-                        print("dont_Copy_Just_Move == true")
                         for line in parentCentralState.data_Grid.dataLineArray{
                             for cell in line.dataCellArray{
                                 //cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .in_Move_Copy)
@@ -108,7 +107,7 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Multi_Note_Selected(){
-
+        print("movement_With_Multi_Note_Selected(")
         if parentCentralState.curr_Cursor_Min_Data_Pos_X != snapshot_Cursor_Min_X
             || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y {
             if let collection = parentCentralState.currentNoteCollection {
@@ -125,8 +124,7 @@ class Move_Helper: P_Selectable_Mode {
                 let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
                 let newLineSet : Set<Underlying_Data_Cell>
                 = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
-                
-                
+
                 if proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move {
                     proposedSet = newLineSet
                     .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
