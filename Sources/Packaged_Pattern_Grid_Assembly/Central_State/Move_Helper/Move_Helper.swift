@@ -156,7 +156,8 @@ class Move_Helper: P_Selectable_Mode {
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
                     .potential_Moved_Set.filter({$0.note_Im_In != nil})
                     print("potential_Moved_Set count: ",moving_Cell_Set_Holder_Array[m].potential_Moved_Set.count.description
-                          ,"prohibition_Indicator_Set.count: ",moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set.count.description)
+                          ,", prohibition_Indicator_Set.count: ",moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set.count.description
+                          ,", minX.Y for Potential set: ",moving_Cell_Set_Holder_Array[m].potential_Moved_Set.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number})?.parentLine.line_Y_Num.description)
                 }
                 
                 
