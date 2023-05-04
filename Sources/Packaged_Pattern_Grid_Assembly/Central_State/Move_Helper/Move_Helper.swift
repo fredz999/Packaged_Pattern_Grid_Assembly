@@ -107,7 +107,7 @@ class Move_Helper: P_Selectable_Mode {
     }
     
     func movement_With_Multi_Note_Selected(){
-        print("movement_With_Multi_Note_Selected(")
+        
         if parentCentralState.curr_Cursor_Min_Data_Pos_X != snapshot_Cursor_Min_X
             || parentCentralState.curr_Data_Pos_Y != snapshot_Cursor_Y {
             if let collection = parentCentralState.currentNoteCollection {
@@ -150,7 +150,8 @@ class Move_Helper: P_Selectable_Mode {
                     let clashedSet = proposedSet.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn && $0.note_Im_In != nil})
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = clashedSet
                 }
-                else if dont_Copy_Just_Move == false{
+                else if dont_Copy_Just_Move == false {
+                    print("dont_Copy_Just_Move == false")
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
                     .potential_Moved_Set.filter({$0.note_Im_In != nil})
