@@ -107,8 +107,8 @@ public class ComponentColors {
     public var deleteNoteMode_Cursor_Color : Color = Color(red:1,green:0.5,blue:0)
     public var moveNoteMode_Cursor_Color : Color = Color(red:0.5,green:0.5,blue:0)
     
-    public var cursor_Over_Note_Move_Permitted : Color = .black
-    public var cursor_Over_Note_Move_Prohibited : Color = .white
+    public var cursor_Over_Note_Move_Permitted : Color = .blue
+    public var cursor_Over_Note_Move_Prohibited : Color = Color(red:0.4,green:0,blue:0)
     public var cursor_Over_Blank_Move_Permitted : Color = .red
     public var cursor_Over_Blank_Move_Prohibited : Color = .yellow
 

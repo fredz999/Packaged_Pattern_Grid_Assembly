@@ -382,10 +382,10 @@ public class Cursor_State {
             }
             else if cursor_Move_Mode == .in_Move_Copy {
                 if note_Rewrite_Permitted == true {
-                    if cellColor != colors.cursor_Over_Note_CopyMove_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
                 else if note_Rewrite_Permitted == false {
-                    if cellColor != colors.cursor_Over_Note_CopyMove_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
+                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
             }
         }
@@ -403,10 +403,10 @@ public class Cursor_State {
             }
             else if cursor_Move_Mode == .in_Move_Copy {
                 if note_Rewrite_Permitted == true {
-                    if cellColor != colors.cursor_Over_Blank_CopyMove_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
                 else if note_Rewrite_Permitted == false {
-                    if cellColor != colors.cursor_Over_Blank_CopyMove_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
+                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
             }
         }
