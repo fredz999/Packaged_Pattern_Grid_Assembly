@@ -50,13 +50,11 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
+            print("didset")
             if movingNoteCurrentlyWriteable == true {
                 for cell in potential_Moved_Set {
                     if cell.in_Potential_Set == false {
                         cell.handleVisibleStateChange(type : .activate_Potential_Set)
-                    }
-                    else if cell.in_Potential_Set == true{
-                        print("troiugsdfiubvsdfiv")
                     }
                 }
             }
