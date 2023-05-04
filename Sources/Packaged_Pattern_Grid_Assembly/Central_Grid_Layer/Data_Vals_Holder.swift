@@ -433,8 +433,8 @@ public class Cursor_State {
 
 }
 
-public enum E_Cursor_Move_Mode{
-    case in_Move
-    case in_Move_Copy
-    case inactive
+public enum E_Cursor_Move_Mode:String{
+    case in_Move = "in_Move"
+    case in_Move_Copy = "in_Move_Copy"
+    case inactive = "inactive"
 }
