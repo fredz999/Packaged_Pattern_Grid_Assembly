@@ -56,16 +56,14 @@ class Moving_Cell_Set_Holder {
                 for cell in potential_Moved_Set {
                     if cell.in_Potential_Set == false {
                         cell.handleVisibleStateChange(type : .activate_Potential_Set)
-                        
                     }
                 }
             }
             else if movingNoteCurrentlyWriteable == false {
-                print("movingNoteCurrentlyWriteable == false")
+                print("movingNoteCurrentlyWriteable == false, potential_Moved_Set count: ",potential_Moved_Set.count)
                 for cell in potential_Moved_Set {
                     if cell.in_Prohibited_Moving_Cell_Set == false {
                         cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-
                     }
                 }
             }
@@ -77,7 +75,6 @@ class Moving_Cell_Set_Holder {
             let delta = prohibition_Indicator_Set.symmetricDifference(newValue)
             for cell in delta {
                 cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
-
             }
         }
         didSet {
