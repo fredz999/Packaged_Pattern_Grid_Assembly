@@ -102,20 +102,22 @@ public class ComponentColors {
     
     
     
-    public var cursor_Over_Blank_Passive_Color : Color = .pink
-    public var cursor_Over_Note_Passive_Color : Color = .yellow
+    
     public var deleteNoteMode_Cursor_Color : Color = Color(red:1,green:0.5,blue:0)
     public var moveNoteMode_Cursor_Color : Color = Color(red:0.5,green:0.5,blue:0)
+    
+    public var cursor_Over_Blank_Passive_Color : Color = .pink
+    public var cursor_Over_Note_Passive_Color : Color = .yellow
     
     public var cursor_Over_Note_Move_Permitted : Color = .blue
     public var cursor_Over_Note_Move_Prohibited : Color = Color(red:0.4,green:0,blue:0)
     public var cursor_Over_Blank_Move_Permitted : Color = .red
     public var cursor_Over_Blank_Move_Prohibited : Color = .yellow
 
-    public var cursor_Over_Note_CopyMove_Permitted : Color = .green
-    public var cursor_Over_Note_CopyMove_Prohibited : Color = .blue
-    public var cursor_Over_Blank_CopyMove_Permitted : Color = .brown
-    public var cursor_Over_Blank_CopyMove_Prohibited : Color = .cyan
+//    public var cursor_Over_Note_CopyMove_Permitted : Color = .green
+//    public var cursor_Over_Note_CopyMove_Prohibited : Color = .blue
+//    public var cursor_Over_Blank_CopyMove_Permitted : Color = .brown
+//    public var cursor_Over_Blank_CopyMove_Prohibited : Color = .cyan
     
     
     
