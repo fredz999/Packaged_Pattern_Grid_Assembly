@@ -79,7 +79,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
         //--------------------------------------------------------------------------------------------------------------------------------------------
          if type == .activate_Prohibited_Moving_Cell {
-            if in_Prohibited_Moving_Cell_Set == false{
+            if in_Prohibited_Moving_Cell_Set == false {
                 in_Prohibited_Moving_Cell_Set=true
             }
             if let lclDataVals = currentConnectedDataVals {

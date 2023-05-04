@@ -372,10 +372,10 @@ public class Cursor_State {
     private var cursorWithinProhibSet : Bool = false
     
     func determineIfCursorWithinProhibSet(){
-        if cell_In_Clashing_Prohibition == true || cell_In_Moving_Prohibition == true{
+        if cell_In_Clashing_Prohibition == true || cell_In_Moving_Prohibition == true {
             cursorWithinProhibSet = true
         }
-        else if cell_In_Clashing_Prohibition == false && cell_In_Moving_Prohibition == false{
+        else if cell_In_Clashing_Prohibition == false && cell_In_Moving_Prohibition == false {
             cursorWithinProhibSet = false
         }
     }
@@ -385,7 +385,6 @@ public class Cursor_State {
     }
     
     func returnCursorCellColor(cellColor : inout Color) {
-
         if is_Over_Note_Cell == true {
             if cursor_Move_Mode == .inactive {
                 if cellColor != colors.cursor_Over_Note_Passive_Color{cellColor = colors.cursor_Over_Note_Passive_Color}
