@@ -376,7 +376,6 @@ public class Central_State : ObservableObject {
             curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
             centralState_Data_Evaluation()
         }
-        
 //        curr_Data_Pos_Y = currentYCursor_Slider_Position + lower_Bracket_Number
 //        centralState_Data_Evaluation()
     }

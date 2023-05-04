@@ -18,6 +18,11 @@ class Passive_Helper: P_Selectable_Mode {
     func activate_Mode(activationCell: Underlying_Data_Cell?) {
         // TODO: set cursor movemode
         if mode_Active == false{mode_Active=true}
+        for line in parentCentralState.data_Grid.dataLineArray{
+            for cell in line.dataCellArray{
+                cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .inactive)
+            }
+        }
     }
     
     func generateModeDescriptorString()->String{

@@ -130,9 +130,20 @@ public class ComponentColors {
     
     
     public var prohibited_Clashing_Cell_Color : Color = Color(red:0.6,green:0,blue:0)
+    //referenced_in_Prohibited_Clashing_Set
     public var prohibited_Moving_Cell_Color : Color = Color(red:0.8,green:0,blue:0)
+    //referenced_in_Prohibited_Moving_Set
     public var prohibited_Cursor_Cell_Color : Color = Color(red:1,green:0.1,blue:0.1)
+    //referenced_in_Prohibited_Cursor_Set
     
+    //activate_Prohibited_Moving_Cell
+    //deActivate_Prohibited_Moving_Cell
+    
+    //activate_Prohibited_Clashing_Cell
+    //deActivate_Prohibited_Clashing_Cell
+    
+    //activate_Move_Away_From_Cell
+    //deActivate_Move_Away_From_Cell
     
     
 

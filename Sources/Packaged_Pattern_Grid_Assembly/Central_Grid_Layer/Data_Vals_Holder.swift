@@ -19,6 +19,7 @@ public class Data_Vals_Holder : ObservableObject {
 
     private var referenced_in_Highlighted_Set : Bool = false
     
+    
     private var referenced_in_Prohibited_Clashing_Set : Bool = false
     
     private var referenced_in_Prohibited_Moving_Set : Bool = false
@@ -26,6 +27,8 @@ public class Data_Vals_Holder : ObservableObject {
     private var referenced_in_Prohibited_Cursor_Set : Bool = false
     
     private var referenced_in_Cursor_Set : Bool = false
+    
+    
     
     private var referenced_in_Potential_Set : Bool = false
     
@@ -257,7 +260,7 @@ public class Data_Vals_Holder : ObservableObject {
         return retVal
     }
     
-    func check_In_MoveCursor_Set()->Bool{
+    func check_In_MoveCursor_Set()->Bool {
         var retVal = false
         if referenced_in_MoveCursor_Set == true {
             retVal = true

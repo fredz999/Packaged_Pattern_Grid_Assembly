@@ -42,8 +42,18 @@ class Move_Helper: P_Selectable_Mode {
                         }
                     }
                     // TODO: set cursor movemode
+                    for line in parentCentralState.data_Grid.dataLineArray{
+                        for cell in line.dataCellArray{
+                            cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .in_Move)
+                        }
+                    }
                     if dont_Copy_Just_Move == true {
                         // TODO: set cursor movemode
+                        for line in parentCentralState.data_Grid.dataLineArray{
+                            for cell in line.dataCellArray{
+                                cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .in_Move_Copy)
+                            }
+                        }
                         for selectedNote in selectedNotes {
                             if let lclNoteData = selectedNote.modifiable_Note_Data {
                                 if lclNoteData.noteParent.moved_Away_From == false{
@@ -166,12 +176,15 @@ class Move_Helper: P_Selectable_Mode {
                         for cell in moving_Cell_Set.potential_Moved_Set {
                             if cell.in_Prohibited_Clashing_Cell_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
+
                             }
                             if cell.in_Prohibited_Moving_Cell_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+
                             }
                             if cell.in_Potential_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+
                             }
                         }
                     }
@@ -196,12 +209,15 @@ class Move_Helper: P_Selectable_Mode {
                         for cell in moving_Cell_Set.potential_Moved_Set {
                             if cell.in_Prohibited_Clashing_Cell_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
+
                             }
                             if cell.in_Prohibited_Moving_Cell_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+
                             }
                             if cell.in_Potential_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
+
                             }
                         }
                     }

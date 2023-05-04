@@ -61,6 +61,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)
             }
+            // TODO : snohibition
+            alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
         }
         else if type == .deActivate_Move_Away_From_Cell {
             if in_activate_Moved_Away_From_Set == true {
@@ -69,6 +71,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)
             }
+            // TODO : snohibition
+            alterCursorState(thisCellInNote: nil, rewritePermitted: false, cursorMoveMode: nil)
         }
         
          if type == .activate_Prohibited_Moving_Cell {
@@ -77,18 +81,24 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedMovingSet , value: in_Prohibited_Moving_Cell_Set)
+                // TODO : snohibition
+                alterCursorState(thisCellInNote: nil, rewritePermitted: false, cursorMoveMode: nil)
             }
         }
         else if type == .deActivate_Prohibited_Moving_Cell {
             if in_Prohibited_Moving_Cell_Set == true{in_Prohibited_Moving_Cell_Set=false}
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedMovingSet , value: in_Prohibited_Moving_Cell_Set)
+                // TODO : snohibition
+                alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
             }
         }
         else if type == .activate_Prohibited_Clashing_Cell {
             if in_Prohibited_Clashing_Cell_Set == false{in_Prohibited_Clashing_Cell_Set=true}
             if let lclDataVals = currentConnectedDataVals{
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedClashingSet , value: in_Prohibited_Clashing_Cell_Set)
+                // TODO : snohibition
+                alterCursorState(thisCellInNote: nil, rewritePermitted: false, cursorMoveMode: nil)
             }
         }
         else if type == .deActivate_Prohibited_Clashing_Cell {
@@ -96,8 +106,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals{
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedClashingSet , value: in_Prohibited_Clashing_Cell_Set)
             }
+            // TODO : snohibition
+            alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
         }
-        
         
         else if type == .activate_Passive_Cursor_Set {
             if in_Passive_Cursor_Set == false {
@@ -107,6 +118,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .deActivate_Passive_Cursor_Set{
             if in_Passive_Cursor_Set == true {
                 in_Passive_Cursor_Set = false
@@ -115,6 +127,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .deActivate_Multiselect_Background_Set{
             if in_MultiSelectBackground_Set == true {
                 in_MultiSelectBackground_Set = false
@@ -123,6 +136,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .activate_Multiselect_Background_Set {
             if in_MultiSelectBackground_Set == false {
                 in_MultiSelectBackground_Set = true
@@ -131,6 +145,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .activate_Multiselect_Note_Set {
             if in_MultiSelectNote_Set == false{
                 in_MultiSelectNote_Set = true
@@ -139,6 +154,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .deActivate_Multiselect_Note_Set {
             if in_MultiSelectNote_Set == true {
                 in_MultiSelectNote_Set = false
@@ -147,6 +163,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .activate_Delete_Square_Set {
             if in_Delete_Square_Set == false {
                 in_Delete_Square_Set = true
@@ -155,6 +172,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .deActivate_Delete_Square_Set {
             if in_Delete_Square_Set == true {
                 in_Delete_Square_Set = false
@@ -163,6 +181,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .activate_Potential_Set {
             if in_Potential_Set == false {
                 in_Potential_Set = true
@@ -171,6 +190,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .deActivate_Potential_Set {
             if in_Potential_Set == true {
                 in_Potential_Set = false
@@ -179,6 +199,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .activate_Resize_Set {
             if in_Resize_Set == false {
                 in_Resize_Set = true
@@ -187,6 +208,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 }
             }
         }
+        
         else if type == .deActivate_Resize_Set {
             if in_Resize_Set == true {
                 in_Resize_Set = false
@@ -318,7 +340,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
             
             if let lclcursorMoveMode = cursorMoveMode {
-                lclCurrDataVals.externallySetCursorState.cursor_Move_Mode  = lclcursorMoveMode
+                lclCurrDataVals.externallySetCursorState.cursor_Move_Mode = lclcursorMoveMode
             }
         }
     }
