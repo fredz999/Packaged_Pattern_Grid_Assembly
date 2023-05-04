@@ -151,7 +151,7 @@ class Move_Helper: P_Selectable_Mode {
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = clashedSet
                 }
                 else if dont_Copy_Just_Move == false {
-                    print("dont_Copy_Just_Move == false")
+                    print("dont_Copy_Just_Move == false, proposed set length: ",proposedSet.count.description)
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
                     .potential_Moved_Set.filter({$0.note_Im_In != nil})
