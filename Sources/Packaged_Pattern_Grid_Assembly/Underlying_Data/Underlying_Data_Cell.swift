@@ -64,7 +64,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             // TODO : snohibition
             //alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
             alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
-            print("adcas")
+           // not this one
         }
         else if type == .deActivate_Move_Away_From_Cell {
             if in_activate_Moved_Away_From_Set == true {
@@ -75,6 +75,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
             // TODO : snohibition
             alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
+            print("asdcasdc")
         }
         
          if type == .activate_Prohibited_Moving_Cell {
