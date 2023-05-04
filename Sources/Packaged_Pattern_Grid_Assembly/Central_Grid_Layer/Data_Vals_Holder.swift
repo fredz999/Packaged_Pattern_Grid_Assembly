@@ -358,9 +358,27 @@ public class Cursor_State {
     let colors = ComponentColors.StaticColors
     
     var is_Over_Note_Cell : Bool = false
-    var note_Rewrite_Permitted : Bool = false
+    
+    var cell_In_Clashing_Prohibition : Bool = false{didSet{
+        determineIfCursorWithinProhibSet()
+    }}
+    
+    var cell_In_Moving_Prohibition : Bool = false{didSet{
+        determineIfCursorWithinProhibSet()
+    }}
+    
     var cursor_Move_Mode : E_Cursor_Move_Mode = .inactive
     
+    private var cursorWithinProhibSet : Bool = false
+    
+    func determineIfCursorWithinProhibSet(){
+        if cell_In_Clashing_Prohibition == true || cell_In_Moving_Prohibition == true{
+            cursorWithinProhibSet = true
+        }
+        else if cell_In_Clashing_Prohibition == false && cell_In_Moving_Prohibition == false{
+            cursorWithinProhibSet = false
+        }
+    }
     
     init(){
         currCursorColor = colors.cursor_Over_Note_Passive_Color
@@ -373,18 +391,18 @@ public class Cursor_State {
                 if cellColor != colors.cursor_Over_Note_Passive_Color{cellColor = colors.cursor_Over_Note_Passive_Color}
             }
             else if cursor_Move_Mode == .in_Move {
-                if note_Rewrite_Permitted == true {
+                if cursorWithinProhibSet == true {
                     if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
-                else if note_Rewrite_Permitted == false {
+                else if cursorWithinProhibSet == false {
                     if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
             }
             else if cursor_Move_Mode == .in_Move_Copy {
-                if note_Rewrite_Permitted == true {
+                if cursorWithinProhibSet == true {
                     if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
-                else if note_Rewrite_Permitted == false {
+                else if cursorWithinProhibSet == false {
                     if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
             }
@@ -394,18 +412,18 @@ public class Cursor_State {
                 if cellColor != colors.cursor_Over_Blank_Passive_Color{cellColor = colors.cursor_Over_Blank_Passive_Color}
             }
             else if cursor_Move_Mode == .in_Move {
-                if note_Rewrite_Permitted == true {
+                if cursorWithinProhibSet == true {
                     if cellColor != colors.cursor_Over_Blank_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
-                else if note_Rewrite_Permitted == false {
+                else if cursorWithinProhibSet == false {
                     if cellColor != colors.cursor_Over_Blank_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
             }
             else if cursor_Move_Mode == .in_Move_Copy {
-                if note_Rewrite_Permitted == true {
+                if cursorWithinProhibSet == true {
                     if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
-                else if note_Rewrite_Permitted == false {
+                else if cursorWithinProhibSet == false {
                     if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
             }

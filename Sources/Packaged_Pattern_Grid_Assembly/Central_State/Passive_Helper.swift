@@ -20,7 +20,8 @@ class Passive_Helper: P_Selectable_Mode {
         if mode_Active == false{mode_Active=true}
         for line in parentCentralState.data_Grid.dataLineArray{
             for cell in line.dataCellArray{
-                cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .inactive)
+                //cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .inactive)
+                cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .inactive)
             }
         }
     }

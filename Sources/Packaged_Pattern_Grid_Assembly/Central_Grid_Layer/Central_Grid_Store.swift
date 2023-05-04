@@ -113,7 +113,8 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         if let lclNoteImIn = new_Data_Cell.note_Im_In {
             //data_Vals_Holder.externallySetCursorState.is_Over_Note_Cell = true
             //alterCursorState
-            new_Data_Cell.alterCursorState(thisCellInNote: true, rewritePermitted: nil, cursorMoveMode: nil)
+            //new_Data_Cell.alterCursorState(thisCellInNote: true, rewritePermitted: nil, cursorMoveMode: nil)
+            new_Data_Cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
         }
         
     }

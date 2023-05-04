@@ -44,14 +44,16 @@ class Move_Helper: P_Selectable_Mode {
                     // TODO: set cursor movemode
                     for line in parentCentralState.data_Grid.dataLineArray{
                         for cell in line.dataCellArray{
-                            cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .in_Move)
+                            //cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .in_Move)
+                            cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move)
                         }
                     }
                     if dont_Copy_Just_Move == true {
                         // TODO: set cursor movemode
                         for line in parentCentralState.data_Grid.dataLineArray{
                             for cell in line.dataCellArray{
-                                cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .in_Move_Copy)
+                                //cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .in_Move_Copy)
+                                cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move_Copy)
                             }
                         }
                         for selectedNote in selectedNotes {

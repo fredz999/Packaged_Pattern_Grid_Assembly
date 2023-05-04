@@ -62,7 +62,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)
             }
             // TODO : snohibition
-            alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
+            //alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
+            alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
         }
         else if type == .deActivate_Move_Away_From_Cell {
             if in_activate_Moved_Away_From_Set == true {
@@ -72,7 +73,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)
             }
             // TODO : snohibition
-            alterCursorState(thisCellInNote: nil, rewritePermitted: false, cursorMoveMode: nil)
+            alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
         }
         
          if type == .activate_Prohibited_Moving_Cell {
@@ -82,7 +83,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedMovingSet , value: in_Prohibited_Moving_Cell_Set)
                 // TODO : snohibition
-                alterCursorState(thisCellInNote: nil, rewritePermitted: false, cursorMoveMode: nil)
+                alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: true, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
             }
         }
         else if type == .deActivate_Prohibited_Moving_Cell {
@@ -90,7 +91,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedMovingSet , value: in_Prohibited_Moving_Cell_Set)
                 // TODO : snohibition
-                alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
+                alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
             }
         }
         else if type == .activate_Prohibited_Clashing_Cell {
@@ -98,7 +99,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals{
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedClashingSet , value: in_Prohibited_Clashing_Cell_Set)
                 // TODO : snohibition
-                alterCursorState(thisCellInNote: nil, rewritePermitted: false, cursorMoveMode: nil)
+                //alterCursorState(thisCellInNote: nil, rewritePermitted: false, cursorMoveMode: nil)
+                alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: true, cursorMoveMode: nil)
             }
         }
         else if type == .deActivate_Prohibited_Clashing_Cell {
@@ -107,7 +109,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedClashingSet , value: in_Prohibited_Clashing_Cell_Set)
             }
             // TODO : snohibition
-            alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
+            //alterCursorState(thisCellInNote: nil, rewritePermitted: true, cursorMoveMode: nil)
+            alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: false, cursorMoveMode: nil)
         }
         
         else if type == .activate_Passive_Cursor_Set {
@@ -319,7 +322,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
                 //lcl_Data_Vals.externallySetCursorState.is_Over_Note_Cell = false
                 
-                alterCursorState(thisCellInNote: false, rewritePermitted: nil, cursorMoveMode: nil)
+                //alterCursorState(thisCellInNote: false, rewritePermitted: nil, cursorMoveMode: nil)
+                alterCursorState(thisCellInNote: false, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
                 
                 if in_Passive_Cursor_Set == true {
                     if lcl_Data_Vals.statusColor != lcl_Data_Vals.colors.cursor_Over_Blank_Passive_Color{lcl_Data_Vals.statusColor = lcl_Data_Vals.colors.cursor_Over_Blank_Passive_Color}
@@ -328,15 +332,20 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
-    func alterCursorState(thisCellInNote:Bool?,rewritePermitted:Bool?,cursorMoveMode:E_Cursor_Move_Mode?){
+    func alterCursorState(thisCellInNote:Bool?,cell_In_Moving_Prohibition:Bool?,cell_In_Clashing_Prohibition:Bool?,cursorMoveMode:E_Cursor_Move_Mode?){
         if let lclCurrDataVals = currentConnectedDataVals {
             
             if let lclThisIsCellInNote = thisCellInNote {
                 lclCurrDataVals.externallySetCursorState.is_Over_Note_Cell = lclThisIsCellInNote
             }
                 
-            if let lclrewritePermitted = rewritePermitted {
-                lclCurrDataVals.externallySetCursorState.note_Rewrite_Permitted  = lclrewritePermitted
+            if let lclMoving_Prohibition = cell_In_Moving_Prohibition {
+                //lclCurrDataVals.externallySetCursorState.note_Rewrite_Permitted  = lclrewritePermitted
+                lclCurrDataVals.externallySetCursorState.cell_In_Moving_Prohibition = lclMoving_Prohibition
+            }
+            
+            if let lclClashing_Prohibition = cell_In_Clashing_Prohibition {
+                lclCurrDataVals.externallySetCursorState.cell_In_Clashing_Prohibition = lclClashing_Prohibition
             }
             
             if let lclcursorMoveMode = cursorMoveMode {
