@@ -392,18 +392,18 @@ public class Cursor_State {
             }
             else if cursor_Move_Mode == .in_Move {
                 if cursorWithinProhibSet == true {
-                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
                 else if cursorWithinProhibSet == false {
-                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
+                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
             }
             else if cursor_Move_Mode == .in_Move_Copy {
                 if cursorWithinProhibSet == true {
-                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
                 else if cursorWithinProhibSet == false {
-                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
+                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
             }
         }
@@ -413,24 +413,25 @@ public class Cursor_State {
             }
             else if cursor_Move_Mode == .in_Move {
                 if cursorWithinProhibSet == true {
-                    if cellColor != colors.cursor_Over_Blank_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                    if cellColor != colors.cursor_Over_Blank_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
                 else if cursorWithinProhibSet == false {
-                    if cellColor != colors.cursor_Over_Blank_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
+                    if cellColor != colors.cursor_Over_Blank_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
             }
             else if cursor_Move_Mode == .in_Move_Copy {
                 if cursorWithinProhibSet == true {
-                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Permitted}
+                    if cellColor != colors.cursor_Over_Note_Move_Permitted{cellColor = colors.cursor_Over_Note_Move_Prohibited}
                 }
                 else if cursorWithinProhibSet == false {
-                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Prohibited}
+                    if cellColor != colors.cursor_Over_Note_Move_Prohibited{cellColor = colors.cursor_Over_Note_Move_Permitted}
                 }
             }
         }
- 
     }
-
+    
+    
+    
 }
 
 public enum E_Cursor_Move_Mode:String{
