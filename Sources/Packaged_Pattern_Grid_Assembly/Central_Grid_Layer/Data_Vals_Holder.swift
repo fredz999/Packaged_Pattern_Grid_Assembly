@@ -391,7 +391,7 @@ public class Cursor_State {
         }
         else if is_Over_Note_Cell == false {
             if cursor_Move_Mode == .inactive {
-                if cellColor != colors.cursor_Over_Blank_Passive_Color{cellColor = colors.cursor_Over_Blank_Move_Permitted}
+                if cellColor != colors.cursor_Over_Blank_Passive_Color{cellColor = colors.cursor_Over_Blank_Passive_Color}
             }
             else if cursor_Move_Mode == .in_Move {
                 if note_Rewrite_Permitted == true {
