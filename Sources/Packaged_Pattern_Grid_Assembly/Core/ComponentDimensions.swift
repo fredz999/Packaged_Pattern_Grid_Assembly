@@ -112,7 +112,7 @@ public class ComponentColors {
     public var cursor_Over_Note_Move_Permitted : Color = .blue
     public var cursor_Over_Note_Move_Prohibited : Color = Color(red:0.4,green:0,blue:0)
     public var cursor_Over_Blank_Move_Permitted : Color = .red
-    public var cursor_Over_Blank_Move_Prohibited : Color = .yellow
+    public var cursor_Over_Blank_Move_Prohibited : Color = .cyan
 
 //    public var cursor_Over_Note_CopyMove_Permitted : Color = .green
 //    public var cursor_Over_Note_CopyMove_Prohibited : Color = .blue
