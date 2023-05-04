@@ -55,6 +55,9 @@ class Moving_Cell_Set_Holder {
                     if cell.in_Potential_Set == false {
                         cell.handleVisibleStateChange(type : .activate_Potential_Set)
                     }
+                    else if cell.in_Potential_Set == true{
+                        print("troiugsdfiubvsdfiv")
+                    }
                 }
             }
             else if movingNoteCurrentlyWriteable == false {
