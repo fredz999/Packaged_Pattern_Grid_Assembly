@@ -339,22 +339,29 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         if let lclCurrDataVals = currentConnectedDataVals {
             
             if let lclThisIsCellInNote = thisCellInNote {
-                lclCurrDataVals.externallySetCursorState.is_Over_Note_Cell = lclThisIsCellInNote
+                if lclCurrDataVals.externallySetCursorState.is_Over_Note_Cell != lclThisIsCellInNote{
+                    lclCurrDataVals.externallySetCursorState.is_Over_Note_Cell = lclThisIsCellInNote
+                }
             }
                 
             if let lclMoving_Prohibition = cell_In_Moving_Prohibition {
-                //lclCurrDataVals.externallySetCursorState.note_Rewrite_Permitted  = lclrewritePermitted
-                lclCurrDataVals.externallySetCursorState.cell_In_Moving_Prohibition = lclMoving_Prohibition
+                if lclCurrDataVals.externallySetCursorState.cell_In_Moving_Prohibition != lclMoving_Prohibition{
+                    lclCurrDataVals.externallySetCursorState.cell_In_Moving_Prohibition = lclMoving_Prohibition
+                }
             }
             
             if let lclClashing_Prohibition = cell_In_Clashing_Prohibition {
-                lclCurrDataVals.externallySetCursorState.cell_In_Clashing_Prohibition = lclClashing_Prohibition
+                if lclCurrDataVals.externallySetCursorState.cell_In_Clashing_Prohibition != lclClashing_Prohibition{
+                    lclCurrDataVals.externallySetCursorState.cell_In_Clashing_Prohibition = lclClashing_Prohibition
+                }
             }
             
             if let lclcursorMoveMode = cursorMoveMode {
-                lclCurrDataVals.externallySetCursorState.cursor_Move_Mode = lclcursorMoveMode
-                print("cursor mode set to: ",lclcursorMoveMode.rawValue)
+                if lclCurrDataVals.externallySetCursorState.cursor_Move_Mode != lclcursorMoveMode{
+                    lclCurrDataVals.externallySetCursorState.cursor_Move_Mode = lclcursorMoveMode
+                }
             }
+            
         }
     }
     
