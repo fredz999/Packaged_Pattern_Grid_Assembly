@@ -50,6 +50,7 @@ class Move_Helper: P_Selectable_Mode {
                     }
                     if dont_Copy_Just_Move == true {
                         // TODO: set cursor movemode
+                        print("dont_Copy_Just_Move == true")
                         for line in parentCentralState.data_Grid.dataLineArray{
                             for cell in line.dataCellArray{
                                 //cell.alterCursorState(thisCellInNote: nil, rewritePermitted: nil, cursorMoveMode: .in_Move_Copy)
