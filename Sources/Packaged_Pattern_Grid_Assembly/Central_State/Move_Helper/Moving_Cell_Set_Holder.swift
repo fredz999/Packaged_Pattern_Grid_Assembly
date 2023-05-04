@@ -52,14 +52,16 @@ class Moving_Cell_Set_Holder {
         didSet {
             
             if movingNoteCurrentlyWriteable == true {
+                print("movingNoteCurrentlyWriteable == true")
                 for cell in potential_Moved_Set {
                     if cell.in_Potential_Set == false {
                         cell.handleVisibleStateChange(type : .activate_Potential_Set)
-                        print("didset")
+                        
                     }
                 }
             }
             else if movingNoteCurrentlyWriteable == false {
+                print("movingNoteCurrentlyWriteable == false")
                 for cell in potential_Moved_Set {
                     if cell.in_Prohibited_Moving_Cell_Set == false {
                         cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
