@@ -17,6 +17,7 @@ class Moving_Cell_Set_Holder {
     @Published public var movingNoteCurrentlyWriteable : Bool = false
     {
         didSet {
+            print("movingNoteCurrentlyWriteable didset: ",movingNoteCurrentlyWriteable.description)
             handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
         }
     }
