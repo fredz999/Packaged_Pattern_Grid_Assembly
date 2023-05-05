@@ -35,6 +35,7 @@ class Moving_Cell_Set_Holder {
             for cell in potential_Moved_Set {
                 if cell.in_Prohibited_Moving_Cell_Set == false {
                     cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+                    print("1..............")
                 }
             }
         }
@@ -63,6 +64,7 @@ class Moving_Cell_Set_Holder {
                 for cell in potential_Moved_Set {
                     if cell.in_Prohibited_Moving_Cell_Set == false {
                         cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+                        print("2..............")
                     }
                 }
             }
