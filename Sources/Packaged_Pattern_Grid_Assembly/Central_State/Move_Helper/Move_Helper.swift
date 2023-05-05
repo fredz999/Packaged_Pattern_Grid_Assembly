@@ -132,6 +132,12 @@ class Move_Helper: P_Selectable_Mode {
                 if proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move {
                     proposedSet = newLineSet
                     .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
+                    var propstr = ""
+                    let propArray = Array(proposedSet)
+                    for x in propArray{
+                        propstr.append(x.dataCell_X_Number.description+", ")
+                    }
+                    print(propstr)
                 }
                 else if proposedNewMinIndex < currLeftLimit_Move {
                     proposedSet = parentCentralState.currLineSet
@@ -143,12 +149,7 @@ class Move_Helper: P_Selectable_Mode {
                     .filter{$0.dataCell_X_Number >=  currRightLimit_Move-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
                     && $0.dataCell_X_Number <= currRightLimit_Move
                     }
-                    var propstr = ""
-                    let propArray = Array(proposedSet)
-                    for x in propArray{
-                        propstr.append(x.dataCell_X_Number.description+", ")
-                    }
-                    print(propstr)
+                    
                 }
                 if dont_Copy_Just_Move == true {
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
