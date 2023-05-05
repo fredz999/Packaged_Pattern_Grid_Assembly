@@ -121,11 +121,13 @@ class Move_Helper: P_Selectable_Mode {
                 let delta_X_Grid_Units = parentCentralState.curr_Cursor_Min_Data_Pos_X - lclSnapshot_X
                 let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclSnapshot_Y
                 let proposedNewYNumber = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Y_Index + delta_Y_Grid_Units
-                print("proposedNewYNumber: ",proposedNewYNumber.description)
+                
                 let proposedNewMinIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index + delta_X_Grid_Units
                 let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
+                
                 let newLineSet : Set<Underlying_Data_Cell>
                 = Set(parentCentralState.data_Grid.dataLineArray[proposedNewYNumber].dataCellArray)
+                
 
                 if proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move {
                     proposedSet = newLineSet
@@ -141,27 +143,23 @@ class Move_Helper: P_Selectable_Mode {
                     .filter{$0.dataCell_X_Number >=  currRightLimit_Move-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
                     && $0.dataCell_X_Number <= currRightLimit_Move
                     }
+                    var propstr = ""
+                    let propArray = Array(proposedSet)
+                    for x in propArray{
+                        propstr.append(x.dataCell_X_Number.description+", ")
+                    }
+                    print(propstr)
                 }
-                
-                
-                
-
-                
                 if dont_Copy_Just_Move == true {
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
                     let clashedSet = proposedSet.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn && $0.note_Im_In != nil})
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = clashedSet
                 }
                 else if dont_Copy_Just_Move == false {
-                    
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-                    
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
                     .potential_Moved_Set.filter({$0.note_Im_In != nil})
-
                 }
-                
-                
             }
         }
     }

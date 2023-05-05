@@ -75,7 +75,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
             // TODO : snohibition
             alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .inactive)
-            //print("asdcasdc")
         }
         //--------------------------------------------------------------------------------------------------------------------------------------------
          if type == .activate_Prohibited_Moving_Cell {
