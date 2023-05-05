@@ -116,10 +116,12 @@ class Move_Helper: P_Selectable_Mode {
         }
         for m in 0..<moving_Cell_Set_Holder_Array.count {
             var proposedSet = Set<Underlying_Data_Cell>()
+            
             if let lclSnapshot_X = snapshot_Cursor_Min_X,let lclSnapshot_Y = snapshot_Cursor_Y {
                 let delta_X_Grid_Units = parentCentralState.curr_Cursor_Min_Data_Pos_X - lclSnapshot_X
                 let delta_Y_Grid_Units = parentCentralState.curr_Data_Pos_Y - lclSnapshot_Y
                 let proposedNewYNumber = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Y_Index + delta_Y_Grid_Units
+                print("proposedNewYNumber: ",proposedNewYNumber.description)
                 let proposedNewMinIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index + delta_X_Grid_Units
                 let proposedNewMaxIndex = moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index + delta_X_Grid_Units
                 let newLineSet : Set<Underlying_Data_Cell>
@@ -153,11 +155,10 @@ class Move_Helper: P_Selectable_Mode {
                 else if dont_Copy_Just_Move == false {
                     
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
+                    
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
                     .potential_Moved_Set.filter({$0.note_Im_In != nil})
-//                    print("potential_Moved_Set count: ",moving_Cell_Set_Holder_Array[m].potential_Moved_Set.count.description
-//                          ,", prohibition_Indicator_Set.count: ",moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set.count.description
-//                          ,", minX.Y for Potential set: ",moving_Cell_Set_Holder_Array[m].potential_Moved_Set.min(by: {$0.dataCell_X_Number<$1.dataCell_X_Number})?.parentLine.line_Y_Num.description)
+
                 }
                 
                 
