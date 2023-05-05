@@ -136,7 +136,7 @@ class Move_Helper: P_Selectable_Mode {
                     let propArray = Array(proposedSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}))
                     
                     for x in propArray {
-                        propstr.append("X:" + x.dataCell_X_Number.description + ", Y: " + x.parentLine.line_Y_Num.description+", ")
+                        propstr.append("X:" + x.dataCell_X_Number.description + "Y: " + x.parentLine.line_Y_Num.description+", ")
                     }
                     
                     print(propstr)
