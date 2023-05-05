@@ -49,6 +49,7 @@ class Moving_Cell_Set_Holder {
         }
         didSet {
             if movingNoteCurrentlyWriteable == true {
+                print("thing wuz true")
 //                for cell in potential_Moved_Set {
 //                    if cell.in_Potential_Set == false {
 //                        cell.handleVisibleStateChange(type : .activate_Potential_Set)
@@ -56,6 +57,7 @@ class Moving_Cell_Set_Holder {
 //                }
             }
             else if movingNoteCurrentlyWriteable == false {
+                print("thing wuz fulse")
 //                for cell in potential_Moved_Set {
 //                    if cell.in_Prohibited_Moving_Cell_Set == false {
 //                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
