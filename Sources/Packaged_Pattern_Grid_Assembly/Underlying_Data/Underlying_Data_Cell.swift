@@ -93,7 +93,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedMovingSet , value: in_Prohibited_Moving_Cell_Set)
                 // TODO : snohibition
-                //print("snobition 4")
+                // print("snobition 4")
                 alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
             }
         }

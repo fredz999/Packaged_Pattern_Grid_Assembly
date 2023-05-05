@@ -20,30 +20,27 @@ class Moving_Cell_Set_Holder {
         }
     }
     
-    func handleNoteWriteabilityChange(noteWriteable:Bool){
-        if noteWriteable == true {
-            print("noteWriteable == true")
-            for cell in potential_Moved_Set {
-                if cell.in_Prohibited_Moving_Cell_Set == true {
-                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-
-                }
-            }
-        }
-        else if noteWriteable == false {
-            print("noteWriteable == false")
-            for cell in potential_Moved_Set {
-                if cell.in_Prohibited_Moving_Cell_Set == false {
-                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                    print("1..............")
-                }
-            }
-        }
+    func handleNoteWriteabilityChange(noteWriteable:Bool)
+    {
+//        if noteWriteable == true {
+//            for cell in potential_Moved_Set {
+//                if cell.in_Prohibited_Moving_Cell_Set == true {
+//                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+//                }
+//            }
+//        }
+//        else if noteWriteable == false {
+//            for cell in potential_Moved_Set {
+//                if cell.in_Prohibited_Moving_Cell_Set == false {
+//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+//                    print("1..............")
+//                }
+//            }
+//        }
     }
 
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
         willSet {
-            
             let delta = potential_Moved_Set.symmetricDifference(newValue)
             for cell in delta {
                 if cell.in_Potential_Set{cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
@@ -52,7 +49,6 @@ class Moving_Cell_Set_Holder {
             }
         }
         didSet {
-            
             if movingNoteCurrentlyWriteable == true {
                 for cell in potential_Moved_Set {
                     if cell.in_Potential_Set == false {
