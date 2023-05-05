@@ -132,15 +132,6 @@ class Move_Helper: P_Selectable_Mode {
                 if proposedNewMinIndex >= currLeftLimit_Move && proposedNewMaxIndex <= currRightLimit_Move {
                     proposedSet = newLineSet
                     .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
-                    var propstr = ""
-                    let propArray = Array(proposedSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}))
-                    
-                    for x in propArray {
-                        propstr.append("X:" + x.dataCell_X_Number.description + "Y: " + x.parentLine.line_Y_Num.description+", ")
-                    }
-                    
-                    print(propstr)
-                    print("------------------------------------------------------------------------------------------")
                 }
                 else if proposedNewMinIndex < currLeftLimit_Move {
                     proposedSet = parentCentralState.currLineSet
@@ -152,12 +143,11 @@ class Move_Helper: P_Selectable_Mode {
                     .filter{$0.dataCell_X_Number >=  currRightLimit_Move-(moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_High_Index - moving_Cell_Set_Holder_Array[m].initial_Snapshot.note_Low_Index)
                     && $0.dataCell_X_Number <= currRightLimit_Move
                     }
-                    
                 }
                 if dont_Copy_Just_Move == true {
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
-                    let clashedSet = proposedSet.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn && $0.note_Im_In != nil})
-                    moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = clashedSet
+//                    let clashedSet = proposedSet.filter({$0.note_Im_In != moving_Cell_Set_Holder_Array[m].noteImIn && $0.note_Im_In != nil})
+//                    moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = clashedSet
                 }
                 else if dont_Copy_Just_Move == false {
                     moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
