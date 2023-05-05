@@ -207,15 +207,12 @@ class Move_Helper: P_Selectable_Mode {
                         for cell in moving_Cell_Set.potential_Moved_Set {
                             if cell.in_Prohibited_Clashing_Cell_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Prohibited_Clashing_Cell)
-
                             }
                             if cell.in_Prohibited_Moving_Cell_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-
                             }
                             if cell.in_Potential_Set == true {
                                 cell.handleVisibleStateChange(type: .deActivate_Potential_Set)
-
                             }
                         }
                     }
