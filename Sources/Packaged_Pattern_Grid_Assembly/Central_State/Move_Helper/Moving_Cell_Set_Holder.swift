@@ -14,29 +14,29 @@ class Moving_Cell_Set_Holder {
     
     var initial_Snapshot : Note_Movement_SnapShot
     
-    @Published public var movingNoteCurrentlyWriteable : Bool = false {
-        didSet {
-            handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
-        }
-    }
+    @Published public var movingNoteCurrentlyWriteable : Bool = false
+//    {
+//        didSet {
+//            handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
+//        }
+//    }
     
     func handleNoteWriteabilityChange(noteWriteable:Bool)
     {
-//        if noteWriteable == true {
-//            for cell in potential_Moved_Set {
-//                if cell.in_Prohibited_Moving_Cell_Set == true {
-//                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
-//                }
-//            }
-//        }
-//        else if noteWriteable == false {
-//            for cell in potential_Moved_Set {
-//                if cell.in_Prohibited_Moving_Cell_Set == false {
-//                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-//                    print("1..............")
-//                }
-//            }
-//        }
+        if noteWriteable == true {
+            for cell in potential_Moved_Set {
+                if cell.in_Prohibited_Moving_Cell_Set == true {
+                    cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
+                }
+            }
+        }
+        else if noteWriteable == false {
+            for cell in potential_Moved_Set {
+                if cell.in_Prohibited_Moving_Cell_Set == false {
+                    cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+                }
+            }
+        }
     }
 
     var potential_Moved_Set = Set<Underlying_Data_Cell>(){
