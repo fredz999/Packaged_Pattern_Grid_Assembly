@@ -49,11 +49,11 @@ class Moving_Cell_Set_Holder {
         }
         didSet {
             if movingNoteCurrentlyWriteable == true {
-                for cell in potential_Moved_Set {
-                    if cell.in_Potential_Set == false {
-                        cell.handleVisibleStateChange(type : .activate_Potential_Set)
-                    }
-                }
+//                for cell in potential_Moved_Set {
+//                    if cell.in_Potential_Set == false {
+//                        cell.handleVisibleStateChange(type : .activate_Potential_Set)
+//                    }
+//                }
             }
             else if movingNoteCurrentlyWriteable == false {
 //                for cell in potential_Moved_Set {
