@@ -22,6 +22,7 @@ class Moving_Cell_Set_Holder {
     
     func handleNoteWriteabilityChange(noteWriteable:Bool){
         if noteWriteable == true {
+            print("noteWriteable == true")
             for cell in potential_Moved_Set {
                 if cell.in_Prohibited_Moving_Cell_Set == true {
                     cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)
@@ -30,11 +31,10 @@ class Moving_Cell_Set_Holder {
             }
         }
         else if noteWriteable == false {
-
+            print("noteWriteable == false")
             for cell in potential_Moved_Set {
                 if cell.in_Prohibited_Moving_Cell_Set == false {
                     cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-
                 }
             }
         }
