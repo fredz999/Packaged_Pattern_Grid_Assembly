@@ -332,6 +332,7 @@ public class Central_State : ObservableObject {
     }
 
     func centralState_Data_Evaluation(){
+        print("centralState_Data_Evaluation()")
         if curr_Data_Pos_Y < data_Grid.dataLineArray.count{
             if dimensions.patternTimingConfiguration == .fourFour {
                 currentData = data_Grid.dataLineArray[curr_Data_Pos_Y].dataCellArray[dimensions.currentSingleCellDataIndex]
