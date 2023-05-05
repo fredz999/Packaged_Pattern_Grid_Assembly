@@ -56,11 +56,11 @@ class Moving_Cell_Set_Holder {
                 }
             }
             else if movingNoteCurrentlyWriteable == false {
-                for cell in potential_Moved_Set {
-                    if cell.in_Prohibited_Moving_Cell_Set == false {
-                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
-                    }
-                }
+//                for cell in potential_Moved_Set {
+//                    if cell.in_Prohibited_Moving_Cell_Set == false {
+//                        cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+//                    }
+//                }
             }
         }
     }
