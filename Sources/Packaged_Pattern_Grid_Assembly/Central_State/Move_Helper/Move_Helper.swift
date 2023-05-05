@@ -133,7 +133,7 @@ class Move_Helper: P_Selectable_Mode {
                     proposedSet = newLineSet
                     .filter{$0.dataCell_X_Number >= proposedNewMinIndex && $0.dataCell_X_Number <= proposedNewMaxIndex}
                     var propstr = ""
-                    let propArray = Array(proposedSet)
+                    let propArray = Array(proposedSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}))
                     for x in propArray{
                         propstr.append(x.dataCell_X_Number.description+", ")
                     }
