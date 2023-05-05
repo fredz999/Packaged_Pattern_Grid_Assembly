@@ -48,12 +48,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var in_MoveNote_Cursor_Set : Bool = false
     
-    
-    
     var in_activate_Moved_Away_From_Set : Bool = false
  
     func handleVisibleStateChange(type : E_VisibleStateChangeType) {
-        //handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
+
         if type == .activate_Move_Away_From_Cell {
             if in_activate_Moved_Away_From_Set == false {
                 in_activate_Moved_Away_From_Set = true
