@@ -15,11 +15,11 @@ class Moving_Cell_Set_Holder {
     var initial_Snapshot : Note_Movement_SnapShot
     
     @Published public var movingNoteCurrentlyWriteable : Bool = false
-//    {
-//        didSet {
-//            handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
-//        }
-//    }
+    {
+        didSet {
+            handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
+        }
+    }
     
     func handleNoteWriteabilityChange(noteWriteable:Bool)
     {
@@ -45,7 +45,6 @@ class Moving_Cell_Set_Holder {
             for cell in delta {
                 if cell.in_Potential_Set{cell.handleVisibleStateChange(type: .deActivate_Potential_Set)}
                 if cell.in_Prohibited_Moving_Cell_Set{cell.handleVisibleStateChange(type: .deActivate_Prohibited_Moving_Cell)}
-
             }
         }
         didSet {
