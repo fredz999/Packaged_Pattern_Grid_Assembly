@@ -385,7 +385,7 @@ public class Central_State : ObservableObject {
     
     
 //    var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator?
-    var initial_Data_Y_Position_Set : (()->())?
+    public var initial_Data_Y_Position_Set : (()->())?
 //    public func data_Y_Slider_Update(){
 //        if let lclInitial_Data_Y_Position_Set = initial_Data_Y_Position_Set{
 //            lclInitial_Data_Y_Position_Set()
