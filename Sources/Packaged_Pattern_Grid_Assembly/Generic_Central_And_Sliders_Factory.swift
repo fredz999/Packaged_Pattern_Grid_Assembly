@@ -37,6 +37,10 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
     
     public var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>
     
+    public func exposeData_Y_Coord()->Data_Y_Slider_Coordinator<Injected_Data_Y_Slider_Cell_Type>{
+        return generic_Slider_Y_Coord
+    }
+    
     public init(dataGridParam:Underlying_Data_Grid){
         
         visible_Grid_Store = Central_Grid_Store(dataGridParam: dataGridParam)

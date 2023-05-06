@@ -384,7 +384,7 @@ public class Central_State : ObservableObject {
     }
     
     
-    //var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator?
+//    var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator?
 //    var bounceClosure : (()->())?
 //    public func data_Y_Slider_Update(){
 //        if let lclBounceClosure = bounceClosure{
