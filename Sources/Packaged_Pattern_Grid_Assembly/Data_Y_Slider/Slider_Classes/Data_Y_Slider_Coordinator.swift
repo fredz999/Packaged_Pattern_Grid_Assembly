@@ -91,12 +91,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         return dimensions.DATA_final_Line_Y_Index
     }
     
-    public var v_Collection_View : UICollectionView?{
-        didSet{
-            vertical_GoToEnd()
-            print("vertical_GoToEnd() called")
-        }
-    }
+    public var v_Collection_View : UICollectionView?
     
     public func toggleFreeze(toFreeze : Bool) {
         if toFreeze == true {
@@ -116,6 +111,10 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         let indexToScrollTo = IndexPath(item: last, section: 0)
         if let lclCollection_View = v_Collection_View {
             lclCollection_View.scrollToItem(at: indexToScrollTo, at: .bottom, animated: false)
+            print("v_Collection_View != nil")
+        }
+        else if v_Collection_View == nil{
+            print("v_Collection_View == nil")
         }
     }
 
