@@ -377,6 +377,10 @@ public class Central_State : ObservableObject {
             centralState_Data_Evaluation()
         }
     }
+    
+    public func data_Driven_slider_Update(){
+        print("data_Driven_slider_Update()")
+    }
 
     func data_Slider_LowBracket_Update(newLower:Int){
         if (currentYCursor_Slider_Position + newLower) < data_Grid.dataLineArray.count {
