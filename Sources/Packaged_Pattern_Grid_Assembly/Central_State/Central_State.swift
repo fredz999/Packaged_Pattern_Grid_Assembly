@@ -124,9 +124,9 @@ public class Central_State : ObservableObject {
         
     }
 
-    deinit{
-        if bounceClosure != nil{bounceClosure=nil}
-    }
+//    deinit{
+//        if bounceClosure != nil{bounceClosure=nil}
+//    }
     
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
@@ -385,12 +385,12 @@ public class Central_State : ObservableObject {
     
     
     //var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator?
-    var bounceClosure : (()->())?
-    public func data_Y_Slider_Update(){
-        if let lclBounceClosure = bounceClosure{
-            lclBounceClosure()
-        }
-    }
+//    var bounceClosure : (()->())?
+//    public func data_Y_Slider_Update(){
+//        if let lclBounceClosure = bounceClosure{
+//            lclBounceClosure()
+//        }
+//    }
 
     func data_Slider_LowBracket_Update(newLower:Int){
         if (currentYCursor_Slider_Position + newLower) < data_Grid.dataLineArray.count {
