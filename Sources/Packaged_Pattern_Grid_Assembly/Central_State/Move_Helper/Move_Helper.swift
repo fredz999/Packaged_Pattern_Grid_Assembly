@@ -154,7 +154,7 @@ class Move_Helper: P_Selectable_Mode {
                     moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = clashedSet
                 }
                 else if dont_Copy_Just_Move == false {
-                    //print("what about in here?: 0")
+                      print("what about in here?: 0")
                     
 //                    moving_Cell_Set_Holder_Array[m].potential_Moved_Set = proposedSet
 //                    moving_Cell_Set_Holder_Array[m].prohibition_Indicator_Set = moving_Cell_Set_Holder_Array[m]
