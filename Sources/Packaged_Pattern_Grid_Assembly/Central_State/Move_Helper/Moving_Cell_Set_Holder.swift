@@ -17,7 +17,6 @@ class Moving_Cell_Set_Holder {
     @Published public var movingNoteCurrentlyWriteable : Bool = false
     {
         didSet {
-            print("movingNoteCurrentlyWriteable didset: ",movingNoteCurrentlyWriteable.description)
             handleNoteWriteabilityChange(noteWriteable: movingNoteCurrentlyWriteable)
         }
     }
@@ -50,7 +49,6 @@ class Moving_Cell_Set_Holder {
         }
         didSet {
             if movingNoteCurrentlyWriteable == true {
-                print("movingNoteCurrentlyWriteable read and was true")
                 for cell in potential_Moved_Set {
                     if cell.in_Potential_Set == false {
                         cell.handleVisibleStateChange(type : .activate_Potential_Set)
@@ -58,7 +56,6 @@ class Moving_Cell_Set_Holder {
                 }
             }
             else if movingNoteCurrentlyWriteable == false {
-                print("movingNoteCurrentlyWriteable read and was false")
                 for cell in potential_Moved_Set {
                     if cell.in_Prohibited_Moving_Cell_Set == false {
                         cell.handleVisibleStateChange(type: .activate_Prohibited_Moving_Cell)
@@ -78,13 +75,11 @@ class Moving_Cell_Set_Holder {
         didSet {
             if prohibition_Indicator_Set.count == 0 {
                 if movingNoteCurrentlyWriteable == false {
-                    print("movingNoteCurrentlyWriteable set TRUE: ")
                     movingNoteCurrentlyWriteable = true
                 }
             }
             else if prohibition_Indicator_Set.count > 0 {
                 if movingNoteCurrentlyWriteable == true {
-                    print("movingNoteCurrentlyWriteable set FALSE: ")
                     movingNoteCurrentlyWriteable = false
                 }
                 for cell in prohibition_Indicator_Set {
