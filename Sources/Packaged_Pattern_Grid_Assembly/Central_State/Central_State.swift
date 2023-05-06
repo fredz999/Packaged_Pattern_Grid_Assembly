@@ -124,9 +124,9 @@ public class Central_State : ObservableObject {
         
     }
 
-//    deinit{
-//        if bounceClosure != nil{bounceClosure=nil}
-//    }
+    deinit{
+        if initial_Data_Y_Position_Set != nil{initial_Data_Y_Position_Set=nil}
+    }
     
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
@@ -385,10 +385,10 @@ public class Central_State : ObservableObject {
     
     
 //    var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator?
-//    var bounceClosure : (()->())?
+    var initial_Data_Y_Position_Set : (()->())?
 //    public func data_Y_Slider_Update(){
-//        if let lclBounceClosure = bounceClosure{
-//            lclBounceClosure()
+//        if let lclInitial_Data_Y_Position_Set = initial_Data_Y_Position_Set{
+//            lclInitial_Data_Y_Position_Set()
 //        }
 //    }
 

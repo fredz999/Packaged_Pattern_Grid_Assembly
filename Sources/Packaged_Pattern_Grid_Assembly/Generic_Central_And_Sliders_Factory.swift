@@ -68,7 +68,7 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         centralState.higher_Bracket_Number = dimensions.visualGrid_Y_Unit_Count
         
         //let local_Bounce = generic_Slider_Y_Coord.vertical_GoToEnd
-        
+        centralState.initial_Data_Y_Position_Set = generic_Slider_Y_Coord.vertical_GoToEnd
         //centralState.bounceClosure = generic_Slider_Y_Coord.vertical_GoToEnd
         //vertical_GoToEnd()
     }
