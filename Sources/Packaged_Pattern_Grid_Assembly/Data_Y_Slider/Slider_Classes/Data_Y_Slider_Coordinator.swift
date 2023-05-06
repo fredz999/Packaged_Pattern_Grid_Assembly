@@ -107,6 +107,7 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
     }
 
     public func vertical_GoToEnd(){
+        print("vertical_GoToEnd() start")
         let last = 35
         let indexToScrollTo = IndexPath(item: last, section: 0)
         if let lclCollection_View = v_Collection_View {
