@@ -91,7 +91,8 @@ public class Central_State : ObservableObject {
         }
     }
     
-    public init(dataGridParam:Underlying_Data_Grid){
+    public init(dataGridParam:Underlying_Data_Grid)
+    {
         data_Grid = dataGridParam
         currentData = data_Grid.dataLineArray[0].dataCellArray[0]
         curr_Cursor_Min_Data_Pos_X = 0
@@ -123,6 +124,10 @@ public class Central_State : ObservableObject {
         
     }
 
+    deinit{
+        if bounceClosure != nil{bounceClosure=nil}
+    }
+    
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
         currentNoteCollection = noteCollectionParam
         setPatternMode(patternModeParam: .passive_Mode)
@@ -378,8 +383,13 @@ public class Central_State : ObservableObject {
         }
     }
     
-    public func data_Driven_slider_Update(){
-        print("data_Driven_slider_Update()")
+    
+    //var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator?
+    var bounceClosure : (()->())?
+    public func data_Y_Slider_Update(){
+        if let lclBounceClosure = bounceClosure{
+            lclBounceClosure()
+        }
     }
 
     func data_Slider_LowBracket_Update(newLower:Int){
