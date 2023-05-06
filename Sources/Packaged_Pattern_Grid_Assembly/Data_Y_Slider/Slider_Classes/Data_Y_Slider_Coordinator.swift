@@ -91,7 +91,12 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         return dimensions.DATA_final_Line_Y_Index
     }
     
-    public var v_Collection_View : UICollectionView?
+    public var v_Collection_View : UICollectionView?{
+        didSet{
+            vertical_GoToEnd()
+            print("vertical_GoToEnd() called")
+        }
+    }
     
     public func toggleFreeze(toFreeze : Bool) {
         if toFreeze == true {

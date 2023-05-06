@@ -34,7 +34,6 @@ public struct Data_Y_Slider_View<T:View>: UIViewRepresentable {
         collectionView.showsHorizontalScrollIndicator = false
         context.coordinator.v_Collection_View = collectionView
         Slider_Cell.registerWithCollectionView(collectionView: collectionView)
-        collectionView.contentOffset.y = 300
         return collectionView
     }
 
