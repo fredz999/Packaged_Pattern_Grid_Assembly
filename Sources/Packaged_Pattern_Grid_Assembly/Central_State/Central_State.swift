@@ -128,8 +128,8 @@ public class Central_State : ObservableObject {
     }
     
     public func setCurrentNoteCollection(noteCollectionParam : Note_Collection?){
-        if let lclNewCollection = noteCollectionParam{
-            currentNoteCollection = noteCollectionParam
+        if let lclNewCollection = noteCollectionParam {
+            currentNoteCollection = lclNewCollection
             setPatternMode(patternModeParam: .passive_Mode)
         }
         else if noteCollectionParam == nil{
