@@ -52,7 +52,7 @@ public class Note : ObservableObject, Identifiable, Equatable, Hashable {
     }
     
     func resetCells(){
-        if let lclModifiableNoteData = modifiable_Note_Data{
+        if let lclModifiableNoteData = modifiable_Note_Data {
             for cell in lclModifiableNoteData.dataCellArray {
                 cell.change_Highlight(highlightStatusParam: false)
                 cell.reset_To_Original()

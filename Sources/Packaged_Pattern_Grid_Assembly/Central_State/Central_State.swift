@@ -91,8 +91,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    public init(dataGridParam:Underlying_Data_Grid)
-    {
+    public init(dataGridParam:Underlying_Data_Grid){
         data_Grid = dataGridParam
         currentData = data_Grid.dataLineArray[0].dataCellArray[0]
         curr_Cursor_Min_Data_Pos_X = 0
@@ -124,13 +123,29 @@ public class Central_State : ObservableObject {
         
     }
 
-    deinit{
+    deinit {
         if initial_Data_Y_Position_Set != nil{initial_Data_Y_Position_Set=nil}
     }
     
-    public func setCurrentNoteCollection(noteCollectionParam : Note_Collection){
-        currentNoteCollection = noteCollectionParam
-        setPatternMode(patternModeParam: .passive_Mode)
+    public func setCurrentNoteCollection(noteCollectionParam : Note_Collection?){
+        if let lclNewCollection = noteCollectionParam{
+            currentNoteCollection = noteCollectionParam
+            setPatternMode(patternModeParam: .passive_Mode)
+        }
+        else if noteCollectionParam == nil{
+            if let lclNoteCollection = currentNoteCollection{
+                for note in lclNoteCollection.noteArray{
+                    if note.note_Is_Pre_MultiSelected == true{note.note_Is_Pre_MultiSelected = false}
+                    if note.moved_Away_From == true{note.moved_Away_From = false}
+                }
+                lclNoteCollection.deHighlightCollection()
+                lclNoteCollection.deleteAllNotes()
+            }
+            //nil the current set
+            currentNoteCollection = nil
+            // set the mode to pre-passive
+            setPatternMode(patternModeParam: .no_Note_Collection)
+        }
     }
     
     func modeSpecificActions(){
@@ -383,14 +398,7 @@ public class Central_State : ObservableObject {
         }
     }
     
-    
-//    var generic_Slider_Y_Coord : Data_Y_Slider_Coordinator?
     public var initial_Data_Y_Position_Set : (()->())?
-//    public func data_Y_Slider_Update(){
-//        if let lclInitial_Data_Y_Position_Set = initial_Data_Y_Position_Set{
-//            lclInitial_Data_Y_Position_Set()
-//        }
-//    }
 
     func data_Slider_LowBracket_Update(newLower:Int){
         if (currentYCursor_Slider_Position + newLower) < data_Grid.dataLineArray.count {

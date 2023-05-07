@@ -63,7 +63,7 @@ public class Note_Collection : ObservableObject {
     
     func deHighlightCollection(){
         for note in noteArray{
-            if note.highlighted == true{
+            if note.highlighted == true {
                 note.highlighted = false
             }
         }
@@ -146,6 +146,12 @@ public class Note_Collection : ObservableObject {
             if note.highlighted == true{
                 delete_Note_By_Id(note_Id_Param: note.id)
             }
+        }
+    }
+    
+    func deleteAllNotes(){
+        for note in noteArray{
+            delete_Note_By_Id(note_Id_Param: note.id)
         }
     }
     
