@@ -112,10 +112,17 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         //&& data_Vals_Holder.externallySetCursorState.is_Over_Note_Cell == true
         // && the cell hasnt got the state change thats being done here
         
-//        if new_Data_Cell.note_Im_In != nil  {
-//            print("alterCursorState call 1", ", YNum: ",new_Data_Cell.parentLine.line_Y_Num)
-//            new_Data_Cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
-//        }
+        // rem: data_Vals_Holder stays the SAME
+        // data_Cell changes
+        // if the new data cell is noteless that needs to be set as well
+        
+        if new_Data_Cell.note_Im_In != nil {
+            print("alterCursorState call 1", ", YNum: ",new_Data_Cell.parentLine.line_Y_Num)
+            new_Data_Cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
+        }
+        else if new_Data_Cell.note_Im_In == nil {
+            new_Data_Cell.alterCursorState(thisCellInNote: false, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
+        }
         
     }
     
