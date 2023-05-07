@@ -104,12 +104,10 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         newXNum: new_Data_Cell.dataCell_X_Number
         , newYNum: new_Data_Cell.parentLine.line_Y_Num
         , newCellNoteStatus: new_Data_Cell.currentType)
-        //, newNoteImIn: new_Data_Cell.note_Im_In)
-        // data_Vals_Holder.updateNoteFromNewData(newNoteImIn: new_Data_Cell.note_Im_In)
         
-        //if let lclNoteImIn = new_Data_Cell.note_Im_In {
+        // this is getting incorrectly set in data_Y_Slider
         if new_Data_Cell.note_Im_In != nil {
-            print("alterCursorState call 1")
+            print("alterCursorState call 1", ", YNum: ",new_Data_Cell.parentLine.line_Y_Num)
             new_Data_Cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
         }
         
