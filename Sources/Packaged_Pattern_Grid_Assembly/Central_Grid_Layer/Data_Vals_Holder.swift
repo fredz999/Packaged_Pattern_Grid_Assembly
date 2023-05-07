@@ -357,7 +357,11 @@ public class Cursor_State {
     var currCursorColor : Color
     let colors = ComponentColors.StaticColors
     
-    var is_Over_Note_Cell : Bool = false
+    var is_Over_Note_Cell : Bool = false{
+        didSet{
+            print("wheres this getting set?: ynum?: ")
+        }
+    }
     
     var cell_In_Clashing_Prohibition : Bool = false{didSet{
         determineIfCursorWithinProhibSet()
