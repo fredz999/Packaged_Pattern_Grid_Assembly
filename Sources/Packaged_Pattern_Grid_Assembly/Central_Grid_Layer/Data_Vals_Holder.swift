@@ -381,11 +381,13 @@ public class Cursor_State {
     }
     
     init(){
-        currCursorColor = colors.cursor_Over_Note_Passive_Color
+        currCursorColor = colors.cursor_Over_Blank_Passive_Color
+            //.cursor_Over_Note_Passive_Color
     }
     
     func returnCursorCellColor(cellColor : inout Color) {
         if is_Over_Note_Cell == true {
+            
             if cursor_Move_Mode == .inactive {
                 if cellColor != colors.cursor_Over_Note_Passive_Color{cellColor = colors.cursor_Over_Note_Passive_Color}
             }
