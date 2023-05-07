@@ -134,7 +134,7 @@ public class Note_Collection : ObservableObject {
 //                if let lclConnectedVals = cell.currentConnectedDataVals {
 //                    lclConnectedVals.externallySetCursorState.is_Over_Note_Cell = true
 //                }
-                //cell.alterCursorState(thisCellInNote: true, rewritePermitted: nil, cursorMoveMode: nil)
+                print("alterCursorState call 6")
                 cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
                 
             }

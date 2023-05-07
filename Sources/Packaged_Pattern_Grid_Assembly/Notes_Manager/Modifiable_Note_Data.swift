@@ -124,7 +124,7 @@ public class Modifiable_Note_Data{
 //                            lclDataValsHolder.externallySetCursorState.is_Over_Note_Cell = true
 //                        }
 //                    }
-                    //cell.alterCursorState(thisCellInNote: true, rewritePermitted: nil, cursorMoveMode: nil)
+                    print("alterCursorState call 5")
                     cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
                 }
             }
