@@ -184,6 +184,10 @@ public class Central_State : ObservableObject {
             modeActivator(mode_Param: passive_Helper, activationCellParam: nil)
             currentPatternMode = .passive_Mode
         }
+        else if patternModeParam == .no_Note_Collection {
+            modeActivator(mode_Param: nil, activationCellParam: nil)
+            currentPatternMode = .no_Note_Collection
+        }
         else if patternModeParam == .resize_Mode {
             modeActivator(mode_Param: resize_Helper, activationCellParam: currentData)
             currentPatternMode = .resize_Mode
@@ -349,6 +353,19 @@ public class Central_State : ObservableObject {
                 }
             }
         }
+        else if mode_Param == nil{
+            for optionalHelper in helperArray {
+                if let lclHelper = optionalHelper {
+                    if lclHelper.mode_Active == true {
+                        lclHelper.deactivate_Mode()
+                    }
+                }
+            }
+            mode_String = ""
+            mode_Id = nil
+        }
+        
+        
     }
 
     func centralState_Data_Evaluation(){
