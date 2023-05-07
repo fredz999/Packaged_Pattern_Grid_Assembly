@@ -108,7 +108,8 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         , newCellNoteStatus: new_Data_Cell.currentType)
         
         // this is getting incorrectly set in data_Y_Slider
-        if new_Data_Cell.note_Im_In != nil {
+        //externallySetCursorState.is_Over_Note_Cell
+        if new_Data_Cell.note_Im_In != nil && data_Vals_Holder.externallySetCursorState.is_Over_Note_Cell == false { // && the cell hasnt got the state change thats being done here
             print("alterCursorState call 1", ", YNum: ",new_Data_Cell.parentLine.line_Y_Num)
             new_Data_Cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
         }
