@@ -310,7 +310,11 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
 
-   @Published public var statusColor : Color
+    @Published public var statusColor : Color{
+        didSet{
+            print("statusColor set ...............")
+        }
+    }
    
    public init(xNumParam:Int,yNumParam:Int,typeParam:E_CellStatus,cellWidthParam:CGFloat,cellHeightParam:CGFloat,xOffsetParam:CGFloat){
    cell_X_Offset = xOffsetParam
