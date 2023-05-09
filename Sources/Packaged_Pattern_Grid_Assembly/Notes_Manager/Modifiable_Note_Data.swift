@@ -119,13 +119,10 @@ public class Modifiable_Note_Data{
             }
             for cell in self.dataCellArray {
                 if cell.note_Im_In != nil {
-//                    if let lclDataValsHolder = cell.currentConnectedDataVals {
-//                        if lclDataValsHolder.externallySetCursorState.is_Over_Note_Cell != true {
-//                            lclDataValsHolder.externallySetCursorState.is_Over_Note_Cell = true
-//                        }
-//                    }
-                    print("alterCursorState call 5")
                     cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
+                }
+                else if cell.note_Im_In == nil {
+                    cell.alterCursorState(thisCellInNote: false, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
                 }
             }
         }

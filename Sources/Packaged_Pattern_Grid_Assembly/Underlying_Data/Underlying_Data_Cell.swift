@@ -323,16 +323,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     func alterCursorState(thisCellInNote:Bool?,cell_In_Moving_Prohibition:Bool?,cell_In_Clashing_Prohibition:Bool?,cursorMoveMode:E_Cursor_Move_Mode?){
-//        print("alterCursorState(")
+
         if let lclCurrDataVals = currentConnectedDataVals {
-            
-//            if let lclThisCellInNote = thisCellInNote{
-//                if lclCurrDataVals.externallySetCursorState.is_Over_Note_Cell == true{
-//                    print("lclCurrDataVals.is_Over_Note_Cell")
-//                }
-//            }
-                
-                
+
             if let lclThisIsCellInNote = thisCellInNote {
                 if lclCurrDataVals.externallySetCursorState.is_Over_Note_Cell != lclThisIsCellInNote{
                     lclCurrDataVals.externallySetCursorState.is_Over_Note_Cell = lclThisIsCellInNote

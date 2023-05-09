@@ -41,18 +41,14 @@ class Move_Helper: P_Selectable_Mode {
                             moving_Cell_Set_Holder_Array.append(movingCellSetHolder)
                         }
                     }
-                    // TODO: set cursor movemode
                     for line in parentCentralState.data_Grid.dataLineArray{
                         for cell in line.dataCellArray{
-                            print("alterCursorState call 2")
                             cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move)
                         }
                     }
                     if dont_Copy_Just_Move == true {
-                        // TODO: set cursor movemode
                         for line in parentCentralState.data_Grid.dataLineArray{
                             for cell in line.dataCellArray{
-                                print("alterCursorState call 3")
                                 cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move_Copy)
                             }
                         }
