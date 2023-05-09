@@ -299,6 +299,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public func change_Type(newType:E_CellStatus){
         currentType = newType
         if let lcl_Data_Vals = currentConnectedDataVals {
+            print("lcl_Data_Vals.referenced_currentStatus = ",newType.rawValue)
             lcl_Data_Vals.referenced_currentStatus = newType
         }
     }
