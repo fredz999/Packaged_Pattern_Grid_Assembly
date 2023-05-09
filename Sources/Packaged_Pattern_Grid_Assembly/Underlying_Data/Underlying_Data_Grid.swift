@@ -125,20 +125,20 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
     }
     
     public func changeTimingSignature_Data_Level(){
-        if dimensions.patternTimingConfiguration == .sixEight{
-            for line in dataLineArray {
-                for cell in line.dataCellArray {
-                    if cell.note_Im_In == nil{cell.react_To_Timing_Change(timingParam: .sixEight)}
-                }
-            }
-        }
-        else if dimensions.patternTimingConfiguration == .fourFour{
-            for line in dataLineArray {
-                for cell in line.dataCellArray {
-                    cell.react_To_Timing_Change(timingParam: .fourFour)
-                }
-            }
-        }
+//        if dimensions.patternTimingConfiguration == .sixEight{
+//            for line in dataLineArray {
+//                for cell in line.dataCellArray {
+//                    cell.react_To_Timing_Change(timingParam: .sixEight)
+//                }
+//            }
+//        }
+//        else if dimensions.patternTimingConfiguration == .fourFour{
+//            for line in dataLineArray {
+//                for cell in line.dataCellArray {
+//                    cell.react_To_Timing_Change(timingParam: .fourFour)
+//                }
+//            }
+//        }
     }
     
 }
