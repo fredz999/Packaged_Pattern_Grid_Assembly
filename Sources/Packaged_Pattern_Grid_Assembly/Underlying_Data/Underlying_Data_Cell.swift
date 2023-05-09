@@ -270,7 +270,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         if timingParam == .fourFour {
-            print("timingParam == .fourFour")
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
                 change_Type(newType: fourStatus)
             }
@@ -278,7 +277,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
         else if timingParam == .sixEight {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
-                print("timingParam == .sixEight")
                 change_Type(newType: sixStatus)
             }
             note_Reset_Status = sixStatus
@@ -286,6 +284,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Type(newType:E_CellStatus){
+        print("change_Type: ",newType.rawValue)
         currentType = newType
         if let lcl_Data_Vals = currentConnectedDataVals {
             lcl_Data_Vals.referenced_currentStatus = newType
