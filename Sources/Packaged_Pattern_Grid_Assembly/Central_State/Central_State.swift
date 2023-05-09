@@ -242,7 +242,7 @@ public class Central_State : ObservableObject {
             
         dimensions.flip_Timing_Signature_Dimensions()
             
-        //data_Grid.changeTimingSignature_Data_Level()
+        data_Grid.changeTimingSignature_Data_Level()
             
         if let lclCompensateIndex = timing_Change_Compensation_Index {
             if let lclHslider = h_Slider_Ref {

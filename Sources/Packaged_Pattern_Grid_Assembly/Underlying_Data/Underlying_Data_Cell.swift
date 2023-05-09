@@ -270,12 +270,14 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         if timingParam == .fourFour {
+            print("timingParam == .fourFour")
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
                 change_Type(newType: fourStatus)
             }
             note_Reset_Status = fourStatus
         }
         else if timingParam == .sixEight {
+            print("timingParam == .sixEight")
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
                 change_Type(newType: sixStatus)
             }
