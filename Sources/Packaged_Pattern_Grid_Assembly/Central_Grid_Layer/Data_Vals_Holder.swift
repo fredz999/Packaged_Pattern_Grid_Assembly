@@ -49,7 +49,7 @@ public class Data_Vals_Holder : ObservableObject {
             || referenced_currentStatus == .mid_Note
             || referenced_currentStatus == .end_Note
             {
-                print("set tae blank, referenced_currentStatus: ",referenced_currentStatus.rawValue,"")
+                
                 if statusColor != colors.grid_Note_Color && referenced_in_Cursor_Set == false {statusColor = colors.grid_Note_Color}
                 if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width{sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
                 if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
@@ -58,8 +58,8 @@ public class Data_Vals_Holder : ObservableObject {
             || referenced_currentStatus == .mid_Blank
             || referenced_currentStatus == .end_Blank
             {
+                print("set tae blank, referenced_currentStatus: ",referenced_currentStatus.rawValue,"")
                 if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false {
-                    
                     statusColor = colors.grid_Blank_Color
                 }
                 if referenced_currentStatus == .start_Blank{
