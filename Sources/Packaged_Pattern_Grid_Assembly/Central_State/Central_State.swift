@@ -252,7 +252,7 @@ public class Central_State : ObservableObject {
         }
 
         }
-        establishCursorSet()
+        //establishCursorSet()
     }
     
     public func change_Move_Copy_Sub_Mode(isMoveOnly:Bool) {
