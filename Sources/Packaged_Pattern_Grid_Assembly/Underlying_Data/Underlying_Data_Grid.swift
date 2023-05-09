@@ -128,7 +128,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
         if dimensions.patternTimingConfiguration == .sixEight{
             for line in dataLineArray {
                 for cell in line.dataCellArray {
-                    cell.react_To_Timing_Change(timingParam: .sixEight)
+                    if cell.note_Im_In == nil{cell.react_To_Timing_Change(timingParam: .sixEight)}
                 }
             }
         }
