@@ -277,8 +277,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             note_Reset_Status = fourStatus
         }
         else if timingParam == .sixEight {
-            print("timingParam == .sixEight")
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank{
+                print("timingParam == .sixEight")
                 change_Type(newType: sixStatus)
             }
             note_Reset_Status = sixStatus
