@@ -220,13 +220,14 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     weak var currentConnectedDataVals : Data_Vals_Holder?
 
     var note_Reset_Status : E_CellStatus
-    public var currentType : E_CellStatus{
-        didSet{
-            if currentType != .start_Blank || currentType != .mid_Blank || currentType != .end_Blank{
-                print("got set somehow")
-            }
-        }
-    }
+    public var currentType : E_CellStatus
+//    {
+//        didSet{
+//            if currentType != .start_Blank || currentType != .mid_Blank || currentType != .end_Blank{
+//                print("got set somehow")
+//            }
+//        }
+//    }
     public var fourStatus : E_CellStatus
     public var sixStatus : E_CellStatus
     
@@ -279,18 +280,12 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
                 change_Type(newType: fourStatus)
             }
-//            else {
-//                print("else at least triggerred,timing = 44")
-//            }
             note_Reset_Status = fourStatus
         }
         else if timingParam == .sixEight {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
                 change_Type(newType: sixStatus)
             }
-//            else {
-//                print("else at least triggerred, timing = 68")
-//            }
             note_Reset_Status = sixStatus
         }
     }
