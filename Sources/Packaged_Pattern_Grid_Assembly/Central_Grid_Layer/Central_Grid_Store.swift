@@ -117,9 +117,11 @@ public class Central_Cell_Store : ObservableObject,Identifiable, Equatable, Hash
         // if the new data cell is noteless that needs to be set as well
         
         if new_Data_Cell.note_Im_In != nil {
+            print("alterCursorState(_1")
             new_Data_Cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
         }
         else if new_Data_Cell.note_Im_In == nil {
+            print("alterCursorState(_2")
             new_Data_Cell.alterCursorState(thisCellInNote: false, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
         }
         

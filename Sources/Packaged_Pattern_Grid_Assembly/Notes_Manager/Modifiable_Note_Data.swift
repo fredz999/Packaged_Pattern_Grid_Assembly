@@ -119,9 +119,11 @@ public class Modifiable_Note_Data{
             }
             for cell in self.dataCellArray {
                 if cell.note_Im_In != nil {
+                    print("alterCursorState(_6")
                     cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
                 }
                 else if cell.note_Im_In == nil {
+                    print("alterCursorState(_7")
                     cell.alterCursorState(thisCellInNote: false, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
                 }
             }
