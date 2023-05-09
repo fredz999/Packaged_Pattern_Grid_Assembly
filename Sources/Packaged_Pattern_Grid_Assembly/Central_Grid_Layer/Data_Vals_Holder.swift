@@ -55,6 +55,7 @@ public class Data_Vals_Holder : ObservableObject {
             }
             else {
                 if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false{
+                    print("set tae blank")
                     statusColor = colors.grid_Blank_Color
                 }
                 if referenced_currentStatus == .start_Blank{
@@ -310,7 +311,8 @@ public class Data_Vals_Holder : ObservableObject {
         }
     }
 
-    @Published public var statusColor : Color{
+    @Published public var statusColor : Color
+    {
         didSet{
             print("statusColor set ...............")
         }
