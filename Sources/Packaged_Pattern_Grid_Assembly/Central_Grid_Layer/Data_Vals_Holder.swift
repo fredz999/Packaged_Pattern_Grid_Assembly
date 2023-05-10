@@ -47,7 +47,7 @@ public class Data_Vals_Holder : ObservableObject {
         
         willSet{
             if referenced_dataCell_X_Number < 6 && referenced_dataCell_Y_Number == 24{
-                print("twas: ",referenced_currentStatus.rawValue,", going to: ",newValue.rawValue,", forX: ",referenced_dataCell_X_Number)
+                print("twas: ",referenced_currentStatus.rawValue,", going to: ",newValue.rawValue,", forX: ",referenced_dataCell_X_Number,", Y: ",referenced_dataCell_Y_Number)
             }
         }
 
