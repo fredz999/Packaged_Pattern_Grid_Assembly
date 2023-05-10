@@ -62,17 +62,7 @@ class Move_Helper: P_Selectable_Mode {
                                 cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move)
                             }
                         }
-//                        for selectedNote in selectedNotes {
-//                            if let lclNoteData = selectedNote.modifiable_Note_Data {
-//                                if lclNoteData.noteParent.moved_Away_From == false{
-//                                    lclNoteData.noteParent.moved_Away_From = true
-//                                }
-//                            }
-//                        }
-                        
                     }
-                    
-                    
                 }
             }
         }
