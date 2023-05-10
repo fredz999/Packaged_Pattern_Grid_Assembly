@@ -61,6 +61,7 @@ public class Data_Vals_Holder : ObservableObject {
                 //print("blank?----------------------status: ",referenced_currentStatus.rawValue)
                 if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false {
                     statusColor = colors.grid_Blank_Color
+                    print("set tae grid_Blank_Color")
                 }
                 
                 if referenced_currentStatus == .start_Blank{
