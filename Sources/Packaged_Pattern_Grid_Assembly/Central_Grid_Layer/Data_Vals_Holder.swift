@@ -46,7 +46,12 @@ public class Data_Vals_Holder : ObservableObject {
     {
 
         didSet{
- 
+            if referenced_dataCell_X_Number >= 0 && referenced_dataCell_X_Number <= 6 && referenced_dataCell_Y_Number == 24 {
+                print(", HOLDER typeAfter: ",referenced_currentStatus.rawValue
+                      ,", HOLDER dataX: ",referenced_dataCell_X_Number
+                      ,", HOLDER lineY: ",referenced_dataCell_Y_Number)
+            }
+            
             if referenced_currentStatus == .start_Note
             || referenced_currentStatus == .mid_Note
             || referenced_currentStatus == .end_Note

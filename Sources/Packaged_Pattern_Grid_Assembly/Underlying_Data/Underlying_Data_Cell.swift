@@ -325,7 +325,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //        }
         
         if dataCell_X_Number >= 0 && dataCell_X_Number <= 6 && parentLine.line_Y_Num == 24 {
-            print("type before: ",currentType.rawValue,", typeAfter: ",newType.rawValue,", dataX: ",dataCell_X_Number,", lineY: ",parentLine.line_Y_Num)
+            print("CELL type before: ",currentType.rawValue,", CELL typeAfter: ",newType.rawValue,", CELL dataX: ",dataCell_X_Number,", CELL lineY: ",parentLine.line_Y_Num)
         }
         
         if currentType != newType {
