@@ -321,12 +321,12 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //                print("CT:",currentType.rawValue,", bout to go: ",newType.rawValue)
 //            }
 //        }
-        
+        let oldType : String = currentType.rawValue
         if currentType != newType {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
-                    print(".referenced_currentStatus =_1")
+                    print(".referenced_currentStatus =_1, oldType: ",oldType)
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }
