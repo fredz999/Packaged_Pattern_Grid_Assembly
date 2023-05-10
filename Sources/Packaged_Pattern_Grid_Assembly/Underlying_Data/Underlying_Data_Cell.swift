@@ -320,6 +320,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
             print("changed FROM note")
         }
+        else if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
+            print("changed FROM note")
+        }
         if currentType != newType {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
