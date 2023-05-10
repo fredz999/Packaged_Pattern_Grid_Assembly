@@ -324,14 +324,19 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //            print("changed TO blank type: ",currentType.rawValue)
 //        }
         
-        if dataCell_X_Number >= 0 && dataCell_X_Number <= 6 && parentLine.line_Y_Num == 24 {
-            print("CELL type before: ",currentType.rawValue,", CELL typeAfter: ",newType.rawValue,", CELL dataX: ",dataCell_X_Number,", CELL lineY: ",parentLine.line_Y_Num)
-        }
+        
         
         if currentType != newType {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
+                    
+                    
+                    if dataCell_X_Number >= 0 && dataCell_X_Number <= 6 && parentLine.line_Y_Num == 24 {
+                        print("CELL type before: ",currentType.rawValue,", CELL typeAfter: ",newType.rawValue,", CELL dataX: ",dataCell_X_Number,", CELL lineY: ",parentLine.line_Y_Num)
+                    }
+                    
+                    
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }
