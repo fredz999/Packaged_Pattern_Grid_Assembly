@@ -295,7 +295,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         
-        print("react_To_Timing_Change")
+        print("react_To_Timing_Change X: ",dataCell_X_Number,", Y: ",parentLine.line_Y_Num)
         
         if timingParam == .fourFour {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
