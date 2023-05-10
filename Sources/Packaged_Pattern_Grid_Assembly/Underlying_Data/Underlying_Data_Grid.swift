@@ -41,17 +41,32 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
             let newLine = Underlying_Data_Line(yNumParam: line_Y_Number)
 
             for x in 0..<dimensions.dataGrid_X_Unit_Count{
-                if fourFour_Sub_Count == 0{currFourStatus = .start_Blank}
-                else if fourFour_Sub_Count == 1{currFourStatus = .mid_Blank}
-                else if fourFour_Sub_Count == 2{currFourStatus = .mid_Blank}
-                else if fourFour_Sub_Count == 3{currFourStatus = .end_Blank}
+//                if fourFour_Sub_Count == 0{currFourStatus = .start_Blank}
+//                else if fourFour_Sub_Count == 1{currFourStatus = .mid_Blank}
+//                else if fourFour_Sub_Count == 2{currFourStatus = .mid_Blank}
+//                else if fourFour_Sub_Count == 3{currFourStatus = .end_Blank}
+//
+//                if sixEight_Sub_Count == 0{currSixStatus = .start_Blank}
+//                else if sixEight_Sub_Count == 1{currSixStatus = .mid_Blank}
+//                else if sixEight_Sub_Count == 2{currSixStatus = .mid_Blank}
+//                else if sixEight_Sub_Count == 3{currSixStatus = .mid_Blank}
+//                else if sixEight_Sub_Count == 4{currSixStatus = .mid_Blank}
+//                else if sixEight_Sub_Count == 5{currSixStatus = .end_Blank}
+                
                 
                 if sixEight_Sub_Count == 0{currSixStatus = .start_Blank}
                 else if sixEight_Sub_Count == 1{currSixStatus = .mid_Blank}
                 else if sixEight_Sub_Count == 2{currSixStatus = .mid_Blank}
-                else if sixEight_Sub_Count == 3{currSixStatus = .mid_Blank}
-                else if sixEight_Sub_Count == 4{currSixStatus = .mid_Blank}
-                else if sixEight_Sub_Count == 5{currSixStatus = .end_Blank}
+                else if sixEight_Sub_Count == 3{currSixStatus = .end_Blank}
+                
+                if fourFour_Sub_Count == 0{currFourStatus = .start_Blank}
+                else if fourFour_Sub_Count == 1{currFourStatus = .mid_Blank}
+                else if fourFour_Sub_Count == 2{currFourStatus = .mid_Blank}
+                else if fourFour_Sub_Count == 3{currFourStatus = .mid_Blank}
+                else if fourFour_Sub_Count == 4{currFourStatus = .mid_Blank}
+                else if fourFour_Sub_Count == 5{currFourStatus = .end_Blank}
+                
+                
                 
                 if dimensions.patternTimingConfiguration == .fourFour {
                     initialStatus = currFourStatus
@@ -98,13 +113,13 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 if fourFour_Sub_Count + 1 < 6{fourFour_Sub_Count+=1}
                 else if fourFour_Sub_Count + 1 == 6{
                     fourFour_Sub_Count = 0
-                    //fourFour_Cell_Count += 1
+                    fourFour_Cell_Count += 1
                 }
 
                 if sixEight_Sub_Count + 1 < 4{sixEight_Sub_Count+=1}
                 else if sixEight_Sub_Count + 1 == 4{
                     sixEight_Sub_Count=0
-                    //sixEight_Cell_Count+=1
+                    sixEight_Cell_Count+=1
                 }
                 
                 if fourFour_Half_Sub_Count + 1 < 3{fourFour_Half_Sub_Count+=1}
