@@ -42,50 +42,52 @@ public class Data_Vals_Holder : ObservableObject {
     
     private var referenced_in_MultiSelect_Note_Set : Bool = false
     
-//    @Published public var referenced_currentStatus : E_CellStatus
-//    {
-//
-//        didSet{
-//            if referenced_dataCell_X_Number >= 0 && referenced_dataCell_X_Number <= 6 && referenced_dataCell_Y_Number == 24 {
-//                print(", HOLDER typeAfter: ",referenced_currentStatus.rawValue
-//                      ,", HOLDER dataX: ",referenced_dataCell_X_Number
-//                      ,", HOLDER lineY: ",referenced_dataCell_Y_Number)
-//            }
-//            
-//            if referenced_currentStatus == .start_Note
-//            || referenced_currentStatus == .mid_Note
-//            || referenced_currentStatus == .end_Note
-//            {
-// 
-//                if statusColor != colors.grid_Note_Color && referenced_in_Cursor_Set == false {statusColor = colors.grid_Note_Color}
-//                if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width{sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
-//                if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
-//            }
-//            else if referenced_currentStatus == .start_Blank
-//            || referenced_currentStatus == .mid_Blank
-//            || referenced_currentStatus == .end_Blank
-//            {
-// 
-//                if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false {
-//                    statusColor = colors.grid_Blank_Color
-//                    
-//                }
-//                
-//                if referenced_currentStatus == .start_Blank{
-//                    if sub_Cell_Width != dimensions.pattern_Start_Blank_Width {sub_Cell_Width = dimensions.pattern_Start_Blank_Width}
-//                    if cell_X_Offset != dimensions.pattern_Start_Blank_XOffset{cell_X_Offset = dimensions.pattern_Start_Blank_XOffset}
-//                }
-//                else if referenced_currentStatus != .start_Blank{
-//                    if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width {sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
-//                    if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
-//                }
-//                
-//            }
-//
-//        }
-//    }
-    
     @Published public var referenced_currentStatus : E_CellStatus
+    {
+        
+        willSet{
+            if referenced_dataCell_X_Number < 6 && referenced_dataCell_Y_Number == 24{
+                print("was: ",referenced_currentStatus.rawValue,", going to: ",newValue.rawValue,", forX: ",referenced_dataCell_X_Number)
+            }
+        }
+
+        didSet{
+            if referenced_currentStatus == .start_Note
+            || referenced_currentStatus == .mid_Note
+            || referenced_currentStatus == .end_Note
+            {
+ 
+                if statusColor != colors.grid_Note_Color && referenced_in_Cursor_Set == false {statusColor = colors.grid_Note_Color}
+                if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width{sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
+                if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
+            }
+            else if referenced_currentStatus == .start_Blank
+            || referenced_currentStatus == .mid_Blank
+            || referenced_currentStatus == .end_Blank
+            {
+ 
+                if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false {
+                    statusColor = colors.grid_Blank_Color
+                }
+                
+                if referenced_currentStatus == .start_Blank{
+                    if sub_Cell_Width != dimensions.pattern_Start_Blank_Width {sub_Cell_Width = dimensions.pattern_Start_Blank_Width}
+                    if cell_X_Offset != dimensions.pattern_Start_Blank_XOffset{cell_X_Offset = dimensions.pattern_Start_Blank_XOffset}
+                }
+                else if referenced_currentStatus != .start_Blank{
+                    if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width {sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
+                    if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
+                }
+                
+            }
+            
+            
+           
+
+        }
+    }
+    
+//    @Published public var referenced_currentStatus : E_CellStatus
 //    {
 //        didSet{
 //            if referenced_currentStatus == .start_Note
