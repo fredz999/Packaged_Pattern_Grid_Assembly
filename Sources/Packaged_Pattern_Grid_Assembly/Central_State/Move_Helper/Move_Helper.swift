@@ -48,20 +48,6 @@ class Move_Helper: P_Selectable_Mode {
                                 cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move_Copy)
                             }
                         }
-//                        for selectedNote in selectedNotes {
-//                            if let lclNoteData = selectedNote.modifiable_Note_Data {
-//                                if lclNoteData.noteParent.moved_Away_From == false{
-//                                    lclNoteData.noteParent.moved_Away_From = true
-//                                }
-//                            }
-//                        }
-                    }
-                    else if dont_Copy_Just_Move == false {
-                        for line in parentCentralState.data_Grid.dataLineArray{
-                            for cell in line.dataCellArray{
-                                cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move)
-                            }
-                        }
                         for selectedNote in selectedNotes {
                             if let lclNoteData = selectedNote.modifiable_Note_Data {
                                 if lclNoteData.noteParent.moved_Away_From == false{
@@ -69,6 +55,20 @@ class Move_Helper: P_Selectable_Mode {
                                 }
                             }
                         }
+                    }
+                    else if dont_Copy_Just_Move == false {
+                        for line in parentCentralState.data_Grid.dataLineArray{
+                            for cell in line.dataCellArray{
+                                cell.alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move)
+                            }
+                        }
+//                        for selectedNote in selectedNotes {
+//                            if let lclNoteData = selectedNote.modifiable_Note_Data {
+//                                if lclNoteData.noteParent.moved_Away_From == false{
+//                                    lclNoteData.noteParent.moved_Away_From = true
+//                                }
+//                            }
+//                        }
                         
                     }
                     
