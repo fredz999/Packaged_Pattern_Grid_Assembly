@@ -298,7 +298,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 change_Type(newType: fourStatus)
             }
             else if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
-                //("4:4 Note.....currentType : ",currentType.rawValue,", 4:4 status: ",fourStatus.rawValue)
+                print("4:4 Note.....currentType : ",currentType.rawValue,", 4:4 status: ",fourStatus.rawValue)
                 change_Type(newType: currentType)
             }
             //change_Type(newType: currentType)
@@ -309,7 +309,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 change_Type(newType: sixStatus)
             }
             else if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
-                //print("6:8 Note.....currentType : ",currentType.rawValue,", 6:8 status: ",sixStatus.rawValue)
+                print("6:8 Note.....currentType : ",currentType.rawValue,", 6:8 status: ",sixStatus.rawValue)
                 change_Type(newType: currentType)
             }
             //change_Type(newType: currentType)
@@ -319,7 +319,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func change_Type(newType:E_CellStatus){
 //        if currentType != newType {
-//            
+//
 //        }
         
         if currentType != newType {
