@@ -271,15 +271,21 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         if timingParam == .fourFour {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
-                print("calling ct with: ",fourStatus.rawValue)
+                print("4:4 blank.....: ",fourStatus.rawValue)
                 change_Type(newType: fourStatus)
+            }
+            else if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
+                print("4:4 Note.....: ",fourStatus.rawValue)
             }
             note_Reset_Status = fourStatus
         }
         else if timingParam == .sixEight {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
-                print("calling ct with: ",sixStatus.rawValue)
+                print("6:8 blank: ",sixStatus.rawValue)
                 change_Type(newType: sixStatus)
+            }
+            else if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
+                print("6:8 Note.....: ",fourStatus.rawValue)
             }
             note_Reset_Status = sixStatus
         }
