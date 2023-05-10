@@ -295,8 +295,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
-                    print("lcl_Data_Vals.referenced_currentStatus: ",lcl_Data_Vals.referenced_currentStatus.rawValue
-                          ,", newType: ",newType.rawValue)
+//                    print("lcl_Data_Vals.referenced_currentStatus: ",lcl_Data_Vals.referenced_currentStatus.rawValue
+//                          ,", newType: ",newType.rawValue)
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }
