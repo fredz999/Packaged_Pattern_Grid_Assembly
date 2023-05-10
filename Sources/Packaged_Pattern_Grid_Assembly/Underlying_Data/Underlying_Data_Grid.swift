@@ -98,13 +98,13 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 if fourFour_Sub_Count + 1 < 6{fourFour_Sub_Count+=1}
                 else if fourFour_Sub_Count + 1 == 6{
                     fourFour_Sub_Count = 0
-                    fourFour_Cell_Count += 1
+                    //fourFour_Cell_Count += 1
                 }
 
                 if sixEight_Sub_Count + 1 < 4{sixEight_Sub_Count+=1}
                 else if sixEight_Sub_Count + 1 == 4{
                     sixEight_Sub_Count=0
-                    sixEight_Cell_Count+=1
+                    //sixEight_Cell_Count+=1
                 }
                 
                 if fourFour_Half_Sub_Count + 1 < 3{fourFour_Half_Sub_Count+=1}
