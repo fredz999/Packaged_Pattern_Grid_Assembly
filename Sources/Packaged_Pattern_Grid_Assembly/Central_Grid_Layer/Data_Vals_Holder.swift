@@ -426,8 +426,8 @@ public class Cursor_State {
     }
     
     func returnCursorCellColor(cellColor : inout Color) {
+        
         if is_Over_Note_Cell == true {
-            
             if cursor_Move_Mode == .inactive {
                 if cellColor != colors.cursor_Over_Note_Passive_Color{cellColor = colors.cursor_Over_Note_Passive_Color}
             }
