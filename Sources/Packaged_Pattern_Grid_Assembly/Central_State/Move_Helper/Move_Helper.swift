@@ -26,6 +26,7 @@ class Move_Helper: P_Selectable_Mode {
                 if let currCursorMin = parentCentralState.current_Cursor_Set.min(by: {$0.dataCell_X_Number < $1.dataCell_X_Number}){
                     snapshot_Cursor_Min_X = currCursorMin.dataCell_X_Number
                 }
+                
                 snapshot_Cursor_Y = lclActivationCell.parentLine.line_Y_Num
 
                 if let lclCurrNoteCollection = parentCentralState.currentNoteCollection {
