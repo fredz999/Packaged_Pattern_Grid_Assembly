@@ -283,7 +283,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 change_Type(newType: sixStatus)
             }
             else if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
-                print("6:8 Note.....: ",fourStatus.rawValue)
+                print("6:8 Note.....: ",sixStatus.rawValue)
             }
             note_Reset_Status = sixStatus
         }
