@@ -318,10 +318,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func change_Type(newType:E_CellStatus){
         if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
-            print("changed FROM note")
+            print("changed FROM note TO: ",currentType.rawValue)
         }
         else if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
-            print("changed FROM note")
+            print("changed TO note type: ",currentType.rawValue)
         }
         if currentType != newType {
             currentType = newType
