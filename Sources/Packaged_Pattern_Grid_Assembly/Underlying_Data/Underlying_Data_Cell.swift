@@ -316,16 +316,17 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Type(newType:E_CellStatus){
-        if currentType != newType {
-            if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
-                print("CT:",currentType.rawValue,", bout to go: ",newType.rawValue)
-            }
-        }
+//        if currentType != newType {
+//            if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
+//                print("CT:",currentType.rawValue,", bout to go: ",newType.rawValue)
+//            }
+//        }
         
         if currentType != newType {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
+                    print(".referenced_currentStatus =_1")
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }
