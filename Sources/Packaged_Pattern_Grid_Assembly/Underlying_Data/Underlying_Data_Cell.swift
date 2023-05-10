@@ -317,7 +317,9 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func change_Type(newType:E_CellStatus){
         if currentType != newType {
-            print("CT:",currentType.rawValue,", bout to go: ",newType.rawValue)
+            if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
+                print("CT:",currentType.rawValue,", bout to go: ",newType.rawValue)
+            }
         }
         
         if currentType != newType {
