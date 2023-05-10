@@ -363,6 +363,7 @@ public class Data_Vals_Holder : ObservableObject {
    sub_Cell_Height = cellHeightParam
    referenced_dataCell_X_Number = xNumParam
    referenced_dataCell_Y_Number = yNumParam
+       print("getting set in hea?.......1")
    referenced_currentStatus = typeParam
    statusColor = colors.grid_Blank_Color
    }
@@ -371,7 +372,7 @@ public class Data_Vals_Holder : ObservableObject {
    if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
    if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
        if referenced_currentStatus != newCellNoteStatus {
-           print("getting set in hea?.......")
+           print("getting set in hea?.......2")
            referenced_currentStatus = newCellNoteStatus
        }
    }
