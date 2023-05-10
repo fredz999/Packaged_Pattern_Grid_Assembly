@@ -271,12 +271,14 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         if timingParam == .fourFour {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
+                print("calling ct with: ",fourStatus.rawValue)
                 change_Type(newType: fourStatus)
             }
             note_Reset_Status = fourStatus
         }
         else if timingParam == .sixEight {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
+                print("calling ct with: ",sixStatus.rawValue)
                 change_Type(newType: sixStatus)
             }
             note_Reset_Status = sixStatus
@@ -284,12 +286,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Type(newType:E_CellStatus){
-        
         if currentType != newType {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
-                    print("nu teipe equilz: ",newType.rawValue)
+                    //print("nu teipe equilz: ",newType.rawValue)
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }
