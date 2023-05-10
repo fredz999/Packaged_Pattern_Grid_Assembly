@@ -274,7 +274,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 change_Type(newType: fourStatus)
             }
             else if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
-                //print("4:4 Note.....: ",fourStatus.rawValue)
+                print("4:4 Note.....currentType : ",currentType.rawValue,", 4:4 status: ",fourStatus.rawValue)
                 change_Type(newType: fourStatus)
             }
             note_Reset_Status = fourStatus
