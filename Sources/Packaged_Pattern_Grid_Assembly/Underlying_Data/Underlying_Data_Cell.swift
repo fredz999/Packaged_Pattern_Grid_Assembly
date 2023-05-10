@@ -227,13 +227,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 
     var note_Reset_Status : E_CellStatus
     public var currentType : E_CellStatus
-//    {
-//        didSet{
-//            if currentType != .start_Blank || currentType != .mid_Blank || currentType != .end_Blank{
-//                print("got set somehow")
-//            }
-//        }
-//    }
     public var fourStatus : E_CellStatus
     public var sixStatus : E_CellStatus
     
@@ -300,6 +293,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         currentType = newType
         if let lcl_Data_Vals = currentConnectedDataVals {
             if lcl_Data_Vals.referenced_currentStatus != newType {
+                print("ct here")
                 lcl_Data_Vals.referenced_currentStatus = newType
             }
         }
