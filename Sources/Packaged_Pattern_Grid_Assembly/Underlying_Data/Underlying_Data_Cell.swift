@@ -357,6 +357,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func reset_To_Original(){
+        print("reset called, X:",dataCell_X_Number)
         if currentType == .single_Note || currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
             currentType = note_Reset_Status
             if note_Im_In != nil {note_Im_In = nil}
