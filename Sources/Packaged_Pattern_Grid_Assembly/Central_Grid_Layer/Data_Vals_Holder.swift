@@ -45,12 +45,12 @@ public class Data_Vals_Holder : ObservableObject {
     @Published public var referenced_currentStatus : E_CellStatus
     {
         didSet{
-            print("set tae grid_Blank_Color")
+            print("didSet in data vals holder")
             if referenced_currentStatus == .start_Note
             || referenced_currentStatus == .mid_Note
             || referenced_currentStatus == .end_Note
             {
-                //print("note?-----------------------status: ",referenced_currentStatus.rawValue)
+                print("didSet to one of the note vals")
                 if statusColor != colors.grid_Note_Color && referenced_in_Cursor_Set == false {statusColor = colors.grid_Note_Color}
                 if sub_Cell_Width != dimensions.pattern_Grid_Sub_Cell_Width{sub_Cell_Width = dimensions.pattern_Grid_Sub_Cell_Width}
                 if cell_X_Offset != dimensions.pattern_Mid_End_XOffset{cell_X_Offset = dimensions.pattern_Mid_End_XOffset}
@@ -59,7 +59,7 @@ public class Data_Vals_Holder : ObservableObject {
             || referenced_currentStatus == .mid_Blank
             || referenced_currentStatus == .end_Blank
             {
-                //print("blank?----------------------status: ",referenced_currentStatus.rawValue)
+                print("didSet to one of the blank ones")
                 if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false {
                     statusColor = colors.grid_Blank_Color
                     
