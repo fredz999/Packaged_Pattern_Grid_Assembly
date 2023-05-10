@@ -93,6 +93,8 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 , six_Eight_Half_Sub_Index_Param: sixEight_Half_Sub_Count
                 , six_Eight_Half_Cell_Index_Param: sixEight_Half_Cell_Count)
                 
+                print("sixEight_Sub_Count used was: ",sixEight_Sub_Count)
+                
                 if fourFour_Sub_Count + 1 < 6{fourFour_Sub_Count+=1}
                 else if fourFour_Sub_Count + 1 == 6{
                     fourFour_Sub_Count = 0
