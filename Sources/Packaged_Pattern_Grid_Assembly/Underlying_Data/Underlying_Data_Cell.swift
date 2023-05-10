@@ -59,7 +59,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)
             }
-            print("alterCursorState(_9")
             alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .in_Move )
         }
         else if type == .deActivate_Move_Away_From_Cell {
@@ -69,7 +68,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .movedAwayFrom_Set  , value: in_activate_Moved_Away_From_Set)
             }
-            print("alterCursorState(_10")
             alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: .inactive)
         }
         //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -79,7 +77,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             }
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedMovingSet , value: in_Prohibited_Moving_Cell_Set)
-                print("alterCursorState(_11")
                 alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: true, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
             }
         }
@@ -87,7 +84,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Prohibited_Moving_Cell_Set == true{in_Prohibited_Moving_Cell_Set=false}
             if let lclDataVals = currentConnectedDataVals {
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedMovingSet , value: in_Prohibited_Moving_Cell_Set)
-                print("alterCursorState(_12")
                 alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: false, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
             }
         }
@@ -96,7 +92,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if in_Prohibited_Clashing_Cell_Set == false{in_Prohibited_Clashing_Cell_Set=true}
             if let lclDataVals = currentConnectedDataVals{
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedClashingSet , value: in_Prohibited_Clashing_Cell_Set)
-                print("alterCursorState(_13")
                 alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: true, cursorMoveMode: nil)
             }
         }
@@ -105,7 +100,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             if let lclDataVals = currentConnectedDataVals{
                 lclDataVals.update_Cell_Set_Membership(status_Update_TypeParam: .prohibitedClashingSet , value: in_Prohibited_Clashing_Cell_Set)
             }
-            print("alterCursorState(_14")
             alterCursorState(thisCellInNote: nil, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: false, cursorMoveMode: nil)
         }
         //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -295,16 +289,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
-//                    print("lcl_Data_Vals.referenced_currentStatus: ",lcl_Data_Vals.referenced_currentStatus.rawValue
-//                          ,", newType: ",newType.rawValue)
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }
         }
-        
-        
-        
-        //
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
@@ -327,10 +315,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
                 , newYNum: parentLine.line_Y_Num
                 , newCellNoteStatus: note_Reset_Status)
 
-                //lcl_Data_Vals.externallySetCursorState.is_Over_Note_Cell = false
-                
-                //alterCursorState(thisCellInNote: false, rewritePermitted: nil, cursorMoveMode: nil)
-                print("alterCursorState(_15")
                 alterCursorState(thisCellInNote: false, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
                 
                 if in_Passive_Cursor_Set == true {
@@ -341,7 +325,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     func alterCursorState(thisCellInNote:Bool?,cell_In_Moving_Prohibition:Bool?,cell_In_Clashing_Prohibition:Bool?,cursorMoveMode:E_Cursor_Move_Mode?){
-        //print("alterCursorState(")
+
         if let lclCurrDataVals = currentConnectedDataVals {
 
             if let lclThisIsCellInNote = thisCellInNote {

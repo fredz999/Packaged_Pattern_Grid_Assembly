@@ -130,7 +130,6 @@ public class Note_Collection : ObservableObject {
             if highlightAfterWrite == true{note.highlighted = true}
             for cell in local_Cell_Array {
                 cell.note_Im_In = note
-                print("alterCursorState(_8")
                 cell.alterCursorState(thisCellInNote: true, cell_In_Moving_Prohibition: nil, cell_In_Clashing_Prohibition: nil, cursorMoveMode: nil)
             }
         }

@@ -58,9 +58,7 @@ public class Data_Vals_Holder : ObservableObject {
             || referenced_currentStatus == .mid_Blank
             || referenced_currentStatus == .end_Blank
             {
-                
                 if statusColor != colors.grid_Blank_Color && referenced_in_Cursor_Set == false {
-                    //print("set tae blank, referenced_currentStatus: ",referenced_currentStatus.rawValue,"")
                     statusColor = colors.grid_Blank_Color
                 }
                 
@@ -105,11 +103,6 @@ public class Data_Vals_Holder : ObservableObject {
 //            }
 //        }
 //    }
-    
-    
-    
-    
-    
     
     private var referenced_in_MoveCursor_Set : Bool = false
     
