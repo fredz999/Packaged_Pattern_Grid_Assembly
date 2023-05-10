@@ -324,8 +324,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
 //            print("changed TO blank type: ",currentType.rawValue)
 //        }
         
-        if dataCell_X_Number >= 0 && dataCell_X_Number <= 6{
-            print("type before: ",currentType.rawValue,", typeAfter: ",newType.rawValue)
+        if dataCell_X_Number >= 0 && dataCell_X_Number <= 6 && parentLine.line_Y_Num == 0 {
+            print("type before: ",currentType.rawValue,", typeAfter: ",newType.rawValue,", dataX: ",dataCell_X_Number,", lineY: ",parentLine.line_Y_Num)
         }
         
         if currentType != newType {
