@@ -358,7 +358,6 @@ public class Data_Vals_Holder : ObservableObject {
    sub_Cell_Height = cellHeightParam
    referenced_dataCell_X_Number = xNumParam
    referenced_dataCell_Y_Number = yNumParam
-       print(".referenced_currentStatus =_3")
    referenced_currentStatus = typeParam
    statusColor = colors.grid_Blank_Color
    }
@@ -367,7 +366,6 @@ public class Data_Vals_Holder : ObservableObject {
    if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
    if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
        if referenced_currentStatus != newCellNoteStatus {
-           print(".referenced_currentStatus =_2")
            referenced_currentStatus = newCellNoteStatus
        }
    }

@@ -220,11 +220,8 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     weak var currentConnectedDataVals : Data_Vals_Holder?
 
     var note_Reset_Status : E_CellStatus
-    public var currentType : E_CellStatus{
-        didSet{
-            print("currentType didSet to: ",currentType.rawValue)
-        }
-    }
+    public var currentType : E_CellStatus
+
     public var fourStatus : E_CellStatus
     public var sixStatus : E_CellStatus
     
@@ -320,24 +317,22 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Type(newType:E_CellStatus){
-//        if currentType != newType {
-//            if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
-//                print("CT:",currentType.rawValue,", bout to go: ",newType.rawValue)
-//            }
-//        }
-        let oldType : String = currentType.rawValue
+        if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
+            print("changed FROM note")
+        }
         if currentType != newType {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
-                    print(".referenced_currentStatus =_1, old Cell Type: ",oldType
-                          ,", old dataVals type: ",lcl_Data_Vals.referenced_currentStatus.rawValue
-                          ,", new_Type: ",newType.rawValue)
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }
         }
     }
+    
+//    print(".referenced_currentStatus =_1, old Cell Type: ",oldType
+//                              ,", old dataVals type: ",lcl_Data_Vals.referenced_currentStatus.rawValue
+//                              ,", new_Type: ",newType.rawValue)
     
     public func change_Highlight(highlightStatusParam:Bool){
         if in_Highlighted_Set != highlightStatusParam {

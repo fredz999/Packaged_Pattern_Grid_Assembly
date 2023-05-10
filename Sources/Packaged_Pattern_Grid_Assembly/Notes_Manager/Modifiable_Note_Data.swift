@@ -48,7 +48,7 @@ public class Modifiable_Note_Data{
     
     
     func reWrite_Note_Data(newDataCellSet: Set<Underlying_Data_Cell>){
-//poss need to hit data_Y_Vals here
+        print("reWrite_Note_Data(")
         if newDataCellSet.count > 0{
 
             let newDataCellArray = newDataCellSet.sorted(by: {$0.dataCell_X_Number < $1.dataCell_X_Number})
