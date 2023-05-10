@@ -290,13 +290,21 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Type(newType:E_CellStatus){
-        currentType = newType
-        if let lcl_Data_Vals = currentConnectedDataVals {
-            if lcl_Data_Vals.referenced_currentStatus != newType {
-                print("ct here")
-                lcl_Data_Vals.referenced_currentStatus = newType
+        
+        if currentType != newType {
+            currentType = newType
+            if let lcl_Data_Vals = currentConnectedDataVals {
+                if lcl_Data_Vals.referenced_currentStatus != newType {
+                    print("lcl_Data_Vals.referenced_currentStatus: ",lcl_Data_Vals.referenced_currentStatus.rawValue
+                          ,", newType: ",newType.rawValue)
+                    lcl_Data_Vals.referenced_currentStatus = newType
+                }
             }
         }
+        
+        
+        
+        //
     }
     
     public func change_Highlight(highlightStatusParam:Bool){
