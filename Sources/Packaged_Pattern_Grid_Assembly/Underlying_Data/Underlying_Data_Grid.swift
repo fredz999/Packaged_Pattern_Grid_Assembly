@@ -63,20 +63,14 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 if sixEight_Sub_Count == 0{currSixStatus = .start_Blank}
                 else if sixEight_Sub_Count == 1{currSixStatus = .mid_Blank}
                 else if sixEight_Sub_Count == 2{currSixStatus = .mid_Blank}
-                else if sixEight_Sub_Count == 3{
-                    currSixStatus = .end_Blank
-                    print("six eight actually reached 3")
-                }
+                else if sixEight_Sub_Count == 3{ currSixStatus = .end_Blank}
 
                 if fourFour_Sub_Count == 0{currFourStatus = .start_Blank}
                 else if fourFour_Sub_Count == 1{currFourStatus = .mid_Blank}
                 else if fourFour_Sub_Count == 2{currFourStatus = .mid_Blank}
                 else if fourFour_Sub_Count == 3{currFourStatus = .mid_Blank}
                 else if fourFour_Sub_Count == 4{currFourStatus = .mid_Blank}
-                else if fourFour_Sub_Count == 5{
-                    currFourStatus = .end_Blank
-                    print("four four actually reached 5")
-                }
+                else if fourFour_Sub_Count == 5{ currFourStatus = .end_Blank}
                 
                 
                 
@@ -120,7 +114,6 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
                 , six_Eight_Half_Sub_Index_Param: sixEight_Half_Sub_Count
                 , six_Eight_Half_Cell_Index_Param: sixEight_Half_Cell_Count)
                 
-                print("sixEight_Sub_Count used was: ",sixEight_Sub_Count)
                 
                 if fourFour_Sub_Count + 1 < 6{fourFour_Sub_Count+=1}
                 else if fourFour_Sub_Count + 1 == 6{

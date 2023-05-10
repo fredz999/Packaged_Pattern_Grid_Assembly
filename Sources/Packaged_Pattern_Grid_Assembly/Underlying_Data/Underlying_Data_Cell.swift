@@ -220,7 +220,11 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     weak var currentConnectedDataVals : Data_Vals_Holder?
 
     var note_Reset_Status : E_CellStatus
-    public var currentType : E_CellStatus
+    public var currentType : E_CellStatus{
+        didSet{
+            print("currentType didSet to: ",currentType.rawValue)
+        }
+    }
     public var fourStatus : E_CellStatus
     public var sixStatus : E_CellStatus
     
