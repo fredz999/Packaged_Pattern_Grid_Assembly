@@ -426,6 +426,7 @@ public class Central_State : ObservableObject {
     public var initial_Data_Y_Position_Set : ((Int)->())?
 
     func data_Slider_LowBracket_Update(newLower:Int){
+        print("lowbracket set tae: ",newLower)
         if (currentYCursor_Slider_Position + newLower) < data_Grid.dataLineArray.count {
             lower_Bracket_Number = newLower
             higher_Bracket_Number = Int(dimensions.visualGrid_Y_Unit_Count) + newLower
