@@ -311,6 +311,17 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         }
     }
     
+    public func declareCurrentDV(){
+        if let lcl_Data_Vals = currentConnectedDataVals {
+            print("curent DV X: ",lcl_Data_Vals.referenced_dataCell_X_Number
+                  ,"currentDV Y: ",lcl_Data_Vals.referenced_dataCell_Y_Number
+                  ,", myX: ",dataCell_X_Number,", my Y: ",parentLine.line_Y_Num)
+        }
+        else if currentConnectedDataVals == nil{
+            print("currentConnectedDataVals == nil")
+        }
+    }
+    
     public func change_Type(newType:E_CellStatus){
 //        if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
 //            print("changed FROM note TO: ",currentType.rawValue)
