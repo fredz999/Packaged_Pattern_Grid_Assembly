@@ -28,7 +28,12 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     }
     
     public func change_Data_Y(lowerBracket_Param:Int){
-        print("lower: ",lowerBracket_Param,", higher: ",(lowerBracket_Param+dimensions.visualGrid_Y_Unit_Count_Final_Index))
+        //("lower: ",lowerBracket_Param,", higher: ",(lowerBracket_Param+dimensions.visualGrid_Y_Unit_Count_Final_Index))
+        
+        
+        
+ 
+        
         
         if (lowerBracket_Param + y_Index) < dimensions.DATA_final_Line_Y_Index {
             let new_Y_Index = lowerBracket_Param + y_Index
