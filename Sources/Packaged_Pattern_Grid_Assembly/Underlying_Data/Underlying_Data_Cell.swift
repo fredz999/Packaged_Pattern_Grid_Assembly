@@ -295,7 +295,7 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     public func react_To_Timing_Change(timingParam:E_CentralGridTiming){
         
-        print("react_To_Timing_Change X: ",dataCell_X_Number,", Y: ",parentLine.line_Y_Num)
+        //print("react_To_Timing_Change X: ",dataCell_X_Number,", Y: ",parentLine.line_Y_Num)
         
         if timingParam == .fourFour {
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
@@ -304,10 +304,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             note_Reset_Status = fourStatus
         }
         else if timingParam == .sixEight {
-//            if dataCell_X_Number >= 0 && dataCell_X_Number <= 6 && parentLine.line_Y_Num == 24 {
-//                print("Timing change, CELL dataX: ",dataCell_X_Number,", CELL lineY: ",parentLine.line_Y_Num
-//                      ,", curr Type: ",currentType.rawValue)
-//            }
             if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
                 change_Type(newType: sixStatus)
             }
@@ -329,13 +325,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
-                    
-                    
-                    if dataCell_X_Number >= 0 && dataCell_X_Number <= 6 && parentLine.line_Y_Num == 24 {
-                        print("SMELL type before: ",currentType.rawValue,", SMELL typeAfter: ",newType.rawValue,", CELL dataX: ",dataCell_X_Number,", CELL lineY: ",parentLine.line_Y_Num)
-                    }
-                    
-                    
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }

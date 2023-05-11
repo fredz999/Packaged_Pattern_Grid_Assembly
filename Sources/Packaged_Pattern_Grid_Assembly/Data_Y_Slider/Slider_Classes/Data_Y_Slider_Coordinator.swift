@@ -106,12 +106,13 @@ public class Data_Y_Slider_Coordinator<T:View> : NSObject, UICollectionViewDataS
         }
     }
 
-    public func vertical_GoToEnd(){
-        let last = 35
+    public func vertical_GoToEnd(endParam:Int){
+        let last = endParam
         let indexToScrollTo = IndexPath(item: last, section: 0)
         if let lclCollection_View = v_Collection_View {
             lclCollection_View.scrollToItem(at: indexToScrollTo, at: .bottom, animated: false)
         }
+        // TODO: Y_Data
     }
 
 }

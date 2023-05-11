@@ -87,9 +87,9 @@ public class Generic_Central_And_Sliders_Factory<InjectedCentralCellType:View
         injected_v_Slider = vertical_Slider_Factory_Param(cursor_Vertical_Slider_Store)
     }
     
-    public func set_Data_Y(){
-        generic_Slider_Y_Coord.vertical_GoToEnd()
-    }
+//    public func set_Data_Y(){
+//        generic_Slider_Y_Coord.vertical_GoToEnd()
+//    }
     
 //    public func inject_Cursor_Factory_Method(cursor_Factory_Method: ((Cursor_Layer_Store)->Injected_Cursor_Type)){
 //        injected_cursor = cursor_Factory_Method(cursor_Layer_Store)
