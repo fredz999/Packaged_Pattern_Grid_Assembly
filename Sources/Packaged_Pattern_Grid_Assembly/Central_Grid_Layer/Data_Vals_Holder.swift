@@ -372,9 +372,11 @@ public class Data_Vals_Holder : ObservableObject {
     
    func updateValsFromNewData(newXNum:Int,newYNum:Int,newCellNoteStatus:E_CellStatus){
    if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
-   if referenced_dataCell_Y_Number != newYNum{referenced_dataCell_Y_Number = newYNum}
+   if referenced_dataCell_Y_Number != newYNum{
+       referenced_dataCell_Y_Number = newYNum
+       print("referenced_dataCell_Y_Number: ",referenced_dataCell_Y_Number)
+   }
        if referenced_currentStatus != newCellNoteStatus {
-           print("getting set in hea?.......2")
            referenced_currentStatus = newCellNoteStatus
        }
    }
