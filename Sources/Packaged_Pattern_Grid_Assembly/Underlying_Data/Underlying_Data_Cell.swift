@@ -338,14 +338,13 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
         if currentType != newType {
             
             if dataCell_X_Number < 6 && parentLine.line_Y_Num == 24
-            || parentLine.line_Y_Num == 0{
+            || parentLine.line_Y_Num == 0 {
                 print("cellX: ",dataCell_X_Number , ",Y: ",parentLine.line_Y_Num, ", Cell func, startType: ",currentType.rawValue,", newType: ",newType)
             }
             
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
                 if lcl_Data_Vals.referenced_currentStatus != newType {
-                    
                     lcl_Data_Vals.referenced_currentStatus = newType
                 }
             }

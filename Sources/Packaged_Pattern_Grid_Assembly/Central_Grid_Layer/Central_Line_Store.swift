@@ -29,6 +29,8 @@ public class Central_Line_Store : ObservableObject,Identifiable {
     
     public func change_Data_Y(lowerBracket_Param:Int){
         //outgoing cell has to get its datadisplay nilled
+        print("lower: ",lowerBracket_Param,", higher: ",(lowerBracket_Param+12))
+        
         if (lowerBracket_Param + y_Index) < dimensions.DATA_final_Line_Y_Index {
             let new_Y_Index = lowerBracket_Param + y_Index
             for visualCell in visual_Cell_Store_Array {
