@@ -217,19 +217,20 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var parentLine : Underlying_Data_Line
     
-    weak var currentConnectedDataVals : Data_Vals_Holder?{
-        didSet{
-            if currentConnectedDataVals == nil{
-                print("cellX:",dataCell_X_Number,",Y: " ,parentLine.line_Y_Num," just got its datavvals nilled:")
-            }
-            else if let lclDV = currentConnectedDataVals{
-                print("cellX:",dataCell_X_Number,",Y: "
-                      ,parentLine.line_Y_Num," just got dv_X:"
-                      ,lclDV.referenced_dataCell_X_Number,", dv_Y: "
-                      ,lclDV.referenced_dataCell_Y_Number)
-            }
-        }
-    }
+    weak var currentConnectedDataVals : Data_Vals_Holder?
+//    {
+//        didSet{
+//            if currentConnectedDataVals == nil{
+//                print("cellX:",dataCell_X_Number,",Y: " ,parentLine.line_Y_Num," just got its datavvals nilled:")
+//            }
+//            else if let lclDV = currentConnectedDataVals{
+//                print("cellX:",dataCell_X_Number,",Y: "
+//                      ,parentLine.line_Y_Num," just got dv_X:"
+//                      ,lclDV.referenced_dataCell_X_Number,", dv_Y: "
+//                      ,lclDV.referenced_dataCell_Y_Number)
+//            }
+//        }
+//    }
 
     var note_Reset_Status : E_CellStatus
     public var currentType : E_CellStatus
@@ -337,10 +338,10 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     public func change_Type(newType:E_CellStatus){
         if currentType != newType {
             
-            if dataCell_X_Number < 6 && parentLine.line_Y_Num == 24
-            || parentLine.line_Y_Num == 0 {
-                print("cellX: ",dataCell_X_Number , ",Y: ",parentLine.line_Y_Num, ", Cell func, startType: ",currentType.rawValue,", newType: ",newType)
-            }
+//            if dataCell_X_Number < 6 && parentLine.line_Y_Num == 24
+//            || parentLine.line_Y_Num == 0 {
+//                print("cellX: ",dataCell_X_Number , ",Y: ",parentLine.line_Y_Num, ", Cell func, startType: ",currentType.rawValue,", newType: ",newType)
+//            }
             
             currentType = newType
             if let lcl_Data_Vals = currentConnectedDataVals {
