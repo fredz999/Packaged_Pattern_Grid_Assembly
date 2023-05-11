@@ -47,7 +47,7 @@ public class Data_Vals_Holder : ObservableObject {
         
         willSet{
             if referenced_dataCell_X_Number < 6 && referenced_dataCell_Y_Number == 24{
-                print("twas: ",referenced_currentStatus.rawValue,", going to: ",newValue.rawValue,", forX: ",referenced_dataCell_X_Number,", Y: ",referenced_dataCell_Y_Number)
+                print("twas: ",referenced_currentStatus.rawValue,", going to: ",newValue.rawValue,", for dvX: ",referenced_dataCell_X_Number,", dvY: ",referenced_dataCell_Y_Number)
             }
         }
 
@@ -365,7 +365,6 @@ public class Data_Vals_Holder : ObservableObject {
    sub_Cell_Height = cellHeightParam
    referenced_dataCell_X_Number = xNumParam
    referenced_dataCell_Y_Number = yNumParam
-       print("getting set in hea?.......1")
    referenced_currentStatus = typeParam
    statusColor = colors.grid_Blank_Color
    }
@@ -374,7 +373,6 @@ public class Data_Vals_Holder : ObservableObject {
    if referenced_dataCell_X_Number != newXNum{referenced_dataCell_X_Number = newXNum}
    if referenced_dataCell_Y_Number != newYNum{
        referenced_dataCell_Y_Number = newYNum
-       print("referenced_dataCell_Y_Number: ",referenced_dataCell_Y_Number)
    }
        if referenced_currentStatus != newCellNoteStatus {
            referenced_currentStatus = newCellNoteStatus

@@ -46,7 +46,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
 //                else if fourFour_Sub_Count == 1{currFourStatus = .mid_Blank}
 //                else if fourFour_Sub_Count == 2{currFourStatus = .mid_Blank}
 //                else if fourFour_Sub_Count == 3{currFourStatus = .end_Blank
-//                    print("four four actually reached 3")
+
 //                }
 //
 //                if sixEight_Sub_Count == 0{currSixStatus = .start_Blank}
@@ -56,7 +56,7 @@ public class Underlying_Data_Grid:ObservableObject,Identifiable {
 //                else if sixEight_Sub_Count == 4{currSixStatus = .mid_Blank}
 //                else if sixEight_Sub_Count == 5{
 //                    currSixStatus = .end_Blank
-//                    print("six eight actually reached 5")
+
 //                }
                 
                 

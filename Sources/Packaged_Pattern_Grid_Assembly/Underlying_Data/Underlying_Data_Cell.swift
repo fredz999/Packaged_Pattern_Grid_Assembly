@@ -217,7 +217,19 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     
     var parentLine : Underlying_Data_Line
     
-    weak var currentConnectedDataVals : Data_Vals_Holder?
+    weak var currentConnectedDataVals : Data_Vals_Holder?{
+        didSet{
+            if currentConnectedDataVals == nil{
+                print("cellX:",dataCell_X_Number,",Y: " ,parentLine.line_Y_Num," just got its datavvals nilled:")
+            }
+            else if let lclDV = currentConnectedDataVals{
+                print("cellX:",dataCell_X_Number,",Y: "
+                      ,parentLine.line_Y_Num," just got dv_X:"
+                      ,lclDV.referenced_dataCell_X_Number,", dv_Y: "
+                      ,lclDV.referenced_dataCell_Y_Number)
+            }
+        }
+    }
 
     var note_Reset_Status : E_CellStatus
     public var currentType : E_CellStatus
@@ -323,15 +335,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func change_Type(newType:E_CellStatus){
-//        if currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
-//            print("changed FROM note TO: ",currentType.rawValue)
-//        }
-//        else if currentType == .start_Blank || currentType == .mid_Blank || currentType == .end_Blank {
-//            print("changed TO blank type: ",currentType.rawValue)
-//        }
-        
-        
-        
         if currentType != newType {
             
             if dataCell_X_Number < 6 && parentLine.line_Y_Num == 24
@@ -363,7 +366,6 @@ public class Underlying_Data_Cell:Identifiable,Equatable,Hashable {
     }
     
     public func reset_To_Original(){
-        print("reset called, X:",dataCell_X_Number)
         if currentType == .single_Note || currentType == .start_Note || currentType == .mid_Note || currentType == .end_Note {
             currentType = note_Reset_Status
             if note_Im_In != nil {note_Im_In = nil}
