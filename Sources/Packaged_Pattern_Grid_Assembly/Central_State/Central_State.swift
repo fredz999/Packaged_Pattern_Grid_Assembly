@@ -420,7 +420,7 @@ public class Central_State : ObservableObject {
         if let lclinitial_Data_Y_Position_Set = initial_Data_Y_Position_Set{
             lclinitial_Data_Y_Position_Set(lowerSliderPos)
         }
-        //data_Slider_LowBracket_Update(newLower:lowerDataPos)
+        data_Slider_LowBracket_Update(newLower:lowerDataPos)
     }
     
     public var initial_Data_Y_Position_Set : ((Int)->())?
