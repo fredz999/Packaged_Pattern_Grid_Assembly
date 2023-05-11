@@ -37,6 +37,7 @@ public class ComponentDimensions : ObservableObject {
     
     @Published public var dataGrid_X_Unit_Count : Int = 96
     public let visualGrid_Y_Unit_Count : Int = 12
+    public let visualGrid_Y_Unit_Count_Final_Index : Int = 11
     
     public let cellFontSize : CGFloat = 12
     //============== CURSOR SECTION =========================
